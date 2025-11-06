@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "name": "Soporte Informático",
+    "icon": "fas fa-laptop-code",
+    "description": "Mantenimiento, reparación y optimización de equipos. Instalación de software y solución de problemas técnicos.",
+    "features": [
+      "Diagnóstico y reparación de hardware",
+      "Instalación y configuración de software",
+      "Optimización de rendimiento",
+      "Backup y recuperación de datos",
+      "Soporte remoto y presencial"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Redes Cableadas e Inalámbricas",
+    "icon": "fas fa-network-wired",
+    "description": "Diseño, instalación y configuración de redes empresariales. Optimización de conectividad WiFi y cableado estructurado.",
+    "features": [
+      "Diseño de infraestructura de red",
+      "Instalación de cableado estructurado",
+      "Configuración de routers y switches",
+      "Optimización de WiFi empresarial",
+      "Seguridad de red y firewall"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Cámaras de Seguridad / CCTV",
+    "icon": "fas fa-video",
+    "description": "Instalación de sistemas de videovigilancia IP y analógicos. Monitoreo remoto y grabación continua.",
+    "features": [
+      "Cámaras IP de alta definición",
+      "Sistemas de grabación DVR/NVR",
+      "Monitoreo remoto desde smartphone",
+      "Visión nocturna y detección de movimiento",
+      "Integración con alarmas"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Alarmas y Barreras",
+    "icon": "fas fa-shield-alt",
+    "description": "Sistemas de seguridad perimetral, alarmas anti-intrusión y control de accesos automatizados.",
+    "features": [
+      "Alarmas anti-intrusión",
+      "Sensores de movimiento y apertura",
+      "Barreras automáticas",
+      "Control de accesos biométrico",
+      "Notificaciones en tiempo real"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Domótica",
+    "icon": "fas fa-home",
+    "description": "Automatización inteligente del hogar. Control de iluminación, climatización y dispositivos conectados.",
+    "features": [
+      "Control de iluminación inteligente",
+      "Termostatos y climatización",
+      "Persianas y cortinas automatizadas",
+      "Integración con asistentes de voz",
+      "Escenas y automatizaciones"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Ciberseguridad y Mantenimiento",
+    "icon": "fas fa-lock",
+    "description": "Protección de datos, auditorías de seguridad y mantenimiento preventivo de infraestructura IT.",
+    "features": [
+      "Auditorías de seguridad",
+      "Protección contra malware y ransomware",
+      "Backup automático en la nube",
+      "Mantenimiento preventivo",
+      "Capacitación en seguridad"
+    ]
+  }
+]

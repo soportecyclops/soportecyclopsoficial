@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Soporte Cyclops - Soluciones técnicas integrales para hogares, empresas y organizaciones en Argentina">
+    <meta name="keywords" content="soporte técnico, redes, CCTV, alarmas, domótica, ciberseguridad, Argentina">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>Soporte Cyclops - Servicios Técnicos Profesionales</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav class="navbar">
+            <div class="container nav-container">
+                <div class="logo">
+                    <img src="./img/logo.png" alt="Soporte Cyclops Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="logo-text">
+                        <i class="fas fa-eye"></i>
+                        <span>Soporte Cyclops</span>
+                    </div>
+                </div>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
+                    <li><a href="#noticias" class="nav-link">Noticias</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    <li><a href="#agenda" class="nav-link">Disponibilidad</a></li>
+                    <li><a href="#tickets" class="nav-link">Tickets</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title fade-in">Soporte Cyclops</h1>
+            <p class="hero-subtitle fade-in">Soluciones técnicas integrales para hogares, empresas y organizaciones</p>
+            <p class="hero-tagline fade-in">Confiabilidad y experiencia en cada servicio</p>
+            <div class="hero-buttons fade-in">
+                <a href="#contacto" class="btn btn-primary">
+                    <i class="fas fa-file-invoice"></i> Solicitar Cotización
+                </a>
+                <a href="#contacto" class="btn btn-secondary">
+                    <i class="fas fa-calendar-check"></i> Agendar Servicio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <p class="section-subtitle">Soluciones profesionales adaptadas a tus necesidades</p>
+            <div class="services-grid">
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Soporte Informático</h3>
+                    <p>Mantenimiento, reparación y optimización de equipos. Instalación de software y solución de problemas técnicos.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Redes Cableadas e Inalámbricas</h3>
+                    <p>Diseño, instalación y configuración de redes empresariales. Optimización de conectividad WiFi y cableado estructurado.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Cámaras de Seguridad / CCTV</h3>
+                    <p>Instalación de sistemas de videovigilancia IP y analógicos. Monitoreo remoto y grabación continua.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Alarmas y Barreras</h3>
+                    <p>Sistemas de seguridad perimetral, alarmas anti-intrusión y control de accesos automatizados.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Domótica</h3>
+                    <p>Automatización inteligente del hogar. Control de iluminación, climatización y dispositivos conectados.</p>
+                </div>
+                <div class="service-card slide-up">
+                    <div class="service-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Ciberseguridad y Mantenimiento</h3>
+                    <p>Protección de datos, auditorías de seguridad y mantenimiento preventivo de infraestructura IT.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-mi" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text slide-up">
+                    <h2 class="section-title">Sobre mí</h2>
+                    <p class="about-description">
+                        Más de 10 años de experiencia en soporte informático, redes cableadas e inalámbricas, CCTV, alarmas, domótica y mantenimiento integral.
+                    </p>
+                    <p class="about-description">
+                        He trabajado con empresas de primer nivel como <strong>Radio Nacional</strong>, <strong>L'Oréal</strong>, <strong>Cordial Compañía Financiera</strong> y el <strong>Autódromo de Buenos Aires</strong>, brindando soluciones técnicas confiables y eficientes.
+                    </p>
+                    <p class="about-description">
+                        Mi compromiso es ofrecer servicios de calidad, con atención personalizada y resultados garantizados para cada proyecto.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <i class="fas fa-award"></i>
+                            <h3>+10 años</h3>
+                            <p>De experiencia</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-users"></i>
+                            <h3>+500</h3>
+                            <p>Clientes satisfechos</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-tools"></i>
+                            <h3>+1000</h3>
+                            <p>Servicios realizados</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image slide-up">
+                    <img src="./img/banner.jpg" alt="Soporte Técnico Profesional" onerror="this.src='https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="noticias" class="news">
+        <div class="container">
+            <h2 class="section-title">Noticias y Novedades</h2>
+            <p class="section-subtitle">Mantente informado sobre nuestros últimos proyectos y actualizaciones</p>
+            <div class="news-grid" id="newsGrid">
+                <!-- News items will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Quote Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contacto y Cotización</h2>
+            <p class="section-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+            <div class="contact-content">
+                <form id="contactForm" class="contact-form slide-up">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre y Apellido *</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono *</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección / Zona *</label>
+                            <input type="text" id="direccion" name="direccion" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="servicio">Servicio Solicitado *</label>
+                            <select id="servicio" name="servicio" required>
+                                <option value="">Seleccione un servicio</option>
+                                <option value="soporte-informatico">Soporte Informático</option>
+                                <option value="redes">Redes Cableadas e Inalámbricas</option>
+                                <option value="cctv">Cámaras de Seguridad / CCTV</option>
+                                <option value="alarmas">Alarmas y Barreras</option>
+                                <option value="domotica">Domótica</option>
+                                <option value="ciberseguridad">Ciberseguridad y Mantenimiento</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha y Hora Preferidas</label>
+                            <input type="datetime-local" id="fecha" name="fecha">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción del Servicio *</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="visitaTecnica" name="visitaTecnica">
+                        <label for="visitaTecnica">Solicitar visita técnica</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                    </button>
+                    <button type="button" id="scheduleGoogleBtn" class="btn btn-secondary btn-submit">
+                        <i class="fab fa-google"></i> Agendar con Google Calendar
+                    </button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+                <div class="contact-info slide-up">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p><a href="tel:+5491166804450">+54 9 11 6680-4450</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="/cdn-cgi/l/email-protection#0a79657a65787e6f69736966657a794a6d676b636624696567"><span class="__cf_email__" data-cfemail="3a49554a55484e5f59435956554a497a5d575b535614595557">[email&#160;protected]</span></a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Buenos Aires, Argentina</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/5491166804450" target="_blank" class="whatsapp-link">
+                                Enviar mensaje
+                            </a>
+                        </div>
+                    </div>
+                    <div class="business-hours">
+                        <h4>Horario de Atención</h4>
+                        <p>Lunes a Viernes: 9:00 - 18:00</p>
+                        <p>Sábados: 9:00 - 13:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="agenda" class="schedule">
+        <div class="container">
+            <h2 class="section-title">Disponibilidad</h2>
+            <p class="section-subtitle">Consulta los horarios disponibles para agendar tu servicio</p>
+            <div class="schedule-content">
+                <div class="schedule-info">
+                    <i class="fas fa-calendar-alt"></i>
+                    <p>Horarios disponibles actualizados en tiempo real</p>
+                </div>
+                <div id="scheduleGrid" class="schedule-grid">
+                    <!-- Schedule items will be loaded dynamically -->
+                </div>
+                <div id="scheduleMessage" class="schedule-message">
+                    Cargando disponibilidad...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section id="tickets" class="tickets">
+        <div class="container">
+            <h2 class="section-title">Consulta de Tickets</h2>
+            <p class="section-subtitle">Verifica el estado de tu solicitud de servicio</p>
+            <div class="tickets-content">
+                <form id="ticketForm" class="ticket-form">
+                    <div class="form-group">
+                        <label for="ticketNumber">Número de Ticket</label>
+                        <input type="text" id="ticketNumber" name="ticketNumber" placeholder="Ej: TICK-2025-001" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Consultar Estado
+                    </button>
+                </form>
+                <div id="ticketResult" class="ticket-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Soporte Cyclops</h3>
+                    <p>Servicios Técnicos Profesionales</p>
+                    <p>Soluciones integrales para hogares, empresas y organizaciones</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#servicios">Soporte Informático</a></li>
+                        <li><a href="#servicios">Redes y Conectividad</a></li>
+                        <li><a href="#servicios">CCTV y Seguridad</a></li>
+                        <li><a href="#servicios">Domótica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+5491166804450">+54 9 11 6680-4450</a></li>
+                        <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#becdd1ced1cccadbddc7ddd2d1cecdfed9d3dfd7d290ddd1d3"><span class="__cf_email__" data-cfemail="3a49554a55484e5f59435956554a497a5d575b535614595557">[email&#160;protected]</span></a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="https://wa.me/5491166804450" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Soporte Cyclops - Servicios Técnicos Profesionales. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
