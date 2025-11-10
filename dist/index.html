@@ -53,23 +53,55 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title fade-in">Soporte Cyclops</h1>
-            <p class="hero-subtitle fade-in">Soluciones técnicas integrales para hogares, empresas y organizaciones</p>
-            <p class="hero-tagline fade-in">Confiabilidad y experiencia en cada servicio</p>
-            <div class="hero-buttons fade-in">
-                <a href="#contacto" class="btn btn-primary">
-                    <i class="fas fa-file-invoice"></i> Solicitar Cotización
-                </a>
-                <a href="#contacto" class="btn btn-secondary">
-                    <i class="fas fa-calendar-check"></i> Agendar Servicio
-                </a>
+<section class="hero">
+    <div class="container">
+        <h1>Su técnico de confianza<br>a solo un clic de distancia</h1>
+        <p class="subtitle">Reparaciones rápidas, garantizadas y sin complicaciones para sus dispositivos</p>
+        
+        <div class="cta-buttons">
+            <a href="https://wa.me/549TU-NUMERO?text=Hola!%20Necesito%20ayuda%20con%20mi%20dispositivo" 
+               class="btn btn-primary">
+               📱 WhatsApp Inmediato
+            </a>
+            <a href="#reservar-cita" class="btn btn-secondary">
+               📅 Reservar Cita Online
+            </a>
+        </div>
+        
+        <div class="trust-badges">
+            <span>✅ Diagnóstico Gratuito</span>
+            <span>✅ Garantía 90 Días</span>
+            <span>✅ Técnico Certificado</span>
+        </div>
+    </div>
+</section>
+    <!-- Confidence Section -->
+<section class="confidence-section">
+    <div class="container">
+        <div class="confidence-grid">
+            <div class="confidence-item">
+                <div class="icon">🔧</div>
+                <h3>Diagnóstico Sin Costo</h3>
+                <p>Le explicamos el problema y el precio antes de cualquier reparación</p>
+            </div>
+            <div class="confidence-item">
+                <div class="icon">🛡️</div>
+                <h3>Garantía 90 Días</h3>
+                <p>Todas nuestras reparaciones incluyen garantía escrita</p>
+            </div>
+            <div class="confidence-item">
+                <div class="icon">👨‍💼</div>
+                <h3>Técnico Certificado</h3>
+                <p>+5 años de experiencia resolviendo problemas tecnológicos</p>
+            </div>
+            <div class="confidence-item">
+                <div class="icon">🚗</div>
+                <h3>Servicio a Domicilio</h3>
+                <p>No necesita moverse, vamos hasta su casa u oficina</p>
             </div>
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Services Section -->
     <section id="servicios" class="services">
         <div class="container">
@@ -296,76 +328,89 @@
             </div>
         </div>
     </section>
-
-    <!-- Tickets Section -->
-    <section id="tickets" class="tickets">
-        <div class="container">
-            <h2 class="section-title">Consulta de Tickets</h2>
-            <p class="section-subtitle">Verifica el estado de tu solicitud de servicio</p>
-            <div class="tickets-content">
-                <form id="ticketForm" class="ticket-form">
-                    <div class="form-group">
-                        <label for="ticketNumber">Número de Ticket</label>
-                        <input type="text" id="ticketNumber" name="ticketNumber" placeholder="Ej: TICK-2025-001" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-search"></i> Consultar Estado
-                    </button>
-                </form>
-                <div id="ticketResult" class="ticket-result"></div>
+   <section id="reservar-cita" class="booking-section">
+    <div class="container">
+        <h2>Reserve su cita en 3 simples pasos</h2>
+        <div class="booking-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Describa su problema</h3>
+                <p>Cuéntenos brevemente qué le sucede a su dispositivo</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Elija día y hora</h3>
+                <p>Seleccione el horario que mejor le convenga</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Reciba al técnico</h3>
+                <p>Nos presentamos en su domicilio puntualmente</p>
             </div>
         </div>
-    </section>
-
+        
+        <div class="booking-options">
+            <div class="booking-option">
+                <h4>📞 Contacto Directo</h4>
+                <p>Hable directamente con el técnico</p>
+                <a href="tel:+549TU-NUMERO" class="btn btn-call">Llamar Ahora</a>
+            </div>
+            
+            <div class="booking-option">
+                <h4>📱 WhatsApp Rápido</h4>
+                <p>Respuesta en menos de 15 minutos</p>
+                <a href="https://wa.me/549TU-NUMERO?text=Hola!%20Quisiera%20reservar%20una%20cita%20para..." 
+                   class="btn btn-whatsapp">
+                   Escribir por WhatsApp
+                </a>
+            </div>
+            
+            <div class="booking-option">
+                <h4>📅 Agenda Online</h4>
+                <p>Reserve su hora automáticamente</p>
+                <a href="https://calendly.com/tu-usuario" class="btn btn-calendar">
+                    Ver Horarios Disponibles
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Soporte Cyclops</h3>
-                    <p>Servicios Técnicos Profesionales</p>
-                    <p>Soluciones integrales para hogares, empresas y organizaciones</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Servicios</h3>
-                    <ul>
-                        <li><a href="#servicios">Soporte Informático</a></li>
-                        <li><a href="#servicios">Redes y Conectividad</a></li>
-                        <li><a href="#servicios">CCTV y Seguridad</a></li>
-                        <li><a href="#servicios">Domótica</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contacto</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+5491166804450">+54 9 11 6680-4450</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection#e695899689949283859f858a899695a6818b878f8ac885898b"><span class="__cf_email__" data-cfemail="b3c0dcc3dcc1c7d6d0cad0dfdcc3c0f3d4ded2dadf9dd0dcde">[email&#160;protected]</span></a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Síguenos</h3>
-                    <div class="social-links">
-                        <a href="https://wa.me/5491166804450" target="_blank" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
-                </div>
+    <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Soporte Cíclops</h4>
+                <p>Su técnico de confianza en [Tu Ciudad]. Soluciones rápidas y garantizadas.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Soporte Cyclops - Servicios Técnicos Profesionales. Todos los derechos reservados.</p>
+            
+            <div class="footer-section">
+                <h4>Contacto Directo</h4>
+                <p>📞 <a href="tel:+549TU-NUMERO">+54 9 XXX-XXXX</a></p>
+                <p>📧 <a href="mailto:tu@email.com">tu@email.com</a></p>
+                <p>📍 Zona de cobertura: [Tus barrios/ciudades]</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Horario de Atención</h4>
+                <p>Lunes a Viernes: 8:00 - 20:00</p>
+                <p>Sábados: 9:00 - 14:00</p>
+                <p>Emergencias: 24/7</p>
             </div>
         </div>
-    </footer>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Soporte Cíclops. Todos los derechos reservados.</p>
+        </div>
+    </div>
+    
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/549TU-NUMERO?text=Hola!%20Vi%20su%20página%20web%20y%20necesito%20ayuda..." 
+       class="whatsapp-float" 
+       target="_blank">
+       💬 WhatsApp
+    </a>
+</footer>
 
     <!-- Scripts -->
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
