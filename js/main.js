@@ -84,10 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===========================
-// AGENDA SYSTEM - Appointment Scheduler
-// ===========================
-// ===========================
-// AGENDA SYSTEM - Appointment Scheduler IMPROVED
+// AGENDA SYSTEM - Appointment Scheduler CORREGIDO
 // ===========================
 class AppointmentScheduler {
     constructor() {
@@ -103,17 +100,17 @@ class AppointmentScheduler {
         // Only initialize if agenda section exists
         if (!document.getElementById('agenda')) return;
         
-        this.setupImprovedCalendar();
+        this.setupCalendar();
         this.setupEventListeners();
-        this.loadAvailableSlots();
+        this.updateConfirmButton();
     }
 
-    setupImprovedCalendar() {
-        this.renderImprovedCalendar();
+    setupCalendar() {
+        this.renderCalendar();
         this.renderTimeSlots();
     }
 
-    renderImprovedCalendar() {
+    renderCalendar() {
         const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
@@ -132,7 +129,7 @@ class AppointmentScheduler {
 
         let calendarHTML = '';
         
-        // Días de la semana
+        // Días de la semana - HEADERS
         const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
         days.forEach(day => {
             calendarHTML += `<div class="calendar-day header">${day}</div>`;
@@ -141,7 +138,7 @@ class AppointmentScheduler {
         // Días vacíos al inicio (ajustado para empezar en lunes)
         const adjustedStartingDay = startingDay === 0 ? 6 : startingDay - 1;
         for (let i = 0; i < adjustedStartingDay; i++) {
-            calendarHTML += `<div class="calendar-day other-month"></div>`;
+            calendarHTML += `<div class="calendar-day empty"></div>`;
         }
 
         // Días del mes
@@ -150,7 +147,7 @@ class AppointmentScheduler {
             const currentDay = new Date(this.currentYear, this.currentMonth, day);
             currentDay.setHours(0, 0, 0, 0);
             
-            const isAvailable = this.isDateAvailable(dateStr);
+            const isAvailable = this.isDateAvailable(currentDay);
             const isToday = currentDay.getTime() === today.getTime();
             const isSelected = this.selectedDate && 
                               this.selectedDate.getDate() === day && 
@@ -158,25 +155,16 @@ class AppointmentScheduler {
                               this.selectedDate.getFullYear() === this.currentYear;
             
             let dayClass = 'calendar-day';
-            if (!isAvailable) dayClass += ' disabled';
+            if (isAvailable) dayClass += ' available';
             if (isToday) dayClass += ' today';
             if (isSelected) dayClass += ' selected';
-            if (isAvailable) dayClass += ' available';
+            if (!isAvailable) dayClass += ' unavailable';
 
             calendarHTML += `
-                <div class="${dayClass}" 
-                     data-date="${dateStr}" 
-                     ${!isAvailable ? 'style="cursor: not-allowed; opacity: 0.5;"' : ''}>
+                <div class="${dayClass}" data-date="${dateStr}">
                     ${day}
                 </div>
             `;
-        }
-
-        // Completar con días del próximo mes
-        const totalCells = 42; // 6 semanas
-        const remainingCells = totalCells - (adjustedStartingDay + monthLength);
-        for (let i = 1; i <= remainingCells; i++) {
-            calendarHTML += `<div class="calendar-day other-month">${i}</div>`;
         }
 
         const calendarDays = document.getElementById('calendarDays');
@@ -185,8 +173,7 @@ class AppointmentScheduler {
         }
     }
 
-    isDateAvailable(dateStr) {
-        const date = new Date(dateStr);
+    isDateAvailable(date) {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         
@@ -199,47 +186,45 @@ class AppointmentScheduler {
         return true;
     }
 
-    async loadAvailableSlots() {
-        const availableSlots = this.generateTimeSlots();
-        this.renderTimeSlots(availableSlots);
-    }
-
-    generateTimeSlots() {
-        const slots = [];
-        const startHour = 8; // 8:00 AM
-        const endHour = 18;  // 6:00 PM
+    renderTimeSlots() {
+        const container = document.getElementById('timeSlotsContainer');
+        if (!container) return;
         
-        // Solo horas completas, más simples para personas mayores
-        for (let hour = startHour; hour <= endHour; hour++) {
-            slots.push(`${hour.toString().padStart(2, '0')}:00`);
-        }
+        container.innerHTML = '';
         
-        return slots;
-    }
-
-    renderTimeSlots(slots = null) {
-        const timeSlotsToRender = slots || this.generateTimeSlots();
-        let slotsHTML = '';
+        // Horarios disponibles (8 AM - 6 PM)
+        const timeSlots = [
+            '08:00', '09:00', '10:00', '11:00', 
+            '12:00', '13:00', '14:00', '15:00', 
+            '16:00', '17:00', '18:00'
+        ];
         
-        timeSlotsToRender.forEach(slot => {
-            const isSelected = this.selectedTime === slot;
-            const slotClass = `time-slot ${isSelected ? 'selected' : ''}`;
+        timeSlots.forEach(time => {
+            const isSelected = this.selectedTime === time;
+            const slotElement = document.createElement('div');
             
-            slotsHTML += `
-                <div class="${slotClass}" data-time="${slot}">
-                    ${slot}
-                </div>
-            `;
+            slotElement.className = `time-slot ${isSelected ? 'selected' : ''}`;
+            slotElement.textContent = this.formatTimeDisplay(time);
+            slotElement.setAttribute('data-time', time);
+            
+            slotElement.addEventListener('click', () => {
+                this.selectTime(time, slotElement);
+            });
+            
+            container.appendChild(slotElement);
         });
-        
-        const timeSlotsContainer = document.getElementById('timeSlotsContainer');
-        if (timeSlotsContainer) {
-            timeSlotsContainer.innerHTML = slotsHTML;
-        }
+    }
+
+    formatTimeDisplay(time24) {
+        const [hours, minutes] = time24.split(':');
+        const hour = parseInt(hours);
+        const period = hour >= 12 ? 'PM' : 'AM';
+        const hour12 = hour > 12 ? hour - 12 : hour;
+        return `${hour12}:${minutes} ${period}`;
     }
 
     setupEventListeners() {
-        // Navegación del calendario - Botones mejorados
+        // NAVEGACIÓN DEL CALENDARIO - VERSIÓN CORREGIDA
         const prevMonthBtn = document.getElementById('prevMonth');
         const nextMonthBtn = document.getElementById('nextMonth');
         
@@ -250,7 +235,7 @@ class AppointmentScheduler {
                     this.currentMonth = 11;
                     this.currentYear--;
                 }
-                this.renderImprovedCalendar();
+                this.renderCalendar();
                 this.updateConfirmButton();
             });
         }
@@ -262,46 +247,23 @@ class AppointmentScheduler {
                     this.currentMonth = 0;
                     this.currentYear++;
                 }
-                this.renderImprovedCalendar();
+                this.renderCalendar();
                 this.updateConfirmButton();
             });
         }
 
-        // Selección de fecha
+        // Selección de fecha - EVENT DELEGATION CORREGIDO
         const calendarDays = document.getElementById('calendarDays');
         if (calendarDays) {
             calendarDays.addEventListener('click', (e) => {
                 const dayElement = e.target.closest('.calendar-day.available');
-                if (dayElement && !dayElement.classList.contains('other-month')) {
-                    document.querySelectorAll('.calendar-day').forEach(day => {
-                        day.classList.remove('selected');
-                    });
-                    dayElement.classList.add('selected');
-                    
-                    const dateStr = dayElement.dataset.date;
-                    const [year, month, day] = dateStr.split('-');
-                    this.selectedDate = new Date(year, month - 1, day);
-                    
-                    this.updateConfirmButton();
+                if (dayElement) {
+                    this.selectDateFromElement(dayElement);
                 }
             });
         }
 
-        // Selección de hora
-        const timeSlotsContainer = document.getElementById('timeSlotsContainer');
-        if (timeSlotsContainer) {
-            timeSlotsContainer.addEventListener('click', (e) => {
-                const slotElement = e.target.closest('.time-slot');
-                if (slotElement) {
-                    document.querySelectorAll('.time-slot').forEach(slot => {
-                        slot.classList.remove('selected');
-                    });
-                    slotElement.classList.add('selected');
-                    this.selectedTime = slotElement.dataset.time;
-                    this.updateConfirmButton();
-                }
-            });
-        }
+        // Selección de hora ya está en renderTimeSlots()
 
         // Botón de limpiar selección
         const clearSelectionBtn = document.getElementById('clearSelection');
@@ -330,6 +292,37 @@ class AppointmentScheduler {
         });
     }
 
+    selectDateFromElement(dayElement) {
+        // Deseleccionar todos los días
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            day.classList.remove('selected');
+        });
+        
+        // Seleccionar el día clickeado
+        dayElement.classList.add('selected');
+        
+        const dateStr = dayElement.getAttribute('data-date');
+        const [year, month, day] = dateStr.split('-');
+        this.selectedDate = new Date(year, month - 1, day);
+        
+        this.updateConfirmButton();
+        this.showTemporaryMessage(`Fecha seleccionada: ${day}/${month}/${year}`, 'success');
+    }
+
+    selectTime(time, element) {
+        // Deseleccionar todos los horarios
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.classList.remove('selected');
+        });
+        
+        // Seleccionar el horario clickeado
+        element.classList.add('selected');
+        this.selectedTime = time;
+        
+        this.updateConfirmButton();
+        this.showTemporaryMessage(`Hora seleccionada: ${this.formatTimeDisplay(time)}`, 'success');
+    }
+
     clearSelection() {
         this.selectedDate = null;
         this.selectedTime = null;
@@ -344,51 +337,55 @@ class AppointmentScheduler {
         });
         
         this.updateConfirmButton();
-        
-        // Mostrar mensaje de confirmación
-        this.showTemporaryMessage('Selección limpiada. Por favor, selecciona una nueva fecha y hora.', 'success');
+        this.showTemporaryMessage('Selección limpiada. Por favor, selecciona una nueva fecha y hora.', 'info');
     }
 
     updateConfirmButton() {
-        const isFormComplete = this.isFormComplete() && this.selectedDate && this.selectedTime;
+        const isFormComplete = this.isFormComplete();
+        const hasSelection = this.selectedDate && this.selectedTime;
         const confirmBtn = document.getElementById('confirmAppointment');
         
         if (confirmBtn) {
-            if (isFormComplete) {
+            if (isFormComplete && hasSelection) {
                 confirmBtn.disabled = false;
                 confirmBtn.style.opacity = '1';
                 confirmBtn.style.cursor = 'pointer';
-                confirmBtn.style.transform = 'scale(1.02)';
+                confirmBtn.innerHTML = '<i class="fas fa-calendar-check"></i> Confirmar Reserva';
             } else {
                 confirmBtn.disabled = true;
                 confirmBtn.style.opacity = '0.6';
                 confirmBtn.style.cursor = 'not-allowed';
-                confirmBtn.style.transform = 'scale(1)';
+                confirmBtn.innerHTML = '<i class="fas fa-calendar-times"></i> Completa los datos';
             }
         }
     }
 
     isFormComplete() {
-        const nombre = document.getElementById('agendaNombre')?.value || '';
-        const telefono = document.getElementById('agendaTelefono')?.value || '';
-        const direccion = document.getElementById('agendaDireccion')?.value || '';
-        const problema = document.getElementById('agendaProblema')?.value || '';
+        const nombre = document.getElementById('agendaNombre')?.value.trim() || '';
+        const telefono = document.getElementById('agendaTelefono')?.value.trim() || '';
+        const direccion = document.getElementById('agendaDireccion')?.value.trim() || '';
+        const problema = document.getElementById('agendaProblema')?.value.trim() || '';
         
-        return nombre && telefono && direccion && problema;
+        return nombre !== '' && telefono !== '' && direccion !== '' && problema !== '';
     }
 
     async createAppointment() {
-        if (!this.isFormComplete() || !this.selectedDate || !this.selectedTime) {
-            alert('Por favor, completa todos los campos y selecciona fecha y hora.');
+        if (!this.isFormComplete()) {
+            this.showTemporaryMessage('Por favor, completa todos los campos obligatorios.', 'error');
+            return;
+        }
+        
+        if (!this.selectedDate || !this.selectedTime) {
+            this.showTemporaryMessage('Por favor, selecciona una fecha y hora.', 'error');
             return;
         }
 
         const appointmentData = {
-            nombre: document.getElementById('agendaNombre')?.value || '',
-            telefono: document.getElementById('agendaTelefono')?.value || '',
+            nombre: document.getElementById('agendaNombre').value,
+            telefono: document.getElementById('agendaTelefono').value,
             email: document.getElementById('agendaEmail')?.value || '',
-            direccion: document.getElementById('agendaDireccion')?.value || '',
-            problema: document.getElementById('agendaProblema')?.value || '',
+            direccion: document.getElementById('agendaDireccion').value,
+            problema: document.getElementById('agendaProblema').value,
             fecha: this.selectedDate,
             hora: this.selectedTime
         };
@@ -409,13 +406,15 @@ class AppointmentScheduler {
     sendWhatsAppNotification(appointmentData) {
         const formattedDate = this.formatDate(appointmentData.fecha);
         
-        let message = `¡Hola! Quiero confirmar mi cita:\n\n`;
+        let message = `¡Hola! Quiero agendar un servicio técnico:\n\n`;
         message += `*Nombre:* ${appointmentData.nombre}\n`;
         message += `*Teléfono:* ${appointmentData.telefono}\n`;
-        message += `*Email:* ${appointmentData.email || 'No proporcionado'}\n`;
+        if (appointmentData.email) {
+            message += `*Email:* ${appointmentData.email}\n`;
+        }
         message += `*Dirección:* ${appointmentData.direccion}\n`;
         message += `*Fecha seleccionada:* ${formattedDate}\n`;
-        message += `*Hora seleccionada:* ${appointmentData.hora} hs\n`;
+        message += `*Hora seleccionada:* ${this.formatTimeDisplay(appointmentData.hora)}\n`;
         message += `*Problema/Servicio:* ${appointmentData.problema}\n\n`;
         message += `Por favor, confirmen mi reserva. ¡Gracias!`;
         
@@ -427,25 +426,26 @@ class AppointmentScheduler {
         const formattedDate = this.formatDate(appointmentData.fecha);
         
         const confirmationHTML = `
-            <div class="confirmation-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10000;">
-                <div class="confirmation-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+            <div class="confirmation-modal">
+                <div class="confirmation-content">
                     <div style="font-size: 3rem; color: #27ae60; margin-bottom: 15px;">✅</div>
                     <h3 style="color: #27ae60; margin-bottom: 20px; font-size: 1.5rem;">¡Cita Agendada Exitosamente!</h3>
-                    <div class="appointment-details" style="text-align: left; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <div class="appointment-details">
                         <p><strong>📅 Fecha:</strong> ${formattedDate}</p>
-                        <p><strong>🕒 Hora:</strong> ${appointmentData.hora} hs</p>
+                        <p><strong>🕒 Hora:</strong> ${this.formatTimeDisplay(appointmentData.hora)}</p>
                         <p><strong>👤 Cliente:</strong> ${appointmentData.nombre}</p>
                         <p><strong>📞 Teléfono:</strong> ${appointmentData.telefono}</p>
+                        <p><strong>📍 Dirección:</strong> ${appointmentData.direccion}</p>
                         <p><strong>🔧 Servicio:</strong> ${appointmentData.problema}</p>
                     </div>
                     <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">
                         Te contactaremos pronto para confirmar los detalles de tu servicio.
                     </p>
-                    <div class="confirmation-actions" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                        <button class="btn btn-primary" onclick="window.print()" style="padding: 12px 20px; font-size: 16px;">
+                    <div class="confirmation-actions">
+                        <button class="btn btn-primary" onclick="window.print()">
                             <i class="fas fa-print"></i> Imprimir Comprobante
                         </button>
-                        <button class="btn btn-secondary" onclick="this.closest('.confirmation-modal').remove(); location.reload();" style="padding: 12px 20px; font-size: 16px;">
+                        <button class="btn btn-secondary" onclick="this.closest('.confirmation-modal').remove(); location.reload();">
                             <i class="fas fa-check"></i> Aceptar
                         </button>
                     </div>
@@ -464,41 +464,27 @@ class AppointmentScheduler {
         if (agendaForm) {
             agendaForm.reset();
         }
-        this.selectedDate = null;
-        this.selectedTime = null;
-        this.updateConfirmButton();
+        this.clearSelection();
     }
 
     showTemporaryMessage(message, type = 'info') {
-        const messageDiv = document.createElement('div');
-        const backgroundColor = type === 'success' ? '#e8f5e8' : '#ffeaa7';
-        const textColor = type === 'success' ? '#27ae60' : '#e67e22';
-        
-        messageDiv.style.cssText = `
-            background: ${backgroundColor}; 
-            color: ${textColor}; 
-            padding: 15px; 
-            border-radius: 8px; 
-            margin: 10px 0; 
-            text-align: center; 
-            font-weight: 500;
-            border-left: 4px solid ${textColor};
-        `;
-        messageDiv.textContent = message;
-        
+        // Eliminar mensaje anterior si existe
         const existingMessage = document.querySelector('.temporary-message');
         if (existingMessage) {
             existingMessage.remove();
         }
         
-        messageDiv.classList.add('temporary-message');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `temporary-message ${type}`;
+        messageDiv.textContent = message;
         
-        // Insertar después del botón de limpiar
-        const clearButton = document.getElementById('clearSelection');
-        if (clearButton && clearButton.parentNode) {
-            clearButton.parentNode.insertBefore(messageDiv, clearButton.nextSibling);
+        // Insertar en el contenedor de botones
+        const buttonContainer = document.querySelector('.button-container');
+        if (buttonContainer) {
+            buttonContainer.parentNode.insertBefore(messageDiv, buttonContainer);
         }
         
+        // Auto-eliminar después de 4 segundos
         setTimeout(() => {
             if (messageDiv.parentNode) {
                 messageDiv.parentNode.removeChild(messageDiv);
@@ -1042,4 +1028,5 @@ loadConversation();
 
 // Inicializar sistema de diagnóstico
 initChatbotDiagnostic();
+
 
