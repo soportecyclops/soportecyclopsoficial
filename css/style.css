@@ -909,6 +909,141 @@ section {
 .slide-up:nth-child(5) { animation-delay: 0.5s; }
 .slide-up:nth-child(6) { animation-delay: 0.6s; }
 
+/* Estilos para la agenda */
+.agenda-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.agenda-section .section-title,
+.agenda-section .section-subtitle {
+    color: white;
+}
+
+.agenda-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    color: #333;
+}
+
+.calendar-sidebar {
+    border-right: 1px solid #eee;
+    padding-right: 30px;
+}
+
+.calendar-sidebar h3 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.calendar-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-header button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.calendar-header button:hover {
+    background: #2980b9;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.calendar-day {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.calendar-day:hover {
+    background: #ecf0f1;
+}
+
+.calendar-day.available {
+    background: #e8f5e8;
+    color: #27ae60;
+}
+
+.calendar-day.selected {
+    background: #3498db;
+    color: white;
+}
+
+.calendar-day.unavailable {
+    background: #f8d7da;
+    color: #721c24;
+    cursor: not-allowed;
+}
+
+.time-slots h4 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+.slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.time-slot {
+    padding: 10px;
+    text-align: center;
+    background: #ecf0f1;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.time-slot:hover {
+    background: #bdc3c7;
+}
+
+.time-slot.selected {
+    background: #3498db;
+    color: white;
+}
+
+.time-slot.unavailable {
+    background: #f8d7da;
+    color: #721c24;
+    cursor: not-allowed;
+}
+
+#confirmAppointment:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
 /* ===========================
    Responsive Design
    =========================== */
@@ -1129,4 +1264,5 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
     margin-bottom: 30px;
+
 }
