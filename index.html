@@ -1207,6 +1207,61 @@
             </div>
         </div>
     </section>
+    <!-- Agregar después del formulario de contacto existente -->
+<section id="agenda" class="agenda-section">
+    <div class="container">
+        <h2 class="section-title">Agendá tu Servicio</h2>
+        <p class="section-subtitle">Seleccioná la fecha y hora que te conviene</p>
+        
+        <div class="agenda-container">
+            <div class="calendar-sidebar">
+                <h3>Información del Cliente</h3>
+                <form id="agendaForm">
+                    <div class="form-group">
+                        <label for="agendaNombre">Nombre Completo *</label>
+                        <input type="text" id="agendaNombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="agendaTelefono">Teléfono *</label>
+                        <input type="tel" id="agendaTelefono" name="telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="agendaEmail">Email</label>
+                        <input type="email" id="agendaEmail" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="agendaDireccion">Dirección *</label>
+                        <input type="text" id="agendaDireccion" name="direccion" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="agendaProblema">Problema o Servicio *</label>
+                        <textarea id="agendaProblema" name="problema" rows="3" required placeholder="Describí brevemente el problema..."></textarea>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="calendar-main">
+                <div class="calendar-header">
+                    <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                    <h3 id="currentMonth">Febrero 2025</h3>
+                    <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Se genera dinámicamente -->
+                </div>
+                <div class="time-slots" id="timeSlots">
+                    <h4>Horarios Disponibles</h4>
+                    <div class="slots-container" id="slotsContainer">
+                        <!-- Se genera dinámicamente -->
+                    </div>
+                </div>
+                <button id="confirmAppointment" class="btn btn-primary" disabled>
+                    <i class="fas fa-calendar-check"></i> Confirmar Cita
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1731,3 +1786,4 @@
 </body>
 
 </html>
+
