@@ -367,7 +367,147 @@ class AppointmentScheduler {
 }
 
 // ===========================
-// CHATBOT DIAGNOSTIC SYSTEM
+// CHATBOT COMPLETO - SISTEMA MEJORADO
+// ===========================
+
+// Variables globales del chatbot
+const chatbotToggle = document.getElementById('chatbotToggle');
+const chatbotWindow = document.getElementById('chatbotWindow');
+const chatbotClose = document.getElementById('chatbotClose');
+const chatbotMessages = document.getElementById('chatbotMessages');
+const chatbotInput = document.getElementById('chatbotInput');
+const chatbotSend = document.getElementById('chatbotSend');
+const notificationDot = document.getElementById('notificationDot');
+
+// Respuestas del chatbot original
+const responses = {
+    "servicios": {
+        message: "🔧 *Te cuento sobre nuestros servicios técnicos integrales:*\n\n" +
+                "• *Soporte Informático:* Instalación de software (libre y de pago), mantenimiento preventivo, reparación o cambio de hardware. Trabajamos con todo tipo de software según tus necesidades.\n\n" +
+                "• *Redes y Conectividad:* Instalación profesional desde el cable UTP hasta la configuración avanzada para máxima seguridad y velocidad.\n\n" +
+                "• *Cámaras de Seguridad (CCTV):* Sistemas con marcas líderes como Dahua, Hikvision y otras de alta calidad.\n\n" +
+                "• *Alarmas y Seguridad:* Sistemas inalámbricos, barreras infrarrojas, controles de acceso y cercos eléctricos perimetrales.\n\n" +
+                "• *Domótica:* Automatización inteligente adaptada específicamente a lo que necesites.\n\n" +
+                "• *Ciberseguridad:* Software empresarial, antivirus, firewalls, diagnósticos de seguridad y capacitaciones.\n\n" +
+                "¿Qué servicio te interesa conocer más a fondo?",
+        options: ["soporte_detalles", "redes_detalles", "cctv_detalles", "alarmas_detalles", "domotica_detalles", "ciberseguridad_detalles"]
+    },
+    
+    "cotizacion": "📋 *Te ayudo con tu cotización:*\n\n" +
+                 "Para darte el mejor presupuesto:\n" +
+                 "1. Contame exactamente qué necesitás\n" + 
+                 "2. Te escuchamos y consultamos tu presupuesto disponible\n" +
+                 "3. Te ofrecemos distintas soluciones adaptadas\n" +
+                 "4. Si es necesario, coordinamos una evaluación previa\n\n" +
+                 "💡 *Importante:* La visita técnica no tiene costo dentro de Capital Federal.\n\n" +
+                 "¿Querés que te contactemos para coordinar?",
+                 
+    "emergencia": "🚨 *Entiendo que es urgente, te ayudo ahora mismo:*\n\n" +
+                 "Para atención inmediata:\n" +
+                 "• 📞 Llamanos directamente al: +54 9 11 6680-4450\n" +
+                 "• 💬 Escribinos por WhatsApp para respuesta más rápida\n" +
+                 "• ⏰ Respondemos lo antes posible\n" +
+                 "• 🏠 Fines de semana y feriados sujetos a disponibilidad\n\n" +
+                 "¿Necesitás que te contactemos ya?",
+                 
+    "contacto": "📞 *Te paso nuestros datos de contacto:*\n\n" +
+               "• *Teléfono/WhatsApp:* +54 9 11 6680-4450\n" +
+               "• *Email:* soportecyclops@gmail.com\n" +
+               "• *Horario atención:* Lunes a Viernes 9:00-18:00 | Sábados 9:00-13:00\n" +
+               "• *Zona de cobertura:* Principalmente Capital Federal (consultanos por otras zonas)\n\n" +
+               "¿Preferís que te llamemos nosotros?",
+               
+    "precios": "💲 *Te cuento sobre precios y pagos:*\n\n" +
+              "Nuestros precios se adaptan a:\n" +
+              "• La complejidad del servicio que necesitás\n" +
+              "• Los materiales y equipos requeridos\n" +
+              "• El tiempo de trabajo necesario\n\n" +
+              "💡 *Lo que incluye:*\n" +
+              "• Cotizaciones personalizadas sin cargo\n" +
+              "• Distintos abonos con mantenimiento periódico\n" +
+              "• Aceptamos todas las formas de pago\n" +
+              "• Los materiales se definen conversando con vos\n\n" +
+              "¿Te interesa que te preparemos una cotización?",
+              
+    "garantias": "🛡️ *Nuestra política de garantías:*\n\n" +
+                "• *Servicios:* Seguimiento post-venta incluido en todos nuestros trabajos\n" +
+                "• *Equipos:* Aplicamos la garantía de fábrica de cada marca\n" +
+                "• *Nuestro compromiso:* Tu satisfacción es lo más importante\n\n" +
+                "Todos nuestros clientes quedan satisfechos con el servicio ✅",
+                
+    "horarios": "🕒 *Horarios y zona de cobertura:*\n\n" +
+               "• *Lunes a Viernes:* 9:00 - 18:00 hs\n" +
+               "• *Sábados:* 9:00 - 13:00 hs\n" +
+               "• *Emergencias:* Fines de semana y feriados sujetos a disponibilidad\n" +
+               "• *Zona principal:* Capital Federal (consultanos por otras zonas)\n\n" +
+               "¿Necesitás coordinar un horario específico?",
+               
+    "default": "🤖 No estoy seguro de entender tu pregunta. Te puedo ayudar con:\n\n" +
+              "• Información detallada de todos nuestros servicios técnicos\n" +
+              "• Cotizaciones y presupuestos personalizados\n" +
+              "• Contacto directo con nuestro equipo\n" +
+              "• Soporte urgente para emergencias\n\n" +
+              "¿En qué más puedo asistirte?"
+};
+
+// Detalles de servicios
+const serviceDetails = {
+    "soporte_detalles": "💻 *Soporte Informático Completo:*\n\n" +
+                       "• Instalación y configuración de software (libre y de pago)\n" +
+                       "• Software especializado: audio, video, gestión empresarial\n" +
+                       "• Bases de datos, drivers y actualizaciones\n" +
+                       "• Mantenimiento preventivo y correctivo\n" +
+                       "• Reparación o cambio de hardware\n" +
+                       "• Optimización de sistemas para máximo rendimiento\n\n" +
+                       "¿Qué necesitás específicamente para tu equipo?",
+                       
+    "redes_detalles": "🌐 *Redes Profesionales Completas:*\n\n" +
+                     "• Instalación de cable UTP con fichas profesionales\n" +
+                     "• Configuración avanzada para seguridad y velocidad\n" +
+                     "• Separación y segmentación de redes\n" +
+                     "• Cableado estructurado empresarial\n" +
+                     "• Soluciones de conectividad para hogar y empresa\n\n" +
+                     "¿Tenés algún problema de conectividad actualmente?",
+                     
+    "cctv_detalles": "📹 *Sistemas CCTV de Alta Calidad:*\n\n" +
+                    "• Trabajamos con marcas líderes: Dahua, Hikvision\n" +
+                    "• Otras marcas asiáticas con calidad garantizada\n" +
+                    "• Instalación y configuración profesional completa\n" +
+                    "• Sistemas IP y analógicos según tu necesidad\n" +
+                    "• Asesoramiento personalizado sin compromiso\n\n" +
+                    "¿Para qué tipo de propiedad necesitás el sistema?",
+                    
+    "alarmas_detalles": "🚨 *Sistemas de Seguridad Integral:*\n\n" +
+                       "• Alarmas inalámbricas y cableadas\n" +
+                       "• Barreras infrarrojas perimetrales\n" +
+                       "• Controles de acceso modernos\n" +
+                       "• Cercos eléctricos perimetrales\n" +
+                       "• Configuración para tu control total\n" +
+                       "• No realizamos monitoreo remoto\n\n" +
+                       "¿Qué tipo de protección necesitás para tu espacio?",
+                       
+    "domotica_detalles": "🏠 *Domótica - Tu Hogar Inteligente:*\n\n" +
+                        "¡Contame exactamente qué querés automatizar! Podemos hacer realidad tu proyecto.\n\n" +
+                        "Algunas posibilidades:\n" +
+                        "• Iluminación inteligente y programable\n" +
+                        "• Control de climatización automático\n" +
+                        "• Seguridad integrada con otros sistemas\n" +
+                        "• Electrodomésticos conectados y controlables\n" +
+                        "• Sistemas de entretenimiento integrados\n\n" +
+                        "¿Qué tenés en mente para tu hogar o empresa?",
+                        
+    "ciberseguridad_detalles": "🔒 *Ciberseguridad Empresarial Avanzada:*\n\n" +
+                              "• Instalación de software de seguridad empresarial\n" +
+                              "• Antivirus y firewalls de última generación\n" +
+                              "• Diagnósticos completos de seguridad\n" +
+                              "• Pentesting (pruebas de penetración)\n" +
+                              "• Capacitaciones para usuarios en seguridad básica\n" +
+                              "• Estrategias para evitar pérdida de datos críticos\n\n" +
+                              "¿Tenés alguna preocupación específica sobre seguridad?"
+};
+
+// ===========================
+// FLUJOS DE DIAGNÓSTICO (ya los tienes)
 // ===========================
 const diagnosticFlows = {
     "pc_problemas": {
@@ -427,6 +567,171 @@ const diagnosticFlows = {
         options: ["agendar_visita", "mas_info", "contacto_directo"]
     }
 };
+
+// ===========================
+// FUNCIONES PRINCIPALES DEL CHATBOT
+// ===========================
+
+// Auto-abrir chatbot
+setTimeout(() => {
+    if (!localStorage.getItem('cyclopsChatbotShown')) {
+        chatbotWindow.style.display = 'flex';
+        notificationDot.style.display = 'block';
+        localStorage.setItem('cyclopsChatbotShown', 'true');
+    }
+}, 30000);
+
+// Toggle chatbot
+chatbotToggle.addEventListener('click', () => {
+    chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
+    notificationDot.style.display = 'none';
+});
+
+chatbotClose.addEventListener('click', () => {
+    chatbotWindow.style.display = 'none';
+});
+
+// Funciones del chatbot
+function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.classList.add('typing-indicator');
+    typingDiv.id = 'typingIndicator';
+    
+    for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('typing-dot');
+        typingDiv.appendChild(dot);
+    }
+    
+    const typingText = document.createElement('span');
+    typingText.textContent = 'Asistente Cyclops está escribiendo...';
+    typingText.style.fontSize = '0.8rem';
+    typingText.style.color = '#7f8c8d';
+    typingText.style.marginLeft = '10px';
+    
+    typingDiv.appendChild(typingText);
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    
+    return typingDiv;
+}
+
+function hideTypingIndicator() {
+    const typingIndicator = document.getElementById('typingIndicator');
+    if (typingIndicator) {
+        typingIndicator.remove();
+    }
+}
+
+function sendMessage() {
+    const message = chatbotInput.value.trim();
+    if (message === '') return;
+
+    addMessage(message, 'user');
+    chatbotInput.value = '';
+
+    const typingIndicator = showTypingIndicator();
+
+    setTimeout(() => {
+        hideTypingIndicator();
+        
+        let response = responses.default;
+        let options = [];
+
+        const lowerMessage = message.toLowerCase();
+
+        // Detección de intenciones
+        if (lowerMessage.includes('servicio') || lowerMessage.includes('ofrecen') || lowerMessage.includes('hacen') || 
+            lowerMessage.includes('qué hacen') || lowerMessage.includes('que hacen')) {
+            response = responses.servicios.message;
+            options = responses.servicios.options;
+        } else if (lowerMessage.includes('precio') || lowerMessage.includes('cuesta') || lowerMessage.includes('costo') || 
+                   lowerMessage.includes('valor') || lowerMessage.includes('cuánto sale') || lowerMessage.includes('cuanto sale')) {
+            response = responses.precios;
+        } else if (lowerMessage.includes('horario') || lowerMessage.includes('cuándo') || lowerMessage.includes('cuando') || 
+                   lowerMessage.includes('disponible') || lowerMessage.includes('atien')) {
+            response = responses.horarios;
+        } else if (lowerMessage.includes('contacto') || lowerMessage.includes('teléfono') || lowerMessage.includes('telefono') || 
+                   lowerMessage.includes('email') || lowerMessage.includes('correo') || lowerMessage.includes('llamar') || 
+                   lowerMessage.includes('número') || lowerMessage.includes('numero')) {
+            response = responses.contacto;
+        } else if (lowerMessage.includes('emergencia') || lowerMessage.includes('urgente') || lowerMessage.includes('inmediat') || 
+                   lowerMessage.includes('ya') || lowerMessage.includes('ahora')) {
+            response = responses.emergencia;
+        } else if (lowerMessage.includes('garantía') || lowerMessage.includes('garantia')) {
+            response = responses.garantias;
+        } else if (lowerMessage.includes('cotizacion') || lowerMessage.includes('presupuesto') || lowerMessage.includes('presu')) {
+            response = responses.cotizacion;
+        }
+
+        // Detalles de servicios
+        const serviceKey = lowerMessage.replace(/\s+/g, '_').replace(/[^a-z_]/g, '');
+        if (serviceDetails[serviceKey]) {
+            response = serviceDetails[serviceKey];
+        }
+
+        addMessage(response, 'bot', options);
+    }, 1500);
+}
+
+function addMessage(text, sender, options = []) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', `${sender}-message`);
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.classList.add('message-content');
+    
+    const textDiv = document.createElement('div');
+    textDiv.innerHTML = text.replace(/\n/g, '<br>');
+    contentDiv.appendChild(textDiv);
+
+    // Opciones de servicios
+    if (options.length > 0) {
+        const optionsDiv = document.createElement('div');
+        optionsDiv.classList.add('service-options');
+        
+        options.forEach(option => {
+            const button = document.createElement('button');
+            button.classList.add('service-option');
+            button.textContent = option.replace(/_/g, ' ')
+                .replace(/\b\w/g, l => l.toUpperCase())
+                .replace('Detalles', 'Más Info');
+            button.addEventListener('click', () => {
+                addMessage(button.textContent, 'user');
+                setTimeout(() => {
+                    addMessage(serviceDetails[option] || responses.default, 'bot');
+                }, 1000);
+            });
+            optionsDiv.appendChild(button);
+        });
+        
+        contentDiv.appendChild(optionsDiv);
+    }
+
+    messageDiv.appendChild(contentDiv);
+    chatbotMessages.appendChild(messageDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    
+    // Guardar conversación
+    saveConversation();
+}
+
+function saveConversation() {
+    const messages = chatbotMessages.innerHTML;
+    localStorage.setItem('cyclopsChatbotConversation', messages);
+}
+
+function loadConversation() {
+    const savedConversation = localStorage.getItem('cyclopsChatbotConversation');
+    if (savedConversation) {
+        chatbotMessages.innerHTML = savedConversation;
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+}
+
+// ===========================
+// SISTEMA DE DIAGNÓSTICO MEJORADO
+// ===========================
 
 function initChatbotDiagnostic() {
     // Actualizar preguntas rápidas del chatbot
@@ -545,376 +850,45 @@ function getActionText(action) {
 }
 
 // ===========================
-// EXISTING FUNCTIONS (keep all your original code below)
+// EVENT LISTENERS DEL CHATBOT
 // ===========================
 
-// ===========================
-// Load News from JSON
-// ===========================
-async function loadNews() {
-    try {
-        const response = await fetch('./data/news.json');
-        const news = await response.json();
-        
-        const newsGrid = document.getElementById('newsGrid');
-        
-        if (news.length === 0) {
-            newsGrid.innerHTML = '<p class="schedule-message">No hay noticias disponibles en este momento.</p>';
-            return;
-        }
-        
-        newsGrid.innerHTML = news.map(item => `
-            <div class="news-card slide-up">
-                <img src="${item.image}" alt="${item.title}" class="news-image" onerror="this.src='https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600'">
-                <div class="news-content">
-                    <p class="news-date">${item.date}</p>
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
-                </div>
-            </div>
-        `).join('');
-        
-        // Re-observe new elements for animations
-        document.querySelectorAll('.news-card').forEach(el => {
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-            observer.observe(el);
-        });
-    } catch (error) {
-        console.error('Error loading news:', error);
-        document.getElementById('newsGrid').innerHTML = '<p class="schedule-message">Error al cargar las noticias.</p>';
+// Event listeners del chatbot
+chatbotSend.addEventListener('click', sendMessage);
+chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
     }
-}
+});
 
-// ===========================
-// Load Schedule - Only show availability
-// ===========================
-async function loadSchedule() {
-    const scheduleGrid = document.getElementById('scheduleGrid');
-    const scheduleMessage = document.getElementById('scheduleMessage');
-    
-    try {
-        // Simulated availability data (replace with actual Google Calendar API fetch)
-        // Only shows available time slots without client details
-        const scheduleData = [
-            {
-                date: '2025-01-15',
-                time: '10:00',
-                status: 'disponible'
-            },
-            {
-                date: '2025-01-15',
-                time: '14:00',
-                status: 'disponible'
-            },
-            {
-                date: '2025-01-16',
-                time: '09:00',
-                status: 'ocupado'
-            },
-            {
-                date: '2025-01-16',
-                time: '15:00',
-                status: 'disponible'
-            },
-            {
-                date: '2025-01-17',
-                time: '10:00',
-                status: 'disponible'
-            },
-            {
-                date: '2025-01-17',
-                time: '16:00',
-                status: 'disponible'
-            }
-        ];
-        
-        // Filter to show only available slots
-        const availableSlots = scheduleData.filter(item => item.status === 'disponible');
-        
-        if (availableSlots.length === 0) {
-            scheduleMessage.textContent = 'No hay horarios disponibles en este momento. Por favor, contáctanos directamente.';
-            scheduleGrid.innerHTML = '';
-            return;
-        }
-        
-        scheduleMessage.style.display = 'none';
-        scheduleGrid.innerHTML = availableSlots.map(item => `
-            <div class="schedule-item available">
-                <div class="schedule-date">
-                    <i class="fas fa-calendar-check"></i>
-                    <div class="schedule-details">
-                        <h4>${formatDate(item.date)} - ${item.time}</h4>
-                        <p><i class="fas fa-clock"></i> Horario disponible para agendar</p>
-                    </div>
-                </div>
-                <button class="btn-schedule" onclick="scheduleAppointment('${item.date}', '${item.time}')">
-                    <i class="fas fa-calendar-plus"></i> Agendar
-                </button>
-            </div>
-        `).join('');
-        
-    } catch (error) {
-        console.error('Error loading schedule:', error);
-        scheduleMessage.textContent = 'Error al cargar la disponibilidad. Intente nuevamente más tarde.';
-        scheduleGrid.innerHTML = '';
-    }
-}
-
-// ===========================
-// Schedule Appointment Function
-// ===========================
-window.scheduleAppointment = function(date, time) {
-    // Scroll to contact form
-    const contactSection = document.getElementById('contacto');
-    contactSection.scrollIntoView({ behavior: 'smooth' });
-    
-    // Pre-fill the date and time in the form
-    const fechaInput = document.getElementById('fecha');
-    if (fechaInput) {
-        const dateTimeValue = `${date}T${time}`;
-        fechaInput.value = dateTimeValue;
-    }
-    
-    // Show message
-    const formMessage = document.getElementById('formMessage');
-    formMessage.className = 'form-message success';
-    formMessage.textContent = `Horario seleccionado: ${formatDate(date)} a las ${time}. Complete el formulario para confirmar.`;
-    formMessage.style.display = 'block';
-    
-    setTimeout(() => {
-        formMessage.style.display = 'none';
-    }, 5000);
-};
-
-// ===========================
-// Google Calendar Integration
-// ===========================
-function initGoogleCalendarButton() {
-    const scheduleGoogleBtn = document.getElementById('scheduleGoogleBtn');
-    
-    if (scheduleGoogleBtn) {
-        scheduleGoogleBtn.addEventListener('click', function() {
-            const nombre = document.getElementById('nombre').value;
-            const telefono = document.getElementById('telefono').value;
-            const email = document.getElementById('email').value;
-            const servicio = document.getElementById('servicio').value;
-            const fecha = document.getElementById('fecha').value;
-            const descripcion = document.getElementById('descripcion').value;
-            
-            if (!nombre || !telefono || !email || !servicio || !fecha) {
-                alert('Por favor, completa todos los campos obligatorios antes de agendar con Google Calendar.');
-                return;
-            }
-            
-            // Create Google Calendar event URL
-            const startDate = new Date(fecha);
-            const endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // 1 hour duration
-            
-            const formatGoogleDate = (date) => {
-                return date.toISOString().replace(/-|:|\.\d\d\d/g, '');
-            };
-            
-            const eventTitle = `Servicio Técnico - ${servicio}`;
-            const eventDetails = `Cliente: ${nombre}\nTeléfono: ${telefono}\nEmail: ${email}\nDescripción: ${descripcion}`;
-            const eventLocation = 'Buenos Aires, Argentina';
-            
-            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-                `&text=${encodeURIComponent(eventTitle)}` +
-                `&dates=${formatGoogleDate(startDate)}/${formatGoogleDate(endDate)}` +
-                `&details=${encodeURIComponent(eventDetails)}` +
-                `&location=${encodeURIComponent(eventLocation)}` +
-                `&add=${encodeURIComponent(CONFIG.googleCalendarEmail)}`;
-            
-            // Open Google Calendar in new tab
-            window.open(googleCalendarUrl, '_blank');
-            
-            // Show success message
-            const formMessage = document.getElementById('formMessage');
-            formMessage.className = 'form-message success';
-            formMessage.textContent = 'Se abrió Google Calendar. Completa la creación del evento y guárdalo para confirmar la cita.';
-            formMessage.style.display = 'block';
-        });
-    }
-}
-
-// ===========================
-// Contact Form Handler
-// ===========================
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
-    
-    if (!contactForm) return;
-    
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData.entries());
-        
-        // Show loading state
-        const submitBtn = contactForm.querySelector('.btn-submit');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-        submitBtn.disabled = true;
-        
-        try {
-            // Send to Google Sheets
-            const response = await fetch(CONFIG.googleSheetsURL, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            
-            if (response.ok) {
-                formMessage.className = 'form-message success';
-                formMessage.textContent = '¡Solicitud enviada con éxito! Nos pondremos en contacto contigo pronto.';
-                contactForm.reset();
+// Preguntas rápidas originales (actualizadas por el sistema de diagnóstico)
+document.querySelectorAll('.quick-question').forEach(button => {
+    button.addEventListener('click', () => {
+        const question = button.getAttribute('data-question');
+        addMessage(button.querySelector('i').nextSibling.textContent.trim(), 'user');
+        setTimeout(() => {
+            if (question === 'servicios') {
+                addMessage(responses[question].message, 'bot', responses[question].options);
             } else {
-                throw new Error('Error al enviar el formulario');
+                addMessage(responses[question], 'bot');
             }
-        } catch (error) {
-            console.error('Error:', error);
-            formMessage.className = 'form-message error';
-            formMessage.textContent = 'Hubo un error al enviar tu solicitud. Por favor, intenta nuevamente o contáctanos por WhatsApp al +54 9 11 6680-4450.';
-        } finally {
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }
-    });
-}
-
-// ===========================
-// Ticket Form Handler
-// ===========================
-function initTicketForm() {
-    const ticketForm = document.getElementById('ticketForm');
-    const ticketResult = document.getElementById('ticketResult');
-    
-    if (!ticketForm) return;
-    
-    ticketForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const ticketNumber = document.getElementById('ticketNumber').value.trim();
-        
-        if (!ticketNumber) {
-            showTicketError('Por favor, ingresa un número de ticket válido.');
-            return;
-        }
-        
-        // Show loading state
-        ticketResult.innerHTML = '<p style="text-align: center;"><i class="fas fa-spinner fa-spin"></i> Consultando...</p>';
-        ticketResult.classList.add('show');
-        
-        try {
-            // Simulated ticket data (replace with actual Google Sheets fetch)
-            const ticketData = {
-                number: ticketNumber,
-                status: 'en-proceso',
-                service: 'Instalación de CCTV',
-                date: '2025-01-10',
-                description: 'Instalación de 4 cámaras IP en exterior',
-                estimatedCompletion: '2025-01-15'
-            };
-            
-            if (ticketData) {
-                displayTicketInfo(ticketData);
-            } else {
-                showTicketError('No se encontró el ticket. Verifica el número e intenta nuevamente.');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            showTicketError('Error al consultar el ticket. Intenta nuevamente más tarde.');
-        }
-    });
-}
-
-function displayTicketInfo(ticket) {
-    const ticketResult = document.getElementById('ticketResult');
-    const statusText = {
-        'pendiente': 'Pendiente',
-        'en-proceso': 'En Proceso',
-        'completado': 'Completado'
-    };
-    
-    ticketResult.innerHTML = `
-        <div class="ticket-header">
-            <span class="ticket-number">Ticket: ${ticket.number}</span>
-            <span class="ticket-status ${ticket.status}">${statusText[ticket.status]}</span>
-        </div>
-        <div class="ticket-info">
-            <h4>Servicio</h4>
-            <p>${ticket.service}</p>
-        </div>
-        <div class="ticket-info">
-            <h4>Fecha de Solicitud</h4>
-            <p>${formatDate(ticket.date)}</p>
-        </div>
-        <div class="ticket-info">
-            <h4>Descripción</h4>
-            <p>${ticket.description}</p>
-        </div>
-        <div class="ticket-info">
-            <h4>Fecha Estimada de Finalización</h4>
-            <p>${formatDate(ticket.estimatedCompletion)}</p>
-        </div>
-    `;
-    ticketResult.classList.add('show');
-}
-
-function showTicketError(message) {
-    const ticketResult = document.getElementById('ticketResult');
-    ticketResult.innerHTML = `
-        <div style="text-align: center; color: #721c24;">
-            <i class="fas fa-exclamation-circle" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-            <p>${message}</p>
-        </div>
-    `;
-    ticketResult.classList.add('show');
-}
-
-// ===========================
-// Utility Functions
-// ===========================
-function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-AR', options);
-}
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
+        }, 1000);
     });
 });
 
-// Export for use in other modules
-export { CONFIG, loadSchedule, loadNews };
+// Sugerencias
+document.querySelectorAll('.suggestion-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const question = button.getAttribute('data-question');
+        addMessage(button.textContent, 'user');
+        setTimeout(() => {
+            addMessage(responses[question], 'bot');
+        }, 1000);
+    });
+});
+
+// Cargar conversación al iniciar
+loadConversation();
+
+// Inicializar sistema de diagnóstico
+initChatbotDiagnostic();
