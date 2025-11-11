@@ -86,13 +86,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===========================
 // AGENDA SYSTEM - Appointment Scheduler
 // ===========================
+// ===========================
+// AGENDA SYSTEM - Appointment Scheduler IMPROVED
+// ===========================
 class AppointmentScheduler {
     constructor() {
         this.selectedDate = null;
         this.selectedTime = null;
-        this.calendarId = 'soportecyclops@gmail.com';
-        this.currentMonth = new Date().getMonth();
-        this.currentYear = new Date().getFullYear();
+        this.currentDate = new Date();
+        this.currentMonth = this.currentDate.getMonth();
+        this.currentYear = this.currentDate.getFullYear();
         this.init();
     }
 
@@ -100,20 +103,21 @@ class AppointmentScheduler {
         // Only initialize if agenda section exists
         if (!document.getElementById('agenda')) return;
         
-        this.generateCalendar();
+        this.setupImprovedCalendar();
         this.setupEventListeners();
         this.loadAvailableSlots();
     }
 
-    generateCalendar() {
-        this.renderCalendar();
+    setupImprovedCalendar() {
+        this.renderImprovedCalendar();
+        this.renderTimeSlots();
     }
 
-    renderCalendar() {
+    renderImprovedCalendar() {
         const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-        const currentMonthElement = document.getElementById('currentMonth');
+        const currentMonthElement = document.getElementById('currentMonthYear');
         if (currentMonthElement) {
             currentMonthElement.textContent = `${monthNames[this.currentMonth]} ${this.currentYear}`;
         }
@@ -123,36 +127,61 @@ class AppointmentScheduler {
         const startingDay = firstDay.getDay();
         const monthLength = lastDay.getDate();
 
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
         let calendarHTML = '';
         
         // Días de la semana
-        const days = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+        const days = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
         days.forEach(day => {
             calendarHTML += `<div class="calendar-day header">${day}</div>`;
         });
 
-        // Días vacíos al inicio
-        for (let i = 0; i < startingDay; i++) {
-            calendarHTML += `<div class="calendar-day empty"></div>`;
+        // Días vacíos al inicio (ajustado para empezar en lunes)
+        const adjustedStartingDay = startingDay === 0 ? 6 : startingDay - 1;
+        for (let i = 0; i < adjustedStartingDay; i++) {
+            calendarHTML += `<div class="calendar-day other-month"></div>`;
         }
 
         // Días del mes
         for (let day = 1; day <= monthLength; day++) {
             const dateStr = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-            const isAvailable = this.isDateAvailable(dateStr);
-            const isToday = day === new Date().getDate() && this.currentMonth === new Date().getMonth();
+            const currentDay = new Date(this.currentYear, this.currentMonth, day);
+            currentDay.setHours(0, 0, 0, 0);
             
+            const isAvailable = this.isDateAvailable(dateStr);
+            const isToday = currentDay.getTime() === today.getTime();
+            const isSelected = this.selectedDate && 
+                              this.selectedDate.getDate() === day && 
+                              this.selectedDate.getMonth() === this.currentMonth && 
+                              this.selectedDate.getFullYear() === this.currentYear;
+            
+            let dayClass = 'calendar-day';
+            if (!isAvailable) dayClass += ' disabled';
+            if (isToday) dayClass += ' today';
+            if (isSelected) dayClass += ' selected';
+            if (isAvailable) dayClass += ' available';
+
             calendarHTML += `
-                <div class="calendar-day ${isAvailable ? 'available' : 'unavailable'} ${isToday ? 'today' : ''}" 
-                     data-date="${dateStr}" ${isAvailable ? '' : 'style="cursor: not-allowed; opacity: 0.5;"'}>
+                <div class="${dayClass}" 
+                     data-date="${dateStr}" 
+                     ${!isAvailable ? 'style="cursor: not-allowed; opacity: 0.5;"' : ''}>
                     ${day}
                 </div>
             `;
         }
 
-        const calendarGrid = document.getElementById('calendarGrid');
-        if (calendarGrid) {
-            calendarGrid.innerHTML = calendarHTML;
+        // Completar con días del próximo mes
+        const totalCells = 42; // 6 semanas
+        const remainingCells = totalCells - (adjustedStartingDay + monthLength);
+        for (let i = 1; i <= remainingCells; i++) {
+            calendarHTML += `<div class="calendar-day other-month">${i}</div>`;
+        }
+
+        const calendarDays = document.getElementById('calendarDays');
+        if (calendarDays) {
+            calendarDays.innerHTML = calendarHTML;
         }
     }
 
@@ -164,7 +193,7 @@ class AppointmentScheduler {
         // No permitir fechas pasadas
         if (date < today) return false;
         
-        // No permitir domingos
+        // No permitir domingos (0 = Domingo)
         if (date.getDay() === 0) return false;
         
         return true;
@@ -177,31 +206,40 @@ class AppointmentScheduler {
 
     generateTimeSlots() {
         const slots = [];
-        const startHour = 9; // 9:00 AM
+        const startHour = 8; // 8:00 AM
         const endHour = 18;  // 6:00 PM
         
-        for (let hour = startHour; hour < endHour; hour++) {
+        // Solo horas completas, más simples para personas mayores
+        for (let hour = startHour; hour <= endHour; hour++) {
             slots.push(`${hour.toString().padStart(2, '0')}:00`);
-            slots.push(`${hour.toString().padStart(2, '0')}:30`);
         }
         
         return slots;
     }
 
-    renderTimeSlots(slots) {
+    renderTimeSlots(slots = null) {
+        const timeSlotsToRender = slots || this.generateTimeSlots();
         let slotsHTML = '';
-        slots.forEach(slot => {
-            slotsHTML += `<div class="time-slot" data-time="${slot}">${slot}</div>`;
+        
+        timeSlotsToRender.forEach(slot => {
+            const isSelected = this.selectedTime === slot;
+            const slotClass = `time-slot ${isSelected ? 'selected' : ''}`;
+            
+            slotsHTML += `
+                <div class="${slotClass}" data-time="${slot}">
+                    ${slot}
+                </div>
+            `;
         });
         
-        const slotsContainer = document.getElementById('slotsContainer');
-        if (slotsContainer) {
-            slotsContainer.innerHTML = slotsHTML;
+        const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+        if (timeSlotsContainer) {
+            timeSlotsContainer.innerHTML = slotsHTML;
         }
     }
 
     setupEventListeners() {
-        // Navegación del calendario
+        // Navegación del calendario - Botones mejorados
         const prevMonthBtn = document.getElementById('prevMonth');
         const nextMonthBtn = document.getElementById('nextMonth');
         
@@ -212,7 +250,8 @@ class AppointmentScheduler {
                     this.currentMonth = 11;
                     this.currentYear--;
                 }
-                this.renderCalendar();
+                this.renderImprovedCalendar();
+                this.updateConfirmButton();
             });
         }
 
@@ -223,37 +262,52 @@ class AppointmentScheduler {
                     this.currentMonth = 0;
                     this.currentYear++;
                 }
-                this.renderCalendar();
+                this.renderImprovedCalendar();
+                this.updateConfirmButton();
             });
         }
 
         // Selección de fecha
-        const calendarGrid = document.getElementById('calendarGrid');
-        if (calendarGrid) {
-            calendarGrid.addEventListener('click', (e) => {
-                if (e.target.classList.contains('available')) {
+        const calendarDays = document.getElementById('calendarDays');
+        if (calendarDays) {
+            calendarDays.addEventListener('click', (e) => {
+                const dayElement = e.target.closest('.calendar-day.available');
+                if (dayElement && !dayElement.classList.contains('other-month')) {
                     document.querySelectorAll('.calendar-day').forEach(day => {
                         day.classList.remove('selected');
                     });
-                    e.target.classList.add('selected');
-                    this.selectedDate = e.target.dataset.date;
-                    this.checkFormCompletion();
+                    dayElement.classList.add('selected');
+                    
+                    const dateStr = dayElement.dataset.date;
+                    const [year, month, day] = dateStr.split('-');
+                    this.selectedDate = new Date(year, month - 1, day);
+                    
+                    this.updateConfirmButton();
                 }
             });
         }
 
         // Selección de hora
-        const slotsContainer = document.getElementById('slotsContainer');
-        if (slotsContainer) {
-            slotsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('time-slot')) {
+        const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+        if (timeSlotsContainer) {
+            timeSlotsContainer.addEventListener('click', (e) => {
+                const slotElement = e.target.closest('.time-slot');
+                if (slotElement) {
                     document.querySelectorAll('.time-slot').forEach(slot => {
                         slot.classList.remove('selected');
                     });
-                    e.target.classList.add('selected');
-                    this.selectedTime = e.target.dataset.time;
-                    this.checkFormCompletion();
+                    slotElement.classList.add('selected');
+                    this.selectedTime = slotElement.dataset.time;
+                    this.updateConfirmButton();
                 }
+            });
+        }
+
+        // Botón de limpiar selección
+        const clearSelectionBtn = document.getElementById('clearSelection');
+        if (clearSelectionBtn) {
+            clearSelectionBtn.addEventListener('click', () => {
+                this.clearSelection();
             });
         }
 
@@ -265,32 +319,70 @@ class AppointmentScheduler {
             });
         }
 
-        // Validación del formulario
+        // Validación del formulario en tiempo real
         ['agendaNombre', 'agendaTelefono', 'agendaDireccion', 'agendaProblema'].forEach(id => {
             const element = document.getElementById(id);
             if (element) {
                 element.addEventListener('input', () => {
-                    this.checkFormCompletion();
+                    this.updateConfirmButton();
                 });
             }
         });
     }
 
-    checkFormCompletion() {
+    clearSelection() {
+        this.selectedDate = null;
+        this.selectedTime = null;
+        
+        // Deseleccionar todos los días y horarios
+        document.querySelectorAll('.calendar-day').forEach(day => {
+            day.classList.remove('selected');
+        });
+        
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            slot.classList.remove('selected');
+        });
+        
+        this.updateConfirmButton();
+        
+        // Mostrar mensaje de confirmación
+        this.showTemporaryMessage('Selección limpiada. Por favor, selecciona una nueva fecha y hora.', 'success');
+    }
+
+    updateConfirmButton() {
+        const isFormComplete = this.isFormComplete() && this.selectedDate && this.selectedTime;
+        const confirmBtn = document.getElementById('confirmAppointment');
+        
+        if (confirmBtn) {
+            if (isFormComplete) {
+                confirmBtn.disabled = false;
+                confirmBtn.style.opacity = '1';
+                confirmBtn.style.cursor = 'pointer';
+                confirmBtn.style.transform = 'scale(1.02)';
+            } else {
+                confirmBtn.disabled = true;
+                confirmBtn.style.opacity = '0.6';
+                confirmBtn.style.cursor = 'not-allowed';
+                confirmBtn.style.transform = 'scale(1)';
+            }
+        }
+    }
+
+    isFormComplete() {
         const nombre = document.getElementById('agendaNombre')?.value || '';
         const telefono = document.getElementById('agendaTelefono')?.value || '';
         const direccion = document.getElementById('agendaDireccion')?.value || '';
         const problema = document.getElementById('agendaProblema')?.value || '';
         
-        const isFormComplete = nombre && telefono && direccion && problema && this.selectedDate && this.selectedTime;
-        
-        const confirmBtn = document.getElementById('confirmAppointment');
-        if (confirmBtn) {
-            confirmBtn.disabled = !isFormComplete;
-        }
+        return nombre && telefono && direccion && problema;
     }
 
     async createAppointment() {
+        if (!this.isFormComplete() || !this.selectedDate || !this.selectedTime) {
+            alert('Por favor, completa todos los campos y selecciona fecha y hora.');
+            return;
+        }
+
         const appointmentData = {
             nombre: document.getElementById('agendaNombre')?.value || '',
             telefono: document.getElementById('agendaTelefono')?.value || '',
@@ -302,41 +394,59 @@ class AppointmentScheduler {
         };
 
         try {
-            const eventId = await this.createGoogleCalendarEvent(appointmentData);
-            this.showConfirmation(appointmentData, eventId);
+            // Enviar por WhatsApp
+            this.sendWhatsAppNotification(appointmentData);
+            
+            // Mostrar confirmación
+            this.showConfirmation(appointmentData);
             
         } catch (error) {
             console.error('Error al crear la cita:', error);
-            alert('Error al agendar la cita. Por favor, intentá nuevamente.');
+            this.showTemporaryMessage('Error al agendar la cita. Por favor, intentá nuevamente.', 'error');
         }
     }
 
-    async createGoogleCalendarEvent(appointmentData) {
-        // Simular creación de evento en Google Calendar
-        return new Promise((resolve) => {
-            setTimeout(() => {
-                resolve('event_' + Date.now());
-            }, 1000);
-        });
+    sendWhatsAppNotification(appointmentData) {
+        const formattedDate = this.formatDate(appointmentData.fecha);
+        
+        let message = `¡Hola! Quiero confirmar mi cita:\n\n`;
+        message += `*Nombre:* ${appointmentData.nombre}\n`;
+        message += `*Teléfono:* ${appointmentData.telefono}\n`;
+        message += `*Email:* ${appointmentData.email || 'No proporcionado'}\n`;
+        message += `*Dirección:* ${appointmentData.direccion}\n`;
+        message += `*Fecha seleccionada:* ${formattedDate}\n`;
+        message += `*Hora seleccionada:* ${appointmentData.hora} hs\n`;
+        message += `*Problema/Servicio:* ${appointmentData.problema}\n\n`;
+        message += `Por favor, confirmen mi reserva. ¡Gracias!`;
+        
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/5491166804450?text=${encodedMessage}`, '_blank');
     }
 
-    showConfirmation(appointmentData, eventId) {
+    showConfirmation(appointmentData) {
+        const formattedDate = this.formatDate(appointmentData.fecha);
+        
         const confirmationHTML = `
-            <div class="confirmation-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000;">
-                <div class="confirmation-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center;">
-                    <h3 style="color: #27ae60; margin-bottom: 20px;">¡Cita Agendada Exitosamente! ✅</h3>
-                    <div class="appointment-details" style="text-align: left; margin-bottom: 25px;">
-                        <p><strong>Fecha:</strong> ${this.formatDate(appointmentData.fecha)}</p>
-                        <p><strong>Hora:</strong> ${appointmentData.hora} hs</p>
-                        <p><strong>Cliente:</strong> ${appointmentData.nombre}</p>
-                        <p><strong>Servicio:</strong> ${appointmentData.problema}</p>
+            <div class="confirmation-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 10000;">
+                <div class="confirmation-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                    <div style="font-size: 3rem; color: #27ae60; margin-bottom: 15px;">✅</div>
+                    <h3 style="color: #27ae60; margin-bottom: 20px; font-size: 1.5rem;">¡Cita Agendada Exitosamente!</h3>
+                    <div class="appointment-details" style="text-align: left; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                        <p><strong>📅 Fecha:</strong> ${formattedDate}</p>
+                        <p><strong>🕒 Hora:</strong> ${appointmentData.hora} hs</p>
+                        <p><strong>👤 Cliente:</strong> ${appointmentData.nombre}</p>
+                        <p><strong>📞 Teléfono:</strong> ${appointmentData.telefono}</p>
+                        <p><strong>🔧 Servicio:</strong> ${appointmentData.problema}</p>
                     </div>
-                    <div class="confirmation-actions" style="display: flex; gap: 10px; justify-content: center;">
-                        <button class="btn btn-primary" onclick="window.print()" style="padding: 10px 20px;">
+                    <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">
+                        Te contactaremos pronto para confirmar los detalles de tu servicio.
+                    </p>
+                    <div class="confirmation-actions" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary" onclick="window.print()" style="padding: 12px 20px; font-size: 16px;">
                             <i class="fas fa-print"></i> Imprimir Comprobante
                         </button>
-                        <button class="btn btn-secondary" onclick="this.closest('.confirmation-modal').remove()" style="padding: 10px 20px;">
-                            <i class="fas fa-times"></i> Cerrar
+                        <button class="btn btn-secondary" onclick="this.closest('.confirmation-modal').remove(); location.reload();" style="padding: 12px 20px; font-size: 16px;">
+                            <i class="fas fa-check"></i> Aceptar
                         </button>
                     </div>
                 </div>
@@ -346,17 +456,57 @@ class AppointmentScheduler {
         document.body.insertAdjacentHTML('beforeend', confirmationHTML);
         
         // Limpiar formulario
+        this.clearForm();
+    }
+
+    clearForm() {
         const agendaForm = document.getElementById('agendaForm');
         if (agendaForm) {
             agendaForm.reset();
         }
         this.selectedDate = null;
         this.selectedTime = null;
-        this.checkFormCompletion();
+        this.updateConfirmButton();
     }
 
-    formatDate(dateStr) {
-        const date = new Date(dateStr);
+    showTemporaryMessage(message, type = 'info') {
+        const messageDiv = document.createElement('div');
+        const backgroundColor = type === 'success' ? '#e8f5e8' : '#ffeaa7';
+        const textColor = type === 'success' ? '#27ae60' : '#e67e22';
+        
+        messageDiv.style.cssText = `
+            background: ${backgroundColor}; 
+            color: ${textColor}; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin: 10px 0; 
+            text-align: center; 
+            font-weight: 500;
+            border-left: 4px solid ${textColor};
+        `;
+        messageDiv.textContent = message;
+        
+        const existingMessage = document.querySelector('.temporary-message');
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+        
+        messageDiv.classList.add('temporary-message');
+        
+        // Insertar después del botón de limpiar
+        const clearButton = document.getElementById('clearSelection');
+        if (clearButton && clearButton.parentNode) {
+            clearButton.parentNode.insertBefore(messageDiv, clearButton.nextSibling);
+        }
+        
+        setTimeout(() => {
+            if (messageDiv.parentNode) {
+                messageDiv.parentNode.removeChild(messageDiv);
+            }
+        }, 4000);
+    }
+
+    formatDate(date) {
         return date.toLocaleDateString('es-AR', {
             weekday: 'long',
             year: 'numeric',
@@ -892,3 +1042,4 @@ loadConversation();
 
 // Inicializar sistema de diagnóstico
 initChatbotDiagnostic();
+
