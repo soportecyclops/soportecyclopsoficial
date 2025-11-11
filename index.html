@@ -1453,7 +1453,7 @@
         </div>
     </section>
 
-    <!-- Agenda Section -->
+        <!-- Agenda Section -->
     <section id="agenda" class="agenda-section">
         <div class="container">
             <h2 class="section-title">Agendá tu Servicio</h2>
@@ -1464,11 +1464,11 @@
                     <h3>Información del Cliente</h3>
                     <form id="agendaForm">
                         <div class="form-group">
-                            <label for="agendaNombre">Nombre Completo *</label>
+                            <label for="agendaNombre" class="required">Nombre Completo *</label>
                             <input type="text" id="agendaNombre" name="nombre" required>
                         </div>
                         <div class="form-group">
-                            <label for="agendaTelefono">Teléfono *</label>
+                            <label for="agendaTelefono" class="required">Teléfono *</label>
                             <input type="tel" id="agendaTelefono" name="telefono" required>
                         </div>
                         <div class="form-group">
@@ -1476,11 +1476,11 @@
                             <input type="email" id="agendaEmail" name="email">
                         </div>
                         <div class="form-group">
-                            <label for="agendaDireccion">Dirección *</label>
+                            <label for="agendaDireccion" class="required">Dirección *</label>
                             <input type="text" id="agendaDireccion" name="direccion" required>
                         </div>
                         <div class="form-group">
-                            <label for="agendaProblema">Problema o Servicio *</label>
+                            <label for="agendaProblema" class="required">Problema o Servicio *</label>
                             <textarea id="agendaProblema" name="problema" rows="3" required placeholder="Describí brevemente el problema..."></textarea>
                         </div>
                     </form>
@@ -1488,22 +1488,44 @@
                 
                 <div class="calendar-main">
                     <div class="calendar-header">
-                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
-                        <h3 id="currentMonth">Febrero 2025</h3>
-                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                        <button id="prevMonth" class="btn btn-secondary">
+                            <i class="fas fa-chevron-left"></i> Mes Anterior
+                        </button>
+                        <h3 id="currentMonthYear">Noviembre 2024</h3>
+                        <button id="nextMonth" class="btn btn-secondary">
+                            Mes Siguiente <i class="fas fa-chevron-right"></i>
+                        </button>
                     </div>
-                    <div class="calendar-grid" id="calendarGrid">
-                        <!-- Se genera dinámicamente -->
+                    
+                    <div class="calendar-weekdays">
+                        <div>Lun</div>
+                        <div>Mar</div>
+                        <div>Mié</div>
+                        <div>Jue</div>
+                        <div>Vie</div>
+                        <div>Sáb</div>
+                        <div>Dom</div>
                     </div>
-                    <div class="time-slots" id="timeSlots">
+                    
+                    <div class="calendar-days" id="calendarDays">
+                        <!-- Los días se generan dinámicamente -->
+                    </div>
+                    
+                    <div class="time-slots">
                         <h4>Horarios Disponibles</h4>
-                        <div class="slots-container" id="slotsContainer">
-                            <!-- Se genera dinámicamente -->
+                        <div class="slots-container" id="timeSlotsContainer">
+                            <!-- Los horarios se generan dinámicamente -->
                         </div>
                     </div>
-                    <button id="confirmAppointment" class="btn btn-primary" disabled>
-                        <i class="fas fa-calendar-check"></i> Confirmar Cita
-                    </button>
+                    
+                    <div class="button-container">
+                        <button id="confirmAppointment" class="btn btn-primary btn-large">
+                            <i class="fas fa-calendar-check"></i> Confirmar Reserva
+                        </button>
+                        <button id="clearSelection" class="btn btn-secondary">
+                            <i class="fas fa-broom"></i> Limpiar Selección
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2032,3 +2054,4 @@
 </body>
 
 </html>
+
