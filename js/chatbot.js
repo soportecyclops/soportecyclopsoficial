@@ -491,3 +491,29 @@ function initChatbot() {
 
     console.log("✅ Chatbot inteligente inicializado correctamente");
 }
+// Manejo de sugerencias frecuentes
+document.querySelectorAll('.suggestion-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const question = button.dataset.question;
+        let message = '';
+
+        switch (question) {
+            case 'precios':
+                message = '¿Podrías contarme qué servicio te interesa para pasarte precios aproximados?';
+                break;
+            case 'garantias':
+                message = 'Todos nuestros trabajos cuentan con garantía de instalación y funcionamiento. ¿Querés detalles sobre algún servicio en particular?';
+                break;
+            case 'horarios':
+                message = 'Atendemos de lunes a sábado de 9 a 18 hs en toda la zona norte y CABA.';
+                break;
+            default:
+                message = '¿Podrías especificar un poco más tu consulta?';
+        }
+
+        addMessage(button.textContent, 'user');
+        setTimeout(() => {
+            addMessage(message, 'bot');
+        }, 800);
+    });
+});
