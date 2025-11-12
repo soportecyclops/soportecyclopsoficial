@@ -3,20 +3,27 @@
 // ===========================
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("🚀 Inicializando funcionalidades generales...");
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     
-    if (menuToggle) {
+    if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
+            console.log("📱 Menú móvil toggled");
         });
+    } else {
+        console.warn("⚠️ Elementos del menú móvil no encontrados");
     }
 
     // Close mobile menu when clicking on a link
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
+            if (navMenu) {
+                navMenu.classList.remove('active');
+            }
         });
     });
 
@@ -34,46 +41,67 @@ document.addEventListener('DOMContentLoaded', function() {
                     top: targetElement.offsetTop - 70,
                     behavior: 'smooth'
                 });
+                console.log(`🎯 Navegando a: ${targetId}`);
             }
         });
     });
 
     // BOTÓN WHATSAPP DEL FORMULARIO
-    document.getElementById('whatsappBtn').addEventListener('click', function() {
-        const nombre = document.getElementById('nombre').value;
-        const telefono = document.getElementById('telefono').value;
-        const email = document.getElementById('email').value;
-        const direccion = document.getElementById('direccion').value;
-        const servicio = document.getElementById('servicio').value;
-        const fecha = document.getElementById('fecha').value;
-        const descripcion = document.getElementById('descripcion').value;
-        const visitaTecnica = document.getElementById('visitaTecnica').checked;
-        
-        if (!nombre || !telefono || !email || !direccion || !servicio || !descripcion) {
-            alert('Por favor, complete todos los campos obligatorios (*)');
-            return;
-        }
-        
-        let message = `Hola, me gustaría solicitar un servicio:\n\n`;
-        message += `*Nombre:* ${nombre}\n`;
-        message += `*Teléfono:* ${telefono}\n`;
-        message += `*Email:* ${email}\n`;
-        message += `*Dirección/Zona:* ${direccion}\n`;
-        message += `*Servicio solicitado:* ${servicio}\n`;
-        
-        if (fecha) {
-            message += `*Fecha y hora preferidas:* ${fecha}\n`;
-        }
-        
-        message += `*Descripción:* ${descripcion}\n`;
-        
-        if (visitaTecnica) {
-            message += `*Solicita visita técnica:* Sí\n`;
-        }
-        
-        const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/5491166804450?text=${encodedMessage}`, '_blank');
-    });
+    const whatsappBtn = document.getElementById('whatsappBtn');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function() {
+            // Validar que los elementos existan
+            const nombre = document.getElementById('nombre');
+            const telefono = document.getElementById('telefono');
+            const email = document.getElementById('email');
+            const direccion = document.getElementById('direccion');
+            const servicio = document.getElementById('servicio');
+            const fecha = document.getElementById('fecha');
+            const descripcion = document.getElementById('descripcion');
+            const visitaTecnica = document.getElementById('visitaTecnica');
+            
+            // Verificar que todos los elementos obligatorios existan
+            const requiredElements = [nombre, telefono, email, direccion, servicio, descripcion];
+            const missingElements = requiredElements.filter(el => !el);
+            
+            if (missingElements.length > 0) {
+                console.error("❌ Elementos del formulario no encontrados:", missingElements.map(el => el?.id || 'unknown'));
+                alert('Error: No se pudo cargar el formulario. Por favor, recarga la página.');
+                return;
+            }
+            
+            // Validar campos obligatorios
+            if (!nombre.value || !telefono.value || !email.value || !direccion.value || !servicio.value || !descripcion.value) {
+                alert('Por favor, complete todos los campos obligatorios (*)');
+                return;
+            }
+            
+            // Construir mensaje
+            let message = `Hola, me gustaría solicitar un servicio:\n\n`;
+            message += `*Nombre:* ${nombre.value}\n`;
+            message += `*Teléfono:* ${telefono.value}\n`;
+            message += `*Email:* ${email.value}\n`;
+            message += `*Dirección/Zona:* ${direccion.value}\n`;
+            message += `*Servicio solicitado:* ${servicio.value}\n`;
+            
+            if (fecha && fecha.value) {
+                message += `*Fecha y hora preferidas:* ${fecha.value}\n`;
+            }
+            
+            message += `*Descripción:* ${descripcion.value}\n`;
+            
+            if (visitaTecnica && visitaTecnica.checked) {
+                message += `*Solicita visita técnica:* Sí\n`;
+            }
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/5491166804450?text=${encodedMessage}`, '_blank');
+            
+            console.log("📤 Formulario enviado por WhatsApp");
+        });
+    } else {
+        console.warn("⚠️ Botón de WhatsApp no encontrado");
+    }
 
-    console.log("✅ Navegación y funcionalidades generales inicializadas");
+    console.log("✅ Navegación y funcionalidades generales inicializadas correctamente");
 });
