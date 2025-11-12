@@ -503,7 +503,7 @@ class AppointmentScheduler {
 }
 
 // ===========================
-// CHATBOT COMPLETO - SISTEMA MEJORADO
+// CHATBOT INTELIGENTE Y EMPÁTICO - SISTEMA MEJORADO
 // ===========================
 
 // Variables globales del chatbot
@@ -515,197 +515,298 @@ const chatbotInput = document.getElementById('chatbotInput');
 const chatbotSend = document.getElementById('chatbotSend');
 const notificationDot = document.getElementById('notificationDot');
 
-// Respuestas del chatbot original
-const responses = {
-    "servicios": {
-        message: "🔧 *Te cuento sobre nuestros servicios técnicos integrales:*\n\n" +
-                "• *Soporte Informático:* Instalación de software (libre y de pago), mantenimiento preventivo, reparación o cambio de hardware. Trabajamos con todo tipo de software según tus necesidades.\n\n" +
-                "• *Redes y Conectividad:* Instalación profesional desde el cable UTP hasta la configuración avanzada para máxima seguridad y velocidad.\n\n" +
-                "• *Cámaras de Seguridad (CCTV):* Sistemas con marcas líderes como Dahua, Hikvision y otras de alta calidad.\n\n" +
-                "• *Alarmas y Seguridad:* Sistemas inalámbricos, barreras infrarrojas, controles de acceso y cercos eléctricos perimetrales.\n\n" +
-                "• *Domótica:* Automatización inteligente adaptada específicamente a lo que necesites.\n\n" +
-                "• *Ciberseguridad:* Software empresarial, antivirus, firewalls, diagnósticos de seguridad y capacitaciones.\n\n" +
-                "¿Qué servicio te interesa conocer más a fondo?",
-        options: ["soporte_detalles", "redes_detalles", "cctv_detalles", "alarmas_detalles", "domotica_detalles", "ciberseguridad_detalles"]
-    },
+// ===========================
+// SISTEMA DE DETECCIÓN DE INTENCIONES MEJORADO
+// ===========================
+class IntentRecognizer {
+    static recognizeIntent(message) {
+        const lowerMessage = this.normalizeText(message);
+        
+        // Detección de problemas técnicos específicos
+        if (this.isPCProblem(lowerMessage)) return 'pc_problemas';
+        if (this.isNetworkProblem(lowerMessage)) return 'redes_problemas';
+        if (this.isCameraProblem(lowerMessage)) return 'camaras_problemas';
+        if (this.isAlarmProblem(lowerMessage)) return 'alarmas_problemas';
+        if (this.isSmartHomeProblem(lowerMessage)) return 'domotica_problemas';
+        
+        // Detección de intenciones generales
+        if (this.isServiceInquiry(lowerMessage)) return 'servicios';
+        if (this.isPricingInquiry(lowerMessage)) return 'precios';
+        if (this.isEmergency(lowerMessage)) return 'emergencia';
+        if (this.isContactRequest(lowerMessage)) return 'contacto';
+        if (this.isQuoteRequest(lowerMessage)) return 'cotizacion';
+        if (this.isGreeting(lowerMessage)) return 'saludo';
+        if (this.isThanks(lowerMessage)) return 'agradecimiento';
+        
+        return 'no_entendido';
+    }
     
-    "cotizacion": "📋 *Te ayudo con tu cotización:*\n\n" +
-                 "Para darte el mejor presupuesto:\n" +
-                 "1. Contame exactamente qué necesitás\n" + 
-                 "2. Te escuchamos y consultamos tu presupuesto disponible\n" +
-                 "3. Te ofrecemos distintas soluciones adaptadas\n" +
-                 "4. Si es necesario, coordinamos una evaluación previa\n\n" +
-                 "💡 *Importante:* La visita técnica no tiene costo dentro de Capital Federal.\n\n" +
-                 "¿Querés que te contactemos para coordinar?",
-                 
-    "emergencia": "🚨 *Entiendo que es urgente, te ayudo ahora mismo:*\n\n" +
-                 "Para atención inmediata:\n" +
-                 "• 📞 Llamanos directamente al: +54 9 11 6680-4450\n" +
-                 "• 💬 Escribinos por WhatsApp para respuesta más rápida\n" +
-                 "• ⏰ Respondemos lo antes posible\n" +
-                 "• 🏠 Fines de semana y feriados sujetos a disponibilidad\n\n" +
-                 "¿Necesitás que te contactemos ya?",
-                 
-    "contacto": "📞 *Te paso nuestros datos de contacto:*\n\n" +
-               "• *Teléfono/WhatsApp:* +54 9 11 6680-4450\n" +
-               "• *Email:* soportecyclops@gmail.com\n" +
-               "• *Horario atención:* Lunes a Viernes 9:00-18:00 | Sábados 9:00-13:00\n" +
-               "• *Zona de cobertura:* Principalmente Capital Federal (consultanos por otras zonas)\n\n" +
-               "¿Preferís que te llamemos nosotros?",
-               
-    "precios": "💲 *Te cuento sobre precios y pagos:*\n\n" +
-              "Nuestros precios se adaptan a:\n" +
-              "• La complejidad del servicio que necesitás\n" +
-              "• Los materiales y equipos requeridos\n" +
-              "• El tiempo de trabajo necesario\n\n" +
-              "💡 *Lo que incluye:*\n" +
-              "• Cotizaciones personalizadas sin cargo\n" +
-              "• Distintos abonos con mantenimiento periódico\n" +
-              "• Aceptamos todas las formas de pago\n" +
-              "• Los materiales se definen conversando con vos\n\n" +
-              "¿Te interesa que te preparemos una cotización?",
-              
-    "garantias": "🛡️ *Nuestra política de garantías:*\n\n" +
-                "• *Servicios:* Seguimiento post-venta incluido en todos nuestros trabajos\n" +
-                "• *Equipos:* Aplicamos la garantía de fábrica de cada marca\n" +
-                "• *Nuestro compromiso:* Tu satisfacción es lo más importante\n\n" +
-                "Todos nuestros clientes quedan satisfechos con el servicio ✅",
-                
-    "horarios": "🕒 *Horarios y zona de cobertura:*\n\n" +
-               "• *Lunes a Viernes:* 9:00 - 18:00 hs\n" +
-               "• *Sábados:* 9:00 - 13:00 hs\n" +
-               "• *Emergencias:* Fines de semana y feriados sujetos a disponibilidad\n" +
-               "• *Zona principal:* Capital Federal (consultanos por otras zonas)\n\n" +
-               "¿Necesitás coordinar un horario específico?",
-               
-    "default": "🤖 No estoy seguro de entender tu pregunta. Te puedo ayudar con:\n\n" +
-              "• Información detallada de todos nuestros servicios técnicos\n" +
-              "• Cotizaciones y presupuestos personalizados\n" +
-              "• Contacto directo con nuestro equipo\n" +
-              "• Soporte urgente para emergencias\n\n" +
-              "¿En qué más puedo asistirte?"
-};
+    static normalizeText(text) {
+        return text.toLowerCase()
+            .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // elimina acentos
+            .replace(/[^a-z0-9\s]/g, ' ') // elimina caracteres especiales
+            .replace(/\s+/g, ' ') // normaliza espacios
+            .trim();
+    }
+    
+    static isPCProblem(text) {
+        const keywords = [
+            'pc', 'computadora', 'laptop', 'notebook', 'windows', 'enciende', 'apaga',
+            'pantalla', 'monitor', 'negro', 'azul', 'lento', 'trabado', 'congelado',
+            'virus', 'antivirus', 'software', 'hardware', 'disco', 'memoria', 'ram',
+            'procesador', 'teclado', 'mouse', 'sonido', 'audio', 'internet', 'wifi',
+            'bloqueado', 'formatear', 'reinicia', 'no funciona', 'no anda'
+        ];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isNetworkProblem(text) {
+        const keywords = [
+            'internet', 'wifi', 'red', 'conexion', 'router', 'modem', 'inalambrico',
+            'cable', 'ethernet', 'senal', 'velocidad', 'lento', 'corta', 'desconecta',
+            'ip', 'dns', 'configuracion', 'contraseña', 'clave', 'acceso', 'conectividad',
+            'no conecta', 'sin internet', 'no hay señal'
+        ];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isCameraProblem(text) {
+        const keywords = [
+            'camara', 'camaras', 'seguridad', 'cctv', 'grabacion', 'video', 'vigilancia',
+            'dahua', 'hikvision', 'ip', 'analogica', 'monitoreo', 'alarma', 'sensor',
+            'movimiento', 'noche', 'vision', 'no ve', 'no graba', 'no funciona'
+        ];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isAlarmProblem(text) {
+        const keywords = [
+            'alarma', 'sensor', 'movimiento', 'puerta', 'ventana', 'sirena', 'panel',
+            'control', 'acceso', 'codigo', 'pin', 'activar', 'desactivar', 'falsa alarma',
+            'no suena', 'no detecta', 'no funciona', 'seguridad', 'intrusion'
+        ];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isSmartHomeProblem(text) {
+        const keywords = [
+            'domotica', 'smart home', 'casa inteligente', 'automatizacion', 'luces',
+            'iluminacion', 'clima', 'temperatura', 'termostato', 'cortinas', 'persianas',
+            'control', 'app', 'movil', 'voz', 'alexa', 'google home', 'asistente'
+        ];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isServiceInquiry(text) {
+        const keywords = ['servicio', 'servicios', 'ofrecen', 'hacen', 'que hacen', 'trabajan'];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isPricingInquiry(text) {
+        const keywords = ['precio', 'cuesta', 'costo', 'valor', 'cuanto sale', 'tarifa', 'honorario'];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isEmergency(text) {
+        const keywords = ['urgente', 'emergencia', 'ya', 'ahora', 'inmediato', 'rapido', 'ya mismo'];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isContactRequest(text) {
+        const keywords = ['contacto', 'telefono', 'whatsapp', 'llamar', 'numero', 'email', 'correo'];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isQuoteRequest(text) {
+        const keywords = ['cotizacion', 'presupuesto', 'presu', 'presupeusto', 'cotiza'];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isGreeting(text) {
+        const keywords = ['hola', 'buenas', 'buenos', 'buen dia', 'buenas tardes', 'buenas noches'];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+    
+    static isThanks(text) {
+        const keywords = ['gracias', 'gracia', 'thank', 'merci', 'agradecido'];
+        return keywords.some(keyword => text.includes(keyword));
+    }
+}
 
-// Detalles de servicios
-const serviceDetails = {
-    "soporte_detalles": "💻 *Soporte Informático Completo:*\n\n" +
-                       "• Instalación y configuración de software (libre y de pago)\n" +
-                       "• Software especializado: audio, video, gestión empresarial\n" +
-                       "• Bases de datos, drivers y actualizaciones\n" +
-                       "• Mantenimiento preventivo y correctivo\n" +
-                       "• Reparación o cambio de hardware\n" +
-                       "• Optimización de sistemas para máximo rendimiento\n\n" +
-                       "¿Qué necesitás específicamente para tu equipo?",
-                       
-    "redes_detalles": "🌐 *Redes Profesionales Completas:*\n\n" +
-                     "• Instalación de cable UTP con fichas profesionales\n" +
-                     "• Configuración avanzada para seguridad y velocidad\n" +
-                     "• Separación y segmentación de redes\n" +
-                     "• Cableado estructurado empresarial\n" +
-                     "• Soluciones de conectividad para hogar y empresa\n\n" +
-                     "¿Tenés algún problema de conectividad actualmente?",
-                     
-    "cctv_detalles": "📹 *Sistemas CCTV de Alta Calidad:*\n\n" +
-                    "• Trabajamos con marcas líderes: Dahua, Hikvision\n" +
-                    "• Otras marcas asiáticas con calidad garantizada\n" +
-                    "• Instalación y configuración profesional completa\n" +
-                    "• Sistemas IP y analógicos según tu necesidad\n" +
-                    "• Asesoramiento personalizado sin compromiso\n\n" +
-                    "¿Para qué tipo de propiedad necesitás el sistema?",
-                    
-    "alarmas_detalles": "🚨 *Sistemas de Seguridad Integral:*\n\n" +
-                       "• Alarmas inalámbricas y cableadas\n" +
-                       "• Barreras infrarrojas perimetrales\n" +
-                       "• Controles de acceso modernos\n" +
-                       "• Cercos eléctricos perimetrales\n" +
-                       "• Configuración para tu control total\n" +
-                       "• No realizamos monitoreo remoto\n\n" +
-                       "¿Qué tipo de protección necesitás para tu espacio?",
-                       
-    "domotica_detalles": "🏠 *Domótica - Tu Hogar Inteligente:*\n\n" +
-                        "¡Contame exactamente qué querés automatizar! Podemos hacer realidad tu proyecto.\n\n" +
-                        "Algunas posibilidades:\n" +
-                        "• Iluminación inteligente y programable\n" +
-                        "• Control de climatización automático\n" +
-                        "• Seguridad integrada con otros sistemas\n" +
-                        "• Electrodomésticos conectados y controlables\n" +
-                        "• Sistemas de entretenimiento integrados\n\n" +
-                        "¿Qué tenés en mente para tu hogar o empresa?",
-                        
-    "ciberseguridad_detalles": "🔒 *Ciberseguridad Empresarial Avanzada:*\n\n" +
-                              "• Instalación de software de seguridad empresarial\n" +
-                              "• Antivirus y firewalls de última generación\n" +
-                              "• Diagnósticos completos de seguridad\n" +
-                              "• Pentesting (pruebas de penetración)\n" +
-                              "• Capacitaciones para usuarios en seguridad básica\n" +
-                              "• Estrategias para evitar pérdida de datos críticos\n\n" +
-                              "¿Tenés alguna preocupación específica sobre seguridad?"
+// ===========================
+// RESPUESTAS EMPÁTICAS Y NATURALES
+// ===========================
+const empatheticResponses = {
+    "saludo": [
+        "¡Hola! 👋 Me da gusto saludarte. Soy el asistente de Soporte Cyclops, ¿en qué puedo ayudarte hoy?",
+        "¡Hola! 😊 ¿Cómo estás? Cuéntame, ¿qué problema técnico tenés para poder asistirte?",
+        "¡Buen día! 🌟 Estoy aquí para ayudarte con cualquier problema técnico que tengas. ¿Por dónde empezamos?"
+    ],
+    
+    "agradecimiento": [
+        "¡De nada! 😊 Me alegra mucho poder haberte ayudado. ¿Hay algo más en lo que pueda asistirte?",
+        "¡No hay problema! 👍 Estoy aquí cuando me necesites. ¿Necesitás ayuda con algo más?",
+        "¡Un placer! ✨ No dudes en consultarme si tenés alguna otra duda o problema."
+    ],
+    
+    "no_entendido": [
+        "🤔 Perdoná, no estoy seguro de entenderte completamente. ¿Podrías contarme un poco más sobre lo que necesitás?",
+        "😅 Creo que no capté bien tu mensaje. ¿Podrías explicarme de otra forma qué problema tenés?",
+        "💭 No logro entender exactamente qué necesitás. ¿Me contás con más detalles para poder ayudarte mejor?"
+    ]
 };
 
 // ===========================
-// FLUJOS DE DIAGNÓSTICO (ya los tienes)
+// SISTEMA DE RESPUESTAS MEJORADO
 // ===========================
-const diagnosticFlows = {
+const intelligentResponses = {
     "pc_problemas": {
-        question: "¡Entiendo que tenés problemas con tu PC! Empecemos por lo básico: ¿Tu PC enciende correctamente?",
+        message: "🔧 **¡Entiendo que tenés problemas con la computadora!** \n\nLos problemas de PC son muy comunes, no te preocupes. Podemos resolverlo juntos. ¿Tu PC enciende normalmente o tenés algún problema específico?",
         options: [
-            { text: "✅ Sí, enciende normal", next: "pc_enciende_si" },
-            { text: "❌ No enciende", next: "pc_no_enciende" },
-            { text: "⚠️ Enciende pero con problemas", next: "pc_enciende_problemas" }
-        ]
+            { text: "✅ Sí, enciende pero tiene problemas", next: "pc_enciende_si" },
+            { text: "❌ No enciende para nada", next: "pc_no_enciende" },
+            { text: "🐌 Va muy lento o se traba", next: "pc_lento" },
+            { text: "🌐 Problemas de internet/WiFi", next: "redes_problemas" }
+        ],
+        empathetic: true
     },
     
-    "pc_no_enciende": {
-        question: "Veamos por qué no enciende. Cuando apretás el botón de encendido:",
+    "redes_problemas": {
+        message: "📶 **¡Veo que tenés problemas de conexión!** \n\nLas fallas de internet pueden ser muy frustrantes. ¿El problema es con el WiFi, con el cable de red, o no tenés conexión en absoluto?",
         options: [
-            { text: "🔴 No hace nada, ni luces ni sonidos", next: "pc_sin_señal_vida" },
-            { text: "🟡 Se encienden luces pero no da imagen", next: "pc_luces_sin_imagen" },
-            { text: "🔵 Enciende pero se apaga solo", next: "pc_apaga_solo" }
-        ]
+            { text: "📶 WiFi no funciona o es lento", next: "wifi_problemas" },
+            { text: "🔌 Cable de red no conecta", next: "cable_problemas" },
+            { text: "🚫 No hay internet en ningún dispositivo", next: "internet_total" },
+            { text: "📱 Solo falla en algunos dispositivos", next: "dispositivos_especificos" }
+        ],
+        empathetic: true
     },
     
-    "pc_enciende_si": {
-        question: "Perfecto, enciende. ¿Qué problema notás específicamente?",
+    "wifi_problemas": {
+        message: "📡 **Problemas de WiFi - te entiendo perfectamente** \n\nEl WiFi puede fallar por muchas razones. ¿Notás que la señal es débil, o directamente no te podés conectar?",
         options: [
-            { text: "🖥️ No da imagen o pantalla negra", next: "pc_sin_imagen" },
-            { text: "🔊 Problemas de audio", next: "pc_problema_audio" },
-            { text: "🐌 Va muy lento", next: "pc_lento" },
-            { text: "🌐 Problemas de internet", next: "pc_internet" },
-            { text: "❓ Otro problema", next: "pc_otro" }
-        ]
+            { text: "📶 Señal débil o intermitente", next: "wifi_senal_debil" },
+            { text: "🚫 No me puedo conectar", next: "wifi_sin_conexion" },
+            { text: "🐌 Conexión muy lenta", next: "wifi_lento" },
+            { text: "🔄 Se desconecta solo", next: "wifi_inestable" }
+        ],
+        empathetic: true
     },
     
-    "pc_sin_imagen": {
-        question: "Sobre la falta de imagen:",
+    "servicios": {
+        message: "🔧 **¡Claro! Te cuento sobre nuestros servicios:**\n\nTrabajamos con todo tipo de soluciones técnicas. ¿Qué es lo que más te interesa o necesitás resolver?",
         options: [
-            { text: "📺 La pantalla está completamente negra", next: "pc_pantalla_negra" },
-            { text: "⚡ Veo el logo pero no carga Windows", next: "pc_logo_sin_windows" },
-            { text: "🔄 Se reinicia constantemente", next: "pc_reinicia_constante" }
-        ]
+            { text: "💻 Soporte de PC y computadoras", next: "soporte_detalles" },
+            { text: "📡 Redes e Internet", next: "redes_detalles" },
+            { text: "📹 Cámaras de seguridad", next: "cctv_detalles" },
+            { text: "🚨 Alarmas y sistemas de seguridad", next: "alarmas_detalles" },
+            { text: "🏠 Domótica y automatización", next: "domotica_detalles" }
+        ],
+        empathetic: false
     },
     
-    "pc_pantalla_negra": {
-        question: "Para pantalla negra completa:",
+    "emergencia": {
+        message: "🚨 **¡Entiendo que es urgente! Te ayudo inmediatamente**\n\nPara atención prioritaria te recomiendo:\n\n• 📞 **Llamada directa**: +54 9 11 6680-4450 (respuesta en segundos)\n• 💬 **WhatsApp urgente**: Mismo número, prioridad inmediata\n• 🚗 **Visita técnica**: Podemos coordinar para hoy mismo\n\n¿Qué te resulta más conveniente?",
         options: [
-            { text: "💡 Escucho que Windows inicia (sonido)", next: "pc_windows_suena" },
-            { text: "🔇 No escucho ningún sonido", next: "pc_sin_sonido" },
-            { text: "⌨️ Las luces del teclado responden", next: "pc_teclado_funciona" }
-        ]
+            { text: "📞 Llamar ahora mismo", action: "llamar_ahora" },
+            { text: "💬 Escribir por WhatsApp", action: "whatsapp_urgente" },
+            { text: "🚗 Coordinar visita urgente", action: "visita_urgente" }
+        ],
+        empathetic: true
     },
     
-    "final_diagnostico": {
-        message: "🔍 **Basado en lo que me contás, podría ser:**\n\n" +
-                "• **Problema de fuente de alimentación**\n" +
-                "• **Falla en la placa madre**\n" +
-                "• **Problemas con la memoria RAM**\n\n" +
-                "💡 **Mi recomendación:**\n" +
-                "Necesito revisar el equipo para darte un diagnóstico preciso. ¿Querés que coordine una visita técnica?",
-        options: ["agendar_visita", "mas_info", "contacto_directo"]
+    "cotizacion": {
+        message: "💰 **¡Perfecto! Te ayudo con el presupuesto**\n\nPara darte una cotización precisa, contame brevemente:\n• ¿Qué equipo o sistema necesitás arreglar/instalar?\n• ¿Qué problema específico tiene?\n• ¿En qué zona estás aproximadamente?\n\nCon eso te doy un estimado rápido 👍",
+        quick_reply: true,
+        empathetic: true
+    },
+    
+    "precios": {
+        message: "💲 **Sobre precios y formas de pago:**\n\nNuestros honorarios se adaptan a cada situación para que sea justo para vos. Trabajamos con:\n\n• **Presupuesto sin cargo** previo a cualquier trabajo\n• **Distintas opciones** según tu presupuesto\n• **Todas las formas de pago** disponibles\n• **Transparencia total** en los costos\n\n¿Te interesa que hablemos de números específicos para tu caso?",
+        options: ["cotizacion_personalizada", "info_precios_general"],
+        empathetic: true
+    },
+    
+    "contacto": {
+        message: "📞 **¡Claro! Acá tenés nuestras vías de contacto:**\n\n• **Teléfono/WhatsApp**: +54 9 11 6680-4450\n• **Email**: soportecyclops@gmail.com\n• **Horario**: Lunes a Viernes 9:00-18:00 | Sábados 9:00-13:00\n• **Zona**: Principalmente Capital Federal\n\n¿Preferís que te contactemos nosotros?",
+        options: ["contactarme_yo", "que_me_llamen"],
+        empathetic: false
     }
 };
 
 // ===========================
-// FUNCIONES PRINCIPALES DEL CHATBOT
+// DETALLES DE SERVICIOS (actualizados)
+// ===========================
+const serviceDetails = {
+    "soporte_detalles": "💻 **Soporte Informático Completo**\n\nTrabajamos con:\n• Instalación y configuración de software (libre y de pago)\n• Mantenimiento preventivo y correctivo\n• Reparación o cambio de hardware\n• Optimización de sistemas\n• Eliminación de virus y malware\n\n¿Qué necesitás específicamente para tu equipo?",
+    
+    "redes_detalles": "🌐 **Redes Profesionales**\n\nSoluciones de conectividad:\n• Instalación de cableado estructurado\n• Configuración avanzada de routers\n• Optimización de señal WiFi\n• Seguridad de red empresarial\n• Soluciones para hogar y empresa\n\n¿Tenés algún problema de conectividad ahora mismo?",
+    
+    "cctv_detalles": "📹 **Sistemas de Seguridad CCTV**\n\nTrabajamos con marcas líderes:\n• Dahua, Hikvision y otras de alta calidad\n• Sistemas IP y analógicos\n• Instalación profesional completa\n• Monitoreo remoto\n• Asesoramiento personalizado\n\n¿Para qué tipo de propiedad necesitás el sistema?",
+    
+    "alarmas_detalles": "🚨 **Sistemas de Alarma Integrales**\n\nProtección completa:\n• Alarmas inalámbricas y cableadas\n• Sensores de movimiento y apertura\n• Controles de acceso modernos\n• Cercos eléctricos perimetrales\n• Configuración a tu medida\n\n¿Qué tipo de protección buscás?",
+    
+    "domotica_detalles": "🏠 **Domótica - Hogar Inteligente**\n\n¡Contame tu idea! Podemos hacer realidad proyectos como:\n• Iluminación inteligente programable\n• Control de climatización automático\n• Seguridad integrada\n• Electrodomésticos conectados\n• Sistemas de entretenimiento\n\n¿Qué te gustaría automatizar?"
+};
+
+// ===========================
+// MENSAJE DE BIENVENIDA MEJORADO
+// ===========================
+const improvedWelcomeMessage = `
+<div class="welcome-message">
+    <strong>¡Hola! Soy tu asistente de Soporte Cyclops 👋</strong>
+    <p>Estoy aquí para ayudarte a resolver tus problemas técnicos rápidamente. ¿Por dónde empezamos?</p>
+    
+    <div class="quick-actions">
+        <div class="action-category">
+            <h4>🚀 <strong>¿Qué necesitás resolver?</strong></h4>
+            <button class="quick-question primary" data-action="diagnostico_rapido">
+                <i class="fas fa-bolt"></i>
+                Diagnóstico Rápido de Mi Problema
+            </button>
+        </div>
+        
+        <div class="action-category">
+            <h4>🔧 <strong>Servicios Inmediatos</strong></h4>
+            <button class="quick-question" data-intent="emergencia">
+                <i class="fas fa-exclamation-triangle"></i>
+                Necesito Ayuda Urgente
+            </button>
+            <button class="quick-question" data-intent="cotizacion">
+                <i class="fas fa-calculator"></i>
+                Presupuesto Express
+            </button>
+        </div>
+        
+        <div class="action-category">
+            <h4>💡 <strong>Información y Consultas</strong></h4>
+            <button class="quick-question" data-intent="servicios">
+                <i class="fas fa-laptop-medical"></i>
+                Conocer Servicios
+            </button>
+            <button class="quick-question" data-intent="precios">
+                <i class="fas fa-file-invoice-dollar"></i>
+                Precios y Formas de Pago
+            </button>
+        </div>
+        
+        <div class="direct-contact">
+            <p><strong>¿Preferís contacto directo?</strong></p>
+            <button class="contact-btn whatsapp-btn" data-action="contacto_whatsapp">
+                <i class="fab fa-whatsapp"></i>
+                Chat Directo por WhatsApp
+            </button>
+            <button class="contact-btn phone-btn" data-action="llamada_directa">
+                <i class="fas fa-phone"></i>
+                Llamada Inmediata
+            </button>
+        </div>
+    </div>
+</div>
+`;
+
+// ===========================
+// FUNCIONES PRINCIPALES DEL CHATBOT MEJORADO
 // ===========================
 
 // Auto-abrir chatbot
@@ -727,7 +828,7 @@ chatbotClose.addEventListener('click', () => {
     chatbotWindow.style.display = 'none';
 });
 
-// Funciones del chatbot
+// Funciones del chatbot mejoradas
 function showTypingIndicator() {
     const typingDiv = document.createElement('div');
     typingDiv.classList.add('typing-indicator');
@@ -759,6 +860,10 @@ function hideTypingIndicator() {
     }
 }
 
+function getRandomResponse(responses) {
+    return responses[Math.floor(Math.random() * responses.length)];
+}
+
 function sendMessage() {
     const message = chatbotInput.value.trim();
     if (message === '') return;
@@ -770,44 +875,42 @@ function sendMessage() {
 
     setTimeout(() => {
         hideTypingIndicator();
-        
-        let response = responses.default;
-        let options = [];
+        processUserMessage(message);
+    }, 1500 + Math.random() * 1000); // Tiempo variable para parecer más humano
+}
 
-        const lowerMessage = message.toLowerCase();
-
-        // Detección de intenciones
-        if (lowerMessage.includes('servicio') || lowerMessage.includes('ofrecen') || lowerMessage.includes('hacen') || 
-            lowerMessage.includes('qué hacen') || lowerMessage.includes('que hacen')) {
-            response = responses.servicios.message;
-            options = responses.servicios.options;
-        } else if (lowerMessage.includes('precio') || lowerMessage.includes('cuesta') || lowerMessage.includes('costo') || 
-                   lowerMessage.includes('valor') || lowerMessage.includes('cuánto sale') || lowerMessage.includes('cuanto sale')) {
-            response = responses.precios;
-        } else if (lowerMessage.includes('horario') || lowerMessage.includes('cuándo') || lowerMessage.includes('cuando') || 
-                   lowerMessage.includes('disponible') || lowerMessage.includes('atien')) {
-            response = responses.horarios;
-        } else if (lowerMessage.includes('contacto') || lowerMessage.includes('teléfono') || lowerMessage.includes('telefono') || 
-                   lowerMessage.includes('email') || lowerMessage.includes('correo') || lowerMessage.includes('llamar') || 
-                   lowerMessage.includes('número') || lowerMessage.includes('numero')) {
-            response = responses.contacto;
-        } else if (lowerMessage.includes('emergencia') || lowerMessage.includes('urgente') || lowerMessage.includes('inmediat') || 
-                   lowerMessage.includes('ya') || lowerMessage.includes('ahora')) {
-            response = responses.emergencia;
-        } else if (lowerMessage.includes('garantía') || lowerMessage.includes('garantia')) {
-            response = responses.garantias;
-        } else if (lowerMessage.includes('cotizacion') || lowerMessage.includes('presupuesto') || lowerMessage.includes('presu')) {
-            response = responses.cotizacion;
-        }
-
-        // Detalles de servicios
-        const serviceKey = lowerMessage.replace(/\s+/g, '_').replace(/[^a-z_]/g, '');
-        if (serviceDetails[serviceKey]) {
-            response = serviceDetails[serviceKey];
-        }
-
-        addMessage(response, 'bot', options);
-    }, 1500);
+function processUserMessage(message) {
+    const intent = IntentRecognizer.recognizeIntent(message);
+    
+    switch(intent) {
+        case 'saludo':
+            addMessage(getRandomResponse(empatheticResponses.saludo), 'bot');
+            break;
+            
+        case 'agradecimiento':
+            addMessage(getRandomResponse(empatheticResponses.agradecimiento), 'bot');
+            break;
+            
+        case 'no_entendido':
+            addMessage(getRandomResponse(empatheticResponses.no_entendido), 'bot');
+            break;
+            
+        default:
+            if (intelligentResponses[intent]) {
+                const response = intelligentResponses[intent];
+                let messageText = response.message;
+                
+                // Añadir toque empático si corresponde
+                if (response.empathetic) {
+                    messageText = messageText;
+                }
+                
+                addMessage(messageText, 'bot', response.options);
+            } else {
+                // Respuesta por defecto mejorada
+                addMessage("🤔 **Creo que entendí que necesitás ayuda técnica, pero no estoy seguro de qué específicamente.**\n\n¿Podrías contarme un poco más sobre el problema que tenés? Por ejemplo: 'mi PC no enciende', 'el WiFi no funciona', 'necesito instalar cámaras', etc.", 'bot');
+            }
+    }
 }
 
 function addMessage(text, sender, options = []) {
@@ -822,22 +925,42 @@ function addMessage(text, sender, options = []) {
     contentDiv.appendChild(textDiv);
 
     // Opciones de servicios
-    if (options.length > 0) {
+    if (options && options.length > 0) {
         const optionsDiv = document.createElement('div');
         optionsDiv.classList.add('service-options');
         
         options.forEach(option => {
             const button = document.createElement('button');
             button.classList.add('service-option');
-            button.textContent = option.replace(/_/g, ' ')
-                .replace(/\b\w/g, l => l.toUpperCase())
-                .replace('Detalles', 'Más Info');
-            button.addEventListener('click', () => {
-                addMessage(button.textContent, 'user');
-                setTimeout(() => {
-                    addMessage(serviceDetails[option] || responses.default, 'bot');
-                }, 1000);
-            });
+            
+            if (option.action) {
+                // Botón con acción directa
+                button.textContent = option.text;
+                button.addEventListener('click', () => {
+                    handleAction(option.action);
+                });
+            } else if (option.next) {
+                // Botón con flujo de conversación
+                button.textContent = option.text;
+                button.addEventListener('click', () => {
+                    addMessage(option.text, 'user');
+                    setTimeout(() => {
+                        processFlow(option.next);
+                    }, 1000);
+                });
+            } else {
+                // Botón estándar
+                button.textContent = option.replace(/_/g, ' ')
+                    .replace(/\b\w/g, l => l.toUpperCase())
+                    .replace('Detalles', 'Más Info');
+                button.addEventListener('click', () => {
+                    addMessage(button.textContent, 'user');
+                    setTimeout(() => {
+                        addMessage(serviceDetails[option] || "Te cuento más sobre esto...", 'bot');
+                    }, 1000);
+                });
+            }
+            
             optionsDiv.appendChild(button);
         });
         
@@ -852,6 +975,53 @@ function addMessage(text, sender, options = []) {
     saveConversation();
 }
 
+function processFlow(flowKey) {
+    if (intelligentResponses[flowKey]) {
+        const response = intelligentResponses[flowKey];
+        addMessage(response.message, 'bot', response.options);
+    } else if (serviceDetails[flowKey]) {
+        addMessage(serviceDetails[flowKey], 'bot');
+    } else {
+        addMessage("💡 **Basado en lo que me contás, te recomiendo que hablemos para evaluar tu caso específico.**\n\n¿Querés que coordine una consulta técnica sin compromiso?", 'bot', [
+            { text: "📅 Sí, coordinar consulta", action: "agendar_consulta" },
+            { text: "💬 Más información primero", action: "mas_info" }
+        ]);
+    }
+}
+
+function handleAction(action) {
+    switch(action) {
+        case 'llamar_ahora':
+            window.open('tel:+5491166804450');
+            addMessage("📞 **Perfecto, te estoy conectando por teléfono...**\n\nSi no se completa la llamada, podés marcar directamente al: +54 9 11 6680-4450", 'bot');
+            break;
+            
+        case 'whatsapp_urgente':
+            const urgentMessage = "¡Hola! Necesito ayuda urgente con un problema técnico. Por favor contáctenme lo antes posible.";
+            window.open(`https://wa.me/5491166804450?text=${encodeURIComponent(urgentMessage)}`, '_blank');
+            addMessage("💬 **¡Listo! Te redirijo a WhatsApp para atención inmediata...**", 'bot');
+            break;
+            
+        case 'contacto_whatsapp':
+            const defaultMessage = "¡Hola! Me comunico desde el sitio web de Soporte Cyclops y necesito información sobre sus servicios.";
+            window.open(`https://wa.me/5491166804450?text=${encodeURIComponent(defaultMessage)}`, '_blank');
+            addMessage("💬 **Te llevo a WhatsApp para que hablemos directamente...**", 'bot');
+            break;
+            
+        case 'llamada_directa':
+            window.open('tel:+5491166804450');
+            addMessage("📞 **Conectándote por teléfono...**\n\nNúmero directo: +54 9 11 6680-4450", 'bot');
+            break;
+            
+        case 'agendar_consulta':
+            addMessage("📅 **¡Excelente! Para agendar una consulta técnica:**\n\nPodés contactarnos directamente al +54 9 11 6680-4450 o escribirnos por WhatsApp para coordinar día y hora que te convenga.\n\nLa consulta inicial no tiene costo 😊", 'bot');
+            break;
+            
+        default:
+            addMessage("💡 Te recomiendo contactarnos directamente para resolver esto más rápido: +54 9 11 6680-4450", 'bot');
+    }
+}
+
 function saveConversation() {
     const messages = chatbotMessages.innerHTML;
     localStorage.setItem('cyclopsChatbotConversation', messages);
@@ -862,131 +1032,14 @@ function loadConversation() {
     if (savedConversation) {
         chatbotMessages.innerHTML = savedConversation;
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    } else {
+        // Mostrar mensaje de bienvenida mejorado
+        addMessage(improvedWelcomeMessage, 'bot');
     }
 }
 
 // ===========================
-// SISTEMA DE DIAGNÓSTICO MEJORADO
-// ===========================
-
-function initChatbotDiagnostic() {
-    // Actualizar preguntas rápidas del chatbot
-    updateQuickQuestions();
-    
-    // Agregar event listeners para diagnóstico
-    setupDiagnosticEventListeners();
-}
-
-function updateQuickQuestions() {
-    const quickQuestionsContainer = document.querySelector('.quick-questions');
-    if (!quickQuestionsContainer) return;
-
-    // Actualizar solo si no se ha modificado antes
-    if (!quickQuestionsContainer.querySelector('[data-action="pc_problemas"]')) {
-        quickQuestionsContainer.innerHTML = `
-            <button class="quick-question" data-action="pc_problemas">
-                <i class="fas fa-stethoscope"></i>
-                Diagnóstico de PC
-            </button>
-            <button class="quick-question" data-question="servicios">
-                <i class="fas fa-laptop-code"></i>
-                Conocer servicios disponibles
-            </button>
-            <button class="quick-question" data-question="cotizacion">
-                <i class="fas fa-file-invoice-dollar"></i>
-                Solicitar presupuesto
-            </button>
-            <button class="quick-question" data-question="emergencia">
-                <i class="fas fa-exclamation-triangle"></i>
-                Necesito ayuda urgente
-            </button>
-        `;
-    }
-}
-
-function setupDiagnosticEventListeners() {
-    // Event listener para preguntas rápidas del diagnóstico
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.quick-question')) {
-            const button = e.target.closest('.quick-question');
-            const action = button.getAttribute('data-action');
-            const question = button.getAttribute('data-question');
-            
-            if (action === 'pc_problemas') {
-                addMessage("Necesito ayuda con problemas técnicos de PC", 'user');
-                setTimeout(() => {
-                    startDiagnostic('pc_problemas');
-                }, 1000);
-            } else if (question) {
-                // Comportamiento original para otras preguntas
-                addMessage(button.querySelector('i').nextSibling.textContent.trim(), 'user');
-                setTimeout(() => {
-                    if (question === 'servicios') {
-                        addMessage(responses[question].message, 'bot', responses[question].options);
-                    } else {
-                        addMessage(responses[question], 'bot');
-                    }
-                }, 1000);
-            }
-        }
-        
-        // Event listener para opciones de diagnóstico
-        if (e.target.classList.contains('diagnostic-option')) {
-            const nextFlow = e.target.getAttribute('data-next');
-            addMessage(e.target.textContent, 'user');
-            setTimeout(() => {
-                startDiagnostic(nextFlow);
-            }, 1000);
-        }
-    });
-}
-
-function startDiagnostic(flowKey) {
-    const flow = diagnosticFlows[flowKey];
-    if (!flow) return;
-    
-    let messageHTML = `<div class="diagnostic-question">${flow.question}</div>`;
-    
-    if (flow.options) {
-        messageHTML += '<div class="diagnostic-options">';
-        flow.options.forEach(option => {
-            messageHTML += `
-                <button class="diagnostic-option" data-next="${option.next}">
-                    ${option.text}
-                </button>
-            `;
-        });
-        messageHTML += '</div>';
-    } else if (flow.message) {
-        messageHTML += `<div class="diagnostic-result">${flow.message.replace(/\n/g, '<br>')}</div>`;
-        
-        if (flow.options) {
-            messageHTML += '<div class="diagnostic-actions">';
-            flow.options.forEach(option => {
-                messageHTML += `
-                    <button class="diagnostic-action" data-action="${option}">
-                        ${getActionText(option)}
-                    </button>
-                `;
-            });
-            messageHTML += '</div>';
-        }
-    }
-    
-    addMessage(messageHTML, 'bot');
-}
-
-function getActionText(action) {
-    const actionTexts = {
-        'agendar_visita': '📅 Agendar Visita Técnica',
-        'mas_info': 'ℹ️ Más Información',
-        'contacto_directo': '📞 Contacto Directo'
-    };
-    return actionTexts[action] || action;
-}
-
-// ===========================
-// EVENT LISTENERS DEL CHATBOT
+// EVENT LISTENERS MEJORADOS
 // ===========================
 
 // Event listeners del chatbot
@@ -997,19 +1050,31 @@ chatbotInput.addEventListener('keypress', (e) => {
     }
 });
 
-// Preguntas rápidas originales (actualizadas por el sistema de diagnóstico)
-document.querySelectorAll('.quick-question').forEach(button => {
-    button.addEventListener('click', () => {
-        const question = button.getAttribute('data-question');
-        addMessage(button.querySelector('i').nextSibling.textContent.trim(), 'user');
-        setTimeout(() => {
-            if (question === 'servicios') {
-                addMessage(responses[question].message, 'bot', responses[question].options);
-            } else {
-                addMessage(responses[question], 'bot');
-            }
-        }, 1000);
-    });
+// Preguntas rápidas mejoradas
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.quick-question')) {
+        const button = e.target.closest('.quick-question');
+        const action = button.getAttribute('data-action');
+        const intent = button.getAttribute('data-intent');
+        
+        if (action === 'diagnostico_rapido') {
+            addMessage("Necesito ayuda con un problema técnico - diagnóstico rápido", 'user');
+            setTimeout(() => {
+                addMessage("🔍 **¡Perfecto! Hagamos un diagnóstico rápido**\n\nContame, ¿qué equipo o sistema te está dando problemas?", 'bot', [
+                    { text: "💻 Computadora/PC", next: "pc_problemas" },
+                    { text: "📡 Internet/Redes", next: "redes_problemas" },
+                    { text: "📹 Cámaras de seguridad", next: "camaras_problemas" },
+                    { text: "🚨 Sistema de alarmas", next: "alarmas_problemas" },
+                    { text: "🏠 Domótica/Automatización", next: "domotica_problemas" }
+                ]);
+            }, 1000);
+        } else if (intent) {
+            addMessage(button.textContent, 'user');
+            setTimeout(() => {
+                processUserMessage(button.textContent);
+            }, 1000);
+        }
+    }
 });
 
 // Sugerencias
@@ -1018,7 +1083,7 @@ document.querySelectorAll('.suggestion-btn').forEach(button => {
         const question = button.getAttribute('data-question');
         addMessage(button.textContent, 'user');
         setTimeout(() => {
-            addMessage(responses[question], 'bot');
+            processUserMessage(button.textContent);
         }, 1000);
     });
 });
@@ -1026,7 +1091,11 @@ document.querySelectorAll('.suggestion-btn').forEach(button => {
 // Cargar conversación al iniciar
 loadConversation();
 
-// Inicializar sistema de diagnóstico
+// Inicializar sistema de diagnóstico mejorado
+function initChatbotDiagnostic() {
+    // El sistema ahora está integrado en las funciones principales
+    console.log("Chatbot inteligente inicializado ✅");
+}
+
+// Llamar a la inicialización
 initChatbotDiagnostic();
-
-
