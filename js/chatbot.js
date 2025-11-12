@@ -5,7 +5,8 @@
 // Inicialización del chatbot
 document.addEventListener('DOMContentLoaded', function() {
     console.log("🚀 Inicializando chatbot inteligente...");
-    initChatbot();
+    // Retrasar ligeramente la inicialización para asegurar que el DOM esté completamente cargado
+    setTimeout(initChatbot, 100);
 });
 
 function initChatbot() {
@@ -18,13 +19,24 @@ function initChatbot() {
     const chatbotSend = document.getElementById('chatbotSend');
     const notificationDot = document.getElementById('notificationDot');
 
-    // Verificar que todos los elementos existan
-    if (!chatbotToggle || !chatbotWindow) {
-        console.error("❌ No se encontraron los elementos del chatbot");
+    // Verificar que todos los elementos críticos existan
+    const requiredElements = [
+        { element: chatbotToggle, name: 'chatbotToggle' },
+        { element: chatbotWindow, name: 'chatbotWindow' },
+        { element: chatbotClose, name: 'chatbotClose' },
+        { element: chatbotMessages, name: 'chatbotMessages' },
+        { element: chatbotInput, name: 'chatbotInput' },
+        { element: chatbotSend, name: 'chatbotSend' }
+    ];
+    
+    const missingElements = requiredElements.filter(item => !item.element);
+    
+    if (missingElements.length > 0) {
+        console.error("❌ Elementos del chatbot no encontrados:", missingElements.map(item => item.name));
         return;
     }
 
-    console.log("✅ Elementos del chatbot encontrados");
+    console.log("✅ Todos los elementos del chatbot encontrados");
 
     // ===========================
     // SISTEMA DE DETECCIÓN DE INTENCIONES MEJORADO
