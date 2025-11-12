@@ -2,7 +2,6 @@
 // CHATBOT INTELIGENTE Y EMPÁTICO
 // ===========================
 
-// Inicialización del chatbot
 document.addEventListener('DOMContentLoaded', function() {
     console.log("🚀 Inicializando chatbot inteligente...");
     // Retrasar ligeramente la inicialización para asegurar que el DOM esté completamente cargado
@@ -247,7 +246,10 @@ function initChatbot() {
         chatbotWindow.style.display = 'none';
     });
 
-    // Funciones del chatbot mejoradas
+    // ===========================
+    // FUNCIONES DE MENSAJES
+    // ===========================
+
     function showTypingIndicator() {
         const typingDiv = document.createElement('div');
         typingDiv.classList.add('typing-indicator');
@@ -274,9 +276,7 @@ function initChatbot() {
 
     function hideTypingIndicator() {
         const typingIndicator = document.getElementById('typingIndicator');
-        if (typingIndicator) {
-            typingIndicator.remove();
-        }
+        if (typingIndicator) typingIndicator.remove();
     }
 
     function getRandomResponse(responses) {
@@ -319,7 +319,6 @@ function initChatbot() {
                     const response = intelligentResponses[intent];
                     addMessage(response.message, 'bot', response.options);
                 } else {
-                    // Respuesta por defecto mejorada
                     addMessage("🤔 **Creo que entendí que necesitás ayuda técnica, pero no estoy seguro de qué específicamente.**\n\n¿Podrías contarme un poco más sobre el problema que tenés? Por ejemplo: 'mi PC no enciende', 'el WiFi no funciona', 'necesito instalar cámaras', etc.", 'bot');
                 }
         }
@@ -336,7 +335,6 @@ function initChatbot() {
         textDiv.innerHTML = text.replace(/\n/g, '<br>');
         contentDiv.appendChild(textDiv);
 
-        // Opciones de servicios
         if (options && options.length > 0) {
             const optionsDiv = document.createElement('div');
             optionsDiv.classList.add('service-options');
@@ -346,22 +344,15 @@ function initChatbot() {
                 button.classList.add('service-option');
                 
                 if (option.action) {
-                    // Botón con acción directa
                     button.textContent = option.text;
-                    button.addEventListener('click', () => {
-                        handleAction(option.action);
-                    });
+                    button.addEventListener('click', () => handleAction(option.action));
                 } else if (option.next) {
-                    // Botón con flujo de conversación
                     button.textContent = option.text;
                     button.addEventListener('click', () => {
                         addMessage(option.text, 'user');
-                        setTimeout(() => {
-                            processFlow(option.next);
-                        }, 1000);
+                        setTimeout(() => processFlow(option.next), 1000);
                     });
                 } else {
-                    // Botón estándar
                     button.textContent = option.replace(/_/g, ' ')
                         .replace(/\b\w/g, l => l.toUpperCase())
                         .replace('Detalles', 'Más Info');
@@ -382,8 +373,6 @@ function initChatbot() {
         messageDiv.appendChild(contentDiv);
         chatbotMessages.appendChild(messageDiv);
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        
-        // Guardar conversación
         saveConversation();
     }
 
@@ -407,113 +396,47 @@ function initChatbot() {
                 window.open('tel:+5491166804450');
                 addMessage("📞 **Perfecto, te estoy conectando por teléfono...**\n\nSi no se completa la llamada, podés marcar directamente al: +54 9 11 6680-4450", 'bot');
                 break;
-                
             case 'whatsapp_urgente':
                 const urgentMessage = "¡Hola! Necesito ayuda urgente con un problema técnico. Por favor contáctenme lo antes posible.";
                 window.open(`https://wa.me/5491166804450?text=${encodeURIComponent(urgentMessage)}`, '_blank');
                 addMessage("💬 **¡Listo! Te redirijo a WhatsApp para atención inmediata...**", 'bot');
                 break;
-                
             case 'agendar_consulta':
                 addMessage("📅 **¡Excelente! Para agendar una consulta técnica:**\n\nPodés contactarnos directamente al +54 9 11 6680-4450 o escribirnos por WhatsApp para coordinar día y hora que te convenga.\n\nLa consulta inicial no tiene costo 😊", 'bot');
                 break;
-                
             default:
                 addMessage("💡 Te recomiendo contactarnos directamente para resolver esto más rápido: +54 9 11 6680-4450", 'bot');
         }
     }
 
     function saveConversation() {
-        const messages = chatbotMessages.innerHTML;
-        localStorage.setItem('cyclopsChatbotConversation', messages);
+        localStorage.setItem('cyclopsChatbotConversation', chatbotMessages.innerHTML);
     }
 
     function loadConversation() {
-        const savedConversation = localStorage.getItem('cyclopsChatbotConversation');
-        if (savedConversation) {
-            chatbotMessages.innerHTML = savedConversation;
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
+        const saved = localStorage.getItem('cyclopsChatbotConversation');
+        if (saved) chatbotMessages.innerHTML = saved;
     }
 
     // ===========================
-    // EVENT LISTENERS MEJORADOS
+    // EVENTOS Y SUGERENCIAS
     // ===========================
 
-    // Event listeners del chatbot
     chatbotSend.addEventListener('click', sendMessage);
-    chatbotInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
+    chatbotInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') sendMessage();
     });
 
-    // Preguntas rápidas mejoradas
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('.quick-question')) {
-            const button = e.target.closest('.quick-question');
-            const action = button.getAttribute('data-action');
-            const question = button.getAttribute('data-question');
-            
-            if (action === 'pc_problemas') {
-                addMessage("Necesito ayuda con un problema técnico - diagnóstico rápido", 'user');
-                setTimeout(() => {
-                    addMessage("🔍 **¡Perfecto! Hagamos un diagnóstico rápido**\n\nContame, ¿qué equipo o sistema te está dando problemas?", 'bot', [
-                        { text: "💻 Computadora/PC", next: "pc_problemas" },
-                        { text: "📡 Internet/Redes", next: "redes_problemas" },
-                        { text: "📹 Cámaras de seguridad", next: "camaras_problemas" },
-                        { text: "🚨 Sistema de alarmas", next: "alarmas_problemas" },
-                        { text: "🏠 Domótica/Automatización", next: "domotica_problemas" }
-                    ]);
-                }, 1000);
-            } else if (question) {
-                addMessage(button.textContent, 'user');
-                setTimeout(() => {
-                    processUserMessage(button.textContent);
-                }, 1000);
-            }
-        }
-    });
-
-    // Sugerencias
+    // Botones de sugerencias rápidas
     document.querySelectorAll('.suggestion-btn').forEach(button => {
         button.addEventListener('click', () => {
-            const question = button.getAttribute('data-question');
             addMessage(button.textContent, 'user');
-            setTimeout(() => {
-                processUserMessage(button.textContent);
-            }, 1000);
+            setTimeout(() => processUserMessage(button.textContent), 800);
         });
     });
 
-    // Cargar conversación al iniciar
+    // Cargar historial
     loadConversation();
 
     console.log("✅ Chatbot inteligente inicializado correctamente");
 }
-// Manejo de sugerencias frecuentes
-document.querySelectorAll('.suggestion-btn').forEach(button => {
-    button.addEventListener('click', () => {
-        const question = button.dataset.question;
-        let message = '';
-
-        switch (question) {
-            case 'precios':
-                message = '¿Podrías contarme qué servicio te interesa para pasarte precios aproximados?';
-                break;
-            case 'garantias':
-                message = 'Todos nuestros trabajos cuentan con garantía de instalación y funcionamiento. ¿Querés detalles sobre algún servicio en particular?';
-                break;
-            case 'horarios':
-                message = 'Atendemos de lunes a sábado de 9 a 18 hs en toda la zona norte y CABA.';
-                break;
-            default:
-                message = '¿Podrías especificar un poco más tu consulta?';
-        }
-
-        addMessage(button.textContent, 'user');
-        setTimeout(() => {
-            addMessage(message, 'bot');
-        }, 800);
-    });
-});
