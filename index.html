@@ -53,539 +53,316 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 1rem 2rem;
         }
         
         .logo {
             display: flex;
             align-items: center;
-        }
-        
-        .logo-text {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
+            gap: 10px;
             font-size: 1.5rem;
+            font-weight: 700;
             color: #2c3e50;
         }
         
-        .logo-text i {
-            margin-right: 10px;
+        .logo i {
             color: #3498db;
         }
         
         .nav-menu {
             display: flex;
             list-style: none;
+            gap: 2rem;
         }
         
-        .nav-menu li {
-            margin-left: 30px;
-        }
-        
-        .nav-menu a {
+        .nav-link {
             text-decoration: none;
             color: #2c3e50;
-            font-weight: 600;
+            font-weight: 500;
             transition: color 0.3s;
         }
         
-        .nav-menu a:hover {
+        .nav-link:hover {
             color: #3498db;
+        }
+        
+        .nav-link.active {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
         }
         
         .menu-toggle {
             display: none;
-            flex-direction: column;
             background: none;
             border: none;
+            font-size: 1.5rem;
             cursor: pointer;
-        }
-        
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: #2c3e50;
-            margin: 3px 0;
-            transition: 0.3s;
+            color: #2c3e50;
         }
         
         /* HERO SECTION */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200') center/cover no-repeat;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            margin-top: 70px;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200') center/cover;
+            opacity: 0.1;
         }
         
         .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
         
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 700;
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
         }
         
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            font-weight: 400;
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
         }
         
-        .hero-tagline {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 25px;
-            border-radius: 5px;
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #3498db;
+            color: white;
             text-decoration: none;
+            border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s;
-            border: none;
-            cursor: pointer;
+            animation: fadeInUp 1s ease 0.4s both;
         }
         
-        .btn i {
-            margin-right: 8px;
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* SERVICES SECTION */
+        .services {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        /* ABOUT SECTION */
+        .about {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* STATS SECTION */
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-item p {
+            font-size: 1.1rem;
+        }
+        
+        /* CONTACT SECTION */
+        .contact {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-item i {
+            font-size: 2rem;
+            color: #3498db;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .btn-primary {
+            padding: 12px 30px;
             background-color: #3498db;
             color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         
         .btn-primary:hover {
             background-color: #2980b9;
         }
         
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-        
-        .btn-secondary:hover {
-            background-color: white;
-            color: #333;
-        }
-        
-        /* SERVICES SECTION */
-        .services {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            color: #7f8c8d;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
-            color: #3498db;
-            margin-bottom: 20px;
-        }
-        
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-        
-        .service-card p {
-            color: #7f8c8d;
-        }
-        
-        /* ABOUT SECTION */
-        .about {
-            padding: 100px 0;
-            background-color: #f8f9fa;
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-description {
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .about-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat i {
-            font-size: 2.5rem;
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-        
-        .stat h3 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        .stat p {
-            color: #7f8c8d;
-        }
-        
-        .about-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .about-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        /* CONTACT SECTION */
-        .contact {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .contact-content {
-            display: flex;
-            gap: 50px;
-        }
-        
-        .contact-form {
-            flex: 1;
-        }
-        
-        .form-row {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .form-group {
-            flex: 1;
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-        }
-        
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-        }
-        
-        .checkbox-group input {
-            width: auto;
-            margin-right: 10px;
-        }
-        
-        .btn-submit {
-            margin-top: 20px;
-            margin-right: 15px;
-        }
-        
-        .contact-info {
-            flex: 1;
-            background-color: #f8f9fa;
-            padding: 30px;
-            border-radius: 10px;
-        }
-        
-        .contact-info h3 {
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-        
-        .contact-item i {
-            font-size: 1.2rem;
-            color: #3498db;
-            margin-right: 15px;
-            margin-top: 5px;
-        }
-        
-        .contact-item h4 {
-            margin-bottom: 5px;
-            color: #2c3e50;
-        }
-        
-        .contact-item a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-        
-        .whatsapp-link {
-            display: inline-block;
+        .btn-whatsapp {
             background-color: #25D366;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: 600;
         }
         
-        .business-hours {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-        }
-        
-        .business-hours h4 {
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
-
-        /* AGENDA SECTION */
-        .agenda-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .agenda-section .section-title,
-        .agenda-section .section-subtitle {
-            color: white;
-        }
-
-        .agenda-container {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            color: #333;
-        }
-
-        .calendar-sidebar {
-            border-right: 1px solid #eee;
-            padding-right: 30px;
-        }
-
-        .calendar-sidebar h3 {
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-
-        .calendar-main {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .calendar-header button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .calendar-header button:hover {
-            background: #2980b9;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-bottom: 20px;
-        }
-
-        .calendar-day {
-            padding: 10px;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .calendar-day.header {
-            font-weight: bold;
-            background: #f8f9fa;
-            cursor: default;
-        }
-
-        .calendar-day.empty {
-            background: transparent;
-            cursor: default;
-        }
-
-        .calendar-day:hover {
-            background: #ecf0f1;
-        }
-
-        .calendar-day.available {
-            background: #e8f5e8;
-            color: #27ae60;
-        }
-
-        .calendar-day.selected {
-            background: #3498db;
-            color: white;
-        }
-
-        .calendar-day.unavailable {
-            background: #f8d7da;
-            color: #721c24;
-            cursor: not-allowed;
-        }
-
-        .calendar-day.today {
-            border: 2px solid #3498db;
-        }
-
-        .time-slots h4 {
-            margin-bottom: 15px;
-            color: #2c3e50;
-        }
-
-        .slots-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .time-slot {
-            padding: 10px;
-            text-align: center;
-            background: #ecf0f1;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .time-slot:hover {
-            background: #bdc3c7;
-        }
-
-        .time-slot.selected {
-            background: #3498db;
-            color: white;
-        }
-
-        .time-slot.unavailable {
-            background: #f8d7da;
-            color: #721c24;
-            cursor: not-allowed;
-        }
-
-        #confirmAppointment:disabled {
-            background: #bdc3c7;
-            cursor: not-allowed;
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
         }
         
         /* FOOTER */
-        .footer {
+        footer {
             background-color: #2c3e50;
             color: white;
-            padding: 60px 0 20px;
+            padding: 3rem 0 1rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
         .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 1.3rem;
+            margin-bottom: 1rem;
         }
         
         .footer-section ul {
@@ -593,22 +370,22 @@
         }
         
         .footer-section ul li {
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
         }
         
         .footer-section a {
-            color: #bdc3c7;
+            color: white;
             text-decoration: none;
             transition: color 0.3s;
         }
         
         .footer-section a:hover {
-            color: white;
+            color: #3498db;
         }
         
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 1rem;
         }
         
         .social-links a {
@@ -619,20 +396,51 @@
             height: 40px;
             background-color: #34495e;
             border-radius: 50%;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .social-links a:hover {
             background-color: #3498db;
+            transform: translateY(-3px);
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 2rem;
             border-top: 1px solid #34495e;
-            color: #bdc3c7;
         }
         
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 1s ease;
+        }
+        
+        .slide-up {
+            animation: slideUp 1s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* CHATBOT STYLES */
         .chatbot-container {
             position: fixed;
@@ -642,10 +450,11 @@
             font-family: 'Open Sans', sans-serif;
         }
 
+        /* BOTÓN CHATBOT - Cambiado a ícono de mensaje genérico */
         .chatbot-toggle {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -653,7 +462,7 @@
             color: white;
             font-size: 1.8rem;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
             transition: all 0.3s ease;
             position: relative;
             animation: gentlePulse 3s infinite;
@@ -661,9 +470,9 @@
         }
 
         @keyframes gentlePulse {
-            0% { transform: scale(1); box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            0% { transform: scale(1); box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4); }
         }
 
         .chatbot-toggle:hover {
@@ -679,70 +488,132 @@
             height: 12px;
             background: #e74c3c;
             border-radius: 50%;
+            animation: pulse 2s infinite;
             display: none;
         }
 
-        .chatbot-window {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            width: 380px;
-            height: 520px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            border: 2px solid #e1e8ed;
-            transform-origin: bottom right;
-            animation: windowAppear 0.3s ease;
+        .notification-dot.active {
+            display: block;
         }
 
-        @keyframes windowAppear {
-            from {
-                opacity: 0;
-                transform: scale(0.8) translateY(20px);
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7);
             }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
+            
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+            }
+            
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(231, 76, 60, 0);
             }
         }
 
-        .chatbot-header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .chatbot-avatar {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.2);
+        /* NUEVO: BOTÓN WHATSAPP FLOTANTE DIRECTO */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            z-index: 9999;
+            border: 3px solid white;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        .whatsapp-float i {
+            animation: wiggle 1s ease infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 400px;
+            height: 600px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideInUp 0.3s ease;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-avatar {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #667eea;
         }
 
         .chatbot-info {
             flex: 1;
+            margin-left: 15px;
         }
 
         .chatbot-info h3 {
             margin: 0;
             font-size: 1.1rem;
-            font-weight: 600;
         }
 
         .status {
-            font-size: 0.8rem;
-            opacity: 0.8;
+            font-size: 0.85rem;
+            opacity: 0.9;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -753,760 +624,470 @@
             height: 8px;
             background: #2ecc71;
             border-radius: 50%;
-            animation: statusPulse 2s infinite;
-        }
-
-        @keyframes statusPulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
+            animation: pulse 2s infinite;
         }
 
         .chatbot-close {
-            background: rgba(255,255,255,0.2);
+            background: none;
             border: none;
             color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            font-size: 1.5rem;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
 
         .chatbot-close:hover {
-            background: rgba(255,255,255,0.3);
+            opacity: 1;
         }
 
         .chatbot-messages {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
             background: #f8f9fa;
         }
 
         .message {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            line-height: 1.5;
-            animation: messageAppear 0.3s ease;
-            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .bot-message {
-            align-self: flex-start;
-            background: white;
-            color: #2c3e50;
-            border-bottom-left-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-            border-left: 3px solid #3498db;
+        .message.bot {
+            align-items: flex-start;
         }
 
-        .user-message {
-            align-self: flex-end;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            border-bottom-right-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .message.user {
+            align-items: flex-end;
         }
 
         .message-content {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .welcome-message strong {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-            color: #2c3e50;
-        }
-
-        .welcome-message p {
-            margin: 0;
-            color: #5a6c7d;
-        }
-
-        .quick-questions {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .quick-question {
-            background: #e3f2fd;
-            color: #1976d2;
-            border: 1px solid #bbdefb;
-            border-radius: 12px;
-            padding: 12px 15px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-align: left;
-            font-weight: 500;
-        }
-
-        .quick-question:hover {
-            background: #bbdefb;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .quick-question i {
-            font-size: 1rem;
-            color: #3498db;
-        }
-
-        .chatbot-input-container {
-            border-top: 1px solid #e1e8ed;
-            background: white;
-        }
-
-        .suggestions {
-            padding: 12px 20px;
-            border-bottom: 1px solid #e1e8ed;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            font-size: 0.8rem;
-            color: #7f8c8d;
-            background: #f8f9fa;
-        }
-
-        .suggestion-btn {
-            background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 15px;
-            padding: 5px 12px;
-            font-size: 0.75rem;
-            color: #3498db;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .suggestion-btn:hover {
-            background: #3498db;
-            color: white;
-            border-color: #3498db;
-        }
-
-        .chatbot-input {
-            display: flex;
-            padding: 15px 20px;
-            gap: 10px;
-        }
-
-        .chatbot-input input {
-            flex: 1;
+            max-width: 80%;
             padding: 12px 16px;
-            border: 1px solid #e1e8ed;
-            border-radius: 25px;
-            outline: none;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            background: #f8f9fa;
+            border-radius: 18px;
+            line-height: 1.5;
         }
 
-        .chatbot-input input:focus {
-            border-color: #3498db;
+        .message.bot .message-content {
             background: white;
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            color: #333;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .send-btn {
-            background: linear-gradient(135deg, #3498db, #2980b9);
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-        }
-
-        .send-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+            border-bottom-right-radius: 4px;
         }
 
         .service-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .service-option {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 10px 8px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            font-weight: 500;
-            color: #2c3e50;
-        }
-
-        .service-option:hover {
-            background: #3498db;
-            color: white;
-            border-color: #3498db;
-            transform: translateY(-2px);
-        }
-
-        .typing-indicator {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 12px 16px;
-            background: white;
-            border-radius: 18px;
-            border-bottom-left-radius: 5px;
-            width: fit-content;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-            border-left: 3px solid #3498db;
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: #95a5a6;
-            border-radius: 50%;
-            animation: typing 1.4s infinite ease-in-out;
-        }
-
-        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
-        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
-
-        @keyframes typing {
-            0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
-            40% { transform: scale(1); opacity: 1; }
-        }
-
-        .chatbot-footer {
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #95a5a6;
-            background: #f8f9fa;
-            border-top: 1px solid #e1e8ed;
-        }
-
-        /* ESTILOS DIAGNÓSTICO CHATBOT */
-        .diagnostic-question {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #2c3e50;
-            font-size: 0.95rem;
-        }
-
-        .diagnostic-options {
             display: flex;
             flex-direction: column;
             gap: 8px;
             margin-top: 10px;
         }
 
-        .diagnostic-option {
-            background: #e3f2fd;
-            border: 1px solid #bbdefb;
-            border-radius: 12px;
-            padding: 12px 15px;
-            text-align: left;
+        .service-option {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 10px 15px;
+            border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.85rem;
             font-weight: 500;
-            color: #1976d2;
+            text-align: left;
         }
 
-        .diagnostic-option:hover {
-            background: #bbdefb;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        .service-option:hover {
+            background: #667eea;
+            color: white;
+            transform: translateX(5px);
         }
 
-        .diagnostic-result {
-            background: #e8f5e8;
-            border: 1px solid #c8e6c9;
-            border-radius: 10px;
+        .chatbot-input-container {
             padding: 15px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-        }
-
-        .diagnostic-actions {
+            background: white;
+            border-top: 1px solid #eee;
             display: flex;
             gap: 10px;
-            margin-top: 15px;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .chatbot-send {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .chatbot-send:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-suggestions {
+            padding: 10px 15px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
-        .diagnostic-action {
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 15px;
+        .suggestion-btn {
+            padding: 6px 12px;
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            font-size: 0.85rem;
             cursor: pointer;
-            font-size: 0.8rem;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
 
-        .diagnostic-action:hover {
-            background: #2980b9;
+        .suggestion-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
         }
 
         /* RESPONSIVE */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .contact-content {
-                flex-direction: column;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .agenda-container {
-                grid-template-columns: 1fr;
-            }
-
-            .calendar-sidebar {
-                border-right: none;
-                padding-right: 0;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 30px;
-            }
-        }
-        
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-            
             .nav-menu {
                 position: fixed;
-                top: 70px;
                 left: -100%;
+                top: 70px;
                 flex-direction: column;
                 background-color: white;
                 width: 100%;
                 text-align: center;
                 transition: 0.3s;
                 box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-                padding: 20px 0;
+                padding: 2rem 0;
             }
             
             .nav-menu.active {
                 left: 0;
             }
             
-            .nav-menu li {
-                margin: 15px 0;
+            .menu-toggle {
+                display: block;
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero h1 {
+                font-size: 2rem;
             }
             
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-            
-            .about-stats {
-                flex-direction: column;
-                gap: 20px;
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
             
             .chatbot-window {
-                width: 320px;
-                height: 480px;
-                right: 10px;
-                bottom: 80px;
-            }
-            
-            .chatbot-header {
-                padding: 12px 15px;
-            }
-            
-            .quick-questions {
-                grid-template-columns: 1fr;
-            }
-            
-            .service-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .chatbot-toggle {
-                width: 55px;
-                height: 55px;
-                font-size: 1.5rem;
+                width: 95%;
+                right: 2.5%;
+                height: 80vh;
+                bottom: 90px;
             }
 
-            .agenda-container {
-                padding: 20px;
+            .whatsapp-float {
+                bottom: 95px;
+                right: 50%;
+                transform: translateX(50%);
             }
 
-            .calendar-grid {
-                grid-template-columns: repeat(7, 1fr);
-                gap: 3px;
+            .whatsapp-float:hover {
+                transform: translateX(50%) scale(1.1) rotate(5deg);
             }
-
-            .calendar-day {
-                padding: 8px 5px;
-                font-size: 0.8rem;
-            }
-
-            .slots-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* ANIMATIONS */
-        .fade-in {
-            animation: fadeIn 1s ease-in;
-        }
-        
-        .slide-up {
-            animation: slideUp 0.8s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
 
 <body>
-    <!-- Header & Navigation -->
-    <header id="header">
-        <nav class="navbar">
-            <div class="container nav-container">
-                <div class="logo">
-                    <div class="logo-text">
-                        <i class="fas fa-eye"></i>
-                        <span>Soporte Cyclops</span>
-                    </div>
-                </div>
-                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                    <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                    <li><a href="#agenda" class="nav-link">Agenda</a></li>
-                </ul>
+    <!-- Header -->
+    <nav class="navbar">
+        <div class="nav-container container">
+            <div class="logo">
+                <i class="fas fa-eye"></i>
+                <span>Soporte Cyclops</span>
             </div>
-        </nav>
-    </header>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title fade-in">Soporte Cyclops</h1>
-            <p class="hero-subtitle fade-in">Soluciones técnicas integrales para hogares, empresas y organizaciones</p>
-            <p class="hero-tagline fade-in">Confiabilidad y experiencia en cada servicio</p>
-            <div class="hero-buttons fade-in">
-                <a href="#contacto" class="btn btn-primary">
-                    <i class="fas fa-file-invoice"></i> Solicitar Cotización
-                </a>
-                <a href="#agenda" class="btn btn-secondary">
-                    <i class="fas fa-calendar-check"></i> Agendar Servicio
-                </a>
-            </div>
+    <section class="hero" id="inicio">
+        <div class="hero-content container">
+            <h1 class="fade-in">Soluciones Técnicas Profesionales</h1>
+            <p class="fade-in">Soporte integral para hogares, empresas y organizaciones</p>
+            <a href="#contacto" class="cta-button">Solicitar Servicio</a>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="servicios" class="services">
+    <section class="services" id="servicios">
         <div class="container">
             <h2 class="section-title">Nuestros Servicios</h2>
-            <p class="section-subtitle">Soluciones profesionales adaptadas a tus necesidades</p>
             <div class="services-grid">
                 <div class="service-card slide-up">
                     <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-laptop"></i>
                     </div>
                     <h3>Soporte Informático</h3>
-                    <p>Mantenimiento, reparación y optimización de equipos. Instalación de software y solución de problemas técnicos.</p>
+                    <p>Reparación y mantenimiento de equipos, instalación de software, y soluciones técnicas personalizadas.</p>
                 </div>
+                
                 <div class="service-card slide-up">
                     <div class="service-icon">
                         <i class="fas fa-network-wired"></i>
                     </div>
-                    <h3>Redes Cableadas e Inalámbricas</h3>
-                    <p>Diseño, instalación y configuración de redes empresariales. Optimización de conectividad WiFi y cableado estructurado.</p>
+                    <h3>Redes</h3>
+                    <p>Instalación y configuración de redes cableadas e inalámbricas para hogares y empresas.</p>
                 </div>
+                
                 <div class="service-card slide-up">
                     <div class="service-icon">
                         <i class="fas fa-video"></i>
                     </div>
-                    <h3>Cámaras de Seguridad / CCTV</h3>
-                    <p>Instalación de sistemas de videovigilancia IP y analógicos. Monitoreo remoto y grabación continua.</p>
+                    <h3>CCTV</h3>
+                    <p>Sistemas de videovigilancia profesionales con acceso remoto y almacenamiento en la nube.</p>
                 </div>
+                
                 <div class="service-card slide-up">
                     <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-bell"></i>
                     </div>
-                    <h3>Alarmas y Barreras</h3>
-                    <p>Sistemas de seguridad perimetral, alarmas anti-intrusión y control de accesos automatizados.</p>
+                    <h3>Alarmas</h3>
+                    <p>Instalación de sistemas de seguridad y cercos eléctricos de última tecnología.</p>
                 </div>
+                
                 <div class="service-card slide-up">
                     <div class="service-icon">
                         <i class="fas fa-home"></i>
                     </div>
                     <h3>Domótica</h3>
-                    <p>Automatización inteligente del hogar. Control de iluminación, climatización y dispositivos conectados.</p>
+                    <p>Automatización inteligente para tu hogar u oficina con control desde tu smartphone.</p>
                 </div>
+                
                 <div class="service-card slide-up">
                     <div class="service-icon">
-                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Ciberseguridad y Mantenimiento</h3>
-                    <p>Protección de datos, auditorías de seguridad y mantenimiento preventivo de infraestructura IT.</p>
+                    <h3>Ciberseguridad</h3>
+                    <p>Protección de datos, auditorías de seguridad y prevención de amenazas informáticas.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="sobre-mi" class="about">
+    <section class="about" id="nosotros">
         <div class="container">
             <div class="about-content">
-                <div class="about-text slide-up">
-                    <h2 class="section-title">Sobre mí</h2>
-                    <p class="about-description">
-                        Más de 10 años de experiencia en soporte informático, redes cableadas e inalámbricas, CCTV, alarmas, domótica y mantenimiento integral.
-                    </p>
-                    <p class="about-description">
-                        He trabajado con empresas de primer nivel como <strong>Radio Nacional</strong>, <strong>L'Oréal</strong>, <strong>Cordial Compañía Financiera</strong> y el <strong>Autódromo de Buenos Aires</strong>, brindando soluciones técnicas confiables y eficientes.
-                    </p>
-                    <p class="about-description">
-                        Mi compromiso es ofrecer servicios de calidad, con atención personalizada y resultados garantizados para cada proyecto.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <i class="fas fa-award"></i>
-                            <h3>+10 años</h3>
-                            <p>De experiencia</p>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-users"></i>
-                            <h3>+500</h3>
-                            <p>Clientes satisfechos</p>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-tools"></i>
-                            <h3>+1000</h3>
-                            <p>Servicios realizados</p>
-                        </div>
-                    </div>
+                <div class="about-text">
+                    <h2>Sobre Nosotros</h2>
+                    <p>Somos una empresa argentina especializada en soluciones técnicas integrales. Con más de 10 años de experiencia, ofrecemos servicios profesionales tanto para hogares como para empresas y organizaciones.</p>
+                    <p>Nuestro equipo de técnicos certificados está comprometido con la excelencia en cada proyecto, garantizando soluciones eficientes y duraderas.</p>
+                    <p>Trabajamos con las mejores marcas del mercado y ofrecemos garantía en todos nuestros servicios.</p>
                 </div>
-                <div class="about-image slide-up">
-                    <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800" alt="Soporte Técnico Profesional">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600" alt="Equipo de trabajo">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact & Quote Section -->
-    <section id="contacto" class="contact">
+    <!-- Stats Section -->
+    <section class="stats">
         <div class="container">
-            <h2 class="section-title">Contacto y Cotización</h2>
-            <p class="section-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
-            <div class="contact-content">
-                <form id="contactForm" class="contact-form slide-up">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nombre">Nombre y Apellido *</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Teléfono *</label>
-                            <input type="tel" id="telefono" name="telefono" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="direccion">Dirección / Zona *</label>
-                            <input type="text" id="direccion" name="direccion" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="servicio">Servicio Solicitado *</label>
-                            <select id="servicio" name="servicio" required>
-                                <option value="">Seleccione un servicio</option>
-                                <option value="soporte-informatico">Soporte Informático</option>
-                                <option value="redes">Redes Cableadas e Inalámbricas</option>
-                                <option value="cctv">Cámaras de Seguridad / CCTV</option>
-                                <option value="alarmas">Alarmas y Barreras</option>
-                                <option value="domotica">Domótica</option>
-                                <option value="ciberseguridad">Ciberseguridad y Mantenimiento</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="fecha">Fecha y Hora Preferidas</label>
-                            <input type="datetime-local" id="fecha" name="fecha">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="descripcion">Descripción del Servicio *</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="visitaTecnica" name="visitaTecnica">
-                        <label for="visitaTecnica">Solicitar visita técnica</label>
-                    </div>
-                    <button type="button" id="whatsappBtn" class="btn btn-primary btn-submit">
-                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-                    </button>
-                    <button type="button" id="scheduleGoogleBtn" class="btn btn-secondary btn-submit">
-                        <i class="fab fa-google"></i> Agendar con Google Calendar
-                    </button>
-                    <div id="formMessage" class="form-message"></div>
-                </form>
-                <div class="contact-info slide-up">
-                    <h3>Información de Contacto</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>+10</h3>
+                    <p>Años de Experiencia</p>
+                </div>
+                <div class="stat-item">
+                    <h3>+500</h3>
+                    <p>Clientes Satisfechos</p>
+                </div>
+                <div class="stat-item">
+                    <h3>+1000</h3>
+                    <p>Servicios Completados</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Soporte Disponible</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
                             <h4>Teléfono</h4>
-                            <p><a href="tel:+5491166804450">+54 9 11 6680-4450</a></p>
+                            <p>+54 9 11 6680-4450</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <p><a href="mailto:soportecyclops@gmail.com">soportecyclops@gmail.com</a></p>
+                            <p>info@soportecyclops.com.ar</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Ubicación</h4>
-                            <p>Capital Federal, Buenos Aires, Argentina</p>
+                            <p>CABA y GBA, Argentina</p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fab fa-whatsapp"></i>
+                        <i class="fas fa-clock"></i>
                         <div>
-                            <h4>WhatsApp</h4>
-                            <a href="https://wa.me/5491166804450" target="_blank" class="whatsapp-link">
-                                Enviar mensaje
-                            </a>
+                            <h4>Horarios</h4>
+                            <p>Lunes a Viernes: 9:00 - 18:00<br>Sábados: 9:00 - 13:00</p>
                         </div>
                     </div>
-                    <div class="business-hours">
-                        <h4>Horario de Atención</h4>
-                        <p>Lunes a Viernes: 9:00 - 18:00</p>
-                        <p>Sábados: 9:00 - 13:00</p>
-                    </div>
                 </div>
+                
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label>Nombre Completo *</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono *</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección/Zona *</label>
+                        <input type="text" id="direccion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Servicio Requerido *</label>
+                        <select id="servicio" required>
+                            <option value="">Seleccione un servicio</option>
+                            <option value="Soporte Informático">Soporte Informático</option>
+                            <option value="Redes">Redes</option>
+                            <option value="CCTV">CCTV</option>
+                            <option value="Alarmas">Alarmas</option>
+                            <option value="Domótica">Domótica</option>
+                            <option value="Ciberseguridad">Ciberseguridad</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha y Hora Preferida</label>
+                        <input type="datetime-local" id="fecha">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción del Problema/Servicio *</label>
+                        <textarea id="descripcion" required></textarea>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="visitaTecnica">
+                        <label for="visitaTecnica">Solicito visita técnica</label>
+                    </div>
+                    <div id="formMessage" style="margin: 10px 0; padding: 10px; border-radius: 5px; display: none;"></div>
+                    <button type="button" class="btn-primary btn-whatsapp" id="whatsappBtn">
+                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                    </button>
+                    <button type="button" class="btn-primary" id="scheduleGoogleBtn" style="margin-top: 10px;">
+                        <i class="fab fa-google"></i> Agendar en Google Calendar
+                    </button>
+                </form>
             </div>
         </div>
     </section>
-       
+
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Soporte Cyclops</h3>
-                    <p>Servicios Técnicos Profesionales</p>
-                    <p>Soluciones integrales para hogares, empresas y organizaciones</p>
+                    <p>Soluciones técnicas profesionales para hogares, empresas y organizaciones en toda Argentina.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Servicios</h3>
                     <ul>
                         <li><a href="#servicios">Soporte Informático</a></li>
-                        <li><a href="#servicios">Redes y Conectividad</a></li>
-                        <li><a href="#servicios">CCTV y Seguridad</a></li>
+                        <li><a href="#servicios">Redes</a></li>
+                        <li><a href="#servicios">CCTV</a></li>
+                        <li><a href="#servicios">Alarmas</a></li>
                         <li><a href="#servicios">Domótica</a></li>
+                        <li><a href="#servicios">Ciberseguridad</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contacto</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+5491166804450">+54 9 11 6680-4450</a></li>
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:soportecyclops@gmail.com">soportecyclops@gmail.com</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</li>
+                        <li>Tel: +54 9 11 6680-4450</li>
+                        <li>Email: info@soportecyclops.com.ar</li>
+                        <li>CABA y GBA, Argentina</li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Síguenos</h3>
                     <div class="social-links">
-                        <a href="https://wa.me/5491166804450" target="_blank" aria-label="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Facebook">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" target="_blank" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
+                        <a href="https://facebook.com/soportecyclops" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/soportecyclops" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com/company/soportecyclops" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Soporte Cyclops - Servicios Técnicos Profesionales. Todos los derechos reservados.</p>
+                <p>&copy; 2026 Soporte Cyclops. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Chatbot Integrado -->
+    <!-- NUEVO: Botón WhatsApp Flotante Directo -->
+    <a href="https://wa.me/5491166804450?text=¡Hola!%20Necesito%20información%20sobre%20sus%20servicios%20técnicos." 
+       class="whatsapp-float" 
+       target="_blank" 
+       title="Chatea con nosotros por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Chatbot Integrado (Botón cambiado a ícono de mensaje) -->
     <div class="chatbot-container">
         <div class="chatbot-toggle" id="chatbotToggle">
-            <i class="fab fa-whatsapp"></i>
+            <i class="fas fa-comments"></i>
             <span class="notification-dot" id="notificationDot"></span>
         </div>
         <div class="chatbot-window" id="chatbotWindow">
@@ -1518,7 +1099,7 @@
                     <h3>Asistente Cyclops</h3>
                     <span class="status">
                         <span class="status-dot"></span>
-                        En línea - Te ayudo con gusto
+                        En línea
                     </span>
                 </div>
                 <button class="chatbot-close" id="chatbotClose">
@@ -1526,1044 +1107,25 @@
                 </button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    <div class="message-content">
-                        <div class="welcome-message">
-                            <strong>¡Hola! Soy tu asistente de Soporte Cyclops 👋</strong>
-                            <p>Estoy aquí para ayudarte con información sobre nuestros servicios técnicos y resolver tus consultas. ¿En qué puedo asistirte hoy?</p>
-                        </div>
-                        <div class="quick-questions">
-                            <button class="quick-question" data-action="pc_problemas">
-                                <i class="fas fa-stethoscope"></i>
-                                Diagnóstico de PC
-                            </button>
-                            <button class="quick-question" data-question="servicios">
-                                <i class="fas fa-laptop-code"></i>
-                                Conocer servicios disponibles
-                            </button>
-                            <button class="quick-question" data-question="cotizacion">
-                                <i class="fas fa-file-invoice-dollar"></i>
-                                Solicitar presupuesto
-                            </button>
-                            <button class="quick-question" data-question="emergencia">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                Necesito ayuda urgente
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Los mensajes se cargan aquí dinámicamente -->
+            </div>
+            <div class="chatbot-suggestions">
+                <button class="suggestion-btn">¿Horarios?</button>
+                <button class="suggestion-btn">¿Precios?</button>
+                <button class="suggestion-btn">¿Zona de cobertura?</button>
             </div>
             <div class="chatbot-input-container">
-                <div class="suggestions" id="suggestions">
-                    <span>Preguntas frecuentes:</span>
-                    <button class="suggestion-btn" data-question="precios">Precios y formas de pago</button>
-                    <button class="suggestion-btn" data-question="garantias">Garantías</button>
-                    <button class="suggestion-btn" data-question="horarios">Horarios y zona</button>
-                </div>
-                <div class="chatbot-input">
-                    <input type="text" id="chatbotInput" placeholder="Escribe tu mensaje aquí...">
-                    <button id="chatbotSend" class="send-btn">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="chatbot-footer">
-                Asistente virtual de Soporte Cyclops • Respuesta en menos de 1 minuto
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Escribe tu mensaje...">
+                <button class="chatbot-send" id="chatbotSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
     </div>
-<script>
-    // ===========================
-    // NAVEGACIÓN Y FUNCIONALIDADES GENERALES
-    // ===========================
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.getElementById('navMenu');
-        
-        if (menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-            });
-        }
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // BOTÓN WHATSAPP DEL FORMULARIO
-        const whatsappBtn = document.getElementById('whatsappBtn');
-        if (whatsappBtn) {
-            whatsappBtn.addEventListener('click', function() {
-                const nombre = document.getElementById('nombre').value;
-                const telefono = document.getElementById('telefono').value;
-                const email = document.getElementById('email').value;
-                const direccion = document.getElementById('direccion').value;
-                const servicio = document.getElementById('servicio').value;
-                const fecha = document.getElementById('fecha').value;
-                const descripcion = document.getElementById('descripcion').value;
-                const visitaTecnica = document.getElementById('visitaTecnica').checked;
-                
-                if (!nombre || !telefono || !email || !direccion || !servicio || !descripcion) {
-                    alert('Por favor, complete todos los campos obligatorios (*)');
-                    return;
-                }
-                
-                let message = `Hola, me gustaría solicitar un servicio:\n\n`;
-                message += `*Nombre:* ${nombre}\n`;
-                message += `*Teléfono:* ${telefono}\n`;
-                message += `*Email:* ${email}\n`;
-                message += `*Dirección/Zona:* ${direccion}\n`;
-                message += `*Servicio solicitado:* ${servicio}\n`;
-                
-                if (fecha) {
-                    message += `*Fecha y hora preferidas:* ${fecha}\n`;
-                }
-                
-                message += `*Descripción:* ${descripcion}\n`;
-                
-                if (visitaTecnica) {
-                    message += `*Solicita visita técnica:* Sí\n`;
-                }
-                
-                const encodedMessage = encodeURIComponent(message);
-                window.open(`https://wa.me/5491166804450?text=${encodedMessage}`, '_blank');
-            });
-        }
-
-        console.log("✅ Navegación y funcionalidades generales inicializadas");
-    });
-
-    // ===========================
-    // SISTEMA DE AGENDAMIENTO
-    // ===========================
-
-    class AppointmentScheduler {
-        constructor() {
-            this.selectedDate = null;
-            this.selectedTime = null;
-            this.currentDate = new Date();
-            this.currentMonth = this.currentDate.getMonth();
-            this.currentYear = this.currentDate.getFullYear();
-            
-            // Solo inicializar si existe la sección de agenda
-            if (document.getElementById('agenda')) {
-                this.init();
-            }
-        }
-
-        init() {
-            console.log('🚀 Inicializando sistema de agendamiento...');
-            this.renderCalendar();
-            this.generateTimeSlots();
-            this.setupEventListeners();
-            this.updateConfirmButton();
-        }
-
-        renderCalendar() {
-            const calendarDays = document.getElementById('calendarDays');
-            const currentMonthYear = document.getElementById('currentMonthYear');
-            
-            if (!calendarDays || !currentMonthYear) {
-                console.error('No se encontraron los elementos del calendario');
-                return;
-            }
-            
-            // Limpiar el calendario
-            calendarDays.innerHTML = '';
-            
-            // Establecer el título del mes actual
-            const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-                "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-            currentMonthYear.textContent = `${monthNames[this.currentMonth]} ${this.currentYear}`;
-            
-            // Obtener información del mes
-            const firstDay = new Date(this.currentYear, this.currentMonth, 1);
-            const lastDay = new Date(this.currentYear, this.currentMonth + 1, 0);
-            const daysInMonth = lastDay.getDate();
-            const startingDay = firstDay.getDay();
-            
-            // Ajustar para que la semana comience en lunes
-            const adjustedStartingDay = startingDay === 0 ? 6 : startingDay - 1;
-            
-            // Añadir días vacíos para alinear el primer día
-            for (let i = 0; i < adjustedStartingDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day empty';
-                calendarDays.appendChild(emptyDay);
-            }
-            
-            // Añadir los días del mes
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            for (let day = 1; day <= daysInMonth; day++) {
-                const dayElement = document.createElement('div');
-                const dateStr = `${this.currentYear}-${(this.currentMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-                const currentDay = new Date(this.currentYear, this.currentMonth, day);
-                currentDay.setHours(0, 0, 0, 0);
-                
-                // Verificar si el día está disponible
-                const isAvailable = this.isDateAvailable(currentDay);
-                const isToday = currentDay.getTime() === today.getTime();
-                const isSelected = this.selectedDate && this.selectedDate.toDateString() === currentDay.toDateString();
-                
-                // Establecer clases CSS
-                let dayClass = 'calendar-day';
-                if (isAvailable) {
-                    dayClass += ' available';
-                } else {
-                    dayClass += ' unavailable';
-                }
-                if (isToday) {
-                    dayClass += ' today';
-                }
-                if (isSelected) {
-                    dayClass += ' selected';
-                }
-                
-                dayElement.className = dayClass;
-                dayElement.textContent = day;
-                dayElement.setAttribute('data-date', dateStr);
-                
-                if (isAvailable) {
-                    dayElement.addEventListener('click', () => {
-                        this.selectDate(currentDay);
-                    });
-                } else {
-                    dayElement.style.cursor = 'not-allowed';
-                    dayElement.style.opacity = '0.5';
-                }
-                
-                calendarDays.appendChild(dayElement);
-            }
-            
-            console.log('📅 Calendario renderizado correctamente');
-        }
-
-        isDateAvailable(date) {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            
-            // No permitir fechas pasadas
-            if (date < today) return false;
-            
-            // No permitir domingos (0 = Domingo)
-            if (date.getDay() === 0) return false;
-            
-            return true;
-        }
-
-        generateTimeSlots() {
-            const timeSlotsContainer = document.getElementById('timeSlotsContainer');
-            if (!timeSlotsContainer) return;
-            
-            timeSlotsContainer.innerHTML = '';
-            
-            // Generar horarios de 8:00 AM a 6:00 PM
-            for (let hour = 8; hour <= 18; hour++) {
-                const time24 = `${hour.toString().padStart(2, '0')}:00`;
-                const time12 = hour > 12 ? `${hour - 12}:00 PM` : `${hour}:00 AM`;
-                
-                const slotElement = document.createElement('div');
-                slotElement.className = 'time-slot';
-                slotElement.textContent = time12;
-                slotElement.setAttribute('data-time', time24);
-                
-                slotElement.addEventListener('click', () => {
-                    this.selectTime(time24, time12, slotElement);
-                });
-                
-                timeSlotsContainer.appendChild(slotElement);
-            }
-            
-            console.log('🕒 Horarios generados correctamente');
-        }
-
-        selectDate(date) {
-            this.selectedDate = date;
-            
-            // Actualizar UI
-            document.querySelectorAll('.calendar-day').forEach(day => {
-                day.classList.remove('selected');
-            });
-            
-            const selectedDayElement = document.querySelector(`.calendar-day[data-date="${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}"]`);
-            if (selectedDayElement) {
-                selectedDayElement.classList.add('selected');
-            }
-            
-            this.updateConfirmButton();
-            this.showTemporaryMessage(`Fecha seleccionada: ${this.formatDate(date)}`, 'success');
-        }
-
-        selectTime(time24, time12, element) {
-            this.selectedTime = time24;
-            
-            // Actualizar UI
-            document.querySelectorAll('.time-slot').forEach(slot => {
-                slot.classList.remove('selected');
-            });
-            
-            element.classList.add('selected');
-            
-            this.updateConfirmButton();
-            this.showTemporaryMessage(`Hora seleccionada: ${time12}`, 'success');
-        }
-
-        setupEventListeners() {
-            // Navegación del calendario
-            const prevMonthBtn = document.getElementById('prevMonth');
-            const nextMonthBtn = document.getElementById('nextMonth');
-            
-            if (prevMonthBtn) {
-                prevMonthBtn.addEventListener('click', () => {
-                    this.currentMonth--;
-                    if (this.currentMonth < 0) {
-                        this.currentMonth = 11;
-                        this.currentYear--;
-                    }
-                    this.renderCalendar();
-                    this.updateConfirmButton();
-                });
-            }
-
-            if (nextMonthBtn) {
-                nextMonthBtn.addEventListener('click', () => {
-                    this.currentMonth++;
-                    if (this.currentMonth > 11) {
-                        this.currentMonth = 0;
-                        this.currentYear++;
-                    }
-                    this.renderCalendar();
-                    this.updateConfirmButton();
-                });
-            }
-            
-            // Limpiar selección
-            const clearSelectionBtn = document.getElementById('clearSelection');
-            if (clearSelectionBtn) {
-                clearSelectionBtn.addEventListener('click', () => {
-                    this.clearSelection();
-                });
-            }
-            
-            // Confirmar cita
-            const confirmBtn = document.getElementById('confirmAppointment');
-            if (confirmBtn) {
-                confirmBtn.addEventListener('click', () => {
-                    this.confirmAppointment();
-                });
-            }
-        }
-
-        clearSelection() {
-            this.selectedDate = null;
-            this.selectedTime = null;
-            
-            // Deseleccionar todos los días y horarios
-            document.querySelectorAll('.calendar-day').forEach(day => {
-                day.classList.remove('selected');
-            });
-            
-            document.querySelectorAll('.time-slot').forEach(slot => {
-                slot.classList.remove('selected');
-            });
-            
-            this.updateConfirmButton();
-            this.showTemporaryMessage('Selección limpiada. Por favor, selecciona una nueva fecha y hora.', 'info');
-        }
-
-        isFormValid() {
-            const nombre = document.getElementById('agendaNombre')?.value.trim() || '';
-            const telefono = document.getElementById('agendaTelefono')?.value.trim() || '';
-            const direccion = document.getElementById('agendaDireccion')?.value.trim() || '';
-            const problema = document.getElementById('agendaProblema')?.value.trim() || '';
-            
-            return nombre !== '' && telefono !== '' && direccion !== '' && problema !== '';
-        }
-
-        updateConfirmButton() {
-            const confirmBtn = document.getElementById('confirmAppointment');
-            if (!confirmBtn) return;
-            
-            const isFormComplete = this.isFormValid();
-            const hasSelection = this.selectedDate && this.selectedTime;
-            
-            if (isFormComplete && hasSelection) {
-                confirmBtn.disabled = false;
-                confirmBtn.style.opacity = '1';
-                confirmBtn.style.cursor = 'pointer';
-            } else {
-                confirmBtn.disabled = true;
-                confirmBtn.style.opacity = '0.6';
-                confirmBtn.style.cursor = 'not-allowed';
-            }
-        }
-
-        confirmAppointment() {
-            if (!this.isFormValid()) {
-                this.showTemporaryMessage('Por favor, completa todos los campos obligatorios.', 'error');
-                return;
-            }
-            
-            if (!this.selectedDate || !this.selectedTime) {
-                this.showTemporaryMessage('Por favor, selecciona una fecha y hora.', 'error');
-                return;
-            }
-
-            const appointmentData = {
-                nombre: document.getElementById('agendaNombre').value,
-                telefono: document.getElementById('agendaTelefono').value,
-                email: document.getElementById('agendaEmail')?.value || '',
-                direccion: document.getElementById('agendaDireccion').value,
-                problema: document.getElementById('agendaProblema').value,
-                fecha: this.selectedDate,
-                hora: this.selectedTime
-            };
-
-            // Enviar por WhatsApp
-            this.sendWhatsAppNotification(appointmentData);
-            
-            // Mostrar confirmación
-            this.showConfirmation(appointmentData);
-        }
-
-        sendWhatsAppNotification(appointmentData) {
-            const formattedDate = this.formatDate(appointmentData.fecha);
-            
-            let message = `¡Hola! Quiero agendar un servicio técnico:\n\n`;
-            message += `*Nombre:* ${appointmentData.nombre}\n`;
-            message += `*Teléfono:* ${appointmentData.telefono}\n`;
-            if (appointmentData.email) {
-                message += `*Email:* ${appointmentData.email}\n`;
-            }
-            message += `*Dirección:* ${appointmentData.direccion}\n`;
-            message += `*Fecha solicitada:* ${formattedDate}\n`;
-            message += `*Hora solicitada:* ${this.formatTime12(appointmentData.hora)}\n`;
-            message += `*Problema/Servicio:* ${appointmentData.problema}\n\n`;
-            message += `Por favor, confirmen mi reserva. ¡Gracias!`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/5491166804450?text=${encodedMessage}`, '_blank');
-        }
-
-        showConfirmation(appointmentData) {
-            const formattedDate = this.formatDate(appointmentData.fecha);
-            
-            const confirmationHTML = `
-                <div class="confirmation-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 10000;">
-                    <div class="confirmation-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-                        <div style="font-size: 3rem; color: #27ae60; margin-bottom: 15px;">✅</div>
-                        <h3 style="color: #27ae60; margin-bottom: 20px; font-size: 1.5rem;">¡Cita Agendada Exitosamente!</h3>
-                        <div class="appointment-details" style="text-align: left; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                            <p><strong>📅 Fecha:</strong> ${formattedDate}</p>
-                            <p><strong>🕒 Hora:</strong> ${this.formatTime12(appointmentData.hora)}</p>
-                            <p><strong>👤 Cliente:</strong> ${appointmentData.nombre}</p>
-                            <p><strong>📞 Teléfono:</strong> ${appointmentData.telefono}</p>
-                            <p><strong>📍 Dirección:</strong> ${appointmentData.direccion}</p>
-                            <p><strong>🔧 Servicio:</strong> ${appointmentData.problema}</p>
-                        </div>
-                        <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">
-                            Te contactaremos pronto para confirmar los detalles de tu servicio.
-                        </p>
-                        <div class="confirmation-actions" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                            <button class="btn btn-primary" onclick="window.print()" style="padding: 12px 20px; font-size: 16px;">
-                                <i class="fas fa-print"></i> Imprimir Comprobante
-                            </button>
-                            <button class="btn btn-secondary" onclick="this.closest('.confirmation-modal').remove(); location.reload();" style="padding: 12px 20px; font-size: 16px;">
-                                <i class="fas fa-check"></i> Aceptar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            document.body.insertAdjacentHTML('beforeend', confirmationHTML);
-            
-            // Limpiar formulario
-            this.clearForm();
-        }
-
-        clearForm() {
-            const agendaForm = document.getElementById('agendaForm');
-            if (agendaForm) {
-                agendaForm.reset();
-            }
-            this.clearSelection();
-        }
-
-        showTemporaryMessage(message, type = 'info') {
-            // Eliminar mensaje anterior si existe
-            const existingMessage = document.querySelector('.temporary-message');
-            if (existingMessage) {
-                existingMessage.remove();
-            }
-            
-            const messageDiv = document.createElement('div');
-            const backgroundColor = type === 'success' ? '#e8f5e8' : 
-                                  type === 'error' ? '#ffeaa7' : '#e3f2fd';
-            const textColor = type === 'success' ? '#27ae60' : 
-                             type === 'error' ? '#e67e22' : '#1976d2';
-            
-            messageDiv.style.cssText = `
-                background: ${backgroundColor}; 
-                color: ${textColor}; 
-                padding: 12px 15px; 
-                border-radius: 8px; 
-                margin: 10px 0; 
-                text-align: center; 
-                font-weight: 500;
-                border-left: 4px solid ${textColor};
-                font-size: 14px;
-            `;
-            messageDiv.textContent = message;
-            messageDiv.classList.add('temporary-message');
-            
-            // Insertar después del botón de limpiar
-            const clearButton = document.getElementById('clearSelection');
-            if (clearButton && clearButton.parentNode) {
-                clearButton.parentNode.insertBefore(messageDiv, clearButton.nextSibling);
-            }
-            
-            // Auto-eliminar después de 4 segundos
-            setTimeout(() => {
-                if (messageDiv.parentNode) {
-                    messageDiv.parentNode.removeChild(messageDiv);
-                }
-            }, 4000);
-        }
-
-        formatDate(date) {
-            return date.toLocaleDateString('es-AR', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-
-        formatTime12(time24) {
-            const [hours, minutes] = time24.split(':');
-            const hour = parseInt(hours);
-            const period = hour >= 12 ? 'PM' : 'AM';
-            const hour12 = hour > 12 ? hour - 12 : hour;
-            return `${hour12}:${minutes} ${period}`;
-        }
-    }
-
-    // Inicializar el sistema de agendamiento cuando se carga la página
-    document.addEventListener('DOMContentLoaded', function() {
-        new AppointmentScheduler();
-    });
-
-    // ===========================
-    // CHATBOT INTELIGENTE Y EMPÁTICO
-    // ===========================
-
-    // Inicialización del chatbot
-    document.addEventListener('DOMContentLoaded', function() {
-        console.log("🚀 Inicializando chatbot inteligente...");
-        initChatbot();
-    });
-
-    function initChatbot() {
-        // Variables globales del chatbot
-        const chatbotToggle = document.getElementById('chatbotToggle');
-        const chatbotWindow = document.getElementById('chatbotWindow');
-        const chatbotClose = document.getElementById('chatbotClose');
-        const chatbotMessages = document.getElementById('chatbotMessages');
-        const chatbotInput = document.getElementById('chatbotInput');
-        const chatbotSend = document.getElementById('chatbotSend');
-        const notificationDot = document.getElementById('notificationDot');
-
-        // Verificar que todos los elementos existan
-        if (!chatbotToggle || !chatbotWindow) {
-            console.error("❌ No se encontraron los elementos del chatbot");
-            return;
-        }
-
-        console.log("✅ Elementos del chatbot encontrados");
-
-        // ===========================
-        // SISTEMA DE DETECCIÓN DE INTENCIONES MEJORADO
-        // ===========================
-        class IntentRecognizer {
-            static recognizeIntent(message) {
-                const lowerMessage = this.normalizeText(message);
-                
-                // Detección de problemas técnicos específicos
-                if (this.isPCProblem(lowerMessage)) return 'pc_problemas';
-                if (this.isNetworkProblem(lowerMessage)) return 'redes_problemas';
-                if (this.isCameraProblem(lowerMessage)) return 'camaras_problemas';
-                if (this.isAlarmProblem(lowerMessage)) return 'alarmas_problemas';
-                if (this.isSmartHomeProblem(lowerMessage)) return 'domotica_problemas';
-                
-                // Detección de intenciones generales
-                if (this.isServiceInquiry(lowerMessage)) return 'servicios';
-                if (this.isPricingInquiry(lowerMessage)) return 'precios';
-                if (this.isEmergency(lowerMessage)) return 'emergencia';
-                if (this.isContactRequest(lowerMessage)) return 'contacto';
-                if (this.isQuoteRequest(lowerMessage)) return 'cotizacion';
-                if (this.isGreeting(lowerMessage)) return 'saludo';
-                if (this.isThanks(lowerMessage)) return 'agradecimiento';
-                
-                return 'no_entendido';
-            }
-            
-            static normalizeText(text) {
-                return text.toLowerCase()
-                    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                    .replace(/[^a-z0-9\s]/g, ' ')
-                    .replace(/\s+/g, ' ')
-                    .trim();
-            }
-            
-            static isPCProblem(text) {
-                const keywords = ['pc', 'computadora', 'laptop', 'windows', 'enciende', 'apaga', 'pantalla', 'lento', 'virus'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isNetworkProblem(text) {
-                const keywords = ['internet', 'wifi', 'red', 'conexion', 'router', 'modem', 'senal'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isCameraProblem(text) {
-                const keywords = ['camara', 'camaras', 'seguridad', 'cctv', 'video', 'vigilancia'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isAlarmProblem(text) {
-                const keywords = ['alarma', 'sensor', 'movimiento', 'sirena', 'seguridad'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isSmartHomeProblem(text) {
-                const keywords = ['domotica', 'smart home', 'automatizacion', 'luces', 'inteligente'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isServiceInquiry(text) {
-                const keywords = ['servicio', 'servicios', 'ofrecen', 'hacen', 'que hacen'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isPricingInquiry(text) {
-                const keywords = ['precio', 'cuesta', 'costo', 'valor', 'cuanto sale'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isEmergency(text) {
-                const keywords = ['urgente', 'emergencia', 'ya', 'ahora', 'inmediato'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isContactRequest(text) {
-                const keywords = ['contacto', 'telefono', 'whatsapp', 'llamar', 'numero'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isQuoteRequest(text) {
-                const keywords = ['cotizacion', 'presupuesto', 'presu', 'cotiza'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isGreeting(text) {
-                const keywords = ['hola', 'buenas', 'buenos', 'buen dia'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-            
-            static isThanks(text) {
-                const keywords = ['gracias', 'gracia', 'thank'];
-                return keywords.some(keyword => text.includes(keyword));
-            }
-        }
-
-        // ===========================
-        // RESPUESTAS EMPÁTICAS Y NATURALES
-        // ===========================
-        const empatheticResponses = {
-            "saludo": [
-                "¡Hola! 👋 Me da gusto saludarte. Soy el asistente de Soporte Cyclops, ¿en qué puedo ayudarte hoy?",
-                "¡Hola! 😊 ¿Cómo estás? Cuéntame, ¿qué problema técnico tenés para poder asistirte?",
-                "¡Buen día! 🌟 Estoy aquí para ayudarte con cualquier problema técnico que tengas. ¿Por dónde empezamos?"
-            ],
-            
-            "agradecimiento": [
-                "¡De nada! 😊 Me alegra mucho poder haberte ayudado. ¿Hay algo más en lo que pueda asistirte?",
-                "¡No hay problema! 👍 Estoy aquí cuando me necesites. ¿Necesitás ayuda con algo más?",
-                "¡Un placer! ✨ No dudes en consultarme si tenés alguna otra duda o problema."
-            ],
-            
-            "no_entendido": [
-                "🤔 Perdoná, no estoy seguro de entenderte completamente. ¿Podrías contarme un poco más sobre lo que necesitás?",
-                "😅 Creo que no capté bien tu mensaje. ¿Podrías explicarme de otra forma qué problema tenés?",
-                "💭 No logro entender exactamente qué necesitás. ¿Me contás con más detalles para poder ayudarte mejor?"
-            ]
-        };
-
-        // ===========================
-        // SISTEMA DE RESPUESTAS MEJORADO
-        // ===========================
-        const intelligentResponses = {
-            "pc_problemas": {
-                message: "🔧 **¡Entiendo que tenés problemas con la computadora!** \n\nLos problemas de PC son muy comunes, no te preocupes. Podemos resolverlo juntos. ¿Tu PC enciende normalmente o tenés algún problema específico?",
-                options: [
-                    { text: "✅ Sí, enciende pero tiene problemas", next: "pc_enciende_si" },
-                    { text: "❌ No enciende para nada", next: "pc_no_enciende" },
-                    { text: "🐌 Va muy lento o se traba", next: "pc_lento" },
-                    { text: "🌐 Problemas de internet/WiFi", next: "redes_problemas" }
-                ]
-            },
-            
-            "redes_problemas": {
-                message: "📶 **¡Veo que tenés problemas de conexión!** \n\nLas fallas de internet pueden ser muy frustrantes. ¿El problema es con el WiFi, con el cable de red, o no tenés conexión en absoluto?",
-                options: [
-                    { text: "📶 WiFi no funciona o es lento", next: "wifi_problemas" },
-                    { text: "🔌 Cable de red no conecta", next: "cable_problemas" },
-                    { text: "🚫 No hay internet en ningún dispositivo", next: "internet_total" }
-                ]
-            },
-            
-            "servicios": {
-                message: "🔧 **¡Claro! Te cuento sobre nuestros servicios:**\n\nTrabajamos con todo tipo de soluciones técnicas. ¿Qué es lo que más te interesa o necesitás resolver?",
-                options: [
-                    { text: "💻 Soporte de PC y computadoras", next: "soporte_detalles" },
-                    { text: "📡 Redes e Internet", next: "redes_detalles" },
-                    { text: "📹 Cámaras de seguridad", next: "cctv_detalles" },
-                    { text: "🚨 Alarmas y sistemas de seguridad", next: "alarmas_detalles" },
-                    { text: "🏠 Domótica y automatización", next: "domotica_detalles" }
-                ]
-            },
-            
-            "emergencia": {
-                message: "🚨 **¡Entiendo que es urgente! Te ayudo inmediatamente**\n\nPara atención prioritaria te recomiendo:\n\n• 📞 **Llamada directa**: +54 9 11 6680-4450\n• 💬 **WhatsApp urgente**: Mismo número, prioridad inmediata\n\n¿Qué te resulta más conveniente?",
-                options: [
-                    { text: "📞 Llamar ahora mismo", action: "llamar_ahora" },
-                    { text: "💬 Escribir por WhatsApp", action: "whatsapp_urgente" }
-                ]
-            },
-            
-            "cotizacion": {
-                message: "💰 **¡Perfecto! Te ayudo con el presupuesto**\n\nPara darte una cotización precisa, contame brevemente:\n• ¿Qué equipo o sistema necesitás arreglar/instalar?\n• ¿Qué problema específico tiene?\n• ¿En qué zona estás aproximadamente?\n\nCon eso te doy un estimado rápido 👍",
-                quick_reply: true
-            },
-            
-            "precios": {
-                message: "💲 **Sobre precios y formas de pago:**\n\nNuestros honorarios se adaptan a cada situación para que sea justo para vos. Trabajamos con:\n\n• **Presupuesto sin cargo** previo a cualquier trabajo\n• **Distintas opciones** según tu presupuesto\n• **Todas las formas de pago** disponibles\n• **Transparencia total** en los costos\n\n¿Te interesa que hablemos de números específicos para tu caso?",
-                options: ["cotizacion_personalizada"]
-            }
-        };
-
-        // ===========================
-        // DETALLES DE SERVICIOS
-        // ===========================
-        const serviceDetails = {
-            "soporte_detalles": "💻 **Soporte Informático Completo**\n\nTrabajamos con:\n• Instalación y configuración de software (libre y de pago)\n• Mantenimiento preventivo y correctivo\n• Reparación o cambio de hardware\n• Optimización de sistemas\n• Eliminación de virus y malware\n\n¿Qué necesitás específicamente para tu equipo?",
-            
-            "redes_detalles": "🌐 **Redes Profesionales**\n\nSoluciones de conectividad:\n• Instalación de cableado estructurado\n• Configuración avanzada de routers\n• Optimización de señal WiFi\n• Seguridad de red empresarial\n• Soluciones para hogar y empresa\n\n¿Tenés algún problema de conectividad ahora mismo?",
-            
-            "cctv_detalles": "📹 **Sistemas de Seguridad CCTV**\n\nTrabajamos con marcas líderes:\n• Dahua, Hikvision y otras de alta calidad\n• Sistemas IP y analógicos\n• Instalación profesional completa\n• Monitoreo remoto\n• Asesoramiento personalizado\n\n¿Para qué tipo de propiedad necesitás el sistema?",
-            
-            "alarmas_detalles": "🚨 **Sistemas de Alarma Integrales**\n\nProtección completa:\n• Alarmas inalámbricas y cableadas\n• Sensores de movimiento y apertura\n• Controles de acceso modernos\n• Cercos eléctricos perimetrales\n• Configuración a tu medida\n\n¿Qué tipo de protección buscás?",
-            
-            "domotica_detalles": "🏠 **Domótica - Hogar Inteligente**\n\n¡Contame tu idea! Podemos hacer realidad proyectos como:\n• Iluminación inteligente programable\n• Control de climatización automático\n• Seguridad integrada\n• Electrodomésticos conectados\n• Sistemas de entretenimiento\n\n¿Qué te gustaría automatizar?"
-        };
-
-        // ===========================
-        // FUNCIONES PRINCIPALES
-        // ===========================
-
-        // Auto-abrir chatbot
-        setTimeout(() => {
-            if (!localStorage.getItem('cyclopsChatbotShown')) {
-                chatbotWindow.style.display = 'flex';
-                notificationDot.style.display = 'block';
-                localStorage.setItem('cyclopsChatbotShown', 'true');
-            }
-        }, 30000);
-
-        // Toggle chatbot
-        chatbotToggle.addEventListener('click', () => {
-            chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
-            notificationDot.style.display = 'none';
-        });
-
-        chatbotClose.addEventListener('click', () => {
-            chatbotWindow.style.display = 'none';
-        });
-
-        // Funciones del chatbot mejoradas
-        function showTypingIndicator() {
-            const typingDiv = document.createElement('div');
-            typingDiv.classList.add('typing-indicator');
-            typingDiv.id = 'typingIndicator';
-            
-            for (let i = 0; i < 3; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('typing-dot');
-                typingDiv.appendChild(dot);
-            }
-            
-            const typingText = document.createElement('span');
-            typingText.textContent = 'Asistente Cyclops está escribiendo...';
-            typingText.style.fontSize = '0.8rem';
-            typingText.style.color = '#7f8c8d';
-            typingText.style.marginLeft = '10px';
-            
-            typingDiv.appendChild(typingText);
-            chatbotMessages.appendChild(typingDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            
-            return typingDiv;
-        }
-
-        function hideTypingIndicator() {
-            const typingIndicator = document.getElementById('typingIndicator');
-            if (typingIndicator) {
-                typingIndicator.remove();
-            }
-        }
-
-        function getRandomResponse(responses) {
-            return responses[Math.floor(Math.random() * responses.length)];
-        }
-
-        function sendMessage() {
-            const message = chatbotInput.value.trim();
-            if (message === '') return;
-
-            addMessage(message, 'user');
-            chatbotInput.value = '';
-
-            const typingIndicator = showTypingIndicator();
-
-            setTimeout(() => {
-                hideTypingIndicator();
-                processUserMessage(message);
-            }, 1500 + Math.random() * 1000);
-        }
-
-        function processUserMessage(message) {
-            const intent = IntentRecognizer.recognizeIntent(message);
-            
-            switch(intent) {
-                case 'saludo':
-                    addMessage(getRandomResponse(empatheticResponses.saludo), 'bot');
-                    break;
-                    
-                case 'agradecimiento':
-                    addMessage(getRandomResponse(empatheticResponses.agradecimiento), 'bot');
-                    break;
-                    
-                case 'no_entendido':
-                    addMessage(getRandomResponse(empatheticResponses.no_entendido), 'bot');
-                    break;
-                    
-                default:
-                    if (intelligentResponses[intent]) {
-                        const response = intelligentResponses[intent];
-                        addMessage(response.message, 'bot', response.options);
-                    } else {
-                        // Respuesta por defecto mejorada
-                        addMessage("🤔 **Creo que entendí que necesitás ayuda técnica, pero no estoy seguro de qué específicamente.**\n\n¿Podrías contarme un poco más sobre el problema que tenés? Por ejemplo: 'mi PC no enciende', 'el WiFi no funciona', 'necesito instalar cámaras', etc.", 'bot');
-                    }
-            }
-        }
-
-        function addMessage(text, sender, options = []) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', `${sender}-message`);
-            
-            const contentDiv = document.createElement('div');
-            contentDiv.classList.add('message-content');
-            
-            const textDiv = document.createElement('div');
-            textDiv.innerHTML = text.replace(/\n/g, '<br>');
-            contentDiv.appendChild(textDiv);
-
-            // Opciones de servicios
-            if (options && options.length > 0) {
-                const optionsDiv = document.createElement('div');
-                optionsDiv.classList.add('service-options');
-                
-                options.forEach(option => {
-                    const button = document.createElement('button');
-                    button.classList.add('service-option');
-                    
-                    if (option.action) {
-                        // Botón con acción directa
-                        button.textContent = option.text;
-                        button.addEventListener('click', () => {
-                            handleAction(option.action);
-                        });
-                    } else if (option.next) {
-                        // Botón con flujo de conversación
-                        button.textContent = option.text;
-                        button.addEventListener('click', () => {
-                            addMessage(option.text, 'user');
-                            setTimeout(() => {
-                                processFlow(option.next);
-                            }, 1000);
-                        });
-                    } else {
-                        // Botón estándar
-                        button.textContent = option.replace(/_/g, ' ')
-                            .replace(/\b\w/g, l => l.toUpperCase())
-                            .replace('Detalles', 'Más Info');
-                        button.addEventListener('click', () => {
-                            addMessage(button.textContent, 'user');
-                            setTimeout(() => {
-                                addMessage(serviceDetails[option] || "Te cuento más sobre esto...", 'bot');
-                            }, 1000);
-                        });
-                    }
-                    
-                    optionsDiv.appendChild(button);
-                });
-                
-                contentDiv.appendChild(optionsDiv);
-            }
-
-            messageDiv.appendChild(contentDiv);
-            chatbotMessages.appendChild(messageDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            
-            // Guardar conversación
-            saveConversation();
-        }
-
-        function processFlow(flowKey) {
-            if (intelligentResponses[flowKey]) {
-                const response = intelligentResponses[flowKey];
-                addMessage(response.message, 'bot', response.options);
-            } else if (serviceDetails[flowKey]) {
-                addMessage(serviceDetails[flowKey], 'bot');
-            } else {
-                addMessage("💡 **Basado en lo que me contás, te recomiendo que hablemos para evaluar tu caso específico.**\n\n¿Querés que coordine una consulta técnica sin compromiso?", 'bot', [
-                    { text: "📅 Sí, coordinar consulta", action: "agendar_consulta" },
-                    { text: "💬 Más información primero", action: "mas_info" }
-                ]);
-            }
-        }
-
-        function handleAction(action) {
-            switch(action) {
-                case 'llamar_ahora':
-                    window.open('tel:+5491166804450');
-                    addMessage("📞 **Perfecto, te estoy conectando por teléfono...**\n\nSi no se completa la llamada, podés marcar directamente al: +54 9 11 6680-4450", 'bot');
-                    break;
-                    
-                case 'whatsapp_urgente':
-                    const urgentMessage = "¡Hola! Necesito ayuda urgente con un problema técnico. Por favor contáctenme lo antes posible.";
-                    window.open(`https://wa.me/5491166804450?text=${encodeURIComponent(urgentMessage)}`, '_blank');
-                    addMessage("💬 **¡Listo! Te redirijo a WhatsApp para atención inmediata...**", 'bot');
-                    break;
-                    
-                case 'agendar_consulta':
-                    addMessage("📅 **¡Excelente! Para agendar una consulta técnica:**\n\nPodés contactarnos directamente al +54 9 11 6680-4450 o escribirnos por WhatsApp para coordinar día y hora que te convenga.\n\nLa consulta inicial no tiene costo 😊", 'bot');
-                    break;
-                    
-                default:
-                    addMessage("💡 Te recomiendo contactarnos directamente para resolver esto más rápido: +54 9 11 6680-4450", 'bot');
-            }
-        }
-
-        function saveConversation() {
-            const messages = chatbotMessages.innerHTML;
-            localStorage.setItem('cyclopsChatbotConversation', messages);
-        }
-
-        function loadConversation() {
-            const savedConversation = localStorage.getItem('cyclopsChatbotConversation');
-            if (savedConversation) {
-                chatbotMessages.innerHTML = savedConversation;
-                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-            }
-        }
-
-        // ===========================
-        // EVENT LISTENERS MEJORADOS
-        // ===========================
-
-        // Event listeners del chatbot
-        chatbotSend.addEventListener('click', sendMessage);
-        chatbotInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Preguntas rápidas mejoradas
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.quick-question')) {
-                const button = e.target.closest('.quick-question');
-                const action = button.getAttribute('data-action');
-                const question = button.getAttribute('data-question');
-                
-                if (action === 'pc_problemas') {
-                    addMessage("Necesito ayuda con un problema técnico - diagnóstico rápido", 'user');
-                    setTimeout(() => {
-                        addMessage("🔍 **¡Perfecto! Hagamos un diagnóstico rápido**\n\nContame, ¿qué equipo o sistema te está dando problemas?", 'bot', [
-                            { text: "💻 Computadora/PC", next: "pc_problemas" },
-                            { text: "📡 Internet/Redes", next: "redes_problemas" },
-                            { text: "📹 Cámaras de seguridad", next: "camaras_problemas" },
-                            { text: "🚨 Sistema de alarmas", next: "alarmas_problemas" },
-                            { text: "🏠 Domótica/Automatización", next: "domotica_problemas" }
-                        ]);
-                    }, 1000);
-                } else if (question) {
-                    addMessage(button.textContent, 'user');
-                    setTimeout(() => {
-                        processUserMessage(button.textContent);
-                    }, 1000);
-                }
-            }
-        });
-
-        // Sugerencias
-        document.querySelectorAll('.suggestion-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const question = button.getAttribute('data-question');
-                addMessage(button.textContent, 'user');
-                setTimeout(() => {
-                    processUserMessage(button.textContent);
-                }, 1000);
-            });
-        });
-
-        // Cargar conversación al iniciar
-        loadConversation();
-
-        console.log("✅ Chatbot inteligente inicializado correctamente");
-    }
-</script>
-    
+    <!-- Scripts -->
+    <script src="chatbot.js"></script>
+    <script src="main.js"></script>
 </body>
+
 </html>
-    
-
-
