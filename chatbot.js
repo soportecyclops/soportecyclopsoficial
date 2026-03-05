@@ -14,7 +14,7 @@ const CYCLOPS_CONFIG = {
     sitio:         "www.soportecyclops.com.ar",
     logoUrl:       "https://www.soportecyclops.com.ar/public/images/Logo.jpg",
     // ⚠️ Pegá aquí la URL de tu Google Apps Script desplegado (ver GUIA_GOOGLE_APPS_SCRIPT.md)
-    appsScriptUrl: "https://script.google.com/macros/s/AKfycbz1UJ-HxZ8IIOep3hgzCytGbgzW73bxSnXEtL9Q5AtedOTKfMdiFINlPNZsVgvSrRryww/exec"
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbxiKuQZzxsSH6FFdlBxeZwc_iUOHTl4I-Hca1bg9q5elMbBaNuk9uVP-8qLPoxH84vfEw/exec"
 };
 
 document.addEventListener('DOMContentLoaded', function () {
