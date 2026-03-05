@@ -1,19 +1,14 @@
 // ===========================
 // CHATBOT INTELIGENTE CON DIAGNÓSTICO GUIADO
 // Soporte Cyclops — v3.0
-// Mejoras: Factor de Riesgo · Pipeline Diagnóstico · PDF · Google Sheets
 // ===========================
 
-// ===========================
-// ⚙️ CONFIGURACIÓN — Editá estas variables antes de deployar
-// ===========================
 const CYCLOPS_CONFIG = {
     whatsapp:      "5491166804450",
     telefono:      "+54 9 11 6680-4450",
     email:         "contacto@soportecyclops.com.ar",
     sitio:         "www.soportecyclops.com.ar",
     logoUrl:       "https://www.soportecyclops.com.ar/public/images/Logo.jpg",
-    // ⚠️ Pegá aquí la URL de tu Google Apps Script desplegado (ver GUIA_GOOGLE_APPS_SCRIPT.md)
     appsScriptUrl: "https://script.google.com/macros/s/AKfycbxrRyJN37dKtl-CVSvmUG-Mlu6v7Dx19ezKPAbFOmeBJ6mcMhR9CoPEXjp5vhMS1bLwLQ/exec"
 };
 
@@ -37,7 +32,6 @@ function initChatbot() {
         return;
     }
 
-    // ── ESTADO ────────────────────────────────────────────────────────────────
     let diagState = {
         active:           false,
         flow:             null,
@@ -51,14 +45,12 @@ function initChatbot() {
 
     let conversationHistory = [];
 
-    // ── Nº DIAGNÓSTICO ────────────────────────────────────────────────────────
     function generarDiagNum() {
         const ts   = Date.now().toString().slice(-5);
         const rand = Math.floor(100 + Math.random() * 900);
         return "CYC-" + ts + "-" + rand;
     }
 
-    // ── ADVERTENCIAS DE RIESGO ────────────────────────────────────────────────
     const riskWarnings = {
         "⚡ No enciende o no arranca": {
             msg:   "Si el equipo no responde al inicio, puede deberse a una falla en la fuente de alimentación o en la placa madre. Seguir forzando el encendido podría agravar el daño eléctrico y aumentar el costo de reparación.",
@@ -102,7 +94,6 @@ function initChatbot() {
         }
     };
 
-    // ── FLUJOS DE DIAGNÓSTICO ─────────────────────────────────────────────────
     const diagFlows = {
 
         "pc_diagnostico": {
@@ -256,7 +247,7 @@ function initChatbot() {
                 }
             ],
             diagnose: function (answers) {
-                var cerco      = answers.tipo_alarma && answers.tipo_alarma.includes("Cerco");
+                var cerco       = answers.tipo_alarma && answers.tipo_alarma.includes("Cerco");
                 var monitoreada = answers.tipo_alarma && answers.tipo_alarma.includes("monitoreada");
                 return {
                     titulo:        "Diagnóstico de Sistema de Alarma",
@@ -321,7 +312,6 @@ function initChatbot() {
         }
     };
 
-    // ── RESPUESTAS INTELIGENTES ───────────────────────────────────────────────
     var intelligentResponses = {
         'menu_diagnostico': {
             message: "🔍 **¿Con qué área necesitás ayuda?**\n\nElegí la categoría que mejor se ajuste:",
@@ -336,8 +326,8 @@ function initChatbot() {
         'consulta_urgente': {
             message: "🚨 **¿Tu problema es urgente?**\n\nOpciones para atención inmediata:",
             options: [
-                { text: "📞 Llamar ahora",      action: "llamar_ahora" },
-                { text: "💬 WhatsApp urgente",  action: "whatsapp_urgente" }
+                { text: "📞 Llamar ahora",     action: "llamar_ahora" },
+                { text: "💬 WhatsApp urgente", action: "whatsapp_urgente" }
             ]
         }
     };
@@ -371,7 +361,6 @@ function initChatbot() {
     }
 
     function processUserInput(message) {
-        // Pipeline post-diagnóstico: captura nombre
         if (diagState.waitingForName) {
             diagState.answers.nombre  = message;
             diagState.waitingForName  = false;
@@ -379,7 +368,6 @@ function initChatbot() {
             addMessage("Perfecto, **" + message + "**.\n\n¿A qué email te enviamos el informe? (Escribí \"no\" si preferís omitirlo)", 'bot');
             return;
         }
-        // Pipeline post-diagnóstico: captura email
         if (diagState.waitingForEmail) {
             var emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(message);
             diagState.answers.email   = (message.toLowerCase() === "no" || !emailValido) ? "" : message;
@@ -469,47 +457,48 @@ function initChatbot() {
 
         guardarLocalDiag(payload);
 
-        enviarAGoogleAppsScript(payload).then(function (response) {
-            if (response && response.success) {
-                mostrarResultadoFinal(diagNum, nombre, response.pdfUrl, result);
-            } else {
-                mostrarResultadoFinal(diagNum, nombre, null, result);
-            }
-        }).catch(function () {
-            mostrarResultadoFinal(diagNum, nombre, null, result);
-        });
+        // Mostrar resultado al usuario de inmediato — el envío al servidor es en segundo plano
+        mostrarResultadoFinal(diagNum, nombre, result);
+        enviarAGoogleAppsScript(payload);
     }
 
-    function mostrarResultadoFinal(diagNum, nombre, pdfUrl, result) {
+    function mostrarResultadoFinal(diagNum, nombre, result) {
         var report = "✅ **" + result.icono + " " + result.titulo + "**\n\n";
         report += "📌 **Nº de Diagnóstico: " + diagNum + "**\n\n";
         report += result.resumen + "\n\n";
         report += "**Evaluación técnica:**\n";
         result.pasos.forEach(function (paso, idx) { report += (idx + 1) + ". " + paso + "\n"; });
 
-        var acciones = [];
-        if (pdfUrl) { acciones.push({ text: "📄 Descargar mi informe PDF", action: "__download__" + pdfUrl }); }
+        var waMsg = encodeURIComponent(
+            "Hola! Completé el diagnóstico online. Mi número es *" + diagNum + "*.\n" +
+            "Servicio: " + result.servicio + "\n" +
+            "Problema: " + result.sintomaLabel + "\n" +
+            "¿Me pueden contactar?"
+        );
 
-        var waMsg = encodeURIComponent("Hola! Completé el diagnóstico online. Mi número es *" + diagNum + "*.\nServicio: " + result.servicio + "\nProblema: " + result.sintomaLabel + "\n¿Me pueden contactar?");
-        acciones.push({ text: "💬 Enviar diagnóstico al técnico", action: "__whatsapp_diag__" + waMsg });
-        acciones.push({ text: "🔍 Hacer otro diagnóstico", next: "menu_diagnostico" });
-
-        addMessage(report, 'bot', acciones);
+        addMessage(report, 'bot', [
+            { text: "💬 Enviar diagnóstico al técnico", action: "__whatsapp_diag__" + waMsg },
+            { text: "🔍 Hacer otro diagnóstico",        next: "menu_diagnostico" }
+        ]);
     }
 
-    // ── GOOGLE APPS SCRIPT ────────────────────────────────────────────────────
+    // ── ENVÍO A GOOGLE APPS SCRIPT (no-cors con FormData para evitar bloqueo CORS) ──
     function enviarAGoogleAppsScript(payload) {
         if (!CYCLOPS_CONFIG.appsScriptUrl || CYCLOPS_CONFIG.appsScriptUrl.includes("TU_ID_AQUI")) {
-            console.warn("⚠️ Apps Script URL no configurada. Guardado local únicamente.");
-            return Promise.resolve(null);
+            console.warn("⚠️ Apps Script URL no configurada.");
+            return;
         }
-        return fetch(CYCLOPS_CONFIG.appsScriptUrl, {
+        var formData = new FormData();
+        formData.append('payload', JSON.stringify(payload));
+
+        fetch(CYCLOPS_CONFIG.appsScriptUrl, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        }).then(function (r) { return r.json(); }).catch(function (e) {
-            console.error("❌ Error Apps Script:", e);
-            return null;
+            mode:   "no-cors",
+            body:   formData
+        }).then(function () {
+            console.log("✅ Diagnóstico enviado al servidor.");
+        }).catch(function (e) {
+            console.warn("⚠️ No se pudo enviar al servidor:", e);
         });
     }
 
@@ -606,11 +595,6 @@ function initChatbot() {
 
     // ── MANEJADOR DE ACCIONES ─────────────────────────────────────────────────
     function handleAction(action) {
-        if (action.startsWith('__download__')) {
-            window.open(action.replace('__download__', ''), '_blank');
-            addMessage("📄 Abriendo tu informe PDF...\n\nGuardalo en tu dispositivo para tenerlo disponible.", 'bot');
-            return;
-        }
         if (action.startsWith('__whatsapp_diag__')) {
             var msgEncoded = action.replace('__whatsapp_diag__', '');
             window.open("https://wa.me/" + CYCLOPS_CONFIG.whatsapp + "?text=" + msgEncoded, '_blank');
@@ -631,9 +615,9 @@ function initChatbot() {
                 break;
             case 'consulta_general':
                 addMessage("💬 **¿En qué puedo ayudarte?**\n\nElegí una opción o escribime tu consulta:", 'bot', [
-                    { text: "⏰ Horarios", next: "horarios" },
-                    { text: "💰 Precios",  next: "precios" },
-                    { text: "📍 Zona de cobertura", next: "zona" }
+                    { text: "⏰ Horarios",             next: "horarios" },
+                    { text: "💰 Precios",              next: "precios" },
+                    { text: "📍 Zona de cobertura",    next: "zona" }
                 ]);
                 break;
             default:
@@ -643,7 +627,7 @@ function initChatbot() {
 
     // ── PERSISTENCIA ──────────────────────────────────────────────────────────
     function saveConversation() {
-        try { localStorage.setItem('cyclopsChatbotConversation', JSON.stringify(conversationHistory)); } catch (e) { /* silencioso */ }
+        try { localStorage.setItem('cyclopsChatbotConversation', JSON.stringify(conversationHistory)); } catch (e) { }
     }
 
     function loadConversation() {
