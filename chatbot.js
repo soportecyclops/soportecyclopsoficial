@@ -9,7 +9,7 @@ const CYCLOPS_CONFIG = {
     email:         "contacto@soportecyclops.com.ar",
     sitio:         "www.soportecyclops.com.ar",
     logoUrl:       "https://www.soportecyclops.com.ar/public/images/Logo.jpg",
-    appsScriptUrl: "https://script.google.com/macros/s/AKfycbxrRyJN37dKtl-CVSvmUG-Mlu6v7Dx19ezKPAbFOmeBJ6mcMhR9CoPEXjp5vhMS1bLwLQ/exec"
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbwTWIw7r8HoVqz5c2jloC0r1af7JdTC518coiKnKd-VP_O6kGdETnj1Xi6z8PSOueJgAg/exec"
 };
 
 document.addEventListener('DOMContentLoaded', function () {
