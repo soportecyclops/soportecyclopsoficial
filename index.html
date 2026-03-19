@@ -1245,7 +1245,7 @@
             border: 1px solid var(--gray-200);
             animation: slideInUp 0.3s ease;
         }
-        .chatbot-window.open { display: flex; flex-direction: column; }
+        .chatbot-window.open, .chatbot-window.active { display: flex; flex-direction: column; }
         @keyframes slideInUp {
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
@@ -2031,6 +2031,7 @@
                 <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
                 <li><a href="faq.html" class="nav-link">FAQ</a></li>
                 <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+                <li><a href="cliente.html" class="nav-link"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Mi cuenta</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -2061,6 +2062,10 @@
                     <i class="fas fa-stethoscope"></i>
                     Pedí tu diagnóstico sin compromiso
                 </a>
+                <button class="cta-button" id="heroChatbotBtn" style="border:none;cursor:pointer;" onclick="abrirChatbotDiagnostico()">
+                    <i class="fas fa-robot"></i>
+                    Chateá con nuestro bot técnico
+                </button>
                 <a href="#servicios" class="cta-button-ghost">
                     <i class="fas fa-chevron-down"></i>
                     Ver servicios
@@ -2120,6 +2125,10 @@
                     <i class="fas fa-stethoscope"></i>
                     Diagnóstico sin compromiso por WhatsApp
                 </a>
+                <button onclick="abrirChatbotDiagnostico()" class="cta-diagnose" style="border:none;cursor:pointer;background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.3);color:white;margin-top:0;">
+                    <i class="fas fa-robot"></i>
+                    Chateá con nuestro bot técnico para obtener un diagnóstico
+                </button>
             </div>
         </div>
     </section>
@@ -3091,5 +3100,52 @@
     // To add new reviews: update both the HTML section AND this array.
 
     </script>
+
+    // ===================== FUNCIÓN GLOBAL: ABRIR CHATBOT CON DIAGNÓSTICO =====================
+    // Llamada desde el botón del hero y desde cualquier otro punto de la página.
+    // Abre la ventana del chatbot y arranca directo en el menú de diagnóstico.
+    function abrirChatbotDiagnostico() {
+        var win = document.getElementById('chatbotWindow');
+        if (!win) return;
+        // Abrir la ventana
+        win.classList.add('active');
+        win.classList.add('open');
+        // Ocultar notification dot
+        var dot = document.getElementById('notificationDot');
+        if (dot) dot.style.display = 'none';
+        // Scroll suave hacia abajo para que se vea el chatbot en mobile
+        setTimeout(function() {
+            win.scrollIntoView && win.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }, 100);
+        // Esperar a que chatbot.js inicialice y disparar el menú de diagnóstico
+        // Si el chatbot ya tiene historial, no repetir el saludo
+        setTimeout(function() {
+            // Verificar si el chatbot ya fue inicializado por chatbot.js
+            var msgs = document.getElementById('chatbotMessages');
+            if (msgs && msgs.children.length === 0) {
+                // Todavía no hay mensajes — simular click en toggle para inicializar
+                var toggle = document.getElementById('chatbotToggle');
+                if (toggle) {
+                    // Cerrar primero por si ya estaba abierto
+                    win.classList.remove('active');
+                    win.classList.remove('open');
+                    // Trigger del toggle que inicializa chatbot.js
+                    toggle.click();
+                }
+            }
+            // Ahora disparar el flow de diagnóstico después de un momento
+            setTimeout(function() {
+                // Buscar si existe la función global de chatbot
+                // chatbot.js expone processFlow vía el evento de quick-question
+                var diagBtn = document.createElement('button');
+                diagBtn.setAttribute('data-action', 'pc_problemas');
+                diagBtn.className = 'quick-question';
+                diagBtn.style.display = 'none';
+                document.body.appendChild(diagBtn);
+                diagBtn.click();
+                setTimeout(function() { diagBtn.remove(); }, 100);
+            }, 300);
+        }, 150);
+    }
 </body>
 </html>

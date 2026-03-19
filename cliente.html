@@ -10,626 +10,318 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!--
-  ============================================================
-  GUÍA DE IMPLEMENTACIÓN ULTRA-DETALLADA
-  Portal de Clientes — Soporte Cyclops v1.0
-  ============================================================
-
-  ÍNDICE:
-    A. Qué hace este archivo
-    B. Requisitos previos (LEER ANTES DE TOCAR NADA)
-    C. Paso 1 — Google Cloud Console: crear proyecto y OAuth
-    D. Paso 2 — Apps Script: actualizar Code.gs
-    E. Paso 3 — Este archivo: reemplazar CLIENT_ID
-    F. Paso 4 — Vercel: desplegar
-    G. Paso 5 — Prueba end-to-end
-    H. Solución de problemas comunes
-    I. Cómo agregar la navegación al portal en index.html
-
-  ============================================================
-  A. QUÉ HACE ESTE ARCHIVO
-  ============================================================
-  1. El cliente hace click en "Iniciar sesión con Google"
-  2. Google autentica al usuario (OAuth 2.0 / GSI)
-  3. Se obtiene nombre y email del usuario — SOLO esos dos datos
-  4. Se consulta Apps Script (Code.gs) con el email
-  5. Apps Script busca en la hoja "Diagnósticos" todas las filas
-     donde la columna "email" coincide con el del usuario
-  6. Se muestran los diagnósticos en tarjetas con estado y severidad
-  7. El usuario puede cerrar sesión — se borra todo de memoria
-
-  NO se usa Firebase, NO se usa ningún backend propio,
-  NO se almacenan contraseñas, NO se guardan cookies de sesión.
-  El token de Google vive solo en memoria mientras la página está abierta.
-
-  ============================================================
-  B. REQUISITOS PREVIOS
-  ============================================================
-  - Tener una cuenta de Google (la misma que usa Apps Script)
-  - El Code.gs de Apps Script debe ser la versión 2.0 (la del
-    archivo Code.gs generado junto a este portal)
-  - El Apps Script debe estar publicado como Aplicación Web
-    con acceso "Cualquier persona" (no "solo autenticados")
-  - La URL del Apps Script debe estar en CYCLOPS_CONFIG.appsScriptUrl
-    del chatbot.js — la misma URL se usa aquí en PORTAL_CONFIG
-
-  ============================================================
-  C. PASO 1 — GOOGLE CLOUD CONSOLE (una sola vez)
-  ============================================================
-  1. Ir a: https://console.cloud.google.com/
-  2. Click en "Seleccionar proyecto" → "Nuevo proyecto"
-     Nombre: "Cyclops Portal" (o cualquier nombre)
-     Click "Crear"
-  3. Con el proyecto seleccionado, ir al menú lateral:
-     APIs y servicios → Pantalla de consentimiento de OAuth
-  4. Tipo de usuario: "Externo" → Crear
-  5. Completar los campos obligatorios:
-     - Nombre de la app: "Portal Soporte Cyclops"
-     - Email de asistencia: tu email de Google
-     - Email de contacto del desarrollador: tu email de Google
-     Click "Guardar y continuar" en cada paso hasta terminar
-  6. Ir a: APIs y servicios → Credenciales
-  7. Click "+ Crear credenciales" → "ID de cliente de OAuth"
-  8. Tipo de aplicación: "Aplicación web"
-  9. Nombre: "Portal Clientes Cyclops"
-  10. En "Orígenes de JavaScript autorizados" agregar AMBOS:
-      - https://www.soportecyclops.com.ar
-      - http://localhost (para pruebas locales)
-      IMPORTANTE: NO agregar rutas, solo el origen (sin /cliente.html)
-  11. En "URIs de redireccionamiento autorizados" NO agregar nada
-      (Google Identity Services no usa redirección)
-  12. Click "Crear"
-  13. Se muestra un modal con el "ID de cliente"
-      Formato: XXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.apps.googleusercontent.com
-      COPIAR ese valor — lo necesitás en el Paso 3
-
-  ============================================================
-  D. PASO 2 — APPS SCRIPT: VERIFICAR Code.gs
-  ============================================================
-  IMPORTANTE: Antes de continuar, verificar que Code.gs v2.0
-  esté correctamente desplegado. Los síntomas de un script
-  desactualizado son: el portal carga pero no muestra diagnósticos.
-
-  1. Abrir el Google Sheet donde guardás los diagnósticos
-  2. Extensiones → Apps Script
-  3. Verificar que el código tenga la función "doGet" con el
-     parámetro action === "diags_por_email"
-     Si no la tiene, reemplazar todo el código con Code.gs v2.0
-  4. Si reemplazaste el código: click "Implementar" → "Nueva implementación"
-     (NO editar la implementación existente — crear una nueva)
-     - Tipo: Aplicación web
-     - Descripción: "v2 con portal de clientes"
-     - Ejecutar como: Yo (tu cuenta Google)
-     - Quién tiene acceso: CUALQUIER PERSONA (no "autenticados")
-     Click "Implementar"
-  5. Copiar la nueva URL de implementación
-     Formato: https://script.google.com/macros/s/XXXXXXXXXX/exec
-  6. Actualizar PORTAL_CONFIG.appsScriptUrl en este archivo (abajo)
-     Y también actualizar CYCLOPS_CONFIG.appsScriptUrl en chatbot.js
-
-  NOTA SOBRE CORS: Apps Script con acceso "Cualquier persona"
-  responde con los headers CORS correctos automáticamente para
-  solicitudes GET. Si ves errores CORS en el portal, el script
-  NO está publicado con "Cualquier persona" — verificar ese punto.
-
-  ============================================================
-  E. PASO 3 — ESTE ARCHIVO: REEMPLAZAR CLIENT_ID
-  ============================================================
-  Buscar en este archivo la línea:
-    const GOOGLE_CLIENT_ID = "TU_CLIENT_ID_AQUI.apps.googleusercontent.com";
-  Reemplazar el valor con el ID copiado en el Paso 1, punto 13.
-  También actualizar PORTAL_CONFIG.appsScriptUrl con la URL del Paso 2.
-
-  ============================================================
-  F. PASO 4 — VERCEL: DESPLEGAR
-  ============================================================
-  1. Subir este archivo a la raíz del proyecto (junto a index.html)
-     El archivo debe llamarse exactamente: cliente.html
-  2. Hacer push al repositorio → Vercel despliega automáticamente
-  3. Verificar que la URL https://www.soportecyclops.com.ar/cliente.html
-     esté entre los "Orígenes de JavaScript autorizados" en Google Cloud
-     (lo hiciste en el Paso 1, punto 10)
-
-  ============================================================
-  G. PASO 5 — PRUEBA END-TO-END
-  ============================================================
-  1. Abrir https://www.soportecyclops.com.ar/cliente.html
-  2. Click "Iniciar sesión con Google"
-  3. Seleccionar la cuenta que tiene diagnósticos en el Sheet
-  4. Verificar que aparezcan las tarjetas de diagnósticos
-  5. Si no aparece nada: probablemente el email del diagnóstico
-     y el email de la cuenta de Google no coinciden exactamente
-     (mayúsculas, espacios, etc.)
-  6. Verificar en la hoja "Diagnósticos" del Sheet que la columna
-     "email" tenga el mismo email que la cuenta de Google usada
-
-  ============================================================
-  H. SOLUCIÓN DE PROBLEMAS COMUNES
-  ============================================================
-
-  PROBLEMA: "Error 400: redirect_uri_mismatch"
-  CAUSA: El origen del navegador no está en la lista de Google Cloud
-  SOLUCIÓN: Agregar la URL exacta en "Orígenes JavaScript autorizados"
-            Incluir con y sin www. Esperar hasta 5 minutos para que
-            los cambios se propaguen.
-
-  PROBLEMA: El botón de Google no aparece / pantalla en blanco
-  CAUSA: CLIENT_ID incorrecto o sin configurar
-  SOLUCIÓN: Verificar que GOOGLE_CLIENT_ID tenga el valor correcto
-            Abrir consola del navegador (F12) y buscar errores
-
-  PROBLEMA: Login funciona pero no aparecen diagnósticos
-  CAUSA A: Apps Script no está actualizado a v2.0 (falta doGet con
-           action="diags_por_email")
-  CAUSA B: La URL del script está mal en PORTAL_CONFIG.appsScriptUrl
-  CAUSA C: El email del usuario no coincide con emails en el Sheet
-  SOLUCIÓN A: Seguir el Paso 2 de esta guía
-  SOLUCIÓN B: Verificar la URL — debe terminar en /exec, no en /dev
-  SOLUCIÓN C: Verificar en el Sheet la columna email de las filas
-
-  PROBLEMA: Error CORS al consultar el Script
-  CAUSA: Script publicado con acceso "Solo yo" o "Autenticados"
-  SOLUCIÓN: Re-publicar con acceso "Cualquier persona" (Paso 2)
-
-  PROBLEMA: "popup_blocked_by_browser"
-  CAUSA: El navegador bloqueó el popup de Google
-  SOLUCIÓN: Permitir popups para soportecyclops.com.ar en el navegador
-
-  ============================================================
-  I. AGREGAR LINK AL PORTAL EN index.html
-  ============================================================
-  En el nav de index.html, agregar dentro de <ul class="nav-menu">:
-    <li><a href="cliente.html" class="nav-link">
-      <i class="fas fa-user-circle"></i> Mi cuenta
-    </a></li>
-  Recomendado: agregarlo antes del link de Contacto.
-
-  ============================================================
-  -->
-
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --blue:       #2563eb;
-      --blue-dark:  #1a3a5c;
-      --blue-light: #3b82f6;
-      --white:      #ffffff;
-      --gray-50:    #f8fafc;
-      --gray-100:   #f1f5f9;
-      --gray-200:   #e2e8f0;
-      --gray-400:   #94a3b8;
-      --gray-600:   #475569;
-      --gray-800:   #1e293b;
-      --green:      #22c55e;
-      --amber:      #f59e0b;
-      --red:        #ef4444;
-      --purple:     #8b5cf6;
-      --radius:     14px;
-      --shadow-sm:  0 2px 8px rgba(0,0,0,0.07);
-      --shadow-md:  0 8px 32px rgba(0,0,0,0.11);
-      --shadow-lg:  0 20px 60px rgba(0,0,0,0.16);
+      --blue: #2563eb; --blue-dark: #1a3a5c; --blue-light: #3b82f6;
+      --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0; --gray-400: #94a3b8; --gray-600: #475569; --gray-800: #1e293b;
+      --green: #22c55e; --amber: #f59e0b; --red: #ef4444; --purple: #8b5cf6;
+      --radius: 14px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.07);
+      --shadow-md: 0 8px 32px rgba(0,0,0,0.11);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.16);
       --transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: var(--gray-50);
-      color: var(--gray-800);
-      line-height: 1.6;
-      min-height: 100vh;
-    }
+    body { font-family: 'Open Sans', sans-serif; background: var(--gray-50); color: var(--gray-800); line-height: 1.6; min-height: 100vh; }
 
     /* ── NAVBAR ── */
-    .navbar {
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--gray-200);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
+    .navbar { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 200; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .nav-logo img { height: 40px; width: auto; }
-    .nav-logo-text {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--blue-dark);
-    }
+    .nav-logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue-dark); }
     .nav-logo-text strong { color: var(--blue); }
-    .nav-back {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--gray-600);
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      transition: var(--transition);
-    }
+    .nav-back { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; font-weight: 600; color: var(--gray-600); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: var(--transition); }
     .nav-back:hover { color: var(--blue); background: rgba(37,99,235,0.06); }
 
     /* ── LOGIN SCREEN ── */
-    .login-screen {
-      min-height: calc(100vh - 64px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-    }
-    .login-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: 20px;
-      padding: 52px 48px;
-      max-width: 420px;
-      width: 100%;
-      text-align: center;
-      box-shadow: var(--shadow-lg);
-    }
-    .login-icon {
-      width: 72px;
-      height: 72px;
-      background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(0,198,255,0.1));
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 24px;
-      font-size: 2rem;
-    }
-    .login-card h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: var(--blue-dark);
-      margin-bottom: 10px;
-      letter-spacing: -0.02em;
-    }
-    .login-card p {
-      font-size: 0.93rem;
-      color: var(--gray-600);
-      margin-bottom: 36px;
-      line-height: 1.65;
-    }
-    /* Contenedor del botón de Google */
-    #g_id_signin {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-    .login-note {
-      font-size: 0.78rem;
-      color: var(--gray-400);
-      margin-top: 20px;
-      line-height: 1.55;
-    }
+    .login-screen { min-height: calc(100vh - 64px); display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+    .login-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; padding: 52px 48px; max-width: 420px; width: 100%; text-align: center; box-shadow: var(--shadow-lg); }
+    .login-icon { width: 72px; height: 72px; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(0,198,255,0.1)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; }
+    .login-card h1 { font-family: 'Space Grotesk', sans-serif; font-size: 1.7rem; font-weight: 800; color: var(--blue-dark); margin-bottom: 10px; letter-spacing: -0.02em; }
+    .login-card p { font-size: 0.93rem; color: var(--gray-600); margin-bottom: 36px; line-height: 1.65; }
+    #g_id_signin { display: flex; justify-content: center; margin-bottom: 20px; }
+    .login-note { font-size: 0.78rem; color: var(--gray-400); margin-top: 20px; line-height: 1.55; }
     .login-note i { margin-right: 4px; }
 
-    /* ── PORTAL SCREEN (oculto hasta login) ── */
-    .portal-screen {
-      display: none;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-    }
+    /* ── PORTAL SCREEN ── */
+    .portal-screen { display: none; max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
     .portal-screen.visible { display: block; }
 
-    /* ── HEADER DEL PORTAL ── */
-    .portal-header {
+    /* ── PORTAL HEADER ── */
+    .portal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
+    .portal-welcome h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--blue-dark); letter-spacing: -0.02em; margin-bottom: 4px; }
+    .portal-welcome p { font-size: 0.88rem; color: var(--gray-600); }
+    .portal-user { display: flex; align-items: center; gap: 12px; }
+    .portal-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--blue), var(--blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1rem; overflow: hidden; flex-shrink: 0; }
+    .portal-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .portal-user-name { font-weight: 700; font-size: 0.9rem; color: var(--blue-dark); }
+    .portal-user-email { font-size: 0.78rem; color: var(--gray-400); }
+    .btn-logout { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: transparent; border: 2px solid var(--gray-200); border-radius: 50px; font-family: 'Open Sans', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: var(--transition); }
+    .btn-logout:hover { border-color: var(--red); color: var(--red); background: rgba(239,68,68,0.05); }
+
+    /* ── CTA NUEVO DIAGNÓSTICO ── */
+    .diag-cta-bar {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, #1e4a7a 100%);
+      border-radius: var(--radius);
+      padding: 24px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 40px;
+      gap: 20px;
+      margin-bottom: 32px;
       flex-wrap: wrap;
-      gap: 16px;
     }
-    .portal-welcome h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
+    .diag-cta-bar-text h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.05rem; font-weight: 700; color: white; margin-bottom: 4px; }
+    .diag-cta-bar-text p { font-size: 0.82rem; color: rgba(255,255,255,0.7); }
+    .btn-nuevo-diag {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 22px;
+      background: white;
       color: var(--blue-dark);
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-    }
-    .portal-welcome p { font-size: 0.88rem; color: var(--gray-600); }
-    .portal-user {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .portal-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), var(--blue-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 700;
-      font-size: 1rem;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-    .portal-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .portal-user-info { text-align: right; }
-    .portal-user-name {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--blue-dark);
-    }
-    .portal-user-email { font-size: 0.78rem; color: var(--gray-400); }
-    .btn-logout {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      background: transparent;
-      border: 2px solid var(--gray-200);
       border-radius: 50px;
-      font-family: 'Open Sans', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--gray-600);
+      font-weight: 700;
+      font-size: 0.88rem;
+      border: none;
       cursor: pointer;
       transition: var(--transition);
-    }
-    .btn-logout:hover {
-      border-color: var(--red);
-      color: var(--red);
-      background: rgba(239,68,68,0.05);
-    }
-
-    /* ── STATS BAR ── */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-    .stat-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      box-shadow: var(--shadow-sm);
-    }
-    .stat-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      white-space: nowrap;
       flex-shrink: 0;
     }
-    .stat-icon.blue   { background: rgba(37,99,235,0.1);  color: var(--blue); }
-    .stat-icon.green  { background: rgba(34,197,94,0.1);  color: var(--green); }
-    .stat-icon.amber  { background: rgba(245,158,11,0.1); color: var(--amber); }
-    .stat-icon.red    { background: rgba(239,68,68,0.1);  color: var(--red); }
-    .stat-val {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--blue-dark);
-      line-height: 1;
-    }
+    .btn-nuevo-diag:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .btn-nuevo-diag i { color: var(--blue); font-size: 1rem; }
+
+    /* ── STATS BAR ── */
+    .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .stat-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px 22px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-sm); }
+    .stat-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .stat-icon.blue  { background: rgba(37,99,235,0.1); color: var(--blue); }
+    .stat-icon.green { background: rgba(34,197,94,0.1); color: var(--green); }
+    .stat-icon.amber { background: rgba(245,158,11,0.1); color: var(--amber); }
+    .stat-icon.red   { background: rgba(239,68,68,0.1); color: var(--red); }
+    .stat-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--blue-dark); line-height: 1; }
     .stat-label { font-size: 0.78rem; color: var(--gray-600); margin-top: 3px; }
 
-    /* ── SECCIÓN TÍTULO ── */
-    .section-label {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--blue-dark);
-      margin-bottom: 18px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .section-label span {
-      background: rgba(37,99,235,0.08);
-      color: var(--blue);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 20px;
-    }
+    /* ── SECTION LABEL ── */
+    .section-label { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+    .section-label span { background: rgba(37,99,235,0.08); color: var(--blue); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
 
-    /* ── CARDS DE DIAGNÓSTICO ── */
-    .diags-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
-    }
-    .diag-card {
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow-sm);
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-    }
-    .diag-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-    }
+    /* ── DIAG CARDS ── */
+    .diags-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+    .diag-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-sm); transition: var(--transition); position: relative; overflow: hidden; }
+    .diag-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
     .diag-card.sev-critica::before { background: var(--red); }
     .diag-card.sev-alta::before    { background: var(--amber); }
     .diag-card.sev-media::before   { background: var(--blue); }
     .diag-card.sev-baja::before    { background: var(--green); }
-    .diag-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-3px);
-      border-color: rgba(37,99,235,0.2);
-    }
-
-    .diag-card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-    .diag-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--blue);
-      letter-spacing: 0.05em;
-      background: rgba(37,99,235,0.07);
-      padding: 4px 10px;
-      border-radius: 20px;
-    }
+    .diag-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: rgba(37,99,235,0.2); }
+    .diag-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .diag-num { font-family: 'Space Grotesk', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--blue); letter-spacing: 0.05em; background: rgba(37,99,235,0.07); padding: 4px 10px; border-radius: 20px; }
     .diag-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
-
-    /* Badges de severidad */
-    .badge {
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 20px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-    .badge-critica { background: rgba(239,68,68,0.1);  color: #b91c1c; }
+    .badge { font-size: 0.68rem; font-weight: 700; padding: 3px 9px; border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .badge-critica { background: rgba(239,68,68,0.1); color: #b91c1c; }
     .badge-alta    { background: rgba(245,158,11,0.1); color: #92400e; }
     .badge-media   { background: rgba(37,99,235,0.08); color: #1e40af; }
-    .badge-baja    { background: rgba(34,197,94,0.1);  color: #166534; }
-
-    /* Badges de estado del ticket */
-    .badge-nuevo      { background: rgba(37,99,235,0.08);  color: #1e40af; }
-    .badge-proceso    { background: rgba(245,158,11,0.1);  color: #92400e; }
-    .badge-resuelto   { background: rgba(34,197,94,0.1);   color: #166534; }
-    .badge-cerrado    { background: var(--gray-100);        color: var(--gray-600); }
-
-    .diag-servicio {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--blue-dark);
-      margin-bottom: 6px;
-    }
-    .diag-sintoma {
-      font-size: 0.85rem;
-      color: var(--gray-600);
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
-    .diag-meta {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      padding-top: 14px;
-      border-top: 1px solid var(--gray-100);
-    }
-    .diag-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.75rem;
-      color: var(--gray-400);
-    }
+    .badge-baja    { background: rgba(34,197,94,0.1); color: #166534; }
+    .badge-nuevo   { background: rgba(37,99,235,0.08); color: #1e40af; }
+    .badge-proceso { background: rgba(245,158,11,0.1); color: #92400e; }
+    .badge-resuelto{ background: rgba(34,197,94,0.1); color: #166534; }
+    .badge-cerrado { background: var(--gray-100); color: var(--gray-600); }
+    .diag-servicio { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; }
+    .diag-sintoma  { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 14px; line-height: 1.5; }
+    .diag-meta { display: flex; gap: 14px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid var(--gray-100); }
+    .diag-meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--gray-400); }
     .diag-meta-item i { font-size: 0.7rem; }
 
     /* ── EMPTY STATE ── */
-    .empty-state {
-      text-align: center;
-      padding: 72px 24px;
-      color: var(--gray-600);
-    }
-    .empty-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      opacity: 0.4;
-    }
-    .empty-state h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--blue-dark);
-      margin-bottom: 10px;
-    }
+    .empty-state { text-align: center; padding: 72px 24px; color: var(--gray-600); }
+    .empty-icon { font-size: 3rem; margin-bottom: 20px; opacity: 0.4; }
+    .empty-state h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 10px; }
     .empty-state p { font-size: 0.9rem; max-width: 380px; margin: 0 auto 24px; }
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      background: var(--blue);
-      color: white;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.88rem;
-      text-decoration: none;
-      transition: var(--transition);
-      box-shadow: 0 4px 14px rgba(37,99,235,0.3);
-    }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--blue); color: white; border: none; border-radius: 50px; font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 0.88rem; text-decoration: none; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
     .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
 
-    /* ── LOADING ── */
-    .loading-state {
-      text-align: center;
-      padding: 60px 24px;
-      color: var(--gray-600);
-    }
-    .spinner {
-      width: 36px;
-      height: 36px;
-      border: 3px solid var(--gray-200);
-      border-top-color: var(--blue);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
-      margin: 0 auto 16px;
-    }
+    /* ── LOADING / ERROR ── */
+    .loading-state { text-align: center; padding: 60px 24px; color: var(--gray-600); }
+    .spinner { width: 36px; height: 36px; border: 3px solid var(--gray-200); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ── ERROR BANNER ── */
-    .error-banner {
-      display: none;
-      background: rgba(239,68,68,0.07);
-      border: 1px solid rgba(239,68,68,0.25);
-      border-radius: 10px;
-      padding: 14px 18px;
-      color: #b91c1c;
-      font-size: 0.88rem;
-      margin-bottom: 24px;
-      align-items: center;
-      gap: 10px;
-    }
+    .error-banner { display: none; background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.25); border-radius: 10px; padding: 14px 18px; color: #b91c1c; font-size: 0.88rem; margin-bottom: 24px; align-items: center; gap: 10px; }
     .error-banner.visible { display: flex; }
+
+    /* ════════════════════════════════════════════
+       MODAL DEL CHATBOT
+       Overlay fullscreen que contiene el chatbot
+       completo. Se abre desde cualquier botón
+       "Iniciar diagnóstico" del portal.
+    ════════════════════════════════════════════ */
+    .chatbot-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 20, 40, 0.65);
+      z-index: 9000;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 24px;
+      backdrop-filter: blur(3px);
+      animation: fadeOverlay 0.2s ease;
+    }
+    .chatbot-modal-overlay.visible {
+      display: flex;
+    }
+    @keyframes fadeOverlay {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* La ventana del chatbot dentro del modal */
+    .chatbot-modal-window {
+      width: 380px;
+      max-width: calc(100vw - 32px);
+      height: 600px;
+      max-height: calc(100vh - 48px);
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: slideUpModal 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes slideUpModal {
+      from { opacity: 0; transform: translateY(40px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0)   scale(1); }
+    }
+
+    /* Header del chatbot modal */
+    .chatbot-modal-header {
+      background: linear-gradient(135deg, var(--blue-dark), #1e4a7a);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .chatbot-modal-avatar {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .chatbot-modal-info h3 { color: white; font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+    .chatbot-modal-status { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: rgba(255,255,255,0.7); }
+    .chatbot-modal-status-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulseGreen 2s infinite; }
+    @keyframes pulseGreen { 0%,100%{opacity:1} 50%{opacity:0.5} }
+    .chatbot-modal-close {
+      margin-left: auto;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      color: white;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .chatbot-modal-close:hover { background: rgba(255,255,255,0.2); }
+
+    /* Zona de mensajes */
+    .chatbot-modal-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scroll-behavior: smooth;
+    }
+    .chatbot-modal-messages::-webkit-scrollbar { width: 4px; }
+    .chatbot-modal-messages::-webkit-scrollbar-track { background: transparent; }
+    .chatbot-modal-messages::-webkit-scrollbar-thumb { background: var(--gray-200); border-radius: 4px; }
+
+    /* Burbujas de mensaje */
+    .chat-msg { display: flex; flex-direction: column; max-width: 88%; animation: msgIn 0.2s ease; }
+    @keyframes msgIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+    .chat-msg.bot  { align-self: flex-start; }
+    .chat-msg.user { align-self: flex-end; }
+    .chat-msg-bubble {
+      padding: 10px 14px;
+      border-radius: 16px;
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
+    .chat-msg.bot  .chat-msg-bubble { background: var(--gray-100); color: var(--gray-800); border-bottom-left-radius: 4px; }
+    .chat-msg.user .chat-msg-bubble { background: var(--blue); color: white; border-bottom-right-radius: 4px; }
+
+    /* Botones de opciones del chatbot */
+    .chat-options { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chat-option-btn {
+      padding: 7px 12px;
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 20px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--blue-dark);
+      cursor: pointer;
+      transition: var(--transition);
+      line-height: 1.3;
+      text-align: left;
+    }
+    .chat-option-btn:hover { background: rgba(37,99,235,0.07); border-color: var(--blue); color: var(--blue); }
+    .chat-option-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* Typing indicator */
+    .chat-typing { display: flex; align-items: center; gap: 4px; padding: 10px 14px; background: var(--gray-100); border-radius: 16px; border-bottom-left-radius: 4px; align-self: flex-start; }
+    .chat-typing span { width: 7px; height: 7px; background: var(--gray-400); border-radius: 50%; animation: typingDot 1.2s infinite; }
+    .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+
+    /* Input de texto */
+    .chatbot-modal-input-row {
+      display: flex;
+      gap: 8px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--gray-100);
+      flex-shrink: 0;
+    }
+    .chatbot-modal-input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 2px solid var(--gray-200);
+      border-radius: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.85rem;
+      color: var(--gray-800);
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--white);
+    }
+    .chatbot-modal-input:focus { border-color: var(--blue); }
+    .chatbot-modal-send {
+      width: 40px; height: 40px;
+      background: var(--blue);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .chatbot-modal-send:hover { background: #1d4ed8; transform: scale(1.08); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
@@ -637,6 +329,229 @@
       .portal-header { flex-direction: column; align-items: flex-start; }
       .portal-user { align-self: flex-end; }
       .diags-grid { grid-template-columns: 1fr; }
+      .diag-cta-bar { flex-direction: column; text-align: center; }
+      .chatbot-modal-overlay { padding: 0; align-items: flex-end; justify-content: center; }
+      .chatbot-modal-window { width: 100%; max-width: 100%; border-radius: 20px 20px 0 0; height: 85vh; max-height: 85vh; }
+    }
+
+    /* ── BUSCADOR PÚBLICO ── */
+    .search-bar-section {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .search-bar-section h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      margin-bottom: 12px;
+    }
+    .search-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 11px 16px;
+      border: 2px solid var(--gray-200);
+      border-radius: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--gray-800);
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--white);
+    }
+    .search-input:focus { border-color: var(--blue); }
+    .search-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 22px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .search-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .search-result {
+      display: none;
+      margin-top: 16px;
+      padding: 16px 20px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      color: var(--gray-600);
+    }
+    .search-result.visible { display: block; }
+    .search-result.found { border-color: rgba(37,99,235,0.25); background: rgba(37,99,235,0.04); }
+    .search-result.not-found { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
+
+    /* ── ALERTA TÉCNICO LEYÓ ── */
+    .badge-leido {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(34,197,94,0.12);
+      color: #15803d;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-leido i { font-size: 0.65rem; }
+    .badge-no-leido {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(245,158,11,0.1);
+      color: #b45309;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .badge-no-leido i { font-size: 0.65rem; }
+
+    /* ── PERFIL DEL CLIENTE ── */
+    .perfil-section {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .perfil-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .perfil-header h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+    }
+    .btn-edit-perfil {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      background: transparent;
+      border: 2px solid var(--gray-200);
+      border-radius: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-edit-perfil:hover { border-color: var(--blue); color: var(--blue); }
+    .perfil-fields {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .perfil-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 5px;
+    }
+    .perfil-field-val {
+      font-size: 0.88rem;
+      color: var(--gray-800);
+      font-weight: 500;
+    }
+    .perfil-field-val.empty { color: var(--gray-400); font-style: italic; font-weight: 400; }
+    .perfil-field input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid var(--gray-200);
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--gray-800);
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--white);
+      display: none;
+    }
+    .perfil-field input:focus { border-color: var(--blue); }
+    .perfil-editing .perfil-field-val { display: none; }
+    .perfil-editing .perfil-field input { display: block; }
+    .perfil-actions {
+      display: none;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--gray-100);
+    }
+    .perfil-editing .perfil-actions { display: flex; }
+    .btn-save-perfil {
+      padding: 9px 20px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-save-perfil:hover { background: #1d4ed8; }
+    .btn-cancel-perfil {
+      padding: 9px 20px;
+      background: transparent;
+      color: var(--gray-600);
+      border: 2px solid var(--gray-200);
+      border-radius: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-cancel-perfil:hover { border-color: var(--gray-400); }
+    .perfil-save-msg {
+      font-size: 0.8rem;
+      color: var(--green);
+      display: none;
+      align-items: center;
+      gap: 5px;
+      margin-left: auto;
+    }
+    .perfil-save-msg.visible { display: flex; }
+
+    @media (max-width: 640px) {
+      .perfil-fields { grid-template-columns: 1fr 1fr; }
+      .search-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -656,7 +571,7 @@
   </nav>
 
   <!-- ══════════════════════════════════════════════
-       PANTALLA DE LOGIN (visible por defecto)
+       PANTALLA DE LOGIN
   ══════════════════════════════════════════════ -->
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
@@ -665,10 +580,7 @@
       </div>
       <h1>Portal de Clientes</h1>
       <p>Accedé a tus diagnósticos técnicos y el estado de tus servicios con tu cuenta de Google.</p>
-
-      <!-- El botón de Google se renderiza aquí por la librería GSI -->
       <div id="g_id_signin"></div>
-
       <p class="login-note">
         <i class="fas fa-lock"></i>
         Solo usamos tu nombre y email. Sin contraseñas, sin datos adicionales.
@@ -677,11 +589,11 @@
   </div>
 
   <!-- ══════════════════════════════════════════════
-       PANTALLA DEL PORTAL (oculta hasta login)
+       PANTALLA DEL PORTAL
   ══════════════════════════════════════════════ -->
   <div class="portal-screen" id="portalScreen">
 
-    <!-- Header -->
+    <!-- Header con usuario -->
     <div class="portal-header">
       <div class="portal-welcome">
         <h2 id="welcomeTitle">Bienvenido</h2>
@@ -693,41 +605,122 @@
           <div class="portal-user-email" id="userEmail"></div>
         </div>
         <div class="portal-avatar" id="userAvatar"></div>
-        <button class="btn-logout" id="btnLogout" onclick="cerrarSesion()">
+        <button class="btn-logout" onclick="cerrarSesion()">
           <i class="fas fa-sign-out-alt"></i> Salir
         </button>
       </div>
+    </div>
+
+
+    <!-- BUSCADOR PÚBLICO POR NÚMERO DE DIAGNÓSTICO -->
+    <div class="search-bar-section">
+      <h3><i class="fas fa-search" style="color:var(--blue);margin-right:8px;"></i>Buscar diagnóstico por número</h3>
+      <div class="search-row">
+        <input
+          type="text"
+          class="search-input"
+          id="searchDiagInput"
+          placeholder="Ej: DIAG-190326-0001"
+          autocomplete="off"
+          maxlength="30"
+        >
+        <button class="search-btn" onclick="buscarPorNumero()">
+          <i class="fas fa-search"></i> Buscar
+        </button>
+      </div>
+      <div class="search-result" id="searchResult"></div>
+    </div>
+
+    <!-- PERFIL DEL CLIENTE -->
+    <div class="perfil-section" id="perfilSection">
+      <div class="perfil-header">
+        <h3><i class="fas fa-id-card" style="color:var(--blue);margin-right:8px;"></i>Mi perfil</h3>
+        <button class="btn-edit-perfil" id="btnEditPerfil" onclick="toggleEditPerfil()">
+          <i class="fas fa-pencil-alt"></i> Editar
+        </button>
+      </div>
+      <div class="perfil-fields" id="perfilFields">
+        <div class="perfil-field">
+          <label>Nombre</label>
+          <div class="perfil-field-val" id="pv-nombre">—</div>
+          <input type="text" id="pi-nombre" placeholder="Tu nombre completo" maxlength="80">
+        </div>
+        <div class="perfil-field">
+          <label>Email</label>
+          <div class="perfil-field-val" id="pv-email">—</div>
+          <input type="email" id="pi-email" placeholder="tu@email.com" maxlength="100">
+        </div>
+        <div class="perfil-field">
+          <label>Teléfono</label>
+          <div class="perfil-field-val" id="pv-telefono">—</div>
+          <input type="tel" id="pi-telefono" placeholder="11 XXXX-XXXX" maxlength="30">
+        </div>
+        <div class="perfil-field">
+          <label>Dirección</label>
+          <div class="perfil-field-val" id="pv-direccion">—</div>
+          <input type="text" id="pi-direccion" placeholder="Calle, número, piso" maxlength="120">
+        </div>
+        <div class="perfil-field">
+          <label>Localidad</label>
+          <div class="perfil-field-val" id="pv-localidad">—</div>
+          <input type="text" id="pi-localidad" placeholder="Ej: Palermo, CABA" maxlength="80">
+        </div>
+        <div class="perfil-field">
+          <label>Código postal</label>
+          <div class="perfil-field-val" id="pv-cp">—</div>
+          <input type="text" id="pi-cp" placeholder="Ej: 1425" maxlength="10">
+        </div>
+        <div class="perfil-field">
+          <label>Empresa / Negocio</label>
+          <div class="perfil-field-val" id="pv-empresa">—</div>
+          <input type="text" id="pi-empresa" placeholder="Opcional" maxlength="80">
+        </div>
+        <div class="perfil-field">
+          <label>Nota adicional</label>
+          <div class="perfil-field-val" id="pv-nota">—</div>
+          <input type="text" id="pi-nota" placeholder="Horario preferido, etc." maxlength="120">
+        </div>
+      </div>
+      <div class="perfil-actions">
+        <button class="btn-save-perfil" onclick="guardarPerfil()">
+          <i class="fas fa-save"></i> Guardar cambios
+        </button>
+        <button class="btn-cancel-perfil" onclick="cancelarEditPerfil()">Cancelar</button>
+        <span class="perfil-save-msg" id="perfilSaveMsg">
+          <i class="fas fa-check-circle"></i> Guardado correctamente
+        </span>
+      </div>
+    </div>
+
+    <!-- CTA Nuevo diagnóstico — siempre visible -->
+    <div class="diag-cta-bar">
+      <div class="diag-cta-bar-text">
+        <h3>¿Tenés un nuevo problema técnico?</h3>
+        <p>El asistente te hace preguntas guiadas y genera un diagnóstico detallado en minutos.</p>
+      </div>
+      <button class="btn-nuevo-diag" onclick="abrirChatbot()">
+        <i class="fas fa-stethoscope"></i>
+        Iniciar diagnóstico guiado
+      </button>
     </div>
 
     <!-- Stats -->
     <div class="stats-bar" id="statsBar" style="display:none">
       <div class="stat-card">
         <div class="stat-icon blue"><i class="fas fa-clipboard-list"></i></div>
-        <div>
-          <div class="stat-val" id="statTotal">0</div>
-          <div class="stat-label">Diagnósticos totales</div>
-        </div>
+        <div><div class="stat-val" id="statTotal">0</div><div class="stat-label">Diagnósticos totales</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon amber"><i class="fas fa-clock"></i></div>
-        <div>
-          <div class="stat-val" id="statNuevos">0</div>
-          <div class="stat-label">Pendientes / En proceso</div>
-        </div>
+        <div><div class="stat-val" id="statNuevos">0</div><div class="stat-label">Pendientes / En proceso</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
-        <div>
-          <div class="stat-val" id="statResueltos">0</div>
-          <div class="stat-label">Resueltos</div>
-        </div>
+        <div><div class="stat-val" id="statResueltos">0</div><div class="stat-label">Resueltos</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
-        <div>
-          <div class="stat-val" id="statCriticos">0</div>
-          <div class="stat-label">Riesgo crítico / alto</div>
-        </div>
+        <div><div class="stat-val" id="statCriticos">0</div><div class="stat-label">Riesgo crítico / alto</div></div>
       </div>
     </div>
 
@@ -748,306 +741,974 @@
       <p>Cargando tus diagnósticos...</p>
     </div>
 
-    <!-- Grid de diagnósticos -->
+    <!-- Grid diagnósticos -->
     <div class="diags-grid" id="diagsGrid"></div>
 
-  </div><!-- /portal-screen -->
+  </div>
 
   <!-- ══════════════════════════════════════════════
-       GOOGLE IDENTITY SERVICES (GSI)
-       No requiere API Key. Solo CLIENT_ID.
+       MODAL DEL CHATBOT
+       Se abre sobre el portal cuando el usuario
+       hace click en "Iniciar diagnóstico guiado".
+       El chatbot arranca directo en el menú de
+       diagnóstico, sin pasar por el saludo.
   ══════════════════════════════════════════════ -->
+  <div class="chatbot-modal-overlay" id="chatbotModalOverlay">
+    <div class="chatbot-modal-window" id="chatbotModalWindow">
+
+      <!-- Header -->
+      <div class="chatbot-modal-header">
+        <div class="chatbot-modal-avatar"><i class="fas fa-eye"></i></div>
+        <div class="chatbot-modal-info">
+          <h3>Asistente Cyclops</h3>
+          <div class="chatbot-modal-status">
+            <span class="chatbot-modal-status-dot"></span>
+            Diagnóstico guiado
+          </div>
+        </div>
+        <button class="chatbot-modal-close" onclick="cerrarChatbot()" title="Cerrar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Mensajes -->
+      <div class="chatbot-modal-messages" id="chatbotModalMessages"></div>
+
+      <!-- Input -->
+      <div class="chatbot-modal-input-row">
+        <input
+          type="text"
+          class="chatbot-modal-input"
+          id="chatbotModalInput"
+          placeholder="Escribí tu respuesta..."
+          autocomplete="off"
+        >
+        <button class="chatbot-modal-send" id="chatbotModalSend">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Google Identity Services -->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 
   <script>
-    // ════════════════════════════════════════════════════════
-    // CONFIGURACIÓN — EDITAR ESTOS VALORES
-    // ════════════════════════════════════════════════════════
+  // ════════════════════════════════════════════════════════
+  // CONFIGURACIÓN
+  // ════════════════════════════════════════════════════════
+  const GOOGLE_CLIENT_ID = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
+  const APPS_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbzp5SO_CFf7iLJl7xfOTDV58Pf-Y2GJ8ZSITkPN-h3__dnmwpfOW32SSS1B9_FHLvM7/exec";
 
-    // PASO 1: Reemplazar con el Client ID de Google Cloud Console
-    // Formato: XXXXXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.apps.googleusercontent.com
-    const GOOGLE_CLIENT_ID = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
+  // ════════════════════════════════════════════════════════
+  // PORTAL — LOGIN Y CARGA DE DIAGNÓSTICOS
+  // ════════════════════════════════════════════════════════
+  var usuarioActual = null;
 
-    // PASO 2: Pegar aquí la URL del Apps Script publicado (la misma que en chatbot.js)
-    // Debe terminar en /exec, NO en /dev
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzp5SO_CFf7iLJl7xfOTDV58Pf-Y2GJ8ZSITkPN-h3__dnmwpfOW32SSS1B9_FHLvM7/exec";
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      if (typeof google === 'undefined') { console.error('❌ GSI no cargó'); return; }
+      google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onGoogleSignIn });
+      google.accounts.id.renderButton(document.getElementById('g_id_signin'), {
+        theme: 'outline', size: 'large', text: 'signin_with', shape: 'pill', locale: 'es'
+      });
+    }, 300);
+  });
 
-    // ════════════════════════════════════════════════════════
-    // NO MODIFICAR A PARTIR DE AQUÍ
-    // ════════════════════════════════════════════════════════
+  function onGoogleSignIn(response) {
+    try {
+      var p = parsearJWT(response.credential);
+      usuarioActual = { name: p.name || 'Usuario', email: p.email || '', picture: p.picture || '' };
+      mostrarPortal(usuarioActual);
+      cargarDiagnosticos(usuarioActual.email);
+    } catch(e) { mostrarError('Error al iniciar sesión. Intentá de nuevo.'); }
+  }
 
-    var usuarioActual = null; // { name, email, picture }
+  function parsearJWT(token) {
+    var b64 = token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+    return JSON.parse(decodeURIComponent(atob(b64).split('').map(function(c){
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join('')));
+  }
 
-    // ── Inicializar Google Identity Services ─────────────────
-    // Se llama cuando el script de Google termina de cargar.
-    // El callback "onGoogleSignIn" se ejecuta cuando el usuario
-    // completa el login.
-    window.addEventListener('load', function() {
-      // Pequeña demora para asegurar que la lib GSI cargó
-      setTimeout(function() {
-        if (typeof google === 'undefined') {
-          console.error("❌ Librería de Google no cargó. Verificar conexión.");
-          return;
-        }
-        google.accounts.id.initialize({
-          client_id: GOOGLE_CLIENT_ID,
-          callback:  onGoogleSignIn,
-          // auto_select: true, // descomentar para login automático si ya autorizó
-        });
-        google.accounts.id.renderButton(
-          document.getElementById('g_id_signin'),
-          {
-            theme: 'outline',
-            size:  'large',
-            text:  'signin_with',
-            shape: 'pill',
-            locale: 'es'
-          }
-        );
-      }, 300);
+  function mostrarPortal(u) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('portalScreen').classList.add('visible');
+    var nombre = u.name.split(' ')[0];
+    document.getElementById('welcomeTitle').textContent = 'Hola, ' + nombre + ' 👋';
+    document.getElementById('welcomeSub').textContent   = 'Estos son tus diagnósticos registrados en Soporte Cyclops.';
+    document.getElementById('userName').textContent  = u.name;
+    document.getElementById('userEmail').textContent = u.email;
+    var av = document.getElementById('userAvatar');
+    av.innerHTML = u.picture
+      ? '<img src="' + u.picture + '" alt="' + escapeHtml(u.name) + '">'
+      : u.name.charAt(0).toUpperCase();
+  }
+
+  async function cargarDiagnosticos(email) {
+    var loadingEl = document.getElementById('loadingState');
+    var gridEl    = document.getElementById('diagsGrid');
+    var errorEl   = document.getElementById('errorBanner');
+    loadingEl.style.display = 'block';
+    gridEl.innerHTML = '';
+    errorEl.classList.remove('visible');
+    try {
+      var res  = await fetch(APPS_SCRIPT_URL + '?action=diags_por_email&email=' + encodeURIComponent(email));
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      loadingEl.style.display = 'none';
+      if (!data.ok) { mostrarError('Error del servidor: ' + (data.error || 'respuesta inválida')); return; }
+      renderizarDiagnosticos(data.diagnosticos || []);
+    } catch(err) {
+      loadingEl.style.display = 'none';
+      mostrarError('No se pudo conectar. Verificá tu conexión o intentá más tarde. (' + err.message + ')');
+    }
+  }
+
+  function renderizarDiagnosticos(diags) {
+    var gridEl  = document.getElementById('diagsGrid');
+    var statsEl = document.getElementById('statsBar');
+    var secEl   = document.getElementById('sectionLabel');
+    if (diags.length === 0) { gridEl.innerHTML = renderEmptyState(); return; }
+    statsEl.style.display = '';
+    secEl.style.display   = '';
+    document.getElementById('diagCount').textContent = diags.length;
+    var nuevos    = diags.filter(function(d){ return ['nuevo',''].includes((d.estado||'').toLowerCase()); }).length;
+    var proceso   = diags.filter(function(d){ return d.estado === 'en proceso'; }).length;
+    var resueltos = diags.filter(function(d){ return ['resuelto','cerrado'].includes((d.estado||'').toLowerCase()); }).length;
+    var criticos  = diags.filter(function(d){ return ['critica','alta'].includes((d.severidad||'').toLowerCase()); }).length;
+    document.getElementById('statTotal').textContent     = diags.length;
+    document.getElementById('statNuevos').textContent    = nuevos + proceso;
+    document.getElementById('statResueltos').textContent = resueltos;
+    document.getElementById('statCriticos').textContent  = criticos;
+    gridEl.innerHTML = diags.map(renderDiagCard).join('');
+  }
+
+  function renderDiagCard(d) {
+    var sev    = (d.severidad || 'media').toLowerCase();
+    var estado = (d.estado    || 'nuevo').toLowerCase();
+    var sevL   = { critica:'🔴 Crítico', alta:'🟠 Elevado', media:'🟡 A evaluar', baja:'🟢 Estable' };
+    var estL   = { nuevo:'Nuevo', 'en proceso':'En proceso', resuelto:'Resuelto', cerrado:'Cerrado' };
+    var estBadge = (estado === 'resuelto' || estado === 'cerrado') ? 'badge-' + estado : (estado === 'en proceso' ? 'badge-proceso' : 'badge-nuevo');
+    var leido = d.leido_por && String(d.leido_por).trim() !== '';
+    var leidoBadge = leido
+      ? '<span class="badge-leido"><i class="fas fa-eye"></i> Técnico revisó</span>'
+      : '<span class="badge-no-leido"><i class="fas fa-clock"></i> Pendiente revisión</span>';
+    return '<div class="diag-card sev-' + sev + '">'
+      + '<div class="diag-card-top">'
+        + '<div class="diag-num">' + escapeHtml(d.diagNum || '—') + '</div>'
+        + '<div class="diag-badges">'
+          + '<span class="badge badge-' + sev + '">' + (sevL[sev] || sev) + '</span>'
+          + '<span class="badge ' + estBadge + '">' + (estL[estado] || estado) + '</span>'
+          + leidoBadge
+        + '</div>'
+      + '</div>'
+      + '<div class="diag-servicio">' + escapeHtml(d.servicio || 'Servicio') + '</div>'
+      + '<div class="diag-sintoma">'  + escapeHtml(d.sintoma  || d.resumen || '') + '</div>'
+      + '<div class="diag-meta">'
+        + '<div class="diag-meta-item"><i class="fas fa-calendar-alt"></i>' + escapeHtml(formatFecha(d.fecha)) + '</div>'
+        + (d.equipo ? '<div class="diag-meta-item"><i class="fas fa-desktop"></i>' + escapeHtml(d.equipo) + '</div>' : '')
+        + (leido && d.fecha_lectura ? '<div class="diag-meta-item"><i class="fas fa-eye"></i> Visto: ' + escapeHtml(formatFecha(d.fecha_lectura)) + '</div>' : '')
+      + '</div>'
+    + '</div>';
+  }
+
+  function renderEmptyState() {
+    return '<div class="empty-state" style="grid-column:1/-1">'
+      + '<div class="empty-icon"><i class="fas fa-clipboard"></i></div>'
+      + '<h3>Sin diagnósticos registrados</h3>'
+      + '<p>Todavía no tenés diagnósticos asociados a este email. Usá el botón de arriba para iniciar uno.</p>'
+      + '<button class="btn-primary" onclick="abrirChatbot()">'
+        + '<i class="fas fa-stethoscope"></i> Iniciar diagnóstico guiado'
+      + '</button>'
+    + '</div>';
+  }
+
+  function cerrarSesion() {
+    if (usuarioActual && usuarioActual.email) {
+      try { google.accounts.id.revoke(usuarioActual.email, function(){}); } catch(e) {}
+    }
+    usuarioActual = null;
+    document.getElementById('loginScreen').style.display = '';
+    document.getElementById('portalScreen').classList.remove('visible');
+    document.getElementById('diagsGrid').innerHTML = '';
+    document.getElementById('statsBar').style.display = 'none';
+    document.getElementById('sectionLabel').style.display = 'none';
+    document.getElementById('errorBanner').classList.remove('visible');
+    document.getElementById('loadingState').style.display = 'block';
+  }
+
+  function mostrarError(msg) {
+    document.getElementById('errorMsg').textContent = msg;
+    document.getElementById('errorBanner').classList.add('visible');
+    document.getElementById('loadingState').style.display = 'none';
+  }
+
+  function formatFecha(s) {
+    if (!s) return '—';
+    return String(s).split(',')[0] || s;
+  }
+
+  function escapeHtml(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+
+  // ════════════════════════════════════════════════════════
+  // GRUPO B — BUSCADOR, PERFIL Y ALERTA DE LECTURA
+  // ════════════════════════════════════════════════════════
+
+  // ── Cargar perfil desde localStorage al mostrar portal ───
+  // Se llama desde mostrarPortal() existente — extendemos
+  var _mostrarPortalOriginal = mostrarPortal;
+  function mostrarPortal(u) {
+    _mostrarPortalOriginal(u);
+    cargarPerfilLocal(u);
+  }
+
+  // ── Cargar datos del perfil guardados en localStorage ────
+  function cargarPerfilLocal(usuario) {
+    var key   = 'cyclops_perfil_' + (usuario.email || 'unknown');
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem(key) || 'null'); } catch(e) {}
+
+    var campos = ['nombre','email','telefono','direccion','localidad','cp','empresa','nota'];
+    var defaults = {
+      nombre:   usuario.name  || '',
+      email:    usuario.email || '',
+      telefono: '', direccion: '', localidad: '', cp: '', empresa: '', nota: ''
+    };
+    var data = Object.assign({}, defaults, saved || {});
+
+    campos.forEach(function(c) {
+      var valEl = document.getElementById('pv-' + c);
+      var inEl  = document.getElementById('pi-' + c);
+      if (valEl) {
+        valEl.textContent = data[c] || '';
+        valEl.className   = 'perfil-field-val' + (data[c] ? '' : ' empty');
+        if (!data[c]) valEl.textContent = '—';
+      }
+      if (inEl) inEl.value = data[c] || '';
+    });
+  }
+
+  // ── Toggle modo edición del perfil ───────────────────────
+  function toggleEditPerfil() {
+    var section = document.getElementById('perfilFields').parentElement;
+    var isEditing = section.classList.contains('perfil-editing');
+    if (isEditing) {
+      cancelarEditPerfil();
+    } else {
+      section.classList.add('perfil-editing');
+      document.getElementById('btnEditPerfil').innerHTML = '<i class="fas fa-times"></i> Cancelar';
+    }
+  }
+
+  function cancelarEditPerfil() {
+    var section = document.getElementById('perfilFields').parentElement;
+    section.classList.remove('perfil-editing');
+    document.getElementById('btnEditPerfil').innerHTML = '<i class="fas fa-pencil-alt"></i> Editar';
+    document.getElementById('perfilSaveMsg').classList.remove('visible');
+    // Restaurar valores desde localStorage
+    if (usuarioActual) cargarPerfilLocal(usuarioActual);
+  }
+
+  // ── Guardar perfil en localStorage y en Apps Script ──────
+  function guardarPerfil() {
+    if (!usuarioActual) return;
+    var campos = ['nombre','email','telefono','direccion','localidad','cp','empresa','nota'];
+    var data   = {};
+    campos.forEach(function(c) {
+      var el = document.getElementById('pi-' + c);
+      data[c] = el ? el.value.trim() : '';
     });
 
-    // ── Callback de Google después del login ─────────────────
-    // "response.credential" es un JWT firmado por Google.
-    // Se decodifica en el cliente (no hace falta verificarlo en
-    // servidor para esta aplicación de solo lectura).
-    function onGoogleSignIn(response) {
-      try {
-        var payload = parsearJWT(response.credential);
-        usuarioActual = {
-          name:    payload.name    || "Usuario",
-          email:   payload.email   || "",
-          picture: payload.picture || ""
-        };
-        mostrarPortal(usuarioActual);
-        cargarDiagnosticos(usuarioActual.email);
-      } catch(err) {
-        console.error("❌ Error al procesar login de Google:", err);
-        mostrarError("Error al iniciar sesión. Intentá de nuevo.");
+    // Guardar en localStorage (persiste entre sesiones)
+    var key = 'cyclops_perfil_' + usuarioActual.email;
+    try { localStorage.setItem(key, JSON.stringify(data)); } catch(e) {}
+
+    // Actualizar vistas de valores
+    campos.forEach(function(c) {
+      var valEl = document.getElementById('pv-' + c);
+      if (valEl) {
+        valEl.textContent = data[c] || '—';
+        valEl.className   = 'perfil-field-val' + (data[c] ? '' : ' empty');
       }
+    });
+
+    // Enviar al Apps Script para persistir en hoja Clientes
+    enviarPerfilAScript(data);
+
+    // Mostrar confirmación
+    var msg = document.getElementById('perfilSaveMsg');
+    msg.classList.add('visible');
+    setTimeout(function() { msg.classList.remove('visible'); }, 3000);
+
+    // Salir del modo edición
+    var section = document.getElementById('perfilFields').parentElement;
+    section.classList.remove('perfil-editing');
+    document.getElementById('btnEditPerfil').innerHTML = '<i class="fas fa-pencil-alt"></i> Editar';
+  }
+
+  // ── Enviar perfil al Apps Script (actualiza hoja Clientes) ─
+  async function enviarPerfilAScript(data) {
+    if (!APPS_SCRIPT_URL || !usuarioActual) return;
+    try {
+      var payload = Object.assign({ email: usuarioActual.email, action_type: 'update_perfil' }, data);
+      var fd = new FormData();
+      fd.append('payload', JSON.stringify(payload));
+      await fetch(APPS_SCRIPT_URL, { method: 'POST', body: fd });
+    } catch(e) { console.warn('No se pudo sincronizar perfil con el servidor:', e.message); }
+  }
+
+  // ── Buscador por número de diagnóstico ───────────────────
+  // Busca en los diagnósticos ya cargados del usuario logueado.
+  // Si no está logueado, hace una consulta pública al Apps Script.
+  var _todosLosDiags = []; // cache de los diags del usuario actual
+
+  var _renderizarDiagnosticosOriginal = renderizarDiagnosticos;
+  function renderizarDiagnosticos(diags) {
+    _todosLosDiags = diags; // guardar cache
+    _renderizarDiagnosticosOriginal(diags);
+  }
+
+  // Enter en el input dispara la búsqueda
+  document.addEventListener('DOMContentLoaded', function() {
+    var inp = document.getElementById('searchDiagInput');
+    if (inp) {
+      inp.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') buscarPorNumero();
+      });
+    }
+  });
+
+  async function buscarPorNumero() {
+    var query   = (document.getElementById('searchDiagInput').value || '').trim().toUpperCase();
+    var resultEl = document.getElementById('searchResult');
+
+    if (!query) {
+      resultEl.className = 'search-result';
+      resultEl.innerHTML = '';
+      return;
     }
 
-    // ── Parsear JWT sin librería externa ─────────────────────
-    // El JWT de Google tiene 3 partes separadas por ".".
-    // La segunda parte (payload) contiene name, email, picture.
-    // atob() decodifica base64. El replace prepara el padding.
-    function parsearJWT(token) {
-      var base64 = token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
-      var json   = decodeURIComponent(
-        atob(base64).split('').map(function(c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join('')
-      );
-      return JSON.parse(json);
+    // Normalizar: aceptar con o sin prefijo DIAG-
+    if (!query.startsWith('DIAG-') && !query.startsWith('CYC-')) {
+      query = 'DIAG-' + query;
     }
 
-    // ── Mostrar la pantalla del portal ───────────────────────
-    function mostrarPortal(usuario) {
-      document.getElementById('loginScreen').style.display  = 'none';
-      document.getElementById('portalScreen').classList.add('visible');
+    resultEl.className = 'search-result visible';
+    resultEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
 
-      // Nombre de bienvenida
-      var primerNombre = usuario.name.split(' ')[0];
-      document.getElementById('welcomeTitle').textContent = "Hola, " + primerNombre + " 👋";
-      document.getElementById('welcomeSub').textContent   = "Estos son tus diagnósticos registrados en Soporte Cyclops.";
-
-      // Datos del usuario en el header
-      document.getElementById('userName').textContent  = usuario.name;
-      document.getElementById('userEmail').textContent = usuario.email;
-
-      // Avatar: foto de Google si existe, sino iniciales
-      var avatarEl = document.getElementById('userAvatar');
-      if (usuario.picture) {
-        avatarEl.innerHTML = '<img src="' + usuario.picture + '" alt="' + usuario.name + '">';
-      } else {
-        avatarEl.textContent = usuario.name.charAt(0).toUpperCase();
-      }
-    }
-
-    // ── Consultar Apps Script con el email del usuario ───────
-    // Usa un GET con parámetros → Apps Script ejecuta doGet(e)
-    // → busca en hoja "Diagnósticos" → retorna JSON
-    async function cargarDiagnosticos(email) {
-      var loadingEl = document.getElementById('loadingState');
-      var gridEl    = document.getElementById('diagsGrid');
-      var errorEl   = document.getElementById('errorBanner');
-
-      loadingEl.style.display = 'block';
-      gridEl.innerHTML        = '';
-      errorEl.classList.remove('visible');
-
-      try {
-        var url = APPS_SCRIPT_URL
-          + "?action=diags_por_email"
-          + "&email=" + encodeURIComponent(email);
-
-        var res  = await fetch(url);
-
-        if (!res.ok) {
-          throw new Error("HTTP " + res.status);
-        }
-
-        var data = await res.json();
-
-        loadingEl.style.display = 'none';
-
-        if (!data.ok) {
-          mostrarError("Error del servidor: " + (data.error || "respuesta inválida"));
-          return;
-        }
-
-        var diags = data.diagnosticos || [];
-        renderizarDiagnosticos(diags);
-
-      } catch(err) {
-        loadingEl.style.display = 'none';
-        console.error("❌ Error al cargar diagnósticos:", err);
-        mostrarError(
-          "No se pudo conectar con el servidor. " +
-          "Verificá tu conexión o intentá más tarde. (" + err.message + ")"
-        );
-      }
-    }
-
-    // ── Renderizar las tarjetas de diagnóstico ───────────────
-    function renderizarDiagnosticos(diags) {
-      var gridEl       = document.getElementById('diagsGrid');
-      var statsEl      = document.getElementById('statsBar');
-      var sectionLabel = document.getElementById('sectionLabel');
-      var diagCount    = document.getElementById('diagCount');
-
-      if (diags.length === 0) {
-        gridEl.innerHTML = renderEmptyState();
+    // 1. Buscar en los diagnósticos del usuario logueado (cache local)
+    if (_todosLosDiags.length > 0) {
+      var match = _todosLosDiags.find(function(d) {
+        return (d.diagNum || '').toUpperCase() === query;
+      });
+      if (match) {
+        resultEl.className = 'search-result visible found';
+        resultEl.innerHTML = renderBusquedaResultado(match);
         return;
       }
-
-      // Mostrar stats y contador
-      statsEl.style.display      = '';
-      sectionLabel.style.display = '';
-      diagCount.textContent      = diags.length;
-
-      // Calcular stats
-      var nuevos   = diags.filter(function(d){ return ['nuevo',''].includes((d.estado||'').toLowerCase()); }).length;
-      var proceso  = diags.filter(function(d){ return d.estado === 'en proceso'; }).length;
-      var resueltos= diags.filter(function(d){ return ['resuelto','cerrado'].includes((d.estado||'').toLowerCase()); }).length;
-      var criticos = diags.filter(function(d){ return ['critica','alta'].includes((d.severidad||'').toLowerCase()); }).length;
-
-      document.getElementById('statTotal').textContent    = diags.length;
-      document.getElementById('statNuevos').textContent   = nuevos + proceso;
-      document.getElementById('statResueltos').textContent= resueltos;
-      document.getElementById('statCriticos').textContent = criticos;
-
-      // Renderizar tarjetas
-      gridEl.innerHTML = diags.map(function(d) {
-        return renderDiagCard(d);
-      }).join('');
     }
 
-    // ── HTML de una tarjeta de diagnóstico ───────────────────
-    function renderDiagCard(d) {
-      var sev    = (d.severidad || 'media').toLowerCase();
-      var estado = (d.estado    || 'nuevo').toLowerCase();
+    // 2. Consulta al Apps Script (búsqueda pública)
+    try {
+      var url  = APPS_SCRIPT_URL + '?action=buscar_diag&diagNum=' + encodeURIComponent(query);
+      var res  = await fetch(url);
+      var data = await res.json();
 
-      var sevLabels = {
-        critica: '🔴 Crítico',
-        alta:    '🟠 Riesgo elevado',
-        media:   '🟡 A evaluar',
-        baja:    '🟢 Estable'
-      };
-      var estadoLabels = {
-        nuevo:      'Nuevo',
-        'en proceso':'En proceso',
-        resuelto:   'Resuelto',
-        cerrado:    'Cerrado'
-      };
-
-      var sevBadge    = 'badge-' + sev;
-      var estadoBadge = estado === 'resuelto' || estado === 'cerrado'
-        ? 'badge-' + estado
-        : (estado === 'en proceso' ? 'badge-proceso' : 'badge-nuevo');
-
-      return [
-        '<div class="diag-card sev-' + sev + '">',
-          '<div class="diag-card-top">',
-            '<div class="diag-num">' + escapeHtml(d.diagNum || '—') + '</div>',
-            '<div class="diag-badges">',
-              '<span class="badge ' + sevBadge    + '">' + (sevLabels[sev]    || sev)    + '</span>',
-              '<span class="badge ' + estadoBadge + '">' + (estadoLabels[estado] || estado) + '</span>',
-            '</div>',
-          '</div>',
-          '<div class="diag-servicio">' + escapeHtml(d.servicio || 'Servicio') + '</div>',
-          '<div class="diag-sintoma">'  + escapeHtml(d.sintoma  || d.resumen || '') + '</div>',
-          '<div class="diag-meta">',
-            '<div class="diag-meta-item">',
-              '<i class="fas fa-calendar-alt"></i>',
-              escapeHtml(formatFecha(d.fecha)),
-            '</div>',
-            d.equipo ? '<div class="diag-meta-item"><i class="fas fa-desktop"></i>' + escapeHtml(d.equipo) + '</div>' : '',
-          '</div>',
-        '</div>'
-      ].join('');
-    }
-
-    // ── HTML del estado vacío ─────────────────────────────────
-    function renderEmptyState() {
-      return [
-        '<div class="empty-state" style="grid-column:1/-1">',
-          '<div class="empty-icon"><i class="fas fa-clipboard"></i></div>',
-          '<h3>Sin diagnósticos registrados</h3>',
-          '<p>Todavía no tenés diagnósticos asociados a este email. Podés iniciar uno desde el chatbot.</p>',
-          '<a href="index.html#contacto" class="btn-primary">',
-            '<i class="fas fa-stethoscope"></i> Iniciar un diagnóstico',
-          '</a>',
-        '</div>'
-      ].join('');
-    }
-
-    // ── Cerrar sesión ────────────────────────────────────────
-    // Revoca el token de Google y resetea la UI
-    function cerrarSesion() {
-      if (usuarioActual && usuarioActual.email) {
-        try {
-          google.accounts.id.revoke(usuarioActual.email, function() {
-            console.log("✅ Token de Google revocado");
-          });
-        } catch(e) { /* silencioso */ }
+      if (data.ok && data.diagnostico) {
+        resultEl.className = 'search-result visible found';
+        resultEl.innerHTML = renderBusquedaResultado(data.diagnostico);
+      } else {
+        resultEl.className = 'search-result visible not-found';
+        resultEl.innerHTML = '<i class="fas fa-times-circle" style="color:var(--red)"></i> '
+          + 'No se encontró ningún diagnóstico con el número <strong>' + escapeHtml(query) + '</strong>. '
+          + 'Verificá que el número sea correcto (formato: DIAG-DDMMAA-NNNN).';
       }
-      usuarioActual = null;
+    } catch(e) {
+      resultEl.className = 'search-result visible not-found';
+      resultEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error al buscar. Verificá tu conexión.';
+    }
+  }
 
-      // Resetear UI
-      document.getElementById('loginScreen').style.display  = '';
-      document.getElementById('portalScreen').classList.remove('visible');
-      document.getElementById('diagsGrid').innerHTML         = '';
-      document.getElementById('statsBar').style.display     = 'none';
-      document.getElementById('sectionLabel').style.display = 'none';
-      document.getElementById('errorBanner').classList.remove('visible');
-      document.getElementById('loadingState').style.display = 'block';
+  function renderBusquedaResultado(d) {
+    var sev    = (d.severidad || 'media').toLowerCase();
+    var estado = (d.estado    || 'nuevo').toLowerCase();
+    var sevL   = { critica:'🔴 Crítico', alta:'🟠 Elevado', media:'🟡 A evaluar', baja:'🟢 Estable' };
+    var leido  = d.leido_por && String(d.leido_por).trim() !== '';
+    return '<div style="display:flex;flex-direction:column;gap:8px;">'
+      + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">'
+        + '<strong style="font-family:Space Grotesk,sans-serif;color:var(--blue-dark);">' + escapeHtml(d.diagNum || '') + '</strong>'
+        + '<span class="badge badge-' + sev + '">' + (sevL[sev] || sev) + '</span>'
+        + '<span class="badge badge-nuevo">' + escapeHtml(estado) + '</span>'
+        + (leido ? '<span class="badge-leido"><i class="fas fa-eye"></i> Técnico revisó</span>' : '<span class="badge-no-leido"><i class="fas fa-clock"></i> Pendiente revisión</span>')
+      + '</div>'
+      + '<div><strong>Servicio:</strong> ' + escapeHtml(d.servicio || '—') + '</div>'
+      + '<div><strong>Síntoma:</strong> ' + escapeHtml(d.sintoma || d.resumen || '—') + '</div>'
+      + '<div><strong>Fecha:</strong> ' + escapeHtml(formatFecha(d.fecha)) + ' &nbsp;|&nbsp; <strong>Cliente:</strong> ' + escapeHtml(d.nombre || '—') + '</div>'
+    + '</div>';
+  }
+
+  // ════════════════════════════════════════════════════════
+  // CHATBOT MODAL — motor completo integrado
+  // Reproduce toda la lógica de chatbot.js adaptada
+  // al modal del portal. Arranca directo en el menú
+  // de diagnóstico sin mostrar el saludo genérico.
+  // ════════════════════════════════════════════════════════
+
+  var chatState = {
+    history:          [],
+    diagState:        { active:false, flow:null, step:0, answers:{}, tempResult:null, waitingForName:false, waitingForEmail:false, diagNum:null },
+    initialized:      false
+  };
+
+  // Configuración del chatbot (igual que chatbot.js)
+  var CYCLOPS = {
+    whatsapp:      "5491166804450",
+    telefono:      "+54 9 11 6680-4450",
+    appsScriptUrl: APPS_SCRIPT_URL
+  };
+
+  // ── Abrir el modal y arrancar el diagnóstico ──────────────
+  function abrirChatbot() {
+    var overlay = document.getElementById('chatbotModalOverlay');
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden'; // evitar scroll detrás
+
+    // Foco al input para mobile
+    setTimeout(function() {
+      document.getElementById('chatbotModalInput').focus();
+    }, 350);
+
+    // Si es la primera vez, inicializar y arrancar diagnóstico
+    if (!chatState.initialized) {
+      chatState.initialized = true;
+      setupChatbotEvents();
+      // Saludo breve y directo al menú de diagnóstico
+      chatAddMsg('¡Hola! 👋 Soy el **Asistente Cyclops**.\n\nVoy a hacerte algunas preguntas para generar tu diagnóstico técnico. ¿Empezamos?', 'bot', [
+        { text: '🔍 Sí, iniciar diagnóstico', next: 'menu_diagnostico' },
+        { text: '💬 Tengo una consulta', action: 'consulta_general' }
+      ]);
+    }
+  }
+
+  // ── Cerrar el modal ───────────────────────────────────────
+  function cerrarChatbot() {
+    document.getElementById('chatbotModalOverlay').classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  // Cerrar al hacer click en el overlay (fuera de la ventana)
+  document.getElementById('chatbotModalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) cerrarChatbot();
+  });
+
+  // ── Setup de eventos del input ────────────────────────────
+  function setupChatbotEvents() {
+    document.getElementById('chatbotModalSend').addEventListener('click', enviarMensajeChat);
+    document.getElementById('chatbotModalInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') enviarMensajeChat();
+    });
+  }
+
+  function enviarMensajeChat() {
+    var input = document.getElementById('chatbotModalInput');
+    var msg   = input.value.trim();
+    if (!msg) return;
+    chatAddMsg(msg, 'user');
+    input.value = '';
+    setTimeout(function() { procesarMensajeChat(msg); }, 700);
+  }
+
+  // ── Agregar mensaje al chat ───────────────────────────────
+  function chatAddMsg(text, sender, options) {
+    options = options || [];
+    var msgs = document.getElementById('chatbotModalMessages');
+
+    // Eliminar typing indicator si existe
+    var typing = msgs.querySelector('.chat-typing');
+    if (typing) typing.remove();
+
+    var wrap = document.createElement('div');
+    wrap.className = 'chat-msg ' + sender;
+
+    var bubble = document.createElement('div');
+    bubble.className = 'chat-msg-bubble';
+    // Formato: **negrita**, saltos de línea
+    bubble.innerHTML = escapeHtml(text)
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+    wrap.appendChild(bubble);
+
+    // Botones de opciones
+    if (options.length > 0) {
+      var optsDiv = document.createElement('div');
+      optsDiv.className = 'chat-options';
+      options.forEach(function(opt) {
+        var btn = document.createElement('button');
+        btn.className = 'chat-option-btn';
+        btn.textContent = opt.text;
+        btn.addEventListener('click', function() {
+          // Deshabilitar todos los botones del grupo tras elegir
+          optsDiv.querySelectorAll('.chat-option-btn').forEach(function(b){ b.disabled = true; });
+          chatAddMsg(opt.text, 'user');
+          setTimeout(function() {
+            if (opt.action) chatHandleAction(opt.action);
+            else if (opt.next) chatProcessFlow(opt.next);
+          }, 600);
+        });
+        optsDiv.appendChild(btn);
+      });
+      wrap.appendChild(optsDiv);
     }
 
-    // ── Mostrar error ────────────────────────────────────────
-    function mostrarError(msg) {
-      var el = document.getElementById('errorBanner');
-      document.getElementById('errorMsg').textContent = msg;
-      el.classList.add('visible');
-      document.getElementById('loadingState').style.display = 'none';
+    msgs.appendChild(wrap);
+    msgs.scrollTop = msgs.scrollHeight;
+    chatState.history.push({ text, sender, options });
+  }
+
+  // ── Mostrar typing indicator ──────────────────────────────
+  function chatShowTyping() {
+    var msgs = document.getElementById('chatbotModalMessages');
+    var t = document.createElement('div');
+    t.className = 'chat-typing';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    msgs.appendChild(t);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  // ── Procesar input de texto libre ────────────────────────
+  function procesarMensajeChat(msg) {
+    var ds = chatState.diagState;
+
+    if (ds.waitingForName) {
+      ds.answers.nombre    = msg;
+      ds.waitingForName    = false;
+      ds.waitingForEmail   = true;
+      chatShowTyping();
+      setTimeout(function() {
+        chatAddMsg('Perfecto, **' + escapeHtml(msg) + '**.\n\n¿A qué email te enviamos el informe? (Escribí "no" para omitirlo)', 'bot');
+      }, 600);
+      return;
+    }
+    if (ds.waitingForEmail) {
+      var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(msg);
+      ds.answers.email   = (msg.toLowerCase() === 'no' || !ok) ? '' : msg;
+      ds.waitingForEmail = false;
+      chatProcesarYEnviar();
+      return;
     }
 
-    // ── Formatear fecha para mostrar ─────────────────────────
-    function formatFecha(fechaStr) {
-      if (!fechaStr) return '—';
-      // Si ya viene como "19/3/2026, 14:30:00" (es-AR) extraer la parte de fecha
-      var partes = String(fechaStr).split(',');
-      return partes[0] || fechaStr;
+    // Mensajes de texto libre cuando no hay flow activo
+    var m = msg.toLowerCase();
+    chatShowTyping();
+    setTimeout(function() {
+      if (m.includes('horario') || m.includes('atienden')) {
+        chatAddMsg('⏰ **Horarios:**\n\nLun–Vie: 9:00 a 18:00 hs\nSáb: 9:00 a 13:00 hs\nDom: Cerrado', 'bot', [{ text:'💬 WhatsApp', action:'whatsapp_urgente' }]);
+      } else if (m.includes('precio') || m.includes('costo') || m.includes('presupuesto')) {
+        chatAddMsg('💰 La consulta remota inicial es **sin cargo**. El presupuesto se acuerda antes de empezar.', 'bot', [{ text:'📅 Solicitar presupuesto', action:'whatsapp_urgente' }]);
+      } else if (m.includes('urgente') || m.includes('emergency')) {
+        chatAddMsg('🚨 Para urgencias inmediatas:', 'bot', [{ text:'📞 Llamar ahora', action:'llamar_ahora' }, { text:'💬 WhatsApp urgente', action:'whatsapp_urgente' }]);
+      } else {
+        chatAddMsg('💡 ¿Hacemos un **diagnóstico guiado**? Te hago unas preguntas y generamos un informe técnico.', 'bot', [
+          { text:'🔍 Sí, empezar diagnóstico', next:'menu_diagnostico' },
+          { text:'💬 Prefiero hablar con alguien', action:'whatsapp_urgente' }
+        ]);
+      }
+    }, 700);
+  }
+
+  // ── Procesar flows ────────────────────────────────────────
+  function chatProcessFlow(flowKey) {
+    var flowMap = {
+      'iniciar_diag_pc':       'pc_diagnostico',
+      'iniciar_diag_redes':    'redes_diagnostico',
+      'iniciar_diag_camaras':  'camaras_diagnostico',
+      'iniciar_diag_alarmas':  'alarmas_diagnostico',
+      'iniciar_diag_domotica': 'domotica_diagnostico',
+      'iniciar_diag_ciber':    'ciber_diagnostico',
+      'iniciar_diag_ups':      'ups_diagnostico'
+    };
+
+    if (flowMap[flowKey]) { chatStartFlow(flowMap[flowKey]); return; }
+
+    // Respuesta a paso del flow activo
+    if (chatState.diagState.active && flowKey.indexOf('__diag__') === 0) {
+      var parts   = flowKey.split('__');
+      var stepIdx = parseInt(parts[2]);
+      var answer  = parts.slice(3).join('__');
+      var flow    = chatbotFlows[chatState.diagState.flow];
+      if (flow && stepIdx === chatState.diagState.step) {
+        chatState.diagState.answers[flow.steps[stepIdx].key] = answer;
+        chatState.diagState.step++;
+        chatShowTyping();
+        setTimeout(chatAskStep, 500);
+      }
+      return;
     }
 
-    // ── Escapar HTML para evitar XSS ─────────────────────────
-    function escapeHtml(str) {
-      return String(str || '')
-        .replace(/&/g,'&amp;')
-        .replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;')
-        .replace(/"/g,'&quot;');
+    if (flowKey === 'menu_diagnostico') {
+      chatShowTyping();
+      setTimeout(function() {
+        chatAddMsg('🔍 **¿Con qué área necesitás ayuda?**\n\nElegí la categoría:', 'bot', [
+          { text:'💻 PC / Laptop / Software',        next:'iniciar_diag_pc' },
+          { text:'📡 Internet / Redes / WiFi',       next:'iniciar_diag_redes' },
+          { text:'📷 Cámaras de Seguridad (CCTV)',   next:'iniciar_diag_camaras' },
+          { text:'🚨 Alarmas / Control de Acceso',   next:'iniciar_diag_alarmas' },
+          { text:'🏠 Domótica / Automatización',     next:'iniciar_diag_domotica' },
+          { text:'🛡️ Ciberseguridad',               next:'iniciar_diag_ciber' },
+          { text:'🔋 UPS / Protección de Energía',  next:'iniciar_diag_ups' }
+        ]);
+      }, 500);
+      return;
     }
+
+    if (flowKey === 'consulta_general') {
+      chatShowTyping();
+      setTimeout(function() {
+        chatAddMsg('💬 **¿En qué puedo ayudarte?**', 'bot', [
+          { text:'⏰ Horarios de atención', action:'info_horarios' },
+          { text:'💰 Precios y garantías',  action:'info_precios' },
+          { text:'📍 Zona de cobertura',    action:'info_zona' }
+        ]);
+      }, 500);
+      return;
+    }
+  }
+
+  // ── Iniciar un flow de diagnóstico ────────────────────────
+  function chatStartFlow(flowKey) {
+    var flow = chatbotFlows[flowKey];
+    if (!flow) return;
+    chatState.diagState = { active:true, flow:flowKey, step:0, answers:{}, tempResult:null, waitingForName:false, waitingForEmail:false, diagNum:null };
+    chatShowTyping();
+    setTimeout(function() {
+      chatAddMsg(flow.intro, 'bot');
+      setTimeout(chatAskStep, 400);
+    }, 500);
+  }
+
+  function chatAskStep() {
+    var flow = chatbotFlows[chatState.diagState.flow];
+    if (!flow) return;
+    if (chatState.diagState.step >= flow.steps.length) { chatFinishDiag(); return; }
+    var step = flow.steps[chatState.diagState.step];
+    var opts = step.options.map(function(opt) {
+      return { text: opt, next: '__diag__' + chatState.diagState.step + '__' + opt };
+    });
+    chatShowTyping();
+    setTimeout(function() { chatAddMsg(step.question, 'bot', opts); }, 400);
+  }
+
+  function chatFinishDiag() {
+    var flow = chatbotFlows[chatState.diagState.flow];
+    chatState.diagState.active = false;
+    Promise.resolve(flow.diagnose(chatState.diagState.answers)).then(function(result) {
+      chatState.diagState.tempResult = result;
+      var niveles = { critica:'🔴 Riesgo crítico', alta:'🟠 Riesgo elevado', media:'🟡 A tener en cuenta', baja:'🟢 Situación estable' };
+      chatShowTyping();
+      setTimeout(function() {
+        chatAddMsg(
+          '📋 **Evaluación preliminar completada.**\n\n'
+          + (niveles[result.severidad] || '🟡 A tener en cuenta')
+          + '\n\n⚠️ **Nota técnica:** ' + result.riskWarning
+          + '\n\n¿A nombre de quién querés que figure el informe?',
+          'bot'
+        );
+        chatState.diagState.waitingForName = true;
+      }, 800);
+    });
+  }
+
+  // ── Procesar y enviar diagnóstico (async, igual que chatbot.js) ──
+  async function chatProcesarYEnviar() {
+    var result = chatState.diagState.tempResult;
+    var nombre = chatState.diagState.answers.nombre || 'Cliente';
+    var email  = chatState.diagState.answers.email  || '';
+
+    chatShowTyping();
+
+    var payload = {
+      fecha: new Date().toLocaleString('es-AR'), nombre, email,
+      servicio: result.servicio, sintoma: result.sintomaLabel,
+      equipo: result.equipoLabel, duracion: result.duracionLabel,
+      resumen: result.resumen, riskWarning: result.riskWarning,
+      severidad: result.severidad, pasos: result.pasos.join(' | '),
+      logoUrl: 'https://www.soportecyclops.com.ar/public/images/logo-icon.png',
+      sitio: 'www.soportecyclops.com.ar'
+    };
+
+    var diagNum = await chatEnviarYObtenerNum(payload);
+    payload.diagNum = diagNum;
+    chatState.diagState.diagNum = diagNum;
+
+    var report = '✅ **' + result.icono + ' ' + result.titulo + '**\n\n'
+      + '📌 **Nº de Diagnóstico: ' + diagNum + '**\n\n'
+      + result.resumen + '\n\n**Evaluación técnica:**\n';
+    result.pasos.forEach(function(p, i) { report += (i+1) + '. ' + p + '\n'; });
+
+    var waMsg = encodeURIComponent(
+      'Hola! Completé el diagnóstico online.\nNúmero: *' + diagNum + '*\n'
+      + 'Nombre: ' + nombre + '\nServicio: ' + result.servicio
+      + '\nProblema: ' + result.sintomaLabel + '\n¿Me pueden contactar?'
+    );
+
+    setTimeout(function() {
+      chatAddMsg(report, 'bot', [
+        { text:'💬 Enviar diagnóstico al técnico', action:'__whatsapp_diag__' + waMsg },
+        { text:'🔍 Hacer otro diagnóstico',        next:'menu_diagnostico' },
+        { text:'✖ Cerrar',                         action:'cerrar_chatbot' }
+      ]);
+      // Recargar diagnósticos del portal en segundo plano
+      if (usuarioActual && usuarioActual.email) {
+        setTimeout(function() { cargarDiagnosticos(usuarioActual.email); }, 2000);
+      }
+    }, 600);
+  }
+
+  async function chatEnviarYObtenerNum(payload) {
+    function fallback() {
+      var h = new Date(); var dd = String(h.getDate()).padStart(2,'0'); var mm = String(h.getMonth()+1).padStart(2,'0'); var aa = String(h.getFullYear()).slice(-2);
+      return 'DIAG-' + dd + mm + aa + '-' + String(Math.floor(Math.random()*8999)+1000);
+    }
+    if (!CYCLOPS.appsScriptUrl || CYCLOPS.appsScriptUrl.includes('TU_ID')) return fallback();
+    try {
+      var fd = new FormData();
+      fd.append('payload', JSON.stringify(payload));
+      var res  = await fetch(CYCLOPS.appsScriptUrl, { method:'POST', body:fd });
+      if (!res.ok) return fallback();
+      var data = await res.json();
+      return (data && data.ok && data.diagNum) ? data.diagNum : fallback();
+    } catch(e) { return fallback(); }
+  }
+
+  // ── Manejar acciones ──────────────────────────────────────
+  function chatHandleAction(action) {
+    if (action.startsWith('__whatsapp_diag__')) {
+      window.open('https://wa.me/' + CYCLOPS.whatsapp + '?text=' + action.replace('__whatsapp_diag__',''), '_blank');
+      chatAddMsg('💬 Abriendo WhatsApp con tu diagnóstico...\n\nNuestro técnico lo va a revisar antes de contactarte.', 'bot');
+      return;
+    }
+    if (action === 'cerrar_chatbot') { cerrarChatbot(); return; }
+    switch(action) {
+      case 'llamar_ahora':
+        window.open('tel:' + CYCLOPS.telefono.replace(/\s/g,''));
+        chatAddMsg('📞 Conectándote al ' + CYCLOPS.telefono, 'bot');
+        break;
+      case 'whatsapp_urgente':
+        window.open('https://wa.me/' + CYCLOPS.whatsapp + '?text=' + encodeURIComponent('¡Hola! Necesito ayuda técnica urgente.'), '_blank');
+        chatAddMsg('💬 Abriendo WhatsApp...', 'bot');
+        break;
+      case 'consulta_general': chatProcessFlow('consulta_general'); break;
+      case 'info_horarios': chatAddMsg('⏰ Lun–Vie: 9:00–18:00 hs\nSáb: 9:00–13:00 hs\nDom: Cerrado', 'bot'); break;
+      case 'info_precios':  chatAddMsg('💰 Consulta remota inicial **sin cargo**. Presupuesto antes de empezar, siempre.', 'bot'); break;
+      case 'info_zona':     chatAddMsg('📍 CABA y Gran Buenos Aires (Norte, Sur y Oeste).', 'bot'); break;
+      default: chatAddMsg('💡 Contactanos al ' + CYCLOPS.telefono, 'bot', [{ text:'💬 WhatsApp', action:'whatsapp_urgente' }]);
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
+  // FLOWS DE DIAGNÓSTICO
+  // Exactamente los mismos de chatbot.js — se mantienen
+  // sincronizados. Si modificás uno, modificá el otro.
+  // ════════════════════════════════════════════════════════
+  var riskW = {
+    '⚡ No enciende o no arranca':'Seguir forzando el encendido puede agravar el daño y aumentar el costo de reparación.',
+    '🔥 Se sobrecalienta o apaga solo':'El calor excesivo deteriora los componentes internos de forma progresiva.',
+    '🐌 Va muy lento o se traba':'La lentitud sostenida puede indicar un disco con sectores dañados.',
+    '💥 Pantalla negra o sin imagen':'Apagar y encender repetidamente sin diagnóstico puede dañar permanentemente los conectores internos.',
+    '🦠 Sospecho de virus o malware':'Ciertos tipos de malware pueden cifrar archivos de forma irreversible si no se detienen a tiempo.',
+    '💾 Perdí archivos o datos importantes':'No usar el equipo hasta la revisión para maximizar las chances de recuperación.',
+    '🔊 Hace ruidos extraños (clicks o raspados)':'Hacer backup inmediato antes de que el disco falle completamente.',
+    '🚫 Sin internet en absoluto':'Cada hora sin red tiene un costo operativo real.',
+    '🦠 Virus / ransomware activo':'ACCIÓN INMEDIATA: Desconectá el equipo de la red YA.',
+    '⚡ Picos de tensión / cortes frecuentes':'Los picos al restaurarse la energía son la principal causa de fuentes quemadas.'
+  };
+
+  var chatbotFlows = {
+    'pc_diagnostico': {
+      intro: '🔍 **Diagnóstico de equipo informático**\n\nTe voy a hacer 5 preguntas para evaluar tu situación.',
+      steps: [
+        { key:'tipo_equipo',          question:'¿Qué tipo de equipo tiene el problema?',   options:['💻 Laptop / Notebook','🖥️ PC de escritorio','🖨️ Impresora / Periférico','📱 Tablet / Dispositivo móvil'] },
+        { key:'sintoma',              question:'¿Cuál es el síntoma principal?',             options:['⚡ No enciende o no arranca','🔥 Se sobrecalienta o apaga solo','🐌 Va muy lento o se traba','💥 Pantalla negra o sin imagen','🦠 Sospecho de virus o malware','💾 Perdí archivos o datos importantes','🔊 Hace ruidos extraños (clicks o raspados)'] },
+        { key:'duracion',             question:'¿Desde cuándo tiene este problema?',        options:['Hoy mismo (es nuevo)','Desde esta semana','Hace más de un mes','Es intermitente, va y viene'] },
+        { key:'ultimo_mantenimiento', question:'¿Cuándo fue el último mantenimiento?',      options:['Nunca o no recuerdo','Hace más de 2 años','Hace 1-2 años','Hace menos de 1 año'] },
+        { key:'tiene_backup',         question:'¿Tenés backup actualizado de tus archivos?',options:['✅ Sí, tengo backup reciente','⚠️ Tengo algo pero desactualizado','❌ No tengo backup','🤷 No sé qué es un backup'] }
+      ],
+      diagnose: function(a) {
+        var sinBackup = ['❌ No tengo backup','🤷 No sé qué es un backup'].includes(a.tiene_backup);
+        var sinMant   = ['Nunca o no recuerdo','Hace más de 2 años'].includes(a.ultimo_mantenimiento);
+        var critico   = a.sintoma === '💾 Perdí archivos o datos importantes';
+        var urgente   = critico || ['⚡ No enciende o no arranca','💥 Pantalla negra o sin imagen','🔊 Hace ruidos extraños (clicks o raspados)'].includes(a.sintoma);
+        var sev       = critico ? 'critica' : urgente ? 'alta' : 'media';
+        var extra     = [];
+        if (sinBackup) extra.push('🔴 **Sin backup detectado** — Como parte del servicio configuramos backup automático.');
+        if (sinMant)   extra.push('🧹 **Mantenimiento pendiente** — Incluimos limpieza de polvo y revisión de pasta térmica.');
+        return { titulo:'Diagnóstico de PC / Equipo Informático', icono:'💻', severidad:sev,
+          equipoLabel:(a.tipo_equipo||'').replace(/[💻🖥️🖨️📱]/gu,'').trim(),
+          sintomaLabel:(a.sintoma||'').replace(/[⚡🔥🐌💥🦠💾🔊]/gu,'').trim(),
+          duracionLabel:a.duracion||'',
+          riskWarning: riskW[a.sintoma] || 'Se recomienda revisión técnica para descartar fallas secundarias.',
+          resumen:'Equipo: '+(a.tipo_equipo||'').replace(/[💻🖥️🖨️📱]/gu,'').trim()+'. Síntoma: '+(a.sintoma||'').replace(/[⚡🔥🐌💥🦠💾🔊]/gu,'').trim()+'. Tiempo: '+(a.duracion||'No especificado')+'.',
+          pasos:[ critico ? '🚨 **Situación crítica** — No usar el equipo hasta la revisión.' : urgente ? '⚠️ **Atención prioritaria** — El problema puede agravarse.' : '✅ El problema tiene solución y puede programarse.',
+            '🔍 Diagnóstico técnico completo antes de cualquier presupuesto, **sin cargo**.',
+            '🏠 Servicio a domicilio disponible en CABA y GBA.',
+            '⏱️ Tiempo estimado de resolución: 2 a 6 horas.', ...extra ],
+          servicio:'Soporte Informático' };
+      }
+    },
+    'redes_diagnostico': {
+      intro:'📡 **Diagnóstico de redes y conectividad**\n\nUnas preguntas para entender tu situación.',
+      steps:[
+        { key:'problema_red',     question:'¿Cuál es el problema principal?',    options:['🚫 Sin internet en absoluto','🐌 Conexión lenta o inestable','📶 WiFi con mala cobertura','🔗 No conecta a la red interna','🔒 Necesito configurar una red segura nueva'] },
+        { key:'tipo_instalacion', question:'¿Qué tipo de instalación es?',       options:['🏠 Hogar / Departamento','🏢 Oficina pequeña (hasta 10 equipos)','🏗️ Empresa o local (más de 10 equipos)','📦 Local comercial'] },
+        { key:'equipos_afectados',question:'¿Cuántos equipos están afectados?',  options:['Solo 1 dispositivo','Entre 2 y 5 dispositivos','Toda la red / todos los dispositivos','No lo sé aún'] }
+      ],
+      diagnose: function(a) {
+        var emp  = ['🏗️ Empresa o local (más de 10 equipos)','🏢 Oficina pequeña (hasta 10 equipos)'].includes(a.tipo_instalacion);
+        var wifi = a.problema_red && a.problema_red.includes('WiFi');
+        return { titulo:'Diagnóstico de Red / Conectividad', icono:'📡', severidad: a.equipos_afectados === 'Toda la red / todos los dispositivos' ? 'alta' : 'media',
+          equipoLabel:(a.tipo_instalacion||'').replace(/[🏠🏢🏗️📦]/gu,'').trim(),
+          sintomaLabel:(a.problema_red||'').replace(/[🚫🐌📶🔗🔒]/gu,'').trim(),
+          duracionLabel:a.equipos_afectados||'',
+          riskWarning: riskW[a.problema_red] || 'Una red con problemas intermitentes puede afectar la productividad y la seguridad.',
+          resumen:'Tipo: '+(a.tipo_instalacion||'').replace(/[🏠🏢🏗️📦]/gu,'').trim()+'. Problema: '+(a.problema_red||'').replace(/[🚫🐌📶🔗🔒]/gu,'').trim()+'. Afectados: '+(a.equipos_afectados||'No especificado')+'.',
+          pasos:[ emp ? '🏢 **Caso empresarial** — Enviamos técnico con equipamiento profesional.' : '🔧 Diagnóstico remoto inicial disponible.',
+            wifi ? '📶 Trabajamos con MikroTik y Ubiquiti.' : '📊 Revisamos router, modem, switches y puntos de acceso.',
+            '📋 Entregamos informe de infraestructura al finalizar.', '⚡ Resolución en el día para la mayoría de los casos.' ],
+          servicio:'Redes Cableadas e Inalámbricas' };
+      }
+    },
+    'camaras_diagnostico': {
+      intro:'📷 **Diagnóstico de sistemas CCTV**\n\nContame un poco más para la mejor recomendación.',
+      steps:[
+        { key:'necesidad_camara', question:'¿Qué necesitás exactamente?',    options:['📦 Instalación nueva desde cero','🔧 Reparación o mantenimiento de sistema existente','⬆️ Ampliar el sistema actual','💻 Configurar acceso remoto o app'] },
+        { key:'tipo_lugar',       question:'¿Dónde se instalaría?',           options:['🏠 Casa / Departamento','🏢 Oficina / Consultorio','🏪 Local comercial / Negocio','🏭 Depósito / Nave industrial'] },
+        { key:'cantidad_camaras', question:'¿Cuántas cámaras necesitarías?', options:['1-2 cámaras (vigilancia básica)','3-5 cámaras (cobertura media)','6-10 cámaras (cobertura completa)','Más de 10 cámaras (sistema empresarial)'] }
+      ],
+      diagnose: function(a) {
+        var emp = ['🏭 Depósito / Nave industrial','Más de 10 cámaras (sistema empresarial)'].some(function(o){ return [a.tipo_lugar,a.cantidad_camaras].includes(o); });
+        return { titulo:'Diagnóstico de Sistema CCTV', icono:'📷', severidad: emp ? 'alta' : 'media',
+          equipoLabel:(a.tipo_lugar||'').replace(/[🏠🏢🏪🏭]/gu,'').trim(),
+          sintomaLabel:(a.necesidad_camara||'').replace(/[📦🔧⬆️💻]/gu,'').trim(),
+          duracionLabel:a.cantidad_camaras||'',
+          riskWarning:'Un sistema sin mantenimiento puede tener puntos ciegos en el momento en que más importan.',
+          resumen:'Servicio: '+(a.necesidad_camara||'').replace(/[📦🔧⬆️💻]/gu,'').trim()+'. Lugar: '+(a.tipo_lugar||'').replace(/[🏠🏢🏪🏭]/gu,'').trim()+'. Cantidad: '+(a.cantidad_camaras||'No especificado')+'.',
+          pasos:[ a.necesidad_camara === '📦 Instalación nueva desde cero' ? '📐 **Relevamiento técnico gratuito** para diseñar el sistema óptimo.' : '🔍 Revisamos el sistema existente.',
+            emp ? '🏢 Cámaras IP HD/4K, NVR, almacenamiento local o cloud.' : '🎥 Cámaras HD con visión nocturna y detección de movimiento.',
+            '📱 Configuramos app móvil para ver tus cámaras desde cualquier lugar.',
+            '⚙️ Instalación con cableado prolijo y garantía de 90 días.' ],
+          servicio:'Instalación CCTV' };
+      }
+    },
+    'alarmas_diagnostico': {
+      intro:'🚨 **Diagnóstico de sistemas de alarma**\n\n¿Qué tipo de solución estás buscando?',
+      steps:[
+        { key:'tipo_alarma',      question:'¿Qué sistema te interesa?',                        options:['🔔 Alarma domiciliaria con sensores','⚡ Cerco eléctrico perimetral','🚨 Alarma monitoreada 24/7','🔐 Control de acceso (tarjeta / huella)','🔧 Reparación o mantenimiento de alarma existente'] },
+        { key:'ubicacion_alarma', question:'¿Dónde se instalaría?',                             options:['🏠 Casa / Departamento','🏢 Oficina / Local comercial','🏭 Depósito / Galpón','🏗️ Obra en construcción'] },
+        { key:'zonas_proteger',   question:'¿Cuántas zonas/ambientes necesitás proteger?',      options:['1-3 ambientes (básico)','4-6 ambientes (intermedio)','7-10 ambientes (completo)','Perímetro externo completo'] }
+      ],
+      diagnose: function(a) {
+        var cerco = a.tipo_alarma && a.tipo_alarma.includes('Cerco');
+        var mon   = a.tipo_alarma && a.tipo_alarma.includes('monitoreada');
+        var acc   = a.tipo_alarma && a.tipo_alarma.includes('acceso');
+        return { titulo:'Diagnóstico de Sistema de Alarma', icono:'🚨', severidad:(cerco||mon)?'alta':'media',
+          equipoLabel:(a.ubicacion_alarma||'').replace(/[🏠🏢🏭🏗️]/gu,'').trim(),
+          sintomaLabel:(a.tipo_alarma||'').replace(/[🔔⚡🚨🔐🔧]/gu,'').trim(),
+          duracionLabel:a.zonas_proteger||'',
+          riskWarning:'Una alarma mal configurada puede activarse en falso o no responder ante un evento real.',
+          resumen:'Sistema: '+(a.tipo_alarma||'').replace(/[🔔⚡🚨🔐🔧]/gu,'').trim()+'. Lugar: '+(a.ubicacion_alarma||'').replace(/[🏠🏢🏭🏗️]/gu,'').trim()+'. Zonas: '+(a.zonas_proteger||'No especificado')+'.',
+          pasos:[ cerco ? '⚡ **Cerco eléctrico** — Impulsos no letales, certificación de seguridad.' : acc ? '🔐 **Control de acceso** — Tarjeta, huella o PIN con log de ingresos.' : '🔔 Alarma con sensores de movimiento, magnéticos y botón de pánico.',
+            mon ? '👮 Conexión con central de monitoreo 24/7.' : '📱 App móvil con notificaciones push ante cualquier evento.',
+            '🔊 Sirena exterior de alta potencia (120dB).',
+            '🔐 Instalación profesional con garantía y soporte posterior.' ],
+          servicio:'Sistemas de Alarmas y Control de Acceso' };
+      }
+    },
+    'domotica_diagnostico': {
+      intro:'🏠 **Diagnóstico de domótica y automatización**\n\nContame qué querés automatizar.',
+      steps:[
+        { key:'sistema_domotica', question:'¿Qué querés automatizar?',              options:['💡 Iluminación inteligente','🌡️ Climatización / Aire acondicionado','🔌 Enchufes y electrodomésticos','🎬 Sistema completo (todo integrado)'] },
+        { key:'control_deseado',  question:'¿Cómo te gustaría controlarlo?',        options:['📱 App desde el celular','🗣️ Comandos de voz (Alexa/Google)','⏰ Automatización por horarios','🏠 Todo lo anterior (control total)'] },
+        { key:'tipo_lugar_dom',   question:'¿Dónde se instalaría?',                 options:['🏠 Casa / Departamento','🏢 Oficina / Local','🏗️ Construcción nueva','🏘️ Propiedad con infraestructura existente'] }
+      ],
+      diagnose: function(a) {
+        var completo = a.sistema_domotica && a.sistema_domotica.includes('completo');
+        var voz      = a.control_deseado  && a.control_deseado.includes('voz');
+        return { titulo:'Diagnóstico de Sistema Domótico', icono:'🏠', severidad:completo?'alta':'media',
+          equipoLabel:(a.tipo_lugar_dom||'').replace(/[🏠🏢🏗️🏘️]/gu,'').trim(),
+          sintomaLabel:(a.sistema_domotica||'').replace(/[💡🌡️🔌🎬]/gu,'').trim(),
+          duracionLabel:(a.control_deseado||'').replace(/[📱🗣️⏰🏠]/gu,'').trim(),
+          riskWarning:'Una instalación domótica sin configuración de seguridad puede dejar dispositivos IoT expuestos en la red.',
+          resumen:'Automatización: '+(a.sistema_domotica||'').replace(/[💡🌡️🔌🎬]/gu,'').trim()+'. Control: '+(a.control_deseado||'').replace(/[📱🗣️⏰🏠]/gu,'').trim()+'. Lugar: '+(a.tipo_lugar_dom||'No especificado')+'.',
+          pasos:[ completo ? '🏠 **Sistema integral** — Controlá luces, climatización, cortinas y seguridad desde una sola app.' : '💡 Automatización modular que podés ampliar con el tiempo.',
+            voz ? '🗣️ Integración con Alexa o Google Assistant.' : '📱 App móvil con control remoto desde cualquier lugar.',
+            '⚡ Instalación sin romper paredes en la mayoría de los casos.',
+            '🎓 Capacitación completa incluida para que uses el sistema desde el primer día.' ],
+          servicio:'Automatización Domótica' };
+      }
+    },
+    'ciber_diagnostico': {
+      intro:'🛡️ **Diagnóstico de ciberseguridad**\n\nUnas preguntas para evaluar tu situación actual.',
+      steps:[
+        { key:'problema_ciber',  question:'¿Cuál es la situación?',                             options:['🦠 Virus / ransomware activo','🔓 Creo que me hackearon','🔒 Quiero proteger la red antes de que pase algo','📋 Necesito auditoría de seguridad para la empresa','🔐 Configurar VPN / acceso remoto seguro'] },
+        { key:'alcance_ciber',   question:'¿Cuántos equipos están involucrados?',               options:['Solo 1 equipo / uso personal','2-10 equipos (pyme pequeña)','11-50 equipos (pyme mediana)','Más de 50 equipos (empresa grande)'] },
+        { key:'tiene_antivirus', question:'¿Tenés antivirus o solución de seguridad activa?',   options:['✅ Antivirus corporativo pago (ESET, Bitdefender, etc.)','⚠️ Solo Windows Defender / gratuito','❌ No tengo nada instalado','🤷 No estoy seguro'] },
+        { key:'backup_ciber',    question:'¿Tenés backup reciente de los datos críticos?',      options:['✅ Sí, backup automático al día','⚠️ Backup manual pero desactualizado','❌ No tengo backup','☁️ Solo en la nube (OneDrive / Google Drive)'] }
+      ],
+      diagnose: function(a) {
+        var activo  = a.problema_ciber && a.problema_ciber.includes('activo');
+        var hack    = a.problema_ciber && a.problema_ciber.includes('hackearon');
+        var sinAV   = ['❌ No tengo nada instalado','🤷 No estoy seguro'].includes(a.tiene_antivirus);
+        var sinBkp  = a.backup_ciber === '❌ No tengo backup';
+        var emp     = a.alcance_ciber !== 'Solo 1 equipo / uso personal';
+        var sev     = (activo||hack) ? 'critica' : (sinAV&&sinBkp) ? 'alta' : emp ? 'media' : 'baja';
+        var alertas = [];
+        if (sinBkp) alertas.push('🔴 **Sin backup** — En caso de ransomware, la recuperación puede ser imposible.');
+        if (sinAV)  alertas.push('🟠 **Sin protección activa** — Los equipos sin antivirus son el vector más común para malware.');
+        return { titulo:'Diagnóstico de Ciberseguridad', icono:'🛡️', severidad:sev,
+          equipoLabel:a.alcance_ciber||'',
+          sintomaLabel:(a.problema_ciber||'').replace(/[🦠🔓🔒📋🔐]/gu,'').trim(),
+          duracionLabel:a.tiene_antivirus||'',
+          riskWarning: riskW[a.problema_ciber] || (sinAV ? 'Equipos sin protección activa son el vector más común para malware en pymes.' : 'La seguridad preventiva cuesta entre 10 y 100 veces menos que la respuesta a un incidente.'),
+          resumen:'Situación: '+(a.problema_ciber||'').replace(/[🦠🔓🔒📋🔐]/gu,'').trim()+'. Alcance: '+(a.alcance_ciber||'No especificado')+'.',
+          pasos:[ activo ? '🚨 **Ransomware activo:** Desconectá de la red YA. No apagues el equipo todavía.' : hack ? '⚠️ **Posible intrusión** — Cambiá contraseñas desde un dispositivo limpio.' : '🔒 Instalamos y configuramos ESET Endpoint según el tamaño de la red.',
+            emp ? '🏢 Firewall perimetral, VLAN segmentada, VPN para acceso remoto.' : '🔐 Configuración segura de red WiFi, router y backup automático.',
+            ...alertas,
+            '📋 Entregamos informe de vulnerabilidades con priorización.' ],
+          servicio:'Ciberseguridad' };
+      }
+    },
+    'ups_diagnostico': {
+      intro:'🔋 **Diagnóstico de UPS y protección de energía**\n\nUnas preguntas para recomendarte el equipo correcto.',
+      steps:[
+        { key:'motivo_ups',         question:'¿Por qué necesitás un UPS?',                   options:['⚡ Picos de tensión / cortes frecuentes','💾 Quiero proteger equipos o datos ante cortes','🔇 El UPS actual ya no sostiene la carga','🆕 Instalación nueva, quiero hacerlo bien'] },
+        { key:'equipos_a_proteger', question:'¿Qué equipos querés proteger?',                options:['🖥️ 1 PC + monitor (puesto individual)','🖥️🖥️ 2-5 PCs + red (oficina pequeña)','🗄️ Servidor o NAS (equipos críticos)','🔀 Router / switch / telecomunicaciones solamente'] },
+        { key:'autonomia_deseada',  question:'¿Cuánta autonomía necesitás ante un corte?',  options:['⏱️ Solo para guardar y apagar bien (5-10 min)','🕐 Hasta 30 minutos','🕒 Más de 1 hora (operación continua)','🤷 No sé, necesito asesoramiento'] }
+      ],
+      diagnose: function(a) {
+        var crit  = a.equipos_a_proteger && a.equipos_a_proteger.includes('Servidor');
+        var largo = a.autonomia_deseada  && a.autonomia_deseada.includes('1 hora');
+        var picos = a.motivo_ups         && a.motivo_ups.includes('Picos');
+        var tipo  = (crit||largo) ? 'Online / Doble Conversión' : 'Line Interactive';
+        var va    = crit ? '1500VA' : (a.equipos_a_proteger && a.equipos_a_proteger.includes('2-5 PCs')) ? '1000VA' : '650VA';
+        return { titulo:'Diagnóstico de UPS / Protección de Energía', icono:'🔋', severidad:(crit||picos)?'alta':'media',
+          equipoLabel:(a.equipos_a_proteger||'').replace(/[🖥️🗄️🔀]/gu,'').trim(),
+          sintomaLabel:(a.motivo_ups||'').replace(/[⚡💾🔇🆕]/gu,'').trim(),
+          duracionLabel:a.autonomia_deseada||'',
+          riskWarning: riskW[a.motivo_ups] || 'Los picos al restaurarse la energía son la principal causa de fuentes quemadas.',
+          resumen:'Motivo: '+(a.motivo_ups||'').replace(/[⚡💾🔇🆕]/gu,'').trim()+'. Equipos: '+(a.equipos_a_proteger||'No especificado')+'.',
+          pasos:[ '🔋 **UPS recomendado:** '+tipo+' — capacidad mínima sugerida: '+va+'.',
+            crit ? '🗄️ Para servidores recomendamos UPS Online con tiempo de conmutación cero.' : picos ? '⚡ El Line Interactive incluye regulador de tensión (AVR).' : '✅ Un UPS Line Interactive cubre el 90% de los casos.',
+            '📊 Incluimos configuración del software de apagado automático.',
+            '🔧 Instalamos, configuramos y probamos el UPS.' ],
+          servicio:'UPS y Protección de Energía' };
+      }
+    }
+  };
   </script>
 
 </body>
