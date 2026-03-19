@@ -35,7 +35,7 @@ const CYCLOPS_CONFIG = {
     email:         "contacto@soportecyclops.com.ar",
     sitio:         "www.soportecyclops.com.ar",
     logoUrl:       "https://www.soportecyclops.com.ar/public/images/logo-icon.png",
-    appsScriptUrl: "https://script.google.com/macros/s/AKfycbzp5SO_CFf7iLJl7xfOTDV58Pf-Y2GJ8ZSITkPN-h3__dnmwpfOW32SSS1B9_FHLvM7/exec"
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbwTWIw7r8HoVqz5c2jloC0r1af7JdTC518coiKnKd-VP_O6kGdETnj1Xi6z8PSOueJgAg/exec"
 };
 
 // ── PRECIOS DOMÓTICA EN USD ──────────────────────────────────────────────────
@@ -588,8 +588,10 @@ function initChatbot() {
             sitio:       CYCLOPS_CONFIG.sitio
         };
 
-        // Enviar a Apps Script y obtener el número confirmado
-        var diagNum = await enviarYObtenerDiagNum(payload);
+        // Enviar a Apps Script → recibir { diagNum, pdfUrl }
+        var servidor      = await enviarYObtenerDiagNum(payload);
+        var diagNum       = servidor.diagNum;
+        var pdfUrlServidor = servidor.pdfUrl || "";
 
         // Asignar número confirmado a todos los registros
         payload.diagNum   = diagNum;
@@ -598,6 +600,9 @@ function initChatbot() {
         // Guardar localmente con el número real
         guardarLocalDiag(payload);
 
+        // Guardar pdfUrl del servidor para que mostrarResultadoFinal lo use
+        diagState.pdfUrlServidor = pdfUrlServidor;
+
         // Mostrar al usuario
         mostrarResultadoFinal(diagNum, nombre, result);
     }
@@ -605,16 +610,16 @@ function initChatbot() {
     // ── ENVIAR A APPS SCRIPT Y OBTENER diagNum ────────────────────────────────
     // Si el servidor responde correctamente, usa el número secuencial.
     // Si falla (red, timeout, config), usa fallbackLocal() con mismo formato.
+    // Ahora retorna { diagNum, pdfUrl } — pdfUrl es la URL de Drive si el servidor la generó
     async function enviarYObtenerDiagNum(payload) {
-        // Fallback: mismo formato DIAG-DDMMAA-NNNN pero con 4 dígitos aleatorios
         function fallbackLocal() {
             var hoy  = new Date();
             var dd   = String(hoy.getDate()).padStart(2, "0");
             var mm   = String(hoy.getMonth() + 1).padStart(2, "0");
             var aa   = String(hoy.getFullYear()).slice(-2);
-            var rand = String(Math.floor(Math.random() * 8999) + 1000); // 1000-9999
-            console.warn("⚠️ Usando diagNum de fallback local:", "DIAG-" + dd + mm + aa + "-" + rand);
-            return "DIAG-" + dd + mm + aa + "-" + rand;
+            var rand = String(Math.floor(Math.random() * 8999) + 1000);
+            console.warn("⚠️ Usando diagNum de fallback local");
+            return { diagNum: "DIAG-" + dd + mm + aa + "-" + rand, pdfUrl: "" };
         }
 
         if (!CYCLOPS_CONFIG.appsScriptUrl || CYCLOPS_CONFIG.appsScriptUrl.includes("TU_ID")) {
@@ -626,8 +631,6 @@ function initChatbot() {
             var fd = new FormData();
             fd.append('payload', JSON.stringify(payload));
 
-            // Sin mode:"no-cors" para poder leer la respuesta JSON.
-            // Requiere que el script esté publicado con acceso "Cualquier persona".
             var response = await fetch(CYCLOPS_CONFIG.appsScriptUrl, {
                 method: "POST",
                 body:   fd
@@ -641,15 +644,15 @@ function initChatbot() {
             var data = await response.json();
 
             if (data && data.ok && data.diagNum) {
-                console.log("✅ diagNum recibido del servidor:", data.diagNum);
-                return data.diagNum;
+                console.log("✅ diagNum:", data.diagNum, "| pdfUrl:", data.pdfUrl || "(sin PDF)");
+                return { diagNum: data.diagNum, pdfUrl: data.pdfUrl || "" };
             } else {
-                console.warn("⚠️ Apps Script respondió pero sin diagNum:", data);
+                console.warn("⚠️ Apps Script sin diagNum:", data);
                 return fallbackLocal();
             }
 
         } catch (err) {
-            console.warn("⚠️ Error al contactar Apps Script — usando fallback:", err.message);
+            console.warn("⚠️ Error al contactar Apps Script:", err.message);
             return fallbackLocal();
         }
     }
@@ -658,8 +661,34 @@ function initChatbot() {
         var report = "✅ **" + result.icono + " " + result.titulo + "**\n\n📌 **Nº de Diagnóstico: " + diagNum + "**\n\n" + result.resumen + "\n\n**Evaluación técnica:**\n";
         result.pasos.forEach(function(paso, i){ report += (i+1) + ". " + paso + "\n"; });
         var waMsg = encodeURIComponent("Hola! Completé el diagnóstico online.\nNúmero: *" + diagNum + "*\nNombre: " + nombre + "\nServicio: " + result.servicio + "\nProblema: " + result.sintomaLabel + "\n¿Me pueden contactar?");
+        // Guardar datos del diagnóstico para PDF local (fallback)
+        var pdfUrlServidor = diagState.pdfUrlServidor || "";
+        window.__lastDiagData = {
+            diagNum:      diagNum,
+            nombre:       nombre,
+            fecha:        new Date().toLocaleString('es-AR'),
+            titulo:       result.titulo,
+            icono:        result.icono,
+            servicio:     result.servicio,
+            sintoma:      result.sintomaLabel,
+            equipo:       result.equipoLabel,
+            severidad:    result.severidad,
+            resumen:      result.resumen,
+            riskWarning:  result.riskWarning,
+            pasos:        result.pasos,
+            pdfUrl:       pdfUrlServidor
+        };
+        // Si el servidor generó el PDF → botón de descarga directa desde Drive
+        // Si no → botón que genera PDF local con jsPDF
+        var pdfAction = pdfUrlServidor
+            ? "__pdf_drive__" + pdfUrlServidor
+            : "descargar_pdf_diag";
+        var pdfText = pdfUrlServidor
+            ? "📄 Descargar informe PDF"
+            : "📄 Generar informe PDF";
         addMessage(report, 'bot', [
             { text:"💬 Enviar diagnóstico al técnico", action:"__whatsapp_diag__" + waMsg },
+            { text:pdfText,                            action:pdfAction },
             { text:"🔍 Hacer otro diagnóstico",        next:"menu_diagnostico" }
         ]);
     }
@@ -750,6 +779,24 @@ function initChatbot() {
         if (action.startsWith('__whatsapp_diag__')) {
             window.open("https://wa.me/" + CYCLOPS_CONFIG.whatsapp + "?text=" + action.replace('__whatsapp_diag__',''), '_blank');
             addMessage("💬 Abriendo WhatsApp con tu diagnóstico adjunto...\n\nNuestro técnico lo va a revisar antes de contactarte.", 'bot');
+            return;
+        }
+        // PDF desde Drive (generado por el servidor)
+        if (action.startsWith('__pdf_drive__')) {
+            var url = action.replace('__pdf_drive__', '');
+            window.open(url, '_blank');
+            addMessage("📄 **Abriendo tu informe PDF...**\n\nSi no se abre automáticamente, revisá que no esté bloqueado el popup.", 'bot');
+            return;
+        }
+        // PDF local con jsPDF (fallback cuando el servidor no generó PDF)
+        if (action === 'descargar_pdf_diag') {
+            var data = window.__lastDiagData || null;
+            if (!data) {
+                addMessage("❌ No se encontraron datos del diagnóstico. Completá el diagnóstico primero.", 'bot');
+                return;
+            }
+            generarPDFDiagnostico(data);
+            addMessage("📄 **Generando tu informe PDF...**\n\nEl archivo se descarga automáticamente en tu dispositivo.", 'bot');
             return;
         }
         switch(action) {
@@ -864,3 +911,265 @@ function initChatbot() {
     loadConversation();
     console.log("✅ Chatbot Cyclops v4.1 inicializado correctamente");
 }
+
+// ═══════════════════════════════════════════════════════════════
+// GENERADOR DE PDF — usa jsPDF (cargado bajo demanda)
+// Se define FUERA de initChatbot para ser accesible globalmente
+// desde chatbot.js y desde cliente.html
+// ═══════════════════════════════════════════════════════════════
+function generarPDFDiagnostico(data) {
+    // Cargar jsPDF dinámicamente si no está cargada
+    function cargarJsPDF(callback) {
+        if (window.jspdf && window.jspdf.jsPDF) { callback(); return; }
+        var script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+        script.onload = callback;
+        script.onerror = function() {
+            alert('No se pudo cargar la librería de PDF. Verificá tu conexión a internet.');
+        };
+        document.head.appendChild(script);
+    }
+
+    cargarJsPDF(function() {
+        var jsPDF = window.jspdf.jsPDF;
+        var doc   = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+        var azulOscuro = [26, 58, 92];   // #1a3a5c
+        var azul       = [37, 99, 235];  // #2563eb
+        var gris       = [71, 85, 105];  // #475569
+        var grisClaroF = [248, 250, 252];// #f8fafc
+        var grislista  = [241, 245, 249];// #f1f5f9
+        var rojo       = [239, 68, 68];
+        var amarillo   = [245, 158, 11];
+        var verde      = [34, 197, 94];
+
+        var pageW  = 210;
+        var pageH  = 297;
+        var marginL = 18;
+        var marginR = 18;
+        var contentW = pageW - marginL - marginR;
+        var y = 0;
+
+        // ── ENCABEZADO ────────────────────────────────────────
+        doc.setFillColor(azulOscuro[0], azulOscuro[1], azulOscuro[2]);
+        doc.rect(0, 0, pageW, 42, 'F');
+
+        // Nombre empresa
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(20);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Soporte Cyclops', marginL, 16);
+
+        // Slogan
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(180, 210, 240);
+        doc.text('Técnico IT a domicilio · CABA y GBA · soportecyclops.com.ar', marginL, 23);
+
+        // Título del documento
+        doc.setFontSize(11);
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        doc.text('INFORME DE DIAGNÓSTICO TÉCNICO', marginL, 33);
+
+        // Número de diagnóstico (derecha)
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(150, 200, 255);
+        doc.text(data.diagNum || '—', pageW - marginR, 16, { align: 'right' });
+        doc.text(data.fecha || '', pageW - marginR, 23, { align: 'right' });
+
+        y = 52;
+
+        // ── DATOS DEL CLIENTE ─────────────────────────────────
+        doc.setFillColor(grisClaroF[0], grisClaroF[1], grisClaroF[2]);
+        doc.roundedRect(marginL, y, contentW, 26, 3, 3, 'F');
+        doc.setDrawColor(220, 228, 240);
+        doc.setLineWidth(0.3);
+        doc.roundedRect(marginL, y, contentW, 26, 3, 3, 'S');
+
+        doc.setFontSize(7.5);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(gris[0], gris[1], gris[2]);
+        doc.text('CLIENTE', marginL + 5, y + 7);
+        doc.text('SERVICIO', marginL + 60, y + 7);
+        doc.text('Nº DIAGNÓSTICO', marginL + 120, y + 7);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(azulOscuro[0], azulOscuro[1], azulOscuro[2]);
+        doc.text(data.nombre || '—', marginL + 5, y + 16);
+
+        doc.setFontSize(9);
+        var servicioText = doc.splitTextToSize(data.servicio || '—', 54);
+        doc.text(servicioText[0], marginL + 60, y + 16);
+
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(azul[0], azul[1], azul[2]);
+        doc.text(data.diagNum || '—', marginL + 120, y + 16);
+
+        y += 34;
+
+        // ── SEVERIDAD ─────────────────────────────────────────
+        var sevMap = {
+            critica: { label: '🔴  RIESGO CRÍTICO',       color: rojo },
+            alta:    { label: '🟠  RIESGO ELEVADO',        color: amarillo },
+            media:   { label: '🟡  A TENER EN CUENTA',    color: [234, 179, 8] },
+            baja:    { label: '🟢  SITUACIÓN ESTABLE',    color: verde }
+        };
+        var sev = (data.severidad || 'media').toLowerCase();
+        var sevInfo = sevMap[sev] || sevMap['media'];
+        var sevColor = sevInfo.color;
+
+        doc.setFillColor(sevColor[0], sevColor[1], sevColor[2]);
+        doc.setGlobalAlpha(0.12);
+        doc.roundedRect(marginL, y, contentW, 10, 2, 2, 'F');
+        doc.setGlobalAlpha(1);
+        doc.setDrawColor(sevColor[0], sevColor[1], sevColor[2]);
+        doc.setLineWidth(0.4);
+        doc.roundedRect(marginL, y, contentW, 10, 2, 2, 'S');
+        // Barra izquierda de color
+        doc.setFillColor(sevColor[0], sevColor[1], sevColor[2]);
+        doc.rect(marginL, y, 3, 10, 'F');
+
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(sevColor[0], sevColor[1], sevColor[2]);
+        doc.text(sevInfo.label, marginL + 7, y + 6.5);
+
+        y += 16;
+
+        // ── SÍNTOMA / PROBLEMA ────────────────────────────────
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(azulOscuro[0], azulOscuro[1], azulOscuro[2]);
+        doc.text('SÍNTOMA PRINCIPAL', marginL, y);
+        y += 5;
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(gris[0], gris[1], gris[2]);
+        var sintomaLines = doc.splitTextToSize((data.sintoma || data.resumen || '—'), contentW);
+        doc.text(sintomaLines, marginL, y);
+        y += sintomaLines.length * 5 + 6;
+
+        // ── RESUMEN ───────────────────────────────────────────
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(azulOscuro[0], azulOscuro[1], azulOscuro[2]);
+        doc.text('RESUMEN DEL DIAGNÓSTICO', marginL, y);
+        y += 5;
+
+        // Quitar precios (si tiene) del resumen para el PDF
+        var resumenLimpio = (data.resumen || '').replace(/\n\n💰.*$/s, '').trim();
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(gris[0], gris[1], gris[2]);
+        var resLines = doc.splitTextToSize(resumenLimpio, contentW);
+        doc.text(resLines, marginL, y);
+        y += resLines.length * 4.5 + 8;
+
+        // ── NOTA TÉCNICA DE RIESGO ────────────────────────────
+        if (data.riskWarning) {
+            doc.setFillColor(255, 251, 235);
+            doc.roundedRect(marginL, y, contentW, 2, 1, 1, 'F'); // placeholder height
+            var riskLines = doc.splitTextToSize('⚠  ' + data.riskWarning, contentW - 10);
+            var riskH = riskLines.length * 4.5 + 8;
+            doc.setFillColor(255, 251, 235);
+            doc.roundedRect(marginL, y, contentW, riskH, 2, 2, 'F');
+            doc.setFillColor(245, 158, 11);
+            doc.rect(marginL, y, 3, riskH, 'F');
+            doc.setFontSize(8.5);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(120, 60, 0);
+            doc.text('NOTA TÉCNICA DE RIESGO', marginL + 7, y + 5.5);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8.5);
+            var riskLinesBody = doc.splitTextToSize(data.riskWarning, contentW - 10);
+            doc.text(riskLinesBody, marginL + 7, y + 11);
+            y += riskH + 8;
+        }
+
+        // ── PASOS RECOMENDADOS ────────────────────────────────
+        if (data.pasos && data.pasos.length > 0) {
+            doc.setFontSize(8);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(azulOscuro[0], azulOscuro[1], azulOscuro[2]);
+            doc.text('EVALUACIÓN TÉCNICA Y PASOS RECOMENDADOS', marginL, y);
+            y += 6;
+
+            data.pasos.forEach(function(paso, i) {
+                // Limpiar emojis y markdown básico
+                var pasoLimpio = paso
+                    .replace(/\*\*(.*?)\*\*/g, '$1')
+                    .replace(/^\d+\.\s*/, '')
+                    .replace(/[🔴🟠🟡🟢✅⚠🚨🔍🏠⏱🧹🔐📋🔧🔋📡📷🎓💡🏢🗄📊🛡🦠📶🎥⚙🔊]/gu, '')
+                    .trim();
+
+                if (!pasoLimpio) return;
+
+                // Verificar si hay espacio en la página
+                var pasoLines = doc.splitTextToSize((i + 1) + '. ' + pasoLimpio, contentW - 14);
+                var pasoH = pasoLines.length * 4.5 + 5;
+
+                if (y + pasoH > pageH - 30) {
+                    doc.addPage();
+                    y = 20;
+                }
+
+                // Fondo alterno
+                if (i % 2 === 0) {
+                    doc.setFillColor(grislista[0], grislista[1], grislista[2]);
+                    doc.roundedRect(marginL, y - 2, contentW, pasoH, 2, 2, 'F');
+                }
+
+                // Número del paso
+                doc.setFillColor(azul[0], azul[1], azul[2]);
+                doc.circle(marginL + 5, y + pasoH/2 - 3, 3.5, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(7);
+                doc.setFont('helvetica', 'bold');
+                doc.text(String(i + 1), marginL + 5, y + pasoH/2 - 1.5, { align: 'center' });
+
+                doc.setTextColor(gris[0], gris[1], gris[2]);
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'normal');
+                doc.text(pasoLines, marginL + 12, y + 3.5);
+                y += pasoH + 2;
+            });
+        }
+
+        y += 10;
+
+        // ── PIE DE PÁGINA ─────────────────────────────────────
+        // Agregar pie en todas las páginas
+        var totalPages = doc.getNumberOfPages();
+        for (var pg = 1; pg <= totalPages; pg++) {
+            doc.setPage(pg);
+            // Línea separadora
+            doc.setDrawColor(220, 228, 240);
+            doc.setLineWidth(0.3);
+            doc.line(marginL, pageH - 18, pageW - marginR, pageH - 18);
+            // Texto del pie
+            doc.setFontSize(7.5);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(150, 160, 180);
+            doc.text(
+                'Soporte Cyclops · +54 9 11 6680-4450 · contacto@soportecyclops.com.ar · soportecyclops.com.ar',
+                pageW / 2, pageH - 12, { align: 'center' }
+            );
+            doc.text(
+                'CABA y Gran Buenos Aires · Este informe es orientativo y no reemplaza el diagnóstico técnico presencial.',
+                pageW / 2, pageH - 7, { align: 'center' }
+            );
+            // Número de página
+            doc.text('Página ' + pg + ' de ' + totalPages, pageW - marginR, pageH - 10, { align: 'right' });
+        }
+
+        // ── GUARDAR ───────────────────────────────────────────
+        var fileName = 'diagnostico-' + (data.diagNum || 'cyclops').replace(/[^A-Z0-9-]/gi, '-') + '.pdf';
+        doc.save(fileName);
+    });
+}
+
