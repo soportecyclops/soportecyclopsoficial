@@ -1966,75 +1966,39 @@
         }
         .popup-skip:hover { color: var(--gray-600); }
 
-        /* ===================== BLOG PREVIEW (P7) ===================== */
-        .blog-section {
-            padding: 80px 0;
-            background: var(--gray-50);
-        }
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-            margin-top: 36px;
-        }
-        .blog-card {
-            background: white;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: var(--transition);
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-        }
-        .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-            border-color: rgba(37,99,235,0.2);
-        }
-        .blog-card-img {
-            height: 160px;
-            background: linear-gradient(135deg, #1a3a5c, #2563eb);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            flex-shrink: 0;
-        }
-        .blog-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-        .blog-tag {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--blue);
-            background: rgba(37,99,235,0.08);
-            padding: 3px 9px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-        .blog-card-body h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--blue-dark);
-            margin-bottom: 8px;
-            line-height: 1.35;
-        }
-        .blog-card-body p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; flex: 1; }
-        .blog-read-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--blue);
-            margin-top: 14px;
-        }
-        @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
+        /* ===================== BLOG SECTION ===================== */
+        .blog-section { padding: 80px 0; background: var(--gray-50); }
+        .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; }
+        .blog-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; }
+        .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(37,99,235,0.2); }
+        .blog-card-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: 3rem; flex-shrink: 0; position: relative; overflow: hidden; }
+        .blog-card-img.redes     { background: linear-gradient(135deg, #0f2444 0%, #1a4a8a 100%); }
+        .blog-card-img.hardware  { background: linear-gradient(135deg, #1a2a1a 0%, #2d5a2d 100%); }
+        .blog-card-img.seguridad { background: linear-gradient(135deg, #3a0f0f 0%, #7a1c1c 100%); }
+        .blog-card-img.mantenimiento { background: linear-gradient(135deg, #1a1a3a 0%, #2d2d7a 100%); }
+        .blog-card-img.ups       { background: linear-gradient(135deg, #2a1a0a 0%, #7a4a1a 100%); }
+        .blog-card-img.cctv      { background: linear-gradient(135deg, #1a0a2a 0%, #4a1a6a 100%); }
+        .blog-card-img::after { content: \'\'; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 18px 18px; }
+        .blog-card-emoji { position: relative; z-index: 1; line-height: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
+        .blog-card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+        .blog-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; flex-wrap: wrap; }
+        .blog-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; display: inline-block; }
+        .blog-tag.redes     { color: #1e40af; background: #dbeafe; }
+        .blog-tag.hardware  { color: #166534; background: #dcfce7; }
+        .blog-tag.seguridad { color: #991b1b; background: #fee2e2; }
+        .blog-tag.mantenimiento { color: #3730a3; background: #e0e7ff; }
+        .blog-tag.ups       { color: #92400e; background: #fef3c7; }
+        .blog-tag.cctv      { color: #6b21a8; background: #f3e8ff; }
+        .blog-read-time { font-size: 0.68rem; color: var(--gray-400); display: flex; align-items: center; gap: 4px; }
+        .blog-card-body h4 { font-family: \'Space Grotesk\', sans-serif; font-size: 0.97rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 9px; line-height: 1.35; }
+        .blog-card-body p { font-size: 0.84rem; color: var(--gray-600); line-height: 1.65; flex: 1; }
+        .blog-read-more { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; color: var(--blue); margin-top: 16px; transition: gap 0.2s; }
+        .blog-card:hover .blog-read-more { gap: 10px; }
+        .blog-footer-link { text-align: center; margin-top: 32px; }
+        .blog-footer-link a { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-weight: 700; font-size: 0.9rem; text-decoration: none; padding: 11px 24px; border: 2px solid rgba(37,99,235,0.25); border-radius: 50px; transition: var(--transition); }
+        .blog-footer-link a:hover { background: rgba(37,99,235,0.06); border-color: var(--blue); transform: translateY(-2px); }
         @media (max-width: 900px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
 
         /* ===================== LAZY LOADING ===================== */
         img[loading="lazy"] { background: var(--gray-100); }
@@ -2055,17 +2019,18 @@
     <!-- Header -->
     <nav class="navbar" id="navbar">
         <div class="nav-container container">
-            <a href="#inicio" class="logo">
+            <a href="index.html" class="logo">
                 <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
                 <span class="logo-text">Soporte<strong>Cyclops</strong></span>
             </a>
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="servicios.html" class="nav-link">Servicios</a></li>
                 <li><a href="#paquetes" class="nav-link">Paquetes Web</a></li>
-                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                <li><a href="#opiniones" class="nav-link">Opiniones</a></li>
-                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="blog/index.html" class="nav-link">Blog</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -2313,296 +2278,15 @@
         </div>
     </section>
 
-    <!-- ===================== PAQUETES WEB ===================== -->
 
-    <!-- SERVICE TABS DETAIL (P13) -->
-    <section class="service-tabs-section" id="como-trabajamos">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag reveal">Cómo trabajamos</span>
-                <h2 class="section-title reveal">Cada servicio en detalle</h2>
-                <p class="section-subtitle reveal">Proceso, tiempos y casos reales de cada área.</p>
-            </div>
-            <div class="srv-tabs-nav reveal">
-                <button class="srv-tab-btn active" data-tab="informatico">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    Soporte IT
-                </button>
-                <button class="srv-tab-btn" data-tab="redes">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/></svg>
-                    Redes
-                </button>
-                <button class="srv-tab-btn" data-tab="cctv">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.069A1 1 0 0121 8.845v6.31a1 1 0 01-1.447.894L15 14"/><rect x="1" y="8" width="15" height="8" rx="2"/></svg>
-                    CCTV
-                </button>
-                <button class="srv-tab-btn" data-tab="alarmas">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-                    Alarmas
-                </button>
-                <button class="srv-tab-btn" data-tab="domotica">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-                    Domótica
-                </button>
-                <button class="srv-tab-btn" data-tab="ciber">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    Ciberseguridad
-                </button>
-            </div>
+    <!-- Ver servicios completos -->
+    <div style="text-align:center;padding:24px 0 0;background:var(--gray-50)">
+      <a href="servicios.html" style="display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:700;font-size:0.9rem;padding:11px 24px;border:2px solid rgba(37,99,235,0.25);border-radius:50px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(37,99,235,0.06)';this.style.borderColor='#2563eb'" onmouseout="this.style.background='';this.style.borderColor='rgba(37,99,235,0.25)'">
+        Ver todos los servicios en detalle <i class="fas fa-arrow-right" style="font-size:0.75rem"></i>
+      </a>
+    </div>
 
-            <!-- Tab: Soporte Informático -->
-            <div class="srv-tab-panel active" id="tab-informatico">
-                <div class="srv-panel-inner">
-                    <div class="srv-panel-info">
-                        <h3>Soporte Informático</h3>
-                        <p>Diagnóstico y reparación de PCs, notebooks y equipos de oficina. Si el equipo no tiene solución viable, te lo decimos antes de cobrar. Sin sorpresas.</p>
-                        <div class="srv-steps">
-                            <h4>Proceso</h4>
-                            <div class="srv-step"><div class="srv-step-num">1</div><p>Consulta inicial por WhatsApp: describís el problema, evaluamos si requiere visita o se resuelve remoto.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">2</div><p>Diagnóstico en sitio o remoto — identificamos la causa raíz, no solo el síntoma.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">3</div><p>Presupuesto claro antes de tocar nada. Sin cobros sorpresa al final.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">4</div><p>Resolución con garantía según el tipo de trabajo (30 días en mantenimiento físico, 15 días en software).</p></div>
-                        </div>
-                    </div>
-                    <div class="srv-cases">
-                        <h4>Casos típicos que resolvemos</h4>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> PC que tarda 10 minutos en arrancar → limpieza + SSD = como nueva</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Pantalla azul o freezes aleatorios → diagnóstico de RAM/disco</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Recuperación de datos de disco dañado o formateado</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Reinstalación de Windows sin perder archivos importantes</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Soporte remoto para problemas de software sin esperar visita</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Configuración de casillas de correo corporativo</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: Redes -->
-            <div class="srv-tab-panel" id="tab-redes">
-                <div class="srv-panel-inner">
-                    <div class="srv-panel-info">
-                        <h3>Redes y Conectividad</h3>
-                        <p>Diseño e instalación de redes para hogares, oficinas y locales comerciales. WiFi que realmente llega a todos los rincones. Trabajamos con MikroTik y Ubiquiti.</p>
-                        <div class="srv-steps">
-                            <h4>Proceso</h4>
-                            <div class="srv-step"><div class="srv-step-num">1</div><p>Relevamiento del espacio: medidas, materiales, cantidad de usuarios y dispositivos.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">2</div><p>Diseño de solución: tipo de equipos, cantidad de access points, recorrido de cableado.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">3</div><p>Instalación y configuración. Coordinamos con tu proveedor de internet si hace falta.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">4</div><p>Prueba de cobertura en cada área + entrega de contraseñas y accesos.</p></div>
-                        </div>
-                    </div>
-                    <div class="srv-cases">
-                        <h4>Casos típicos que resolvemos</h4>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Local gastronómico con WiFi que no llega al salón del fondo</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Oficina que corta la VPN en mitad de las reuniones</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Casa de 3 plantas con zonas muertas de señal</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Cableado estructurado para oficina nueva desde cero</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Separación de red corporativa y red de invitados</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Configuración de MikroTik con control de ancho de banda por usuario</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: CCTV -->
-            <div class="srv-tab-panel" id="tab-cctv">
-                <div class="srv-panel-inner">
-                    <div class="srv-panel-info">
-                        <h3>Cámaras y CCTV</h3>
-                        <p>Instalación de sistemas de videovigilancia IP y analógicos con acceso remoto desde el celular. DVR/NVR, almacenamiento local o en la nube. Sin venta de equipo innecesario.</p>
-                        <div class="srv-steps">
-                            <h4>Proceso</h4>
-                            <div class="srv-step"><div class="srv-step-num">1</div><p>Relevamiento del espacio: puntos ciegos, zonas críticas, condiciones de luz.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">2</div><p>Propuesta de cantidad y tipo de cámaras según necesidad real (no la máxima cantidad posible).</p></div>
-                            <div class="srv-step"><div class="srv-step-num">3</div><p>Instalación con cableado prolijo, sin agujeros innecesarios.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">4</div><p>Configuración de acceso remoto desde tu celular y capacitación de uso.</p></div>
-                        </div>
-                    </div>
-                    <div class="srv-cases">
-                        <h4>Casos típicos que resolvemos</h4>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Local comercial con cámaras que no graban de noche</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Sistema CCTV antiguo sin acceso remoto → migración IP</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Casa con cámaras que quiere ver desde el celular en tiempo real</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Depósito que necesita cobertura 360° interior y exterior</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Integración de CCTV con sistema de alarma existente</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: Alarmas -->
-            <div class="srv-tab-panel" id="tab-alarmas">
-                <div class="srv-panel-inner">
-                    <div class="srv-panel-info">
-                        <h3>Alarmas y Control de Acceso</h3>
-                        <p>Instalación de sistemas de alarma perimetral, cercos eléctricos y control de acceso con tarjeta o huella. Integración con CCTV existente.</p>
-                        <div class="srv-steps">
-                            <h4>Proceso</h4>
-                            <div class="srv-step"><div class="srv-step-num">1</div><p>Evaluación del perímetro y puntos de acceso del inmueble.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">2</div><p>Diseño del sistema: zonas, sensores, panel de control, alertas.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">3</div><p>Instalación con cableado embutido cuando es posible.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">4</div><p>Configuración de notificaciones al celular y capacitación del usuario.</p></div>
-                        </div>
-                    </div>
-                    <div class="srv-cases">
-                        <h4>Casos típicos que resolvemos</h4>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Oficina con acceso por tarjeta para distintos niveles de empleados</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Alarma con sensor de movimiento + alerta en celular</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Integración de alarma perimetral con cámaras IP existentes</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Cerco eléctrico para galpón o predio</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Control de acceso biométrico para sala de servidores</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: Domótica -->
-            <div class="srv-tab-panel" id="tab-domotica">
-                <div class="srv-panel-inner">
-                    <div class="srv-panel-info">
-                        <h3>Domótica</h3>
-                        <p>Automatización de luces, enchufes, climatización y accesos desde tu smartphone. Compatible con Google Home y Alexa. Sin obras complejas en la mayoría de los casos.</p>
-                        <div class="srv-steps">
-                            <h4>Proceso</h4>
-                            <div class="srv-step"><div class="srv-step-num">1</div><p>Relevamiento: qué dispositivos querés automatizar, infraestructura eléctrica existente.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">2</div><p>Propuesta de solución: dispositivos compatibles, escenas y automatizaciones posibles.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">3</div><p>Instalación y configuración en app (Google Home / Alexa / Tuya).</p></div>
-                            <div class="srv-step"><div class="srv-step-num">4</div><p>Capacitación: cómo crear escenas, rutinas y accesos por voz.</p></div>
-                        </div>
-                    </div>
-                    <div class="srv-cases">
-                        <h4>Casos típicos que resolvemos</h4>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Iluminación inteligente en living sin picar paredes</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Aire acondicionado controlado por celular desde cualquier lugar</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Persianas automatizadas con rutina de horario</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Enchufes inteligentes para encender/apagar dispositivos remotamente</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Integración con Alexa: control de voz de toda la casa</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab: Ciberseguridad -->
-            <div class="srv-tab-panel" id="tab-ciber">
-                <div class="srv-panel-inner">
-                    <div class="srv-panel-info">
-                        <h3>Ciberseguridad</h3>
-                        <p>Protección práctica para pymes y hogares. Sin paranoia, con criterio. Configuración segura de redes, firewall, antivirus y respuesta ante incidentes.</p>
-                        <div class="srv-steps">
-                            <h4>Proceso</h4>
-                            <div class="srv-step"><div class="srv-step-num">1</div><p>Auditoría básica: contraseñas, permisos, actualizaciones pendientes, puertos abiertos.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">2</div><p>Informe de vulnerabilidades con priorización (crítico / moderado / bajo).</p></div>
-                            <div class="srv-step"><div class="srv-step-num">3</div><p>Implementación: firewall, antivirus corporativo, backup automático, políticas de contraseñas.</p></div>
-                            <div class="srv-step"><div class="srv-step-num">4</div><p>Capacitación del equipo en buenas prácticas y respuesta ante incidentes.</p></div>
-                        </div>
-                    </div>
-                    <div class="srv-cases">
-                        <h4>Casos típicos que resolvemos</h4>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Empresa infectada con ransomware → contención y recuperación</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Router con contraseña de fábrica y puertos expuestos a internet</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Empleado que hizo clic en phishing → revisión de daños y medidas</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Pyme sin backup que perdió todo por falla de disco</div>
-                        <div class="srv-case"><i class="fas fa-check-circle"></i> Configuración de ESET Endpoint para red corporativa de 15 PCs</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ONE CONTACT BANNER (P5) -->
-    <section class="one-contact-banner">
-        <div class="container">
-            <div class="ocb-inner">
-                <div class="ocb-icon">🎯</div>
-                <div class="ocb-text">
-                    <h3>Un solo punto de contacto para toda tu infraestructura</h3>
-                    <p>No necesitás llamar a 4 proveedores distintos. Redes, equipos, cámaras, web, seguridad y domótica — todo con una sola llamada, un solo técnico que conoce tu instalación.</p>
-                </div>
-            </div>
-            <div class="ocb-items reveal">
-                <div class="ocb-item"><i class="fas fa-check"></i> Sin coordinación entre empresas</div>
-                <div class="ocb-item"><i class="fas fa-check"></i> Sin "eso no es mi área"</div>
-                <div class="ocb-item"><i class="fas fa-check"></i> Sin repetir el contexto cada vez</div>
-                <div class="ocb-item"><i class="fas fa-check"></i> Respuesta en menos de 2 horas</div>
-                <div class="ocb-item"><i class="fas fa-check"></i> CABA y GBA</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- HOW IT WORKS (P3) -->
-    <section class="how-it-works" id="como-funciona">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag reveal">Simple y transparente</span>
-                <h2 class="section-title reveal">¿Cómo funciona trabajar con Cyclops?</h2>
-                <p class="section-subtitle reveal">Sin burocracia, sin call centers, sin letra chica.</p>
-            </div>
-            <div class="hiw-steps">
-                <div class="hiw-step reveal reveal-delay-1">
-                    <div class="hiw-num">1</div>
-                    <h4>Consulta sin cargo</h4>
-                    <p>Contactás por WhatsApp o teléfono. Te respondo en menos de 2 horas. Evaluamos si se resuelve remoto o requiere visita.</p>
-                </div>
-                <div class="hiw-step reveal reveal-delay-2">
-                    <div class="hiw-num">2</div>
-                    <h4>Diagnóstico honesto</h4>
-                    <p>Identifico la causa raíz. Si el equipo no tiene solución viable, te lo digo antes de cobrar. Sin diagnósticos pagos sin resultado.</p>
-                </div>
-                <div class="hiw-step reveal reveal-delay-3">
-                    <div class="hiw-num">3</div>
-                    <h4>Presupuesto claro</h4>
-                    <p>Precio fijo acordado antes de empezar. Sin cobros adicionales sorpresa al terminar el trabajo.</p>
-                </div>
-                <div class="hiw-step reveal reveal-delay-4">
-                    <div class="hiw-num">4</div>
-                    <h4>Solución con garantía</h4>
-                    <p>El trabajo terminado con garantía según el tipo de servicio. Si vuelve el problema en el período de garantía, vuelvo sin cargo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PREVENTIVO VS REACTIVO (P15) -->
-    <section class="preventive-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag reveal">¿Vale la pena el soporte preventivo?</span>
-                <h2 class="section-title reveal">El costo de no tener soporte</h2>
-                <p class="section-subtitle reveal">Un problema que se previene en $X cuesta entre 10 y 100 veces más cuando explota.</p>
-            </div>
-            <div class="pvr-table reveal">
-                <div class="pvr-col reactive">
-                    <div class="pvr-col-header">
-                        <div class="pvr-col-icon">🔥</div>
-                        <div>
-                            <h3>Sin soporte preventivo</h3>
-                            <p style="font-size:0.78rem;color:#b91c1c;margin-top:2px;">Modo apaga-incendios</p>
-                        </div>
-                    </div>
-                    <div class="pvr-item"><i class="fas fa-times-circle"></i> Disco duro falla → datos perdidos para siempre (no hay backup)</div>
-                    <div class="pvr-item"><i class="fas fa-times-circle"></i> Ransomware bloquea todos los equipos → 3 a 7 días de downtime</div>
-                    <div class="pvr-item"><i class="fas fa-times-circle"></i> Red caída en plena reunión con cliente → imagen y ventas afectadas</div>
-                    <div class="pvr-item"><i class="fas fa-times-circle"></i> Técnico de emergencia cobra urgencia × 2 o × 3</div>
-                    <div class="pvr-item"><i class="fas fa-times-circle"></i> Sin historial de la instalación → cada problema se resuelve de cero</div>
-                    <div class="pvr-item"><i class="fas fa-times-circle"></i> Actualizaciones atrasadas = vulnerabilidades conocidas y explotadas</div>
-                    <div class="pvr-footer">💸 Costo promedio de un incidente no prevenido: meses de pérdida productiva</div>
-                </div>
-                <div class="pvr-col preventive">
-                    <div class="pvr-col-header">
-                        <div class="pvr-col-icon">🛡️</div>
-                        <div>
-                            <h3>Con Soporte Cyclops</h3>
-                            <p style="font-size:0.78rem;color:#22d3a5;margin-top:2px;">Infraestructura bajo control</p>
-                        </div>
-                    </div>
-                    <div class="pvr-item"><i class="fas fa-check-circle"></i> Backup automático configurado → datos siempre recuperables</div>
-                    <div class="pvr-item"><i class="fas fa-check-circle"></i> Antivirus corporativo + políticas de seguridad activas</div>
-                    <div class="pvr-item"><i class="fas fa-check-circle"></i> Red monitoreada → problemas detectados antes de que afecten</div>
-                    <div class="pvr-item"><i class="fas fa-check-circle"></i> Prioridad de respuesta y tarifa sin recargo de urgencia</div>
-                    <div class="pvr-item"><i class="fas fa-check-circle"></i> Historial completo de tu instalación → diagnóstico más rápido</div>
-                    <div class="pvr-item"><i class="fas fa-check-circle"></i> Actualizaciones planificadas en horario de bajo impacto</div>
-                    <div class="pvr-footer">✅ Inversión mensual fija y predecible. Sin sorpresas.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="paquetes" id="paquetes">
+        <section class="paquetes" id="paquetes">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag reveal">Servicios digitales</span>
@@ -2662,199 +2346,6 @@
         </div>
     </section>
 
-    <!-- ===================== SOBRE NOSOTROS ===================== -->
-    <section class="about" id="nosotros">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text reveal reveal-left">
-                    <span class="section-tag" style="margin-bottom:16px;display:inline-block;">Quién soy</span>
-                    <h2>+11 años resolviendo lo que otros no pueden</h2>
-                    <p>Soy <strong>Juan Alza</strong>, técnico IT con más de 11 años de experiencia en infraestructura, redes y soporte corporativo. Trabajé para <strong>LRA1 Radio Nacional</strong> sosteniendo la conectividad de más de 50 emisoras en todo el país, diseñé la infraestructura de red del <strong>Autódromo de Buenos Aires</strong> para eventos de alta concurrencia, y brindé soporte en entornos financieros regulados como <strong>Cordial Compañía Financiera – Grupo Supervielle</strong>.</p>
-                    <p>Soporte Cyclops nació de una convicción simple: los hogares y las pequeñas empresas merecen el mismo nivel de servicio que las corporaciones. Sin letra chica, sin intermediarios, con alguien que realmente sabe lo que hace.</p>
-                    <p>Cuando contactás a Cyclops, no atiende un call center ni viene un técnico sin experiencia. <strong>Vengo yo</strong> — con más de una década resolviendo problemas en entornos donde no hay margen para el error.</p>
-
-                    <div class="credentials">
-                        <span class="credential-chip"><i class="fas fa-broadcast-tower"></i> LRA1 Radio Nacional</span>
-                        <span class="credential-chip"><i class="fas fa-flag-checkered"></i> Autódromo Buenos Aires</span>
-                        <span class="credential-chip"><i class="fas fa-university"></i> Cordial / Supervielle</span>
-                        <span class="credential-chip"><i class="fas fa-flask"></i> L'Oréal Argentina</span>
-                        <span class="credential-chip"><i class="fas fa-laptop-code"></i> Megatech</span>
-                        <span class="credential-chip"><i class="fas fa-network-wired"></i> MikroTik · Ubiquiti</span>
-                        <span class="credential-chip"><i class="fas fa-shield-alt"></i> ESET · Fortinet</span>
-                    </div>
-                </div>
-
-                <div class="about-photos reveal reveal-right">
-                    <div class="about-photo-main">
-                        <img src="public/images/foto-tecnico-rack.jpg"
-                             alt="Juan Alza trabajando en rack de servidores"
-                             width="700" height="300"
-                             onerror="this.src='public/images/foto-about.jpg'">
-                        <div class="about-photo-label">Instalación corporativa</div>
-                    </div>
-                    <div class="about-photo">
-                        <img src="public/images/foto-tecnico-desk.jpg"
-                             alt="Juan Alza en su estación de trabajo con doble monitor"
-                             width="340" height="180"
-                             onerror="this.src='public/images/foto-about.jpg'">
-                        <div class="about-photo-label">Diagnóstico remoto</div>
-                    </div>
-                    <div class="about-photo">
-                        <img src="public/images/foto-tecnico-camara.jpg"
-                             alt="Juan Alza instalando cámara de seguridad"
-                             width="340" height="180"
-                             onerror="this.src='public/images/foto-about.jpg'">
-                        <div class="about-photo-label">Instalación CCTV</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== STATS ===================== -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item reveal reveal-delay-1">
-                    <span class="stat-number" data-target="11">0</span>
-                    <p>Años en infraestructura IT</p>
-                </div>
-                <div class="stat-item reveal reveal-delay-2">
-                    <span class="stat-number" data-target="50">0</span>
-                    <p>Emisoras nacionales soportadas</p>
-                </div>
-                <div class="stat-item reveal reveal-delay-3">
-                    <span class="stat-number" data-target="500">0</span>
-                    <p>Usuarios corporativos atendidos</p>
-                </div>
-                <div class="stat-item reveal reveal-delay-4">
-                    <span class="stat-number">2006</span>
-                    <p>Año de inicio como freelance</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== TESTIMONIOS ===================== -->
-    <section class="testimonials" id="opiniones">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag reveal">Qué dicen los clientes</span>
-                <h2 class="section-title reveal">Opiniones reales</h2>
-            </div>
-
-            <div class="reviews-header reveal">
-                <div class="google-badge">
-                    <svg class="google-logo" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    <span class="stars">★★★★★</span>
-                    <span class="rating-text">5.0</span>
-                    <span class="count">Google Maps</span>
-                </div>
-            </div>
-
-            <div class="testimonials-grid">
-
-                <div class="testimonial-card reveal reveal-delay-1">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Claudio Percara · <span class="review-date">hace 2 semanas</span></div>
-                    <p class="testimonial-text">Excelente experiencia. No solo solucionaron mi inconveniente técnico con mucha solvencia, sino que el trato fue sumamente amable y paciente. Se nota cuando hay profesionales que realmente dominan su área. Totalmente recomendados.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#4285F4,#34A853);">CP</div>
-                        <div>
-                            <div class="author-name">Claudio Percara</div>
-                            <div class="author-detail">Local Guide · 11 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal reveal-delay-2">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Daiana Cardilli · <span class="review-date">hace 1 mes</span></div>
-                    <p class="testimonial-text">Son bárbaros, me ayudaron con una Toshiba vieja a hacerla andar como nueva. Re amables y todo en término. ¡Los recomiendo!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#ea4335,#fbbc04);">DC</div>
-                        <div>
-                            <div class="author-name">Daiana Cardilli</div>
-                            <div class="author-detail">2 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal reveal-delay-3">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Guillermo Ferraioli · <span class="review-date">hace 2 meses</span></div>
-                    <p class="testimonial-text">Excelente, lo recomiendo. Supo reconocer un problema que los demás no veían y el presupuesto que me pasó fue más que razonable considerando que, de otro modo, hubiese tenido que literalmente tirar la compu.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#1a3a5c,#2563eb);">GF</div>
-                        <div>
-                            <div class="author-name">Guillermo Ferraioli</div>
-                            <div class="author-detail">5 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal reveal-delay-4">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Enzo Carolo · <span class="review-date">hace 3 meses</span></div>
-                    <p class="testimonial-text">Cambié el disco sólido por uno SSD, le agregué más memoria y me quedó como nueva la Vaio. Muy recomendable.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#34A853,#0f9d58);">EC</div>
-                        <div>
-                            <div class="author-name">Enzo Carolo</div>
-                            <div class="author-detail">Local Guide · 17 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="reviews-cta reveal">
-                <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank" rel="noopener">
-                    <svg width="16" height="16" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    Ver todas las opiniones en Google Maps
-                    <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- ===================== CONTACTO ===================== -->
 
@@ -2932,41 +2423,11 @@
                         Sí, trabajamos en toda la zona de Gran Buenos Aires (GBA Norte, Sur y Oeste). Para zonas alejadas o interior del país, consultamos disponibilidad caso a caso.
                     </div>
                 </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Cuánto tarda en llegar el técnico?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Para consultas y soporte remoto: respondemos en menos de 2 horas en horario laboral. Para visitas presenciales: generalmente disponemos turno el mismo día o el siguiente, según agenda.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Qué pasa si el equipo no tiene solución?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Si tras el diagnóstico determinamos que el equipo no tiene reparación viable (por costo o disponibilidad de piezas), te lo informamos antes de cobrar el trabajo. Solo se cobra el diagnóstico si fue acordado previamente.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Puedo resolver mi problema sin una visita?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Muchos problemas se resuelven de manera remota en menos de 30 minutos: configuraciones, software, correo, optimización. Consultá por WhatsApp y evaluamos juntos si tu caso lo permite.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Trabajan con empresas o solo particulares?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Ambos. Tenemos clientes que son particulares y pymes con hasta 50 empleados. También ofrecemos abonos mensuales de soporte para empresas que necesitan atención continua.
-                    </div>
+
+                <div style="text-align:center;margin-top:16px">
+                  <a href="faq.html" style="display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-weight:700;font-size:0.87rem;padding:10px 22px;border:2px solid rgba(37,99,235,0.2);border-radius:50px;text-decoration:none">
+                    Ver todas las preguntas <i class="fas fa-arrow-right" style="font-size:0.7rem"></i>
+                  </a>
                 </div>
             </div>
         </div>
@@ -3085,7 +2546,7 @@
 
     </main>
 
-    <!-- BLOG PREVIEW (P7) -->
+    <!-- BLOG (P7) -->
     <section class="blog-section" id="blog">
         <div class="container">
             <div class="section-header">
@@ -3094,37 +2555,64 @@
                 <p class="section-subtitle reveal">Guías prácticas para pymes y hogares. Sin tecnicismos innecesarios.</p>
             </div>
             <div class="blog-grid">
+
                 <a href="blog/wifi-no-llega.html" class="blog-card reveal reveal-delay-1">
-                    <div class="blog-card-img">📶</div>
+                    <div class="blog-card-img redes">
+                        <span class="blog-card-emoji">📶</span>
+                    </div>
                     <div class="blog-card-body">
-                        <span class="blog-tag">Redes</span>
+                        <div class="blog-card-meta">
+                            <span class="blog-tag redes">Redes</span>
+                            <span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 5 min</span>
+                        </div>
                         <h4>Por qué el WiFi no llega a todos los ambientes (y cómo solucionarlo)</h4>
-                        <p>Las 5 causas más comunes de mala cobertura WiFi en casas y oficinas, y qué hacer en cada caso sin gastar de más.</p>
+                        <p>Las 5 causas más comunes de mala cobertura WiFi y qué hacer en cada caso sin gastar de más.</p>
                         <span class="blog-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
                     </div>
                 </a>
+
                 <a href="blog/senales-disco-por-fallar.html" class="blog-card reveal reveal-delay-2">
-                    <div class="blog-card-img">💾</div>
+                    <div class="blog-card-img hardware">
+                        <span class="blog-card-emoji">💾</span>
+                    </div>
                     <div class="blog-card-body">
-                        <span class="blog-tag">Hardware</span>
+                        <div class="blog-card-meta">
+                            <span class="blog-tag hardware">Hardware</span>
+                            <span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 6 min</span>
+                        </div>
                         <h4>6 señales de que tu disco duro está por fallar (antes de perder todo)</h4>
-                        <p>Tu PC te avisa antes de morir. Sabés interpretarlas a tiempo para hacer un backup y evitar perder datos para siempre.</p>
+                        <p>Tu PC te avisa antes de morir. Sabés interpretarlas para hacer el backup a tiempo.</p>
                         <span class="blog-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
                     </div>
                 </a>
+
                 <a href="blog/ransomware-que-hacer.html" class="blog-card reveal reveal-delay-3">
-                    <div class="blog-card-img">🔒</div>
+                    <div class="blog-card-img seguridad">
+                        <span class="blog-card-emoji">🔒</span>
+                    </div>
                     <div class="blog-card-body">
-                        <span class="blog-tag">Seguridad</span>
+                        <div class="blog-card-meta">
+                            <span class="blog-tag seguridad">Seguridad</span>
+                            <span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 7 min</span>
+                        </div>
                         <h4>¿Qué hacer si un ransomware bloqueó tu empresa? Primeros pasos</h4>
-                        <p>Guía de respuesta ante un ataque de ransomware: qué hacer primero, qué nunca hacer, y cómo recuperarse.</p>
+                        <p>Qué hacer primero, qué nunca hacer, y cómo recuperarse sin pagar el rescate.</p>
                         <span class="blog-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
                     </div>
+                </a>
+
+                
+
+                
+
+                
+
+            </div>
+            <div class="blog-footer-link reveal">
+                <a href="blog/index.html">
+                    Ver todos los artículos <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i>
                 </a>
             </div>
-            <p style="text-align:center;margin-top:28px;font-size:0.85rem;color:var(--gray-400);">
-                Próximamente más artículos. <a href="#contacto" style="color:var(--blue);font-weight:600;">Consultá tu problema específico →</a>
-            </p>
         </div>
     </section>
 
@@ -3183,6 +2671,7 @@
                         <li>Gran Buenos Aires</li>
                         <li>Zona Norte, Sur y Oeste</li>
                         <li><a href="#opiniones">⭐ Ver opiniones en Google</a></li>
+                        <li><a href="blog/index.html">📚 Blog técnico</a></li>
                     </ul>
                 </div>
             </div>

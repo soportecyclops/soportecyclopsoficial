@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opiniones de Clientes | Soporte Cyclops</title>
+  <meta name="description" content="Lo que dicen los clientes de Soporte Cyclops. Reseñas reales de Google de hogares y empresas atendidas en CABA y GBA.">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/opiniones.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
+    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
+    .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{border-radius:6px}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
+    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
+    .nav-cta:hover{background:#1d4ed8;text-decoration:none}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
+    @media(max-width:900px){
+      .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
+      .nav-menu.open{display:flex}
+      .nav-menu li{width:100%}
+      .nav-link{display:block;padding:12px 16px}
+      .menu-toggle{display:block}
+      .nav-cta{text-align:center;margin-top:8px}
+    }
+    .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
+    .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+    .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
+    .page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:12px}
+    .page-hero p{font-size:1rem;opacity:0.85;max-width:600px;line-height:1.7}
+    .section-tag{display:inline-block;background:rgba(37,99,235,0.08);color:var(--blue);padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+    .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--blue-dark);margin-bottom:12px;letter-spacing:-0.01em}
+    .section-subtitle{font-size:0.97rem;color:var(--gray-600);max-width:560px;margin:0 auto;line-height:1.7}
+    .section-header{text-align:center;margin-bottom:48px}
+    .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:48px 0}
+    .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
+    .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
+    .cta-strip-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--blue-dark);padding:13px 26px;border-radius:50px;font-weight:700;font-size:0.9rem;flex-shrink:0;white-space:nowrap;transition:var(--transition)}
+    .cta-strip-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15);text-decoration:none}
+    @media(max-width:640px){.cta-strip{flex-direction:column;text-align:center}}
+    footer{background:var(--blue-dark);color:rgba(255,255,255,0.6);padding:40px 0 24px}
+    .footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:32px}
+    .footer-section h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:white;margin-bottom:14px}
+    .footer-section p,.footer-section a{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;display:block;text-decoration:none}
+    .footer-section a:hover{color:white}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
+    @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+        <li><a href="index.html#paquetes" class="nav-link">Paquetes Web</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link active">Opiniones</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Opiniones</span></div>
+      <h1>Lo que dicen nuestros clientes</h1>
+      <p>Reseñas reales de Google de hogares y empresas que atendimos en CABA y GBA.</p>
+    </div>
+  </div>
+
+  <section class="testimonials" id="opiniones">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag reveal">Qué dicen los clientes</span>
+                <h2 class="section-title reveal">Opiniones reales</h2>
+            </div>
+
+            <div class="reviews-header reveal">
+                <div class="google-badge">
+                    <svg class="google-logo" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    <span class="stars">★★★★★</span>
+                    <span class="rating-text">5.0</span>
+                    <span class="count">Google Maps</span>
+                </div>
+            </div>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <span class="testimonial-quote">"</span>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-meta">Claudio Percara · <span class="review-date">hace 2 semanas</span></div>
+                    <p class="testimonial-text">Excelente experiencia. No solo solucionaron mi inconveniente técnico con mucha solvencia, sino que el trato fue sumamente amable y paciente. Se nota cuando hay profesionales que realmente dominan su área. Totalmente recomendados.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:linear-gradient(135deg,#4285F4,#34A853);">CP</div>
+                        <div>
+                            <div class="author-name">Claudio Percara</div>
+                            <div class="author-detail">Local Guide · 11 opiniones</div>
+                        </div>
+                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <span class="testimonial-quote">"</span>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-meta">Daiana Cardilli · <span class="review-date">hace 1 mes</span></div>
+                    <p class="testimonial-text">Son bárbaros, me ayudaron con una Toshiba vieja a hacerla andar como nueva. Re amables y todo en término. ¡Los recomiendo!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:linear-gradient(135deg,#ea4335,#fbbc04);">DC</div>
+                        <div>
+                            <div class="author-name">Daiana Cardilli</div>
+                            <div class="author-detail">2 opiniones</div>
+                        </div>
+                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-3">
+                    <span class="testimonial-quote">"</span>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-meta">Guillermo Ferraioli · <span class="review-date">hace 2 meses</span></div>
+                    <p class="testimonial-text">Excelente, lo recomiendo. Supo reconocer un problema que los demás no veían y el presupuesto que me pasó fue más que razonable considerando que, de otro modo, hubiese tenido que literalmente tirar la compu.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:linear-gradient(135deg,#1a3a5c,#2563eb);">GF</div>
+                        <div>
+                            <div class="author-name">Guillermo Ferraioli</div>
+                            <div class="author-detail">5 opiniones</div>
+                        </div>
+                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-4">
+                    <span class="testimonial-quote">"</span>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-meta">Enzo Carolo · <span class="review-date">hace 3 meses</span></div>
+                    <p class="testimonial-text">Cambié el disco sólido por uno SSD, le agregué más memoria y me quedó como nueva la Vaio. Muy recomendable.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background:linear-gradient(135deg,#34A853,#0f9d58);">EC</div>
+                        <div>
+                            <div class="author-name">Enzo Carolo</div>
+                            <div class="author-detail">Local Guide · 17 opiniones</div>
+                        </div>
+                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="reviews-cta reveal">
+                <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank" rel="noopener">
+                    <svg width="16" height="16" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    Ver todas las opiniones en Google Maps
+                    <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+  <div style="padding:0 0 64px">
+    <div class="container">
+      <div class="cta-strip">
+        <div>
+          <h3>¿Querés ser el próximo?</h3>
+          <p>La primera consulta es sin cargo. Presupuesto antes de empezar, siempre.</p>
+        </div>
+        <a href="https://wa.me/5491166804450?text=Hola%2C%20quiero%20consultar%20sobre%20sus%20servicios" target="_blank" class="cta-strip-btn">
+          <i class="fab fa-whatsapp"></i> Contactar ahora
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Soporte Cyclops</h3>
+          <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Páginas</h3>
+          <a href="index.html">Inicio</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="opiniones.html">Opiniones</a>
+          <a href="faq.html">Preguntas frecuentes</a>
+          <a href="blog/index.html">Blog técnico</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <a href="tel:+5491166804450">+54 9 11 6680-4450</a>
+          <a href="mailto:contacto@soportecyclops.com.ar">contacto@soportecyclops.com.ar</a>
+          <a href="https://wa.me/5491166804450" target="_blank">WhatsApp</a>
+          <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank">Ver en Google Maps</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a></p></div>
+    </div>
+  </footer>
+  <script>
+    var nb=document.getElementById('navbar'),mt=document.getElementById('menuToggle'),nm=document.getElementById('navMenu');
+    window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20);});
+    mt.addEventListener('click',function(){nm.classList.toggle('open');mt.innerHTML=nm.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
+  </script>
+</body>
+</html>

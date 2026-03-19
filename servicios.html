@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios de Soporte IT | Soporte Cyclops — CABA y GBA</title>
+  <meta name="description" content="Soporte informático, redes, CCTV, alarmas, domótica, ciberseguridad y UPS. Servicios IT para hogares y pymes en CABA y Gran Buenos Aires.">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/servicios.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
+    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
+    .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{border-radius:6px}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
+    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
+    .nav-cta:hover{background:#1d4ed8;text-decoration:none}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
+    @media(max-width:900px){
+      .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
+      .nav-menu.open{display:flex}
+      .nav-menu li{width:100%}
+      .nav-link{display:block;padding:12px 16px}
+      .menu-toggle{display:block}
+      .nav-cta{text-align:center;margin-top:8px}
+    }
+    /* PAGE HERO */
+    .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
+    .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+    .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
+    .page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:12px}
+    .page-hero p{font-size:1rem;opacity:0.85;max-width:600px;line-height:1.7}
+    /* Reuse index styles for sections */
+    .services{padding:64px 0;background:var(--gray-50)}
+    .section-header{text-align:center;margin-bottom:48px}
+    .section-tag{display:inline-block;background:rgba(37,99,235,0.08);color:var(--blue);padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+    .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--blue-dark);margin-bottom:12px;letter-spacing:-0.01em}
+    .section-subtitle{font-size:0.97rem;color:var(--gray-600);max-width:560px;margin:0 auto;line-height:1.7}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+    .service-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px;transition:var(--transition);cursor:pointer}
+    .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(37,99,235,0.2)}
+    .service-icon{width:52px;height:52px;background:linear-gradient(135deg,rgba(37,99,235,0.1),rgba(0,198,255,0.1));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px}
+    .service-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
+    .service-card p{font-size:0.88rem;color:var(--gray-600);line-height:1.65;margin-bottom:16px}
+    .service-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .service-tag{font-size:0.7rem;background:var(--gray-100);color:var(--gray-600);padding:3px 9px;border-radius:20px;font-weight:600}
+    /* TABS */
+    .service-tabs-section{padding:64px 0;background:white}
+    .tabs-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;border-bottom:2px solid var(--gray-200);padding-bottom:0}
+    .tab-btn{padding:12px 20px;border:none;background:none;font-family:'Open Sans',sans-serif;font-size:0.88rem;font-weight:600;color:var(--gray-600);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:var(--transition);border-radius:0;display:flex;align-items:center;gap:8px}
+    .tab-btn:hover{color:var(--blue)}
+    .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+    .tab-content{display:none}.tab-content.active{display:block}
+    .tab-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    @media(max-width:768px){.tab-body{grid-template-columns:1fr}}
+    .tab-info h3{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue-dark);margin-bottom:12px}
+    .tab-info p{font-size:0.93rem;color:var(--gray-600);line-height:1.75;margin-bottom:16px}
+    .process-steps{list-style:none;counter-reset:steps}
+    .process-steps li{padding:12px 16px 12px 52px;position:relative;counter-increment:steps;border-left:3px solid var(--gray-200);margin-bottom:8px;font-size:0.9rem;color:var(--gray-600)}
+    .process-steps li::before{content:counter(steps);position:absolute;left:-18px;top:10px;width:32px;height:32px;background:var(--blue);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem}
+    .process-steps li strong{display:block;color:var(--blue-dark);margin-bottom:2px}
+    .cases-list{list-style:none}
+    .cases-list li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100);font-size:0.88rem;color:var(--gray-600)}
+    .cases-list li:last-child{border-bottom:none}
+    .cases-list li::before{content:"→";color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px}
+    /* HOW IT WORKS */
+    .how-it-works{padding:64px 0;background:var(--gray-50)}
+    .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;counter-reset:howsteps}
+    @media(max-width:900px){.steps-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.steps-grid{grid-template-columns:1fr}}
+    .step-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px;text-align:center;counter-increment:howsteps;position:relative}
+    .step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;margin:0 auto 16px}
+    .step-card h4{font-family:'Space Grotesk',sans-serif;font-size:0.97rem;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
+    .step-card p{font-size:0.85rem;color:var(--gray-600);line-height:1.65}
+    /* PREVENTIVE */
+    .preventive-section{padding:64px 0;background:white}
+    .comp-table-wrap{overflow-x:auto;margin-top:32px}
+    .comp-table{width:100%;border-collapse:collapse;font-size:0.9rem}
+    .comp-table th{background:var(--blue-dark);color:white;padding:14px 20px;text-align:left;font-weight:700}
+    .comp-table th:first-child{border-radius:var(--radius) 0 0 0}
+    .comp-table th:last-child{border-radius:0 var(--radius) 0 0}
+    .comp-table td{padding:13px 20px;border-bottom:1px solid var(--gray-200);color:var(--gray-600);vertical-align:top}
+    .comp-table tr:last-child td:first-child{border-radius:0 0 0 var(--radius)}
+    .comp-table tr:last-child td:last-child{border-radius:0 0 var(--radius) 0}
+    .comp-table tr:nth-child(even) td{background:var(--gray-50)}
+    .comp-table .good{color:#16a34a;font-weight:600}
+    .comp-table .bad{color:#dc2626}
+    /* CTA */
+    .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:48px 0}
+    .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
+    .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
+    .cta-strip-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--blue-dark);padding:13px 26px;border-radius:50px;font-weight:700;font-size:0.9rem;flex-shrink:0;white-space:nowrap;transition:var(--transition)}
+    .cta-strip-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15);text-decoration:none}
+    @media(max-width:640px){.cta-strip{flex-direction:column;text-align:center}}
+    footer{background:var(--blue-dark);color:rgba(255,255,255,0.6);padding:40px 0 24px}
+    .footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:32px}
+    .footer-section h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:white;margin-bottom:14px}
+    .footer-section p,.footer-section a{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;display:block;text-decoration:none}
+    .footer-section a:hover{color:white}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
+    @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="servicios.html" class="nav-link active">Servicios</a></li>
+        <li><a href="index.html#paquetes" class="nav-link">Paquetes Web</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Servicios</span></div>
+      <h1>Nuestros Servicios</h1>
+      <p>Soluciones técnicas reales para hogares y pymes. Diagnóstico honesto, presupuesto antes de empezar y garantía en cada trabajo.</p>
+    </div>
+  </div>
+
+  <!-- SERVICIOS CARDS -->
+  <section class="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">¿Qué hacemos?</span>
+        <h2 class="section-title">Servicios disponibles</h2>
+        <p class="section-subtitle">Un solo técnico para todo. Sin tercerizaciones, sin letra chica.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card" onclick="document.getElementById('tab-soporte').click()">
+          <div class="service-icon">💻</div>
+          <h3>Soporte Informático</h3>
+          <p>Diagnóstico y reparación de PCs, notebooks y periféricos. Recuperación de datos, optimización y soporte remoto.</p>
+          <div class="service-tags"><span class="service-tag">PC / Notebook</span><span class="service-tag">Recuperación de datos</span><span class="service-tag">Remoto</span></div>
+        </div>
+        <div class="service-card" onclick="document.getElementById('tab-redes').click()">
+          <div class="service-icon">📡</div>
+          <h3>Redes e Internet</h3>
+          <p>Instalación y configuración de redes cableadas e inalámbricas. WiFi sin puntos ciegos para hogares y oficinas.</p>
+          <div class="service-tags"><span class="service-tag">WiFi</span><span class="service-tag">MikroTik</span><span class="service-tag">Ubiquiti</span></div>
+        </div>
+        <div class="service-card" onclick="document.getElementById('tab-cctv').click()">
+          <div class="service-icon">📷</div>
+          <h3>Cámaras de Seguridad</h3>
+          <p>Sistemas CCTV IP con acceso remoto desde el celular para hogares, locales y empresas.</p>
+          <div class="service-tags"><span class="service-tag">IP / Analógico</span><span class="service-tag">Hikvision</span><span class="service-tag">Dahua</span></div>
+        </div>
+        <div class="service-card" onclick="document.getElementById('tab-alarmas').click()">
+          <div class="service-icon">🚨</div>
+          <h3>Alarmas y Control de Acceso</h3>
+          <p>Alarmas con sensores, cerco eléctrico, monitoreo 24/7 y control de acceso por tarjeta o huella.</p>
+          <div class="service-tags"><span class="service-tag">Alarma</span><span class="service-tag">Cerco eléctrico</span><span class="service-tag">Control de acceso</span></div>
+        </div>
+        <div class="service-card" onclick="document.getElementById('tab-domotica').click()">
+          <div class="service-icon">🏠</div>
+          <h3>Domótica</h3>
+          <p>Automatización de iluminación, climatización y electrodomésticos. Control por app, voz o programación horaria.</p>
+          <div class="service-tags"><span class="service-tag">Alexa / Google</span><span class="service-tag">App móvil</span><span class="service-tag">Sin obra</span></div>
+        </div>
+        <div class="service-card" onclick="document.getElementById('tab-ciber').click()">
+          <div class="service-icon">🛡️</div>
+          <h3>Ciberseguridad</h3>
+          <p>Protección de red, antivirus corporativo, backup automático, VPN y respuesta ante ransomware.</p>
+          <div class="service-tags"><span class="service-tag">ESET</span><span class="service-tag">Backup</span><span class="service-tag">Firewall</span></div>
+        </div>
+        <div class="service-card" onclick="document.getElementById('tab-ups').click()">
+          <div class="service-icon">🔋</div>
+          <h3>UPS y Protección de Energía</h3>
+          <p>Instalación de UPS para proteger equipos ante cortes de luz y picos de tensión. Para hogares, oficinas y servidores.</p>
+          <div class="service-tags"><span class="service-tag">APC</span><span class="service-tag">Forza</span><span class="service-tag">Line Interactive</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETALLE POR SERVICIO -->
+  <section class="service-tabs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cómo trabajamos</span>
+        <h2 class="section-title">Proceso y casos típicos</h2>
+        <p class="section-subtitle">Seleccioná el servicio para ver el detalle del proceso.</p>
+      </div>
+      <div class="tabs-nav">
+        <button class="tab-btn active" id="tab-soporte" onclick="switchTab('soporte',this)">💻 Soporte IT</button>
+        <button class="tab-btn" id="tab-redes" onclick="switchTab('redes',this)">📡 Redes</button>
+        <button class="tab-btn" id="tab-cctv" onclick="switchTab('cctv',this)">📷 CCTV</button>
+        <button class="tab-btn" id="tab-alarmas" onclick="switchTab('alarmas',this)">🚨 Alarmas</button>
+        <button class="tab-btn" id="tab-domotica" onclick="switchTab('domotica',this)">🏠 Domótica</button>
+        <button class="tab-btn" id="tab-ciber" onclick="switchTab('ciber',this)">🛡️ Ciberseguridad</button>
+        <button class="tab-btn" id="tab-ups" onclick="switchTab('ups',this)">🔋 UPS</button>
+      </div>
+
+      <div class="tab-content active" id="tc-soporte">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Soporte Informático</h3>
+            <p>Diagnóstico y reparación de PCs, notebooks y periféricos en CABA y GBA. Servicio a domicilio o retiro/entrega. Soporte remoto para resolución rápida sin visita.</p>
+            <ol class="process-steps">
+              <li><strong>Diagnóstico gratuito</strong> Evaluamos el problema sin cargo antes de cualquier presupuesto.</li>
+              <li><strong>Presupuesto claro</strong> Te informamos el costo antes de empezar. Sin sorpresas.</li>
+              <li><strong>Reparación</strong> Trabajamos con repuestos de calidad y herramientas profesionales.</li>
+              <li><strong>Entrega y garantía</strong> Garantía de 30 días en todas las reparaciones.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos que resolvemos</h4>
+            <ul class="cases-list">
+              <li>PC o notebook que no enciende o no arranca Windows</li>
+              <li>Equipo muy lento — limpieza, SSD o reinstalación</li>
+              <li>Recuperación de archivos de discos dañados</li>
+              <li>Pantalla rota o sin imagen en notebook</li>
+              <li>Virus o ransomware que bloqueó el equipo</li>
+              <li>Formateo y reinstalación de Windows con respaldo</li>
+              <li>Configuración de impresoras, correo y Office</li>
+              <li>Ruidos en el disco — diagnóstico SMART y backup urgente</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tc-redes">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Redes e Internet</h3>
+            <p>Diseño, instalación y configuración de redes cableadas e inalámbricas para hogares y empresas. Equipos MikroTik y Ubiquiti para instalaciones profesionales con cobertura garantizada.</p>
+            <ol class="process-steps">
+              <li><strong>Relevamiento</strong> Medimos la señal y evaluamos la infraestructura existente.</li>
+              <li><strong>Diseño de red</strong> Planificamos la solución óptima según el espacio y la cantidad de dispositivos.</li>
+              <li><strong>Instalación</strong> Cableado estructurado, configuración de equipos y seguridad de red.</li>
+              <li><strong>Entrega con informe</strong> Documentamos la red instalada y te asesoramos sobre su uso.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos que resolvemos</h4>
+            <ul class="cases-list">
+              <li>WiFi que no cubre toda la casa u oficina</li>
+              <li>Red inestable que corta reuniones y descargas</li>
+              <li>Instalación de red nueva para oficina o local</li>
+              <li>Segmentación de red (VLAN) para mayor seguridad</li>
+              <li>Configuración de VPN para trabajo remoto</li>
+              <li>Firewall y control de acceso a internet</li>
+              <li>Red para múltiples pisos con access points</li>
+              <li>Conectividad entre dos edificios o depósitos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tc-cctv">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Cámaras de Seguridad</h3>
+            <p>Instalación de sistemas CCTV IP con acceso remoto desde el celular. Cámaras HD con visión nocturna, detección de movimiento y almacenamiento local o en la nube.</p>
+            <ol class="process-steps">
+              <li><strong>Relevamiento gratuito</strong> Evaluamos el espacio y definimos la cantidad y tipo de cámaras.</li>
+              <li><strong>Instalación</strong> Cableado prolijo, fijación segura y configuración del NVR/DVR.</li>
+              <li><strong>Configuración remota</strong> Configuramos el acceso desde el celular con la app del fabricante.</li>
+              <li><strong>Garantía 90 días</strong> En instalación y equipos. Soporte técnico posterior incluido.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos que resolvemos</h4>
+            <ul class="cases-list">
+              <li>Instalación completa en casa, local u oficina</li>
+              <li>Cámaras con visión nocturna para exteriores</li>
+              <li>Acceso remoto desde el celular sin técnico presente</li>
+              <li>Ampliación de sistema existente con más cámaras</li>
+              <li>Actualización de sistema analógico a IP</li>
+              <li>Configuración de alertas por movimiento</li>
+              <li>Sistema con almacenamiento en la nube</li>
+              <li>Cámaras PTZ para depósitos y grandes espacios</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tc-alarmas">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Alarmas y Control de Acceso</h3>
+            <p>Sistemas de alarma con sensores, cerco eléctrico perimetral, monitoreo 24/7 y control de acceso por tarjeta, huella o PIN para hogares, locales y empresas.</p>
+            <ol class="process-steps">
+              <li><strong>Evaluación</strong> Definimos las zonas a proteger y el sistema más adecuado.</li>
+              <li><strong>Instalación</strong> Sensores, central, sirena y configuración completa.</li>
+              <li><strong>Activación</strong> Configuramos usuarios, zonas y notificaciones.</li>
+              <li><strong>Soporte posterior</strong> Mantenimiento anual y asistencia remota ante cualquier problema.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos que resolvemos</h4>
+            <ul class="cases-list">
+              <li>Alarma domiciliaria con sensores de movimiento y magnéticos</li>
+              <li>Cerco eléctrico perimetral para casas y depósitos</li>
+              <li>Alarma monitoreada 24/7 con respuesta de seguridad</li>
+              <li>Control de acceso por tarjeta o huella para oficinas</li>
+              <li>Reparación o mantenimiento de alarma existente</li>
+              <li>Integración de alarma con cámaras y app móvil</li>
+              <li>Sistema de pánico para locales comerciales</li>
+              <li>Log de accesos con historial de ingresos</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tc-domotica">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Domótica y Automatización</h3>
+            <p>Automatización del hogar o la oficina sin obra: iluminación inteligente, climatización, cortinas y enchufes controlados desde el celular, por voz o por horarios programados.</p>
+            <ol class="process-steps">
+              <li><strong>Asesoramiento</strong> Evaluamos qué automatizar según tus necesidades y presupuesto.</li>
+              <li><strong>Instalación</strong> Sin romper paredes en la mayoría de los casos — tecnología inalámbrica.</li>
+              <li><strong>Configuración</strong> Integramos todo en una sola app y configuramos Alexa o Google si querés.</li>
+              <li><strong>Capacitación</strong> Te enseñamos a usar el sistema completo desde el primer día.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos que resolvemos</h4>
+            <ul class="cases-list">
+              <li>Luces que se controlan desde el celular o por voz</li>
+              <li>Aire acondicionado encendido antes de llegar a casa</li>
+              <li>Enchufes con horario programado para bajo consumo</li>
+              <li>Sistema completo sala-comedor-dormitorios integrado</li>
+              <li>Automatización de locales o showrooms</li>
+              <li>Integración con Alexa, Google Home o Apple HomeKit</li>
+              <li>Cortinas y persianas motorizadas con app</li>
+              <li>Escenarios automáticos (noche, cine, bienvenida)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tc-ciber">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Ciberseguridad</h3>
+            <p>Protección preventiva y respuesta ante incidentes para pymes y hogares. Antivirus corporativo, configuración segura de red, backup automático y VPN.</p>
+            <ol class="process-steps">
+              <li><strong>Auditoría inicial</strong> Evaluamos el estado de seguridad de la red y los equipos.</li>
+              <li><strong>Protección activa</strong> Instalamos y configuramos antivirus, firewall y backup.</li>
+              <li><strong>Capacitación</strong> Entrenamos al equipo para reconocer phishing y buenas prácticas.</li>
+              <li><strong>Informe</strong> Entregamos reporte de vulnerabilidades con priorización.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos que resolvemos</h4>
+            <ul class="cases-list">
+              <li>Ransomware activo — contención y recuperación de datos</li>
+              <li>Instalación de ESET Endpoint para toda la empresa</li>
+              <li>Backup automático a nube o disco externo</li>
+              <li>VPN para acceso remoto seguro de empleados</li>
+              <li>Auditoría de seguridad para pymes con hasta 50 equipos</li>
+              <li>Firewall perimetral y segmentación de red</li>
+              <li>Capacitación en reconocimiento de phishing</li>
+              <li>Política de contraseñas y gestores de credenciales</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tc-ups">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>UPS y Protección de Energía</h3>
+            <p>Instalación de UPS para proteger equipos ante cortes de luz, picos y bajones de tensión. Asesoramiento sobre marca, modelo y capacidad según la carga real de cada instalación.</p>
+            <ol class="process-steps">
+              <li><strong>Cálculo de carga</strong> Medimos el consumo real de los equipos a proteger.</li>
+              <li><strong>Selección del UPS</strong> Recomendamos el tipo y capacidad según las necesidades.</li>
+              <li><strong>Instalación</strong> Instalamos, conectamos y probamos el sistema completo.</li>
+              <li><strong>Software</strong> Configuramos el apagado automático ante cortes prolongados.</li>
+            </ol>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos que resolvemos</h4>
+            <ul class="cases-list">
+              <li>Fuente quemada por pico de tensión — instalación preventiva</li>
+              <li>UPS para servidor o NAS con tiempo de conmutación cero</li>
+              <li>Protección para router, switch y telecomunicaciones</li>
+              <li>Reemplazo de batería de UPS existente</li>
+              <li>UPS para home office con autonomía de 30 minutos</li>
+              <li>Sistema con monitoreo remoto de estado de batería</li>
+              <li>Protección de múltiples puestos en una oficina</li>
+              <li>Asesoramiento para elegir marca y modelo en el mercado</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-strip">
+        <div>
+          <h3>¿Necesitás alguno de estos servicios?</h3>
+          <p>La consulta inicial es sin cargo. Presupuesto antes de empezar, siempre.</p>
+        </div>
+        <a href="https://wa.me/5491166804450?text=Hola%2C%20quiero%20consultar%20sobre%20sus%20servicios" target="_blank" class="cta-strip-btn">
+          <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">El proceso</span>
+        <h2 class="section-title">¿Cómo es trabajar con Cyclops?</h2>
+        <p class="section-subtitle">4 pasos simples desde que nos contactás hasta que el problema está resuelto.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">1</div><h4>Contacto inicial</h4><p>Nos describís el problema por WhatsApp o teléfono. Sin formularios complicados.</p></div>
+        <div class="step-card"><div class="step-num">2</div><h4>Diagnóstico</h4><p>Evaluamos remotamente o con visita. Te decimos qué tiene y cuánto cuesta antes de empezar.</p></div>
+        <div class="step-card"><div class="step-num">3</div><h4>Resolución</h4><p>Ejecutamos el trabajo con herramientas profesionales y repuestos de calidad.</p></div>
+        <div class="step-card"><div class="step-num">4</div><h4>Garantía</h4><p>Entregamos con garantía según el tipo de trabajo. Si vuelve el problema, volvemos nosotros.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Soporte Cyclops</h3>
+          <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Páginas</h3>
+          <a href="index.html">Inicio</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="opiniones.html">Opiniones</a>
+          <a href="faq.html">Preguntas frecuentes</a>
+          <a href="blog/index.html">Blog técnico</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <a href="tel:+5491166804450">+54 9 11 6680-4450</a>
+          <a href="mailto:contacto@soportecyclops.com.ar">contacto@soportecyclops.com.ar</a>
+          <a href="https://wa.me/5491166804450" target="_blank">WhatsApp</a>
+          <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank">Ver en Google Maps</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a></p></div>
+    </div>
+  </footer>
+
+  <script>
+    var navbar = document.getElementById('navbar');
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+    window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    menuToggle.addEventListener('click', function(){
+      navMenu.classList.toggle('open');
+      menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.getElementById('tc-' + id).classList.add('active');
+      btn.classList.add('active');
+      btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+    }
+    // Hash navigation from cards
+    if (window.location.hash) {
+      var map = {'#soporte':'tab-soporte','#redes':'tab-redes','#cctv':'tab-cctv','#alarmas':'tab-alarmas','#domotica':'tab-domotica','#ciberseguridad':'tab-ciber','#ups':'tab-ups'};
+      var btn = map[window.location.hash];
+      if (btn) { var el = document.getElementById(btn); if(el) setTimeout(function(){ el.click(); }, 300); }
+    }
+  </script>
+</body>
+</html>
