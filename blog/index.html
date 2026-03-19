@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog técnico | Soporte Cyclops — Guías IT para pymes y hogares</title>
+  <meta name="description" content="Artículos técnicos prácticos sobre redes WiFi, seguridad informática, hardware, mantenimiento de PC y CCTV. Sin tecnicismos innecesarios.">
+  <meta property="og:title" content="Blog técnico — Soporte Cyclops"><meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.soportecyclops.com.ar/blog/">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/blog/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#f8fafc;line-height:1.7}a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
+    .top-bar{background:#1a3a5c;padding:14px 0}.top-bar .inner{max-width:1000px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+    .top-bar .brand{color:white;font-weight:700;font-size:0.9rem;display:flex;align-items:center;gap:8px;text-decoration:none}
+    .top-bar .cta{background:rgba(255,255,255,0.12);color:white;padding:8px 16px;border-radius:20px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:background 0.2s}
+    .top-bar .cta:hover{background:rgba(255,255,255,0.2)}
+    .hero{background:linear-gradient(135deg,#0f2444 0%,#1a3a5c 100%);color:white;padding:56px 0 44px}
+    .hero .inner{max-width:1000px;margin:0 auto;padding:0 24px}
+    .hero-tag{display:inline-block;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px}
+    .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px;letter-spacing:-0.02em}
+    .hero p{font-size:1rem;opacity:0.8;max-width:580px}
+    .main{max-width:1000px;margin:0 auto;padding:48px 24px 64px}
+    .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+    .filter-btn{padding:8px 18px;border-radius:50px;border:2px solid #e2e8f0;background:white;color:#64748b;font-family:'Open Sans',sans-serif;font-size:0.82rem;font-weight:600;cursor:pointer;transition:all 0.2s}
+    .filter-btn:hover,.filter-btn.active{border-color:#2563eb;color:#2563eb;background:rgba(37,99,235,0.05)}
+    .filter-btn.active{background:#2563eb;color:white}
+    .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .article-card{background:white;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;transition:all 0.25s;text-decoration:none;color:inherit;display:flex;flex-direction:column}
+    .article-card:hover{transform:translateY(-5px);box-shadow:0 8px 32px rgba(37,99,235,0.12);border-color:rgba(37,99,235,0.2);text-decoration:none}
+    .card-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;position:relative;overflow:hidden}
+    .card-img::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,0.06) 1px,transparent 1px);background-size:18px 18px}
+    .card-emoji{position:relative;z-index:1;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3))}
+    .redes{background:linear-gradient(135deg,#0f2444,#1a4a8a)}
+    .hardware{background:linear-gradient(135deg,#1a2a1a,#2d5a2d)}
+    .seguridad{background:linear-gradient(135deg,#3a0f0f,#7a1c1c)}
+    .mantenimiento{background:linear-gradient(135deg,#1a1a3a,#2d2d7a)}
+    .ups{background:linear-gradient(135deg,#2a1a0a,#7a4a1a)}
+    .cctv{background:linear-gradient(135deg,#1a0a2a,#4a1a6a)}
+    .card-body{padding:20px 22px;flex:1;display:flex;flex-direction:column}
+    .card-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+    .c-tag{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 9px;border-radius:10px}
+    .c-tag.redes{color:#1e40af;background:#dbeafe}.c-tag.hardware{color:#166534;background:#dcfce7}
+    .c-tag.seguridad{color:#991b1b;background:#fee2e2}.c-tag.mantenimiento{color:#3730a3;background:#e0e7ff}
+    .c-tag.ups{color:#92400e;background:#fef3c7}.c-tag.cctv{color:#6b21a8;background:#f3e8ff}
+    .c-time{font-size:0.68rem;color:#94a3b8;display:flex;align-items:center;gap:4px}
+    .card-body h3{font-family:'Space Grotesk',sans-serif;font-size:0.97rem;font-weight:700;color:#1a3a5c;margin-bottom:8px;line-height:1.35}
+    .card-body p{font-size:0.83rem;color:#64748b;line-height:1.65;flex:1}
+    .card-read-more{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;font-weight:700;color:#2563eb;margin-top:14px}
+    .article-card:hover .card-read-more{gap:9px}
+    .cta-strip{background:linear-gradient(135deg,#1a3a5c,#2563eb);border-radius:14px;padding:32px 36px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:48px}
+    .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:800;color:white;margin-bottom:6px}
+    .cta-strip p{font-size:0.88rem;color:rgba(255,255,255,0.8);max-width:480px}
+    .cta-strip-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:#1a3a5c;padding:13px 24px;border-radius:50px;font-weight:700;font-size:0.88rem;flex-shrink:0;white-space:nowrap}
+    .cta-strip-btn:hover{text-decoration:none}
+    @media(max-width:900px){.articles-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.articles-grid{grid-template-columns:1fr}.cta-strip{flex-direction:column}}
+    footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:24px;font-size:0.82rem}footer a{color:rgba(255,255,255,0.8)}
+  </style>
+</head>
+<body>
+  <div class="top-bar"><div class="inner">
+    <a href="../index.html" class="brand"><img src="../public/images/logo-icon.png" alt="Cyclops" width="28" height="29" style="border-radius:4px;"> Soporte Cyclops</a>
+    <a href="https://wa.me/5491166804450" target="_blank" class="cta"><i class="fab fa-whatsapp"></i> Consulta técnica</a>
+  </div></div>
+
+  <div class="hero"><div class="inner">
+    <span class="hero-tag">Recursos gratuitos</span>
+    <h1>Artículos técnicos</h1>
+    <p>Guías prácticas sobre redes, hardware, seguridad informática y más. Sin tecnicismos innecesarios.</p>
+  </div></div>
+
+  <div class="main">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="redes">Redes</button>
+      <button class="filter-btn" data-filter="hardware">Hardware</button>
+      <button class="filter-btn" data-filter="seguridad">Seguridad</button>
+      <button class="filter-btn" data-filter="mantenimiento">Mantenimiento</button>
+      <button class="filter-btn" data-filter="ups">Infraestructura</button>
+      <button class="filter-btn" data-filter="cctv">CCTV</button>
+    </div>
+
+    <div class="articles-grid" id="grid">
+
+      <a href="wifi-no-llega.html" class="article-card" data-cat="redes">
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 7 min</span></div>
+          <h3>Por qué el WiFi no llega a todos los ambientes (y cómo solucionarlo)</h3>
+          <p>Las 5 causas más comunes de mala cobertura WiFi y qué hacer en cada caso sin gastar de más.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+        </div>
+      </a>
+
+      <a href="senales-disco-por-fallar.html" class="article-card" data-cat="hardware">
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 7 min</span></div>
+          <h3>6 señales de que tu disco duro está por fallar (antes de perder todo)</h3>
+          <p>Tu PC te avisa antes de morir. Sabés interpretarlas a tiempo para hacer el backup.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+        </div>
+      </a>
+
+      <a href="ransomware-que-hacer.html" class="article-card" data-cat="seguridad">
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 8 min</span></div>
+          <h3>¿Qué hacer si un ransomware bloqueó tu empresa? Guía de respuesta</h3>
+          <p>Los primeros 30 minutos son críticos. Qué hacer, en qué orden, y qué nunca hacer.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+        </div>
+      </a>
+
+      <a href="mantenimiento-preventivo-pc.html" class="article-card" data-cat="mantenimiento">
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
+          <h3>Mantenimiento preventivo de PC: qué hacer cada cuánto para que dure más</h3>
+          <p>Checklist completo semanal, mensual y anual. Evitá el 80% de las fallas.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+        </div>
+      </a>
+
+      <a href="ups-proteccion-energia.html" class="article-card" data-cat="ups">
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
+          <h3>UPS y protección de energía: por qué un corte de luz puede destruir tus equipos</h3>
+          <p>Qué es un UPS, cómo elegirlo y cuándo es imprescindible para una pyme.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+        </div>
+      </a>
+
+      <a href="camaras-seguridad-guia.html" class="article-card" data-cat="cctv">
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
+        <div class="card-body">
+          <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 7 min</span></div>
+          <h3>Cámaras de seguridad para el hogar y la empresa: guía completa antes de comprar</h3>
+          <p>IP vs analógica, resolución, almacenamiento, acceso remoto. Todo lo necesario para elegir bien.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="cta-strip">
+      <div>
+        <h3>¿Tenés un problema técnico concreto?</h3>
+        <p>Si no encontrás lo que buscás acá, consultanos directamente. Respondemos en menos de 2 horas en horario laboral.</p>
+      </div>
+      <a href="https://wa.me/5491166804450?text=Hola%2C%20tengo%20una%20consulta%20t%C3%A9cnica" target="_blank" class="cta-strip-btn">
+        <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <footer><p><a href="../index.html">soportecyclops.com.ar</a> · Técnico IT a domicilio en CABA y GBA · <a href="https://wa.me/5491166804450">+54 9 11 6680-4450</a></p></footer>
+
+  <script>
+    const btns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.article-card');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(c => {
+          c.style.display = (f === 'all' || c.dataset.cat === f) ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
