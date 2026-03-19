@@ -1,8 +1,16 @@
 // ===========================
 // CHATBOT INTELIGENTE CON DIAGNÓSTICO GUIADO
-// Soporte Cyclops — v4.0
+// Soporte Cyclops — v4.1
 // ===========================
-// CHANGELOG v4.0:
+// CHANGELOG v4.1:
+// [FIX] generarDiagNum() eliminada — el número se genera en Apps Script
+// [NEW] procesarYEnviarDiagnostico() ahora es async: espera diagNum del servidor
+// [NEW] Formato de número: DIAG-DDMMAA-NNNN (ej: DIAG-190326-0001)
+// [NEW] enviarYObtenerDiagNum() reemplaza enviarAGoogleAppsScript()
+// [NEW] fallbackLocal() garantiza funcionamiento offline con mismo formato
+// [NEW] finishDiag() ya NO genera diagNum local — se elimina esa línea
+// ===========================
+// CHANGELOG v4.0 (histórico):
 // [FIX] tel: usaba número WA sin "+" — corregido a CYCLOPS_CONFIG.telefono
 // [FIX] Flujos "horarios","precios","zona" en consulta_general caían silenciosamente al default
 // [FIX] Garantías: texto actualizado a política real (variable por tipo)
@@ -71,7 +79,7 @@ function formatARS(n) {
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function () {
-    console.log("🚀 Inicializando Chatbot Cyclops v4.0...");
+    console.log("🚀 Inicializando Chatbot Cyclops v4.1...");
     initChatbot();
 });
 
@@ -90,12 +98,15 @@ function initChatbot() {
         return;
     }
 
+    // diagNum ya NO se pre-genera aquí. Se asigna después de la respuesta del servidor.
     var diagState = { active:false, flow:null, step:0, answers:{}, tempResult:null, waitingForName:false, waitingForEmail:false, diagNum:null };
     var conversationHistory = [];
 
-    function generarDiagNum() {
-        return "CYC-" + Date.now().toString().slice(-5) + "-" + Math.floor(100 + Math.random() * 900);
-    }
+    // ── NOTA v4.1: generarDiagNum() fue eliminada.
+    // El número se genera en Apps Script (Code.gs → generarDiagNumServidor).
+    // Formato: DIAG-DDMMAA-NNNN  ej: DIAG-190326-0001
+    // Si el servidor no responde, fallbackLocal() en enviarYObtenerDiagNum()
+    // genera un número con el mismo formato pero con 4 dígitos aleatorios.
 
     // ── RISK WARNINGS ─────────────────────────────────────────────────────────
     var riskWarnings = {
@@ -278,7 +289,6 @@ function initChatbot() {
             diagnose: async function(a) {
                 var completo    = a.sistema_domotica && a.sistema_domotica.includes("completo");
                 var voz         = a.control_deseado  && a.control_deseado.includes("voz");
-                // Buscar la key limpia en DOMOTICA_PRECIOS
                 var precioKey   = (a.sistema_domotica||"").replace(/[💡🌡️🔌🎬]/gu,"").trim();
                 var precioMatch = null;
                 Object.keys(DOMOTICA_PRECIOS).forEach(function(k){ if (precioKey.includes(k) || k.includes(precioKey)) precioMatch = DOMOTICA_PRECIOS[k]; });
@@ -307,7 +317,7 @@ function initChatbot() {
             }
         },
 
-        // CIBERSEGURIDAD — nuevo flow
+        // CIBERSEGURIDAD
         "ciber_diagnostico": {
             intro: "🛡️ **Diagnóstico de ciberseguridad**\n\nUnas preguntas para evaluar tu situación actual.",
             steps: [
@@ -347,7 +357,7 @@ function initChatbot() {
             }
         },
 
-        // UPS — nuevo flow
+        // UPS
         "ups_diagnostico": {
             intro: "🔋 **Diagnóstico de UPS y protección de energía**\n\nUnas preguntas para recomendarte el equipo correcto.",
             steps: [
@@ -516,6 +526,7 @@ function initChatbot() {
     function startDiagFlow(flowKey) {
         var flow = diagFlows[flowKey];
         if (!flow) return;
+        // diagNum se inicializa en null — se asigna al finalizar, desde el servidor
         diagState = { active:true, flow:flowKey, step:0, answers:{}, tempResult:null, waitingForName:false, waitingForEmail:false, diagNum:null };
         addMessage(flow.intro, 'bot');
         setTimeout(askDiagStep, 600);
@@ -533,10 +544,10 @@ function initChatbot() {
     function finishDiag() {
         var flow = diagFlows[diagState.flow];
         diagState.active = false;
-        // Soporte para diagnose async (domótica) y sync (resto)
+        // NOTA v4.1: Se eliminó diagState.diagNum = generarDiagNum() que estaba aquí.
+        // El número se genera en el servidor dentro de procesarYEnviarDiagnostico().
         Promise.resolve(flow.diagnose(diagState.answers)).then(function(result) {
             diagState.tempResult = result;
-            diagState.diagNum    = generarDiagNum();
             var niveles = { critica:"🔴 Riesgo crítico", alta:"🟠 Riesgo elevado", media:"🟡 A tener en cuenta", baja:"🟢 Situación estable" };
             addMessage(
                 "📋 **Evaluación técnica preliminar completada.**\n\n" + (niveles[result.severidad]||"🟡 A tener en cuenta") + "\n\n⚠️ **Nota técnica:** " + result.riskWarning + "\n\nTu diagnóstico está listo. ¿A nombre de quién querés que figure el informe?",
@@ -546,16 +557,101 @@ function initChatbot() {
         });
     }
 
-    function procesarYEnviarDiagnostico() {
+    // ── PROCESAR Y ENVIAR DIAGNÓSTICO (v4.1 — async) ─────────────────────────
+    // Flujo:
+    //   1. Arma payload sin diagNum
+    //   2. Llama a Apps Script → recibe diagNum confirmado (ej: DIAG-190326-0001)
+    //   3. Asigna diagNum al payload y al estado
+    //   4. Guarda en sessionStorage
+    //   5. Muestra el resultado al usuario con el número real
+    async function procesarYEnviarDiagnostico() {
         var result  = diagState.tempResult;
-        var diagNum = diagState.diagNum;
         var nombre  = diagState.answers.nombre || "Cliente";
-        var email   = diagState.answers.email  || "No provisto";
+        var email   = diagState.answers.email  || "";
+
         addMessage("⏳ Generando tu informe técnico...", 'bot');
-        var payload = { diagNum:diagNum, fecha:new Date().toLocaleString('es-AR'), nombre:nombre, email:email, servicio:result.servicio, sintoma:result.sintomaLabel, equipo:result.equipoLabel, duracion:result.duracionLabel, resumen:result.resumen, riskWarning:result.riskWarning, severidad:result.severidad, pasos:result.pasos.join(" | "), logoUrl:CYCLOPS_CONFIG.logoUrl, sitio:CYCLOPS_CONFIG.sitio };
+
+        // Payload sin diagNum — el servidor lo genera y retorna
+        var payload = {
+            fecha:       new Date().toLocaleString('es-AR'),
+            nombre:      nombre,
+            email:       email,
+            servicio:    result.servicio,
+            sintoma:     result.sintomaLabel,
+            equipo:      result.equipoLabel,
+            duracion:    result.duracionLabel,
+            resumen:     result.resumen,
+            riskWarning: result.riskWarning,
+            severidad:   result.severidad,
+            pasos:       result.pasos.join(" | "),
+            logoUrl:     CYCLOPS_CONFIG.logoUrl,
+            sitio:       CYCLOPS_CONFIG.sitio
+        };
+
+        // Enviar a Apps Script y obtener el número confirmado
+        var diagNum = await enviarYObtenerDiagNum(payload);
+
+        // Asignar número confirmado a todos los registros
+        payload.diagNum   = diagNum;
+        diagState.diagNum = diagNum;
+
+        // Guardar localmente con el número real
         guardarLocalDiag(payload);
+
+        // Mostrar al usuario
         mostrarResultadoFinal(diagNum, nombre, result);
-        enviarAGoogleAppsScript(payload);
+    }
+
+    // ── ENVIAR A APPS SCRIPT Y OBTENER diagNum ────────────────────────────────
+    // Si el servidor responde correctamente, usa el número secuencial.
+    // Si falla (red, timeout, config), usa fallbackLocal() con mismo formato.
+    async function enviarYObtenerDiagNum(payload) {
+        // Fallback: mismo formato DIAG-DDMMAA-NNNN pero con 4 dígitos aleatorios
+        function fallbackLocal() {
+            var hoy  = new Date();
+            var dd   = String(hoy.getDate()).padStart(2, "0");
+            var mm   = String(hoy.getMonth() + 1).padStart(2, "0");
+            var aa   = String(hoy.getFullYear()).slice(-2);
+            var rand = String(Math.floor(Math.random() * 8999) + 1000); // 1000-9999
+            console.warn("⚠️ Usando diagNum de fallback local:", "DIAG-" + dd + mm + aa + "-" + rand);
+            return "DIAG-" + dd + mm + aa + "-" + rand;
+        }
+
+        if (!CYCLOPS_CONFIG.appsScriptUrl || CYCLOPS_CONFIG.appsScriptUrl.includes("TU_ID")) {
+            console.warn("⚠️ appsScriptUrl no configurado — usando fallback local");
+            return fallbackLocal();
+        }
+
+        try {
+            var fd = new FormData();
+            fd.append('payload', JSON.stringify(payload));
+
+            // Sin mode:"no-cors" para poder leer la respuesta JSON.
+            // Requiere que el script esté publicado con acceso "Cualquier persona".
+            var response = await fetch(CYCLOPS_CONFIG.appsScriptUrl, {
+                method: "POST",
+                body:   fd
+            });
+
+            if (!response.ok) {
+                console.warn("⚠️ Respuesta HTTP no OK:", response.status);
+                return fallbackLocal();
+            }
+
+            var data = await response.json();
+
+            if (data && data.ok && data.diagNum) {
+                console.log("✅ diagNum recibido del servidor:", data.diagNum);
+                return data.diagNum;
+            } else {
+                console.warn("⚠️ Apps Script respondió pero sin diagNum:", data);
+                return fallbackLocal();
+            }
+
+        } catch (err) {
+            console.warn("⚠️ Error al contactar Apps Script — usando fallback:", err.message);
+            return fallbackLocal();
+        }
     }
 
     function mostrarResultadoFinal(diagNum, nombre, result) {
@@ -566,15 +662,6 @@ function initChatbot() {
             { text:"💬 Enviar diagnóstico al técnico", action:"__whatsapp_diag__" + waMsg },
             { text:"🔍 Hacer otro diagnóstico",        next:"menu_diagnostico" }
         ]);
-    }
-
-    function enviarAGoogleAppsScript(payload) {
-        if (!CYCLOPS_CONFIG.appsScriptUrl || CYCLOPS_CONFIG.appsScriptUrl.includes("TU_ID")) return;
-        var fd = new FormData();
-        fd.append('payload', JSON.stringify(payload));
-        fetch(CYCLOPS_CONFIG.appsScriptUrl, { method:"POST", mode:"no-cors", body:fd })
-            .then(function(){ console.log("✅ Diagnóstico enviado."); })
-            .catch(function(e){ console.warn("⚠️ Error al enviar:", e); });
     }
 
     function guardarLocalDiag(payload) {
@@ -667,7 +754,6 @@ function initChatbot() {
         }
         switch(action) {
             case 'llamar_ahora':
-                // FIX: usar telefono con "+" para tel: correcto (no el número de WA)
                 window.open("tel:" + CYCLOPS_CONFIG.telefono.replace(/\s/g,''));
                 addMessage("📞 **Conectándote por teléfono...**\n\nSi no funciona, marcá directo al: " + CYCLOPS_CONFIG.telefono, 'bot');
                 break;
@@ -698,7 +784,6 @@ function initChatbot() {
                 addMessage("⏰ **Horarios:**\n\n📅 Lunes a Viernes: 9:00 a 18:00 hs\n📅 Sábados: 9:00 a 13:00 hs\n📅 Domingos: Cerrado\n\n⚡ Urgencias fuera de horario: WhatsApp.", 'bot', [{text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
                 break;
             case 'info_precios':
-                // FIX: garantía variable, no "todos los servicios"
                 addMessage("💰 **Precios y garantías:**\n\n✅ Consulta remota inicial **sin cargo**\n✅ Presupuesto detallado antes de empezar\n✅ Garantía de 15 días en software/formateos\n✅ Garantía de 30 días en mantenimiento físico\n✅ Garantía de 90 días en redes e instalaciones\n\nSin sorpresas — acordamos todo antes de tocar nada.", 'bot', [{text:"💬 Solicitar presupuesto", action:"whatsapp_urgente"}]);
                 break;
             case 'info_zona':
@@ -735,7 +820,6 @@ function initChatbot() {
             var saved = localStorage.getItem('cyclopsChatbotConversation');
             if (saved) {
                 var parsed = JSON.parse(saved);
-                // FIX: validar antes de cargar — evita que localStorage corrupto bloquee la UI
                 if (Array.isArray(parsed) && parsed.length > 0) {
                     conversationHistory = parsed;
                     chatbotMessages.innerHTML = '';
@@ -745,7 +829,6 @@ function initChatbot() {
                 }
             }
         } catch(e) {
-            // FIX: limpiar sin bloquear UI
             conversationHistory = [];
             try { localStorage.removeItem('cyclopsChatbotConversation'); } catch(e2) {}
         }
@@ -779,5 +862,5 @@ function initChatbot() {
     });
 
     loadConversation();
-    console.log("✅ Chatbot Cyclops v4.0 inicializado correctamente");
+    console.log("✅ Chatbot Cyclops v4.1 inicializado correctamente");
 }
