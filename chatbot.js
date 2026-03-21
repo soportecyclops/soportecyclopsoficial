@@ -35,7 +35,7 @@ const CYCLOPS_CONFIG = {
     email:         "contacto@soportecyclops.com.ar",
     sitio:         "www.soportecyclops.com.ar",
     logoUrl:       "https://www.soportecyclops.com.ar/public/images/logo-icon.png",
-    appsScriptUrl: "https://script.google.com/macros/s/AKfycbx0T1wZic0T6cttLEyPugB3Gt0fUHMjY97GDveRsjq8iaZ-DhoGB6Bmh1tzFYjLG0_8/exec"
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbwkFA7nJ9tikuqWmf0qbNZSGinSoQ5ALhxfbCqrMHFo5WjS7YZxb6q4K_VrjXeO0_pW/exec"
 };
 
 // ── PRECIOS DOMÓTICA EN USD ──────────────────────────────────────────────────
