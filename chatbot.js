@@ -35,7 +35,7 @@ const CYCLOPS_CONFIG = {
     email:         "contacto@soportecyclops.com.ar",
     sitio:         "www.soportecyclops.com.ar",
     logoUrl:       "https://www.soportecyclops.com.ar/public/images/logo-icon.png",
-    appsScriptUrl: "https://script.google.com/macros/s/AKfycbwkFA7nJ9tikuqWmf0qbNZSGinSoQ5ALhxfbCqrMHFo5WjS7YZxb6q4K_VrjXeO0_pW/exec"
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbwjVWP25ZqWa3C0IuQ6rgHYxv1r4iqM5N5916i9gLYuKFEEC3nDyMh74RdG5T8Iv4_w/exec"
 };
 
 // ── PRECIOS DOMÓTICA EN USD ──────────────────────────────────────────────────
@@ -784,8 +784,14 @@ function initChatbot() {
         // PDF desde Drive (generado por el servidor)
         if (action.startsWith('__pdf_drive__')) {
             var url = action.replace('__pdf_drive__', '');
-            window.open(url, '_blank');
-            addMessage("📄 **Abriendo tu informe PDF...**\n\nSi no se abre automáticamente, revisá que no esté bloqueado el popup.", 'bot');
+            var link = document.createElement('a');
+            link.href = url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            addMessage("📄 **Abriendo tu informe en Google Drive...**\n\nEl PDF se abre en una nueva pestaña. Desde ahí podés descargarlo con el ícono de descarga.", 'bot');
             return;
         }
         // PDF local con jsPDF (fallback cuando el servidor no generó PDF)

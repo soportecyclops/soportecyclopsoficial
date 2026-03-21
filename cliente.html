@@ -802,7 +802,7 @@
   // CONFIGURACIÓN
   // ════════════════════════════════════════════════════════
   const GOOGLE_CLIENT_ID = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
-  const APPS_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbwkFA7nJ9tikuqWmf0qbNZSGinSoQ5ALhxfbCqrMHFo5WjS7YZxb6q4K_VrjXeO0_pW/exec";
+  const APPS_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbwjVWP25ZqWa3C0IuQ6rgHYxv1r4iqM5N5916i9gLYuKFEEC3nDyMh74RdG5T8Iv4_w/exec";
 
   // ════════════════════════════════════════════════════════
   // PORTAL — LOGIN Y CARGA DE DIAGNÓSTICOS
@@ -1513,8 +1513,14 @@
     }
     if (action.startsWith('__pdf_drive__')) {
       var url = action.replace('__pdf_drive__', '');
-      window.open(url, '_blank');
-      chatAddMsg('📄 **Abriendo tu informe PDF...**\n\nSi no se abre, verificá que no esté bloqueado el popup.', 'bot');
+      var link = document.createElement('a');
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      chatAddMsg('📄 **Abriendo tu informe en Google Drive...**\n\nEl PDF se abre en una nueva pestaña. Desde ahí podés descargarlo con el ícono de descarga.', 'bot');
       return;
     }
     if (action === 'descargar_pdf_diag') {
