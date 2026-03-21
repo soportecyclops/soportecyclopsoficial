@@ -2876,85 +2876,7 @@
         });
     });
 
-    // ===================== WHATSAPP FORM =====================
-    document.getElementById('whatsappBtn').addEventListener('click', () => {
-        const n = document.getElementById('nombre').value;
-        const t = document.getElementById('telefono').value;
-        const s = document.getElementById('servicio').value;
-        const d = document.getElementById('descripcion').value;
-        const z = document.getElementById('direccion').value;
-        if (!n || !t || !s || !d || !z) {
-            const msg = document.getElementById('formMessage');
-            msg.style.display = 'block';
-            msg.style.background = '#fef2f2';
-            msg.style.color = '#dc2626';
-            msg.style.border = '1px solid #fecaca';
-            msg.textContent = 'Por favor completá los campos obligatorios (*)';
-            return;
-        }
-        const text = `¡Hola! Soy ${n}%0ATel: ${t}%0AZona: ${z}%0AServicio: ${s}%0A%0A${d}`;
-        window.open(`https://wa.me/5491166804450?text=${text}`, '_blank');
-    });
-
-    document.getElementById('scheduleGoogleBtn').addEventListener('click', () => {
-        const n = document.getElementById('nombre').value;
-        const t = document.getElementById('telefono').value;
-        const em = document.getElementById('email').value;
-        const z = document.getElementById('direccion').value;
-        const s = document.getElementById('servicio').value;
-        const f = document.getElementById('fecha').value;
-        const d = document.getElementById('descripcion').value;
-        const visita = document.getElementById('visitaTecnica').checked;
-
-        if (!n || !t || !s || !d || !z) {
-            const msg = document.getElementById('formMessage');
-            msg.style.display = 'block';
-            msg.style.background = '#fef2f2';
-            msg.style.color = '#dc2626';
-            msg.style.border = '1px solid #fecaca';
-            msg.textContent = 'Por favor completá los campos obligatorios (*) antes de agendar.';
-            return;
-        }
-
-        // Build title
-        const title = encodeURIComponent(`Soporte Cyclops — ${s} — ${n}`);
-
-        // Build dates: if fecha provided, use it; else use today + 1hr
-        let startStr = '', endStr = '';
-        if (f) {
-            // f = "2026-03-15T13:30" → "20260315T133000"
-            const dt = new Date(f);
-            const pad = n => String(n).padStart(2,'0');
-            const fmt = d => `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-            startStr = fmt(dt);
-            const dtEnd = new Date(dt.getTime() + 60*60*1000); // +1 hora
-            endStr = fmt(dtEnd);
-        } else {
-            const now = new Date();
-            const pad = n => String(n).padStart(2,'0');
-            const fmt = d => `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-            startStr = fmt(now);
-            const end = new Date(now.getTime() + 60*60*1000);
-            endStr = fmt(end);
-        }
-
-        // Build details
-        const details = encodeURIComponent(
-            `Cliente: ${n}\n` +
-            `Teléfono: ${t}\n` +
-            `Email: ${em || 'No indicado'}\n` +
-            `Zona: ${z}\n` +
-            `Servicio: ${s}\n` +
-            `Visita técnica: ${visita ? 'Sí' : 'No'}\n\n` +
-            `Descripción:\n${d}\n\n` +
-            `— Reserva generada desde soportecyclops.com.ar`
-        );
-
-        const location = encodeURIComponent(z + ', Buenos Aires, Argentina');
-
-        const url = `https://calendar.google.com/calendar/r/eventedit?text=${title}&dates=${startStr}/${endStr}&details=${details}&location=${location}&sf=true`;
-        window.open(url, '_blank');
-    });
+    // Handlers de formulario en main.js (no duplicar aquí)
     </script>
 
     <!-- Scripts externos -->
@@ -3099,7 +3021,6 @@
     // for future dynamic rendering if needed. Currently static HTML is used.
     // To add new reviews: update both the HTML section AND this array.
 
-    </script>
 
     // ===================== FUNCIÓN GLOBAL: ABRIR CHATBOT CON DIAGNÓSTICO =====================
     // Llamada desde el botón del hero y desde cualquier otro punto de la página.
@@ -3147,5 +3068,6 @@
             }, 300);
         }, 150);
     }
+    </script>
 </body>
 </html>
