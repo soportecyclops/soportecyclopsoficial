@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Técnico IA | Soporte Cyclops</title>
+    <meta name="description" content="Asistente técnico con inteligencia artificial. Describí tu problema y recibí orientación técnica en tiempo real.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://www.soportecyclops.com.ar/soporte.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        :root {
+            --blue-dark:#1a3a5c; --blue:#2563eb; --accent:#00c6ff;
+            --white:#ffffff; --gray-50:#f8fafc; --gray-100:#f1f5f9;
+            --gray-200:#e2e8f0; --gray-400:#94a3b8; --gray-600:#475569; --gray-800:#1e293b;
+            --shadow-sm:0 2px 8px rgba(0,0,0,0.08); --shadow-md:0 8px 32px rgba(0,0,0,0.12);
+            --radius:14px; --transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Open Sans',sans-serif; color:var(--gray-800); background:var(--gray-50); min-height:100vh; display:flex; flex-direction:column; }
+        .container { width:100%; max-width:1200px; margin:0 auto; padding:0 24px; }
+
+        /* NAVBAR */
+        .navbar { background:rgba(255,255,255,0.95); backdrop-filter:blur(12px); box-shadow:0 1px 0 rgba(0,0,0,0.08); position:sticky; top:0; z-index:1000; transition:var(--transition); }
+        .navbar.scrolled { box-shadow:var(--shadow-sm); }
+        .nav-container { display:flex; justify-content:space-between; align-items:center; padding:0.9rem 2rem; }
+        .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+        .logo img { height:48px; width:auto; }
+        .logo-text { font-size:1rem; font-weight:400; color:var(--blue-dark); line-height:1.2; display:flex; flex-direction:column; }
+        .logo-text strong { font-size:1.2rem; font-weight:800; color:var(--blue-dark); letter-spacing:0.04em; text-transform:uppercase; }
+        .nav-menu { display:flex; list-style:none; gap:1.5rem; align-items:center; }
+        .nav-link { text-decoration:none; color:var(--gray-600); font-weight:500; font-size:0.9rem; transition:var(--transition); position:relative; padding-bottom:2px; }
+        .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:var(--blue); transition:width 0.3s ease; }
+        .nav-link:hover, .nav-link.active { color:var(--blue); }
+        .nav-link:hover::after, .nav-link.active::after { width:100%; }
+        .menu-toggle { display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--blue-dark); }
+        @media(max-width:768px){
+            .nav-menu { display:none; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:white; padding:20px; box-shadow:var(--shadow-md); gap:0; }
+            .nav-menu.open { display:flex; }
+            .nav-menu li { border-bottom:1px solid var(--gray-100); }
+            .nav-menu li:last-child { border-bottom:none; }
+            .nav-link { display:block; padding:12px 0; }
+            .menu-toggle { display:block; }
+        }
+
+        /* PAGE HERO */
+        .page-hero { background:linear-gradient(135deg,#0f2444 0%,#1a3a5c 40%,#1e4976 70%,#0d3460 100%); color:white; padding:40px 0 32px; position:relative; overflow:hidden; }
+        .page-hero::before { content:''; position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(37,99,235,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.06) 1px,transparent 1px); background-size:40px 40px; }
+        .page-hero-inner { position:relative; z-index:1; display:flex; align-items:center; gap:20px; }
+        .page-hero-icon { width:56px; height:56px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; box-shadow:0 0 30px rgba(37,99,235,0.3); }
+        .page-hero-text { flex:1; }
+        .page-hero-tag { display:inline-flex; align-items:center; gap:7px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:5px 14px; border-radius:50px; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.85); margin-bottom:10px; }
+        .tag-dot { width:7px; height:7px; background:#22c55e; border-radius:50%; box-shadow:0 0 6px #22c55e; animation:pDot 2.5s infinite; }
+        @keyframes pDot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+        .page-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(1.4rem,3vw,2rem); font-weight:800; letter-spacing:-0.02em; margin-bottom:8px; }
+        .page-hero p { font-size:0.9rem; opacity:0.8; max-width:520px; line-height:1.65; }
+        .breadcrumb { font-size:0.78rem; opacity:0.55; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+        .breadcrumb a { color:rgba(255,255,255,0.7); text-decoration:none; }
+        .breadcrumb a:hover { color:white; }
+
+        /* CHAT LAYOUT */
+        .chat-page { padding:32px 0 56px; flex:1; }
+        .chat-wrapper { display:grid; grid-template-columns:1fr 300px; gap:24px; align-items:start; }
+        @media(max-width:900px){ .chat-wrapper{grid-template-columns:1fr;} .chat-sidebar{order:-1;} }
+
+        /* CHAT BOX */
+        .chat-box { background:white; border:1px solid var(--gray-200); border-radius:var(--radius); box-shadow:var(--shadow-md); display:flex; flex-direction:column; height:600px; overflow:hidden; }
+        .chat-box-header { background:linear-gradient(135deg,var(--blue-dark),#1e4a7a); padding:16px 20px; display:flex; align-items:center; gap:12px; flex-shrink:0; }
+        .chat-avatar { width:38px; height:38px; background:rgba(255,255,255,0.12); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.1rem; flex-shrink:0; }
+        .chat-header-info h3 { color:white; font-size:0.95rem; font-weight:700; margin-bottom:2px; }
+        .chat-status { display:flex; align-items:center; gap:5px; font-size:0.72rem; color:rgba(255,255,255,0.7); }
+        .chat-status-dot { width:7px; height:7px; background:#22c55e; border-radius:50%; animation:pDot 2s infinite; }
+
+        /* MESSAGES */
+        .chat-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; scroll-behavior:smooth; }
+        .chat-messages::-webkit-scrollbar { width:4px; }
+        .chat-messages::-webkit-scrollbar-thumb { background:var(--gray-200); border-radius:4px; }
+        .msg { display:flex; flex-direction:column; max-width:88%; animation:msgIn 0.22s ease; }
+        @keyframes msgIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+        .msg.bot  { align-self:flex-start; }
+        .msg.user { align-self:flex-end; }
+        .msg-bubble { padding:10px 14px; border-radius:16px; font-size:0.875rem; line-height:1.6; }
+        .msg.bot  .msg-bubble { background:var(--gray-50); border:1px solid var(--gray-200); color:var(--gray-800); border-bottom-left-radius:4px; }
+        .msg.user .msg-bubble { background:var(--blue); color:white; border-bottom-right-radius:4px; }
+        .msg-bubble strong { font-weight:700; }
+        .msg-bubble ol { padding-left:18px; margin-top:6px; }
+        .msg-bubble li { margin-bottom:4px; }
+        .msg-options { display:flex; flex-wrap:wrap; gap:6px; margin-top:9px; }
+        .opt-btn { padding:7px 13px; background:white; border:1.5px solid var(--gray-200); border-radius:20px; font-family:'Open Sans',sans-serif; font-size:0.78rem; font-weight:600; color:var(--blue-dark); cursor:pointer; transition:var(--transition); }
+        .opt-btn:hover { background:rgba(37,99,235,0.06); border-color:var(--blue); color:var(--blue); }
+        .opt-btn:disabled { opacity:0.4; cursor:not-allowed; }
+        .t-dot { display:inline-block; width:7px; height:7px; background:var(--gray-400); border-radius:50%; margin:0 2px; animation:tB 1.2s infinite; }
+        .t-dot:nth-child(2){animation-delay:0.2s} .t-dot:nth-child(3){animation-delay:0.4s}
+        @keyframes tB { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px);background:var(--blue)} }
+
+        /* SUGGESTIONS */
+        .chat-suggestions { padding:8px 14px; display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--gray-100); flex-shrink:0; }
+        .sug-btn { font-size:0.74rem; padding:5px 11px; border:1px solid rgba(37,99,235,0.25); border-radius:20px; background:rgba(37,99,235,0.04); color:var(--blue); cursor:pointer; transition:var(--transition); font-family:'Open Sans',sans-serif; }
+        .sug-btn:hover { background:rgba(37,99,235,0.1); }
+
+        /* INPUT */
+        .chat-input-row { display:flex; gap:8px; padding:12px 14px; border-top:1px solid var(--gray-100); flex-shrink:0; }
+        #user-input { flex:1; padding:10px 14px; border:2px solid var(--gray-200); border-radius:50px; font-family:'Open Sans',sans-serif; font-size:0.85rem; color:var(--gray-800); outline:none; transition:border-color 0.2s; background:white; }
+        #user-input:focus { border-color:var(--blue); }
+        #user-input::placeholder { color:var(--gray-400); }
+        #send-btn { width:40px; height:40px; background:var(--blue); border:none; border-radius:50%; color:white; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; justify-content:center; transition:var(--transition); box-shadow:0 3px 10px rgba(37,99,235,0.3); flex-shrink:0; }
+        #send-btn:hover { background:#1d4ed8; transform:scale(1.08); }
+        #send-btn:disabled { background:var(--gray-400); box-shadow:none; transform:none; cursor:not-allowed; }
+
+        /* SIDEBAR */
+        .chat-sidebar { display:flex; flex-direction:column; gap:16px; }
+        .sidebar-card { background:white; border:1px solid var(--gray-200); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow-sm); }
+        .sidebar-card h4 { font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:700; color:var(--blue-dark); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+        .sidebar-card h4 i { color:var(--blue); font-size:0.85rem; }
+        .sidebar-item { display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px solid var(--gray-100); font-size:0.83rem; color:var(--gray-600); }
+        .sidebar-item:last-child { border-bottom:none; padding-bottom:0; }
+        .sidebar-item i { color:var(--blue); font-size:0.8rem; margin-top:2px; flex-shrink:0; }
+        .wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; background:linear-gradient(135deg,#25D366,#128C7E); color:white; border-radius:50px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:var(--transition); box-shadow:0 4px 14px rgba(37,211,102,0.3); margin-top:4px; }
+        .wa-btn:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(37,211,102,0.4); text-decoration:none; }
+        .call-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:11px; background:white; color:var(--blue-dark); border:2px solid var(--gray-200); border-radius:50px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:var(--transition); margin-top:8px; }
+        .call-btn:hover { border-color:var(--blue); color:var(--blue); text-decoration:none; }
+        .features-row { display:flex; flex-wrap:wrap; gap:7px; }
+        .feature-chip { display:inline-flex; align-items:center; gap:6px; background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.15); color:var(--blue-dark); font-size:0.75rem; font-weight:600; padding:5px 11px; border-radius:20px; }
+        .feature-chip i { color:#22c55e; font-size:0.7rem; }
+
+        /* FOOTER */
+        footer { background:var(--blue-dark); color:rgba(255,255,255,0.85); padding:48px 0 24px; margin-top:auto; }
+        .footer-content { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1); }
+        .footer-section h3 { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; font-weight:700; color:white; margin-bottom:14px; }
+        .footer-section p { font-size:0.85rem; opacity:0.7; line-height:1.65; }
+        .footer-section ul { list-style:none; }
+        .footer-section ul li { margin-bottom:8px; font-size:0.85rem; }
+        .footer-section a { color:rgba(255,255,255,0.7); text-decoration:none; transition:color 0.2s; }
+        .footer-section a:hover { color:var(--accent); }
+        .footer-bottom { padding-top:22px; text-align:center; font-size:0.8rem; opacity:0.5; }
+        @media(max-width:768px){ .footer-content{grid-template-columns:1fr 1fr} }
+        @media(max-width:480px){ .footer-content{grid-template-columns:1fr} }
+        .whatsapp-float { position:fixed; bottom:28px; right:28px; width:52px; height:52px; background:linear-gradient(135deg,#25D366,#128C7E); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; text-decoration:none; z-index:999; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:var(--transition); }
+        .whatsapp-float:hover { transform:scale(1.1) translateY(-3px); }
+    </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+    <div class="nav-container container">
+        <a href="index.html" class="logo">
+            <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+            <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+        </a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html" class="nav-link">Inicio</a></li>
+            <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+            <li><a href="index.html#paquetes" class="nav-link">Paquetes Web</a></li>
+            <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+            <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+            <li><a href="faq.html" class="nav-link">FAQ</a></li>
+            <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+            <li><a href="cliente.html" class="nav-link"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Mi cuenta</a></li>
+            <li><a href="soporte.html" class="nav-link active" style="color:var(--blue);font-weight:700;"><i class="fas fa-robot" style="margin-right:4px;font-size:0.85em;"></i>Asistente IA</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+</nav>
+
+<div class="page-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Inicio</a><span>›</span><span>Asistente IA</span>
+        </div>
+        <div class="page-hero-inner">
+            <div class="page-hero-icon"><i class="fas fa-eye"></i></div>
+            <div class="page-hero-text">
+                <div class="page-hero-tag"><span class="tag-dot"></span> IA online · Diagnóstico en tiempo real</div>
+                <h1>Asistente Técnico Cyclops</h1>
+                <p>Describí tu problema y la IA lo analiza al instante. Sin esperas, sin registro. Si necesitás un técnico, te conectamos de inmediato.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="chat-page">
+    <div class="container">
+        <div class="chat-wrapper">
+
+            <div class="chat-box">
+                <div class="chat-box-header">
+                    <div class="chat-avatar"><i class="fas fa-eye"></i></div>
+                    <div class="chat-header-info">
+                        <h3>Asistente Cyclops</h3>
+                        <div class="chat-status"><span class="chat-status-dot"></span> En línea · Potenciado por IA</div>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-suggestions" id="chatSuggestions">
+                    <button class="sug-btn" onclick="useSuggestion(this)">Mi PC no enciende</button>
+                    <button class="sug-btn" onclick="useSuggestion(this)">Internet muy lento</button>
+                    <button class="sug-btn" onclick="useSuggestion(this)">Creo que tengo un virus</button>
+                    <button class="sug-btn" onclick="useSuggestion(this)">Quiero instalar cámaras</button>
+                    <button class="sug-btn" onclick="useSuggestion(this)">¿Cuánto cuesta una visita?</button>
+                </div>
+                <div class="chat-input-row">
+                    <input type="text" id="user-input" placeholder="Describí tu problema técnico..." autocomplete="off">
+                    <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <div class="chat-sidebar">
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-bolt"></i> ¿Por qué usar el asistente?</h4>
+                    <div class="features-row">
+                        <span class="feature-chip"><i class="fas fa-check-circle"></i> Disponible 24/7</span>
+                        <span class="feature-chip"><i class="fas fa-check-circle"></i> Sin registro</span>
+                        <span class="feature-chip"><i class="fas fa-check-circle"></i> Diagnóstico IA</span>
+                        <span class="feature-chip"><i class="fas fa-check-circle"></i> Gratis</span>
+                    </div>
+                </div>
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-phone-alt"></i> Contacto directo</h4>
+                    <a href="https://wa.me/5491166804450?text=Hola%2C%20necesito%20ayuda%20t%C3%A9cnica" target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="tel:+5491166804450" class="call-btn"><i class="fas fa-phone"></i> +54 9 11 6680-4450</a>
+                </div>
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-clock"></i> Horarios de atención</h4>
+                    <div class="sidebar-item"><i class="fas fa-calendar-alt"></i> Lun–Vie: 9:00 a 18:00 hs</div>
+                    <div class="sidebar-item"><i class="fas fa-calendar-alt"></i> Sábados: 9:00 a 13:00 hs</div>
+                    <div class="sidebar-item"><i class="fas fa-map-marker-alt"></i> CABA y Gran Buenos Aires</div>
+                    <div class="sidebar-item" style="border:none;padding-bottom:0;"><i class="fas fa-check-circle" style="color:#22c55e;"></i> Consulta remota sin cargo</div>
+                </div>
+                <div class="sidebar-card">
+                    <h4><i class="fas fa-tools"></i> Servicios disponibles</h4>
+                    <div class="sidebar-item"><i class="fas fa-laptop"></i> Soporte informático</div>
+                    <div class="sidebar-item"><i class="fas fa-wifi"></i> Redes y conectividad</div>
+                    <div class="sidebar-item"><i class="fas fa-video"></i> Cámaras CCTV</div>
+                    <div class="sidebar-item"><i class="fas fa-bell"></i> Alarmas y control de acceso</div>
+                    <div class="sidebar-item"><i class="fas fa-home"></i> Domótica</div>
+                    <div class="sidebar-item" style="border:none;padding-bottom:0;"><i class="fas fa-shield-alt"></i> Ciberseguridad</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Soporte Cyclops</h3>
+                <p>Soluciones técnicas profesionales para hogares, empresas y organizaciones en CABA y GBA. +11 años de experiencia corporativa.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="servicios.html">Soporte Informático</a></li>
+                    <li><a href="servicios.html">Redes y Conectividad</a></li>
+                    <li><a href="servicios.html">Cámaras y CCTV</a></li>
+                    <li><a href="servicios.html">Alarmas</a></li>
+                    <li><a href="servicios.html">Domótica</a></li>
+                    <li><a href="servicios.html">Ciberseguridad</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>Tel: +54 9 11 6680-4450</li>
+                    <li>contacto@soportecyclops.com.ar</li>
+                    <li>CABA y GBA, Argentina</li>
+                    <li>Lun–Vie 9:00–18:00</li>
+                    <li>Sáb 9:00–13:00</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Zona de cobertura</h3>
+                <ul>
+                    <li>Ciudad Autónoma de Buenos Aires</li>
+                    <li>Gran Buenos Aires</li>
+                    <li>Zona Norte, Sur y Oeste</li>
+                    <li><a href="opiniones.html">⭐ Ver opiniones en Google</a></li>
+                    <li><a href="blog/index.html">📚 Blog técnico</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Soporte Cyclops. Todos los derechos reservados. — <a href="https://www.soportecyclops.com.ar" style="color:inherit;">soportecyclops.com.ar</a></p>
+        </div>
+    </div>
+</footer>
+
+<a href="https://wa.me/5491166804450?text=%C2%A1Hola!%20Necesito%20informaci%C3%B3n%20sobre%20sus%20servicios%20t%C3%A9cnicos." class="whatsapp-float" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+var IA_ENDPOINT  = 'https://chatbotdemo.soportecyclops.com.ar/chat/soporte';
+var WA_NUMBER    = '5491166804450';
+var sessionId    = 'soporte-' + Math.random().toString(36).substr(2, 12);
+var messagesEl   = document.getElementById('chatMessages');
+var inputEl      = document.getElementById('user-input');
+var sendBtn      = document.getElementById('send-btn');
+var suggestionsEl= document.getElementById('chatSuggestions');
+var isTyping     = false;
+var historial    = [];
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function addMsg(text, role, options) {
+    options = options || [];
+    var row = document.createElement('div');
+    row.className = 'msg ' + role;
+    var bubble = document.createElement('div');
+    bubble.className = 'msg-bubble';
+    bubble.innerHTML = esc(text).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+    if (options.length) {
+        var od = document.createElement('div');
+        od.className = 'msg-options';
+        options.forEach(function(opt){
+            var b = document.createElement('button');
+            b.className = 'opt-btn'; b.textContent = opt.text;
+            b.onclick = function(){ od.querySelectorAll('.opt-btn').forEach(function(x){x.disabled=true;}); doAction(opt.action, opt.msg); };
+            od.appendChild(b);
+        });
+        bubble.appendChild(od);
+    }
+    row.appendChild(bubble);
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+}
+
+function showTyping(){
+    var r = document.createElement('div'); r.className='msg bot'; r.id='typing';
+    var b = document.createElement('div'); b.className='msg-bubble';
+    b.innerHTML='<span class="t-dot"></span><span class="t-dot"></span><span class="t-dot"></span>';
+    r.appendChild(b); messagesEl.appendChild(r); messagesEl.scrollTop=messagesEl.scrollHeight;
+}
+function hideTyping(){ var t=document.getElementById('typing'); if(t) t.remove(); }
+
+async function sendToIA(msg) {
+    if (isTyping) return;
+    isTyping=true; sendBtn.disabled=true;
+    suggestionsEl.style.display='none';
+    showTyping();
+    try {
+        var res = await fetch(IA_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mensaje:msg,session_id:sessionId,canal:'soporte-web'})});
+        hideTyping();
+        if (!res.ok) throw new Error('HTTP '+res.status);
+        var data = await res.json();
+        var resp = data.respuesta || 'Sin respuesta.';
+        var esDiag = /recomiendo|diagnós|paso|solución|servicio|presupuesto|visita|técnico/i.test(resp);
+        addMsg(resp, 'bot', esDiag ? [
+            {text:'💬 Hablar con el técnico', action:'wa_ctx'},
+            {text:'📞 Llamar ahora',          action:'llamar'}
+        ] : []);
+    } catch(e) {
+        hideTyping();
+        addMsg('Hubo un error al conectarme. Podés contactarnos directamente:','bot',[
+            {text:'💬 WhatsApp',action:'wa_urg'},
+            {text:'📞 Llamar',  action:'llamar'}
+        ]);
+    }
+    isTyping=false; sendBtn.disabled=false; inputEl.focus();
+}
+
+function doAction(action, msg) {
+    var prob = historial[0] || 'Consulta técnica';
+    if (msg) { addMsg(msg,'user'); historial.push(msg); sendToIA(msg); return; }
+    if (action==='wa_ctx')  { window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent('Hola, usé el asistente IA.\nProblema: '+prob+'\n¿Me pueden ayudar?'),'_blank'); addMsg('💬 Abriendo WhatsApp con el resumen...','bot'); }
+    if (action==='wa_urg')  { window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent('¡Hola! Necesito ayuda técnica urgente.'),'_blank'); }
+    if (action==='llamar')  { window.open('tel:+5491166804450'); addMsg('📞 Conectándote al +54 9 11 6680-4450...','bot'); }
+}
+
+function send(){
+    var msg=inputEl.value.trim(); if(!msg||isTyping) return;
+    inputEl.value=''; historial.push(msg); addMsg(msg,'user'); sendToIA(msg);
+}
+function useSuggestion(el){
+    var msg=el.textContent.trim(); historial.push(msg); addMsg(msg,'user'); sendToIA(msg);
+}
+
+sendBtn.addEventListener('click',send);
+inputEl.addEventListener('keypress',function(e){if(e.key==='Enter') send();});
+window.addEventListener('scroll',function(){document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);});
+document.getElementById('menuToggle').addEventListener('click',function(){
+    var nm=document.getElementById('navMenu'); nm.classList.toggle('open');
+    this.innerHTML=nm.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
+});
+
+// Saludo inicial
+addMsg('¡Hola! 👋 Soy el **Asistente Técnico de Soporte Cyclops**.\n\nDescribime el problema que tenés — PC, red, cámaras, virus, lo que sea — y te voy a orientar en tiempo real.','bot',[
+    {text:'💻 Tengo un problema con mi PC',  msg:'Tengo un problema con mi PC'},
+    {text:'📡 Mi internet no anda bien',     msg:'Mi internet no anda bien'},
+    {text:'💰 ¿Cuánto sale una visita?',     msg:'¿Cuánto sale una visita técnica?'}
+]);
+</script>
+</body>
+</html>
