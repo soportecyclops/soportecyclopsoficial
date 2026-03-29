@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Soporte Cyclops</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sidebar-w: 240px;
+      --sidebar-bg: #0d1117;
+      --sidebar-border: rgba(255,255,255,0.07);
+      --accent: #2563eb;
+      --accent-light: #3b82f6;
+      --accent-glow: rgba(37,99,235,0.15);
+      --content-bg: #f8fafc;
+      --white: #ffffff;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --green: #22c55e;
+      --green-bg: #f0fdf4;
+      --amber: #f59e0b;
+      --amber-bg: #fffbeb;
+      --red: #ef4444;
+      --red-bg: #fef2f2;
+      --purple: #8b5cf6;
+      --purple-bg: #f5f3ff;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html, body { height: 100%; font-family: 'DM Sans', sans-serif; background: var(--content-bg); color: var(--gray-800); }
+
+    /* ── LOGIN ── */
+    #loginScreen {
+      position: fixed; inset: 0; background: var(--sidebar-bg);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+    }
+    .login-wrap {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--sidebar-border);
+      border-radius: 20px; padding: 52px 48px; text-align: center;
+      max-width: 400px; width: 90%; backdrop-filter: blur(20px);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    }
+    .login-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 32px; }
+    .login-logo img { height: 36px; }
+    .login-logo span { font-size: 1.1rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+    .login-logo strong { color: var(--accent-light); }
+    .login-wrap h2 { font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .login-wrap p { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 36px; }
+    .login-wrap .login-divider { border: none; border-top: 1px solid var(--sidebar-border); margin: 24px 0; }
+    #g_id_signin { display: flex; justify-content: center; }
+    .login-note { margin-top: 20px; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+    .login-error-msg { display:none; margin-top: 16px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; font-size: 0.82rem; padding: 10px 14px; border-radius: 8px; }
+    .login-error-msg.visible { display: block; }
+
+    /* ── APP SHELL ── */
+    #appShell { display: none; height: 100vh; overflow: hidden; }
+    #appShell.visible { display: flex; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w); flex-shrink: 0;
+      background: var(--sidebar-bg); border-right: 1px solid var(--sidebar-border);
+      display: flex; flex-direction: column; height: 100vh; overflow: hidden;
+      position: relative;
+    }
+    .sidebar::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 200px;
+      background: radial-gradient(ellipse at top left, rgba(37,99,235,0.12), transparent 70%);
+      pointer-events: none;
+    }
+    .sb-logo {
+      padding: 20px 20px 0; display: flex; align-items: center; gap: 10px;
+      text-decoration: none; position: relative;
+    }
+    .sb-logo img { height: 32px; }
+    .sb-logo-text { font-size: 0.95rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+    .sb-logo-text strong { color: var(--accent-light); }
+    .sb-badge {
+      margin: 12px 20px; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.25);
+      border-radius: 6px; padding: 5px 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .sb-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+    .sb-badge span { font-size: 0.72rem; color: rgba(255,255,255,0.5); font-family: 'JetBrains Mono', monospace; }
+
+    .sb-nav { flex: 1; overflow-y: auto; padding: 8px 12px; }
+    .sb-section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 12px 8px 6px; }
+    .sb-item {
+      display: flex; align-items: center; gap: 10px; padding: 9px 12px;
+      border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition);
+      color: rgba(255,255,255,0.5); font-size: 0.85rem; font-weight: 500;
+      text-decoration: none; position: relative; border: none; background: none; width: 100%; text-align: left;
+    }
+    .sb-item i { width: 16px; text-align: center; font-size: 0.85rem; }
+    .sb-item:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.05); }
+    .sb-item.active { color: white; background: rgba(37,99,235,0.18); }
+    .sb-item.active i { color: var(--accent-light); }
+    .sb-item .sb-badge-count {
+      margin-left: auto; background: var(--accent); color: white;
+      font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace; display: none;
+    }
+    .sb-item .sb-badge-count.visible { display: block; }
+
+    .sb-footer { padding: 16px 12px; border-top: 1px solid var(--sidebar-border); }
+    .sb-user { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 8px; margin-bottom: 8px; }
+    .sb-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: white; overflow: hidden; flex-shrink: 0; }
+    .sb-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .sb-user-info .sb-user-name { font-size: 0.8rem; font-weight: 600; color: white; }
+    .sb-user-info .sb-user-role { font-size: 0.68rem; color: rgba(255,255,255,0.35); }
+    .btn-logout-sb {
+      width: 100%; display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+      background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.15);
+      border-radius: var(--radius-sm); color: rgba(239,68,68,0.7); font-size: 0.8rem;
+      font-weight: 500; cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif;
+    }
+    .btn-logout-sb:hover { background: rgba(239,68,68,0.15); color: #fca5a5; }
+
+    /* ── MAIN CONTENT ── */
+    .main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+    .topbar {
+      background: white; border-bottom: 1px solid var(--gray-200);
+      padding: 0 32px; height: 60px; display: flex; align-items: center;
+      justify-content: space-between; flex-shrink: 0; position: sticky; top: 0; z-index: 10;
+    }
+    .topbar-title { font-size: 0.95rem; font-weight: 600; color: var(--gray-800); }
+    .topbar-actions { display: flex; align-items: center; gap: 12px; }
+    .topbar-clock { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--gray-400); }
+    .btn-refresh {
+      display: flex; align-items: center; gap: 6px; padding: 7px 14px;
+      background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px;
+      font-size: 0.8rem; font-weight: 500; color: var(--gray-600); cursor: pointer;
+      transition: var(--transition); font-family: 'DM Sans', sans-serif;
+    }
+    .btn-refresh:hover { background: var(--gray-200); }
+    .btn-refresh.spinning i { animation: spin 1s linear infinite; }
+    @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+    .content { padding: 28px 32px; flex: 1; }
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── KPI CARDS ── */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .kpi-card {
+      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+      padding: 20px 22px; display: flex; flex-direction: column; gap: 8px;
+      box-shadow: var(--shadow-sm); transition: var(--transition); cursor: default;
+    }
+    .kpi-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+    .kpi-top { display: flex; align-items: center; justify-content: space-between; }
+    .kpi-label { font-size: 0.75rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; }
+    .kpi-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .kpi-icon.blue { background: rgba(37,99,235,0.1); color: var(--accent); }
+    .kpi-icon.green { background: var(--green-bg); color: var(--green); }
+    .kpi-icon.amber { background: var(--amber-bg); color: var(--amber); }
+    .kpi-icon.red { background: var(--red-bg); color: var(--red); }
+    .kpi-icon.purple { background: var(--purple-bg); color: var(--purple); }
+    .kpi-value { font-size: 2rem; font-weight: 700; color: var(--gray-900); font-family: 'JetBrains Mono', monospace; line-height: 1; }
+    .kpi-sub { font-size: 0.75rem; color: var(--gray-400); }
+
+    /* ── SECTION HEADERS ── */
+    .sec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+    .sec-title { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); }
+    .sec-subtitle { font-size: 0.8rem; color: var(--gray-500); margin-top: 2px; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px;
+      border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif;
+      font-size: 0.83rem; font-weight: 600; cursor: pointer; border: none;
+      transition: var(--transition); text-decoration: none;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-light); }
+    .btn-secondary { background: var(--gray-100); color: var(--gray-700); border: 1px solid var(--gray-200); }
+    .btn-secondary:hover { background: var(--gray-200); }
+    .btn-success { background: var(--green-bg); color: #16a34a; border: 1px solid #bbf7d0; }
+    .btn-danger { background: var(--red-bg); color: var(--red); border: 1px solid #fecaca; }
+    .btn-sm { padding: 5px 10px; font-size: 0.75rem; }
+
+    /* ── TABLE ── */
+    .table-wrap { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .table-filters { padding: 16px 20px; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .filter-input {
+      padding: 7px 12px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 0.83rem; color: var(--gray-800);
+      background: var(--gray-50); outline: none; transition: var(--transition);
+    }
+    .filter-input:focus { border-color: var(--accent); background: white; box-shadow: 0 0 0 3px var(--accent-glow); }
+    .filter-input.search { min-width: 220px; }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+      padding: 12px 16px; text-align: left; font-size: 0.72rem; font-weight: 600;
+      color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em;
+      background: var(--gray-50); border-bottom: 1px solid var(--gray-200);
+    }
+    tbody tr { border-bottom: 1px solid var(--gray-100); transition: var(--transition); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(37,99,235,0.02); }
+    tbody td { padding: 12px 16px; font-size: 0.83rem; color: var(--gray-700); vertical-align: middle; }
+    .table-empty { padding: 48px; text-align: center; color: var(--gray-400); font-size: 0.85rem; }
+    .table-empty i { font-size: 2rem; display: block; margin-bottom: 10px; }
+
+    /* ── BADGES ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px;
+      border-radius: 20px; font-size: 0.71rem; font-weight: 600;
+    }
+    .badge-nuevo { background: rgba(37,99,235,0.1); color: var(--accent); }
+    .badge-pendiente { background: var(--amber-bg); color: #b45309; }
+    .badge-confirmada, .badge-en-proceso { background: rgba(37,99,235,0.1); color: var(--accent); }
+    .badge-completada, .badge-resuelto, .badge-cerrado { background: var(--green-bg); color: #16a34a; }
+    .badge-cancelada { background: var(--red-bg); color: var(--red); }
+    .badge-alta, .badge-critica { background: var(--red-bg); color: var(--red); }
+    .badge-media { background: var(--amber-bg); color: #b45309; }
+    .badge-baja { background: var(--green-bg); color: #16a34a; }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1000;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: white; border-radius: 16px; max-width: 560px; width: 100%;
+      max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-lg);
+      animation: modalIn 0.2s ease;
+    }
+    @keyframes modalIn { from{transform:scale(0.96);opacity:0} to{transform:scale(1);opacity:1} }
+    .modal-header {
+      padding: 20px 24px 16px; border-bottom: 1px solid var(--gray-100);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .modal-header h3 { font-size: 1rem; font-weight: 700; color: var(--gray-900); }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 8px; border: none; background: var(--gray-100);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      color: var(--gray-500); font-size: 1rem; transition: var(--transition);
+    }
+    .modal-close:hover { background: var(--gray-200); }
+    .modal-body { padding: 24px; }
+    .modal-footer { padding: 16px 24px; border-top: 1px solid var(--gray-100); display: flex; justify-content: flex-end; gap: 10px; }
+
+    /* ── FORM FIELDS ── */
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 9px 12px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--gray-800);
+      background: white; outline: none; transition: var(--transition); resize: vertical;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* ── QUICK ACCESS ── */
+    .quick-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+    .quick-card {
+      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+      padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px;
+      text-align: center; cursor: pointer; transition: var(--transition); text-decoration: none;
+      box-shadow: var(--shadow-sm);
+    }
+    .quick-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--accent); }
+    .quick-card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .quick-card span { font-size: 0.82rem; font-weight: 600; color: var(--gray-700); }
+    .quick-card small { font-size: 0.72rem; color: var(--gray-400); }
+
+    /* ── AGENDA CALENDAR EMBED ── */
+    .cal-wrap { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .cal-wrap iframe { width: 100%; height: 600px; border: none; display: block; }
+
+    /* ── LOG DE LLAMADOS ── */
+    .log-form-inline {
+      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+      padding: 20px 24px; margin-bottom: 20px; box-shadow: var(--shadow-sm);
+    }
+    .log-form-inline h4 { font-size: 0.85rem; font-weight: 700; color: var(--gray-800); margin-bottom: 14px; }
+    .log-form-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end; }
+
+    /* ── CLIENTES PANEL ── */
+    .cliente-detail {
+      background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
+      padding: 24px; box-shadow: var(--shadow-sm); margin-top: 20px; display: none;
+    }
+    .cliente-detail.visible { display: block; }
+    .cliente-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .cliente-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; color: white; flex-shrink: 0; }
+
+    /* ── STAT CHARTS (CSS only) ── */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm); }
+    .stat-card h4 { font-size: 0.78rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .bar-label { font-size: 0.78rem; color: var(--gray-600); width: 90px; flex-shrink: 0; }
+    .bar-track { flex: 1; height: 8px; background: var(--gray-100); border-radius: 4px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+    .bar-count { font-size: 0.75rem; font-weight: 600; color: var(--gray-700); width: 24px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+
+    /* ── TOAST ── */
+    #toastContainer { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px; z-index: 9998; }
+    .toast {
+      display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+      background: var(--gray-900); color: white; border-radius: 10px;
+      font-size: 0.83rem; font-weight: 500; box-shadow: var(--shadow-lg);
+      animation: toastIn 0.25s ease; min-width: 260px;
+    }
+    .toast.success { background: #166534; }
+    .toast.error { background: #991b1b; }
+    .toast.warning { background: #92400e; }
+    @keyframes toastIn { from{transform:translateX(20px);opacity:0} to{transform:translateX(0);opacity:1} }
+
+    /* ── LOADING STATE ── */
+    .loading-spinner { display: flex; align-items: center; justify-content: center; padding: 40px; gap: 10px; color: var(--gray-400); font-size: 0.85rem; }
+    .loading-spinner i { animation: spin 1s linear infinite; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .sidebar { width: 60px; }
+      .sb-logo-text, .sb-item span, .sb-badge, .sb-user-info, .btn-logout-sb span, .sb-section-label { display: none; }
+      .sb-item { justify-content: center; padding: 10px; }
+      .content { padding: 20px 16px; }
+      .topbar { padding: 0 16px; }
+      .log-form-row { grid-template-columns: 1fr; }
+      .field-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════ LOGIN SCREEN ════════════════════ -->
+<div id="loginScreen">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <img src="public/images/logo-icon.png" onerror="this.style.display='none'" alt="">
+      <span>Soporte <strong>Cyclops</strong></span>
+    </div>
+    <h2>Panel de Administración</h2>
+    <p>Acceso restringido al equipo autorizado</p>
+    <hr class="login-divider">
+    <div id="g_id_signin"></div>
+    <div id="loginError" class="login-error-msg">
+      <i class="fas fa-shield-alt"></i> Tu cuenta no tiene acceso al panel admin.
+    </div>
+    <p class="login-note"><i class="fas fa-lock"></i> Autenticación segura vía Google</p>
+  </div>
+</div>
+
+<!-- ════════════════════ APP SHELL ════════════════════ -->
+<div id="appShell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <a href="index.html" class="sb-logo" title="Volver al sitio">
+      <img src="public/images/logo-icon.png" onerror="this.style.display='none'" alt="">
+      <span class="sb-logo-text">Cyclops <strong>Admin</strong></span>
+    </a>
+    <div class="sb-badge">
+      <div class="sb-badge-dot"></div>
+      <span id="sbClock">--:--</span>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-section-label">Principal</div>
+      <button class="sb-item active" data-section="dashboard" onclick="showSection('dashboard', this)">
+        <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+      </button>
+      <button class="sb-item" data-section="agenda" onclick="showSection('agenda', this)">
+        <i class="fas fa-calendar-alt"></i> <span>Agenda</span>
+        <span class="sb-badge-count" id="badgeCitas">0</span>
+      </button>
+      <button class="sb-item" data-section="diagnosticos" onclick="showSection('diagnosticos', this)">
+        <i class="fas fa-stethoscope"></i> <span>Diagnósticos</span>
+        <span class="sb-badge-count" id="badgeDiags">0</span>
+      </button>
+
+      <div class="sb-section-label">Gestión</div>
+      <button class="sb-item" data-section="clientes" onclick="showSection('clientes', this)">
+        <i class="fas fa-users"></i> <span>Clientes</span>
+      </button>
+      <button class="sb-item" data-section="llamados" onclick="showSection('llamados', this)">
+        <i class="fas fa-phone-alt"></i> <span>Llamados</span>
+      </button>
+
+      <div class="sb-section-label">Accesos</div>
+      <button class="sb-item" data-section="accesos" onclick="showSection('accesos', this)">
+        <i class="fas fa-external-link-alt"></i> <span>Accesos rápidos</span>
+      </button>
+    </nav>
+
+    <div class="sb-footer">
+      <div class="sb-user">
+        <div class="sb-avatar" id="sbAvatar">A</div>
+        <div class="sb-user-info">
+          <div class="sb-user-name" id="sbUserName">Admin</div>
+          <div class="sb-user-role">Administrador</div>
+        </div>
+      </div>
+      <button class="btn-logout-sb" onclick="doLogout()">
+        <i class="fas fa-sign-out-alt"></i> <span>Cerrar sesión</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <span class="topbar-title" id="topbarTitle">Dashboard</span>
+      <div class="topbar-actions">
+        <span class="topbar-clock" id="topbarClock">--:--:--</span>
+        <button class="btn-refresh btn" id="btnRefresh" onclick="refreshCurrentSection()">
+          <i class="fas fa-sync-alt"></i> Actualizar
+        </button>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- ═══ DASHBOARD ═══ -->
+      <div class="section active" id="sec-dashboard">
+        <div class="kpi-grid" id="kpiGrid">
+          <div class="loading-spinner" style="grid-column:1/-1"><i class="fas fa-spinner"></i> Cargando datos...</div>
+        </div>
+        <div class="stat-grid" id="statGrid"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px" id="recentGridWrap">
+          <div>
+            <div class="sec-header"><span class="sec-title">Diagnósticos recientes</span></div>
+            <div class="table-wrap" id="recentDiags"><div class="table-empty"><i class="fas fa-stethoscope"></i>Cargando...</div></div>
+          </div>
+          <div>
+            <div class="sec-header"><span class="sec-title">Próximas citas</span></div>
+            <div class="table-wrap" id="recentCitas"><div class="table-empty"><i class="fas fa-calendar"></i>Cargando...</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ AGENDA ═══ -->
+      <div class="section" id="sec-agenda">
+        <div class="sec-header">
+          <div>
+            <div class="sec-title">Agenda de Citas</div>
+            <div class="sec-subtitle">Google Calendar + gestión de estados</div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-primary" onclick="openModal('modalCita')"><i class="fas fa-plus"></i> Nueva cita</button>
+          </div>
+        </div>
+
+        <!-- Calendar embed -->
+        <div class="cal-wrap" style="margin-bottom:20px">
+          <iframe id="calendarIframe" src="about:blank" title="Google Calendar"></iframe>
+        </div>
+
+        <!-- Citas table -->
+        <div class="table-wrap" id="citasTableWrap">
+          <div class="table-filters">
+            <input type="text" class="filter-input search" placeholder="🔍 Buscar cliente o servicio..." oninput="filterCitas(this.value)" id="citasSearch">
+            <select class="filter-input" onchange="filterCitas()" id="citasEstadoFilter">
+              <option value="">Todos los estados</option>
+              <option value="pendiente">Pendiente</option>
+              <option value="confirmada">Confirmada</option>
+              <option value="completada">Completada</option>
+              <option value="cancelada">Cancelada</option>
+            </select>
+          </div>
+          <div id="citasTableBody">
+            <div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando citas...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ DIAGNÓSTICOS ═══ -->
+      <div class="section" id="sec-diagnosticos">
+        <div class="sec-header">
+          <div>
+            <div class="sec-title">Diagnósticos</div>
+            <div class="sec-subtitle">Todos los tickets de diagnóstico técnico</div>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('modalDiag')"><i class="fas fa-plus"></i> Nuevo diagnóstico</button>
+        </div>
+
+        <div class="stat-grid" id="diagStatGrid" style="margin-bottom:20px"></div>
+
+        <div class="table-wrap">
+          <div class="table-filters">
+            <input type="text" class="filter-input search" placeholder="🔍 Buscar por cliente, equipo, N° de diagnóstico..." oninput="filterDiags(this.value)" id="diagsSearch">
+            <select class="filter-input" onchange="filterDiags()" id="diagEstadoFilter">
+              <option value="">Todos los estados</option>
+              <option value="nuevo">Nuevo</option>
+              <option value="en proceso">En proceso</option>
+              <option value="resuelto">Resuelto</option>
+              <option value="cerrado">Cerrado</option>
+            </select>
+            <select class="filter-input" onchange="filterDiags()" id="diagSevFilter">
+              <option value="">Toda severidad</option>
+              <option value="critica">Crítica</option>
+              <option value="alta">Alta</option>
+              <option value="media">Media</option>
+              <option value="baja">Baja</option>
+            </select>
+            <input type="date" class="filter-input" onchange="filterDiags()" id="diagFechaFilter">
+          </div>
+          <div id="diagsTableBody">
+            <div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando diagnósticos...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ CLIENTES ═══ -->
+      <div class="section" id="sec-clientes">
+        <div class="sec-header">
+          <div class="sec-title">Gestión de Clientes</div>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:20px">
+          <input type="text" class="filter-input search" placeholder="🔍 Buscar por email o nombre..." id="clienteSearch" style="flex:1">
+          <button class="btn btn-primary" onclick="buscarCliente()"><i class="fas fa-search"></i> Buscar</button>
+        </div>
+        <div class="cliente-detail" id="clienteDetail">
+          <div class="cliente-meta">
+            <div class="cliente-avatar" id="clienteAvatar">?</div>
+            <div>
+              <div style="font-size:1.1rem;font-weight:700;color:var(--gray-900)" id="clienteNombre">—</div>
+              <div style="font-size:0.83rem;color:var(--gray-500)" id="clienteEmail">—</div>
+            </div>
+            <div style="margin-left:auto;display:flex;gap:8px">
+              <button class="btn btn-secondary btn-sm" onclick="abrirWhatsApp()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            </div>
+          </div>
+          <div id="clienteHistorial"><div class="loading-spinner"><i class="fas fa-spinner"></i></div></div>
+        </div>
+      </div>
+
+      <!-- ═══ LLAMADOS ═══ -->
+      <div class="section" id="sec-llamados">
+        <div class="sec-header">
+          <div class="sec-title">Log de Llamados y Contactos</div>
+        </div>
+        <div class="log-form-inline">
+          <h4><i class="fas fa-plus-circle" style="color:var(--accent)"></i> Registrar nuevo llamado</h4>
+          <div class="log-form-row">
+            <div class="field" style="margin:0">
+              <label>Nombre / Cliente</label>
+              <input type="text" id="logNombre" class="filter-input" placeholder="Nombre del cliente" style="width:100%">
+            </div>
+            <div class="field" style="margin:0">
+              <label>Teléfono / Email</label>
+              <input type="text" id="logContacto" class="filter-input" placeholder="Tel o email" style="width:100%">
+            </div>
+            <div class="field" style="margin:0">
+              <label>Tipo</label>
+              <select id="logTipo" class="filter-input" style="width:100%">
+                <option value="llamado">📞 Llamado</option>
+                <option value="whatsapp">💬 WhatsApp</option>
+                <option value="email">📧 Email</option>
+                <option value="presencial">🏠 Presencial</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" onclick="guardarLlamado()" style="height:38px;white-space:nowrap">
+              <i class="fas fa-save"></i> Guardar
+            </button>
+          </div>
+          <div class="field" style="margin-top:10px;margin-bottom:0">
+            <label>Notas / Resumen del contacto</label>
+            <textarea id="logNotas" class="filter-input" rows="2" placeholder="Describa brevemente el motivo del contacto..." style="width:100%"></textarea>
+          </div>
+        </div>
+
+        <div class="table-wrap" id="llamadosTableWrap">
+          <div class="table-filters">
+            <input type="text" class="filter-input search" placeholder="🔍 Buscar..." oninput="filterLlamados(this.value)">
+            <select class="filter-input" onchange="filterLlamados()">
+              <option value="">Todos los tipos</option>
+              <option value="llamado">Llamado</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="email">Email</option>
+              <option value="presencial">Presencial</option>
+            </select>
+          </div>
+          <div id="llamadosBody">
+            <div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ ACCESOS RÁPIDOS ═══ -->
+      <div class="section" id="sec-accesos">
+        <div class="sec-header"><div class="sec-title">Accesos Rápidos</div></div>
+        <div class="quick-grid">
+          <a class="quick-card" href="https://calendar.google.com" target="_blank">
+            <div class="quick-card-icon" style="background:#fef2f2;color:#dc2626"><i class="fas fa-calendar-alt"></i></div>
+            <span>Google Calendar</span><small>Agenda completa</small>
+          </a>
+          <a class="quick-card" href="https://drive.google.com" target="_blank">
+            <div class="quick-card-icon" style="background:#eff6ff;color:#2563eb"><i class="fab fa-google-drive"></i></div>
+            <span>Google Drive</span><small>Archivos y docs</small>
+          </a>
+          <a class="quick-card" href="https://docs.google.com/spreadsheets" target="_blank">
+            <div class="quick-card-icon" style="background:#f0fdf4;color:#16a34a"><i class="fas fa-table"></i></div>
+            <span>Google Sheets</span><small>Datos y diagnósticos</small>
+          </a>
+          <a class="quick-card" href="https://wa.me/5491166804450" target="_blank">
+            <div class="quick-card-icon" style="background:#f0fdf4;color:#16a34a"><i class="fab fa-whatsapp"></i></div>
+            <span>WhatsApp</span><small>5491166804450</small>
+          </a>
+          <a class="quick-card" href="https://mail.google.com" target="_blank">
+            <div class="quick-card-icon" style="background:#fefce8;color:#ca8a04"><i class="fas fa-envelope"></i></div>
+            <span>Gmail</span><small>Correo</small>
+          </a>
+          <a class="quick-card" href="http://192.168.0.200" target="_blank">
+            <div class="quick-card-icon" style="background:var(--purple-bg);color:var(--purple)"><i class="fas fa-robot"></i></div>
+            <span>Chatbot Server</span><small>192.168.0.200</small>
+          </a>
+          <a class="quick-card" href="http://192.168.0.201" target="_blank">
+            <div class="quick-card-icon" style="background:#f0fdf4;color:#16a34a"><i class="fas fa-server"></i></div>
+            <span>N.O.M.A.D.</span><small>192.168.0.201</small>
+          </a>
+          <a class="quick-card" href="index.html">
+            <div class="quick-card-icon" style="background:var(--gray-100);color:var(--gray-600)"><i class="fas fa-globe"></i></div>
+            <span>Sitio Web</span><small>soportecyclops.com.ar</small>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </main>
+</div><!-- /appShell -->
+
+<!-- ═══ TOAST CONTAINER ═══ -->
+<div id="toastContainer"></div>
+
+<!-- ════════ MODAL: NUEVA/EDITAR CITA ════════ -->
+<div class="modal-overlay" id="modalCita">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalCitaTitle">Nueva Cita</h3>
+      <button class="modal-close" onclick="closeModal('modalCita')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="citaId">
+      <div class="field-row">
+        <div class="field">
+          <label>Nombre del cliente *</label>
+          <input type="text" id="citaNombre" placeholder="Juan García">
+        </div>
+        <div class="field">
+          <label>Teléfono *</label>
+          <input type="text" id="citaTelefono" placeholder="1122334455">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="citaEmail" placeholder="cliente@email.com">
+        </div>
+        <div class="field">
+          <label>Dirección</label>
+          <input type="text" id="citaDireccion" placeholder="Dirección del servicio">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Fecha *</label>
+          <input type="date" id="citaFecha">
+        </div>
+        <div class="field">
+          <label>Hora *</label>
+          <input type="time" id="citaHora">
+        </div>
+      </div>
+      <div class="field">
+        <label>Servicio / Problema *</label>
+        <input type="text" id="citaServicio" placeholder="Diagnóstico de PC, instalación de red, etc.">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Estado</label>
+          <select id="citaEstado">
+            <option value="pendiente">Pendiente</option>
+            <option value="confirmada">Confirmada</option>
+            <option value="completada">Completada</option>
+            <option value="cancelada">Cancelada</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>N° Diagnóstico asociado</label>
+          <input type="text" id="citaDiagNum" placeholder="DIAG-XXXX (opcional)">
+        </div>
+      </div>
+      <div class="field">
+        <label>Notas internas</label>
+        <textarea id="citaNotas" rows="3" placeholder="Notas para el técnico (no visibles al cliente)..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modalCita')">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarCita()"><i class="fas fa-save"></i> Guardar cita</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ MODAL: NUEVO/EDITAR DIAGNÓSTICO ════════ -->
+<div class="modal-overlay" id="modalDiag">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalDiagTitle">Nuevo Diagnóstico</h3>
+      <button class="modal-close" onclick="closeModal('modalDiag')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="diagRowIndex">
+      <div class="field-row">
+        <div class="field">
+          <label>Nombre del cliente *</label>
+          <input type="text" id="diagNombre" placeholder="Nombre completo">
+        </div>
+        <div class="field">
+          <label>Email del cliente *</label>
+          <input type="email" id="diagEmail" placeholder="email@ejemplo.com">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Equipo / Dispositivo</label>
+          <input type="text" id="diagEquipo" placeholder="PC, Notebook, Router, etc.">
+        </div>
+        <div class="field">
+          <label>Servicio</label>
+          <input type="text" id="diagServicio" placeholder="Tipo de servicio">
+        </div>
+      </div>
+      <div class="field">
+        <label>Síntoma / Problema *</label>
+        <textarea id="diagSintoma" rows="2" placeholder="Describa el síntoma principal..."></textarea>
+      </div>
+      <div class="field">
+        <label>Diagnóstico técnico</label>
+        <textarea id="diagTexto" rows="3" placeholder="Diagnóstico detallado del técnico..."></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Estado</label>
+          <select id="diagEstado">
+            <option value="nuevo">Nuevo</option>
+            <option value="en proceso">En proceso</option>
+            <option value="resuelto">Resuelto</option>
+            <option value="cerrado">Cerrado</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Severidad</label>
+          <select id="diagSeveridad">
+            <option value="baja">Baja</option>
+            <option value="media">Media</option>
+            <option value="alta">Alta</option>
+            <option value="critica">Crítica</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Técnico asignado</label>
+          <input type="text" id="diagTecnico" placeholder="Nombre del técnico">
+        </div>
+        <div class="field">
+          <label>Presupuesto (ARS)</label>
+          <input type="number" id="diagPresupuesto" placeholder="0">
+        </div>
+      </div>
+      <div class="field">
+        <label>Notas adicionales</label>
+        <textarea id="diagNotas" rows="2" placeholder="Notas internas..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modalDiag')">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarDiagnostico()"><i class="fas fa-save"></i> Guardar diagnóstico</button>
+    </div>
+  </div>
+</div>
+
+<!-- Google Sign-In -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// CONFIG — editá solo estas líneas
+// ══════════════════════════════════════════════════════════
+const CONFIG = {
+  GOOGLE_CLIENT_ID : "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com",
+  ADMIN_EMAILS     : ["TU_EMAIL@gmail.com"],   // ← Reemplazá con tu Gmail
+  APPS_SCRIPT_URL  : "https://script.google.com/macros/s/AKfycbwjVWP25ZqWa3C0IuQ6rgHYxv1r4iqM5N5916i9gLYuKFEEC3nDyMh74RdG5T8Iv4_w/exec",
+  // URL del calendario embebido (Calendar ID de tu cuenta principal):
+  CALENDAR_EMBED_URL : "https://calendar.google.com/calendar/embed?src=TU_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=WEEK&hl=es"
+};
+
+// ══════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════
+let adminUser     = null;
+let allDiags      = [];
+let allCitas      = [];
+let allLlamados   = [];
+let currentSection = 'dashboard';
+let currentClienteEmail = null;
+
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    if (typeof google === 'undefined') { console.error('GSI no cargó'); return; }
+    google.accounts.id.initialize({ client_id: CONFIG.GOOGLE_CLIENT_ID, callback: onSignIn });
+    google.accounts.id.renderButton(document.getElementById('g_id_signin'), {
+      theme: 'filled_black', size: 'large', text: 'signin_with', shape: 'pill', locale: 'es'
+    });
+  }, 400);
+  startClock();
+});
+
+function onSignIn(resp) {
+  try {
+    const p = parseJWT(resp.credential);
+    if (!CONFIG.ADMIN_EMAILS.map(e=>e.toLowerCase()).includes(p.email.toLowerCase())) {
+      document.getElementById('loginError').classList.add('visible');
+      return;
+    }
+    adminUser = { name: p.name, email: p.email, picture: p.picture };
+    initApp();
+  } catch(e) { showToast('Error al iniciar sesión', 'error'); }
+}
+
+function initApp() {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('appShell').classList.add('visible');
+
+  // Sidebar user
+  const av = document.getElementById('sbAvatar');
+  av.innerHTML = adminUser.picture
+    ? `<img src="${adminUser.picture}" alt="${esc(adminUser.name)}">`
+    : adminUser.name.charAt(0);
+  document.getElementById('sbUserName').textContent = adminUser.name.split(' ')[0];
+
+  // Cargar Calendar embed
+  document.getElementById('calendarIframe').src = CONFIG.CALENDAR_EMBED_URL;
+
+  // Cargar datos
+  loadDashboard();
+}
+
+function doLogout() {
+  try { google.accounts.id.revoke(adminUser.email, ()=>{}); } catch(e){}
+  location.reload();
+}
+
+// ══════════════════════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════════════════════
+const SECTION_TITLES = {
+  dashboard: 'Dashboard',
+  agenda: 'Agenda',
+  diagnosticos: 'Diagnósticos',
+  clientes: 'Clientes',
+  llamados: 'Llamados',
+  accesos: 'Accesos Rápidos'
+};
+
+function showSection(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  currentSection = id;
+  document.getElementById('topbarTitle').textContent = SECTION_TITLES[id] || id;
+
+  if (id === 'diagnosticos' && allDiags.length === 0) loadDiagnosticos();
+  if (id === 'agenda'       && allCitas.length === 0) loadCitas();
+  if (id === 'llamados'     && allLlamados.length === 0) loadLlamados();
+}
+
+function refreshCurrentSection() {
+  const btn = document.getElementById('btnRefresh');
+  btn.classList.add('spinning');
+  const done = () => setTimeout(() => btn.classList.remove('spinning'), 600);
+  if (currentSection === 'dashboard')    { loadDashboard().then(done); }
+  else if (currentSection === 'diagnosticos') { loadDiagnosticos().then(done); }
+  else if (currentSection === 'agenda')  { loadCitas().then(done); }
+  else if (currentSection === 'llamados'){ loadLlamados().then(done); }
+  else done();
+}
+
+// ══════════════════════════════════════════════════════════
+// API CALLS
+// ══════════════════════════════════════════════════════════
+async function apiGet(action, params = {}) {
+  const qs = new URLSearchParams({ action, ...params }).toString();
+  const r = await fetch(CONFIG.APPS_SCRIPT_URL + '?' + qs);
+  return r.json();
+}
+
+async function apiPost(data) {
+  const fd = new FormData();
+  Object.entries(data).forEach(([k,v]) => fd.append(k, v ?? ''));
+  const r = await fetch(CONFIG.APPS_SCRIPT_URL, { method: 'POST', body: fd });
+  return r.json();
+}
+
+// ══════════════════════════════════════════════════════════
+// DASHBOARD
+// ══════════════════════════════════════════════════════════
+async function loadDashboard() {
+  document.getElementById('kpiGrid').innerHTML = '<div class="loading-spinner" style="grid-column:1/-1"><i class="fas fa-spinner"></i> Cargando datos...</div>';
+  try {
+    const [dResp, cResp] = await Promise.all([
+      apiGet('admin_todos_diags'),
+      apiGet('admin_todas_citas')
+    ]);
+    allDiags = dResp.diagnosticos || [];
+    allCitas = cResp.citas || [];
+    renderKPIs();
+    renderStatCharts();
+    renderRecentDiags();
+    renderRecentCitas();
+    updateBadges();
+  } catch(e) {
+    document.getElementById('kpiGrid').innerHTML = '<div class="table-empty" style="grid-column:1/-1"><i class="fas fa-exclamation-triangle"></i> Error al cargar datos. Verificá la conexión.</div>';
+  }
+}
+
+function renderKPIs() {
+  const now = new Date();
+  const mesActual = now.getMonth();
+  const anioActual = now.getFullYear();
+
+  const diagsMes = allDiags.filter(d => {
+    const f = new Date(d.fecha); return f.getMonth()===mesActual && f.getFullYear()===anioActual;
+  });
+  const pendientes = allDiags.filter(d => ['nuevo','en proceso'].includes((d.estado||'').toLowerCase())).length;
+  const citasHoy = allCitas.filter(d => {
+    const f = new Date(d.fecha); const t = new Date();
+    return f.toDateString() === t.toDateString();
+  }).length;
+  const ingresos = allDiags.filter(d => {
+    const f = new Date(d.fecha); return f.getMonth()===mesActual && f.getFullYear()===anioActual && d.presupuesto;
+  }).reduce((s,d) => s + (parseFloat(d.presupuesto)||0), 0);
+
+  document.getElementById('kpiGrid').innerHTML = `
+    ${kpiCard('Diagnósticos este mes', diagsMes.length, 'blue', 'fa-stethoscope', 'Desde el 1° del mes')}
+    ${kpiCard('Pendientes', pendientes, pendientes > 5 ? 'red' : 'amber', 'fa-clock', 'Nuevos + en proceso')}
+    ${kpiCard('Citas hoy', citasHoy, 'green', 'fa-calendar-check', 'Turnos del día')}
+    ${kpiCard('Facturación del mes', 'ARS ' + ingresos.toLocaleString('es-AR'), 'purple', 'fa-dollar-sign', 'Presupuestos cerrados')}
+    ${kpiCard('Total diagnósticos', allDiags.length, 'blue', 'fa-database', 'Histórico total')}
+  `;
+}
+
+function kpiCard(label, value, color, icon, sub) {
+  return `<div class="kpi-card">
+    <div class="kpi-top">
+      <span class="kpi-label">${label}</span>
+      <div class="kpi-icon ${color}"><i class="fas ${icon}"></i></div>
+    </div>
+    <div class="kpi-value">${value}</div>
+    <div class="kpi-sub">${sub}</div>
+  </div>`;
+}
+
+function renderStatCharts() {
+  const estadoCount = {};
+  allDiags.forEach(d => {
+    const e = (d.estado||'nuevo').toLowerCase();
+    estadoCount[e] = (estadoCount[e]||0) + 1;
+  });
+  const total = allDiags.length || 1;
+  const estados = [
+    {k:'nuevo',label:'Nuevo',color:'#2563eb'},
+    {k:'en proceso',label:'En proceso',color:'#f59e0b'},
+    {k:'resuelto',label:'Resuelto',color:'#22c55e'},
+    {k:'cerrado',label:'Cerrado',color:'#94a3b8'}
+  ];
+
+  const sevCount = {};
+  allDiags.forEach(d => { const s=(d.severidad||'media').toLowerCase(); sevCount[s]=(sevCount[s]||0)+1; });
+  const sevs = [
+    {k:'critica',label:'Crítica',color:'#ef4444'},
+    {k:'alta',label:'Alta',color:'#f97316'},
+    {k:'media',label:'Media',color:'#f59e0b'},
+    {k:'baja',label:'Baja',color:'#22c55e'}
+  ];
+
+  document.getElementById('statGrid').innerHTML = `
+    <div class="stat-card">
+      <h4>Por estado</h4>
+      ${estados.map(e => `
+        <div class="bar-row">
+          <span class="bar-label">${e.label}</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(((estadoCount[e.k]||0)/total)*100)}%;background:${e.color}"></div></div>
+          <span class="bar-count">${estadoCount[e.k]||0}</span>
+        </div>`).join('')}
+    </div>
+    <div class="stat-card">
+      <h4>Por severidad</h4>
+      ${sevs.map(e => `
+        <div class="bar-row">
+          <span class="bar-label">${e.label}</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${Math.round(((sevCount[e.k]||0)/total)*100)}%;background:${e.color}"></div></div>
+          <span class="bar-count">${sevCount[e.k]||0}</span>
+        </div>`).join('')}
+    </div>
+  `;
+}
+
+function renderRecentDiags() {
+  const recent = [...allDiags].sort((a,b) => new Date(b.fecha)-new Date(a.fecha)).slice(0,5);
+  document.getElementById('recentDiags').innerHTML = recent.length === 0
+    ? `<div class="table-empty"><i class="fas fa-stethoscope"></i>Sin diagnósticos</div>`
+    : `<table><thead><tr><th>N°</th><th>Cliente</th><th>Estado</th></tr></thead><tbody>
+        ${recent.map(d=>`<tr>
+          <td><code style="font-size:0.75rem;color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
+          <td>${esc(d.nombre||d.email||'—')}</td>
+          <td>${badgeEstado(d.estado)}</td>
+        </tr>`).join('')}
+      </tbody></table>`;
+}
+
+function renderRecentCitas() {
+  const now = new Date();
+  const upcoming = [...allCitas].filter(c => new Date(c.fecha) >= now).sort((a,b)=>new Date(a.fecha)-new Date(b.fecha)).slice(0,5);
+  document.getElementById('recentCitas').innerHTML = upcoming.length === 0
+    ? `<div class="table-empty"><i class="fas fa-calendar"></i>Sin citas próximas</div>`
+    : `<table><thead><tr><th>Fecha</th><th>Cliente</th><th>Estado</th></tr></thead><tbody>
+        ${upcoming.map(c=>`<tr>
+          <td style="font-size:0.78rem;white-space:nowrap">${formatFechaCorta(c.fecha)} ${c.hora||''}</td>
+          <td>${esc(c.nombre||'—')}</td>
+          <td>${badgeEstado(c.estado||'pendiente')}</td>
+        </tr>`).join('')}
+      </tbody></table>`;
+}
+
+function updateBadges() {
+  const dp = allDiags.filter(d=>['nuevo','en proceso'].includes((d.estado||'').toLowerCase())).length;
+  const cp = allCitas.filter(c=>['pendiente','confirmada'].includes((c.estado||'').toLowerCase())).length;
+  const bD = document.getElementById('badgeDiags');
+  const bC = document.getElementById('badgeCitas');
+  bD.textContent = dp; bD.classList.toggle('visible', dp > 0);
+  bC.textContent = cp; bC.classList.toggle('visible', cp > 0);
+}
+
+// ══════════════════════════════════════════════════════════
+// DIAGNÓSTICOS
+// ══════════════════════════════════════════════════════════
+async function loadDiagnosticos() {
+  document.getElementById('diagsTableBody').innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando...</div>';
+  try {
+    const resp = await apiGet('admin_todos_diags');
+    allDiags = resp.diagnosticos || [];
+    renderDiagsTable(allDiags);
+    renderDiagStats();
+    updateBadges();
+  } catch(e) {
+    document.getElementById('diagsTableBody').innerHTML = '<div class="table-empty"><i class="fas fa-exclamation-triangle"></i>Error al cargar</div>';
+  }
+}
+
+function renderDiagsTable(diags) {
+  if (!diags.length) { document.getElementById('diagsTableBody').innerHTML='<div class="table-empty"><i class="fas fa-stethoscope"></i>Sin resultados</div>'; return; }
+  document.getElementById('diagsTableBody').innerHTML = `
+    <table>
+      <thead><tr><th>N° Diagnóstico</th><th>Fecha</th><th>Cliente</th><th>Equipo</th><th>Estado</th><th>Severidad</th><th>Acciones</th></tr></thead>
+      <tbody>
+        ${diags.map((d,i) => `<tr>
+          <td><code style="font-size:0.75rem;color:var(--accent);font-family:'JetBrains Mono',monospace">${esc(d.diagNum||'—')}</code></td>
+          <td style="white-space:nowrap;font-size:0.78rem">${formatFechaCorta(d.fecha)}</td>
+          <td>
+            <div style="font-weight:600;font-size:0.83rem">${esc(d.nombre||'—')}</div>
+            <div style="font-size:0.73rem;color:var(--gray-400)">${esc(d.email||'')}</div>
+          </td>
+          <td style="font-size:0.8rem">${esc(d.equipo||'—')}</td>
+          <td>${badgeEstado(d.estado||'nuevo')}</td>
+          <td>${badgeSev(d.severidad||'media')}</td>
+          <td>
+            <div style="display:flex;gap:6px">
+              <button class="btn btn-secondary btn-sm" onclick="editarDiag(${i})" title="Editar"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="cambiarEstadoDiag(${i})" title="Cambiar estado"><i class="fas fa-exchange-alt"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="marcarLeidoDiag(${i})" title="Marcar leído"><i class="fas fa-eye"></i></button>
+            </div>
+          </td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function renderDiagStats() {
+  const estadoCount = {};
+  allDiags.forEach(d => { const e=(d.estado||'nuevo').toLowerCase(); estadoCount[e]=(estadoCount[e]||0)+1; });
+  const total = allDiags.length||1;
+  const sevs = [{k:'critica',label:'Crítica',color:'#ef4444'},{k:'alta',label:'Alta',color:'#f97316'},{k:'media',label:'Media',color:'#f59e0b'},{k:'baja',label:'Baja',color:'#22c55e'}];
+  const sevCount = {};
+  allDiags.forEach(d => { const s=(d.severidad||'media').toLowerCase(); sevCount[s]=(sevCount[s]||0)+1; });
+  document.getElementById('diagStatGrid').innerHTML = `
+    <div class="stat-card">
+      <h4>Distribución de estados</h4>
+      ${[{k:'nuevo',l:'Nuevo',c:'#2563eb'},{k:'en proceso',l:'En proceso',c:'#f59e0b'},{k:'resuelto',l:'Resuelto',c:'#22c55e'},{k:'cerrado',l:'Cerrado',c:'#94a3b8'}].map(e=>`
+      <div class="bar-row"><span class="bar-label">${e.l}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(((estadoCount[e.k]||0)/total)*100)}%;background:${e.c}"></div></div><span class="bar-count">${estadoCount[e.k]||0}</span></div>`).join('')}
+    </div>
+    <div class="stat-card">
+      <h4>Por severidad</h4>
+      ${sevs.map(e=>`<div class="bar-row"><span class="bar-label">${e.label}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(((sevCount[e.k]||0)/total)*100)}%;background:${e.color}"></div></div><span class="bar-count">${sevCount[e.k]||0}</span></div>`).join('')}
+    </div>`;
+}
+
+function filterDiags() {
+  const txt   = (document.getElementById('diagsSearch')?.value||'').toLowerCase();
+  const est   = (document.getElementById('diagEstadoFilter')?.value||'').toLowerCase();
+  const sev   = (document.getElementById('diagSevFilter')?.value||'').toLowerCase();
+  const fecha = document.getElementById('diagFechaFilter')?.value||'';
+  const filtered = allDiags.filter(d => {
+    const matchTxt = !txt || (d.diagNum||'').toLowerCase().includes(txt) || (d.nombre||'').toLowerCase().includes(txt) || (d.email||'').toLowerCase().includes(txt) || (d.equipo||'').toLowerCase().includes(txt);
+    const matchEst = !est || (d.estado||'').toLowerCase()===est;
+    const matchSev = !sev || (d.severidad||'').toLowerCase()===sev;
+    const matchFecha = !fecha || (d.fecha||'').startsWith(fecha);
+    return matchTxt && matchEst && matchSev && matchFecha;
+  });
+  renderDiagsTable(filtered);
+}
+
+function editarDiag(i) {
+  const d = allDiags[i];
+  document.getElementById('modalDiagTitle').textContent = 'Editar Diagnóstico';
+  document.getElementById('diagRowIndex').value = i;
+  document.getElementById('diagNombre').value = d.nombre||'';
+  document.getElementById('diagEmail').value = d.email||'';
+  document.getElementById('diagEquipo').value = d.equipo||'';
+  document.getElementById('diagServicio').value = d.servicio||'';
+  document.getElementById('diagSintoma').value = d.sintoma||d.resumen||'';
+  document.getElementById('diagTexto').value = d.diagnostico||'';
+  document.getElementById('diagEstado').value = d.estado||'nuevo';
+  document.getElementById('diagSeveridad').value = d.severidad||'media';
+  document.getElementById('diagTecnico').value = d.tecnico||'';
+  document.getElementById('diagPresupuesto').value = d.presupuesto||'';
+  document.getElementById('diagNotas').value = d.notas||'';
+  openModal('modalDiag');
+}
+
+async function guardarDiagnostico() {
+  const idx = document.getElementById('diagRowIndex').value;
+  const data = {
+    action: idx !== '' ? 'admin_editar_diag' : 'admin_nuevo_diag',
+    rowIndex: idx,
+    nombre: document.getElementById('diagNombre').value,
+    email: document.getElementById('diagEmail').value,
+    equipo: document.getElementById('diagEquipo').value,
+    servicio: document.getElementById('diagServicio').value,
+    sintoma: document.getElementById('diagSintoma').value,
+    diagnostico: document.getElementById('diagTexto').value,
+    estado: document.getElementById('diagEstado').value,
+    severidad: document.getElementById('diagSeveridad').value,
+    tecnico: document.getElementById('diagTecnico').value,
+    presupuesto: document.getElementById('diagPresupuesto').value,
+    notas: document.getElementById('diagNotas').value
+  };
+  if (!data.nombre || !data.email || !data.sintoma) { showToast('Completá los campos obligatorios', 'warning'); return; }
+  closeModal('modalDiag');
+  showToast('Guardando diagnóstico...', 'info');
+  try {
+    const resp = await apiPost(data);
+    if (resp.ok) { showToast('Diagnóstico guardado ✓', 'success'); await loadDiagnosticos(); }
+    else showToast('Error: ' + (resp.error||'desconocido'), 'error');
+  } catch(e) { showToast('Error de conexión', 'error'); }
+}
+
+async function cambiarEstadoDiag(i) {
+  const d = allDiags[i];
+  const ciclo = ['nuevo','en proceso','resuelto','cerrado'];
+  const actual = ciclo.indexOf((d.estado||'nuevo').toLowerCase());
+  const siguiente = ciclo[(actual+1) % ciclo.length];
+  showToast(`Cambiando a: ${siguiente}...`);
+  try {
+    const resp = await apiPost({ action:'admin_editar_diag', rowIndex:i, ...d, estado: siguiente });
+    if (resp.ok) { showToast('Estado actualizado ✓', 'success'); await loadDiagnosticos(); }
+    else showToast('Error', 'error');
+  } catch(e) { showToast('Error', 'error'); }
+}
+
+async function marcarLeidoDiag(i) {
+  const d = allDiags[i];
+  try {
+    await apiPost({ action:'admin_editar_diag', rowIndex:i, ...d, leido_por: adminUser.name, fecha_lectura: new Date().toISOString() });
+    showToast('Marcado como leído ✓', 'success');
+    await loadDiagnosticos();
+  } catch(e) { showToast('Error', 'error'); }
+}
+
+function openNewDiag() {
+  document.getElementById('modalDiagTitle').textContent = 'Nuevo Diagnóstico';
+  document.getElementById('diagRowIndex').value = '';
+  ['diagNombre','diagEmail','diagEquipo','diagServicio','diagSintoma','diagTexto','diagTecnico','diagPresupuesto','diagNotas'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('diagEstado').value='nuevo';
+  document.getElementById('diagSeveridad').value='media';
+  openModal('modalDiag');
+}
+
+// ══════════════════════════════════════════════════════════
+// AGENDA / CITAS
+// ══════════════════════════════════════════════════════════
+async function loadCitas() {
+  document.getElementById('citasTableBody').innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando citas...</div>';
+  try {
+    const resp = await apiGet('admin_todas_citas');
+    allCitas = resp.citas || [];
+    renderCitasTable(allCitas);
+    updateBadges();
+  } catch(e) {
+    document.getElementById('citasTableBody').innerHTML = '<div class="table-empty"><i class="fas fa-exclamation-triangle"></i>Error al cargar</div>';
+  }
+}
+
+function renderCitasTable(citas) {
+  if (!citas.length) { document.getElementById('citasTableBody').innerHTML='<div class="table-empty"><i class="fas fa-calendar"></i>Sin citas registradas</div>'; return; }
+  document.getElementById('citasTableBody').innerHTML = `
+    <table>
+      <thead><tr><th>Fecha / Hora</th><th>Cliente</th><th>Servicio</th><th>Dirección</th><th>Estado</th><th>N° Diag</th><th>Acciones</th></tr></thead>
+      <tbody>
+        ${citas.map((c,i)=>`<tr>
+          <td style="white-space:nowrap;font-size:0.78rem"><strong>${formatFechaCorta(c.fecha)}</strong><br><span style="color:var(--gray-400)">${c.hora||''}</span></td>
+          <td>
+            <div style="font-weight:600;font-size:0.83rem">${esc(c.nombre||'—')}</div>
+            <div style="font-size:0.73rem;color:var(--gray-400)">${esc(c.telefono||'')} ${c.email?'· '+c.email:''}</div>
+          </td>
+          <td style="font-size:0.8rem;max-width:160px">${esc(c.servicio||'—')}</td>
+          <td style="font-size:0.78rem;color:var(--gray-500)">${esc(c.direccion||'—')}</td>
+          <td>${badgeEstado(c.estado||'pendiente')}</td>
+          <td><code style="font-size:0.72rem;color:var(--accent)">${esc(c.diagNum||'—')}</code></td>
+          <td>
+            <div style="display:flex;gap:6px;flex-wrap:wrap">
+              <button class="btn btn-secondary btn-sm" onclick="editarCita(${i})" title="Editar"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="cambiarEstadoCita(${i})" title="Cambiar estado"><i class="fas fa-exchange-alt"></i></button>
+              <button class="btn btn-success btn-sm" onclick="whatsappCita(${i})" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
+            </div>
+          </td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function filterCitas() {
+  const txt = (document.getElementById('citasSearch')?.value||'').toLowerCase();
+  const est = (document.getElementById('citasEstadoFilter')?.value||'').toLowerCase();
+  const filtered = allCitas.filter(c => {
+    const matchTxt = !txt || (c.nombre||'').toLowerCase().includes(txt) || (c.servicio||'').toLowerCase().includes(txt);
+    const matchEst = !est || (c.estado||'').toLowerCase()===est;
+    return matchTxt && matchEst;
+  });
+  renderCitasTable(filtered);
+}
+
+function editarCita(i) {
+  const c = allCitas[i];
+  document.getElementById('modalCitaTitle').textContent = 'Editar Cita';
+  document.getElementById('citaId').value = i;
+  document.getElementById('citaNombre').value = c.nombre||'';
+  document.getElementById('citaTelefono').value = c.telefono||'';
+  document.getElementById('citaEmail').value = c.email||'';
+  document.getElementById('citaDireccion').value = c.direccion||'';
+  document.getElementById('citaFecha').value = c.fecha||'';
+  document.getElementById('citaHora').value = c.hora||'';
+  document.getElementById('citaServicio').value = c.servicio||'';
+  document.getElementById('citaEstado').value = c.estado||'pendiente';
+  document.getElementById('citaDiagNum').value = c.diagNum||'';
+  document.getElementById('citaNotas').value = c.notas||'';
+  openModal('modalCita');
+}
+
+function openNewCita() {
+  document.getElementById('modalCitaTitle').textContent = 'Nueva Cita';
+  document.getElementById('citaId').value = '';
+  ['citaNombre','citaTelefono','citaEmail','citaDireccion','citaFecha','citaHora','citaServicio','citaDiagNum','citaNotas'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('citaEstado').value='pendiente';
+  openModal('modalCita');
+}
+
+async function guardarCita() {
+  const idx = document.getElementById('citaId').value;
+  const data = {
+    action: idx !== '' ? 'admin_editar_cita' : 'admin_nueva_cita',
+    rowIndex: idx,
+    nombre: document.getElementById('citaNombre').value,
+    telefono: document.getElementById('citaTelefono').value,
+    email: document.getElementById('citaEmail').value,
+    direccion: document.getElementById('citaDireccion').value,
+    fecha: document.getElementById('citaFecha').value,
+    hora: document.getElementById('citaHora').value,
+    servicio: document.getElementById('citaServicio').value,
+    estado: document.getElementById('citaEstado').value,
+    diagNum: document.getElementById('citaDiagNum').value,
+    notas: document.getElementById('citaNotas').value
+  };
+  if (!data.nombre || !data.fecha) { showToast('Completá los campos obligatorios', 'warning'); return; }
+  closeModal('modalCita');
+  showToast('Guardando cita...');
+  try {
+    const resp = await apiPost(data);
+    if (resp.ok) { showToast('Cita guardada ✓', 'success'); await loadCitas(); }
+    else showToast('Error: ' + (resp.error||'desconocido'), 'error');
+  } catch(e) { showToast('Error de conexión', 'error'); }
+}
+
+async function cambiarEstadoCita(i) {
+  const c = allCitas[i];
+  const ciclo = ['pendiente','confirmada','completada','cancelada'];
+  const actual = ciclo.indexOf((c.estado||'pendiente').toLowerCase());
+  const siguiente = ciclo[(actual+1) % ciclo.length];
+  showToast(`Cambiando a: ${siguiente}...`);
+  try {
+    const resp = await apiPost({ action:'admin_editar_cita', rowIndex:i, ...c, estado: siguiente });
+    if (resp.ok) { showToast('Estado actualizado ✓', 'success'); await loadCitas(); }
+    else showToast('Error', 'error');
+  } catch(e) { showToast('Error', 'error'); }
+}
+
+function whatsappCita(i) {
+  const c = allCitas[i];
+  const msg = `Hola ${c.nombre}, te contactamos de Soporte Cyclops para confirmar tu cita del ${c.fecha} a las ${c.hora}.\n\n*Servicio:* ${c.servicio}\n*Dirección:* ${c.direccion||'—'}\n\n¿Confirmás la cita?`;
+  const tel = (c.telefono||'').replace(/\D/g,'');
+  window.open(`https://wa.me/549${tel}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ══════════════════════════════════════════════════════════
+// CLIENTES
+// ══════════════════════════════════════════════════════════
+async function buscarCliente() {
+  const q = document.getElementById('clienteSearch').value.trim().toLowerCase();
+  if (!q) { showToast('Ingresá un email o nombre', 'warning'); return; }
+  const detail = document.getElementById('clienteDetail');
+  detail.classList.add('visible');
+  document.getElementById('clienteHistorial').innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i> Buscando...</div>';
+
+  // Buscar en diagnósticos cargados (o hacer fetch)
+  if (!allDiags.length) { const r = await apiGet('admin_todos_diags'); allDiags = r.diagnosticos||[]; }
+
+  const diags = allDiags.filter(d =>
+    (d.email||'').toLowerCase().includes(q) || (d.nombre||'').toLowerCase().includes(q)
+  );
+
+  if (!diags.length) {
+    document.getElementById('clienteDetail').classList.remove('visible');
+    showToast('No se encontraron registros para esa búsqueda', 'warning'); return;
+  }
+
+  const first = diags[0];
+  currentClienteEmail = first.email;
+  document.getElementById('clienteAvatar').textContent = (first.nombre||'?').charAt(0).toUpperCase();
+  document.getElementById('clienteNombre').textContent = first.nombre||'—';
+  document.getElementById('clienteEmail').textContent = first.email||'—';
+
+  document.getElementById('clienteHistorial').innerHTML = `
+    <h4 style="font-size:0.83rem;font-weight:700;color:var(--gray-700);margin-bottom:14px">
+      <i class="fas fa-stethoscope" style="color:var(--accent)"></i> Historial de diagnósticos (${diags.length})
+    </h4>
+    <table>
+      <thead><tr><th>N°</th><th>Fecha</th><th>Equipo</th><th>Síntoma</th><th>Estado</th><th>Severidad</th></tr></thead>
+      <tbody>
+        ${diags.map(d=>`<tr>
+          <td><code style="font-size:0.75rem;color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
+          <td style="font-size:0.78rem">${formatFechaCorta(d.fecha)}</td>
+          <td style="font-size:0.8rem">${esc(d.equipo||'—')}</td>
+          <td style="font-size:0.8rem;max-width:200px">${esc((d.sintoma||d.resumen||'').substring(0,80))}${(d.sintoma||'').length>80?'…':''}</td>
+          <td>${badgeEstado(d.estado||'nuevo')}</td>
+          <td>${badgeSev(d.severidad||'media')}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function abrirWhatsApp() {
+  if (!currentClienteEmail) return;
+  const d = allDiags.find(d=>d.email===currentClienteEmail);
+  const tel = d?.telefono||'';
+  window.open(`https://wa.me/549${tel.replace(/\D/g,'')}`, '_blank');
+}
+
+// ══════════════════════════════════════════════════════════
+// LLAMADOS
+// ══════════════════════════════════════════════════════════
+async function loadLlamados() {
+  document.getElementById('llamadosBody').innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando...</div>';
+  try {
+    const resp = await apiGet('admin_llamados');
+    allLlamados = resp.llamados || [];
+    renderLlamadosTable(allLlamados);
+  } catch(e) {
+    document.getElementById('llamadosBody').innerHTML = '<div class="table-empty"><i class="fas fa-exclamation-triangle"></i>Error</div>';
+  }
+}
+
+function renderLlamadosTable(data) {
+  if (!data.length) { document.getElementById('llamadosBody').innerHTML='<div class="table-empty"><i class="fas fa-phone"></i>Sin llamados registrados</div>'; return; }
+  const iconos = { llamado:'📞', whatsapp:'💬', email:'📧', presencial:'🏠' };
+  document.getElementById('llamadosBody').innerHTML = `
+    <table>
+      <thead><tr><th>Fecha/Hora</th><th>Tipo</th><th>Cliente</th><th>Contacto</th><th>Notas</th></tr></thead>
+      <tbody>
+        ${data.map(l=>`<tr>
+          <td style="white-space:nowrap;font-size:0.78rem">${formatFechaCorta(l.fecha)} ${l.hora||''}</td>
+          <td>${iconos[l.tipo]||'📞'} <span style="font-size:0.78rem;text-transform:capitalize">${esc(l.tipo||'llamado')}</span></td>
+          <td style="font-weight:600;font-size:0.83rem">${esc(l.nombre||'—')}</td>
+          <td style="font-size:0.78rem;color:var(--gray-500)">${esc(l.contacto||'—')}</td>
+          <td style="font-size:0.8rem;max-width:250px">${esc(l.notas||'—')}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function filterLlamados(txt) {
+  const q = (txt||'').toLowerCase();
+  renderLlamadosTable(allLlamados.filter(l => !q || (l.nombre||'').toLowerCase().includes(q) || (l.notas||'').toLowerCase().includes(q)));
+}
+
+async function guardarLlamado() {
+  const nombre   = document.getElementById('logNombre').value.trim();
+  const contacto = document.getElementById('logContacto').value.trim();
+  const tipo     = document.getElementById('logTipo').value;
+  const notas    = document.getElementById('logNotas').value.trim();
+  if (!nombre) { showToast('Ingresá al menos el nombre', 'warning'); return; }
+  showToast('Guardando...');
+  try {
+    const resp = await apiPost({ action:'admin_nuevo_llamado', nombre, contacto, tipo, notas, fecha: new Date().toISOString().split('T')[0], hora: new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}) });
+    if (resp.ok) {
+      showToast('Llamado registrado ✓', 'success');
+      ['logNombre','logContacto','logNotas'].forEach(id => document.getElementById(id).value='');
+      await loadLlamados();
+    } else showToast('Error: ' + (resp.error||'desconocido'), 'error');
+  } catch(e) { showToast('Error de conexión', 'error'); }
+}
+
+// ══════════════════════════════════════════════════════════
+// MODAL HELPERS
+// ══════════════════════════════════════════════════════════
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-overlay')) {
+    e.target.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// ══════════════════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════════════════
+function showToast(msg, type = 'info') {
+  const icons = { success:'✓', error:'✗', warning:'⚠', info:'ℹ' };
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<span>${icons[type]||'•'}</span> ${esc(msg)}`;
+  document.getElementById('toastContainer').appendChild(t);
+  setTimeout(() => t.remove(), 3500);
+}
+
+// ══════════════════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════════════════
+function parseJWT(token) {
+  const b = token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+  return JSON.parse(decodeURIComponent(atob(b).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join('')));
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function formatFechaCorta(str) {
+  if (!str) return '—';
+  try {
+    const d = new Date(str);
+    return d.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'2-digit' });
+  } catch(e) { return str; }
+}
+
+function badgeEstado(estado) {
+  const e = (estado||'').toLowerCase().replace(/\s+/g,'-');
+  const labels = { nuevo:'Nuevo', pendiente:'Pendiente', confirmada:'Confirmada', 'en-proceso':'En proceso', completada:'Completada', resuelto:'Resuelto', cerrado:'Cerrado', cancelada:'Cancelada' };
+  return `<span class="badge badge-${e}">${labels[e]||estado}</span>`;
+}
+
+function badgeSev(sev) {
+  const s = (sev||'media').toLowerCase();
+  const labels = { critica:'🔴 Crítica', alta:'🟠 Alta', media:'🟡 Media', baja:'🟢 Baja' };
+  return `<span class="badge badge-${s}">${labels[s]||sev}</span>`;
+}
+
+function startClock() {
+  setInterval(() => {
+    const now = new Date();
+    const t = now.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const t2 = now.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
+    document.getElementById('topbarClock').textContent = t;
+    document.getElementById('sbClock').textContent = t2;
+  }, 1000);
+}
+</script>
+</body>
+</html>
