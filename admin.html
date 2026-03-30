@@ -1195,7 +1195,7 @@ async function cambiarEstadoDiag(i) {
   const siguiente = ciclo[(actual+1) % ciclo.length];
   showToast(`Cambiando a: ${siguiente}...`);
   try {
-    const resp = await apiPost({ action:'admin_editar_diag', ...d, rowIndex:i, estado: siguiente });
+    const resp = await apiPost({ action:'admin_editar_diag', ...d, estado: siguiente });
     if (resp.ok) { showToast('Estado actualizado ✓', 'success'); await loadDiagnosticos(); }
     else showToast('Error', 'error');
   } catch(e) { showToast('Error', 'error'); }
@@ -1204,7 +1204,7 @@ async function cambiarEstadoDiag(i) {
 async function marcarLeidoDiag(i) {
   const d = allDiags[i];
   try {
-    await apiPost({ action:'admin_editar_diag', ...d, rowIndex:i, leido_por: adminUser.name, fecha_lectura: new Date().toISOString() });
+    await apiPost({ action:'admin_editar_diag', ...d, leido_por: adminUser.name, fecha_lectura: new Date().toISOString() });
     showToast('Marcado como leído ✓', 'success');
     await loadDiagnosticos();
   } catch(e) { showToast('Error', 'error'); }
@@ -1331,7 +1331,7 @@ async function cambiarEstadoCita(i) {
   const siguiente = ciclo[(actual+1) % ciclo.length];
   showToast(`Cambiando a: ${siguiente}...`);
   try {
-    const resp = await apiPost({ action:'admin_editar_cita', ...c, rowIndex:i, estado: siguiente });
+    const resp = await apiPost({ action:'admin_editar_cita', ...c, estado: siguiente });
     if (resp.ok) { showToast('Estado actualizado ✓', 'success'); await loadCitas(); }
     else showToast('Error', 'error');
   } catch(e) { showToast('Error', 'error'); }

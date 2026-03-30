@@ -61,6 +61,8 @@
     .portal-user-email { font-size: 0.78rem; color: var(--gray-400); }
     .btn-logout { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: transparent; border: 2px solid var(--gray-200); border-radius: 50px; font-family: 'Open Sans', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: var(--transition); }
     .btn-logout:hover { border-color: var(--red); color: var(--red); background: rgba(239,68,68,0.05); }
+    .btn-admin { display: none; align-items: center; gap: 8px; padding: 8px 18px; background: var(--blue); color: white; border: none; border-radius: 50px; font-family: 'Open Sans', sans-serif; font-size: 0.82rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: var(--transition); box-shadow: 0 3px 10px rgba(37,99,235,0.3); }
+    .btn-admin:hover { background: #1d4ed8; transform: translateY(-1px); }
 
     /* ── CTA NUEVO DIAGNÓSTICO ── */
     .diag-cta-bar {
@@ -608,6 +610,9 @@
           <div class="portal-user-email" id="userEmail"></div>
         </div>
         <div class="portal-avatar" id="userAvatar"></div>
+        <a id="adminPanelBtn" class="btn-admin" href="admin.html">
+          <i class="fas fa-shield-alt"></i> Panel Admin
+        </a>
         <button class="btn-logout" onclick="cerrarSesion()">
           <i class="fas fa-sign-out-alt"></i> Salir
         </button>
@@ -806,6 +811,8 @@
   // ════════════════════════════════════════════════════════
   const GOOGLE_CLIENT_ID = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
   const APPS_SCRIPT_URL  = "https://script.google.com/macros/s/AKfycbyxSzwqNQTtx04d-TNdMRdtP3L_33rlim3xca_7xyYhmKxGy7PdSdcI2gB4T-UnoyEM/exec";
+  // ⚠️ Sincronizar con ADMIN_EMAILS en admin.html
+  const ADMIN_EMAILS     = ["juanpabloalza@gmail.com"];
 
   // ════════════════════════════════════════════════════════
   // PORTAL — LOGIN Y CARGA DE DIAGNÓSTICOS
@@ -827,6 +834,11 @@
       var p = parsearJWT(response.credential);
       usuarioActual = { name: p.name || 'Usuario', email: p.email || '', picture: p.picture || '' };
       mostrarPortal(usuarioActual);
+      // Si es admin, mostrar botón de acceso al panel
+      if (ADMIN_EMAILS.map(function(e){ return e.toLowerCase(); }).includes((p.email||'').toLowerCase())) {
+        var btn = document.getElementById('adminPanelBtn');
+        if (btn) btn.style.display = 'inline-flex';
+      }
       cargarDiagnosticos(usuarioActual.email);
     } catch(e) { mostrarError('Error al iniciar sesión. Intentá de nuevo.'); }
   }
