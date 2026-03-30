@@ -833,14 +833,34 @@
     try {
       var p = parsearJWT(response.credential);
       usuarioActual = { name: p.name || 'Usuario', email: p.email || '', picture: p.picture || '' };
-      mostrarPortal(usuarioActual);
-      // Si es admin, mostrar botón de acceso al panel
-      if (ADMIN_EMAILS.map(function(e){ return e.toLowerCase(); }).includes((p.email||'').toLowerCase())) {
+      // Verificar rol contra el sheet de accesos
+      verificarAcceso(usuarioActual);
+    } catch(e) { mostrarError('Error al iniciar sesión. Intentá de nuevo.'); }
+  }
+
+  async function verificarAcceso(u) {
+    try {
+      var res  = await fetch(APPS_SCRIPT_URL + '?action=verificar_acceso&email=' + encodeURIComponent(u.email));
+      var data = await res.json();
+      if (!data.ok || data.rol === 'ninguno') {
+        // Sin acceso — mostrar mensaje específico
+        document.getElementById('loginScreen').style.display = '';
+        document.getElementById('loginError') && (document.getElementById('loginError').style.display = 'block');
+        mostrarError('Tu cuenta no tiene acceso al portal. Contactá al administrador.');
+        return;
+      }
+      mostrarPortal(u);
+      // Si es admin, mostrar botón de panel
+      if (data.rol === 'admin') {
         var btn = document.getElementById('adminPanelBtn');
         if (btn) btn.style.display = 'inline-flex';
       }
-      cargarDiagnosticos(usuarioActual.email);
-    } catch(e) { mostrarError('Error al iniciar sesión. Intentá de nuevo.'); }
+      cargarDiagnosticos(u.email);
+    } catch(e) {
+      // Si el endpoint falla, caer al comportamiento anterior (acceso libre)
+      mostrarPortal(u);
+      cargarDiagnosticos(u.email);
+    }
   }
 
   function parsearJWT(token) {

@@ -405,6 +405,9 @@
       </button>
 
       <div class="sb-section-label">Accesos</div>
+      <button class="sb-item" data-section="usuarios" onclick="showSection('usuarios', this)">
+        <i class="fas fa-user-cog"></i> <span>Usuarios</span>
+      </button>
       <button class="sb-item" data-section="accesos" onclick="showSection('accesos', this)">
         <i class="fas fa-external-link-alt"></i> <span>Accesos rápidos</span>
       </button>
@@ -600,6 +603,63 @@
           </div>
           <div id="llamadosBody">
             <div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ USUARIOS ═══ -->
+      <div class="section" id="sec-usuarios">
+        <div class="sec-header">
+          <div class="sec-title">Gestión de Usuarios</div>
+          <button class="btn btn-primary" onclick="abrirModalUsuario('cliente')"><i class="fas fa-user-plus"></i> Nuevo Cliente</button>
+          <button class="btn btn-secondary" onclick="abrirModalUsuario('admin')" style="margin-left:8px"><i class="fas fa-shield-alt"></i> Nuevo Admin</button>
+        </div>
+
+        <!-- Clientes autorizados -->
+        <div style="margin-bottom:32px">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--blue-dark);margin:0">Clientes autorizados</h3>
+            <span id="clienteCount" style="background:var(--blue);color:white;font-size:0.72rem;font-weight:700;padding:2px 10px;border-radius:50px">0</span>
+          </div>
+          <div class="table-wrap" id="tablaClientes">
+            <div class="table-empty"><i class="fas fa-spinner fa-spin"></i> Cargando...</div>
+          </div>
+        </div>
+
+        <!-- Administradores -->
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--blue-dark);margin:0">Administradores</h3>
+            <span id="adminCount" style="background:#7c3aed;color:white;font-size:0.72rem;font-weight:700;padding:2px 10px;border-radius:50px">0</span>
+          </div>
+          <div class="table-wrap" id="tablaAdmins">
+            <div class="table-empty"><i class="fas fa-spinner fa-spin"></i> Cargando...</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal nuevo/editar usuario -->
+      <div class="modal-overlay" id="modalUsuario">
+        <div class="modal-box" style="max-width:420px">
+          <div class="modal-header">
+            <span class="modal-title" id="modalUsuarioTitle">Nuevo Usuario</span>
+            <button class="modal-close" onclick="closeModal('modalUsuario')"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <input type="hidden" id="usuarioTipo" value="cliente">
+            <input type="hidden" id="usuarioRowIndex" value="">
+            <div class="form-group">
+              <label class="form-label">Nombre *</label>
+              <input type="text" id="usuarioNombre" class="filter-input" placeholder="Nombre completo" style="width:100%">
+            </div>
+            <div class="form-group" style="margin-top:14px">
+              <label class="form-label">Email (Gmail) *</label>
+              <input type="email" id="usuarioEmail" class="filter-input" placeholder="usuario@gmail.com" style="width:100%">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal('modalUsuario')">Cancelar</button>
+            <button class="btn btn-primary" onclick="guardarUsuario()"><i class="fas fa-save"></i> Guardar</button>
           </div>
         </div>
       </div>
@@ -882,6 +942,7 @@ const SECTION_TITLES = {
   diagnosticos: 'Diagnósticos',
   clientes: 'Clientes',
   llamados: 'Llamados',
+  usuarios: 'Gestión de Usuarios',
   accesos: 'Accesos Rápidos'
 };
 
@@ -896,6 +957,7 @@ function showSection(id, btn) {
   if (id === 'diagnosticos' && allDiags.length === 0) loadDiagnosticos();
   if (id === 'agenda'       && allCitas.length === 0) loadCitas();
   if (id === 'llamados'     && allLlamados.length === 0) loadLlamados();
+  if (id === 'usuarios') loadUsuarios();
 }
 
 function refreshCurrentSection() {
@@ -1522,6 +1584,104 @@ function startClock() {
     document.getElementById('topbarClock').textContent = t;
     document.getElementById('sbClock').textContent = t2;
   }, 1000);
+}
+
+// ══════════════════════════════════════════════════════════
+// USUARIOS — carga, render, alta, baja
+// ══════════════════════════════════════════════════════════
+async function loadUsuarios() {
+  document.getElementById('tablaClientes').innerHTML = '<div class="table-empty"><i class="fas fa-spinner fa-spin"></i> Cargando...</div>';
+  document.getElementById('tablaAdmins').innerHTML   = '<div class="table-empty"><i class="fas fa-spinner fa-spin"></i> Cargando...</div>';
+  try {
+    const [rClientes, rAdmins] = await Promise.all([
+      apiGet('get_clientes_autorizados'),
+      apiGet('get_admins')
+    ]);
+    renderTablaUsuarios('tablaClientes', rClientes.usuarios || [], 'cliente');
+    renderTablaUsuarios('tablaAdmins',   rAdmins.usuarios   || [], 'admin');
+    document.getElementById('clienteCount').textContent = (rClientes.usuarios || []).length;
+    document.getElementById('adminCount').textContent   = (rAdmins.usuarios   || []).length;
+  } catch(e) {
+    document.getElementById('tablaClientes').innerHTML = '<div class="table-empty" style="color:var(--red)"><i class="fas fa-exclamation-circle"></i> Error al cargar</div>';
+    document.getElementById('tablaAdmins').innerHTML   = '<div class="table-empty" style="color:var(--red)"><i class="fas fa-exclamation-circle"></i> Error al cargar</div>';
+  }
+}
+
+function renderTablaUsuarios(containerId, usuarios, tipo) {
+  const el = document.getElementById(containerId);
+  if (!usuarios.length) {
+    el.innerHTML = `<div class="table-empty"><i class="fas fa-users-slash"></i> Sin ${tipo === 'admin' ? 'administradores' : 'clientes'} registrados</div>`;
+    return;
+  }
+  const badgeColor = tipo === 'admin' ? '#7c3aed' : 'var(--blue)';
+  const badgeLabel = tipo === 'admin' ? 'Admin' : 'Cliente';
+  el.innerHTML = `
+    <table class="data-table">
+      <thead><tr><th>Nombre</th><th>Email</th><th>Rol</th><th>Acciones</th></tr></thead>
+      <tbody>
+        ${usuarios.map((u,i) => `
+          <tr>
+            <td style="font-weight:600">${esc(u.nombre||'—')}</td>
+            <td style="color:var(--gray-500);font-size:0.85rem">${esc(u.email||'—')}</td>
+            <td><span style="background:${badgeColor};color:white;padding:2px 10px;border-radius:50px;font-size:0.72rem;font-weight:700">${badgeLabel}</span></td>
+            <td>
+              <button class="btn btn-secondary btn-sm" onclick="editarUsuario(${u.rowIndex},'${tipo}')" title="Editar"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-sm" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;margin-left:4px" onclick="eliminarUsuario(${u.rowIndex},'${tipo}','${esc(u.nombre||u.email)}')" title="Eliminar"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function abrirModalUsuario(tipo) {
+  document.getElementById('usuarioTipo').value = tipo;
+  document.getElementById('usuarioRowIndex').value = '';
+  document.getElementById('usuarioNombre').value = '';
+  document.getElementById('usuarioEmail').value = '';
+  document.getElementById('modalUsuarioTitle').textContent = tipo === 'admin' ? 'Nuevo Administrador' : 'Nuevo Cliente';
+  openModal('modalUsuario');
+}
+
+function editarUsuario(rowIndex, tipo) {
+  // Re-cargar datos frescos buscando el rowIndex
+  document.getElementById('usuarioTipo').value = tipo;
+  document.getElementById('usuarioRowIndex').value = rowIndex;
+  document.getElementById('modalUsuarioTitle').textContent = tipo === 'admin' ? 'Editar Administrador' : 'Editar Cliente';
+  openModal('modalUsuario');
+}
+
+async function guardarUsuario() {
+  const tipo     = document.getElementById('usuarioTipo').value;
+  const rowIndex = document.getElementById('usuarioRowIndex').value;
+  const nombre   = document.getElementById('usuarioNombre').value.trim();
+  const email    = document.getElementById('usuarioEmail').value.trim();
+  if (!email) { showToast('El email es obligatorio', 'warning'); return; }
+  closeModal('modalUsuario');
+  showToast('Guardando usuario...', 'info');
+  try {
+    const action = rowIndex !== '' ? 'editar_usuario' : 'nuevo_usuario';
+    const resp = await apiPost({ action, tipo, rowIndex, nombre, email });
+    if (resp.ok) {
+      showToast('Usuario guardado ✓', 'success');
+      await loadUsuarios();
+    } else {
+      showToast('Error: ' + (resp.error || 'desconocido'), 'error');
+    }
+  } catch(e) { showToast('Error de conexión', 'error'); }
+}
+
+async function eliminarUsuario(rowIndex, tipo, nombre) {
+  if (!confirm(`¿Eliminar a "${nombre}" de ${tipo === 'admin' ? 'Administradores' : 'Clientes'}?`)) return;
+  showToast('Eliminando...', 'info');
+  try {
+    const resp = await apiPost({ action: 'eliminar_usuario', tipo, rowIndex });
+    if (resp.ok) {
+      showToast('Usuario eliminado ✓', 'success');
+      await loadUsuarios();
+    } else {
+      showToast('Error: ' + (resp.error || 'desconocido'), 'error');
+    }
+  } catch(e) { showToast('Error de conexión', 'error'); }
 }
 </script>
 </body>
