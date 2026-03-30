@@ -464,7 +464,7 @@
             <div class="sec-subtitle">Google Calendar + gestión de estados</div>
           </div>
           <div style="display:flex;gap:10px">
-            <button class="btn btn-primary" onclick="openModal('modalCita')"><i class="fas fa-plus"></i> Nueva cita</button>
+            <button class="btn btn-primary" onclick="openNewCita()"><i class="fas fa-plus"></i> Nueva cita</button>
           </div>
         </div>
 
@@ -498,7 +498,7 @@
             <div class="sec-title">Diagnósticos</div>
             <div class="sec-subtitle">Todos los tickets de diagnóstico técnico</div>
           </div>
-          <button class="btn btn-primary" onclick="openModal('modalDiag')"><i class="fas fa-plus"></i> Nuevo diagnóstico</button>
+          <button class="btn btn-primary" onclick="openNewDiag()"><i class="fas fa-plus"></i> Nuevo diagnóstico</button>
         </div>
 
         <div class="stat-grid" id="diagStatGrid" style="margin-bottom:20px"></div>
@@ -808,10 +808,10 @@
 // ══════════════════════════════════════════════════════════
 const CONFIG = {
   GOOGLE_CLIENT_ID : "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com",
-  ADMIN_EMAILS     : ["soportecyclops@gmail.com"],   // ← Reemplazá con tu Gmail
-  APPS_SCRIPT_URL  : "https://script.google.com/macros/s/AKfycbwjVWP25ZqWa3C0IuQ6rgHYxv1r4iqM5N5916i9gLYuKFEEC3nDyMh74RdG5T8Iv4_w/exec",
+  ADMIN_EMAILS     : ["juanpabloalza@gmail.com"],
+  APPS_SCRIPT_URL  : "https://script.google.com/macros/s/AKfycbyxSzwqNQTtx04d-TNdMRdtP3L_33rlim3xca_7xyYhmKxGy7PdSdcI2gB4T-UnoyEM/exec",
   // URL del calendario embebido (Calendar ID de tu cuenta principal):
-  CALENDAR_EMBED_URL : "https://calendar.google.com/calendar/embed?src=TU_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FArgentina%2FBuenos_Aires&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=WEEK&hl=es"
+  CALENDAR_EMBED_URL : "https://calendar.google.com/calendar/embed?src=juanpabloalza%40gmail.com&ctz=America%2FArgentina%2FBuenos_Aires&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=WEEK&hl=es"
 };
 
 // ══════════════════════════════════════════════════════════
@@ -1195,7 +1195,7 @@ async function cambiarEstadoDiag(i) {
   const siguiente = ciclo[(actual+1) % ciclo.length];
   showToast(`Cambiando a: ${siguiente}...`);
   try {
-    const resp = await apiPost({ action:'admin_editar_diag', rowIndex:i, ...d, estado: siguiente });
+    const resp = await apiPost({ action:'admin_editar_diag', ...d, rowIndex:i, estado: siguiente });
     if (resp.ok) { showToast('Estado actualizado ✓', 'success'); await loadDiagnosticos(); }
     else showToast('Error', 'error');
   } catch(e) { showToast('Error', 'error'); }
@@ -1204,7 +1204,7 @@ async function cambiarEstadoDiag(i) {
 async function marcarLeidoDiag(i) {
   const d = allDiags[i];
   try {
-    await apiPost({ action:'admin_editar_diag', rowIndex:i, ...d, leido_por: adminUser.name, fecha_lectura: new Date().toISOString() });
+    await apiPost({ action:'admin_editar_diag', ...d, rowIndex:i, leido_por: adminUser.name, fecha_lectura: new Date().toISOString() });
     showToast('Marcado como leído ✓', 'success');
     await loadDiagnosticos();
   } catch(e) { showToast('Error', 'error'); }
@@ -1331,7 +1331,7 @@ async function cambiarEstadoCita(i) {
   const siguiente = ciclo[(actual+1) % ciclo.length];
   showToast(`Cambiando a: ${siguiente}...`);
   try {
-    const resp = await apiPost({ action:'admin_editar_cita', rowIndex:i, ...c, estado: siguiente });
+    const resp = await apiPost({ action:'admin_editar_cita', ...c, rowIndex:i, estado: siguiente });
     if (resp.ok) { showToast('Estado actualizado ✓', 'success'); await loadCitas(); }
     else showToast('Error', 'error');
   } catch(e) { showToast('Error', 'error'); }

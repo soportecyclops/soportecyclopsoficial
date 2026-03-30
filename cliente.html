@@ -567,6 +567,9 @@
       <a href="index.html" class="nav-back">
         <i class="fas fa-arrow-left"></i> Volver al inicio
       </a>
+      <button class="btn-logout" id="navLogoutBtn" onclick="cerrarSesion()" style="display:none">
+        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+      </button>
     </div>
   </nav>
 
@@ -933,6 +936,8 @@
       try { google.accounts.id.revoke(usuarioActual.email, function(){}); } catch(e) {}
     }
     usuarioActual = null;
+    var nb = document.getElementById('navLogoutBtn');
+    if (nb) nb.style.display = 'none';
     document.getElementById('loginScreen').style.display = '';
     document.getElementById('portalScreen').classList.remove('visible');
     document.getElementById('diagsGrid').innerHTML = '';
@@ -968,6 +973,8 @@
   function mostrarPortal(u) {
     _mostrarPortalOriginal(u);
     cargarPerfilLocal(u);
+    var nb = document.getElementById('navLogoutBtn');
+    if (nb) nb.style.display = 'flex';
   }
 
   // ── Cargar datos del perfil guardados en localStorage ────
