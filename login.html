@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingresar — Soporte Cyclops</title>
+  <link rel="icon" href="public/images/logo-icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #2563eb; --blue-dark: #1a3a5c; --gray-50: #f8fafc;
+      --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b;
+      --gray-900: #0f172a; --red: #dc2626;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .login-card {
+      background: white; border-radius: 20px; padding: 48px 40px;
+      width: 100%; max-width: 420px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+      text-align: center;
+    }
+    .logo-wrap { margin-bottom: 28px; }
+    .logo-wrap img { height: 48px; margin-bottom: 10px; }
+    .logo-wrap h1 { font-size: 1.4rem; font-weight: 800; color: var(--blue-dark); }
+    .logo-wrap p  { font-size: 0.85rem; color: var(--gray-500); margin-top: 4px; }
+    .divider { border: none; border-top: 1px solid var(--gray-200); margin: 24px 0; }
+    .google-btn-wrap { display: flex; justify-content: center; }
+    .msg-error {
+      background: #fef2f2; border: 1px solid #fecaca; color: var(--red);
+      border-radius: 10px; padding: 12px 16px; font-size: 0.85rem;
+      margin-top: 16px; display: none;
+    }
+    .msg-loading {
+      color: var(--gray-500); font-size: 0.85rem;
+      margin-top: 16px; display: none;
+    }
+    .footer-link {
+      margin-top: 28px; font-size: 0.78rem; color: var(--gray-500);
+    }
+    .footer-link a { color: var(--blue); text-decoration: none; }
+    .footer-link a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="logo-wrap">
+      <img src="public/images/logo-nav.png" alt="Soporte Cyclops" onerror="this.style.display='none'">
+      <h1>Soporte Cyclops</h1>
+      <p>Ingresá con tu cuenta de Google</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="google-btn-wrap">
+      <div id="googleSignInBtn"></div>
+    </div>
+
+    <div class="msg-loading" id="msgLoading">
+      <i class="fas fa-circle-notch fa-spin"></i> Verificando acceso...
+    </div>
+    <div class="msg-error" id="msgError">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="msgErrorTxt">Tu cuenta no tiene acceso. Contactá al administrador.</span>
+    </div>
+
+    <div class="footer-link">
+      <a href="index.html"><i class="fas fa-arrow-left"></i> Volver al inicio</a>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_CLIENT_ID  = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
+    const APPS_SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
+
+    window.onload = function() {
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: onGoogleSignIn
+      });
+      google.accounts.id.renderButton(
+        document.getElementById('googleSignInBtn'),
+        { theme: 'outline', size: 'large', text: 'signin_with', locale: 'es' }
+      );
+    };
+
+    function parsearJWT(token) {
+      const b64 = token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
+      return JSON.parse(decodeURIComponent(atob(b64).split('').map(c =>
+        '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      ).join('')));
+    }
+
+    async function onGoogleSignIn(response) {
+      try {
+        const p = parsearJWT(response.credential);
+        mostrarLoading(true);
+        ocultarError();
+
+        // Guardar credencial en sessionStorage para los paneles
+        sessionStorage.setItem('cyclops_user', JSON.stringify({
+          name: p.name, email: p.email, picture: p.picture,
+          credential: response.credential
+        }));
+
+        // Verificar rol
+        const res  = await fetch(APPS_SCRIPT_URL + '?action=verificar_acceso&email=' + encodeURIComponent(p.email));
+        const data = await res.json();
+
+        mostrarLoading(false);
+
+        if (!data.ok || data.rol === 'ninguno') {
+          mostrarError('Tu cuenta no tiene acceso al portal. Contactá al administrador.');
+          sessionStorage.removeItem('cyclops_user');
+          return;
+        }
+
+        if (data.rol === 'admin') {
+          window.location.href = 'admin.html';
+        } else {
+          window.location.href = 'cliente_panel.html';
+        }
+      } catch(e) {
+        mostrarLoading(false);
+        mostrarError('Error al verificar acceso. Intentá de nuevo.');
+      }
+    }
+
+    function mostrarLoading(v) {
+      document.getElementById('msgLoading').style.display = v ? 'block' : 'none';
+    }
+    function mostrarError(txt) {
+      document.getElementById('msgErrorTxt').textContent = txt;
+      document.getElementById('msgError').style.display = 'block';
+    }
+    function ocultarError() {
+      document.getElementById('msgError').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
