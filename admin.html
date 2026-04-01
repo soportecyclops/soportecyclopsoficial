@@ -508,7 +508,7 @@
 
         <div class="table-wrap">
           <div class="table-filters">
-            <input type="text" class="filter-input search" placeholder="🔍 Buscar por cliente, equipo, N° de diagnóstico..." oninput="filterDiags(this.value)" id="diagsSearch">
+            <input type="text" class="filter-input search" placeholder="🔍 Buscar por cliente, equipo, N° de diagnóstico..." oninput="filterDiags()" id="diagsSearch">
             <select class="filter-input" onchange="filterDiags()" id="diagEstadoFilter">
               <option value="">Todos los estados</option>
               <option value="nuevo">Nuevo</option>
@@ -523,7 +523,9 @@
               <option value="media">Media</option>
               <option value="baja">Baja</option>
             </select>
-            <input type="date" class="filter-input" onchange="filterDiags()" id="diagFechaFilter">
+            <input type="date" class="filter-input" onchange="filterDiags()" id="diagFechaDesde" title="Desde">
+            <input type="date" class="filter-input" onchange="filterDiags()" id="diagFechaHasta" title="Hasta">
+            <button class="btn btn-secondary btn-sm" onclick="limpiarFiltrosFecha()" title="Limpiar fechas" style="padding:6px 10px"><i class="fas fa-times"></i></button>
           </div>
           <div id="diagsTableBody">
             <div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando diagnósticos...</div>
@@ -789,6 +791,7 @@
     </div>
     <div class="modal-body">
       <input type="hidden" id="diagRowIndex">
+      <input type="hidden" id="diagDiagNum">
       <div class="field-row">
         <div class="field">
           <label>Nombre del cliente *</label>
@@ -883,6 +886,20 @@ let allCitas      = [];
 let allLlamados   = [];
 let currentSection = 'dashboard';
 let currentClienteEmail = null;
+// ── DATE HELPER (must be early — used by renderKPIs, filterDiags, sort) ──
+function parseFechaAR(str) {
+  if (!str) return new Date(0);
+  const s = String(str);
+  // dd/MM/yyyy or dd-MM-yyyy with optional time
+  const m = s.match(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2,4})/);
+  if (m) {
+    const y = m[3].length===2 ? '20'+m[3] : m[3];
+    return new Date(y+'-'+m[2].padStart(2,'0')+'-'+m[1].padStart(2,'0'));
+  }
+  const d = new Date(s);
+  return isNaN(d) ? new Date(0) : d;
+}
+
 
 // ══════════════════════════════════════════════════════════
 // INIT
@@ -930,7 +947,8 @@ function initApp() {
 
 function doLogout() {
   try { google.accounts.id.revoke(adminUser.email, ()=>{}); } catch(e){}
-  location.reload();
+  sessionStorage.removeItem('cyclops_user');
+  window.location.href = 'login.html';
 }
 
 // ══════════════════════════════════════════════════════════
@@ -1015,12 +1033,14 @@ function renderKPIs() {
   const anioActual = now.getFullYear();
 
   const diagsMes = allDiags.filter(d => {
-    const f = new Date(d.fecha); return f.getMonth()===mesActual && f.getFullYear()===anioActual;
+    const f = parseFechaAR(d.fecha||'');
+    return f.getMonth()===mesActual && f.getFullYear()===anioActual;
   });
-  const pendientes = allDiags.filter(d => ['nuevo','en proceso'].includes((d.estado||'').toLowerCase())).length;
+  const pendientes = allDiags.filter(d => ['nuevo','en proceso','pendiente'].includes((d.estado||'').toLowerCase())).length;
   const citasHoy = allCitas.filter(d => {
-    const f = new Date(d.fecha); const t = new Date();
-    return f.toDateString() === t.toDateString();
+    const f = parseFechaAR(d.fecha||'');
+    const t = new Date();
+    return f.getDate()===t.getDate() && f.getMonth()===t.getMonth() && f.getFullYear()===t.getFullYear();
   }).length;
   const ingresos = allDiags.filter(d => {
     const f = new Date(d.fecha); return f.getMonth()===mesActual && f.getFullYear()===anioActual && d.presupuesto;
@@ -1092,7 +1112,7 @@ function renderStatCharts() {
 }
 
 function renderRecentDiags() {
-  const recent = [...allDiags].sort((a,b) => new Date(b.fecha)-new Date(a.fecha)).slice(0,5);
+  const recent = [...allDiags].sort((a,b) => parseFechaAR(b.fecha)-parseFechaAR(a.fecha)).slice(0,5);
   document.getElementById('recentDiags').innerHTML = recent.length === 0
     ? `<div class="table-empty"><i class="fas fa-stethoscope"></i>Sin diagnósticos</div>`
     : `<table><thead><tr><th>N°</th><th>Cliente</th><th>Estado</th></tr></thead><tbody>
@@ -1106,7 +1126,7 @@ function renderRecentDiags() {
 
 function renderRecentCitas() {
   const now = new Date();
-  const upcoming = [...allCitas].filter(c => new Date(c.fecha) >= now).sort((a,b)=>new Date(a.fecha)-new Date(b.fecha)).slice(0,5);
+  const upcoming = [...allCitas].filter(c => parseFechaAR(c.fecha||'') >= now).sort((a,b)=>parseFechaAR(a.fecha||'')-parseFechaAR(b.fecha||'')).slice(0,5);
   document.getElementById('recentCitas').innerHTML = upcoming.length === 0
     ? `<div class="table-empty"><i class="fas fa-calendar"></i>Sin citas próximas</div>`
     : `<table><thead><tr><th>Fecha</th><th>Cliente</th><th>Estado</th></tr></thead><tbody>
@@ -1119,7 +1139,7 @@ function renderRecentCitas() {
 }
 
 function updateBadges() {
-  const dp = allDiags.filter(d=>['nuevo','en proceso'].includes((d.estado||'').toLowerCase())).length;
+  const dp = allDiags.filter(d=>['nuevo','en proceso','pendiente'].includes((d.estado||'').toLowerCase())).length;
   const cp = allCitas.filter(c=>['pendiente','confirmada'].includes((c.estado||'').toLowerCase())).length;
   const bD = document.getElementById('badgeDiags');
   const bC = document.getElementById('badgeCitas');
@@ -1143,32 +1163,61 @@ async function loadDiagnosticos() {
   }
 }
 
+// ── Sorting state ─────────────────────────────────────────────
+let diagSortCol = 'fecha';
+let diagSortDir = -1; // -1 = desc, 1 = asc
+
+function sortDiags(col) {
+  if (diagSortCol === col) { diagSortDir *= -1; }
+  else { diagSortCol = col; diagSortDir = col === 'fecha' ? -1 : 1; }
+  filterDiags();
+}
+
+let _sortCol = 'fecha', _sortDir = -1;
+
 function renderDiagsTable(diags) {
   if (!diags.length) { document.getElementById('diagsTableBody').innerHTML='<div class="table-empty"><i class="fas fa-stethoscope"></i>Sin resultados</div>'; return; }
+  const sorted = [...diags].sort((a,b) => {
+    let va = a[_sortCol]||'', vb = b[_sortCol]||'';
+    if (_sortCol==='fecha') {
+      const da = parseFechaAR(va), db = parseFechaAR(vb);
+      return (da-db)*_sortDir;
+    }
+    return String(va).localeCompare(String(vb),'es')*_sortDir;
+  });
+  const arrow = k => _sortCol===k ? (_sortDir>0?'▲':'▼') : '';
+  const th = (k,label) => `<th style="cursor:pointer;user-select:none;white-space:nowrap" onclick="sortDiags('${k}')">${label} <span style="font-size:0.65rem;opacity:0.5">${arrow(k)}</span></th>`;
   document.getElementById('diagsTableBody').innerHTML = `
     <table>
-      <thead><tr><th>N° Diagnóstico</th><th>Fecha</th><th>Cliente</th><th>Equipo</th><th>Estado</th><th>Severidad</th><th>Acciones</th></tr></thead>
+      <thead><tr>
+        ${th('diagNum','N° Diagnóstico')}${th('fecha','Fecha')}${th('nombre','Cliente')}${th('sintoma','Equipo')}${th('estado','Estado')}${th('severidad','Severidad')}<th>Acciones</th>
+      </tr></thead>
       <tbody>
-        ${diags.map((d,i) => `<tr>
-          <td><code style="font-size:0.75rem;color:var(--accent);font-family:'JetBrains Mono',monospace">${esc(d.diagNum||'—')}</code></td>
+        ${sorted.map(d => `<tr>
+          <td><code style="font-size:0.75rem;color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
           <td style="white-space:nowrap;font-size:0.78rem">${formatFechaCorta(d.fecha)}</td>
           <td>
             <div style="font-weight:600;font-size:0.83rem">${esc(d.nombre||'—')}</div>
             <div style="font-size:0.73rem;color:var(--gray-400)">${esc(d.email||'')}</div>
           </td>
-          <td style="font-size:0.8rem">${esc(d.equipo||'—')}</td>
+          <td style="font-size:0.8rem">${esc((d.sintoma||d.equipo||'—').substring(0,50))}</td>
           <td>${badgeEstado(d.estado||'nuevo')}</td>
           <td>${badgeSev(d.severidad||'media')}</td>
           <td>
             <div style="display:flex;gap:6px">
-              <button class="btn btn-secondary btn-sm" onclick="editarDiag(${i})" title="Editar"><i class="fas fa-edit"></i></button>
-              <button class="btn btn-secondary btn-sm" onclick="cambiarEstadoDiag(${i})" title="Cambiar estado"><i class="fas fa-exchange-alt"></i></button>
-              <button class="btn btn-secondary btn-sm" onclick="marcarLeidoDiag(${i})" title="Marcar leído"><i class="fas fa-eye"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="editarDiag('${esc(d.diagNum||'')}')" title="Editar"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="cambiarEstadoDiag('${esc(d.diagNum||'')}')" title="Cambiar estado"><i class="fas fa-exchange-alt"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="marcarLeidoDiag('${esc(d.diagNum||'')}')" title="Marcar leído"><i class="fas fa-eye"></i></button>
             </div>
           </td>
         </tr>`).join('')}
       </tbody>
     </table>`;
+}
+
+function sortDiags(col) {
+  if (_sortCol === col) _sortDir *= -1; else { _sortCol = col; _sortDir = 1; }
+  filterDiags();
 }
 
 function renderDiagStats() {
@@ -1191,54 +1240,71 @@ function renderDiagStats() {
 }
 
 function filterDiags() {
-  const txt   = (document.getElementById('diagsSearch')?.value||'').toLowerCase();
-  const est   = (document.getElementById('diagEstadoFilter')?.value||'').toLowerCase();
-  const sev   = (document.getElementById('diagSevFilter')?.value||'').toLowerCase();
-  const fecha = document.getElementById('diagFechaFilter')?.value||'';
+  const txt    = (document.getElementById('diagsSearch')?.value||'').toLowerCase();
+  const est    = (document.getElementById('diagEstadoFilter')?.value||'').toLowerCase();
+  const sev    = (document.getElementById('diagSevFilter')?.value||'').toLowerCase();
+  const desde  = document.getElementById('diagFechaDesde')?.value||'';
+  const hasta  = document.getElementById('diagFechaHasta')?.value||'';
   const filtered = allDiags.filter(d => {
-    const matchTxt = !txt || (d.diagNum||'').toLowerCase().includes(txt) || (d.nombre||'').toLowerCase().includes(txt) || (d.email||'').toLowerCase().includes(txt) || (d.equipo||'').toLowerCase().includes(txt);
-    const matchEst = !est || (d.estado||'').toLowerCase()===est;
-    const matchSev = !sev || (d.severidad||'').toLowerCase()===sev;
-    const matchFecha = !fecha || (d.fecha||'').startsWith(fecha);
-    return matchTxt && matchEst && matchSev && matchFecha;
+    const matchTxt  = !txt || (d.diagNum||'').toLowerCase().includes(txt) || (d.nombre||'').toLowerCase().includes(txt) || (d.email||'').toLowerCase().includes(txt) || (d.sintoma||d.equipo||'').toLowerCase().includes(txt);
+    const matchEst  = !est || (d.estado||'').toLowerCase()===est;
+    const matchSev  = !sev || (d.severidad||'').toLowerCase()===sev;
+    const fd = parseFechaAR(d.fecha||'');
+    const matchDesde = !desde || fd >= new Date(desde+'T00:00:00');
+    const matchHasta = !hasta || fd <= new Date(hasta+'T23:59:59');
+    return matchTxt && matchEst && matchSev && matchDesde && matchHasta;
   });
   renderDiagsTable(filtered);
 }
 
-function editarDiag(i) {
-  const d = allDiags[i];
+function limpiarFiltrosFecha() {
+  const d = document.getElementById('diagFechaDesde');
+  const h = document.getElementById('diagFechaHasta');
+  if (d) d.value = '';
+  if (h) h.value = '';
+  filterDiags();
+}
+
+
+function editarDiag(diagNum) {
+  const d = allDiags.find(x => x.diagNum === diagNum);
+  if (!d) { showToast('Diagnóstico no encontrado', 'error'); return; }
   document.getElementById('modalDiagTitle').textContent = 'Editar Diagnóstico';
-  document.getElementById('diagRowIndex').value = i;
-  document.getElementById('diagNombre').value = d.nombre||'';
-  document.getElementById('diagEmail').value = d.email||'';
-  document.getElementById('diagEquipo').value = d.equipo||'';
-  document.getElementById('diagServicio').value = d.servicio||'';
-  document.getElementById('diagSintoma').value = d.sintoma||d.resumen||'';
-  document.getElementById('diagTexto').value = d.diagnostico||'';
-  document.getElementById('diagEstado').value = d.estado||'nuevo';
+  document.getElementById('diagRowIndex').value = d.rowIndex ?? '';
+  document.getElementById('diagDiagNum').value  = d.diagNum || '';
+  document.getElementById('diagNombre').value    = d.nombre||'';
+  document.getElementById('diagEmail').value     = d.email||'';
+  document.getElementById('diagEquipo').value    = d.equipo || (d.sintoma||'').split(' / ')[0] || '';
+  document.getElementById('diagServicio').value  = d.servicio||'';
+  document.getElementById('diagSintoma').value   = d.sintoma||d.resumen||'';
+  document.getElementById('diagTexto').value     = d.resumen||'';
+  document.getElementById('diagEstado').value    = d.estado||'nuevo';
   document.getElementById('diagSeveridad').value = d.severidad||'media';
-  document.getElementById('diagTecnico').value = d.tecnico||'';
+  document.getElementById('diagTecnico').value   = d.tecnico||'';
   document.getElementById('diagPresupuesto').value = d.presupuesto||'';
-  document.getElementById('diagNotas').value = d.notas||'';
+  document.getElementById('diagNotas').value     = d.notas||'';
   openModal('modalDiag');
 }
 
 async function guardarDiagnostico() {
-  const idx = document.getElementById('diagRowIndex').value;
+  const rowIndex = document.getElementById('diagRowIndex').value;
+  const diagNum  = document.getElementById('diagDiagNum')?.value || '';
+  const isEdit   = diagNum !== '';
   const data = {
-    action: idx !== '' ? 'admin_editar_diag' : 'admin_nuevo_diag',
-    rowIndex: idx,
-    nombre: document.getElementById('diagNombre').value,
-    email: document.getElementById('diagEmail').value,
-    equipo: document.getElementById('diagEquipo').value,
-    servicio: document.getElementById('diagServicio').value,
-    sintoma: document.getElementById('diagSintoma').value,
+    action:      isEdit ? 'admin_editar_diag' : 'admin_nuevo_diag',
+    rowIndex:    rowIndex,
+    diagNum:     diagNum,       // clave principal para lookup en el server
+    nombre:      document.getElementById('diagNombre').value,
+    email:       document.getElementById('diagEmail').value,
+    equipo:      document.getElementById('diagEquipo').value,
+    servicio:    document.getElementById('diagServicio').value,
+    sintoma:     document.getElementById('diagSintoma').value,
     diagnostico: document.getElementById('diagTexto').value,
-    estado: document.getElementById('diagEstado').value,
-    severidad: document.getElementById('diagSeveridad').value,
-    tecnico: document.getElementById('diagTecnico').value,
+    estado:      document.getElementById('diagEstado').value,
+    severidad:   document.getElementById('diagSeveridad').value,
+    tecnico:     document.getElementById('diagTecnico').value,
     presupuesto: document.getElementById('diagPresupuesto').value,
-    notas: document.getElementById('diagNotas').value
+    notas:       document.getElementById('diagNotas').value
   };
   if (!data.nombre || !data.email || !data.sintoma) { showToast('Completá los campos obligatorios', 'warning'); return; }
   closeModal('modalDiag');
@@ -1250,23 +1316,36 @@ async function guardarDiagnostico() {
   } catch(e) { showToast('Error de conexión', 'error'); }
 }
 
-async function cambiarEstadoDiag(i) {
-  const d = allDiags[i];
+async function cambiarEstadoDiag(diagNum) {
+  const d = allDiags.find(x => x.diagNum === diagNum);
+  if (!d) { showToast('Diagnóstico no encontrado', 'error'); return; }
   const ciclo = ['nuevo','en proceso','resuelto','cerrado'];
   const actual = ciclo.indexOf((d.estado||'nuevo').toLowerCase());
   const siguiente = ciclo[(actual+1) % ciclo.length];
   showToast(`Cambiando a: ${siguiente}...`);
   try {
-    const resp = await apiPost({ action:'admin_editar_diag', ...d, estado: siguiente });
+    const resp = await apiPost({
+      action:   'admin_editar_diag',
+      diagNum:  d.diagNum,
+      rowIndex: d.rowIndex ?? '',
+      estado:   siguiente
+    });
     if (resp.ok) { showToast('Estado actualizado ✓', 'success'); await loadDiagnosticos(); }
-    else showToast('Error', 'error');
-  } catch(e) { showToast('Error', 'error'); }
+    else showToast('Error: ' + (resp.error||'desconocido'), 'error');
+  } catch(e) { showToast('Error de conexión', 'error'); }
 }
 
-async function marcarLeidoDiag(i) {
-  const d = allDiags[i];
+async function marcarLeidoDiag(diagNum) {
+  const d = allDiags.find(x => x.diagNum === diagNum);
+  if (!d) { showToast('Diagnóstico no encontrado', 'error'); return; }
   try {
-    await apiPost({ action:'admin_editar_diag', ...d, leido_por: adminUser.name, fecha_lectura: new Date().toISOString() });
+    await apiPost({
+      action:        'admin_editar_diag',
+      diagNum:       d.diagNum,
+      rowIndex:      d.rowIndex ?? '',
+      leido_por:     adminUser.name,
+      fecha_lectura: new Date().toLocaleString('es-AR')
+    });
     showToast('Marcado como leído ✓', 'success');
     await loadDiagnosticos();
   } catch(e) { showToast('Error', 'error'); }
@@ -1557,11 +1636,20 @@ function esc(s) {
 }
 
 function formatFechaCorta(str) {
-  if (!str) return '—';
+  if (!str || str === '') return '—';
+  const s = String(str);
+  // Already in dd/mm/yyyy format — return as-is
+  if (/^\d{1,2}\/\d{1,2}\/\d{2,4}/.test(s)) return s.substring(0,10);
+  // ISO format
+  if (/^\d{4}-\d{2}-\d{2}/.test(s)) {
+    const [y,m,d] = s.split('T')[0].split('-');
+    return d+'/'+m+'/'+y.slice(-2);
+  }
   try {
-    const d = new Date(str);
+    const d = parseFechaAR(s);
+    if (isNaN(d)) return s.substring(0,10);
     return d.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'2-digit' });
-  } catch(e) { return str; }
+  } catch(e) { return s.substring(0,10); }
 }
 
 function badgeEstado(estado) {
@@ -1597,10 +1685,13 @@ async function loadUsuarios() {
       apiGet('get_clientes_autorizados'),
       apiGet('get_admins')
     ]);
-    renderTablaUsuarios('tablaClientes', rClientes.usuarios || [], 'cliente');
-    renderTablaUsuarios('tablaAdmins',   rAdmins.usuarios   || [], 'admin');
-    document.getElementById('clienteCount').textContent = (rClientes.usuarios || []).length;
-    document.getElementById('adminCount').textContent   = (rAdmins.usuarios   || []).length;
+    // Populate cache for editarUsuario
+    _usuariosCache.cliente = rClientes.usuarios || [];
+    _usuariosCache.admin   = rAdmins.usuarios   || [];
+    renderTablaUsuarios('tablaClientes', _usuariosCache.cliente, 'cliente');
+    renderTablaUsuarios('tablaAdmins',   _usuariosCache.admin,   'admin');
+    document.getElementById('clienteCount').textContent = _usuariosCache.cliente.length;
+    document.getElementById('adminCount').textContent   = _usuariosCache.admin.length;
   } catch(e) {
     document.getElementById('tablaClientes').innerHTML = '<div class="table-empty" style="color:var(--red)"><i class="fas fa-exclamation-circle"></i> Error al cargar</div>';
     document.getElementById('tablaAdmins').innerHTML   = '<div class="table-empty" style="color:var(--red)"><i class="fas fa-exclamation-circle"></i> Error al cargar</div>';
@@ -1642,11 +1733,18 @@ function abrirModalUsuario(tipo) {
   openModal('modalUsuario');
 }
 
+// Cache for usuarios loaded
+let _usuariosCache = { cliente: [], admin: [] };
+
 function editarUsuario(rowIndex, tipo) {
-  // Re-cargar datos frescos buscando el rowIndex
-  document.getElementById('usuarioTipo').value = tipo;
-  document.getElementById('usuarioRowIndex').value = rowIndex;
+  document.getElementById('usuarioTipo').value      = tipo;
+  document.getElementById('usuarioRowIndex').value  = rowIndex;
   document.getElementById('modalUsuarioTitle').textContent = tipo === 'admin' ? 'Editar Administrador' : 'Editar Cliente';
+  // Precargar datos del usuario desde cache
+  const lista   = _usuariosCache[tipo] || [];
+  const usuario = lista.find(u => String(u.rowIndex) === String(rowIndex));
+  document.getElementById('usuarioNombre').value = usuario ? (usuario.nombre || '') : '';
+  document.getElementById('usuarioEmail').value  = usuario ? (usuario.email  || '') : '';
   openModal('modalUsuario');
 }
 
