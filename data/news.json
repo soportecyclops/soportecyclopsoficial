@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Nuevo Servicio de Domótica Inteligente",
+    "description": "Ahora ofrecemos soluciones completas de automatización del hogar con los últimos dispositivos inteligentes del mercado.",
+    "date": "2025-01-05",
+    "image": "https://images.unsplash.com/photo-1558002038-1055907df827?w=600"
+  },
+  {
+    "id": 2,
+    "title": "Actualización de Sistemas CCTV",
+    "description": "Incorporamos cámaras 4K con inteligencia artificial para detección avanzada de personas y vehículos.",
+    "date": "2024-12-28",
+    "image": "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600"
+  },
+  {
+    "id": 3,
+    "title": "Promoción Especial en Redes WiFi",
+    "description": "Durante enero, instalación de redes WiFi empresariales con 20% de descuento. Consulta por nuestros paquetes.",
+    "date": "2024-12-20",
+    "image": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600"
+  }
+]
