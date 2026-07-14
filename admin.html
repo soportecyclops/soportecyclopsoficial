@@ -404,6 +404,9 @@
       <button class="sb-item" data-section="llamados" onclick="showSection('llamados', this)">
         <i class="fas fa-phone-alt"></i> <span>Llamados</span>
       </button>
+      <button class="sb-item" onclick="window.location.href='admin-blog.html'">
+        <i class="fas fa-newspaper"></i> <span>Blog</span>
+      </button>
 
       <div class="sb-section-label">Accesos</div>
       <button class="sb-item" data-section="usuarios" onclick="showSection('usuarios', this)">
@@ -924,9 +927,27 @@ function onSignIn(resp) {
       return;
     }
     adminUser = { name: p.name, email: p.email, picture: p.picture };
+    // Compartir sesión con los demás paneles (admin-blog, etc.)
+    sessionStorage.setItem('cyclops_user', JSON.stringify({
+      name: p.name, email: p.email, picture: p.picture,
+      rol: 'admin', credential: resp.credential
+    }));
     initApp();
   } catch(e) { showToast('Error al iniciar sesión', 'error'); }
 }
+
+// Auto-login: si ya hay sesión de admin en esta pestaña (viniendo de login.html
+// o de admin-blog.html), saltar la pantalla de login
+(function autoLoginDesdeSesion() {
+  try {
+    const u = JSON.parse(sessionStorage.getItem('cyclops_user'));
+    if (u && u.credential &&
+        CONFIG.ADMIN_EMAILS.map(e=>e.toLowerCase()).includes(String(u.email).toLowerCase())) {
+      adminUser = { name: u.name, email: u.email, picture: u.picture };
+      window.addEventListener('load', () => setTimeout(initApp, 50));
+    }
+  } catch(e) {}
+})();
 
 function initApp() {
   document.getElementById('loginScreen').style.display = 'none';

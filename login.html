@@ -98,17 +98,25 @@
       ).join('')));
     }
 
+    // Destinos permitidos para ?next= (evita open redirect)
+    const DESTINOS_ADMIN   = ['admin.html', 'admin-blog.html'];
+    const DESTINOS_CLIENTE = ['cliente_panel.html'];
+
+    function destinoFinal(rol) {
+      const next = new URLSearchParams(window.location.search).get('next');
+      if (rol === 'admin') {
+        if (next && DESTINOS_ADMIN.includes(next)) return next;
+        return 'admin.html';
+      }
+      if (next && DESTINOS_CLIENTE.includes(next)) return next;
+      return 'cliente_panel.html';
+    }
+
     async function onGoogleSignIn(response) {
       try {
         const p = parsearJWT(response.credential);
         mostrarLoading(true);
         ocultarError();
-
-        // Guardar credencial en sessionStorage para los paneles
-        sessionStorage.setItem('cyclops_user', JSON.stringify({
-          name: p.name, email: p.email, picture: p.picture,
-          credential: response.credential
-        }));
 
         // Verificar rol
         const res  = await fetch(APPS_SCRIPT_URL + '?action=verificar_acceso&email=' + encodeURIComponent(p.email));
@@ -122,16 +130,26 @@
           return;
         }
 
-        if (data.rol === 'admin') {
-          window.location.href = 'admin.html';
-        } else {
-          window.location.href = 'cliente_panel.html';
-        }
+        // Guardar sesión (incluye rol) para todos los paneles
+        sessionStorage.setItem('cyclops_user', JSON.stringify({
+          name: p.name, email: p.email, picture: p.picture,
+          rol: data.rol, credential: response.credential
+        }));
+
+        window.location.href = destinoFinal(data.rol);
       } catch(e) {
         mostrarLoading(false);
         mostrarError('Error al verificar acceso. Intentá de nuevo.');
       }
     }
+
+    // Si ya hay sesión activa en esta pestaña, redirigir directo
+    (function autoRedirect() {
+      try {
+        const u = JSON.parse(sessionStorage.getItem('cyclops_user'));
+        if (u && u.credential && u.rol) window.location.href = destinoFinal(u.rol);
+      } catch(e) {}
+    })();
 
     function mostrarLoading(v) {
       document.getElementById('msgLoading').style.display = v ? 'block' : 'none';

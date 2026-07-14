@@ -94,6 +94,7 @@
     <div class="user">
       <img id="userPic" src="" alt="" onerror="this.style.display='none'">
       <span id="userName"></span>
+      <a href="blog/" target="_blank"><i class="fas fa-up-right-from-square"></i> Ver blog</a>
       <a href="admin.html"><i class="fas fa-gauge"></i> Panel admin</a>
       <a href="#" onclick="salir(); return false;"><i class="fas fa-sign-out-alt"></i> Salir</a>
     </div>
@@ -220,7 +221,7 @@
         USER = JSON.parse(sessionStorage.getItem('cyclops_user'));
       } catch(e) {}
       if (!USER || !USER.credential) {
-        window.location.href = 'login.html';
+        window.location.href = 'login.html?next=admin-blog.html';
         return;
       }
       document.getElementById('userName').textContent = USER.name || USER.email;
