@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Panel Blog — Soporte Cyclops</title>
+  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:#2563eb; --blue-dark:#1a3a5c; --gray-50:#f8fafc; --gray-100:#f1f5f9;
+      --gray-200:#e2e8f0; --gray-500:#64748b; --gray-900:#0f172a;
+      --green:#16a34a; --red:#dc2626; --amber:#d97706;
+    }
+    body { font-family:'Open Sans',sans-serif; background:var(--gray-50); color:var(--gray-900); min-height:100vh; }
+
+    .topbar { background:var(--blue-dark); color:white; padding:0 24px; height:58px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+    .topbar .brand { display:flex; align-items:center; gap:10px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:0.95rem; }
+    .topbar .brand img { height:30px; border-radius:4px; }
+    .topbar .user { display:flex; align-items:center; gap:12px; font-size:0.82rem; }
+    .topbar .user img { width:30px; height:30px; border-radius:50%; }
+    .topbar .user a { color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.78rem; }
+    .topbar .user a:hover { color:white; }
+
+    .wrap { max-width:1100px; margin:0 auto; padding:28px 20px 60px; }
+
+    .page-head { display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+    .page-head h1 { font-family:'Space Grotesk',sans-serif; font-size:1.4rem; color:var(--blue-dark); }
+    .btn { display:inline-flex; align-items:center; gap:8px; border:none; cursor:pointer; font-family:'Open Sans',sans-serif; font-weight:700; border-radius:10px; padding:11px 20px; font-size:0.85rem; transition:all 0.15s; text-decoration:none; }
+    .btn-primary { background:var(--blue); color:white; } .btn-primary:hover { background:#1d4ed8; }
+    .btn-ghost { background:white; color:var(--gray-500); border:1px solid var(--gray-200); } .btn-ghost:hover { border-color:var(--blue); color:var(--blue); }
+    .btn-danger { background:#fef2f2; color:var(--red); border:1px solid #fecaca; } .btn-danger:hover { background:var(--red); color:white; }
+    .btn-success { background:var(--green); color:white; } .btn-success:hover { background:#15803d; }
+    .btn:disabled { opacity:0.5; cursor:not-allowed; }
+    .btn-sm { padding:7px 13px; font-size:0.78rem; border-radius:8px; }
+
+    /* ===== Lista ===== */
+    .card { background:white; border:1px solid var(--gray-200); border-radius:14px; overflow:hidden; }
+    table { width:100%; border-collapse:collapse; font-size:0.86rem; }
+    th { background:var(--gray-100); text-align:left; padding:12px 16px; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--gray-500); }
+    td { padding:13px 16px; border-top:1px solid var(--gray-100); vertical-align:middle; }
+    tr:hover td { background:var(--gray-50); }
+    .tag { display:inline-block; padding:3px 10px; border-radius:12px; font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; }
+    .tag.redes{color:#1e40af;background:#dbeafe}.tag.hardware{color:#166534;background:#dcfce7}.tag.seguridad{color:#991b1b;background:#fee2e2}.tag.mantenimiento{color:#3730a3;background:#e0e7ff}.tag.ups{color:#92400e;background:#fef3c7}.tag.cctv{color:#6b21a8;background:#f3e8ff}
+    .estado { font-size:0.72rem; font-weight:700; display:inline-flex; align-items:center; gap:5px; }
+    .estado.publicado { color:var(--green); } .estado.borrador { color:var(--amber); }
+    .acciones { display:flex; gap:6px; justify-content:flex-end; }
+    .empty { text-align:center; padding:56px 20px; color:var(--gray-500); }
+    .empty i { font-size:2rem; display:block; margin-bottom:12px; opacity:0.4; }
+
+    /* ===== Editor ===== */
+    .editor-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+    @media(max-width:960px){ .editor-grid{ grid-template-columns:1fr; } }
+    .panel { background:white; border:1px solid var(--gray-200); border-radius:14px; padding:22px; }
+    .panel h3 { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; color:var(--blue-dark); margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+    .field { margin-bottom:15px; }
+    .field label { display:block; font-size:0.75rem; font-weight:700; color:var(--gray-500); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px; }
+    .field input, .field select, .field textarea {
+      width:100%; border:1.5px solid var(--gray-200); border-radius:9px; padding:10px 13px;
+      font-family:'Open Sans',sans-serif; font-size:0.88rem; color:var(--gray-900); background:white;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline:none; border-color:var(--blue); }
+    .field .hint { font-size:0.72rem; color:var(--gray-500); margin-top:4px; }
+    .row-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .row-3 { display:grid; grid-template-columns:2fr 1fr 1fr; gap:12px; }
+    @media(max-width:640px){ .row-2,.row-3{ grid-template-columns:1fr; } }
+
+    #cuerpo { min-height:380px; font-family:'Cascadia Code',Consolas,monospace; font-size:0.8rem; line-height:1.6; resize:vertical; }
+
+    .toolbar { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px; }
+    .tb-btn { background:var(--gray-100); border:1px solid var(--gray-200); border-radius:7px; padding:6px 11px; font-size:0.73rem; font-weight:600; color:var(--gray-500); cursor:pointer; font-family:'Open Sans',sans-serif; }
+    .tb-btn:hover { border-color:var(--blue); color:var(--blue); background:#eff6ff; }
+
+    #preview { width:100%; height:560px; border:1.5px solid var(--gray-200); border-radius:10px; background:white; }
+    .preview-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+    .preview-head h3 { margin-bottom:0; }
+
+    .status-bar { position:fixed; bottom:0; left:0; right:0; background:var(--blue-dark); color:white; padding:13px 24px; display:none; align-items:center; gap:12px; font-size:0.85rem; z-index:200; }
+    .status-bar.show { display:flex; }
+    .status-bar.ok { background:var(--green); } .status-bar.err { background:var(--red); }
+    .spinner { width:16px; height:16px; border:2.5px solid rgba(255,255,255,0.3); border-top-color:white; border-radius:50%; animation:spin 0.7s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand"><img src="public/images/logo-icon.png" alt=""> Panel Blog <span style="opacity:0.5;font-weight:400">· Soporte Cyclops</span></div>
+    <div class="user">
+      <img id="userPic" src="" alt="" onerror="this.style.display='none'">
+      <span id="userName"></span>
+      <a href="admin.html"><i class="fas fa-gauge"></i> Panel admin</a>
+      <a href="#" onclick="salir(); return false;"><i class="fas fa-sign-out-alt"></i> Salir</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- ================= VISTA LISTA ================= -->
+    <div id="vistaLista">
+      <div class="page-head">
+        <h1><i class="fas fa-newspaper"></i> Artículos del blog</h1>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-ghost" onclick="cargarArticulos()"><i class="fas fa-rotate"></i> Actualizar</button>
+          <button class="btn btn-primary" onclick="nuevoArticulo()"><i class="fas fa-plus"></i> Nuevo artículo</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <table>
+          <thead><tr>
+            <th>Título</th><th>Categoría</th><th>Estado</th><th>Fecha</th><th style="text-align:right">Acciones</th>
+          </tr></thead>
+          <tbody id="tbodyArticulos">
+            <tr><td colspan="5" class="empty"><div class="spinner" style="margin:0 auto 10px;border-color:#e2e8f0;border-top-color:#2563eb"></div>Cargando artículos…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= VISTA EDITOR ================= -->
+    <div id="vistaEditor" class="hidden">
+      <div class="page-head">
+        <h1 id="tituloEditor"><i class="fas fa-pen"></i> Nuevo artículo</h1>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-ghost" onclick="volverALista()"><i class="fas fa-arrow-left"></i> Volver</button>
+          <button class="btn btn-ghost" id="btnBorrador" onclick="guardar('borrador')"><i class="fas fa-file-lines"></i> Guardar borrador</button>
+          <button class="btn btn-success" id="btnPublicar" onclick="guardar('publicado')"><i class="fas fa-rocket"></i> Publicar</button>
+        </div>
+      </div>
+
+      <div class="editor-grid">
+        <div>
+          <div class="panel" style="margin-bottom:20px;">
+            <h3><i class="fas fa-circle-info"></i> Datos del artículo</h3>
+            <div class="field">
+              <label>Título</label>
+              <input id="titulo" placeholder="Ej: Cómo elegir un router para tu pyme" oninput="autoSlug(); renderPreview();">
+            </div>
+            <div class="row-3">
+              <div class="field">
+                <label>Slug (URL)</label>
+                <input id="slug" placeholder="como-elegir-router">
+                <div class="hint">blog/<span id="slugPreview">…</span>.html</div>
+              </div>
+              <div class="field">
+                <label>Categoría</label>
+                <select id="categoria" onchange="renderPreview()">
+                  <option value="redes">Redes</option>
+                  <option value="hardware">Hardware</option>
+                  <option value="seguridad">Seguridad</option>
+                  <option value="mantenimiento">Mantenimiento</option>
+                  <option value="ups">Infraestructura</option>
+                  <option value="cctv">CCTV</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Lectura (min)</label>
+                <input id="tiempo" type="number" min="1" max="60" value="6">
+              </div>
+            </div>
+            <div class="field">
+              <label>Resumen (tarjeta + Google, máx ~155 caracteres)</label>
+              <textarea id="resumen" rows="2" maxlength="170" placeholder="Una o dos frases que vendan el artículo."></textarea>
+            </div>
+            <div class="field">
+              <label>Bajada del título (opcional, se ve bajo el H1)</label>
+              <textarea id="lead" rows="2" placeholder="Si queda vacío se usa el resumen."></textarea>
+            </div>
+          </div>
+
+          <div class="panel">
+            <h3><i class="fas fa-code"></i> Cuerpo del artículo (HTML)</h3>
+            <div class="toolbar">
+              <button class="tb-btn" onclick="insertar('h2')">H2 Sección</button>
+              <button class="tb-btn" onclick="insertar('h3')">H3 Subtítulo</button>
+              <button class="tb-btn" onclick="insertar('p')">Párrafo</button>
+              <button class="tb-btn" onclick="insertar('ul')">Lista</button>
+              <button class="tb-btn" onclick="insertar('boxinfo')">📘 Info</button>
+              <button class="tb-btn" onclick="insertar('boxwarn')">⚠️ Aviso</button>
+              <button class="tb-btn" onclick="insertar('boxdanger')">🚨 Peligro</button>
+              <button class="tb-btn" onclick="insertar('boxsuccess')">✅ Tip</button>
+              <button class="tb-btn" onclick="insertar('causa')">Tarjeta numerada</button>
+              <button class="tb-btn" onclick="insertar('tabla')">Tabla</button>
+              <button class="tb-btn" onclick="insertar('code')">Código</button>
+            </div>
+            <textarea id="cuerpo" oninput="renderPreviewDebounced()" placeholder="<h2>Primera sección</h2>&#10;<p>Texto del artículo…</p>"></textarea>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="preview-head">
+            <h3><i class="fas fa-eye"></i> Vista previa</h3>
+            <button class="btn btn-ghost btn-sm" onclick="renderPreview()"><i class="fas fa-rotate"></i> Refrescar</button>
+          </div>
+          <iframe id="preview" sandbox="allow-same-origin"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar" id="statusBar">
+    <div class="spinner" id="statusSpinner"></div>
+    <span id="statusTxt"></span>
+  </div>
+
+  <script>
+    /* ========== CONFIG — PEGAR LA URL DEL DEPLOY DE APPS SCRIPT ========== */
+    const BLOG_API_URL = 'https://script.google.com/macros/s/AKfycbzWXI9aHJc06HcxK9oD1ZzW3ZuEdDcdLBP3Nq9h2sRSyphmPixjG7fBjWByoWshLF07/exec';
+
+    /* ========== AUTH GUARD (usa el login existente) ========== */
+    let USER = null;
+    (function guard() {
+      try {
+        USER = JSON.parse(sessionStorage.getItem('cyclops_user'));
+      } catch(e) {}
+      if (!USER || !USER.credential) {
+        window.location.href = 'login.html';
+        return;
+      }
+      document.getElementById('userName').textContent = USER.name || USER.email;
+      if (USER.picture) document.getElementById('userPic').src = USER.picture;
+    })();
+
+    function salir() {
+      sessionStorage.removeItem('cyclops_user');
+      window.location.href = 'login.html';
+    }
+
+    /* ========== API ========== */
+    async function api(action, extra) {
+      const body = Object.assign({ action, credential: USER.credential }, extra || {});
+      const res = await fetch(BLOG_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },  // evita preflight CORS con Apps Script
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      if (!data.ok && data.auth === false) {
+        alert('Tu sesión expiró (los tokens de Google duran 1 hora). Volvé a ingresar.');
+        salir();
+        throw new Error('auth');
+      }
+      return data;
+    }
+
+    /* ========== ESTADO ========== */
+    let ARTICULOS = [];
+    let EDITANDO = null;   // slug original del artículo en edición (null = nuevo)
+
+    const CAT_LABEL = { redes:'Redes', hardware:'Hardware', seguridad:'Seguridad', mantenimiento:'Mantenimiento', ups:'Infraestructura', cctv:'CCTV' };
+
+    /* ========== LISTA ========== */
+    async function cargarArticulos() {
+      const tb = document.getElementById('tbodyArticulos');
+      tb.innerHTML = '<tr><td colspan="5" class="empty">Cargando…</td></tr>';
+      try {
+        const data = await api('listar');
+        if (!data.ok) throw new Error(data.error);
+        ARTICULOS = data.articulos || [];
+        renderLista();
+      } catch(e) {
+        if (e.message !== 'auth')
+          tb.innerHTML = '<tr><td colspan="5" class="empty"><i class="fas fa-triangle-exclamation"></i>Error: ' + e.message + '</td></tr>';
+      }
+    }
+
+    function renderLista() {
+      const tb = document.getElementById('tbodyArticulos');
+      if (!ARTICULOS.length) {
+        tb.innerHTML = '<tr><td colspan="5" class="empty"><i class="fas fa-newspaper"></i>No hay artículos todavía. Creá el primero.</td></tr>';
+        return;
+      }
+      tb.innerHTML = ARTICULOS.map(a => `
+        <tr>
+          <td><strong>${escapeHtml(a.titulo)}</strong><br><span style="font-size:0.72rem;color:#94a3b8">blog/${a.slug}.html</span></td>
+          <td><span class="tag ${a.categoria}">${CAT_LABEL[a.categoria] || a.categoria}</span></td>
+          <td><span class="estado ${a.estado}"><i class="fas fa-circle" style="font-size:0.5rem"></i> ${a.estado}</span></td>
+          <td style="white-space:nowrap">${a.fecha || ''}</td>
+          <td><div class="acciones">
+            ${a.estado === 'publicado' ? `<a class="btn btn-ghost btn-sm" href="blog/${a.slug}.html" target="_blank" title="Ver en el sitio"><i class="fas fa-up-right-from-square"></i></a>` : ''}
+            <button class="btn btn-ghost btn-sm" onclick="editarArticulo('${a.slug}')" title="Editar"><i class="fas fa-pen"></i></button>
+            <button class="btn btn-danger btn-sm" onclick="eliminarArticulo('${a.slug}')" title="Eliminar"><i class="fas fa-trash"></i></button>
+          </div></td>
+        </tr>`).join('');
+    }
+
+    /* ========== EDITOR ========== */
+    function nuevoArticulo() {
+      EDITANDO = null;
+      document.getElementById('tituloEditor').innerHTML = '<i class="fas fa-pen"></i> Nuevo artículo';
+      ['titulo','slug','resumen','lead','cuerpo'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('categoria').value = 'redes';
+      document.getElementById('tiempo').value = 6;
+      mostrarEditor();
+    }
+
+    function editarArticulo(slug) {
+      const a = ARTICULOS.find(x => x.slug === slug);
+      if (!a) return;
+      EDITANDO = slug;
+      document.getElementById('tituloEditor').innerHTML = '<i class="fas fa-pen"></i> Editando: ' + escapeHtml(a.titulo);
+      document.getElementById('titulo').value    = a.titulo || '';
+      document.getElementById('slug').value      = a.slug || '';
+      document.getElementById('categoria').value = a.categoria || 'redes';
+      document.getElementById('tiempo').value    = a.tiempo || 6;
+      document.getElementById('resumen').value   = a.resumen || '';
+      document.getElementById('lead').value      = a.lead || '';
+      document.getElementById('cuerpo').value    = a.cuerpo || '';
+      mostrarEditor();
+    }
+
+    function mostrarEditor() {
+      document.getElementById('vistaLista').classList.add('hidden');
+      document.getElementById('vistaEditor').classList.remove('hidden');
+      actualizarSlugPreview();
+      renderPreview();
+      window.scrollTo(0, 0);
+    }
+
+    function volverALista() {
+      document.getElementById('vistaEditor').classList.add('hidden');
+      document.getElementById('vistaLista').classList.remove('hidden');
+    }
+
+    function autoSlug() {
+      if (EDITANDO) return;  // no pisar slug al editar
+      const t = document.getElementById('titulo').value;
+      document.getElementById('slug').value = slugify(t);
+      actualizarSlugPreview();
+    }
+
+    function slugify(s) {
+      return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').substring(0, 80);
+    }
+
+    function actualizarSlugPreview() {
+      document.getElementById('slugPreview').textContent = document.getElementById('slug').value || '…';
+    }
+    document.getElementById('slug').addEventListener('input', actualizarSlugPreview);
+
+    /* ========== GUARDAR / ELIMINAR ========== */
+    async function guardar(estado) {
+      const art = {
+        slug:      slugify(document.getElementById('slug').value),
+        slugAnterior: EDITANDO,
+        titulo:    document.getElementById('titulo').value.trim(),
+        categoria: document.getElementById('categoria').value,
+        tiempo:    document.getElementById('tiempo').value || '6',
+        resumen:   document.getElementById('resumen').value.trim(),
+        lead:      document.getElementById('lead').value.trim(),
+        cuerpo:    document.getElementById('cuerpo').value,
+        estado:    estado,
+        fecha:     (EDITANDO && (ARTICULOS.find(x => x.slug === EDITANDO) || {}).fecha) || new Date().toISOString().slice(0,10)
+      };
+      if (!art.titulo || !art.slug) { alert('Falta el título.'); return; }
+      if (!art.resumen)             { alert('Falta el resumen (lo usa Google y la tarjeta del blog).'); return; }
+      if (estado === 'publicado' && !art.cuerpo.trim()) { alert('El artículo está vacío. Escribí el cuerpo antes de publicar.'); return; }
+
+      setBotones(false);
+      status('spin', estado === 'publicado' ? 'Publicando: generando HTML y commiteando a GitHub…' : 'Guardando borrador…');
+      try {
+        const data = await api('guardar', { articulo: art });
+        if (!data.ok) throw new Error(data.error);
+        status('ok', '✓ ' + data.mensaje + (estado === 'publicado' ? ' El sitio se actualiza en ~90 segundos.' : ''));
+        EDITANDO = art.slug;
+        await cargarArticulos();
+        setTimeout(() => { status('hide'); volverALista(); }, 3500);
+      } catch(e) {
+        if (e.message !== 'auth') status('err', '✗ Error: ' + e.message);
+      }
+      setBotones(true);
+    }
+
+    async function eliminarArticulo(slug) {
+      const a = ARTICULOS.find(x => x.slug === slug);
+      if (!confirm('¿Eliminar "' + (a ? a.titulo : slug) + '"?\n\nSe borra del sitio y del repositorio. Esta acción queda en el historial de Git (recuperable), pero el artículo sale de línea.')) return;
+      status('spin', 'Eliminando artículo y actualizando el sitio…');
+      try {
+        const data = await api('eliminar', { slug });
+        if (!data.ok) throw new Error(data.error);
+        status('ok', '✓ ' + data.mensaje);
+        await cargarArticulos();
+        setTimeout(() => status('hide'), 3000);
+      } catch(e) {
+        if (e.message !== 'auth') status('err', '✗ Error: ' + e.message);
+      }
+    }
+
+    function setBotones(v) {
+      document.getElementById('btnBorrador').disabled = !v;
+      document.getElementById('btnPublicar').disabled = !v;
+    }
+
+    function status(tipo, txt) {
+      const bar = document.getElementById('statusBar');
+      const sp  = document.getElementById('statusSpinner');
+      if (tipo === 'hide') { bar.className = 'status-bar'; return; }
+      bar.className = 'status-bar show' + (tipo === 'ok' ? ' ok' : tipo === 'err' ? ' err' : '');
+      sp.style.display = (tipo === 'spin') ? 'block' : 'none';
+      document.getElementById('statusTxt').textContent = txt;
+    }
+
+    /* ========== SNIPPETS DEL TOOLBAR ========== */
+    const SNIPPETS = {
+      h2:   '\n<h2>Título de sección</h2>\n',
+      h3:   '\n<h3>Subtítulo</h3>\n',
+      p:    '\n<p>Texto del párrafo. Usá <strong>negrita</strong> para lo importante y <code>código</code> para comandos.</p>\n',
+      ul:   '\n<ul>\n  <li>Primer punto</li>\n  <li>Segundo punto</li>\n  <li>Tercer punto</li>\n</ul>\n',
+      boxinfo:    '\n<div class="box box-info"><strong>💡 Dato útil</strong>Texto del recuadro informativo.</div>\n',
+      boxwarn:    '\n<div class="box box-warn"><strong>⚠️ Atención</strong>Texto de la advertencia.</div>\n',
+      boxdanger:  '\n<div class="box box-danger"><strong>🚨 Importante</strong>Texto del peligro o error grave a evitar.</div>\n',
+      boxsuccess: '\n<div class="box box-success"><strong>✅ Recomendación</strong>Texto del consejo práctico.</div>\n',
+      causa: '\n<div class="cause-card">\n  <h3><span class="cause-num">1</span> Título de la causa o paso</h3>\n  <p>Explicación del punto.</p>\n  <p><strong>Solución:</strong> qué hacer al respecto.</p>\n</div>\n',
+      tabla: '\n<table class="mat-table">\n  <tr><th>Columna 1</th><th>Columna 2</th><th>Columna 3</th></tr>\n  <tr><td>Dato</td><td>Dato</td><td class="lo">Bajo</td></tr>\n  <tr><td>Dato</td><td>Dato</td><td class="hi">Alto</td></tr>\n</table>\n',
+      code:  '\n<p><code>comando --ejemplo</code></p>\n'
+    };
+
+    function insertar(tipo) {
+      const ta = document.getElementById('cuerpo');
+      const s = ta.selectionStart, e = ta.selectionEnd;
+      ta.value = ta.value.slice(0, s) + SNIPPETS[tipo] + ta.value.slice(e);
+      ta.focus();
+      ta.selectionStart = ta.selectionEnd = s + SNIPPETS[tipo].length;
+      renderPreview();
+    }
+
+    /* ========== VISTA PREVIA ========== */
+    const PREVIEW_CSS = `
+      *{margin:0;padding:0;box-sizing:border-box}body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7;padding:0}
+      .hero-blog{background:linear-gradient(135deg,#0f2444 0%,#1a4a8a 100%);color:white;padding:32px 24px}
+      .art-tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(59,130,246,0.3);color:#bfdbfe;margin-bottom:12px}
+      .hero-blog h1{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:800;line-height:1.2;margin-bottom:10px}
+      .hero-lead{font-size:0.9rem;opacity:0.88;line-height:1.6}
+      .content{padding:28px 24px}
+      .content h2{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:#1a3a5c;margin:30px 0 14px}
+      .content h2:first-child{margin-top:0}
+      .content h3{font-size:1rem;font-weight:700;color:#1a3a5c;margin:22px 0 8px}
+      .content p{margin-bottom:15px;color:#475569;font-size:0.9rem;line-height:1.7}
+      .content ul,.content ol{margin:0 0 15px 20px;color:#475569;font-size:0.9rem}.content li{margin-bottom:7px}
+      .content strong{color:#1a3a5c;font-weight:700}.content code{background:#f1f5f9;padding:2px 6px;border-radius:5px;font-family:monospace;font-size:0.82rem}
+      .box{padding:16px 18px;border-radius:10px;margin:18px 0;font-size:0.86rem;line-height:1.6}
+      .box-info{background:#eff6ff;border-left:4px solid #2563eb;color:#1e3a5c}.box-warn{background:#fffbeb;border-left:4px solid #f59e0b;color:#78350f}
+      .box-danger{background:#fef2f2;border-left:4px solid #ef4444;color:#7f1d1d}.box-success{background:#f0fdf4;border-left:4px solid #22c55e;color:#14532d}
+      .box strong{display:block;margin-bottom:5px}
+      .cause-card{border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin:15px 0;border-left:4px solid #2563eb}
+      .cause-card h3{margin:0 0 8px;font-size:0.95rem;display:flex;align-items:center;gap:9px}
+      .cause-num{width:26px;height:26px;background:#2563eb;color:white;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0}
+      .cause-card p{margin:0 0 8px;font-size:0.85rem;color:#475569}
+      .mat-table{width:100%;border-collapse:collapse;margin:15px 0;font-size:0.8rem}.mat-table th{background:#1a3a5c;color:white;padding:8px 12px;text-align:left}
+      .mat-table td{padding:8px 12px;border-bottom:1px solid #e2e8f0;color:#475569}.mat-table tr:nth-child(even) td{background:#f8fafc}
+      .hi{color:#dc2626;font-weight:700}.me{color:#d97706;font-weight:600}.lo{color:#16a34a;font-weight:600}
+    `;
+
+    let previewTimer = null;
+    function renderPreviewDebounced() {
+      clearTimeout(previewTimer);
+      previewTimer = setTimeout(renderPreview, 400);
+    }
+
+    function renderPreview() {
+      const titulo = document.getElementById('titulo').value || 'Título del artículo';
+      const lead   = document.getElementById('lead').value || document.getElementById('resumen').value || '';
+      const cat    = CAT_LABEL[document.getElementById('categoria').value] || '';
+      const cuerpo = document.getElementById('cuerpo').value || '<p style="color:#94a3b8">El cuerpo aparece acá a medida que escribís…</p>';
+      const doc = `<!DOCTYPE html><html><head><meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+        <style>${PREVIEW_CSS}</style></head><body>
+        <div class="hero-blog"><span class="art-tag">${escapeHtml(cat)}</span><h1>${escapeHtml(titulo)}</h1><p class="hero-lead">${escapeHtml(lead)}</p></div>
+        <div class="content">${cuerpo}</div></body></html>`;
+      document.getElementById('preview').srcdoc = doc;
+    }
+
+    function escapeHtml(s) {
+      return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    /* ========== INIT ========== */
+    if (BLOG_API_URL.indexOf('PEGAR_ACA') === 0) {
+      document.getElementById('tbodyArticulos').innerHTML =
+        '<tr><td colspan="5" class="empty"><i class="fas fa-gear"></i>Falta configurar: pegá la URL del deploy de Apps Script en la constante <code>BLOG_API_URL</code> de este archivo.</td></tr>';
+    } else {
+      cargarArticulos();
+    }
+  </script>
+</body>
+</html>

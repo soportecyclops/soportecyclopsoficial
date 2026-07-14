@@ -1,0 +1,70 @@
+{
+  "articulos": [
+    {
+      "slug": "wifi-no-llega",
+      "titulo": "Por qué el WiFi no llega a todos los ambientes (y cómo solucionarlo)",
+      "categoria": "redes",
+      "tiempo": "7",
+      "fecha": "2026-07-13",
+      "resumen": "Las 5 causas más comunes de mala cobertura WiFi y qué hacer en cada caso sin gastar de más.",
+      "lead": "Las 5 causas reales de mala cobertura WiFi en hogares y oficinas, con soluciones concretas para cada caso. Sin cambiar de proveedor ni gastar de más.",
+      "cuerpo": "",
+      "estado": "borrador"
+    },
+    {
+      "slug": "senales-disco-por-fallar",
+      "titulo": "6 señales de que tu disco duro está por fallar (antes de perder todo)",
+      "categoria": "hardware",
+      "tiempo": "7",
+      "fecha": "2026-07-13",
+      "resumen": "Tu PC te avisa antes de morir. Sabés interpretarlas a tiempo para hacer el backup.",
+      "lead": "",
+      "cuerpo": "",
+      "estado": "borrador"
+    },
+    {
+      "slug": "ransomware-que-hacer",
+      "titulo": "¿Qué hacer si un ransomware bloqueó tu empresa? Guía de respuesta",
+      "categoria": "seguridad",
+      "tiempo": "8",
+      "fecha": "2026-07-13",
+      "resumen": "Los primeros 30 minutos son críticos. Qué hacer, en qué orden, y qué nunca hacer.",
+      "lead": "",
+      "cuerpo": "",
+      "estado": "borrador"
+    },
+    {
+      "slug": "mantenimiento-preventivo-pc",
+      "titulo": "Mantenimiento preventivo de PC: qué hacer cada cuánto para que dure más",
+      "categoria": "mantenimiento",
+      "tiempo": "6",
+      "fecha": "2026-07-13",
+      "resumen": "Checklist completo semanal, mensual y anual. Evitá el 80% de las fallas.",
+      "lead": "",
+      "cuerpo": "",
+      "estado": "borrador"
+    },
+    {
+      "slug": "ups-proteccion-energia",
+      "titulo": "UPS y protección de energía: por qué un corte de luz puede destruir tus equipos",
+      "categoria": "ups",
+      "tiempo": "6",
+      "fecha": "2026-07-13",
+      "resumen": "Qué es un UPS, cómo elegirlo y cuándo es imprescindible para una pyme.",
+      "lead": "",
+      "cuerpo": "",
+      "estado": "borrador"
+    },
+    {
+      "slug": "camaras-seguridad-guia",
+      "titulo": "Cámaras de seguridad para el hogar y la empresa: guía completa antes de comprar",
+      "categoria": "cctv",
+      "tiempo": "7",
+      "fecha": "2026-07-13",
+      "resumen": "IP vs analógica, resolución, almacenamiento, acceso remoto. Todo lo necesario para elegir bien.",
+      "lead": "",
+      "cuerpo": "",
+      "estado": "borrador"
+    }
+  ]
+}
