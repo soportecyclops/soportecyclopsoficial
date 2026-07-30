@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Portal Admin — Soporte Cyclops</title>
+<link rel="icon" href="public/images/logo-icon.png" type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#2563eb;--dark:#1a3a5c;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g500:#64748b;--g900:#0f172a;--green:#16a34a;--amber:#d97706;--red:#dc2626}
+body{font-family:'Open Sans',sans-serif;background:var(--g50);color:var(--g900)}
+.top{background:var(--dark);color:#fff;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:50}
+.top .b{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:.92rem}
+.top .b img{height:28px;border-radius:5px}
+.top a{color:rgba(255,255,255,.7);font-size:.78rem;margin-left:14px}
+.top a:hover{color:#fff}
+.wrap{max-width:1000px;margin:0 auto;padding:22px 20px 60px}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:9px 18px;border-radius:50px;border:1.5px solid var(--g200);background:#fff;color:var(--g500);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer}
+.tab.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.tab .n{background:rgba(0,0,0,.12);padding:1px 7px;border-radius:9px;margin-left:5px;font-size:.72rem}
+.sec{display:none}.sec.on{display:block}
+.card{background:#fff;border:1px solid var(--g200);border-radius:13px;margin-bottom:15px;overflow:hidden}
+.card-h{padding:15px 20px;border-bottom:1px solid var(--g100);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.card-h h3{font-family:'Space Grotesk';font-size:.94rem;color:var(--dark)}
+.card-b{padding:20px}
+.q{padding:16px 20px;border-bottom:1px solid var(--g100)}
+.q:last-child{border:none}
+.q-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.q-who{font-size:.8rem;color:var(--g500)}
+.q-who b{color:var(--dark)}
+.q-txt{font-size:.89rem;line-height:1.6;color:var(--g900);background:var(--g50);border-left:3px solid var(--blue);padding:11px 14px;border-radius:0 8px 8px 0;margin-bottom:10px}
+.q-resp{font-size:.85rem;line-height:1.6;color:#166534;background:#f0fdf4;border-left:3px solid var(--green);padding:11px 14px;border-radius:0 8px 8px 0;margin-bottom:10px}
+.q textarea{width:100%;border:1.5px solid var(--g200);border-radius:9px;padding:10px 13px;font-family:inherit;font-size:.86rem;margin-bottom:9px}
+.q textarea:focus{outline:none;border-color:var(--blue)}
+.acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;font-family:inherit;font-weight:700;border-radius:9px;padding:9px 16px;font-size:.81rem}
+.btn-p{background:var(--blue);color:#fff}.btn-g{background:#fff;color:var(--g500);border:1px solid var(--g200)}
+.btn-r{background:#fef2f2;color:var(--red);border:1px solid #fecaca}
+.btn-s{background:var(--green);color:#fff}
+.btn-sm{padding:6px 12px;font-size:.75rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.pill{font-size:.66rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:capitalize}
+.p-pendiente,.p-retirado{background:#dbeafe;color:#1e40af}
+.p-publicada,.p-entregado,.p-confirmada{background:#dcfce7;color:#166534}
+.p-privada,.p-rechazada,.p-cancelada{background:var(--g100);color:var(--g500)}
+.p-en-reparacion,.p-listo{background:#fef3c7;color:#92400e}
+.row{display:flex;align-items:center;gap:13px;padding:13px 20px;border-bottom:1px solid var(--g100)}
+.row:last-child{border:none}
+.row-m{flex:1;min-width:0}
+.row-t{font-size:.86rem;font-weight:700;color:var(--dark)}
+.row-s{font-size:.76rem;color:var(--g500)}
+.f{margin-bottom:13px}
+.f label{display:block;font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--g500);margin-bottom:5px}
+.f input,.f textarea,.f select{width:100%;border:1.5px solid var(--g200);border-radius:9px;padding:10px 13px;font-family:inherit;font-size:.86rem}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--blue)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.empty{text-align:center;padding:42px;color:var(--g500);font-size:.85rem}
+.empty i{font-size:1.8rem;opacity:.35;display:block;margin-bottom:10px}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--dark);color:#fff;padding:13px 24px;border-radius:11px;font-size:.85rem;font-weight:600;transition:transform .3s;z-index:200}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.toast.ok{background:var(--green)}.toast.err{background:var(--red)}
+.spin{display:inline-block;width:15px;height:15px;border:2.5px solid var(--g200);border-top-color:var(--blue);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.load{text-align:center;padding:34px;color:var(--g500);font-size:.85rem}
+@media(max-width:700px){.g2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="b"><img src="public/images/logo-icon.png" alt="" onerror="this.style.display='none'"> Portal Admin</div>
+  <div>
+    <a href="admin.html"><i class="fas fa-gauge"></i> Panel</a>
+    <a href="admin-blog.html"><i class="fas fa-newspaper"></i> Blog</a>
+    <a href="#" onclick="salir();return false"><i class="fas fa-sign-out-alt"></i> Salir</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs">
+    <button class="tab on" onclick="tab('preg',this)">❓ Preguntas <span class="n" id="nPreg">0</span></button>
+    <button class="tab" onclick="tab('citas',this)">📅 Turnos <span class="n" id="nCitas">0</span></button>
+    <button class="tab" onclick="tab('ord',this)">📄 Órdenes <span class="n" id="nOrd">0</span></button>
+  </div>
+
+  <div class="sec on" id="s-preg">
+    <div class="card">
+      <div class="card-h"><h3>Preguntas de los artículos</h3>
+        <button class="btn btn-g btn-sm" onclick="cargar()"><i class="fas fa-rotate"></i> Actualizar</button></div>
+      <div id="lPreg"><div class="load"><span class="spin"></span> Cargando…</div></div>
+    </div>
+  </div>
+
+  <div class="sec" id="s-citas">
+    <div class="card">
+      <div class="card-h"><h3>Turnos solicitados</h3></div>
+      <div id="lCitas"><div class="load"><span class="spin"></span> Cargando…</div></div>
+    </div>
+  </div>
+
+  <div class="sec" id="s-ord">
+    <div class="card">
+      <div class="card-h"><h3>Nueva orden de trabajo (retiro de equipo)</h3></div>
+      <div class="card-b">
+        <div class="g2">
+          <div class="f"><label>Email del cliente *</label><input id="oMail" placeholder="cliente@gmail.com"></div>
+          <div class="f"><label>Nombre del cliente</label><input id="oNom"></div>
+          <div class="f"><label>Equipo *</label><input id="oEq" placeholder="Notebook HP 245 G8"></div>
+          <div class="f"><label>N° de serie</label><input id="oSer"></div>
+          <div class="f"><label>Accesorios retirados</label><input id="oAcc" placeholder="Cargador, funda"></div>
+          <div class="f"><label>Estado físico</label><input id="oEst" placeholder="Rayón en tapa, sin otros daños"></div>
+        </div>
+        <div class="f"><label>Falla declarada por el cliente</label><textarea id="oFalla" rows="2"></textarea></div>
+        <div class="g2">
+          <div class="f"><label>N° Diagnóstico (opcional)</label><input id="oDiag" placeholder="DIAG-..."></div>
+          <div class="f"><label>Notas internas</label><input id="oNotas"></div>
+        </div>
+        <button class="btn btn-p" id="bOrd" onclick="crearOrden()"><i class="fas fa-file-signature"></i> Emitir orden y enviar al cliente</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-h"><h3>Órdenes emitidas</h3></div>
+      <div id="lOrd"><div class="load"><span class="spin"></span> Cargando…</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
+let U=null, D={};
+
+try { U = JSON.parse(sessionStorage.getItem('cyclops_user')); } catch(e){}
+if (!U || !U.credential) location.href='login.html?next=admin-portal.html';
+function salir(){ sessionStorage.removeItem('cyclops_user'); location.href='login.html'; }
+
+async function apiGet(a,p={}){ const q=new URLSearchParams({p_action:a,credential:U.credential,...p});
+  const r=await fetch(API+'?'+q); const d=await r.json();
+  if(d.auth===false){ toast('Sesión expirada','err'); setTimeout(salir,1500); throw new Error('auth'); } return d; }
+async function apiPost(a,b={}){ const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+  body:JSON.stringify({p_action:a,credential:U.credential,...b})}); const d=await r.json();
+  if(d.auth===false){ toast('Sesión expirada','err'); setTimeout(salir,1500); throw new Error('auth'); } return d; }
+
+function tab(s,btn){ document.querySelectorAll('.sec').forEach(x=>x.classList.remove('on'));
+  document.getElementById('s-'+s).classList.add('on');
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on')); btn.classList.add('on'); }
+
+async function cargar(){
+  try{
+    D = await apiGet('admin_pendientes');
+    if(!D.ok){ toast(D.error||'Sin permisos','err'); return; }
+    pintarPreg(); pintarCitas(); pintarOrd();
+  }catch(e){ if(e.message!=='auth') toast('Error al cargar','err'); }
+}
+
+function pintarPreg(){
+  const arr=D.preguntas||[];
+  document.getElementById('nPreg').textContent = arr.filter(p=>p.estado==='pendiente').length;
+  document.getElementById('lPreg').innerHTML = arr.length ? arr.map(p=>`
+    <div class="q">
+      <div class="q-top">
+        <div class="q-who"><b>${esc(p.nombre)}</b> · ${esc(p.email)} · <a href="blog/${esc(p.slug)}.html" target="_blank">${esc(p.slug)}</a></div>
+        <div><span class="pill p-${esc(p.estado)}">${esc(p.estado)}</span> <span style="font-size:.72rem;color:#94a3b8">${esc(p.fecha)}</span></div>
+      </div>
+      <div class="q-txt">${esc(p.pregunta)}</div>
+      ${p.respuesta?`<div class="q-resp"><b>Tu respuesta:</b> ${esc(p.respuesta)}</div>`:''}
+      <textarea id="r${p.rowIndex}" rows="3" placeholder="Escribí la respuesta…">${esc(p.respuesta||'')}</textarea>
+      <div class="acts">
+        <button class="btn btn-s btn-sm" onclick="responder(${p.rowIndex},true)"><i class="fas fa-paper-plane"></i> Responder y publicar</button>
+        <button class="btn btn-g btn-sm" onclick="responder(${p.rowIndex},false)">Responder en privado</button>
+        <button class="btn btn-r btn-sm" onclick="moderar(${p.rowIndex},'rechazada')">Rechazar</button>
+      </div>
+    </div>`).join('')
+   : `<div class="empty"><i class="fas fa-comments"></i>No hay preguntas todavía.</div>`;
+}
+
+async function responder(ri,pub){
+  const t=document.getElementById('r'+ri).value.trim();
+  if(!t){ toast('Escribí una respuesta','err'); return; }
+  const r=await apiPost('responder_pregunta',{rowIndex:ri,respuesta:t,publicar:pub});
+  if(r.ok){ toast(pub?'Respondida y publicada. Se avisó al cliente.':'Respondida en privado','ok'); cargar(); }
+  else toast(r.error,'err');
+}
+async function moderar(ri,e){
+  if(!confirm('¿Rechazar esta pregunta?')) return;
+  const r=await apiPost('moderar_pregunta',{rowIndex:ri,estado:e});
+  if(r.ok){ toast('Actualizada','ok'); cargar(); } else toast(r.error,'err');
+}
+
+function pintarCitas(){
+  const arr=(D.citas||[]).filter(c=>['pendiente','confirmada'].includes((c.estado||'').toLowerCase()));
+  document.getElementById('nCitas').textContent=arr.filter(c=>(c.estado||'').toLowerCase()==='pendiente').length;
+  document.getElementById('lCitas').innerHTML = arr.length ? arr.map(c=>`
+    <div class="row">
+      <div class="row-m">
+        <div class="row-t">${esc(c.fecha)} ${esc(c.hora)} · ${esc(c.nombre||c.email)}</div>
+        <div class="row-s">${esc(c.servicio||'')} · ${esc(c.telefono||'')} · ${esc(c.direccion||'')}</div>
+        ${c.notas?`<div class="row-s" style="margin-top:3px;font-style:italic">${esc(c.notas)}</div>`:''}
+      </div>
+      <span class="pill p-${(c.estado||'pendiente').toLowerCase()}">${esc(c.estado)}</span>
+      <a class="btn btn-g btn-sm" href="admin.html" title="Gestionar en el panel"><i class="fas fa-arrow-right"></i></a>
+    </div>`).join('')
+   : `<div class="empty"><i class="fas fa-calendar"></i>No hay turnos pendientes.</div>`;
+}
+
+function pintarOrd(){
+  const arr=D.ordenes||[];
+  document.getElementById('nOrd').textContent=arr.filter(o=>o.estado!=='entregado').length;
+  document.getElementById('lOrd').innerHTML = arr.length ? arr.map(o=>`
+    <div class="row">
+      <div class="row-m">
+        <div class="row-t">${esc(o.numero)} · ${esc(o.equipo)}</div>
+        <div class="row-s">${esc(o.cliente||o.email)} · ${esc(o.fecha)}</div>
+      </div>
+      <select class="btn btn-g btn-sm" style="padding:6px" onchange="estadoOrden(${o.rowIndex},this.value)">
+        ${['retirado','en reparacion','listo','entregado'].map(e=>`<option ${o.estado===e?'selected':''}>${e}</option>`).join('')}
+      </select>
+      ${o.pdf?`<a class="btn btn-g btn-sm" href="${esc(o.pdf)}" target="_blank"><i class="fas fa-file-pdf"></i></a>`:''}
+    </div>`).join('')
+   : `<div class="empty"><i class="fas fa-file-signature"></i>No hay órdenes emitidas.</div>`;
+}
+
+async function estadoOrden(ri,e){
+  const r=await apiPost('cambiar_estado_orden',{rowIndex:ri,estado:e});
+  if(r.ok){ toast('Estado actualizado','ok'); cargar(); } else toast(r.error,'err');
+}
+
+async function crearOrden(){
+  const b={ email:v('oMail'), cliente:v('oNom'), equipo:v('oEq'), serie:v('oSer'),
+    accesorios:v('oAcc'), estadoFisico:v('oEst'), falla:v('oFalla'), diagNum:v('oDiag'), notas:v('oNotas') };
+  if(!b.email||!b.equipo){ toast('Email y equipo son obligatorios','err'); return; }
+  const btn=document.getElementById('bOrd'); btn.disabled=true;
+  const r=await apiPost('nueva_orden',b);
+  if(r.ok){ toast('Orden '+r.numero+' emitida y enviada por mail','ok');
+    ['oMail','oNom','oEq','oSer','oAcc','oEst','oFalla','oDiag','oNotas'].forEach(i=>document.getElementById(i).value='');
+    cargar(); } else toast(r.error,'err');
+  btn.disabled=false;
+}
+
+function v(id){ return document.getElementById(id).value.trim(); }
+function esc(s){ return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+let tt; function toast(m,t){ const e=document.getElementById('toast'); e.textContent=m; e.className='toast on '+(t||'');
+  clearTimeout(tt); tt=setTimeout(()=>e.className='toast',4000); }
+
+if(U&&U.credential) cargar();
+</script>
+</body>
+</html>
