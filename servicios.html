@@ -111,6 +111,36 @@
     .footer-section a:hover{color:white}
     .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
     @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
+  
+    /* ===== Modalidades de atención ===== */
+    .modalidades{padding:56px 0;background:linear-gradient(180deg,#f8fafc 0%,#fff 100%)}
+    .mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+    .mod-card{background:white;border:1px solid var(--border,#e2e8f0);border-radius:16px;padding:26px 24px;position:relative;transition:all .25s}
+    .mod-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(37,99,235,.10)}
+    .mod-card .mod-ico{font-size:1.9rem;margin-bottom:12px}
+    .mod-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;color:var(--blue-dark,#1a3a5c);margin-bottom:8px}
+    .mod-card p{font-size:.88rem;color:#64748b;line-height:1.65;margin-bottom:12px}
+    .mod-precio{display:inline-block;background:#eff6ff;color:#1d4ed8;font-weight:800;font-size:.82rem;padding:5px 13px;border-radius:20px}
+    .mod-nota{font-size:.72rem;color:#94a3b8;margin-top:10px;display:block}
+    .mod-badge{position:absolute;top:14px;right:14px;background:#dcfce7;color:#166534;font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:10px}
+    .confianza-strip{margin-top:26px;background:var(--blue-dark,#1a3a5c);border-radius:16px;padding:26px 28px;color:white;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .conf-item{display:flex;gap:12px;align-items:flex-start}
+    .conf-item i{font-size:1.15rem;color:#7dd3fc;margin-top:2px}
+    .conf-item h4{font-size:.9rem;font-weight:700;margin-bottom:3px}
+    .conf-item p{font-size:.78rem;opacity:.8;line-height:1.55}
+    .chatbot-bridge{margin-top:26px;border:2px dashed #bfdbfe;background:#f0f7ff;border-radius:16px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .chatbot-bridge h4{font-family:'Space Grotesk',sans-serif;color:var(--blue-dark,#1a3a5c);font-size:1rem;margin-bottom:4px}
+    .chatbot-bridge p{font-size:.85rem;color:#64748b}
+    .chatbot-bridge .cb-btn{background:var(--blue,#2563eb);color:white;font-weight:700;font-size:.88rem;padding:12px 22px;border-radius:50px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+    .objeciones{padding:56px 0;background:#f8fafc}
+    .obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .obj-card{background:white;border:1px solid #e2e8f0;border-left:4px solid var(--blue,#2563eb);border-radius:12px;padding:20px 22px}
+    .obj-card h4{font-size:.95rem;font-weight:700;color:var(--blue-dark,#1a3a5c);margin-bottom:8px}
+    .obj-card p{font-size:.86rem;color:#64748b;line-height:1.65}
+    .cta-servicio{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:white;font-weight:700;font-size:.84rem;padding:10px 18px;border-radius:50px;text-decoration:none}
+    .cta-servicio:hover{transform:translateY(-2px)}
+    @media(max-width:860px){.mod-grid,.confianza-strip{grid-template-columns:1fr}.obj-grid{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -143,6 +173,54 @@
       <p>Soluciones técnicas reales para hogares y pymes. Diagnóstico honesto, presupuesto antes de empezar y garantía en cada trabajo.</p>
     </div>
   </div>
+
+
+  <!-- MODALIDADES DE ATENCIÓN -->
+  <section class="modalidades">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Lo primero que tenés que saber</span>
+        <h2 class="section-title">Nunca tenés que trasladar tu equipo</h2>
+        <p class="section-subtitle">No trabajamos con local a la calle — y eso es a tu favor: el servicio va hacia vos, con comprobante de cada paso.</p>
+      </div>
+      <div class="mod-grid">
+        <div class="mod-card">
+          <span class="mod-badge">El más rápido</span>
+          <div class="mod-ico">🖥️</div>
+          <h3>Soporte remoto</h3>
+          <p>Para diagnóstico y problemas de software, configuraciones y sistemas: nos conectamos con tu autorización, ves todo lo que hacemos en pantalla, y la sesión se cierra al terminar.</p>
+          <span class="mod-precio">A partir de <span class="precio-ars" data-usd="10">$15.000</span></span>
+          <span class="mod-nota">Por sesión de hasta 1 hora. Si no se puede resolver remoto, te lo decimos antes de cobrar.</span>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">🏠</div>
+          <h3>Visita a domicilio</h3>
+          <p>El técnico va a tu casa, oficina o local en CABA y GBA con herramientas y repuestos según el pre-diagnóstico. Presupuesto cerrado antes de empezar el trabajo.</p>
+          <span class="mod-precio">A partir de <span class="precio-ars" data-usd="20">$30.000</span></span>
+          <span class="mod-nota">Trabajos de más de 3 horas tienen tarifa decreciente.</span>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">🚚</div>
+          <h3>Retiro en TU domicilio</h3>
+          <p>Si el trabajo requiere laboratorio, retiramos el equipo en tu casa — nunca al revés. Te queda una <strong>orden de trabajo firmada</strong> con el detalle del equipo, y seguimiento por WhatsApp hasta la entrega.</p>
+          <span class="mod-precio">Retiro y entrega coordinados</span>
+          <span class="mod-nota">Con comprobante de retiro y factura. Tu equipo, documentado en cada paso.</span>
+        </div>
+      </div>
+      <div class="confianza-strip">
+        <div class="conf-item"><i class="fas fa-file-signature"></i><div><h4>Orden de trabajo</h4><p>Cada retiro queda documentado: equipo, estado, fecha y firma. Tu comprobante de que el equipo está en manos profesionales.</p></div></div>
+        <div class="conf-item"><i class="fas fa-file-invoice"></i><div><h4>Factura siempre</h4><p>Comprobante fiscal en cada trabajo. Somos un servicio registrado, con identidad verificable y +11 años de trayectoria corporativa.</p></div></div>
+        <div class="conf-item"><i class="fab fa-whatsapp"></i><div><h4>Seguimiento en vivo</h4><p>Te avisamos por WhatsApp cada avance: diagnóstico, presupuesto, reparación y entrega. Nunca te quedás sin saber dónde está tu equipo.</p></div></div>
+      </div>
+      <div class="chatbot-bridge">
+        <div>
+          <h4>🔍 ¿No sabés qué tiene tu equipo? Averigualo gratis en 2 minutos</h4>
+          <p>Nuestro diagnóstico guiado te hace las preguntas correctas y te da una evaluación técnica con informe PDF — sin traer el equipo a ningún lado y sin compromiso.</p>
+        </div>
+        <a class="cb-btn" href="index.html#chatbot" onclick="try{sessionStorage.setItem('abrir_chatbot','1')}catch(e){}"><i class="fas fa-comments"></i> Iniciar diagnóstico gratis</a>
+      </div>
+    </div>
+  </section>
 
   <!-- SERVICIOS CARDS -->
   <section class="services">
@@ -221,7 +299,7 @@
         <div class="tab-body">
           <div class="tab-info">
             <h3>Soporte Informático</h3>
-            <p>Diagnóstico y reparación de PCs, notebooks y periféricos en CABA y GBA. Servicio a domicilio o retiro/entrega. Soporte remoto para resolución rápida sin visita.</p>
+            <p>Diagnóstico y reparación de PCs, notebooks y periféricos en CABA y GBA. Vos no trasladás nada: lo resolvemos por soporte remoto, vamos a tu domicilio, o retiramos el equipo en tu casa con orden de trabajo.</p>
             <ol class="process-steps">
               <li><strong>Diagnóstico gratuito</strong> Evaluamos el problema sin cargo antes de cualquier presupuesto.</li>
               <li><strong>Presupuesto claro</strong> Te informamos el costo antes de empezar. Sin sorpresas.</li>
@@ -241,6 +319,7 @@
               <li>Configuración de impresoras, correo y Office</li>
               <li>Ruidos en el disco — diagnóstico SMART y backup urgente</li>
             </ul>
+            <a class="cta-servicio" href="https://wa.me/5491166804450?text=Hola%21%20Tengo%20un%20problema%20con%20mi%20PC%20o%20notebook%20y%20quiero%20un%20diagn%C3%B3stico" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por mi equipo</a>
           </div>
         </div>
       </div>
@@ -269,6 +348,7 @@
               <li>Red para múltiples pisos con access points</li>
               <li>Conectividad entre dos edificios o depósitos</li>
             </ul>
+            <a class="cta-servicio" href="https://wa.me/5491166804450?text=Hola%21%20Tengo%20problemas%20de%20WiFi/red%20y%20quiero%20una%20evaluaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por mi red</a>
           </div>
         </div>
       </div>
@@ -297,6 +377,7 @@
               <li>Sistema con almacenamiento en la nube</li>
               <li>Cámaras PTZ para depósitos y grandes espacios</li>
             </ul>
+            <a class="cta-servicio" href="https://wa.me/5491166804450?text=Hola%21%20Quiero%20consultar%20por%20c%C3%A1maras%20de%20seguridad" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por cámaras</a>
           </div>
         </div>
       </div>
@@ -325,6 +406,7 @@
               <li>Sistema de pánico para locales comerciales</li>
               <li>Log de accesos con historial de ingresos</li>
             </ul>
+            <a class="cta-servicio" href="https://wa.me/5491166804450?text=Hola%21%20Quiero%20consultar%20por%20alarmas%20o%20control%20de%20acceso" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por alarmas</a>
           </div>
         </div>
       </div>
@@ -353,6 +435,7 @@
               <li>Cortinas y persianas motorizadas con app</li>
               <li>Escenarios automáticos (noche, cine, bienvenida)</li>
             </ul>
+            <a class="cta-servicio" href="https://wa.me/5491166804450?text=Hola%21%20Quiero%20consultar%20por%20dom%C3%B3tica%20para%20mi%20casa%20u%20oficina" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por domótica</a>
           </div>
         </div>
       </div>
@@ -381,6 +464,7 @@
               <li>Capacitación en reconocimiento de phishing</li>
               <li>Política de contraseñas y gestores de credenciales</li>
             </ul>
+            <a class="cta-servicio" href="https://wa.me/5491166804450?text=Hola%21%20Necesito%20consultar%20por%20seguridad%20inform%C3%A1tica" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por seguridad</a>
           </div>
         </div>
       </div>
@@ -409,6 +493,7 @@
               <li>Protección de múltiples puestos en una oficina</li>
               <li>Asesoramiento para elegir marca y modelo en el mercado</li>
             </ul>
+            <a class="cta-servicio" href="https://wa.me/5491166804450?text=Hola%21%20Quiero%20consultar%20por%20UPS%20y%20protecci%C3%B3n%20de%20energ%C3%ADa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por UPS</a>
           </div>
         </div>
       </div>
@@ -426,6 +511,23 @@
   </section>
 
   <!-- CÓMO TRABAJAMOS -->
+
+  <!-- OBJECIONES -->
+  <section class="objeciones">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Hablemos claro</span>
+        <h2 class="section-title">Las dudas que todos tienen (y nadie pregunta)</h2>
+      </div>
+      <div class="obj-grid">
+        <div class="obj-card"><h4>“¿Y si al final no tiene arreglo?”</h4><p>Te lo decimos antes de cobrar el trabajo. Si la reparación no es viable por costo o repuestos, recibís el diagnóstico honesto y la recomendación de qué conviene — aunque eso signifique no vendernos el arreglo.</p></div>
+        <div class="obj-card"><h4>“¿Es seguro darles acceso remoto a mi PC?”</h4><p>La conexión se hace solo con tu autorización, en vivo y con vos mirando la pantalla. Al cerrar la sesión, el acceso muere. No queda ningún software espiando ni acceso permanente.</p></div>
+        <div class="obj-card"><h4>“¿Me conviene reparar o comprar uno nuevo?”</h4><p>Es parte del diagnóstico: comparamos el costo de reparación contra el valor de reemplazo y te damos el número. Si reparar no conviene, te lo decimos — preferimos un cliente que vuelve a una venta forzada.</p></div>
+        <div class="obj-card"><h4>“¿Cómo sé que no desaparecen con mi equipo?”</h4><p>Orden de trabajo firmada al retirar, factura, seguimiento por WhatsApp en cada etapa, y una identidad completamente verificable: CUIT, opiniones reales en Google y +11 años de historia en empresas como Radio Nacional. Todo documentado, siempre.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="how-it-works">
     <div class="container">
       <div class="section-header">
@@ -492,6 +594,22 @@
       var btn = map[window.location.hash];
       if (btn) { var el = document.getElementById(btn); if(el) setTimeout(function(){ el.click(); }, 300); }
     }
+  </script>
+
+  <script>
+  (async function(){
+    try{
+      var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
+      var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
+      var d=await r.json();
+      if(d.venta>0){
+        document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
+          var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
+          el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
+        });
+      }
+    }catch(e){/* fallback: quedan los valores estáticos */}
+  })();
   </script>
 </body>
 </html>

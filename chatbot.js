@@ -288,6 +288,95 @@ function initChatbot() {
     }
 
     // ══════════════════════════════════════════════════════════════
+    // ═══ v5.1 — PRUEBAS DE DESCARTE ACTIVO (diagnóstico sin ver el equipo) ═══
+    var PRUEBAS_DESCARTE = {
+        "⚡ No enciende o no arranca": {
+            question: "¿Qué pasa exactamente al apretar el botón de encendido?",
+            options: [
+                "❌ Nada de nada: ni luces ni ventiladores",
+                "⚡ Prende un instante (luces/ventiladores) y se apaga",
+                "🌀 Los ventiladores giran pero la pantalla queda negra",
+                "🪟 Arranca pero Windows no carga (error o se reinicia)"
+            ],
+            refina: {
+                "❌ Nada de nada: ni luces ni ventiladores": { causa:"Falla de alimentación: fuente, cargador, batería o cable — es lo primero a descartar", modalidad:"retiro" },
+                "⚡ Prende un instante (luces/ventiladores) y se apaga": { causa:"Protección activada: posible corto, falla de fuente o RAM desajustada", modalidad:"retiro" },
+                "🌀 Los ventiladores giran pero la pantalla queda negra": { causa:"Falla de video, RAM o pantalla — el equipo recibe energía pero no inicializa imagen", modalidad:"visita" },
+                "🪟 Arranca pero Windows no carga (error o se reinicia)": { causa:"Disco con fallas o sistema operativo dañado — el hardware base responde", modalidad:"visita" }
+            }
+        },
+        "💥 Pantalla negra o sin imagen": {
+            question: "¿El equipo da señales de vida?",
+            options: [
+                "🔊 Se escucha que arranca (ventiladores/sonido) pero sin imagen",
+                "🔦 Con una linterna se llega a ver la imagen muy tenue",
+                "❌ Nada: ni luces ni sonido",
+                "📢 Da pitidos al encender"
+            ],
+            refina: {
+                "🔊 Se escucha que arranca (ventiladores/sonido) pero sin imagen": { causa:"Falla de video o del panel — el sistema arranca pero no muestra imagen", modalidad:"visita" },
+                "🔦 Con una linterna se llega a ver la imagen muy tenue": { causa:"Retroiluminación de pantalla quemada — la imagen existe pero sin luz de fondo", modalidad:"retiro" },
+                "❌ Nada: ni luces ni sonido": { causa:"Falla de alimentación general: fuente, cargador o placa", modalidad:"retiro" },
+                "📢 Da pitidos al encender": { causa:"Código POST de error: los pitidos identifican el componente en falla (RAM/video habitualmente)", modalidad:"visita" }
+            }
+        },
+        "🐌 Va muy lento o se traba": {
+            question: "¿Cuándo se nota más la lentitud?",
+            options: [
+                "🕐 Desde que prende, todo el tiempo",
+                "🪟 Solo con muchas pestañas o programas abiertos",
+                "🧊 Se congela por completo de golpe",
+                "🌐 Solo en internet, el resto anda bien"
+            ],
+            refina: {
+                "🕐 Desde que prende, todo el tiempo": { causa:"Disco mecánico lento o al límite, o exceso de programas de inicio — candidato ideal a SSD", modalidad:"remoto" },
+                "🪟 Solo con muchas pestañas o programas abiertos": { causa:"Memoria RAM insuficiente para el uso actual del equipo", modalidad:"remoto" },
+                "🧊 Se congela por completo de golpe": { causa:"Posible falla de disco o sobrecalentamiento — requiere chequeo S.M.A.R.T. y de temperaturas", modalidad:"remoto" },
+                "🌐 Solo en internet, el resto anda bien": { causa:"Problema de red o navegador, no del equipo — suele resolverse en una sesión remota", modalidad:"remoto" }
+            }
+        },
+        "🔊 Hace ruidos extraños (clicks o raspados)": {
+            question: "¿De dónde viene el ruido?",
+            options: [
+                "💾 Zona del disco: clics rítmicos o raspado",
+                "🌀 Ventiladores: zumbido, roce o vibración",
+                "🔈 Parlantes: ruido eléctrico o zumbido",
+                "🤷 No logro identificar de dónde viene"
+            ],
+            refina: {
+                "💾 Zona del disco: clics rítmicos o raspado": { causa:"⚠️ Disco mecánico en falla activa — APAGÁ el equipo: cada minuto encendido reduce la chance de rescatar los datos", modalidad:"retiro" },
+                "🌀 Ventiladores: zumbido, roce o vibración": { causa:"Ventilador sucio o con rodamiento gastado — mantenimiento simple que evita sobrecalentamiento", modalidad:"visita" },
+                "🔈 Parlantes: ruido eléctrico o zumbido": { causa:"Interferencia o falla de audio — se diagnostica por descarte de software primero", modalidad:"remoto" },
+                "🤷 No logro identificar de dónde viene": { causa:"Requiere escucha directa del equipo para ubicar el origen", modalidad:"visita" }
+            }
+        },
+        "🔄 Se reinicia solo sin motivo": {
+            question: "¿En qué momento se reinicia?",
+            options: [
+                "🎮 Bajo exigencia: juegos, video o trabajo pesado",
+                "🎲 En cualquier momento, sin patrón",
+                "🔌 Al mover el equipo o tocar el cable",
+                "💙 Muestra pantalla azul antes de reiniciar"
+            ],
+            refina: {
+                "🎮 Bajo exigencia: juegos, video o trabajo pesado": { causa:"Sobrecalentamiento o fuente insuficiente — se dispara la protección térmica/eléctrica", modalidad:"visita" },
+                "🎲 En cualquier momento, sin patrón": { causa:"Falla intermitente de fuente, RAM o placa — requiere pruebas de laboratorio", modalidad:"retiro" },
+                "🔌 Al mover el equipo o tocar el cable": { causa:"Falso contacto en conector de carga o cable — falla física localizable", modalidad:"visita" },
+                "💙 Muestra pantalla azul antes de reiniciar": { causa:"Error de sistema documentado: el código de la pantalla azul identifica el driver o componente", modalidad:"remoto" }
+            }
+        }
+    };
+
+    function modalidadTexto(mod, dolarV) {
+        var remoto = formatARS(Math.round(10 * dolarV / 1000) * 1000);
+        var visita = formatARS(Math.round(20 * dolarV / 1000) * 1000);
+        if (mod === "remoto")
+            return "🖥️ **Recomendado: soporte remoto** — Por lo que describís, tu caso puede evaluarse y probablemente resolverse a distancia, hoy mismo y sin visita. Sesión desde " + remoto + ". Si en la sesión vemos que requiere presencia, te lo decimos antes de cobrar.";
+        if (mod === "retiro")
+            return "🚚 **Recomendado: retiro en tu domicilio** — Este tipo de falla requiere laboratorio. Lo retiramos nosotros en tu casa con **orden de trabajo firmada** (tu comprobante), lo reparamos y te lo devolvemos funcionando, con seguimiento por WhatsApp en cada etapa. Vos no trasladás nada.";
+        return "🏠 **Recomendado: visita a domicilio** — Vamos a tu casa u oficina con las herramientas y repuestos probables según estas hipótesis. Visita desde " + visita + ", con presupuesto cerrado antes de empezar el trabajo.";
+    }
+
     // FLOWS DE DIAGNÓSTICO — v5.0 (originales mejorados + 5 nuevos)
     // ══════════════════════════════════════════════════════════════
 
@@ -325,6 +414,12 @@ function initChatbot() {
                     ]
                 },
                 {
+                    key:"prueba_descarte",
+                    condition: function(a){ return !!PRUEBAS_DESCARTE[a.sintoma]; },
+                    question: function(a){ return "🧪 **Prueba rápida de descarte** — " + PRUEBAS_DESCARTE[a.sintoma].question + "\n\n_(Esto nos permite afinar el diagnóstico sin necesidad de ver el equipo.)_"; },
+                    options: function(a){ return PRUEBAS_DESCARTE[a.sintoma].options; }
+                },
+                {
                     key:"contexto_uso",
                     question:"¿Para qué se usa principalmente este equipo?",
                     options:["💼 Trabajo / Laboral (archivos, correo, sistemas)","🎓 Estudio","🎮 Gaming / entretenimiento","🏠 Uso personal / hogar","🖥️ Servidor o uso intensivo 24/7"]
@@ -345,7 +440,8 @@ function initChatbot() {
                     options:["✅ Sí, tengo backup reciente","⚠️ Tengo algo pero desactualizado","❌ No tengo backup","🤷 No sé qué es un backup"]
                 }
             ],
-            diagnose: function(a) {
+            diagnose: async function(a) {
+                var dolarV = (await obtenerDolarBNA()) || 1520;
                 var sinBackup   = ["❌ No tengo backup","🤷 No sé qué es un backup"].includes(a.tiene_backup);
                 var sinMant     = ["Nunca o no recuerdo","Hace más de 2 años"].includes(a.ultimo_mantenimiento);
                 var critico     = a.sintoma === "💾 Perdí archivos o datos importantes";
@@ -357,9 +453,17 @@ function initChatbot() {
                 var extra       = [];
                 var causas      = getCausasProbables(a.sintoma, a);
 
+                // v5.1 — refinar con la prueba de descarte y recomendar modalidad
+                var refInfo = (PRUEBAS_DESCARTE[a.sintoma] && a.prueba_descarte) ? PRUEBAS_DESCARTE[a.sintoma].refina[a.prueba_descarte] : null;
+                if (refInfo && refInfo.causa) { causas = [refInfo.causa].concat((causas||[]).filter(function(c){ return c !== refInfo.causa; })); }
+                var esSoft = (a.categoria_problema||"").indexOf("Software") >= 0;
+                var modalidad = refInfo ? refInfo.modalidad : (esSoft ? "remoto" : (["🔊 Hace ruidos extraños (clicks o raspados)","⚡ No enciende o no arranca"].indexOf(a.sintoma) >= 0 ? "retiro" : "visita"));
+                var modalidadLinea = modalidadTexto(modalidad, dolarV);
+
                 if (sinBackup) extra.push("🔴 **Sin backup detectado** — Como parte del servicio configuramos backup automático en la nube o disco externo para que no vuelva a estar en riesgo.");
                 if (sinMant)   extra.push("🧹 **Mantenimiento pendiente** — Incluimos limpieza de polvo y revisión de pasta térmica si corresponde al trabajo realizado.");
                 if (esServidor) extra.push("🗄️ **Equipo servidor** — Prioridad de atención y resolución en horario que minimize el impacto en los usuarios.");
+                if (["💥 Pantalla negra o sin imagen","🖥️ Pantalla con rayas, parpadea o tiene píxeles muertos","🔊 Hace ruidos extraños (clicks o raspados)"].indexOf(a.sintoma) >= 0) extra.push("📸 **Acelerá el diagnóstico** — Al contactarnos, mandá una foto o video corto del problema junto a tu número de diagnóstico: ahorra media visita.");
                 if (esLaboral && urgente) extra.push("💼 **Equipo de trabajo** — Evaluamos solución de emergencia (préstamo de equipo o trabajo remoto) mientras se resuelve el problema.");
 
                 var resumenCausas = "";
@@ -380,7 +484,7 @@ function initChatbot() {
                                   : "✅ El problema tiene solución y puede programarse con flexibilidad horaria.",
                         "🔍 Diagnóstico técnico completo antes de cualquier presupuesto, **sin cargo**.",
                         causas && causas.length > 0 ? "🔬 **Causas más frecuentes:** " + causas[0] + (causas[1] ? " También puede ser: " + causas[1] + "." : ".") : "🔬 Evaluaremos todas las causas posibles en el diagnóstico.",
-                        (a.tipo_equipo && a.tipo_equipo.includes("Laptop")) ? "🏠 Para notebooks ofrecemos servicio a domicilio o retiro/entrega con seguimiento en CABA y GBA." : "🏠 Servicio a domicilio disponible en CABA y GBA.",
+                        modalidadLinea,
                         "⏱️ Tiempo estimado de resolución: 2 a 6 horas según la complejidad.",
                         ...extra
                     ],
@@ -449,7 +553,7 @@ function initChatbot() {
                         cabezal && !esLaser ? "🖨️ **Posible cabezal obstruido** — Realizamos ciclo de limpieza profunda. Si el cabezal está dañado, evaluamos reemplazo vs. costo de equipo nuevo." : esLaser ? "🖨️ **Impresora láser** — Revisamos rodillo de fusión, tóner y tambor fotosensible." : "🔌 Revisamos driver, puerto USB, configuración del servicio de impresión y conectividad.",
                         "🔬 **Causas más frecuentes en este caso:** " + causas[0] + ". También puede ser: " + causas[1] + ".",
                         esEmpresarial ? "🏢 **Entorno de alto volumen** — Evaluamos plan de mantenimiento preventivo para evitar paradas de producción." : "💡 Asesoramos sobre mantenimiento preventivo para extender la vida útil del equipo.",
-                        "🏠 Servicio a domicilio o retiro del equipo para taller. Diagnóstico sin cargo."
+                        "🏠 Vamos a tu domicilio, o retiramos el equipo en tu casa con orden de trabajo firmada — vos no trasladás nada. Diagnóstico sin cargo."
                     ],
                     servicio:"Soporte Informático — Periféricos"
                 };
@@ -1131,6 +1235,14 @@ function initChatbot() {
     };
 
     // ── APERTURA / CIERRE ─────────────────────────────────────────
+    // v5.1 — auto-abrir si venimos del CTA de servicios
+    try {
+        if (sessionStorage.getItem('abrir_chatbot') === '1') {
+            sessionStorage.removeItem('abrir_chatbot');
+            setTimeout(function(){ chatbotToggle.click(); }, 900);
+        }
+    } catch(e) {}
+
     chatbotToggle.addEventListener('click', function() {
         chatbotWindow.classList.toggle('active');
         if (notificationDot) notificationDot.classList.remove('active');
@@ -1291,10 +1403,18 @@ function initChatbot() {
     function askDiagStep() {
         var flow = diagFlows[diagState.flow];
         if (!flow) return;
+        // v5.1: saltear pasos condicionales que no aplican
+        while (diagState.step < flow.steps.length) {
+            var st = flow.steps[diagState.step];
+            if (st.condition && !st.condition(diagState.answers)) { diagState.step++; continue; }
+            break;
+        }
         if (diagState.step >= flow.steps.length) { finishDiag(); return; }
         var step = flow.steps[diagState.step];
-        var opts = step.options.map(function(opt){ return { text:opt, next:"__diag__"+diagState.step+"__"+opt }; });
-        addMessage(step.question, 'bot', opts);
+        var q       = (typeof step.question === 'function') ? step.question(diagState.answers) : step.question;
+        var optList = (typeof step.options  === 'function') ? step.options(diagState.answers)  : step.options;
+        var opts = optList.map(function(opt){ return { text:opt, next:"__diag__"+diagState.step+"__"+opt }; });
+        addMessage(q, 'bot', opts);
     }
 
     function finishDiag() {
