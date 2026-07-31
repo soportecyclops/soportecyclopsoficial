@@ -67,12 +67,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/mantenimiento-preventivo-pc.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.soportecyclops.com.ar/blog/ups-proteccion-energia.html</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>yearly</changefreq>
@@ -81,6 +75,12 @@
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/camaras-seguridad-guia.html</loc>
     <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/mantenimiento-preventivo-pc.html</loc>
+    <lastmod>2026-03-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
