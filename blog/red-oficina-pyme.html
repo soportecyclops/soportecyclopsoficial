@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¿Cuántas cámaras necesito y dónde las pongo? | Soporte Cyclops</title>
+  <title>Cómo armar la red de una oficina chica sin que sea un parche | Soporte Cyclops</title>
   <link rel="icon" href="../public/images/logo-icon.png" type="image/png">
-  <meta name="description" content="La cantidad importa menos que la ubicación. La regla de los tres anillos y los errores que se repiten.">
-  <meta property="og:title" content="¿Cuántas cámaras necesito y dónde las pongo?"><meta property="og:type" content="article">
-  <meta property="og:description" content="La cantidad importa menos que la ubicación. La regla de los tres anillos y los errores que se repiten.">
-  <meta property="og:url" content="https://www.soportecyclops.com.ar/blog/cuantas-camaras-necesito.html">
+  <meta name="description" content="Las 4 capas de una red que funciona, los errores más comunes y el detalle que ahorra horas.">
+  <meta property="og:title" content="Cómo armar la red de una oficina chica sin que sea un parche"><meta property="og:type" content="article">
+  <meta property="og:description" content="Las 4 capas de una red que funciona, los errores más comunes y el detalle que ahorra horas.">
+  <meta property="og:url" content="https://www.soportecyclops.com.ar/blog/red-oficina-pyme.html">
   <meta property="og:image" content="https://www.soportecyclops.com.ar/public/images/og-preview.jpg">
-  <link rel="canonical" href="https://www.soportecyclops.com.ar/blog/cuantas-camaras-necesito.html">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"¿Cuántas cámaras necesito y dónde las pongo?","description":"La cantidad importa menos que la ubicación. La regla de los tres anillos y los errores que se repiten.","datePublished":"2026-05-26","author":{"@type":"Organization","name":"Soporte Cyclops"},"publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"},"mainEntityOfPage":"https://www.soportecyclops.com.ar/blog/cuantas-camaras-necesito.html"}</script>
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/blog/red-oficina-pyme.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Cómo armar la red de una oficina chica sin que sea un parche","description":"Las 4 capas de una red que funciona, los errores más comunes y el detalle que ahorra horas.","datePublished":"2026-06-30","author":{"@type":"Organization","name":"Soporte Cyclops"},"publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"},"mainEntityOfPage":"https://www.soportecyclops.com.ar/blog/red-oficina-pyme.html"}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -102,73 +102,80 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:
   <div class="breadcrumb"><div class="inner">
     <a href="../index.html"><i class="fas fa-home"></i> Inicio</a><span class="sep">/</span>
     <a href="index.html">Blog</a><span class="sep">/</span>
-    <span class="current">CCTV</span>
+    <span class="current">Redes</span>
   </div></div>
 
   <div class="hero-blog"><div class="inner">
     <div class="article-meta">
-      <span class="art-tag">CCTV</span>
-      <span class="art-read-time"><i class="fas fa-clock"></i> 5 min de lectura</span>
-      <span class="art-date"><i class="fas fa-calendar"></i> 26 de mayo de 2026</span>
+      <span class="art-tag">Redes</span>
+      <span class="art-read-time"><i class="fas fa-clock"></i> 6 min de lectura</span>
+      <span class="art-date"><i class="fas fa-calendar"></i> 30 de junio de 2026</span>
     </div>
-    <h1>¿Cuántas cámaras necesito y dónde las pongo?</h1>
-    <p class="hero-lead">Tres cámaras bien puestas sirven más que ocho mal distribuidas. Cómo decidir dónde van, según tu espacio.</p>
+    <h1>Cómo armar la red de una oficina chica sin que sea un parche</h1>
+    <p class="hero-lead">Muchas oficinas crecieron por acumulación y funcionan hasta que dejan de funcionar. Cómo armarla bien.</p>
   </div></div>
 
   <div class="content">
-<p>La pregunta llega siempre igual: "¿cuántas cámaras necesito?". Y la respuesta honesta es que la cantidad importa mucho menos que la ubicación. Tres cámaras bien puestas sirven más que ocho mal distribuidas, y salen bastante menos.</p>
+<p>Muchas oficinas chicas crecieron por acumulación: el router del proveedor, un switch comprado de apuro, cables tirados por donde se pudo y una impresora que a veces aparece y a veces no. Funciona hasta que deja de funcionar, y ahí nadie sabe por dónde empezar. Esta guía es para armarla bien desde el principio.</p>
 
-<div class="box box-info"><strong>💡 El cambio de enfoque</strong>No pienses "quiero cubrir toda la casa". Pensá "quiero identificar a cualquiera que entre". Un intruso puede evitar el centro del patio, pero no puede evitar la puerta por la que entra. Los puntos de paso obligado son lo que importa.</div>
-
-<h2>La regla de los tres anillos</h2>
+<h2>Las cuatro capas de una red que funciona</h2>
 
 <div class="cause-card">
-<h3><span class="cause-num">1</span> Accesos: la prioridad absoluta</h3>
-<p>Puerta principal, puerta de servicio, portón, entrada del garage. Toda persona que ingresa pasa por alguno de estos puntos, y ahí la cámara captura el rostro de frente. Si tu presupuesto alcanza para dos cámaras, van las dos acá.</p>
+<h3><span class="cause-num">1</span> Conexión a internet</h3>
+<p>El módem del proveedor. Idealmente en modo puente, con un router propio detrás manejando la red. Así el equipo que controla tu red es uno que elegiste vos, no el que vino en la caja.</p>
+<p><strong>Para operaciones críticas:</strong> conviene una segunda conexión de respaldo, aunque sea de menor velocidad. Un corte de internet con la facturación online detiene la empresa.</p>
 </div>
 
 <div class="cause-card">
-<h3><span class="cause-num">2</span> Perímetro: disuasión y contexto</h3>
-<p>Frente, fondo, medianeras. Estas cámaras muestran cómo se acercó alguien y dan aviso temprano, además de funcionar como disuasivo visible. Van después de los accesos, no antes.</p>
+<h3><span class="cause-num">2</span> Router y switch</h3>
+<p>El router reparte y protege; el switch multiplica los puertos cableados. Que sean gigabit, y elegí un switch con puertos de sobra: siempre hacen falta más de los que se calcularon.</p>
 </div>
 
 <div class="cause-card">
-<h3><span class="cause-num">3</span> Interior: lo valioso</h3>
-<p>Caja registradora, depósito, oficina con equipamiento, ambiente principal. En comercios esta capa suele ser la más útil de todas, porque cubre también el error interno, no solo el robo externo.</p>
+<h3><span class="cause-num">3</span> Cableado</h3>
+<p>Todo lo que no se mueve va por cable: PC de escritorio, impresoras, grabador de cámaras, servidor. El WiFi es para lo que se mueve. Esta sola decisión resuelve la mitad de los problemas de red de una oficina.</p>
+<p><strong>Cable recomendado:</strong> categoría 6, y con las puntas bien hechas. Un cable mal armado da fallas intermitentes imposibles de diagnosticar a simple vista.</p>
 </div>
 
-<h2>Cuántas según el lugar</h2>
+<div class="cause-card">
+<h3><span class="cause-num">4</span> WiFi por puntos de acceso</h3>
+<p>En lugar de estirar la señal de un router solo, se colocan puntos de acceso cableados en las zonas de trabajo. Todos con el mismo nombre de red, así los dispositivos pasan de uno a otro sin cortes.</p>
+</div>
+
+<div class="box box-info"><strong>💡 La red de invitados</strong>Separar el WiFi de visitas del de trabajo cuesta cinco minutos de configuración y evita que el celular de cualquiera que pase tenga acceso a las carpetas compartidas, la impresora y las cámaras. Es de las medidas con mejor relación esfuerzo-beneficio que existen.</div>
+
+<h2>Los errores que más vemos</h2>
 
 <table class="mat-table">
-<tr><th>Espacio</th><th>Cantidad típica</th><th>Dónde</th></tr>
-<tr><td>Departamento</td><td class="lo">1 a 2</td><td>Puerta de entrada, ambiente principal</td></tr>
-<tr><td>Casa</td><td class="lo">3 a 4</td><td>Entrada, fondo, frente, garage</td></tr>
-<tr><td>Local comercial</td><td class="me">4 a 6</td><td>Ingreso, caja, depósito, salón</td></tr>
-<tr><td>Galpón o depósito</td><td class="me">6 a 8</td><td>Portones, pasillos, sector de carga</td></tr>
+<tr><th>Error</th><th>Consecuencia</th></tr>
+<tr><td>Todo por WiFi, incluso las PC fijas</td><td class="hi">Saturación y cortes en horario pico</td></tr>
+<tr><td>Contraseña del router sin cambiar</td><td class="hi">Cualquiera reconfigura la red</td></tr>
+<tr><td>Repetidores en cadena</td><td class="me">Cada salto parte la velocidad</td></tr>
+<tr><td>Sin UPS en el equipamiento de red</td><td class="me">Cada corte deja todo sin conexión</td></tr>
+<tr><td>Cables sin identificar</td><td class="me">Cada falla es una investigación</td></tr>
+<tr><td>Una sola red para todo</td><td class="hi">Visitas y cámaras conviven con los datos</td></tr>
 </table>
 
-<h2>Errores de ubicación que se repiten</h2>
+<h2>Un detalle que ahorra horas: documentar</h2>
 
+<p>Anotá qué IP tiene cada equipo fijo, qué cable va a dónde, y las credenciales de administración en un lugar seguro. Cuando algo falla un viernes a la tarde, esa hoja es la diferencia entre resolver en veinte minutos o pasar la tarde probando.</p>
+
+<div class="box box-warn"><strong>⚠️ El equipamiento de red al UPS</strong>Router, switch y puntos de acceso consumen muy poco y son lo primero que se cae con un corte. Si tenés las PC protegidas pero el router enchufado a la pared, quedás con equipos prendidos y sin conexión. Y si tenés cámaras, se dejan de grabar exactamente cuando más importa.</div>
+
+<h2>Señales de que tu red necesita una revisión</h2>
 <ul>
-<li><strong>Demasiado alta.</strong> Arriba de 3 metros filmás techos de cabeza y no caras. La altura correcta es 2,5 a 3 metros.</li>
-<li><strong>Contra la luz.</strong> Apuntar a una puerta vidriada o al sol de la tarde sin compensación de contraluz da siluetas negras. Inservible justo cuando la necesitás.</li>
-<li><strong>Todas mirando lo mismo.</strong> Cuatro cámaras cubriendo el mismo patio y ninguna en la puerta lateral por donde efectivamente entraron.</li>
-<li><strong>Al alcance de la mano.</strong> Una cámara que se puede tapar o arrancar de un manotazo cumple la mitad de su función.</li>
-<li><strong>El grabador a la vista.</strong> De nada sirve tener todo filmado si se llevan el equipo donde estaban las grabaciones.</li>
+<li>Hay que reiniciar el router cada tanto para que "vuelva a andar".</li>
+<li>La impresora de red desaparece y vuelve sin motivo aparente.</li>
+<li>Las videollamadas se cortan solo en ciertos sectores de la oficina.</li>
+<li>Nadie sabe qué hace cada cable ni qué equipos están conectados.</li>
 </ul>
 
-<div class="box box-warn"><strong>⚠️ Lo que casi nadie calcula</strong>El almacenamiento. Cada cámara consume disco todos los días. Si querés 15 días de historial con 4 cámaras, necesitás dimensionar el disco para eso. Muchos sistemas terminan guardando apenas 3 días y nadie se entera hasta que necesita revisar algo de la semana pasada.</div>
-
-<h2>Antes de comprar, hacé este ejercicio</h2>
-
-<p>Salí a la vereda y caminá hacia tu casa o local como lo haría alguien que quiere entrar. ¿Por dónde pasarías? ¿Dónde te acercarías sin ser visto? Esos son exactamente los puntos donde van las cámaras. Es un ejercicio de cinco minutos que ordena todo el proyecto.</p>
-
-<div class="box box-success"><strong>✅ Recomendación final</strong>Empezá por los accesos con cámaras de buena resolución, y sumá el resto después. Un sistema bien pensado de 4 cámaras supera a uno improvisado de 8. Hacemos el relevamiento sin cargo: vamos, miramos el lugar y te decimos cuántas necesitás de verdad.</div>
+<div class="box box-success"><strong>✅ Recomendación final</strong>La base para una pyme de hasta 20 puestos: router propio detrás del módem en puente, switch gigabit, cableado categoría 6 para todo lo fijo, puntos de acceso para el WiFi, red de invitados separada y todo el equipamiento de red al UPS. Hacemos el relevamiento sin cargo y te pasamos el plan por etapas.</div>
 
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22%C2%BFCu%C3%A1ntas%20c%C3%A1maras%20necesito%20y%20d%C3%B3nde%20las%20pongo%3F%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22C%C3%B3mo%20armar%20la%20red%20de%20una%20oficina%20chica%20sin%20que%20sea%20un%20parche%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>
   </div>
@@ -200,7 +207,7 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:
     </div>
   </div>
   <script>
-  var QA_SLUG = "cuantas-camaras-necesito";
+  var QA_SLUG = "red-oficina-pyme";
   var QA_API  = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
   var QA_USER = null;
   try { QA_USER = JSON.parse(sessionStorage.getItem("cyclops_user")); } catch(e) {}
@@ -241,9 +248,9 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:
   <div class="related-section"><div class="related-inner">
     <h3>Artículos relacionados</h3>
     <div class="related-grid">
-      <a href="camaras-seguridad-guia.html" class="related-card"><span class="r-tag c-tag cctv">CCTV</span><h4>Cámaras de seguridad para el hogar y la empresa: guía completa antes de comprar</h4><span class="r-time"><i class="fas fa-clock"></i> 7 min de lectura</span></a>
-      <a href="tu-pc-con-windows-10-ya-no-recibe-actualizaciones-que-hacer-ahora.html" class="related-card"><span class="r-tag c-tag seguridad">Seguridad</span><h4>Tu PC con Windows 10 ya no recibe actualizaciones: qué hacer ahora</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
-      <a href="red-oficina-pyme.html" class="related-card"><span class="r-tag c-tag redes">Redes</span><h4>Cómo armar la red de una oficina chica sin que sea un parche</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
+      <a href="wifi-lento-ciertas-horas.html" class="related-card"><span class="r-tag c-tag redes">Redes</span><h4>Mi WiFi anda lento solo a ciertas horas: por qué pasa</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
+      <a href="como-elegir-router.html" class="related-card"><span class="r-tag c-tag redes">Redes</span><h4>Cómo elegir un router para tu casa u oficina sin pagar de más</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
+      <a href="wifi-no-llega.html" class="related-card"><span class="r-tag c-tag redes">Redes</span><h4>Por qué el WiFi no llega a todos los ambientes (y cómo solucionarlo)</h4><span class="r-time"><i class="fas fa-clock"></i> 7 min de lectura</span></a>
     </div>
   </div></div>
 
