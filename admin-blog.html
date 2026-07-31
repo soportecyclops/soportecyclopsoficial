@@ -140,6 +140,29 @@
     .cont.over{color:#dc2626;font-weight:700}
     .auto{font-size:.72rem;color:#16a34a;margin-left:8px;opacity:0;transition:opacity .3s}
     .auto.on{opacity:1}
+
+    /* ===== Importar lote ===== */
+    .lote-ov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:150}
+    .lote-ov.on{display:flex}
+    .lote-m{background:white;border-radius:15px;width:100%;max-width:640px;max-height:88vh;display:flex;flex-direction:column}
+    .lote-h{padding:17px 22px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center}
+    .lote-h h3{font-family:'Space Grotesk',sans-serif;font-size:1rem;color:var(--blue-dark)}
+    .lote-b{padding:22px;overflow-y:auto;flex:1}
+    .lote-f{padding:14px 22px;border-top:1px solid var(--gray-200);display:flex;gap:10px;justify-content:flex-end}
+    .drop{border:2px dashed var(--gray-200);border-radius:12px;padding:30px 20px;text-align:center;cursor:pointer;transition:all .2s}
+    .drop:hover,.drop.over{border-color:var(--blue);background:#f0f7ff}
+    .drop i{font-size:2rem;color:#cbd5e1;display:block;margin-bottom:10px}
+    .drop b{display:block;font-size:.92rem;color:var(--blue-dark);margin-bottom:5px}
+    .drop span{font-size:.79rem;color:var(--gray-500);line-height:1.5}
+    .lote-list{margin-top:16px;max-height:270px;overflow-y:auto;border:1px solid var(--gray-200);border-radius:10px}
+    .lote-it{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid var(--gray-100);font-size:.82rem}
+    .lote-it:last-child{border:none}
+    .lote-it .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .lote-it .st{font-size:.72rem;font-weight:700;white-space:nowrap}
+    .lote-it .st.wait{color:#94a3b8}.lote-it .st.go{color:#2563eb}
+    .lote-it .st.ok{color:#16a34a}.lote-it .st.err{color:#dc2626}
+    .barra{height:7px;background:var(--gray-100);border-radius:5px;overflow:hidden;margin-top:14px}
+    .barra i{display:block;height:100%;background:var(--blue);width:0;transition:width .3s}
   </style>
 </head>
 <body>
@@ -163,6 +186,7 @@
         <h1><i class="fas fa-newspaper"></i> Artículos del blog</h1>
         <div style="display:flex; gap:10px;">
           <button class="btn btn-ghost" onclick="cargarArticulos()"><i class="fas fa-rotate"></i> Actualizar</button>
+          <button class="btn btn-ghost" onclick="abrirLote()"><i class="fas fa-upload"></i> Importar lote</button>
           <button class="btn btn-primary" onclick="nuevoArticulo()"><i class="fas fa-plus"></i> Nuevo artículo</button>
         </div>
       </div>
@@ -296,6 +320,32 @@
     </div>
   </div>
 
+  <!-- IMPORTAR LOTE -->
+  <div class="lote-ov" id="loteOv">
+    <div class="lote-m">
+      <div class="lote-h">
+        <h3><i class="fas fa-upload"></i> Importar lote de artículos</h3>
+        <button class="btn btn-ghost btn-sm" onclick="cerrarLote()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="lote-b">
+        <div class="drop" id="drop" onclick="document.getElementById('loteFiles').click()">
+          <i class="fas fa-folder-open"></i>
+          <b>Seleccioná o arrastrá los archivos</b>
+          <span>Marcá <code>articulos.json</code> y todos los <code>.html</code> del lote (Ctrl+A en la carpeta).<br>
+          También podés soltar la carpeta entera acá.</span>
+        </div>
+        <input type="file" id="loteFiles" multiple accept=".html,.json" style="display:none" onchange="leerLote(this.files)">
+        <div id="loteInfo"></div>
+        <div class="lote-list" id="loteList" style="display:none"></div>
+        <div class="barra" id="loteBarra" style="display:none"><i id="loteProg"></i></div>
+      </div>
+      <div class="lote-f">
+        <button class="btn btn-ghost" onclick="cerrarLote()">Cerrar</button>
+        <button class="btn btn-success" id="btnLote" onclick="publicarLote()" disabled><i class="fas fa-rocket"></i> Publicar todos</button>
+      </div>
+    </div>
+  </div>
+
   <div class="status-bar" id="statusBar">
     <div class="spinner" id="statusSpinner"></div>
     <span id="statusTxt"></span>
@@ -380,6 +430,102 @@
             <button class="btn btn-danger btn-sm" onclick="eliminarArticulo('${a.slug}')" title="Eliminar"><i class="fas fa-trash"></i></button>
           </div></td>
         </tr>`).join('');
+    }
+
+    /* ========== IMPORTAR LOTE ========== */
+    let LOTE = [];
+
+    function abrirLote() { document.getElementById('loteOv').classList.add('on'); }
+    function cerrarLote() {
+      document.getElementById('loteOv').classList.remove('on');
+      LOTE = []; document.getElementById('loteList').style.display = 'none';
+      document.getElementById('loteBarra').style.display = 'none';
+      document.getElementById('loteInfo').innerHTML = '';
+      document.getElementById('btnLote').disabled = true;
+      document.getElementById('loteFiles').value = '';
+    }
+
+    const dz = () => document.getElementById('drop');
+    ['dragenter','dragover'].forEach(e => document.getElementById('loteOv').addEventListener(e, ev => { ev.preventDefault(); dz().classList.add('over'); }));
+    ['dragleave','drop'].forEach(e => document.getElementById('loteOv').addEventListener(e, ev => { ev.preventDefault(); dz().classList.remove('over'); }));
+    document.getElementById('loteOv').addEventListener('drop', ev => { if (ev.dataTransfer.files.length) leerLote(ev.dataTransfer.files); });
+
+    function leerFile(f) {
+      return new Promise(res => { const r = new FileReader(); r.onload = () => res(r.result); r.readAsText(f, 'UTF-8'); });
+    }
+
+    async function leerLote(files) {
+      const info = document.getElementById('loteInfo');
+      info.innerHTML = '<p style="font-size:.83rem;color:#64748b;margin-top:14px"><span class="spinner" style="display:inline-block;width:13px;height:13px;border-width:2px;vertical-align:-2px"></span> Leyendo archivos…</p>';
+
+      const arr = Array.from(files);
+      const manif = arr.find(f => f.name.toLowerCase().endsWith('.json'));
+      const htmls = {};
+      for (const f of arr) if (f.name.toLowerCase().endsWith('.html')) htmls[f.name] = await leerFile(f);
+
+      if (!manif) {
+        info.innerHTML = '<p style="font-size:.84rem;color:#dc2626;margin-top:14px">Falta el archivo <b>articulos.json</b> en la selección. Es el que dice qué título, categoría y fecha lleva cada artículo.</p>';
+        return;
+      }
+
+      let datos;
+      try { datos = JSON.parse(await leerFile(manif)); } catch(e) {
+        info.innerHTML = '<p style="font-size:.84rem;color:#dc2626;margin-top:14px">El archivo JSON tiene un error de formato.</p>'; return;
+      }
+      if (!Array.isArray(datos)) datos = datos.articulos || [];
+
+      LOTE = datos.map(d => ({ ...d, cuerpo: htmls[d.archivo] || null, estado: 'wait' }));
+      const faltan = LOTE.filter(x => x.cuerpo === null).length;
+
+      info.innerHTML = '<p style="font-size:.84rem;margin-top:14px;color:' + (faltan ? '#d97706' : '#16a34a') + '">' +
+        '<b>' + (LOTE.length - faltan) + '</b> artículos listos' + (faltan ? ' · <b>' + faltan + '</b> sin su archivo .html (se saltean)' : '') + '</p>';
+
+      const lst = document.getElementById('loteList');
+      lst.style.display = 'block';
+      lst.innerHTML = LOTE.map((a, i) =>
+        '<div class="lote-it" id="lt' + i + '"><span class="t">' + escapeHtml(a.titulo || a.slug) + '</span>' +
+        '<span style="color:#94a3b8;font-size:.72rem">' + escapeHtml(a.fecha || '') + '</span>' +
+        '<span class="st ' + (a.cuerpo === null ? 'err' : 'wait') + '" id="st' + i + '">' + (a.cuerpo === null ? 'sin archivo' : 'en espera') + '</span></div>').join('');
+
+      document.getElementById('btnLote').disabled = (LOTE.length - faltan) === 0;
+    }
+
+    async function publicarLote() {
+      const pend = LOTE.filter(x => x.cuerpo !== null);
+      if (!confirm('Se van a publicar ' + pend.length + ' artículos, uno por uno.\n\nTarda unos minutos. No cierres esta ventana.')) return;
+
+      document.getElementById('btnLote').disabled = true;
+      document.getElementById('loteBarra').style.display = 'block';
+      let hechos = 0, ok = 0;
+
+      for (let i = 0; i < LOTE.length; i++) {
+        const a = LOTE[i];
+        const st = document.getElementById('st' + i);
+        if (a.cuerpo === null) continue;
+        st.className = 'st go'; st.textContent = 'publicando…';
+
+        try {
+          const r = await api('guardar', { articulo: {
+            slug: a.slug, slugAnterior: a.slug, titulo: a.titulo, categoria: a.categoria,
+            tiempo: String(a.tiempo || 6), resumen: a.resumen || '', lead: a.lead || '',
+            cuerpo: a.cuerpo, estado: 'publicado', fecha: a.fecha || new Date().toISOString().slice(0,10)
+          }});
+          if (r.ok) { st.className = 'st ok'; st.textContent = '✓ ' + (r.commit || 'ok'); ok++; }
+          else { st.className = 'st err'; st.textContent = (r.error || 'error').slice(0, 30); }
+        } catch(e) {
+          st.className = 'st err'; st.textContent = 'error';
+          if (e.message === 'auth') break;
+        }
+
+        hechos++;
+        document.getElementById('loteProg').style.width = Math.round(hechos * 100 / pend.length) + '%';
+        document.getElementById('lt' + i).scrollIntoView({ block: 'nearest' });
+        await new Promise(r => setTimeout(r, 2500));
+      }
+
+      status('ok', '✓ ' + ok + ' de ' + pend.length + ' publicados. El sitio se actualiza en ~2 minutos.');
+      await cargarArticulos();
+      document.getElementById('btnLote').disabled = false;
     }
 
     /* ========== PLANTILLAS ========== */
