@@ -124,6 +124,22 @@
     .imp-box.on{display:flex}
     .imp-box input{flex:1;min-width:220px;border:1.5px solid var(--gray-200);border-radius:8px;padding:8px 12px;font-family:inherit;font-size:.82rem}
     .imp-box p{width:100%;font-size:.74rem;color:var(--gray-500);margin:0}
+
+    /* ===== Asistente ===== */
+    .plantillas{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:11px;margin-bottom:6px}
+    .pl-card{border:1.5px solid var(--gray-200);border-radius:11px;padding:14px;background:white;cursor:pointer;text-align:left;font-family:inherit}
+    .pl-card:hover{border-color:var(--blue);background:#f8fbff}
+    .pl-card b{display:block;font-size:.85rem;color:var(--blue-dark);margin-bottom:3px}
+    .pl-card span{font-size:.75rem;color:var(--gray-500);line-height:1.45}
+    .chk{background:white;border:1px solid var(--gray-200);border-radius:11px;padding:14px 16px;margin-bottom:14px}
+    .chk h4{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:9px}
+    .chk-i{display:flex;gap:9px;align-items:flex-start;font-size:.81rem;margin-bottom:6px;line-height:1.5}
+    .chk-i i{margin-top:2px;flex-shrink:0}
+    .chk-i.ok{color:#16a34a}.chk-i.warn{color:#d97706}.chk-i.err{color:#dc2626}
+    .cont{font-size:.73rem;color:var(--gray-500);margin-top:4px;text-align:right}
+    .cont.over{color:#dc2626;font-weight:700}
+    .auto{font-size:.72rem;color:#16a34a;margin-left:8px;opacity:0;transition:opacity .3s}
+    .auto.on{opacity:1}
   </style>
 </head>
 <body>
@@ -166,7 +182,7 @@
     <!-- ================= VISTA EDITOR ================= -->
     <div id="vistaEditor" class="hidden">
       <div class="page-head">
-        <h1 id="tituloEditor"><i class="fas fa-pen"></i> Nuevo artículo</h1>
+        <h1 id="tituloEditor"><i class="fas fa-pen"></i> Nuevo artículo</h1><span class="auto" id="autoInd"><i class="fas fa-check"></i> Guardado local</span>
         <div style="display:flex; gap:10px;">
           <button class="btn btn-ghost" onclick="volverALista()"><i class="fas fa-arrow-left"></i> Volver</button>
           <button class="btn btn-ghost" id="btnBorrador" onclick="guardar('borrador')"><i class="fas fa-file-lines"></i> Guardar borrador</button>
@@ -176,11 +192,21 @@
 
       <div class="editor-grid">
         <div>
+          <div class="panel" id="panelPlantillas" style="margin-bottom:20px">
+            <h3><i class="fas fa-layer-group"></i> ¿Cómo querés empezar?</h3>
+            <div class="plantillas">
+              <button class="pl-card" onclick="elegirPlantilla('causas')"><b>Guía de causas</b><span>Un problema y sus causas posibles</span></button>
+              <button class="pl-card" onclick="elegirPlantilla('comparativa')"><b>Comparativa</b><span>Opciones enfrentadas para elegir</span></button>
+              <button class="pl-card" onclick="elegirPlantilla('pasos')"><b>Paso a paso</b><span>Procedimiento o checklist</span></button>
+              <button class="pl-card" onclick="elegirPlantilla('vacio')"><b>En blanco</b><span>Desde cero o pegar de Word/Docs</span></button>
+            </div>
+          </div>
+          <div class="chk" id="chk"></div>
           <div class="panel" style="margin-bottom:20px;">
             <h3><i class="fas fa-circle-info"></i> Datos del artículo</h3>
             <div class="field">
               <label>Título</label>
-              <input id="titulo" placeholder="Ej: Cómo elegir un router para tu pyme" oninput="autoSlug(); renderPreview();">
+              <input id="titulo" placeholder="Ej: Cómo elegir un router para tu pyme" oninput="autoSlug(); renderPreview(); validar(); autoguardar();">
             </div>
             <div class="row-3">
               <div class="field">
@@ -206,7 +232,9 @@
             </div>
             <div class="field">
               <label>Resumen (tarjeta + Google, máx ~155 caracteres)</label>
-              <textarea id="resumen" rows="2" maxlength="170" placeholder="Una o dos frases que vendan el artículo."></textarea>
+              <textarea id="resumen" rows="2" maxlength="170" placeholder="Una o dos frases que vendan el artículo." oninput="validar()"></textarea>
+              <div class="cont" id="contRes">0 / 155</div>
+              <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="sugerirResumen()"><i class="fas fa-wand-magic-sparkles"></i> Sugerir del texto</button>
             </div>
             <div class="field">
               <label>Bajada del título (opcional, se ve bajo el H1)</label>
@@ -354,6 +382,142 @@
         </tr>`).join('');
     }
 
+    /* ========== PLANTILLAS ========== */
+    const PLANTILLAS = {
+      causas: {
+        n: 'Guía de causas', d: 'Un problema, varias causas posibles y su solución',
+        html: '<p>Contexto del problema: por qué pasa, a quién le pasa y qué se busca resolver.</p>'
+          + '<div class="box box-warn"><strong>⚠️ El malentendido más común</strong>Esa creencia equivocada que tiene todo el mundo sobre este tema.</div>'
+          + '<h2>Las causas más frecuentes</h2>'
+          + '<div class="cause-card"><h3><span class="cause-num">1</span> Primera causa</h3><p>Por qué ocurre.</p><p><strong>Solución:</strong> qué hacer.</p></div>'
+          + '<div class="cause-card"><h3><span class="cause-num">2</span> Segunda causa</h3><p>Por qué ocurre.</p><p><strong>Solución:</strong> qué hacer.</p></div>'
+          + '<div class="cause-card"><h3><span class="cause-num">3</span> Tercera causa</h3><p>Por qué ocurre.</p><p><strong>Solución:</strong> qué hacer.</p></div>'
+          + '<h2>Cómo saber cuál es tu caso</h2><ul><li>Primera señal a chequear</li><li>Segunda señal</li><li>Tercera señal</li></ul>'
+          + '<div class="box box-success"><strong>✅ Recomendación final</strong>El consejo práctico que se lleva el lector.</div>'
+      },
+      comparativa: {
+        n: 'Comparativa', d: 'Opciones enfrentadas para ayudar a elegir',
+        html: '<p>Planteo: qué hay que decidir y por qué la elección importa.</p>'
+          + '<h2>Las opciones</h2>'
+          + '<h3>Opción A</h3><p>Cómo funciona, para quién sirve.</p>'
+          + '<h3>Opción B</h3><p>Cómo funciona, para quién sirve.</p>'
+          + '<h2>Comparación directa</h2>'
+          + '<table class="mat-table"><tr><th>Criterio</th><th>Opción A</th><th>Opción B</th></tr>'
+          + '<tr><td>Costo</td><td class="lo">Bajo</td><td class="me">Medio</td></tr>'
+          + '<tr><td>Complejidad</td><td class="lo">Simple</td><td class="hi">Alta</td></tr>'
+          + '<tr><td>Ideal para</td><td>Caso 1</td><td>Caso 2</td></tr></table>'
+          + '<div class="box box-info"><strong>💡 El dato que casi nadie mira</strong>Ese detalle técnico que cambia la decisión.</div>'
+          + '<h2>Qué te conviene según tu caso</h2><ul><li><strong>Si sos X:</strong> opción A</li><li><strong>Si sos Y:</strong> opción B</li></ul>'
+          + '<div class="box box-success"><strong>✅ Recomendación final</strong>La configuración que recomendamos y por qué.</div>'
+      },
+      pasos: {
+        n: 'Paso a paso', d: 'Procedimiento o checklist ordenado',
+        html: '<p>Qué vas a lograr siguiendo esta guía y cuánto tiempo lleva.</p>'
+          + '<div class="box box-warn"><strong>⚠️ Antes de empezar</strong>El requisito o precaución imprescindible (backup, apagar el equipo, etc.).</div>'
+          + '<h2>El procedimiento</h2>'
+          + '<div class="cause-card"><h3><span class="cause-num">1</span> Primer paso</h3><p>Qué hacer exactamente.</p></div>'
+          + '<div class="cause-card"><h3><span class="cause-num">2</span> Segundo paso</h3><p>Qué hacer exactamente.</p></div>'
+          + '<div class="cause-card"><h3><span class="cause-num">3</span> Tercer paso</h3><p>Qué hacer exactamente.</p></div>'
+          + '<h2>Cómo verificar que salió bien</h2><ul><li>Señal 1</li><li>Señal 2</li></ul>'
+          + '<div class="box box-danger"><strong>🚨 Lo que nunca hay que hacer</strong>El error que arruina todo.</div>'
+          + '<div class="box box-success"><strong>✅ Recomendación final</strong>El cierre práctico.</div>'
+      },
+      vacio: { n: 'En blanco', d: 'Empezar desde cero o pegar desde Word/Docs', html: '' }
+    };
+
+    function elegirPlantilla(k) {
+      const p = PLANTILLAS[k];
+      if (ED().innerHTML.trim() && !confirm('Esto reemplaza el contenido actual. ¿Seguir?')) return;
+      cargarCuerpo(p.html);
+      document.getElementById('panelPlantillas').style.display = 'none';
+      calcularTiempo(); validar(); renderPreview();
+      ED().focus();
+    }
+
+    /* ========== AUTOMATISMOS ========== */
+    function textoPlano() {
+      const d = document.createElement('div'); d.innerHTML = cuerpoActual();
+      return (d.textContent || '').replace(/\s+/g, ' ').trim();
+    }
+
+    function calcularTiempo() {
+      const p = textoPlano().split(' ').filter(Boolean).length;
+      if (p > 60) document.getElementById('tiempo').value = Math.max(2, Math.round(p / 130));
+    }
+
+    function sugerirResumen() {
+      const d = document.createElement('div'); d.innerHTML = cuerpoActual();
+      const p1 = d.querySelector('p');
+      if (!p1) { alert('Escribí primero el primer párrafo del artículo.'); return; }
+      let t = p1.textContent.replace(/\s+/g, ' ').trim();
+      if (t.length > 152) { t = t.slice(0, 152); t = t.slice(0, t.lastIndexOf(' ')) + '…'; }
+      document.getElementById('resumen').value = t;
+      validar();
+    }
+
+    /* ========== VALIDACIÓN ========== */
+    function validar() {
+      const tit = document.getElementById('titulo').value.trim();
+      const res = document.getElementById('resumen').value.trim();
+      const d = document.createElement('div'); d.innerHTML = cuerpoActual();
+      const pal = textoPlano().split(' ').filter(Boolean).length;
+      const h2 = d.querySelectorAll('h2').length;
+      const placeholder = /Texto del recuadro|Por qué ocurre|Qué hacer exactamente|Primera causa|Contexto del problema|Opción A|Señal 1|Criterio/.test(d.textContent || '');
+
+      const c = document.getElementById('contRes');
+      c.textContent = res.length + ' / 155';
+      c.className = 'cont' + (res.length > 155 ? ' over' : '');
+
+      const items = [];
+      const add = (cond, ok, warn, nivel) => items.push({ ok: cond, txt: cond ? ok : warn, n: cond ? 'ok' : (nivel || 'err') });
+
+      add(tit.length >= 25 && tit.length <= 75, 'Título con buen largo', tit.length < 25 ? 'Título muy corto (mínimo ~25 caracteres)' : 'Título muy largo: Google lo corta después de ~70', 'warn');
+      add(res.length >= 60 && res.length <= 155, 'Resumen con largo ideal', res.length === 0 ? 'Falta el resumen — lo usa Google y la tarjeta del blog' : (res.length < 60 ? 'Resumen corto: sumale contexto' : 'Resumen largo: Google lo corta en ~155'), res.length === 0 ? 'err' : 'warn');
+      add(pal >= 400, 'Extensión suficiente (' + pal + ' palabras)', 'Texto corto (' + pal + ' palabras): Google premia artículos de 500+', 'warn');
+      add(h2 >= 2, h2 + ' secciones (H2)', 'Agregá al menos 2 secciones con el botón "Sección"', 'warn');
+      add(!placeholder, 'Sin texto de plantilla pendiente', 'Quedó texto de ejemplo de la plantilla sin reemplazar', 'err');
+
+      const box = document.getElementById('chk');
+      const errs = items.filter(x => x.n === 'err').length;
+      box.innerHTML = '<h4>' + (errs ? '⚠ Revisá antes de publicar' : '✓ Listo para publicar') + '</h4>' +
+        items.map(x => '<div class="chk-i ' + x.n + '"><i class="fas fa-' + (x.n === 'ok' ? 'circle-check' : x.n === 'warn' ? 'triangle-exclamation' : 'circle-xmark') + '"></i><span>' + x.txt + '</span></div>').join('');
+      return errs === 0;
+    }
+
+    /* ========== AUTOGUARDADO LOCAL ========== */
+    const BORR = 'cyclops_borrador';
+    let autoT = null;
+    function autoguardar() {
+      clearTimeout(autoT);
+      autoT = setTimeout(() => {
+        try {
+          localStorage.setItem(BORR, JSON.stringify({
+            editando: EDITANDO, ts: Date.now(),
+            titulo: document.getElementById('titulo').value, slug: document.getElementById('slug').value,
+            categoria: document.getElementById('categoria').value, tiempo: document.getElementById('tiempo').value,
+            resumen: document.getElementById('resumen').value, lead: document.getElementById('lead').value,
+            cuerpo: cuerpoActual()
+          }));
+          const a = document.getElementById('autoInd');
+          a.classList.add('on'); setTimeout(() => a.classList.remove('on'), 1600);
+        } catch(e) {}
+      }, 1500);
+    }
+
+    function recuperarBorrador() {
+      try {
+        const b = JSON.parse(localStorage.getItem(BORR));
+        if (!b || !b.titulo || Date.now() - b.ts > 86400000 * 3) return;
+        if (!confirm('Encontré un borrador sin publicar de "' + b.titulo + '". ¿Recuperarlo?')) { localStorage.removeItem(BORR); return; }
+        EDITANDO = b.editando;
+        ['titulo','slug','categoria','tiempo','resumen','lead'].forEach(k => document.getElementById(k).value = b[k] || '');
+        cargarCuerpo(b.cuerpo || '');
+        document.getElementById('tituloEditor').innerHTML = '<i class="fas fa-pen"></i> ' + (b.editando ? 'Editando' : 'Recuperado') + ': ' + escapeHtml(b.titulo);
+        document.getElementById('panelPlantillas').style.display = 'none';
+        mostrarEditor();
+      } catch(e) {}
+    }
+
     /* ========== EDITOR ========== */
     function nuevoArticulo() {
       EDITANDO = null;
@@ -362,6 +526,7 @@
       cargarCuerpo('');
       document.getElementById('categoria').value = 'redes';
       document.getElementById('tiempo').value = 6;
+      document.getElementById('panelPlantillas').style.display = 'block';
       mostrarEditor();
     }
 
@@ -377,6 +542,7 @@
       document.getElementById('resumen').value   = a.resumen || '';
       document.getElementById('lead').value      = a.lead || '';
       cargarCuerpo(a.cuerpo || '');
+      document.getElementById('panelPlantillas').style.display = 'none';
       mostrarEditor();
     }
 
@@ -385,6 +551,7 @@
       document.getElementById('vistaEditor').classList.remove('hidden');
       actualizarSlugPreview();
       renderPreview();
+      validar();
       window.scrollTo(0, 0);
     }
 
@@ -426,7 +593,10 @@
       };
       if (!art.titulo || !art.slug) { alert('Falta el título.'); return; }
       if (!art.resumen)             { alert('Falta el resumen (lo usa Google y la tarjeta del blog).'); return; }
-      if (estado === 'publicado' && !art.cuerpo.trim()) { alert('El artículo está vacío. Escribí el cuerpo antes de publicar.'); return; }
+      if (estado === 'publicado') {
+        if (!art.cuerpo.trim()) { alert('El artículo está vacío. Escribí el cuerpo antes de publicar.'); return; }
+        if (!validar() && !confirm('La revisión encontró problemas (mirá el panel de arriba). ¿Publicar igual?')) return;
+      }
 
       setBotones(false);
       status('spin', estado === 'publicado' ? 'Publicando: generando HTML y commiteando a GitHub…' : 'Guardando borrador…');
@@ -435,6 +605,7 @@
         if (!data.ok) throw new Error(data.error);
         status('ok', '✓ ' + data.mensaje + (estado === 'publicado' ? ' El sitio se actualiza en ~90 segundos.' : ''));
         EDITANDO = art.slug;
+        try { localStorage.removeItem(BORR); } catch(e) {}
         await cargarArticulos();
         setTimeout(() => { status('hide'); volverALista(); }, 3500);
       } catch(e) {
@@ -538,7 +709,12 @@
 
     /* --- sincronización editor <-> HTML --- */
     let syncT = null;
-    function sync() { TA().value = ED().innerHTML; clearTimeout(syncT); syncT = setTimeout(renderPreview, 400); }
+    function sync() {
+      TA().value = ED().innerHTML;
+      clearTimeout(syncT);
+      syncT = setTimeout(function(){ renderPreview(); calcularTiempo(); validar(); }, 400);
+      autoguardar();
+    }
     function editorToSrc() { TA().value = ED().innerHTML; }
     function srcToEditor() { ED().innerHTML = TA().value; renderPreviewDebounced(); }
     function cargarCuerpo(html) { TA().value = html || ''; ED().innerHTML = html || ''; }
@@ -646,6 +822,7 @@
         '<tr><td colspan="5" class="empty"><i class="fas fa-gear"></i>Falta configurar: pegá la URL del deploy de Apps Script en la constante <code>BLOG_API_URL</code> de este archivo.</td></tr>';
     } else {
       cargarArticulos();
+      setTimeout(recuperarBorrador, 700);
     }
   </script>
 </body>
