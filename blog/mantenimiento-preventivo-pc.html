@@ -63,6 +63,24 @@
 .related-card h4{font-family:'Space Grotesk',sans-serif;font-size:0.88rem;font-weight:700;color:#1a3a5c;line-height:1.3}
 .related-card .r-time{font-size:0.72rem;color:#94a3b8}
 @media(max-width:640px){.related-grid{grid-template-columns:1fr}}
+.qa-section{max-width:800px;margin:0 auto;padding:40px 24px 0}
+.qa-section h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:800;color:#1a3a5c;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.qa-sub{font-size:0.85rem;color:#64748b;margin-bottom:20px}
+.qa-item{border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:12px;background:white}
+.qa-q{font-size:0.9rem;font-weight:700;color:#1a3a5c;margin-bottom:8px;display:flex;gap:9px;align-items:flex-start}
+.qa-q .qi{color:#2563eb;font-weight:800;flex-shrink:0}
+.qa-a{font-size:0.89rem;color:#475569;line-height:1.7;padding-left:22px;border-left:2px solid #dbeafe;margin-left:4px}
+.qa-meta{font-size:0.72rem;color:#94a3b8;margin-top:10px;padding-left:26px}
+.qa-box{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:14px;padding:24px;text-align:center}
+.qa-box h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#1a3a5c;margin-bottom:6px}
+.qa-box p{font-size:0.85rem;color:#64748b;margin-bottom:16px;line-height:1.6}
+.qa-box textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px 14px;font-family:inherit;font-size:0.88rem;margin-bottom:12px;resize:vertical}
+.qa-box textarea:focus{outline:none;border-color:#2563eb}
+.qa-btn{display:inline-flex;align-items:center;gap:8px;background:#2563eb;color:white;border:none;padding:12px 24px;border-radius:50px;font-family:inherit;font-weight:700;font-size:0.87rem;cursor:pointer;text-decoration:none}
+.qa-btn:hover{background:#1d4ed8;text-decoration:none}
+.qa-btn:disabled{opacity:0.5;cursor:not-allowed}
+.qa-msg{font-size:0.85rem;padding:12px 16px;border-radius:10px;margin-top:12px;display:none}
+.qa-msg.ok{background:#f0fdf4;color:#166534;display:block}.qa-msg.err{background:#fef2f2;color:#991b1b;display:block}
 footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:24px;font-size:0.82rem;margin-top:48px}footer a{color:rgba(255,255,255,0.8)}
   </style>
 </head>
@@ -183,12 +201,66 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:
     </div>
   </div>
 
+  <div class="qa-section" id="qaSection">
+    <h3><i class="fas fa-circle-question"></i> Preguntas sobre este artículo</h3>
+    <p class="qa-sub">Respuestas del técnico a consultas reales de lectores.</p>
+    <div id="qaList"></div>
+    <div class="qa-box" id="qaBox">
+      <h4>¿Te quedó una duda?</h4>
+      <p id="qaHint">Ingresá con tu cuenta de Google y preguntanos. Te respondemos por mail, y si le sirve a otros la publicamos acá.</p>
+      <div id="qaLogged" style="display:none">
+        <textarea id="qaText" rows="3" placeholder="Escribí tu pregunta sobre este tema..." maxlength="1000"></textarea>
+        <button class="qa-btn" id="qaSend" onclick="qaEnviar()"><i class="fas fa-paper-plane"></i> Enviar pregunta</button>
+      </div>
+      <a class="qa-btn" id="qaLogin" href="../login.html?next=cliente_panel.html"><i class="fab fa-google"></i> Ingresar para preguntar</a>
+      <div class="qa-msg" id="qaMsg"></div>
+    </div>
+  </div>
+  <script>
+  var QA_SLUG = "mantenimiento-preventivo-pc";
+  var QA_API  = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
+  var QA_USER = null;
+  try { QA_USER = JSON.parse(sessionStorage.getItem("cyclops_user")); } catch(e) {}
+  if (QA_USER && QA_USER.credential) {
+    document.getElementById("qaLogged").style.display = "block";
+    document.getElementById("qaLogin").style.display  = "none";
+    document.getElementById("qaHint").textContent = "Preguntá lo que necesites: te respondemos por mail.";
+  }
+  function qaEsc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function qaMsg(t, cls){ var m=document.getElementById("qaMsg"); m.textContent=t; m.className="qa-msg "+cls; }
+  (function qaCargar(){
+    fetch(QA_API + "?p_action=preguntas_publicas&slug=" + encodeURIComponent(QA_SLUG))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok || !d.preguntas || !d.preguntas.length) return;
+        document.getElementById("qaList").innerHTML = d.preguntas.map(function(p){
+          return "<div class=\"qa-item\"><div class=\"qa-q\"><span class=\"qi\">P.</span><span>" + qaEsc(p.pregunta) + "</span></div>" +
+                 "<div class=\"qa-a\">" + qaEsc(p.respuesta) + "</div>" +
+                 "<div class=\"qa-meta\">Consulta de " + qaEsc(p.nombre) + " · " + qaEsc(p.fecha) + "</div></div>";
+        }).join("");
+      }).catch(function(){});
+  })();
+  function qaEnviar(){
+    var t = document.getElementById("qaText").value.trim();
+    if (t.length < 10) { qaMsg("Escribí una pregunta un poco más completa.", "err"); return; }
+    var b = document.getElementById("qaSend"); b.disabled = true;
+    fetch(QA_API, { method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify({ p_action:"nueva_pregunta", credential:QA_USER.credential, slug:QA_SLUG, pregunta:t }) })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d.ok) { qaMsg(d.mensaje, "ok"); document.getElementById("qaText").value=""; }
+        else { qaMsg(d.error || "No se pudo enviar.", "err"); if (d.auth === false) document.getElementById("qaLogin").style.display="inline-flex"; }
+        b.disabled = false;
+      }).catch(function(){ qaMsg("Error de conexión. Probá de nuevo.", "err"); b.disabled = false; });
+  }
+  </script>
+
   <div class="related-section"><div class="related-inner">
     <h3>Artículos relacionados</h3>
     <div class="related-grid">
+      <a href="tu-pc-con-windows-10-ya-no-recibe-actualizaciones-que-hacer-ahora.html" class="related-card"><span class="r-tag c-tag seguridad">Seguridad</span><h4>Tu PC con Windows 10 ya no recibe actualizaciones: qué hacer ahora</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
       <a href="wifi-no-llega.html" class="related-card"><span class="r-tag c-tag redes">Redes</span><h4>Por qué el WiFi no llega a todos los ambientes (y cómo solucionarlo)</h4><span class="r-time"><i class="fas fa-clock"></i> 7 min de lectura</span></a>
       <a href="senales-disco-por-fallar.html" class="related-card"><span class="r-tag c-tag hardware">Hardware</span><h4>6 señales de que tu disco duro está por fallar (antes de perder todo)</h4><span class="r-time"><i class="fas fa-clock"></i> 7 min de lectura</span></a>
-      <a href="ransomware-que-hacer.html" class="related-card"><span class="r-tag c-tag seguridad">Seguridad</span><h4>¿Qué hacer si un ransomware bloqueó tu empresa? Guía de respuesta</h4><span class="r-time"><i class="fas fa-clock"></i> 8 min de lectura</span></a>
     </div>
   </div></div>
 
