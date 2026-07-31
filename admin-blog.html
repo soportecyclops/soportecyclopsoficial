@@ -85,6 +85,45 @@
     @keyframes spin { to { transform:rotate(360deg); } }
 
     .hidden { display:none !important; }
+
+    /* ===== Editor WYSIWYG ===== */
+    .tb-group{display:flex;gap:4px;flex-wrap:wrap;padding:6px 8px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:9px;margin-bottom:6px;align-items:center}
+    .tb-sep{width:1px;height:20px;background:var(--gray-200);margin:0 3px}
+    .tb-lbl{font-size:.66rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.05em;margin-right:3px}
+    .tb-btn{background:white;border:1px solid var(--gray-200);border-radius:6px;padding:5px 10px;font-size:.74rem;font-weight:600;color:var(--gray-500);cursor:pointer;font-family:'Open Sans',sans-serif;line-height:1.4}
+    .tb-btn:hover{border-color:var(--blue);color:var(--blue);background:#eff6ff}
+    .tb-btn.on{background:var(--blue);border-color:var(--blue);color:white}
+    #editor{min-height:420px;max-height:640px;overflow-y:auto;border:1.5px solid var(--gray-200);border-radius:10px;padding:20px 22px;background:white;font-family:'Open Sans',sans-serif;font-size:.93rem;line-height:1.7;color:#475569;outline:none}
+    #editor:focus{border-color:var(--blue)}
+    #editor:empty:before{content:attr(data-ph);color:#cbd5e1}
+    #editor h2{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:800;color:#1a3a5c;margin:26px 0 12px}
+    #editor h2:first-child{margin-top:0}
+    #editor h3{font-size:1.02rem;font-weight:700;color:#1a3a5c;margin:20px 0 8px}
+    #editor p{margin:0 0 14px}
+    #editor ul,#editor ol{margin:0 0 14px 22px}#editor li{margin-bottom:7px}
+    #editor strong{color:#1a3a5c;font-weight:700}
+    #editor code{background:#f1f5f9;padding:2px 6px;border-radius:5px;font-family:monospace;font-size:.86rem}
+    #editor a{color:var(--blue)}
+    #editor .box{padding:15px 18px;border-radius:10px;margin:18px 0;font-size:.9rem}
+    #editor .box strong{display:block;margin-bottom:5px}
+    #editor .box-info{background:#eff6ff;border-left:4px solid #2563eb;color:#1e3a5c}
+    #editor .box-warn{background:#fffbeb;border-left:4px solid #f59e0b;color:#78350f}
+    #editor .box-danger{background:#fef2f2;border-left:4px solid #ef4444;color:#7f1d1d}
+    #editor .box-success{background:#f0fdf4;border-left:4px solid #22c55e;color:#14532d}
+    #editor .cause-card{border:1px solid var(--gray-200);border-left:4px solid var(--blue);border-radius:11px;padding:16px 18px;margin:16px 0}
+    #editor .cause-card h3{margin:0 0 8px;font-size:.97rem;display:flex;align-items:center;gap:9px}
+    #editor .cause-num{width:25px;height:25px;background:var(--blue);color:white;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;flex-shrink:0}
+    #editor .cause-card p{margin:0 0 7px;font-size:.88rem}
+    #editor .mat-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+    #editor .mat-table th{background:#1a3a5c;color:white;padding:8px 12px;text-align:left}
+    #editor .mat-table td{padding:8px 12px;border-bottom:1px solid var(--gray-200)}
+    #editor .hi{color:#dc2626;font-weight:700}#editor .me{color:#d97706;font-weight:600}#editor .lo{color:#16a34a;font-weight:600}
+    #cuerpo{display:none;min-height:420px;font-family:Consolas,monospace;font-size:.79rem;line-height:1.6}
+    body.src #editor{display:none}body.src #cuerpo{display:block}
+    .imp-box{background:#f0f7ff;border:1px dashed #bfdbfe;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:none;gap:8px;align-items:center;flex-wrap:wrap}
+    .imp-box.on{display:flex}
+    .imp-box input{flex:1;min-width:220px;border:1.5px solid var(--gray-200);border-radius:8px;padding:8px 12px;font-family:inherit;font-size:.82rem}
+    .imp-box p{width:100%;font-size:.74rem;color:var(--gray-500);margin:0}
   </style>
 </head>
 <body>
@@ -176,21 +215,45 @@
           </div>
 
           <div class="panel">
-            <h3><i class="fas fa-code"></i> Cuerpo del artículo (HTML)</h3>
-            <div class="toolbar">
-              <button class="tb-btn" onclick="insertar('h2')">H2 Sección</button>
-              <button class="tb-btn" onclick="insertar('h3')">H3 Subtítulo</button>
-              <button class="tb-btn" onclick="insertar('p')">Párrafo</button>
-              <button class="tb-btn" onclick="insertar('ul')">Lista</button>
-              <button class="tb-btn" onclick="insertar('boxinfo')">📘 Info</button>
-              <button class="tb-btn" onclick="insertar('boxwarn')">⚠️ Aviso</button>
-              <button class="tb-btn" onclick="insertar('boxdanger')">🚨 Peligro</button>
-              <button class="tb-btn" onclick="insertar('boxsuccess')">✅ Tip</button>
-              <button class="tb-btn" onclick="insertar('causa')">Tarjeta numerada</button>
-              <button class="tb-btn" onclick="insertar('tabla')">Tabla</button>
-              <button class="tb-btn" onclick="insertar('code')">Código</button>
+            <h3><i class="fas fa-pen-nib"></i> Cuerpo del artículo</h3>
+
+            <div class="imp-box" id="impBox">
+              <input id="impUrl" placeholder="Pegá el link del documento de Google Docs">
+              <button class="btn btn-primary btn-sm" onclick="importarDocs()"><i class="fas fa-file-import"></i> Importar</button>
+              <button class="btn btn-ghost btn-sm" onclick="toggleImport()">Cancelar</button>
+              <p>El documento debe ser accesible por soportecyclops@gmail.com. Los Títulos 1 y 2 se convierten en secciones; listas y negritas se conservan.</p>
             </div>
-            <textarea id="cuerpo" oninput="renderPreviewDebounced()" placeholder="<h2>Primera sección</h2>&#10;<p>Texto del artículo…</p>"></textarea>
+
+            <div class="tb-group">
+              <span class="tb-lbl">Texto</span>
+              <button class="tb-btn" onclick="cmd('bold')" title="Negrita (Ctrl+B)"><b>B</b></button>
+              <button class="tb-btn" onclick="cmd('italic')" title="Cursiva"><i>I</i></button>
+              <button class="tb-btn" onclick="fmt('h2')">Sección</button>
+              <button class="tb-btn" onclick="fmt('h3')">Subtítulo</button>
+              <button class="tb-btn" onclick="fmt('p')">Párrafo</button>
+              <div class="tb-sep"></div>
+              <button class="tb-btn" onclick="cmd('insertUnorderedList')">• Lista</button>
+              <button class="tb-btn" onclick="cmd('insertOrderedList')">1. Lista</button>
+              <button class="tb-btn" onclick="ponerLink()"><i class="fas fa-link"></i></button>
+              <button class="tb-btn" onclick="ponerCodigo()">&lt;code&gt;</button>
+              <button class="tb-btn" onclick="cmd('removeFormat')" title="Limpiar formato"><i class="fas fa-eraser"></i></button>
+            </div>
+
+            <div class="tb-group">
+              <span class="tb-lbl">Bloques</span>
+              <button class="tb-btn" onclick="bloque('boxinfo')">💡 Info</button>
+              <button class="tb-btn" onclick="bloque('boxwarn')">⚠️ Aviso</button>
+              <button class="tb-btn" onclick="bloque('boxdanger')">🚨 Peligro</button>
+              <button class="tb-btn" onclick="bloque('boxsuccess')">✅ Tip</button>
+              <button class="tb-btn" onclick="bloque('causa')"># Tarjeta</button>
+              <button class="tb-btn" onclick="bloque('tabla')"><i class="fas fa-table"></i> Tabla</button>
+              <div class="tb-sep"></div>
+              <button class="tb-btn" onclick="toggleImport()"><i class="fab fa-google-drive"></i> Importar de Docs</button>
+              <button class="tb-btn" id="btnSrc" onclick="toggleSrc()"><i class="fas fa-code"></i> HTML</button>
+            </div>
+
+            <div id="editor" contenteditable="true" data-ph="Escribí acá. Podés pegar directo desde Word o Google Docs: el formato se conserva y se limpia solo."></div>
+            <textarea id="cuerpo" oninput="srcToEditor()"></textarea>
           </div>
         </div>
 
@@ -230,7 +293,7 @@
 
     function salir() {
       sessionStorage.removeItem('cyclops_user');
-      window.location.href = 'login.html';
+      window.location.href = 'login.html?next=admin-blog.html';
     }
 
     /* ========== API ========== */
@@ -295,7 +358,8 @@
     function nuevoArticulo() {
       EDITANDO = null;
       document.getElementById('tituloEditor').innerHTML = '<i class="fas fa-pen"></i> Nuevo artículo';
-      ['titulo','slug','resumen','lead','cuerpo'].forEach(id => document.getElementById(id).value = '');
+      ['titulo','slug','resumen','lead'].forEach(id => document.getElementById(id).value = '');
+      cargarCuerpo('');
       document.getElementById('categoria').value = 'redes';
       document.getElementById('tiempo').value = 6;
       mostrarEditor();
@@ -312,7 +376,7 @@
       document.getElementById('tiempo').value    = a.tiempo || 6;
       document.getElementById('resumen').value   = a.resumen || '';
       document.getElementById('lead').value      = a.lead || '';
-      document.getElementById('cuerpo').value    = a.cuerpo || '';
+      cargarCuerpo(a.cuerpo || '');
       mostrarEditor();
     }
 
@@ -356,7 +420,7 @@
         tiempo:    document.getElementById('tiempo').value || '6',
         resumen:   document.getElementById('resumen').value.trim(),
         lead:      document.getElementById('lead').value.trim(),
-        cuerpo:    document.getElementById('cuerpo').value,
+        cuerpo:    cuerpoActual(),
         estado:    estado,
         fecha:     (EDITANDO && (ARTICULOS.find(x => x.slug === EDITANDO) || {}).fecha) || new Date().toISOString().slice(0,10)
       };
@@ -408,28 +472,122 @@
       document.getElementById('statusTxt').textContent = txt;
     }
 
-    /* ========== SNIPPETS DEL TOOLBAR ========== */
-    const SNIPPETS = {
-      h2:   '\n<h2>Título de sección</h2>\n',
-      h3:   '\n<h3>Subtítulo</h3>\n',
-      p:    '\n<p>Texto del párrafo. Usá <strong>negrita</strong> para lo importante y <code>código</code> para comandos.</p>\n',
-      ul:   '\n<ul>\n  <li>Primer punto</li>\n  <li>Segundo punto</li>\n  <li>Tercer punto</li>\n</ul>\n',
-      boxinfo:    '\n<div class="box box-info"><strong>💡 Dato útil</strong>Texto del recuadro informativo.</div>\n',
-      boxwarn:    '\n<div class="box box-warn"><strong>⚠️ Atención</strong>Texto de la advertencia.</div>\n',
-      boxdanger:  '\n<div class="box box-danger"><strong>🚨 Importante</strong>Texto del peligro o error grave a evitar.</div>\n',
-      boxsuccess: '\n<div class="box box-success"><strong>✅ Recomendación</strong>Texto del consejo práctico.</div>\n',
-      causa: '\n<div class="cause-card">\n  <h3><span class="cause-num">1</span> Título de la causa o paso</h3>\n  <p>Explicación del punto.</p>\n  <p><strong>Solución:</strong> qué hacer al respecto.</p>\n</div>\n',
-      tabla: '\n<table class="mat-table">\n  <tr><th>Columna 1</th><th>Columna 2</th><th>Columna 3</th></tr>\n  <tr><td>Dato</td><td>Dato</td><td class="lo">Bajo</td></tr>\n  <tr><td>Dato</td><td>Dato</td><td class="hi">Alto</td></tr>\n</table>\n',
-      code:  '\n<p><code>comando --ejemplo</code></p>\n'
+    function cuerpoActual() {
+      return document.body.classList.contains('src')
+        ? document.getElementById('cuerpo').value
+        : document.getElementById('editor').innerHTML;
+    }
+
+    /* ========== EDITOR WYSIWYG ========== */
+    const ED = () => document.getElementById('editor');
+    const TA = () => document.getElementById('cuerpo');
+
+    const BLOQUES = {
+      boxinfo:    '<div class="box box-info"><strong>&#128161; Dato útil</strong>Texto del recuadro.</div>',
+      boxwarn:    '<div class="box box-warn"><strong>&#9888;&#65039; Atención</strong>Texto de la advertencia.</div>',
+      boxdanger:  '<div class="box box-danger"><strong>&#128680; Importante</strong>Texto del peligro o error a evitar.</div>',
+      boxsuccess: '<div class="box box-success"><strong>&#9989; Recomendación</strong>Texto del consejo práctico.</div>',
+      causa: '<div class="cause-card"><h3><span class="cause-num">1</span> Título del paso o causa</h3><p>Explicación del punto.</p><p><strong>Solución:</strong> qué hacer al respecto.</p></div>',
+      tabla: '<table class="mat-table"><tr><th>Columna 1</th><th>Columna 2</th><th>Columna 3</th></tr><tr><td>Dato</td><td>Dato</td><td class="lo">Bajo</td></tr><tr><td>Dato</td><td>Dato</td><td class="hi">Alto</td></tr></table>'
     };
 
-    function insertar(tipo) {
-      const ta = document.getElementById('cuerpo');
-      const s = ta.selectionStart, e = ta.selectionEnd;
-      ta.value = ta.value.slice(0, s) + SNIPPETS[tipo] + ta.value.slice(e);
-      ta.focus();
-      ta.selectionStart = ta.selectionEnd = s + SNIPPETS[tipo].length;
-      renderPreview();
+    function cmd(c, v) { ED().focus(); document.execCommand(c, false, v || null); sync(); }
+    function fmt(tag)  { ED().focus(); document.execCommand('formatBlock', false, tag.toUpperCase()); sync(); }
+    function bloque(t) { ED().focus(); document.execCommand('insertHTML', false, BLOQUES[t] + '<p><br></p>'); sync(); }
+
+    function ponerLink() {
+      const u = prompt('URL del enlace:', 'https://');
+      if (u) cmd('createLink', u);
+    }
+    function ponerCodigo() {
+      const s = window.getSelection();
+      if (!s.rangeCount || s.isCollapsed) { alert('Seleccioná primero el texto que querés marcar como código.'); return; }
+      cmd('insertHTML', '<code>' + s.toString().replace(/</g,'&lt;') + '</code>');
+    }
+
+    /* --- Limpiador de pegado (Word / Google Docs) --- */
+    const OK_TAGS  = ['H2','H3','P','UL','OL','LI','STRONG','B','EM','I','A','CODE','BR','TABLE','TBODY','TR','TD','TH','DIV','SPAN'];
+    const OK_CLASS = ['box','box-info','box-warn','box-danger','box-success','cause-card','cause-num','mat-table','hi','me','lo'];
+
+    function cambiarTag(el, tag) { const n = document.createElement(tag); n.innerHTML = el.innerHTML; el.replaceWith(n); }
+    function desenvolver(el) { const p = el.parentNode; if (!p) return; while (el.firstChild) p.insertBefore(el.firstChild, el); el.remove(); }
+
+    function limpiar(nodo) {
+      Array.from(nodo.querySelectorAll('*')).forEach(function(el) {
+        if (!el.parentNode) return;
+        const t = el.tagName;
+        if (t === 'H1') { cambiarTag(el, 'h2'); return; }
+        if (t === 'H4' || t === 'H5' || t === 'H6') { cambiarTag(el, 'h3'); return; }
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'META' || t === 'LINK' || t.indexOf(':') >= 0) { el.remove(); return; }
+        if (OK_TAGS.indexOf(t) < 0) { desenvolver(el); return; }
+        Array.from(el.attributes).forEach(function(at) {
+          if (at.name === 'href' && t === 'A') return;
+          if (at.name === 'class') {
+            const c = at.value.split(/\s+/).filter(function(x){ return OK_CLASS.indexOf(x) >= 0; });
+            if (c.length) { el.className = c.join(' '); return; }
+          }
+          el.removeAttribute(at.name);
+        });
+        if ((t === 'SPAN' || t === 'DIV') && !el.className) desenvolver(el);
+      });
+      Array.from(nodo.querySelectorAll('p')).forEach(function(p) {
+        if (!p.textContent.trim() && !p.querySelector('br')) p.remove();
+      });
+      return nodo.innerHTML;
+    }
+
+    /* --- sincronización editor <-> HTML --- */
+    let syncT = null;
+    function sync() { TA().value = ED().innerHTML; clearTimeout(syncT); syncT = setTimeout(renderPreview, 400); }
+    function editorToSrc() { TA().value = ED().innerHTML; }
+    function srcToEditor() { ED().innerHTML = TA().value; renderPreviewDebounced(); }
+    function cargarCuerpo(html) { TA().value = html || ''; ED().innerHTML = html || ''; }
+
+    function toggleSrc() {
+      const b = document.body, btn = document.getElementById('btnSrc');
+      if (b.classList.contains('src')) { srcToEditor(); b.classList.remove('src'); btn.classList.remove('on'); }
+      else { editorToSrc(); b.classList.add('src'); btn.classList.add('on'); }
+    }
+
+    ED().addEventListener('input', sync);
+    ED().addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.key === 'b') { e.preventDefault(); cmd('bold'); }
+      if (e.ctrlKey && e.key === 'i') { e.preventDefault(); cmd('italic'); }
+    });
+    ED().addEventListener('paste', function(e) {
+      e.preventDefault();
+      const html = e.clipboardData.getData('text/html');
+      if (html) {
+        const tmp = document.createElement('div'); tmp.innerHTML = html;
+        document.execCommand('insertHTML', false, limpiar(tmp));
+      } else {
+        const txt = e.clipboardData.getData('text/plain');
+        document.execCommand('insertHTML', false, txt.split(/\n\n+/).map(function(p) {
+          return '<p>' + p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\n/g,'<br>') + '</p>';
+        }).join(''));
+      }
+      sync();
+    });
+
+    /* --- Importar desde Google Docs --- */
+    function toggleImport() { document.getElementById('impBox').classList.toggle('on'); }
+
+    async function importarDocs() {
+      const url = document.getElementById('impUrl').value.trim();
+      if (!url) { alert('Pegá el link del documento de Google Docs.'); return; }
+      if (ED().innerHTML.trim() && !confirm('Esto reemplaza el contenido actual del editor. ¿Seguir?')) return;
+      status('spin', 'Importando desde Google Docs…');
+      try {
+        const d = await api('importar_docs', { url: url });
+        if (!d.ok) throw new Error(d.error);
+        const tmp = document.createElement('div'); tmp.innerHTML = d.html;
+        cargarCuerpo(limpiar(tmp));
+        if (d.titulo && !document.getElementById('titulo').value) { document.getElementById('titulo').value = d.titulo; autoSlug(); }
+        renderPreview();
+        document.getElementById('impBox').classList.remove('on');
+        status('ok', '✓ Documento importado. Revisalo y ajustá lo que haga falta.');
+        setTimeout(function(){ status('hide'); }, 3500);
+      } catch (e) { status('err', '✗ ' + e.message); }
     }
 
     /* ========== VISTA PREVIA ========== */
@@ -469,7 +627,7 @@
       const titulo = document.getElementById('titulo').value || 'Título del artículo';
       const lead   = document.getElementById('lead').value || document.getElementById('resumen').value || '';
       const cat    = CAT_LABEL[document.getElementById('categoria').value] || '';
-      const cuerpo = document.getElementById('cuerpo').value || '<p style="color:#94a3b8">El cuerpo aparece acá a medida que escribís…</p>';
+      const cuerpo = cuerpoActual() || '<p style="color:#94a3b8">El cuerpo aparece acá a medida que escribís…</p>';
       const doc = `<!DOCTYPE html><html><head><meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
         <style>${PREVIEW_CSS}</style></head><body>
