@@ -2,15 +2,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Backup para pymes: qué respaldar, cada cuánto y los errores clásicos | Soporte Cyclops</title>
+  <title>Mantenimiento de servidores: la rutina que evita el día malo | Soporte Cyclops</title>
   <link rel="icon" href="../public/images/logo-icon.png" type="image/png">
-  <meta name="description" content="La regla 3-2-1 explicada, qué respaldar según prioridad y la prueba que casi nadie hace.">
-  <meta property="og:title" content="Backup para pymes: qué respaldar, cada cuánto y los errores clásicos"><meta property="og:type" content="article">
-  <meta property="og:description" content="La regla 3-2-1 explicada, qué respaldar según prioridad y la prueba que casi nadie hace.">
-  <meta property="og:url" content="https://www.soportecyclops.com.ar/blog/backup-pymes.html">
+  <meta name="description" content="Qué revisar cada semana, mes y trimestre, y por qué RAID no es backup.">
+  <meta property="og:title" content="Mantenimiento de servidores: la rutina que evita el día malo"><meta property="og:type" content="article">
+  <meta property="og:description" content="Qué revisar cada semana, mes y trimestre, y por qué RAID no es backup.">
+  <meta property="og:url" content="https://www.soportecyclops.com.ar/blog/mantenimiento-servidor.html">
   <meta property="og:image" content="https://www.soportecyclops.com.ar/public/images/og-preview.jpg">
-  <link rel="canonical" href="https://www.soportecyclops.com.ar/blog/backup-pymes.html">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Backup para pymes: qué respaldar, cada cuánto y los errores clásicos","description":"La regla 3-2-1 explicada, qué respaldar según prioridad y la prueba que casi nadie hace.","datePublished":"2026-05-19","author":{"@type":"Organization","name":"Soporte Cyclops"},"publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"},"mainEntityOfPage":"https://www.soportecyclops.com.ar/blog/backup-pymes.html"}</script>
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/blog/mantenimiento-servidor.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Mantenimiento de servidores: la rutina que evita el día malo","description":"Qué revisar cada semana, mes y trimestre, y por qué RAID no es backup.","datePublished":"2026-07-19","author":{"@type":"Organization","name":"Soporte Cyclops"},"publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"},"mainEntityOfPage":"https://www.soportecyclops.com.ar/blog/mantenimiento-servidor.html"}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -109,74 +109,76 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:
     <div class="article-meta">
       <span class="art-tag">Infraestructura</span>
       <span class="art-read-time"><i class="fas fa-clock"></i> 6 min de lectura</span>
-      <span class="art-date"><i class="fas fa-calendar"></i> 19 de mayo de 2026</span>
+      <span class="art-date"><i class="fas fa-calendar"></i> 19 de julio de 2026</span>
     </div>
-    <h1>Backup para pymes: qué respaldar, cada cuánto y los errores clásicos</h1>
-    <p class="hero-lead">Toda pyme tiene un backup. El problema es que la mayoría lo descubre el día que necesita restaurarlo.</p>
+    <h1>Mantenimiento de servidores: la rutina que evita el día malo</h1>
+    <p class="hero-lead">Es lo más importante de una pyme y lo menos atendido: mientras anda, nadie lo mira.</p>
   </div></div>
 
   <div class="content">
-<p>Toda pyme tiene un backup. El problema es que la mayoría lo descubre el día que necesita restaurarlo: el disco externo dejó de copiar hace ocho meses, la carpeta clave nunca estuvo incluida, o el respaldo estaba en el mismo equipo que se rompió. Esta guía es para que eso no te pase.</p>
+<p>El servidor de una pyme suele ser lo más importante y lo menos atendido: mientras anda, nadie lo mira. Y como funciona sin quejarse durante años, la primera señal de problema suele ser el día que la empresa no puede trabajar.</p>
 
-<div class="box box-danger"><strong>🚨 La definición que importa</strong>Un backup que nunca se probó restaurar no es un backup: es una expresión de deseo. La única prueba válida es recuperar un archivo y abrirlo.</div>
+<div class="box box-warn"><strong>⚠️ La pregunta que ordena todo</strong>¿Cuánto tiempo puede estar tu empresa sin el servidor? Si la respuesta es "unas horas", necesitás un plan de recuperación probado. Si es "no puede", necesitás además redundancia. Esa respuesta define todo lo demás.</div>
 
-<h2>Qué respaldar (y qué no)</h2>
+<h2>La rutina que hay que sostener</h2>
+
+<div class="cause-card">
+<h3><span class="cause-num">1</span> Semanal: verificar backups</h3>
+<p>No que "esté configurado": que <strong>corrió</strong>. Mirá la fecha de la última copia exitosa y si hubo errores. Un backup que falla en silencio durante meses es el escenario más común y el peor.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">2</span> Mensual: espacio, discos y registros</h3>
+<p>Espacio libre en cada volumen, estado de salud de los discos, y una mirada al registro de eventos buscando errores repetidos. Un disco que empieza a fallar avisa semanas antes en los registros.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">3</span> Mensual: actualizaciones</h3>
+<p>Con criterio: primero en un entorno de prueba si existe, y en una ventana horaria fuera del trabajo. Las de seguridad no se postergan indefinidamente, pero tampoco se aplican a ciegas un martes al mediodía.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">4</span> Trimestral: probar la restauración</h3>
+<p>El paso decisivo. Restaurar un archivo, una carpeta y —si es posible— la base de datos completa en un entorno aparte. Es la única forma de saber que el backup sirve. Todo lo demás es fe.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">5</span> Semestral: hardware y energía</h3>
+<p>Limpieza de polvo, verificación de ventiladores, y prueba del UPS: desconectarlo de la red con carga y confirmar que sostiene. Las baterías de UPS duran entre 2 y 4 años; un UPS con batería muerta es una zapatilla cara.</p>
+</div>
+
+<h2>Lo que hay que monitorear</h2>
 
 <table class="mat-table">
-<tr><th>Prioridad</th><th>Qué</th><th>Por qué</th></tr>
-<tr><td class="hi">Crítico</td><td>Base de datos del sistema de gestión, facturación</td><td>Sin eso la empresa no opera</td></tr>
-<tr><td class="hi">Crítico</td><td>Documentos, contratos, planillas de trabajo</td><td>Irremplazables</td></tr>
-<tr><td class="me">Importante</td><td>Correo electrónico</td><td>Historial de acuerdos con clientes</td></tr>
-<tr><td class="me">Importante</td><td>Configuraciones y licencias</td><td>Ahorra días de reinstalación</td></tr>
-<tr><td class="lo">Opcional</td><td>Programas instalables</td><td>Se vuelven a descargar</td></tr>
+<tr><th>Indicador</th><th>Señal de alerta</th></tr>
+<tr><td>Espacio en disco</td><td class="hi">Menos del 15% libre</td></tr>
+<tr><td>Estado S.M.A.R.T. de discos</td><td class="hi">Sectores reasignados en aumento</td></tr>
+<tr><td>Temperatura</td><td class="me">Sostenidamente alta</td></tr>
+<tr><td>Último backup exitoso</td><td class="hi">Más de 48 horas</td></tr>
+<tr><td>Intentos de acceso fallidos</td><td class="hi">Picos inusuales</td></tr>
+<tr><td>Estado del arreglo de discos</td><td class="hi">Un disco degradado</td></tr>
 </table>
 
-<h2>La regla 3-2-1</h2>
+<div class="box box-danger"><strong>🚨 El malentendido más caro</strong>El arreglo de discos en espejo (RAID) <strong>no es un backup</strong>. Protege contra la falla de un disco, nada más. Si borrás una carpeta por error, se borra en los dos discos. Si entra ransomware, cifra los dos. Necesitás las dos cosas: redundancia para seguir trabajando, backup para recuperar.</div>
 
-<div class="cause-card">
-<h3><span class="cause-num">3</span> Tres copias de los datos</h3>
-<p>El original más dos respaldos. Con una sola copia, cualquier problema con ella te deja sin red.</p>
-</div>
-
-<div class="cause-card">
-<h3><span class="cause-num">2</span> Dos medios distintos</h3>
-<p>Por ejemplo un disco externo y la nube. Si las dos copias están en el mismo tipo de dispositivo y en el mismo lugar, comparten los mismos riesgos.</p>
-</div>
-
-<div class="cause-card">
-<h3><span class="cause-num">1</span> Una copia fuera del lugar</h3>
-<p>En otra dirección física o en la nube. Un incendio, una inundación o un robo se lleva todo lo que está en el mismo edificio, backup incluido.</p>
-</div>
-
-<div class="box box-warn"><strong>⚠️ El detalle que cambió todo</strong>El ransomware moderno busca y cifra los backups conectados antes de atacar los archivos. Por eso al menos una copia tiene que estar desconectada (un disco que se enchufa, copia y se desenchufa) o ser inmutable. Un disco externo permanentemente conectado no te protege del escenario más frecuente hoy.</div>
-
-<h2>Cada cuánto</h2>
-
-<p>La pregunta correcta no es "cada cuánto copio" sino <strong>"cuánto trabajo puedo perder"</strong>. Si la respuesta es "un día", el backup es diario. Si es "una hora", necesitás algo continuo. Para la mayoría de las pymes:</p>
+<h2>Documentar: la parte que salva el día malo</h2>
 
 <ul>
-<li><strong>Diario automático:</strong> sistema de gestión, facturación, documentos en uso.</li>
-<li><strong>Semanal:</strong> imagen completa del servidor o del equipo principal.</li>
-<li><strong>Mensual:</strong> copia que se saca del lugar y se guarda aparte.</li>
+<li>Qué servicios corre el servidor y de qué depende cada uno.</li>
+<li>Direcciones IP, usuarios administradores y dónde están las credenciales.</li>
+<li>Dónde está el backup, cómo se restaura, y quién sabe hacerlo.</li>
+<li>Contactos del proveedor de internet, del software de gestión y del soporte técnico.</li>
+<li>Qué hacer si el servidor no arranca un lunes a las 8.</li>
 </ul>
 
-<h2>Los cuatro errores clásicos</h2>
+<p>Esa hoja parece burocracia hasta el día que pasa algo y la persona que sabía está de vacaciones.</p>
 
-<ul>
-<li><strong>Depender de que alguien se acuerde.</strong> El backup manual funciona tres semanas. Después se olvida. Tiene que ser automático.</li>
-<li><strong>No monitorear.</strong> Si el proceso falla y nadie recibe un aviso, el error se descubre meses después. Que alguien mire el estado una vez por semana.</li>
-<li><strong>Respaldar en el mismo equipo.</strong> Otra partición del mismo disco no es backup: si el disco muere, muere todo.</li>
-<li><strong>No probar la restauración.</strong> El punto más importante y el que nadie hace.</li>
-</ul>
-
-<div class="box box-info"><strong>💡 Prueba concreta para hacer hoy</strong>Elegí un archivo cualquiera del backup e intentá restaurarlo. Si tardás más de 15 minutos o descubrís que no está, acabás de encontrar el problema más barato de tu vida: gratis y a tiempo.</div>
-
-<div class="box box-success"><strong>✅ Recomendación final</strong>Un esquema básico para pyme: backup diario automático a un disco local, sincronización a la nube de las carpetas críticas, y una copia mensual que se desconecta y se guarda fuera. Se configura una vez y corre solo. Si querés, lo armamos y te dejamos el monitoreo andando.</div>
+<div class="box box-success"><strong>✅ Recomendación final</strong>Verificación semanal de backups, revisión mensual de discos y espacio, prueba trimestral de restauración y limpieza semestral. Si nadie en la empresa tiene ese rol asignado, es cuestión de tiempo. Con un abono de mantenimiento nos ocupamos nosotros: monitoreo, revisiones programadas y el informe de qué está pasando con tu infraestructura.</div>
 
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22Backup%20para%20pymes%3A%20qu%C3%A9%20respaldar%2C%20cada%20cu%C3%A1nto%20y%20los%20errores%20cl%C3%A1sicos%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22Mantenimiento%20de%20servidores%3A%20la%20rutina%20que%20evita%20el%20d%C3%ADa%20malo%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>
   </div>
@@ -208,7 +210,7 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:
     </div>
   </div>
   <script>
-  var QA_SLUG = "backup-pymes";
+  var QA_SLUG = "mantenimiento-servidor";
   var QA_API  = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
   var QA_USER = null;
   try { QA_USER = JSON.parse(sessionStorage.getItem("cyclops_user")); } catch(e) {}
@@ -251,7 +253,7 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:
     <div class="related-grid">
       <a href="domotica-por-donde-empezar.html" class="related-card"><span class="r-tag c-tag ups">Infraestructura</span><h4>Domótica: por dónde empezar sin gastar de más</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
       <a href="nube-vs-nas-vs-servidor.html" class="related-card"><span class="r-tag c-tag ups">Infraestructura</span><h4>Nube, NAS o servidor: dónde guardar los archivos de tu empresa</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
-      <a href="mantenimiento-servidor.html" class="related-card"><span class="r-tag c-tag ups">Infraestructura</span><h4>Mantenimiento de servidores: la rutina que evita el día malo</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
+      <a href="instalacion-electrica-equipos.html" class="related-card"><span class="r-tag c-tag ups">Infraestructura</span><h4>Tus equipos fallan y quizás el problema sea la instalación eléctrica</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
     </div>
   </div></div>
 
