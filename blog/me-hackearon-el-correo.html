@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Me hackearon el correo: qué hacer, paso a paso | Soporte Cyclops</title>
+  <link rel="icon" href="../public/images/logo-icon.png" type="image/png">
+  <meta name="description" content="Los primeros 15 minutos, y el paso que casi nadie hace: revisar lo que dejó configurado.">
+  <meta property="og:title" content="Me hackearon el correo: qué hacer, paso a paso"><meta property="og:type" content="article">
+  <meta property="og:description" content="Los primeros 15 minutos, y el paso que casi nadie hace: revisar lo que dejó configurado.">
+  <meta property="og:url" content="https://www.soportecyclops.com.ar/blog/me-hackearon-el-correo.html">
+  <meta property="og:image" content="https://www.soportecyclops.com.ar/public/images/og-preview.jpg">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/blog/me-hackearon-el-correo.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Me hackearon el correo: qué hacer, paso a paso","description":"Los primeros 15 minutos, y el paso que casi nadie hace: revisar lo que dejó configurado.","datePublished":"2026-05-28","author":{"@type":"Organization","name":"Soporte Cyclops"},"publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"},"mainEntityOfPage":"https://www.soportecyclops.com.ar/blog/me-hackearon-el-correo.html"}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
+.breadcrumb{background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:10px 0}.breadcrumb .inner{max-width:800px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:6px;font-size:0.8rem;color:#94a3b8}.breadcrumb a{color:#64748b;text-decoration:none;display:flex;align-items:center;gap:4px}.breadcrumb a:hover{color:#2563eb}.breadcrumb .sep{color:#cbd5e1}.breadcrumb .current{color:#1a3a5c;font-weight:600}
+.hero-blog{background:linear-gradient(135deg,#0f2444 0%,#1a4a8a 100%);color:white;padding:56px 0 40px}.hero-blog .inner{max-width:800px;margin:0 auto;padding:0 24px}
+.article-meta{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}.art-tag{display:inline-block;padding:4px 12px;border-radius:20px;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:rgba(59,130,246,0.3);color:#bfdbfe}
+.art-read-time,.art-date{font-size:0.78rem;opacity:0.65;display:flex;align-items:center;gap:5px}
+.hero-blog h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,4vw,2.3rem);font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-0.02em}
+.hero-lead{font-size:1.02rem;opacity:0.88;max-width:680px;line-height:1.7}
+.content{max-width:800px;margin:0 auto;padding:48px 24px 64px}
+.content h2{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:800;color:#1a3a5c;margin:40px 0 16px}
+.content h2:first-child{margin-top:0}
+.content h3{font-size:1.05rem;font-weight:700;color:#1a3a5c;margin:28px 0 10px}
+.content p{margin-bottom:18px;color:#475569;font-size:0.97rem;line-height:1.75}
+.content ul,.content ol{margin:0 0 18px 22px;color:#475569;font-size:0.97rem;line-height:1.7}.content li{margin-bottom:9px}
+.content strong{color:#1a3a5c;font-weight:700}.content code{background:#f1f5f9;padding:2px 7px;border-radius:5px;font-family:monospace;font-size:0.88rem}
+.content img{max-width:100%;border-radius:10px;margin:10px 0 20px}
+.box{padding:20px 22px;border-radius:10px;margin:24px 0;font-size:0.93rem;line-height:1.65}
+.box-info{background:#eff6ff;border-left:4px solid #2563eb;color:#1e3a5c}.box-warn{background:#fffbeb;border-left:4px solid #f59e0b;color:#78350f}
+.box-danger{background:#fef2f2;border-left:4px solid #ef4444;color:#7f1d1d}.box-success{background:#f0fdf4;border-left:4px solid #22c55e;color:#14532d}
+.box strong{display:block;margin-bottom:6px}
+.cause-card{border:1px solid #e2e8f0;border-radius:12px;padding:22px 24px;margin:18px 0;border-left:4px solid #2563eb}
+.cause-card h3{margin:0 0 10px;font-size:1rem;display:flex;align-items:center;gap:10px}
+.cause-num{width:28px;height:28px;background:#2563eb;color:white;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0}
+.cause-card p{margin:0 0 10px;font-size:0.91rem;color:#475569;line-height:1.65}.cause-card p:last-child{margin-bottom:0}
+.mat-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:0.87rem}.mat-table th{background:#1a3a5c;color:white;padding:10px 14px;text-align:left;font-weight:700}
+.mat-table td{padding:9px 14px;border-bottom:1px solid #e2e8f0;color:#475569}.mat-table tr:nth-child(even) td{background:#f8fafc}
+.hi{color:#dc2626;font-weight:700}.me{color:#d97706;font-weight:600}.lo{color:#16a34a;font-weight:600}
+.cta-box{background:linear-gradient(135deg,#1a3a5c,#2563eb);color:white;border-radius:16px;padding:36px;text-align:center;margin:48px 0 0}
+.cta-box h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:10px}
+.cta-box p{font-size:0.92rem;opacity:0.85;margin-bottom:22px;line-height:1.65}
+.cta-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:#1a3a5c;padding:14px 28px;border-radius:50px;font-weight:700;font-size:0.92rem}.cta-btn:hover{text-decoration:none}
+.share-section{max-width:800px;margin:0 auto;padding:32px 24px 0}
+.share-section h3{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:#1a3a5c;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.share-buttons{display:flex;gap:10px;flex-wrap:wrap}
+.share-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:50px;font-family:'Open Sans',sans-serif;font-size:0.85rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:transform 0.15s,box-shadow 0.15s;white-space:nowrap}
+.share-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.15);text-decoration:none}.share-btn:active{transform:translateY(0)}
+.share-btn.wa{background:#25D366;color:white}.share-btn.x{background:#000;color:white}.share-btn.fb{background:#1877f2;color:white}.share-btn.li{background:#0a66c2;color:white}
+.share-btn.copy{background:white;color:#1a3a5c;border:2px solid #e2e8f0}.share-btn.copy:hover{border-color:#2563eb;color:#2563eb}
+.copy-feedback{display:none;font-size:0.75rem;color:#22c55e;margin-left:4px;font-weight:600}
+.related-section{background:#f8fafc;padding:48px 0;border-top:1px solid #e2e8f0;margin-top:48px}.related-inner{max-width:800px;margin:0 auto;padding:0 24px}
+.related-inner h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:800;color:#1a3a5c;margin-bottom:20px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.related-card{background:white;border:1px solid #e2e8f0;border-radius:10px;padding:16px;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:8px;transition:all 0.2s}
+.related-card:hover{border-color:#2563eb;box-shadow:0 4px 14px rgba(37,99,235,0.1);transform:translateY(-2px);text-decoration:none}
+.r-tag{font-size:0.65rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 8px;border-radius:10px;display:inline-block;width:fit-content}
+.c-tag.redes{color:#1e40af;background:#dbeafe}.c-tag.hardware{color:#166534;background:#dcfce7}.c-tag.seguridad{color:#991b1b;background:#fee2e2}.c-tag.mantenimiento{color:#3730a3;background:#e0e7ff}.c-tag.ups{color:#92400e;background:#fef3c7}.c-tag.cctv{color:#6b21a8;background:#f3e8ff}
+.related-card h4{font-family:'Space Grotesk',sans-serif;font-size:0.88rem;font-weight:700;color:#1a3a5c;line-height:1.3}
+.related-card .r-time{font-size:0.72rem;color:#94a3b8}
+@media(max-width:640px){.related-grid{grid-template-columns:1fr}}
+.qa-section{max-width:800px;margin:0 auto;padding:40px 24px 0}
+.qa-section h3{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:800;color:#1a3a5c;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.qa-sub{font-size:0.85rem;color:#64748b;margin-bottom:20px}
+.qa-item{border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:12px;background:white}
+.qa-q{font-size:0.9rem;font-weight:700;color:#1a3a5c;margin-bottom:8px;display:flex;gap:9px;align-items:flex-start}
+.qa-q .qi{color:#2563eb;font-weight:800;flex-shrink:0}
+.qa-a{font-size:0.89rem;color:#475569;line-height:1.7;padding-left:22px;border-left:2px solid #dbeafe;margin-left:4px}
+.qa-meta{font-size:0.72rem;color:#94a3b8;margin-top:10px;padding-left:26px}
+.qa-box{background:#f8fafc;border:2px dashed #cbd5e1;border-radius:14px;padding:24px;text-align:center}
+.qa-box h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;color:#1a3a5c;margin-bottom:6px}
+.qa-box p{font-size:0.85rem;color:#64748b;margin-bottom:16px;line-height:1.6}
+.qa-box textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:12px 14px;font-family:inherit;font-size:0.88rem;margin-bottom:12px;resize:vertical}
+.qa-box textarea:focus{outline:none;border-color:#2563eb}
+.qa-btn{display:inline-flex;align-items:center;gap:8px;background:#2563eb;color:white;border:none;padding:12px 24px;border-radius:50px;font-family:inherit;font-weight:700;font-size:0.87rem;cursor:pointer;text-decoration:none}
+.qa-btn:hover{background:#1d4ed8;text-decoration:none}
+.qa-btn:disabled{opacity:0.5;cursor:not-allowed}
+.qa-msg{font-size:0.85rem;padding:12px 16px;border-radius:10px;margin-top:12px;display:none}
+.qa-msg.ok{background:#f0fdf4;color:#166534;display:block}.qa-msg.err{background:#fef2f2;color:#991b1b;display:block}
+footer{background:#1a3a5c;color:rgba(255,255,255,0.6);text-align:center;padding:24px;font-size:0.82rem;margin-top:48px}footer a{color:rgba(255,255,255,0.8)}
+  </style>
+</head>
+<body>
+  <nav class="navbar" style="position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid #e2e8f0">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:60px;max-width:800px;margin:0 auto">
+      <a href="../index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none">
+        <img src="../public/images/logo-icon.png" alt="Cyclops" width="32" height="33" style="border-radius:4px">
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:0.95rem;color:#1a3a5c">Soporte<strong style="color:#2563eb">Cyclops</strong></span>
+      </a>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+        <a href="../servicios.html" style="font-size:0.8rem;font-weight:600;color:#475569;padding:6px 12px;text-decoration:none">Servicios</a>
+        <a href="index.html" style="font-size:0.8rem;font-weight:600;color:#2563eb;padding:6px 12px;border-radius:8px;background:rgba(37,99,235,0.06);text-decoration:none">Blog</a>
+        <a href="../index.html#contacto" style="font-size:0.8rem;font-weight:700;color:white;padding:7px 16px;border-radius:50px;background:#2563eb;text-decoration:none">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="breadcrumb"><div class="inner">
+    <a href="../index.html"><i class="fas fa-home"></i> Inicio</a><span class="sep">/</span>
+    <a href="index.html">Blog</a><span class="sep">/</span>
+    <span class="current">Seguridad</span>
+  </div></div>
+
+  <div class="hero-blog"><div class="inner">
+    <div class="article-meta">
+      <span class="art-tag">Seguridad</span>
+      <span class="art-read-time"><i class="fas fa-clock"></i> 6 min de lectura</span>
+      <span class="art-date"><i class="fas fa-calendar"></i> 28 de mayo de 2026</span>
+    </div>
+    <h1>Me hackearon el correo: qué hacer, paso a paso</h1>
+    <p class="hero-lead">El correo es la cuenta más valiosa: desde ahí se restablecen todas las demás. Actuá en este orden.</p>
+  </div></div>
+
+  <div class="content">
+<p>Empiezan a llegarte avisos de inicio de sesión que no hiciste, tus contactos reciben mensajes raros de tu parte, o directamente no podés entrar porque cambiaron la contraseña. El correo es la cuenta más valiosa que tenés: desde ahí se restablecen todas las demás. Actuá en este orden.</p>
+
+<div class="box box-danger"><strong>🚨 Los primeros 15 minutos</strong>Si todavía podés entrar, cambiá la contraseña YA y cerrá todas las sesiones activas desde la configuración de seguridad. Si ya no podés entrar, usá la recuperación de cuenta de inmediato: cuanto más tiempo pasa, más difícil se vuelve.</div>
+
+<h2>El procedimiento completo</h2>
+
+<div class="cause-card">
+<h3><span class="cause-num">1</span> Recuperá el acceso</h3>
+<p>Usá la opción de recuperación con tu teléfono o correo alternativo. Si el atacante los cambió, los proveedores tienen formularios de recuperación donde piden datos que solo el dueño conoce: contactos frecuentes, fecha aproximada de creación, asuntos de correos viejos. Es lento pero funciona.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">2</span> Contraseña nueva y única</h3>
+<p>Larga, y que no la uses en ningún otro lado. Si esa clave estaba repetida en otros servicios, cambiala también ahí: es muy probable que el ataque haya empezado por una filtración en otro sitio.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">3</span> Cerrá todas las sesiones activas</h3>
+<p>En la configuración de seguridad hay una lista de dispositivos conectados. Cerrá todo. Si no hacés esto, la sesión del atacante puede seguir abierta aunque hayas cambiado la contraseña.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">4</span> Activá la verificación en dos pasos</h3>
+<p>Es lo que impide que vuelva a pasar. Sin el segundo factor, tener la contraseña ya no alcanza para entrar.</p>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">5</span> Revisá lo que dejó configurado</h3>
+<p>Este paso es el que casi nadie hace y el más importante. Buscá:</p>
+<ul>
+<li><strong>Reglas de reenvío automático:</strong> una copia de todos tus correos yéndose a otra casilla.</li>
+<li><strong>Filtros que archivan o borran</strong> los avisos del banco para que no los veas.</li>
+<li><strong>Direcciones de recuperación cambiadas:</strong> si dejó su teléfono o mail, puede recuperar la cuenta cuando quiera.</li>
+<li><strong>Aplicaciones con permisos</strong> vinculadas a tu cuenta.</li>
+<li><strong>Firma modificada</strong> con links maliciosos.</li>
+</ul>
+</div>
+
+<div class="cause-card">
+<h3><span class="cause-num">6</span> Avisá a tus contactos</h3>
+<p>Desde otro canal si hace falta. Si mandaron mensajes en tu nombre pidiendo plata o con adjuntos, tus contactos necesitan saberlo antes de caer.</p>
+</div>
+
+<h2>Después: el efecto dominó</h2>
+
+<p>Con acceso a tu correo, el atacante pudo pedir restablecimiento de contraseña de otros servicios. Revisá y cambiá las claves de: banco y billeteras virtuales, redes sociales, tiendas online con tarjeta guardada, y cualquier servicio de trabajo.</p>
+
+<div class="box box-warn"><strong>⚠️ Si es una cuenta de empresa</strong>Sumá tres cosas: revisar si hubo acceso a correos con datos de clientes, avisar a tu equipo (el atacante puede escribirles haciéndose pasar por vos para pedir transferencias), y revisar si desde esa casilla se accedía a otros sistemas.</div>
+
+<h2>Cómo entró, para que no se repita</h2>
+
+<ul>
+<li><strong>Contraseña repetida</strong> que se filtró en otro servicio. Es la causa más común, lejos.</li>
+<li><strong>Phishing:</strong> pusiste tus datos en una página que imitaba al proveedor.</li>
+<li><strong>Malware</strong> en el equipo capturando lo que escribís. Si sospechás esto, escaneo completo antes de cambiar contraseñas — si no, la nueva también se filtra.</li>
+<li><strong>Red pública sin protección</strong> o un equipo compartido con sesión abierta.</li>
+</ul>
+
+<div class="box box-success"><strong>✅ Recomendación final</strong>Doble factor en el correo hoy mismo, aunque nunca te haya pasado nada: es la medida que corta la mayoría de estos casos antes de que empiecen. Si ya te pasó y no sabés si quedó algo configurado por el atacante, lo revisamos con vos en una sesión remota y dejamos la cuenta limpia.</div>
+
+    <div class="cta-box">
+      <h3>¿Necesitás ayuda con esto?</h3>
+      <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
+      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22Me%20hackearon%20el%20correo%3A%20qu%C3%A9%20hacer%2C%20paso%20a%20paso%22%20y%20necesito%20ayuda" target="_blank">
+        <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="share-section">
+    <h3><i class="fas fa-share-alt"></i> Compartir este artículo</h3>
+    <div class="share-buttons">
+      <a id="shareWa" class="share-btn wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a id="shareX" class="share-btn x" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X</a>
+      <a id="shareFb" class="share-btn fb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a id="shareLi" class="share-btn li" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <button id="shareCopy" class="share-btn copy" onclick="copyLink(this)"><i class="fas fa-link"></i> Copiar enlace<span class="copy-feedback" id="copyFeedback">✓ Copiado</span></button>
+    </div>
+  </div>
+
+  <div class="qa-section" id="qaSection">
+    <h3><i class="fas fa-circle-question"></i> Preguntas sobre este artículo</h3>
+    <p class="qa-sub">Respuestas del técnico a consultas reales de lectores.</p>
+    <div id="qaList"></div>
+    <div class="qa-box" id="qaBox">
+      <h4>¿Te quedó una duda?</h4>
+      <p id="qaHint">Ingresá con tu cuenta de Google y preguntanos. Te respondemos por mail, y si le sirve a otros la publicamos acá.</p>
+      <div id="qaLogged" style="display:none">
+        <textarea id="qaText" rows="3" placeholder="Escribí tu pregunta sobre este tema..." maxlength="1000"></textarea>
+        <button class="qa-btn" id="qaSend" onclick="qaEnviar()"><i class="fas fa-paper-plane"></i> Enviar pregunta</button>
+      </div>
+      <a class="qa-btn" id="qaLogin" href="../login.html?next=cliente_panel.html"><i class="fab fa-google"></i> Ingresar para preguntar</a>
+      <div class="qa-msg" id="qaMsg"></div>
+    </div>
+  </div>
+  <script>
+  var QA_SLUG = "me-hackearon-el-correo";
+  var QA_API  = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
+  var QA_USER = null;
+  try { QA_USER = JSON.parse(sessionStorage.getItem("cyclops_user")); } catch(e) {}
+  if (QA_USER && QA_USER.credential) {
+    document.getElementById("qaLogged").style.display = "block";
+    document.getElementById("qaLogin").style.display  = "none";
+    document.getElementById("qaHint").textContent = "Preguntá lo que necesites: te respondemos por mail.";
+  }
+  function qaEsc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function qaMsg(t, cls){ var m=document.getElementById("qaMsg"); m.textContent=t; m.className="qa-msg "+cls; }
+  (function qaCargar(){
+    fetch(QA_API + "?p_action=preguntas_publicas&slug=" + encodeURIComponent(QA_SLUG))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok || !d.preguntas || !d.preguntas.length) return;
+        document.getElementById("qaList").innerHTML = d.preguntas.map(function(p){
+          return "<div class=\"qa-item\"><div class=\"qa-q\"><span class=\"qi\">P.</span><span>" + qaEsc(p.pregunta) + "</span></div>" +
+                 "<div class=\"qa-a\">" + qaEsc(p.respuesta) + "</div>" +
+                 "<div class=\"qa-meta\">Consulta de " + qaEsc(p.nombre) + " · " + qaEsc(p.fecha) + "</div></div>";
+        }).join("");
+      }).catch(function(){});
+  })();
+  function qaEnviar(){
+    var t = document.getElementById("qaText").value.trim();
+    if (t.length < 10) { qaMsg("Escribí una pregunta un poco más completa.", "err"); return; }
+    var b = document.getElementById("qaSend"); b.disabled = true;
+    fetch(QA_API, { method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify({ p_action:"nueva_pregunta", credential:QA_USER.credential, slug:QA_SLUG, pregunta:t }) })
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (d.ok) { qaMsg(d.mensaje, "ok"); document.getElementById("qaText").value=""; }
+        else { qaMsg(d.error || "No se pudo enviar.", "err"); if (d.auth === false) document.getElementById("qaLogin").style.display="inline-flex"; }
+        b.disabled = false;
+      }).catch(function(){ qaMsg("Error de conexión. Probá de nuevo.", "err"); b.disabled = false; });
+  }
+  </script>
+
+  <div class="related-section"><div class="related-inner">
+    <h3>Artículos relacionados</h3>
+    <div class="related-grid">
+      <a href="tu-pc-con-windows-10-ya-no-recibe-actualizaciones-que-hacer-ahora.html" class="related-card"><span class="r-tag c-tag seguridad">Seguridad</span><h4>Tu PC con Windows 10 ya no recibe actualizaciones: qué hacer ahora</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
+      <a href="teletrabajo-seguro-pymes.html" class="related-card"><span class="r-tag c-tag seguridad">Seguridad</span><h4>Teletrabajo seguro en pymes: los 5 pilares que no pueden faltar</h4><span class="r-time"><i class="fas fa-clock"></i> 6 min de lectura</span></a>
+      <a href="borrar-datos-antes-de-vender.html" class="related-card"><span class="r-tag c-tag seguridad">Seguridad</span><h4>Vas a vender tu PC: formatear no borra tus datos</h4><span class="r-time"><i class="fas fa-clock"></i> 5 min de lectura</span></a>
+    </div>
+  </div></div>
+
+  <footer><p><a href="../index.html">soportecyclops.com.ar</a> · Técnico IT a domicilio en CABA y GBA · <a href="https://wa.me/5491166804450">+54 9 11 6680-4450</a></p></footer>
+
+  <script>
+(function() {
+    var url  = encodeURIComponent(window.location.href);
+    var title = encodeURIComponent(document.title);
+    var wa = document.getElementById('shareWa'), x = document.getElementById('shareX'),
+        fb = document.getElementById('shareFb'), li = document.getElementById('shareLi');
+    if (wa) wa.href = 'https://wa.me/?text=' + title + '%20' + url;
+    if (x)  x.href  = 'https://twitter.com/intent/tweet?text=' + title + '&url=' + url + '&via=soportecyclops';
+    if (fb) fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+    if (li) li.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
+  })();
+  function copyLink(btn) {
+    var url = window.location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(function() { showCopied(); });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showCopied(); } catch(e) {}
+      document.body.removeChild(ta);
+    }
+  }
+  function showCopied() {
+    var fb = document.getElementById('copyFeedback');
+    if (fb) { fb.style.display='inline'; setTimeout(function(){ fb.style.display='none'; }, 2500); }
+  }
+  </script>
+</body>
+</html>
