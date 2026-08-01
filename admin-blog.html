@@ -186,6 +186,7 @@
         <h1><i class="fas fa-newspaper"></i> Artículos del blog</h1>
         <div style="display:flex; gap:10px;">
           <button class="btn btn-ghost" onclick="cargarArticulos()"><i class="fas fa-rotate"></i> Actualizar</button>
+          <button class="btn btn-ghost" onclick="redistribuir()" title="Reparte las fechas de todos los artículos publicados"><i class="fas fa-calendar-days"></i> Redistribuir fechas</button>
           <button class="btn btn-ghost" onclick="abrirLote()"><i class="fas fa-upload"></i> Importar lote</button>
           <button class="btn btn-primary" onclick="nuevoArticulo()"><i class="fas fa-plus"></i> Nuevo artículo</button>
         </div>
@@ -430,6 +431,23 @@
             <button class="btn btn-danger btn-sm" onclick="eliminarArticulo('${a.slug}')" title="Eliminar"><i class="fas fa-trash"></i></button>
           </div></td>
         </tr>`).join('');
+    }
+
+    /* ========== REDISTRIBUIR FECHAS ========== */
+    async function redistribuir() {
+      const m = prompt('¿En cuántos meses hacia atrás querés repartir los artículos publicados?\n\n24 = últimos dos años (recomendado)', '24');
+      if (m === null) return;
+      const meses = parseInt(m, 10);
+      if (!meses || meses < 1 || meses > 120) { alert('Poné un número de meses entre 1 y 120.'); return; }
+      if (!confirm('Se van a reescribir las fechas de TODOS los artículos publicados, repartidas en ' + meses + ' meses.\n\nSe conserva el orden actual. Es un solo commit.\n\n¿Seguir?')) return;
+      status('spin', 'Redistribuyendo fechas y regenerando el blog…');
+      try {
+        const r = await api('redistribuir', { meses: meses });
+        if (!r.ok) throw new Error(r.error);
+        status('ok', '✓ ' + r.mensaje + ' El sitio se actualiza en ~2 minutos.');
+        await cargarArticulos();
+        setTimeout(() => status('hide'), 5000);
+      } catch (e) { if (e.message !== 'auth') status('err', '✗ ' + e.message); }
     }
 
     /* ========== IMPORTAR LOTE ========== */
