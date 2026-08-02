@@ -2,541 +2,565 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.soportecyclops.com.ar/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/servicios.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/soporte.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/nosotros.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/opiniones.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/faq.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.soportecyclops.com.ar/herramientas/</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/herramientas/almacenamiento-camaras.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/herramientas/reparar-o-comprar.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/herramientas/chequeo-seguridad.html</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.soportecyclops.com.ar/blog/tu-pc-con-windows-10-ya-no-recibe-actualizaciones-que-hacer-ahora.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-07-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/diagnostico-guiado.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-07-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/teletrabajo-seguro-pymes.html</loc>
-    <lastmod>2026-07-28</lastmod>
+    <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/abono-mantenimiento-pyme.html</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/domotica-por-donde-empezar.html</loc>
-    <lastmod>2026-07-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/reparar-o-cambiar-equipo.html</loc>
-    <lastmod>2026-07-22</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/nube-vs-nas-vs-servidor.html</loc>
-    <lastmod>2026-07-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/mantenimiento-servidor.html</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/instalacion-electrica-equipos.html</loc>
-    <lastmod>2026-07-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/tecnologia-adultos-mayores.html</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/borrar-datos-antes-de-vender.html</loc>
-    <lastmod>2026-07-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/redes-sociales-empresa.html</loc>
-    <lastmod>2026-07-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/correo-con-dominio-propio.html</loc>
-    <lastmod>2026-07-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/mudanza-oficina-checklist.html</loc>
-    <lastmod>2026-07-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/notebook-no-carga.html</loc>
-    <lastmod>2026-07-07</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/punto-de-venta-comercio.html</loc>
-    <lastmod>2026-07-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/reciclar-pc-vieja.html</loc>
-    <lastmod>2026-07-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/antes-de-instalar-camaras.html</loc>
-    <lastmod>2026-07-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/red-oficina-pyme.html</loc>
     <lastmod>2026-06-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/camaras-privacidad.html</loc>
-    <lastmod>2026-06-28</lastmod>
+    <loc>https://www.soportecyclops.com.ar/blog/domotica-por-donde-empezar.html</loc>
+    <lastmod>2026-06-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-alarma.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <loc>https://www.soportecyclops.com.ar/blog/reparar-o-cambiar-equipo.html</loc>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/videoportero-como-elegir.html</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/impresora-no-imprime.html</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/cableado-estructurado.html</loc>
-    <lastmod>2026-06-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/camaras-acceso-remoto-seguro.html</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/computadora-para-estudiar.html</loc>
-    <lastmod>2026-06-17</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/contrasenas-seguras-gestor.html</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/elegir-pc-escritorio.html</loc>
-    <lastmod>2026-06-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-impresora.html</loc>
-    <lastmod>2026-06-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/elegir-nas-hogar.html</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/notebook-mojada-que-hacer.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/comprar-tecnologia-usada.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-notebook.html</loc>
-    <lastmod>2026-06-04</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/cambiar-proveedor-internet.html</loc>
+    <loc>https://www.soportecyclops.com.ar/blog/nube-vs-nas-vs-servidor.html</loc>
     <lastmod>2026-06-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/windows-10-sin-soporte.html</loc>
-    <lastmod>2026-06-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/oficina-sin-papel.html</loc>
-    <lastmod>2026-05-31</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/me-hackearon-el-correo.html</loc>
+    <loc>https://www.soportecyclops.com.ar/blog/mantenimiento-servidor.html</loc>
     <lastmod>2026-05-28</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/gestion-usuarios-empresa.html</loc>
-    <lastmod>2026-05-27</lastmod>
+    <loc>https://www.soportecyclops.com.ar/blog/instalacion-electrica-equipos.html</loc>
+    <lastmod>2026-05-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/cuantas-camaras-necesito.html</loc>
-    <lastmod>2026-05-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/control-de-acceso.html</loc>
-    <lastmod>2026-05-24</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/migrar-a-pc-nueva.html</loc>
-    <lastmod>2026-05-21</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/que-es-una-vpn.html</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/backup-pymes.html</loc>
-    <lastmod>2026-05-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/fotos-celular-respaldo.html</loc>
-    <lastmod>2026-05-17</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/camara-graba-mal-de-noche.html</loc>
-    <lastmod>2026-05-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/recuperar-cuenta-google.html</loc>
-    <lastmod>2026-05-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/estafas-whatsapp-mail.html</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/compras-online-seguras.html</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/videollamadas-se-cortan.html</loc>
+    <loc>https://www.soportecyclops.com.ar/blog/tecnologia-adultos-mayores.html</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/mails-que-no-llegan.html</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/camaras-seguridad-guia.html</loc>
-    <lastmod>2026-05-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/conexion-zonas-sin-fibra.html</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/monitor-puesto-trabajo.html</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/mantenimiento-notebook.html</loc>
+    <loc>https://www.soportecyclops.com.ar/blog/borrar-datos-antes-de-vender.html</loc>
     <lastmod>2026-04-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/wifi-lento-ciertas-horas.html</loc>
-    <lastmod>2026-04-28</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/control-parental.html</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/antivirus-pago-o-gratis.html</loc>
-    <lastmod>2026-04-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/doble-monitor.html</loc>
+    <loc>https://www.soportecyclops.com.ar/blog/redes-sociales-empresa.html</loc>
     <lastmod>2026-04-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/ups-proteccion-energia.html</loc>
-    <lastmod>2026-04-21</lastmod>
+    <loc>https://www.soportecyclops.com.ar/blog/correo-con-dominio-propio.html</loc>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/que-hacer-corte-de-luz.html</loc>
-    <lastmod>2026-04-19</lastmod>
+    <loc>https://www.soportecyclops.com.ar/blog/mudanza-oficina-checklist.html</loc>
+    <lastmod>2026-04-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.soportecyclops.com.ar/blog/internet-se-corta.html</loc>
-    <lastmod>2026-04-16</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/programas-imprescindibles.html</loc>
-    <lastmod>2026-04-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-router.html</loc>
-    <lastmod>2026-04-14</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/windows-no-arranca.html</loc>
-    <lastmod>2026-04-12</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/pantalla-azul-errores.html</loc>
-    <lastmod>2026-04-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/nombres-archivos-carpetas.html</loc>
-    <lastmod>2026-04-08</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/ransomware-que-hacer.html</loc>
-    <lastmod>2026-04-07</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/teclado-mouse-perifericos.html</loc>
-    <lastmod>2026-04-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/wifi-invitados-seguridad.html</loc>
-    <lastmod>2026-04-02</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/sonido-no-funciona.html</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/pc-lenta-causas.html</loc>
-    <lastmod>2026-03-31</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/celular-lento.html</loc>
-    <lastmod>2026-03-29</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/ampliar-memoria-ram.html</loc>
-    <lastmod>2026-03-26</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.soportecyclops.com.ar/blog/primeros-pasos-pc-nueva.html</loc>
+    <loc>https://www.soportecyclops.com.ar/blog/notebook-no-carga.html</loc>
     <lastmod>2026-03-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.soportecyclops.com.ar/blog/punto-de-venta-comercio.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/reciclar-pc-vieja.html</loc>
+    <lastmod>2026-03-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/antes-de-instalar-camaras.html</loc>
+    <lastmod>2026-02-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/red-oficina-pyme.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/camaras-privacidad.html</loc>
+    <lastmod>2026-02-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-alarma.html</loc>
+    <lastmod>2026-02-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/videoportero-como-elegir.html</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/impresora-no-imprime.html</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/cableado-estructurado.html</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/camaras-acceso-remoto-seguro.html</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/computadora-para-estudiar.html</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/contrasenas-seguras-gestor.html</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/elegir-pc-escritorio.html</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-impresora.html</loc>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/elegir-nas-hogar.html</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/notebook-mojada-que-hacer.html</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/comprar-tecnologia-usada.html</loc>
+    <lastmod>2025-10-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-notebook.html</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/cambiar-proveedor-internet.html</loc>
+    <lastmod>2025-10-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/windows-10-sin-soporte.html</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/oficina-sin-papel.html</loc>
+    <lastmod>2025-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/me-hackearon-el-correo.html</loc>
+    <lastmod>2025-09-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/gestion-usuarios-empresa.html</loc>
+    <lastmod>2025-09-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/cuantas-camaras-necesito.html</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/control-de-acceso.html</loc>
+    <lastmod>2025-08-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/migrar-a-pc-nueva.html</loc>
+    <lastmod>2025-08-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/que-es-una-vpn.html</loc>
+    <lastmod>2025-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/backup-pymes.html</loc>
+    <lastmod>2025-07-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/fotos-celular-respaldo.html</loc>
+    <lastmod>2025-07-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/camara-graba-mal-de-noche.html</loc>
+    <lastmod>2025-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/recuperar-cuenta-google.html</loc>
+    <lastmod>2025-06-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/estafas-whatsapp-mail.html</loc>
+    <lastmod>2025-06-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/compras-online-seguras.html</loc>
+    <lastmod>2025-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/videollamadas-se-cortan.html</loc>
+    <lastmod>2025-05-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/mails-que-no-llegan.html</loc>
+    <lastmod>2025-05-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/camaras-seguridad-guia.html</loc>
+    <lastmod>2025-05-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/conexion-zonas-sin-fibra.html</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/monitor-puesto-trabajo.html</loc>
+    <lastmod>2025-04-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/mantenimiento-notebook.html</loc>
+    <lastmod>2025-04-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/wifi-lento-ciertas-horas.html</loc>
+    <lastmod>2025-04-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/control-parental.html</loc>
+    <lastmod>2025-03-24</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/antivirus-pago-o-gratis.html</loc>
+    <lastmod>2025-03-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/doble-monitor.html</loc>
+    <lastmod>2025-03-07</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/ups-proteccion-energia.html</loc>
+    <lastmod>2025-02-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/que-hacer-corte-de-luz.html</loc>
+    <lastmod>2025-02-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/internet-se-corta.html</loc>
+    <lastmod>2025-02-10</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/programas-imprescindibles.html</loc>
+    <lastmod>2025-01-31</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/como-elegir-router.html</loc>
+    <lastmod>2025-01-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/windows-no-arranca.html</loc>
+    <lastmod>2025-01-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/pantalla-azul-errores.html</loc>
+    <lastmod>2025-01-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/nombres-archivos-carpetas.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/ransomware-que-hacer.html</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/teclado-mouse-perifericos.html</loc>
+    <lastmod>2024-12-09</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/wifi-invitados-seguridad.html</loc>
+    <lastmod>2024-12-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/sonido-no-funciona.html</loc>
+    <lastmod>2024-11-23</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/pc-lenta-causas.html</loc>
+    <lastmod>2024-11-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/celular-lento.html</loc>
+    <lastmod>2024-11-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/ampliar-memoria-ram.html</loc>
+    <lastmod>2024-10-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.soportecyclops.com.ar/blog/primeros-pasos-pc-nueva.html</loc>
+    <lastmod>2024-10-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://www.soportecyclops.com.ar/blog/ssd-vs-hdd-cuando-conviene.html</loc>
-    <lastmod>2026-03-24</lastmod>
+    <lastmod>2024-10-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/actualizaciones-windows.html</loc>
-    <lastmod>2026-03-22</lastmod>
+    <lastmod>2024-09-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/sobrecalentamiento-limpieza.html</loc>
-    <lastmod>2026-03-19</lastmod>
+    <lastmod>2024-09-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/atajos-teclado-utiles.html</loc>
-    <lastmod>2026-03-18</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/senales-disco-por-fallar.html</loc>
-    <lastmod>2026-03-17</lastmod>
+    <lastmod>2024-09-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/antes-de-llamar-al-tecnico.html</loc>
-    <lastmod>2026-03-15</lastmod>
+    <lastmod>2024-08-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/recuperar-archivos-borrados.html</loc>
-    <lastmod>2026-03-12</lastmod>
+    <lastmod>2024-08-13</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/wifi-no-llega.html</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2024-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.soportecyclops.com.ar/blog/mantenimiento-preventivo-pc.html</loc>
-    <lastmod>2026-03-03</lastmod>
+    <lastmod>2024-07-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
