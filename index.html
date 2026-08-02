@@ -164,37 +164,37 @@
                 <p>Si reconocés alguno de estos síntomas, podemos ayudarte hoy mismo.</p>
             </div>
             <div class="pain-chips reveal">
-                <div class="pain-chip critical">
+                <a class="pain-chip critical" href="blog/wifi-no-llega.html">
                     <span class="chip-icon">📶</span> WiFi que no llega a todos los ambientes
                     <span class="chip-label">Problema</span>
-                </div>
-                <div class="pain-chip critical">
+                </a>
+                <a class="pain-chip critical" href="blog/pc-lenta-causas.html">
                     <span class="chip-icon">🐢</span> PC lenta que frena el trabajo
                     <span class="chip-label">Problema</span>
-                </div>
-                <div class="pain-chip critical">
+                </a>
+                <a class="pain-chip critical" href="blog/ransomware-que-hacer.html">
                     <span class="chip-icon">🦠</span> Virus o ransomware que bloqueó todo
                     <span class="chip-label">Crítico</span>
-                </div>
-                <div class="pain-chip critical">
+                </a>
+                <a class="pain-chip critical" href="blog/camaras-acceso-remoto-seguro.html">
                     <span class="chip-icon">📷</span> Cámaras sin acceso remoto
                     <span class="chip-label">Problema</span>
-                </div>
-                <div class="pain-chip critical">
+                </a>
+                <a class="pain-chip critical" href="blog/videollamadas-se-cortan.html">
                     <span class="chip-icon">📡</span> Red inestable que corta las reuniones
                     <span class="chip-label">Problema</span>
-                </div>
-                <div class="pain-chip critical">
+                </a>
+                <a class="pain-chip critical" href="servicios.html">
                     <span class="chip-icon">🚨</span> Sin soporte cuando algo falla a las 9am
                     <span class="chip-label">Crítico</span>
-                </div>
-                <div class="pain-chip critical">
+                </a>
+                <a class="pain-chip critical" href="servicios.html">
                     <span class="chip-icon">🔀</span> Pagás 4 proveedores distintos para lo mismo
                     <span class="chip-label">Problema</span>
-                </div>
+                </a>
             </div>
             <div class="pain-cta reveal">
-                <p>Soporte Cyclops los resuelve todos. Un solo técnico. Un solo llamado.</p>
+                <p>Soporte Cyclops los resuelve todos. Un solo técnico. Un solo llamado.<br><span style="font-size:.86rem;font-weight:400;color:#475569">Tocá el que te pasa y te explicamos por qué ocurre y cómo se resuelve.</span></p>
             </div>
         </div>
     </section>
@@ -1135,5 +1135,19 @@
         }, 150);
     }
     </script>
+<div class="a11y"><button id="tgTxt" title="Agrandar el texto de la página">A+</button></div>
+<script>
+(function(){
+  var b=document.getElementById('tgTxt');
+  function aplicar(on){
+    document.documentElement.style.fontSize = on ? '117%' : '';
+    b.classList.toggle('on',on); b.textContent = on?'A-':'A+';
+    b.title = on?'Volver al tamaño normal':'Agrandar el texto de la página';
+    try{localStorage.setItem('cyclops_txt',on?'1':'0')}catch(e){}
+  }
+  b.addEventListener('click',function(){aplicar(document.documentElement.style.fontSize==='')});
+  try{if(localStorage.getItem('cyclops_txt')==='1')aplicar(true)}catch(e){}
+})();
+</script>
 </body>
 </html>

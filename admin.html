@@ -348,6 +348,20 @@
       .log-form-row { grid-template-columns: 1fr; }
       .field-row { grid-template-columns: 1fr; }
     }
+
+    /* ===== FIX: clases del modal que faltaban ===== */
+    .modal-box{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 50px rgba(15,23,42,.25);animation:modalIn .2s ease}
+    .modal-title{font-size:1rem;font-weight:700;color:var(--gray-900)}
+    .modal-close{background:none;border:none;font-size:1rem;color:var(--gray-500);cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+    .modal-close:hover{background:var(--gray-100);color:var(--gray-900)}
+    .modal-body{padding:22px 24px}
+    .modal-footer{padding:16px 24px;border-top:1px solid var(--gray-100);display:flex;gap:10px;justify-content:flex-end}
+    .form-group{margin-bottom:14px}
+    .form-label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:6px}
+    .rol-switch{display:flex;gap:10px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:13px 15px;margin-top:14px;cursor:pointer}
+    .rol-switch input{margin-top:3px;accent-color:var(--blue,#2563eb);flex-shrink:0}
+    .rol-switch b{display:block;font-size:.85rem;color:var(--gray-900);margin-bottom:2px}
+    .rol-switch span{font-size:.78rem;color:var(--gray-500);line-height:1.5}
   </style>
 </head>
 <body>
@@ -663,6 +677,11 @@
               <label class="form-label">Email (Gmail) *</label>
               <input type="email" id="usuarioEmail" class="filter-input" placeholder="usuario@gmail.com" style="width:100%">
             </div>
+            <label class="rol-switch" id="rolSwitch">
+              <input type="checkbox" id="usuarioEsAdmin">
+              <span><b>Dar acceso de administrador</b>
+              <span>Podrá ver y editar todos los diagnósticos, citas, clientes y el blog. Dáselo solo a gente de tu equipo.</span></span>
+            </label>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" onclick="closeModal('modalUsuario')">Cancelar</button>

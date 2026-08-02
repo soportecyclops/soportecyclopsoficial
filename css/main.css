@@ -1926,3 +1926,16 @@ img[loading="lazy"] { background: var(--gray-100); }
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
 }
+
+
+/* ===== Chips de problemas: llevan al artículo que lo explica ===== */
+a.pain-chip{text-decoration:none;cursor:pointer;transition:transform .18s,box-shadow .18s}
+a.pain-chip:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(220,38,38,.15)}
+a.pain-chip::after{content:'\203A';margin-left:9px;opacity:0;transition:opacity .18s,margin .18s;font-weight:700}
+a.pain-chip:hover::after{opacity:.7;margin-left:13px}
+
+/* ===== Botón de texto más grande (accesibilidad) ===== */
+.a11y{position:fixed;left:18px;bottom:18px;z-index:900}
+.a11y button{width:48px;height:48px;border-radius:50%;border:1.5px solid #e2e8f0;background:#fff;color:#1a3a5c;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 3px 14px rgba(15,23,42,.16);transition:all .18s}
+.a11y button:hover{border-color:#2563eb;color:#2563eb;transform:scale(1.06)}
+.a11y button.on{background:#2563eb;border-color:#2563eb;color:#fff}
