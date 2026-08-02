@@ -362,6 +362,26 @@
     .rol-switch input{margin-top:3px;accent-color:var(--blue,#2563eb);flex-shrink:0}
     .rol-switch b{display:block;font-size:.85rem;color:var(--gray-900);margin-bottom:2px}
     .rol-switch span{font-size:.78rem;color:var(--gray-500);line-height:1.5}
+
+    /* ===== Vista semanal de citas ===== */
+    .sem-wrap{background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:16px 18px}
+    .sem-top{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+    .sem-rango{font-weight:700;color:var(--gray-900);font-size:.9rem;margin-left:6px}
+    .sem-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+    @media(max-width:900px){.sem-grid{grid-template-columns:repeat(2,1fr)}}
+    .sem-dia{border:1px solid var(--gray-200);border-radius:10px;min-height:104px;padding:9px;background:var(--gray-50)}
+    .sem-dia.hoy{border-color:#2563eb;background:#eff6ff;box-shadow:0 0 0 2px rgba(37,99,235,.12)}
+    .sem-dia .d{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:2px}
+    .sem-dia .n{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;color:var(--gray-900);line-height:1;margin-bottom:8px}
+    .sem-dia.hoy .n{color:#2563eb}
+    .sem-cita{background:#fff;border-left:3px solid #2563eb;border-radius:6px;padding:6px 8px;margin-bottom:5px;font-size:.74rem;line-height:1.35;cursor:pointer}
+    .sem-cita:hover{background:#eff6ff}
+    .sem-cita b{display:block;color:var(--gray-900);font-size:.78rem}
+    .sem-cita span{color:var(--gray-500)}
+    .sem-cita.pendiente{border-left-color:#d97706}
+    .sem-cita.confirmada{border-left-color:#16a34a}
+    .sem-cita.cancelada{border-left-color:#94a3b8;opacity:.6}
+    .sem-vacio{font-size:.72rem;color:#cbd5e1;text-align:center;padding-top:12px}
   </style>
 </head>
 <body>
@@ -421,6 +441,9 @@
       </button>
       <button class="sb-item" onclick="window.location.href='admin-blog.html'">
         <i class="fas fa-newspaper"></i> <span>Blog</span>
+      </button>
+      <button class="sb-item" onclick="window.location.href='admin-portal.html'">
+        <i class="fas fa-circle-question"></i> <span>Preguntas</span>
       </button>
 
       <div class="sb-section-label">Accesos</div>
@@ -490,9 +513,16 @@
           </div>
         </div>
 
-        <!-- Calendar embed -->
-        <div class="cal-wrap" style="margin-bottom:20px">
-          <iframe id="calendarIframe" src="about:blank" title="Google Calendar"></iframe>
+        <!-- Vista semanal (desde la planilla, sin depender de permisos de Google) -->
+        <div class="sem-wrap" style="margin-bottom:20px">
+          <div class="sem-top">
+            <button class="btn btn-secondary btn-sm" onclick="semMover(-7)"><i class="fas fa-chevron-left"></i></button>
+            <button class="btn btn-secondary btn-sm" onclick="semMover(0)">Esta semana</button>
+            <button class="btn btn-secondary btn-sm" onclick="semMover(7)"><i class="fas fa-chevron-right"></i></button>
+            <span class="sem-rango" id="semRango">—</span>
+            <a class="btn btn-secondary btn-sm" href="https://calendar.google.com/" target="_blank" style="margin-left:auto"><i class="fab fa-google"></i> Abrir Calendar</a>
+          </div>
+          <div class="sem-grid" id="semGrid"></div>
         </div>
 
         <!-- Citas table -->
@@ -558,8 +588,11 @@
           <div class="sec-title">Gestión de Clientes</div>
         </div>
         <div style="display:flex;gap:10px;margin-bottom:20px">
-          <input type="text" class="filter-input search" placeholder="🔍 Buscar por email o nombre..." id="clienteSearch" style="flex:1">
-          <button class="btn btn-primary" onclick="buscarCliente()"><i class="fas fa-search"></i> Buscar</button>
+          <input type="text" class="filter-input search" placeholder="🔍 Filtrar por email o nombre..." id="clienteSearch" style="flex:1" oninput="pintarClientes()">
+          <button class="btn btn-secondary" onclick="loadClientes()"><i class="fas fa-rotate"></i> Actualizar</button>
+        </div>
+        <div class="card" style="margin-bottom:18px">
+          <div id="listaClientes"><div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando clientes...</div></div>
         </div>
         <div class="cliente-detail" id="clienteDetail">
           <div class="cliente-meta">
@@ -981,7 +1014,6 @@ function initApp() {
   document.getElementById('sbUserName').textContent = adminUser.name.split(' ')[0];
 
   // Cargar Calendar embed
-  document.getElementById('calendarIframe').src = CONFIG.CALENDAR_EMBED_URL;
 
   // Cargar datos
   loadDashboard();
@@ -1015,9 +1047,10 @@ function showSection(id, btn) {
   document.getElementById('topbarTitle').textContent = SECTION_TITLES[id] || id;
 
   if (id === 'diagnosticos' && allDiags.length === 0) loadDiagnosticos();
-  if (id === 'agenda'       && allCitas.length === 0) loadCitas();
+  if (id === 'agenda') { if (allCitas.length === 0) loadCitas(); else pintarSemana(); }
   if (id === 'llamados'     && allLlamados.length === 0) loadLlamados();
   if (id === 'usuarios') loadUsuarios();
+  if (id === 'clientes') loadClientes();
 }
 
 function refreshCurrentSection() {
@@ -1050,7 +1083,33 @@ async function apiPost(data) {
 // ══════════════════════════════════════════════════════════
 // DASHBOARD
 // ══════════════════════════════════════════════════════════
+
+// ══════════════════════════════════════════════════════════
+// PREGUNTAS DEL BLOG (portal)
+// ══════════════════════════════════════════════════════════
+const PORTAL_API = 'https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec';
+
+async function contarPreguntas() {
+  const el = document.getElementById('kpiPreguntas');
+  if (!el) return;
+  let cred = null;
+  try { cred = (JSON.parse(sessionStorage.getItem('cyclops_user')) || {}).credential; } catch(e) {}
+  if (!cred) { el.textContent = '—'; return; }
+  try {
+    const r = await fetch(PORTAL_API + '?p_action=admin_pendientes&credential=' + encodeURIComponent(cred));
+    const d = await r.json();
+    if (!d.ok) { el.textContent = '—'; return; }
+    const pend = (d.preguntas || []).filter(p => p.estado === 'pendiente').length;
+    el.textContent = pend;
+    el.style.color = pend > 0 ? '#d97706' : '';
+    // badge en el sidebar
+    const sb = document.querySelector('[data-section="blog"] .sb-badge, [data-section="blog"] .badge');
+    if (sb && pend > 0) sb.textContent = pend;
+  } catch(e) { el.textContent = '—'; }
+}
+
 async function loadDashboard() {
+  contarPreguntas();
   document.getElementById('kpiGrid').innerHTML = '<div class="loading-spinner" style="grid-column:1/-1"><i class="fas fa-spinner"></i> Cargando datos...</div>';
   try {
     const [dResp, cResp] = await Promise.all([
@@ -1102,6 +1161,14 @@ function kpiCard(label, value, color, icon, sub) {
     <div class="kpi-top">
       <span class="kpi-label">${label}</span>
       <div class="kpi-icon ${color}"><i class="fas ${icon}"></i></div>
+          <div class="kpi-card" style="cursor:pointer" onclick="window.open('admin-portal.html','_blank')">
+            <div class="kpi-head">
+              <span class="kpi-label">PREGUNTAS<br>SIN RESPONDER</span>
+              <span class="kpi-icon" style="background:#fef3c7;color:#d97706"><i class="fas fa-circle-question"></i></span>
+            </div>
+            <div class="kpi-value" id="kpiPreguntas">—</div>
+            <div class="kpi-sub">Del blog · tocá para responder</div>
+          </div>
     </div>
     <div class="kpi-value">${value}</div>
     <div class="kpi-sub">${sub}</div>
@@ -1411,6 +1478,7 @@ async function loadCitas() {
     const resp = await apiGet('admin_todas_citas');
     allCitas = resp.citas || [];
     renderCitasTable(allCitas);
+    pintarSemana();
     updateBadges();
   } catch(e) {
     document.getElementById('citasTableBody').innerHTML = '<div class="table-empty"><i class="fas fa-exclamation-triangle"></i>Error al cargar</div>';
@@ -1772,6 +1840,9 @@ function abrirModalUsuario(tipo) {
   document.getElementById('usuarioNombre').value = '';
   document.getElementById('usuarioEmail').value = '';
   document.getElementById('modalUsuarioTitle').textContent = tipo === 'admin' ? 'Nuevo Administrador' : 'Nuevo Cliente';
+  const chk = document.getElementById('usuarioEsAdmin');
+  chk.checked = (tipo === 'admin'); chk.dataset.antes = '0';
+  document.getElementById('rolSwitch').style.display = (tipo === 'admin') ? 'none' : 'flex';
   openModal('modalUsuario');
 }
 
@@ -1787,7 +1858,144 @@ function editarUsuario(rowIndex, tipo) {
   const usuario = lista.find(u => String(u.rowIndex) === String(rowIndex));
   document.getElementById('usuarioNombre').value = usuario ? (usuario.nombre || '') : '';
   document.getElementById('usuarioEmail').value  = usuario ? (usuario.email  || '') : '';
+  // ¿este email ya es administrador?
+  const mail = (usuario && usuario.email || '').toLowerCase().trim();
+  const yaAdmin = (_usuariosCache.admin || []).some(a => String(a.email).toLowerCase().trim() === mail);
+  const chk = document.getElementById('usuarioEsAdmin');
+  chk.checked = (tipo === 'admin') || yaAdmin;
+  chk.dataset.antes = chk.checked ? '1' : '0';
+  document.getElementById('rolSwitch').style.display = (tipo === 'admin') ? 'none' : 'flex';
   openModal('modalUsuario');
+}
+
+
+
+// ══════════════════════════════════════════════════════════
+// VISTA SEMANAL DE CITAS (desde la planilla)
+// ══════════════════════════════════════════════════════════
+let _semOffset = 0;
+const DIAS_COR = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+
+function semMover(d) {
+  _semOffset = (d === 0) ? 0 : _semOffset + d;
+  pintarSemana();
+}
+
+function parseFechaCita(f) {
+  const p = String(f || '').trim().split('/');
+  if (p.length !== 3) return null;
+  return new Date(+p[2], +p[1] - 1, +p[0]);
+}
+
+function pintarSemana() {
+  const grid = document.getElementById('semGrid');
+  if (!grid) return;
+  const hoy = new Date(); hoy.setHours(0,0,0,0);
+  const ini = new Date(hoy);
+  ini.setDate(hoy.getDate() - hoy.getDay() + _semOffset);
+
+  const fin = new Date(ini); fin.setDate(ini.getDate() + 6);
+  const fmt = d => d.getDate() + '/' + (d.getMonth() + 1);
+  document.getElementById('semRango').textContent = fmt(ini) + ' al ' + fmt(fin) + ' de ' + fin.getFullYear();
+
+  let html = '';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(ini); d.setDate(ini.getDate() + i);
+    const esHoy = d.getTime() === hoy.getTime();
+    const delDia = (allCitas || []).filter(c => {
+      const fc = parseFechaCita(c.fecha);
+      return fc && fc.getTime() === d.getTime();
+    }).sort((a,b) => String(a.hora).localeCompare(String(b.hora)));
+
+    html += `<div class="sem-dia ${esHoy ? 'hoy' : ''}">
+      <div class="d">${DIAS_COR[d.getDay()]}</div><div class="n">${d.getDate()}</div>` +
+      (delDia.length
+        ? delDia.map(c => `<div class="sem-cita ${(c.estado||'pendiente').toLowerCase()}" onclick="editarCita(${c.rowIndex})" title="${esc(c.servicio||'')}">
+            <b>${esc(c.hora || '')} · ${esc((c.nombre || c.email || '').split(' ')[0])}</b>
+            <span>${esc((c.servicio || '').substring(0, 22))}</span></div>`).join('')
+        : '<div class="sem-vacio">—</div>') +
+      '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// CLIENTES — listado completo
+// ══════════════════════════════════════════════════════════
+let _clientes = [];
+
+async function loadClientes() {
+  const cont = document.getElementById('listaClientes');
+  cont.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando clientes...</div>';
+  try {
+    if (!allDiags.length) await loadDiagnosticos();
+    // Agrupar por email a partir de los diagnósticos
+    const mapa = {};
+    allDiags.forEach(d => {
+      const mail = String(d.email || '').toLowerCase().trim();
+      if (!mail) return;
+      if (!mapa[mail]) mapa[mail] = { email: mail, nombre: d.nombre || '', diags: 0, ultimo: '', ultimoNum: '' };
+      mapa[mail].diags++;
+      if (!mapa[mail].nombre && d.nombre) mapa[mail].nombre = d.nombre;
+      if (!mapa[mail].ultimo) { mapa[mail].ultimo = d.fecha || ''; mapa[mail].ultimoNum = d.diagNum || ''; }
+    });
+    // Sumar los autorizados que aún no tienen diagnósticos
+    (_usuariosCache.cliente || []).forEach(u => {
+      const mail = String(u.email || '').toLowerCase().trim();
+      if (mail && !mapa[mail]) mapa[mail] = { email: mail, nombre: u.nombre || '', diags: 0, ultimo: '', ultimoNum: '' };
+    });
+    _clientes = Object.values(mapa).sort((a, b) => b.diags - a.diags);
+    pintarClientes();
+  } catch (e) {
+    cont.innerHTML = '<div class="empty-state"><p>No se pudieron cargar los clientes. Probá con Actualizar.</p></div>';
+  }
+}
+
+function pintarClientes() {
+  const q = (document.getElementById('clienteSearch').value || '').toLowerCase().trim();
+  const lista = q ? _clientes.filter(c => (c.email + ' ' + c.nombre).toLowerCase().includes(q)) : _clientes;
+  const cont = document.getElementById('listaClientes');
+  if (!lista.length) {
+    cont.innerHTML = '<div class="empty-state" style="padding:34px;text-align:center;color:var(--gray-500)">' +
+      (q ? 'Ningún cliente coincide con "' + esc(q) + '".' : 'Todavía no hay clientes registrados.') + '</div>';
+    return;
+  }
+  cont.innerHTML = `<table class="data-table"><thead><tr>
+      <th>Cliente</th><th>Email</th><th style="text-align:center">Diagnósticos</th><th>Último</th><th style="text-align:right">Acciones</th>
+    </tr></thead><tbody>` +
+    lista.map(c => `<tr>
+      <td><strong>${esc(c.nombre || '—')}</strong></td>
+      <td>${esc(c.email)}</td>
+      <td style="text-align:center"><span class="badge">${c.diags}</span></td>
+      <td style="white-space:nowrap;font-size:.82rem;color:var(--gray-500)">${esc(c.ultimo || '—')}</td>
+      <td style="text-align:right;white-space:nowrap">
+        <button class="btn btn-secondary btn-sm" onclick="verCliente('${esc(c.email)}')" title="Ver historial"><i class="fas fa-eye"></i></button>
+        <button class="btn btn-secondary btn-sm" onclick="waCliente('${esc(c.email)}')" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
+      </td></tr>`).join('') + '</tbody></table>';
+  document.getElementById('listaClientes').dataset.n = lista.length;
+}
+
+function verCliente(email) {
+  const d = allDiags.filter(x => String(x.email).toLowerCase().trim() === email);
+  const c = _clientes.find(x => x.email === email) || { nombre: '', email: email };
+  document.getElementById('clienteDetail').classList.add('visible');
+  document.getElementById('clienteAvatar').textContent = (c.nombre || email).charAt(0).toUpperCase();
+  document.getElementById('clienteNombre').textContent = c.nombre || '—';
+  document.getElementById('clienteEmail').textContent  = email;
+  document.getElementById('clienteHistorial').innerHTML = d.length
+    ? `<table class="data-table"><thead><tr><th>N°</th><th>Fecha</th><th>Equipo / síntoma</th><th>Estado</th></tr></thead><tbody>` +
+      d.map(x => `<tr><td><a href="#" onclick="verDiag('${esc(x.diagNum)}');return false">${esc(x.diagNum)}</a></td>
+        <td style="white-space:nowrap">${esc(x.fecha || '')}</td>
+        <td>${esc((x.sintoma || x.resumen || '').substring(0, 60))}</td>
+        <td><span class="badge badge-${(x.estado||'nuevo').toLowerCase().replace(/ /g,'-')}">${esc(x.estado || 'nuevo')}</span></td></tr>`).join('') +
+      '</tbody></table>'
+    : '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">Este cliente todavía no tiene diagnósticos registrados.</p>';
+  document.getElementById('clienteDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function waCliente(email) {
+  const c = _clientes.find(x => x.email === email);
+  window.open('https://wa.me/?text=' + encodeURIComponent('Hola ' + ((c && c.nombre) || '') + ', te escribo de Soporte Cyclops.'), '_blank');
 }
 
 async function guardarUsuario() {
@@ -1802,6 +2010,23 @@ async function guardarUsuario() {
     const action = rowIndex !== '' ? 'editar_usuario' : 'nuevo_usuario';
     const resp = await apiPost({ action, tipo, rowIndex, nombre, email });
     if (resp.ok) {
+      // Alta / baja del rol de administrador
+      if (tipo === 'cliente') {
+        const chk    = document.getElementById('usuarioEsAdmin');
+        const quiere = chk.checked;
+        const antes  = chk.dataset.antes === '1';
+        if (quiere && !antes) {
+          await apiPost({ action: 'nuevo_usuario', tipo: 'admin', nombre, email });
+          showToast(nombre + ' ahora es administrador ✓', 'success');
+        } else if (!quiere && antes) {
+          const fila = (_usuariosCache.admin || []).find(a =>
+            String(a.email).toLowerCase().trim() === email.toLowerCase().trim());
+          if (fila) {
+            await apiPost({ action: 'eliminar_usuario', tipo: 'admin', rowIndex: fila.rowIndex });
+            showToast('Se quitó el acceso de administrador', 'info');
+          }
+        }
+      }
       showToast('Usuario guardado ✓', 'success');
       await loadUsuarios();
     } else {
