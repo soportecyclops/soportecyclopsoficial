@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de disco para cámaras de seguridad | Soporte Cyclops</title>
+<link rel="icon" href="../public/images/logo-icon.png" type="image/png">
+<meta name="description" content="Calculá cuántos TB de disco necesita tu sistema de cámaras según cantidad, resolución y días de grabación. Gratis, sin registro, con resultado al instante.">
+<meta property="og:title" content="Calculadora de disco para cámaras de seguridad">
+<meta property="og:description" content="Cuántos TB necesitás según cantidad de cámaras, resolución y días de historial. Cálculo instantáneo y gratuito.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.soportecyclops.com.ar/herramientas/almacenamiento-camaras.html">
+<meta property="og:image" content="https://www.soportecyclops.com.ar/public/images/og-preview.jpg">
+<link rel="canonical" href="https://www.soportecyclops.com.ar/herramientas/almacenamiento-camaras.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de almacenamiento para cámaras de seguridad","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"ARS"},"description":"Calcula el disco necesario para un sistema de videovigilancia según cantidad de cámaras, resolución, compresión y días de grabación.","publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="base.css">
+</head>
+<body>
+
+<nav class="topnav"><div class="in">
+  <a href="../index.html" class="brand"><img src="../public/images/logo-icon.png" alt="">Soporte<span style="color:#2563eb">Cyclops</span></a>
+  <div class="lk">
+    <a href="../servicios.html">Servicios</a>
+    <a href="index.html" class="on">Herramientas</a>
+    <a href="../blog/">Blog</a>
+    <a href="../index.html#contacto" class="cta">Contacto</a>
+  </div>
+</div></nav>
+
+<div class="hero"><div class="in">
+  <span class="tagline">Herramienta gratuita</span>
+  <h1>¿Cuánto disco necesita tu sistema de cámaras?</h1>
+  <p>Calculá los TB reales según cantidad de cámaras, resolución y días de historial. Es la cuenta que casi nadie hace antes de comprar, y la razón por la que muchos sistemas terminan guardando solo 3 días.</p>
+</div></div>
+
+<div class="wrap">
+<div class="print-head">
+  <h1>Cálculo de almacenamiento — Sistema de videovigilancia</h1>
+  <p>Soporte Cyclops · soportecyclops.com.ar · +54 9 11 6680-4450</p>
+</div>
+<div class="grid">
+
+  <div>
+    <div class="card">
+      <h2><i class="fas fa-video"></i> Tu sistema</h2>
+      <p class="sub">Ajustá los valores y el resultado se actualiza solo.</p>
+
+      <div class="row2">
+        <div class="f">
+          <label>Cantidad de cámaras</label>
+          <input type="number" id="cams" value="4" min="1" max="64">
+        </div>
+        <div class="f">
+          <label>Días de historial</label>
+          <input type="number" id="dias" value="15" min="1" max="365">
+          <div class="hint">Recomendado: 15 a 30 días.</div>
+        </div>
+      </div>
+
+      <div class="f">
+        <label>Resolución de las cámaras</label>
+        <select id="res">
+          <option value="2">2MP / 1080p — vigilancia general</option>
+          <option value="4" selected>4MP — el punto dulce hogar y pyme</option>
+          <option value="5">5MP — detalle alto</option>
+          <option value="8">8MP / 4K — accesos, cajas, patentes</option>
+        </select>
+      </div>
+
+      <div class="f">
+        <label>Compresión del grabador</label>
+        <select id="codec">
+          <option value="1">H.264 — equipos más antiguos</option>
+          <option value="0.55" selected>H.265 / H.265+ — equipos actuales</option>
+        </select>
+        <div class="hint">H.265 ocupa casi la mitad que H.264 con la misma calidad. Si no sabés cuál tenés, dejá H.265: es lo habitual desde 2019.</div>
+      </div>
+
+      <div class="f">
+        <label>Cuadros por segundo (FPS)</label>
+        <select id="fps">
+          <option value="0.6">12 fps — suficiente para vigilancia</option>
+          <option value="1" selected>15-20 fps — estándar</option>
+          <option value="1.5">25-30 fps — fluido, más consumo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><i class="fas fa-clock"></i> Modo de grabación</h2>
+      <p class="sub">Es lo que más cambia el resultado final.</p>
+      <div class="opts" id="modo">
+        <label class="opt sel"><input type="radio" name="m" value="1" checked>
+          <span><span class="t">Continua 24/7</span><span class="d">Graba siempre. Nunca perdés contexto, pero es lo que más disco consume.</span></span></label>
+        <label class="opt"><input type="radio" name="m" value="0.4">
+          <span><span class="t">Solo por detección de movimiento</span><span class="d">Multiplica el historial, pero podés perder lo que pasó entre eventos.</span></span></label>
+        <label class="opt"><input type="radio" name="m" value="0.68">
+          <span><span class="t">Mixto (lo que recomendamos)</span><span class="d">Continua en horario de actividad, movimiento el resto. Equilibrio entre historial y contexto.</span></span></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="res">
+    <div class="res-box">
+      <div class="lbl">Disco necesario</div>
+      <div class="big" id="tb">—</div>
+      <div class="sm" id="reco">Ajustá los valores para ver el resultado.</div>
+    </div>
+
+    <div class="detail">
+      <h3>El desglose</h3>
+      <dl>
+        <div class="dl"><dt>Por cámara, por día</dt><dd id="d1">—</dd></div>
+        <div class="dl"><dt>Todo el sistema, por día</dt><dd id="d2">—</dd></div>
+        <div class="dl"><dt>Total para el historial</dt><dd id="d3">—</dd></div>
+        <div class="dl"><dt>Disco comercial sugerido</dt><dd id="d4">—</dd></div>
+      </dl>
+    </div>
+
+    <div id="avisos"></div>
+
+    <div class="no-print">
+      <a class="btn btn-wa" id="wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por este sistema</a>
+      <button class="btn btn-gh" onclick="window.print()"><i class="fas fa-file-pdf"></i> Guardar o imprimir el cálculo</button>
+    </div>
+
+    <p class="disc">El cálculo es una estimación orientativa. El consumo real varía según la escena (una cámara que mira un portón con mucho movimiento consume más que una que mira un pasillo vacío), la marca del equipo y su configuración. Recomendamos dimensionar con un 20% de margen, ya contemplado en el disco sugerido.</p>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <p><a href="../index.html">soportecyclops.com.ar</a> · Instalación y configuración de cámaras en CABA y GBA · <a href="https://wa.me/5491166804450">+54 9 11 6680-4450</a></p>
+</footer>
+
+<script>
+// Bitrate base en Mbps por resolución, con H.264 a 15-20fps y calidad media-alta
+var BITRATE = { 2: 3.0, 4: 5.5, 5: 6.5, 8: 10.5 };
+var COMERCIALES = [1, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 32];
+
+function $(id) { return document.getElementById(id); }
+
+function calcular() {
+  var cams  = Math.max(1, parseInt($('cams').value) || 1);
+  var dias  = Math.max(1, parseInt($('dias').value) || 1);
+  var res   = $('res').value;
+  var codec = parseFloat($('codec').value);
+  var fps   = parseFloat($('fps').value);
+  var modo  = parseFloat(document.querySelector('input[name=m]:checked').value);
+
+  var mbps    = BITRATE[res] * codec * fps * modo;
+  var gbDia   = mbps * 86400 / 8 / 1024;      // Mb/s -> GB/día
+  var gbTotal = gbDia * cams * dias;
+  var tbTotal = gbTotal / 1024;
+
+  // Disco comercial con 20% de margen
+  var conMargen = tbTotal * 1.2;
+  var disco = COMERCIALES.find(function (t) { return t >= conMargen; }) || Math.ceil(conMargen);
+
+  $('tb').textContent = (tbTotal < 1 ? Math.round(gbTotal) + ' GB' : tbTotal.toFixed(1) + ' TB');
+  $('d1').textContent = gbDia.toFixed(1) + ' GB';
+  $('d2').textContent = (gbDia * cams).toFixed(1) + ' GB';
+  $('d3').textContent = (tbTotal < 1 ? Math.round(gbTotal) + ' GB' : tbTotal.toFixed(1) + ' TB');
+  $('d4').textContent = disco + ' TB';
+
+  $('reco').innerHTML = 'Con <b>' + disco + ' TB</b> cubrís los ' + dias +
+    ' días con margen. Con menos, el sistema empieza a sobrescribir antes.';
+
+  // Avisos según el caso
+  var av = [];
+  if (dias < 10) av.push(['n-warn', 'Historial corto',
+    'Con ' + dias + ' días, si volvés de un fin de semana largo y algo pasó antes, ya se sobrescribió. Para la mayoría de los casos conviene apuntar a 15 o 30 días.']);
+  if (modo === 0.4) av.push(['n-warn', 'Ojo con la grabación por movimiento',
+    'Multiplica el historial, pero si la detección falla o el intruso queda fuera de la zona configurada, no queda registro. En accesos críticos conviene continua.']);
+  if (codec === 1) av.push(['n-info', 'Tu grabador podría ahorrar la mitad',
+    'Con H.265 el mismo sistema necesitaría alrededor de ' + (disco * 0.55).toFixed(1) + ' TB. Si el equipo lo soporta y no está activado, vale la pena revisarlo.']);
+  if (disco >= 12) av.push(['n-info', 'Volumen alto',
+    'Con este tamaño conviene evaluar varios discos en el grabador en lugar de uno solo: mejora el rendimiento y tolera la falla de una unidad.']);
+  av.push(['n-bad', 'Usá discos para videovigilancia',
+    'Los discos comunes de PC no están diseñados para escribir 24 horas al día y fallan mucho antes. Para grabadores hay que usar discos específicos de vigilancia (las series "purple" o equivalentes).']);
+
+  $('avisos').innerHTML = av.map(function (a) {
+    return '<div class="note ' + a[0] + '"><b>' + a[1] + '</b>' + a[2] + '</div>';
+  }).join('');
+
+  // WhatsApp con el contexto cargado
+  var txt = 'Hola! Usé la calculadora de disco del sitio. Mi sistema: ' + cams + ' cámaras de ' + res +
+            'MP, ' + dias + ' días de historial, grabación ' +
+            (modo === 1 ? 'continua' : modo === 0.4 ? 'por movimiento' : 'mixta') +
+            '. Me da ' + disco + ' TB. Quiero consultar por la instalación.';
+  $('wa').href = 'https://wa.me/5491166804450?text=' + encodeURIComponent(txt);
+}
+
+// Eventos
+['cams','dias','res','codec','fps'].forEach(function (id) {
+  $(id).addEventListener('input', calcular);
+  $(id).addEventListener('change', calcular);
+});
+document.querySelectorAll('input[name=m]').forEach(function (r) {
+  r.addEventListener('change', function () {
+    document.querySelectorAll('#modo .opt').forEach(function (o) { o.classList.remove('sel'); });
+    r.closest('.opt').classList.add('sel');
+    calcular();
+  });
+});
+calcular();
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Reparar o comprar una computadora nueva? Calculadora | Soporte Cyclops</title>
+<link rel="icon" href="../public/images/logo-icon.png" type="image/png">
+<meta name="description" content="Respondé 6 preguntas sobre tu PC o notebook y te decimos si conviene repararla o reemplazarla, con el razonamiento a la vista. Gratis y sin registro.">
+<meta property="og:title" content="¿Reparar o comprar? Calculadora para tu computadora">
+<meta property="og:description" content="Seis preguntas y una recomendación clara: invertir en el equipo que tenés o reemplazarlo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.soportecyclops.com.ar/herramientas/reparar-o-comprar.html">
+<meta property="og:image" content="https://www.soportecyclops.com.ar/public/images/og-preview.jpg">
+<link rel="canonical" href="https://www.soportecyclops.com.ar/herramientas/reparar-o-comprar.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"¿Reparar o comprar? Calculadora de decisión","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"ARS"},"description":"Evalúa si conviene reparar o reemplazar una computadora según antigüedad, componentes, costo de reparación y soporte del sistema operativo.","publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="base.css">
+<style>
+.bar{height:9px;background:var(--g100);border-radius:6px;overflow:hidden;margin:14px 0 6px}
+.bar i{display:block;height:100%;border-radius:6px;transition:width .4s}
+.verdict{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:800;line-height:1.2;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<nav class="topnav"><div class="in">
+  <a href="../index.html" class="brand"><img src="../public/images/logo-icon.png" alt="">Soporte<span style="color:#2563eb">Cyclops</span></a>
+  <div class="lk">
+    <a href="../servicios.html">Servicios</a>
+    <a href="index.html" class="on">Herramientas</a>
+    <a href="../blog/">Blog</a>
+    <a href="../index.html#contacto" class="cta">Contacto</a>
+  </div>
+</div></nav>
+
+<div class="hero"><div class="in">
+  <span class="tagline">Herramienta gratuita</span>
+  <h1>¿Le meto plata o compro una nueva?</h1>
+  <p>Seis preguntas y una recomendación con el razonamiento a la vista. No vendemos equipos: si conviene reparar la tuya, te lo decimos igual.</p>
+</div></div>
+
+<div class="wrap">
+<div class="print-head">
+  <h1>Evaluación: reparar o reemplazar</h1>
+  <p>Soporte Cyclops · soportecyclops.com.ar · +54 9 11 6680-4450</p>
+</div>
+<div class="grid">
+
+  <div>
+    <div class="card">
+      <h2><i class="fas fa-laptop"></i> Sobre tu equipo</h2>
+      <p class="sub">El resultado se actualiza a medida que respondés.</p>
+
+      <div class="row2">
+        <div class="f">
+          <label>Antigüedad aproximada</label>
+          <select id="edad">
+            <option value="1">Menos de 3 años</option>
+            <option value="2" selected>3 a 5 años</option>
+            <option value="3">6 a 8 años</option>
+            <option value="4">Más de 8 años</option>
+          </select>
+        </div>
+        <div class="f">
+          <label>Tipo</label>
+          <select id="tipo">
+            <option value="pc">PC de escritorio</option>
+            <option value="nb" selected>Notebook</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="f">
+        <label>¿Qué disco tiene?</label>
+        <select id="disco">
+          <option value="hdd">Disco mecánico (arranca lento, hace ruido leve)</option>
+          <option value="ssd" selected>SSD (arranca en segundos)</option>
+          <option value="ns">No sé</option>
+        </select>
+      </div>
+
+      <div class="f">
+        <label>Memoria RAM</label>
+        <select id="ram">
+          <option value="4">4 GB</option>
+          <option value="8" selected>8 GB</option>
+          <option value="16">16 GB o más</option>
+          <option value="0">No sé</option>
+        </select>
+      </div>
+
+      <div class="f">
+        <label>¿Cuál es el problema principal?</label>
+        <select id="falla">
+          <option value="lento" selected>Anda lento, pero funciona</option>
+          <option value="bateria">Batería o cargador</option>
+          <option value="disco">Fallas de disco (se cuelga, errores, ruidos)</option>
+          <option value="pantalla">Pantalla dañada</option>
+          <option value="noprende">No prende o se apaga solo</option>
+          <option value="soft">Problemas de sistema operativo o virus</option>
+        </select>
+      </div>
+
+      <div class="f">
+        <label>¿Soporta Windows 11? <span style="font-weight:400;text-transform:none;letter-spacing:0">(o el sistema actual de tu equipo)</span></label>
+        <select id="so">
+          <option value="si" selected>Sí, o ya lo tiene instalado</option>
+          <option value="no">No, se quedó en una versión sin soporte</option>
+          <option value="ns">No sé</option>
+        </select>
+        <div class="hint">Un equipo sin actualizaciones de seguridad es el motivo más sólido para reemplazar, más allá de la velocidad.</div>
+      </div>
+
+      <div class="f">
+        <label>¿Ya lo reparaste en el último año?</label>
+        <select id="prev">
+          <option value="no" selected>No</option>
+          <option value="si">Sí, una o más veces</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="res">
+    <div class="res-box">
+      <div class="lbl">Recomendación</div>
+      <div class="verdict" id="verd">—</div>
+      <div class="bar"><i id="barra" style="width:0"></i></div>
+      <div class="sm" id="expl">Completá los datos para ver el resultado.</div>
+    </div>
+
+    <div class="detail">
+      <h3>Valores de referencia</h3>
+      <dl>
+        <div class="dl"><dt>Sesión de soporte remoto</dt><dd class="ars" data-usd="10">—</dd></div>
+        <div class="dl"><dt>Visita técnica a domicilio</dt><dd class="ars" data-usd="20">—</dd></div>
+        <div class="dl"><dt>Umbral de la regla del 50%</dt><dd id="umbral">—</dd></div>
+      </dl>
+      <p style="font-size:.76rem;color:var(--g500);margin-top:11px;line-height:1.55">Valores base en dólar oficial, actualizados automáticamente. El presupuesto exacto se acuerda antes de empezar cualquier trabajo.</p>
+    </div>
+
+    <div id="notas"></div>
+
+    <div class="no-print">
+      <a class="btn btn-wa" id="wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por mi caso</a>
+      <button class="btn btn-gh" onclick="window.print()"><i class="fas fa-file-pdf"></i> Guardar o imprimir</button>
+    </div>
+
+    <p class="disc">Esta evaluación es orientativa y se basa en los datos que cargaste. El diagnóstico definitivo requiere revisar el equipo: puede haber fallas que no se detectan desde afuera, y también soluciones más simples de lo esperado.</p>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <p><a href="../index.html">soportecyclops.com.ar</a> · Diagnóstico y reparación en CABA y GBA, sin que traslades tu equipo · <a href="https://wa.me/5491166804450">+54 9 11 6680-4450</a></p>
+</footer>
+
+<script>
+function $(id) { return document.getElementById(id); }
+var DOLAR = 1520; // fallback
+
+function evaluar() {
+  var edad  = parseInt($('edad').value);
+  var tipo  = $('tipo').value;
+  var disco = $('disco').value;
+  var ram   = parseInt($('ram').value);
+  var falla = $('falla').value;
+  var so    = $('so').value;
+  var prev  = $('prev').value;
+
+  // score: 0 = reparar sin dudas, 100 = reemplazar sin dudas
+  var s = 0;
+  var razones = [];
+
+  s += (edad - 1) * 14;                                    // 0, 14, 28, 42
+  if (edad >= 4) razones.push(['bad', 'Antigüedad', 'Con más de 8 años, los componentes están al final de su vida útil y las fallas empiezan a encadenarse.']);
+  else if (edad === 1) razones.push(['ok', 'Equipo joven', 'Menos de 3 años: casi cualquier problema se resuelve por mucho menos de lo que sale reemplazarlo.']);
+
+  if (so === 'no') { s += 30; razones.push(['bad', 'Sin actualizaciones de seguridad', 'Este es el argumento más fuerte para reemplazar: no es que ande lento, es que cada vulnerabilidad nueva queda abierta de forma permanente.']); }
+  if (so === 'si' && edad <= 3) { s -= 8; }
+
+  if (disco === 'hdd') { s -= 18; razones.push(['ok', 'Todavía tiene disco mecánico', 'Un SSD transforma este equipo. Es la mejora que más se nota por lo poco que cuesta, y es el motivo número uno de lentitud.']); }
+  if (ram === 4) { s -= 6; razones.push(['ok', 'Memoria ampliable', 'Con 4 GB, sumar memoria cambia bastante el comportamiento con varias aplicaciones abiertas — siempre que el equipo permita ampliarla.']); }
+
+  var costos = {
+    lento:    [-15, 'ok',   'Problema de rendimiento',  'La lentitud casi nunca requiere reemplazar: SSD, memoria y limpieza suelen resolverla.'],
+    bateria:  [-12, 'ok',   'Batería o cargador',       'Son repuestos accesibles. Si el resto del equipo rinde, no justifica cambiarlo.'],
+    soft:     [-20, 'ok',   'Problema de software',     'No es un problema del hardware: se resuelve sin invertir en piezas, muchas veces en una sesión remota.'],
+    disco:    [8,   'warn', 'Fallas de disco',          'Urgente: hacé backup hoy. El disco se reemplaza, pero primero hay que rescatar la información.'],
+    pantalla: [tipo === 'nb' ? 16 : -10, 'warn', 'Pantalla dañada', tipo === 'nb' ? 'En notebooks es una de las reparaciones más caras respecto al valor del equipo. Acá la antigüedad pesa mucho.' : 'En PC de escritorio el monitor es aparte: se reemplaza solo el monitor y sale bastante menos.'],
+    noprende: [20,  'warn', 'No prende o se apaga solo','Puede ser algo simple (fuente, cargador) o algo terminal (placa madre). Necesita diagnóstico antes de decidir nada.']
+  };
+  var c = costos[falla];
+  s += c[0];
+  razones.push([c[1], c[2], c[3]]);
+
+  if (prev === 'si') { s += 15; razones.push(['warn', 'Ya lo reparaste este año', 'Cuando aparecen fallas distintas seguidas, suele ser el conjunto envejeciendo. Reparar por partes se vuelve una cuota mensual.']); }
+
+  s = Math.max(0, Math.min(100, s));
+
+  // Veredicto
+  var v, color, txt;
+  if (s < 33)      { v = 'Conviene repararla'; color = '#4ade80'; txt = 'Los números favorecen claramente invertir en el equipo que ya tenés.'; }
+  else if (s < 60) { v = 'Probablemente convenga repararla'; color = '#fbbf24'; txt = 'Se inclina a reparar, pero conviene un diagnóstico para confirmar el costo real antes de decidir.'; }
+  else if (s < 78) { v = 'Está parejo'; color = '#fb923c'; txt = 'Depende del costo concreto de la reparación. Si supera la mitad de un equipo nuevo equivalente, reemplazá.'; }
+  else             { v = 'Conviene reemplazarla'; color = '#f87171'; txt = 'Invertir en este equipo probablemente sea postergar el gasto unos meses, no evitarlo.'; }
+
+  $('verd').textContent = v;
+  $('expl').textContent = txt;
+  $('barra').style.width = s + '%';
+  $('barra').style.background = color;
+
+  razones.sort(function (a, b) { return ({bad:0, warn:1, ok:2})[a[0]] - ({bad:0, warn:1, ok:2})[b[0]]; });
+  $('notas').innerHTML = razones.map(function (r) {
+    return '<div class="note n-' + r[0] + '"><b>' + r[1] + '</b>' + r[2] + '</div>';
+  }).join('');
+
+  var txtWa = 'Hola! Usé la herramienta de reparar o comprar. Mi equipo: ' +
+    (tipo === 'nb' ? 'notebook' : 'PC de escritorio') + ', ' + $('edad').selectedOptions[0].text.toLowerCase() +
+    ', problema: ' + $('falla').selectedOptions[0].text.toLowerCase() + '. El resultado dice "' + v + '". Quiero un diagnóstico.';
+  $('wa').href = 'https://wa.me/5491166804450?text=' + encodeURIComponent(txtWa);
+}
+
+function pesos(usd) {
+  var v = Math.round(usd * DOLAR / 1000) * 1000;
+  return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(v);
+}
+
+function pintarPrecios() {
+  document.querySelectorAll('.ars[data-usd]').forEach(function (el) {
+    el.textContent = 'desde ' + pesos(parseFloat(el.dataset.usd));
+  });
+  $('umbral').textContent = 'la mitad del valor de reposición';
+}
+
+(async function () {
+  try {
+    var c = new AbortController(); var t = setTimeout(function () { c.abort(); }, 4000);
+    var r = await fetch('https://dolarapi.com/v1/dolares/oficial', { signal: c.signal });
+    clearTimeout(t);
+    var d = await r.json();
+    if (d && d.venta > 0) DOLAR = d.venta;
+  } catch (e) {}
+  pintarPrecios();
+})();
+
+['edad','tipo','disco','ram','falla','so','prev'].forEach(function (id) {
+  $(id).addEventListener('change', evaluar);
+});
+evaluar();
+pintarPrecios();
+</script>
+</body>
+</html>

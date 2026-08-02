@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
@@ -59,6 +60,9 @@
     .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
     @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
   </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar","telephone":"+5491166804450","areaServed":"CABA y Gran Buenos Aires","aggregateRating":{"@type":"AggregateRating","ratingValue":"5","bestRating":"5","reviewCount":"4"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Claudio Percara"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Excelente experiencia. No solo solucionaron mi inconveniente técnico con mucha solvencia, sino que el trato fue sumamente amable y paciente. Se nota cuando hay profesionales que realmente dominan su área. Totalmente recomendados."},{"@type":"Review","author":{"@type":"Person","name":"Guillermo Ferraioli"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Excelente, lo recomiendo. Supo reconocer un problema que los demás no veían y el presupuesto que me pasó fue más que razonable considerando que, de otro modo, hubiese tenido que literalmente tirar la compu."},{"@type":"Review","author":{"@type":"Person","name":"Enzo Carolo"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Cambié el disco sólido por uno SSD, le agregué más memoria y me quedó como nueva la Vaio. Muy recomendable."},{"@type":"Review","author":{"@type":"Person","name":"Daiana Cardilli"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Son bárbaros, me ayudaron con una Toshiba vieja a hacerla andar como nueva. Re amables y todo en término. ¡Los recomiendo!"}]}
+</script>
 </head>
 <body>
   <nav class="navbar" id="navbar">
@@ -81,146 +85,108 @@
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
     </div>
   </nav>
-  <div class="page-hero">
-    <div class="container">
-      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Opiniones</span></div>
-      <h1>Lo que dicen nuestros clientes</h1>
-      <p>Reseñas reales de Google de hogares y empresas que atendimos en CABA y GBA.</p>
+  <div class="rev-hero"><div class="container">
+    <div>
+      <h1>Lo que dicen quienes ya nos llamaron</h1>
+      <p>Reseñas reales publicadas en Google por clientes de CABA y GBA. No las escribimos nosotros y no se pueden editar: por eso valen.</p>
+    </div>
+    <div class="score-card">
+      <div class="n">5,0</div>
+      <div class="st">★★★★★</div>
+      <div class="g"><i class="fab fa-google"></i> Perfil verificado</div>
+    </div>
+  </div></div>
+
+  <div class="rev-stats"><div class="container">
+    <div class="stat"><b>5,0</b><span>Calificación promedio</span></div>
+    <div class="stat"><b>100%</b><span>Reseñas de 5 estrellas</span></div>
+    <div class="stat"><b>+11</b><span>Años de experiencia</span></div>
+    <div class="stat"><b>CABA<br>y GBA</b><span>Zona de cobertura</span></div>
+  </div></div>
+
+  <div class="rev-wrap">
+    <div class="rev-filtros">
+      <button class="rev-f on" data-f="all">Todas</button>
+      <button class="rev-f" data-f="diag">Diagnóstico</button>
+      <button class="rev-f" data-f="hw">Hardware</button>
+    </div>
+    <div class="rev-grid" id="revGrid">
+      <article class="rev" data-cat="diag">
+        <span class="qm">"</span>
+        <div class="rev-top">
+          <div class="av" style="background:linear-gradient(135deg,#4285F4,#34A853)">CP</div>
+          <div class="rev-who">
+            <div class="nm">Claudio Percara</div>
+            <div class="dt">Local Guide · 11 opiniones · hace 2 semanas <span class="verified"><i class="fas fa-circle-check"></i> Google</span></div>
+          </div>
+        </div>
+        <div class="rev-st">★★★★★</div>
+        <p class="rev-tx">Excelente experiencia. No solo solucionaron mi inconveniente técnico con mucha solvencia, sino que el trato fue sumamente amable y paciente. Se nota cuando hay profesionales que realmente dominan su área. Totalmente recomendados.</p>
+        <span class="rev-tag t-diag">Diagnóstico</span>
+      </article>
+      <article class="rev" data-cat="diag">
+        <span class="qm">"</span>
+        <div class="rev-top">
+          <div class="av" style="background:linear-gradient(135deg,#1a3a5c,#2563eb)">GF</div>
+          <div class="rev-who">
+            <div class="nm">Guillermo Ferraioli</div>
+            <div class="dt">5 opiniones · hace 2 meses <span class="verified"><i class="fas fa-circle-check"></i> Google</span></div>
+          </div>
+        </div>
+        <div class="rev-st">★★★★★</div>
+        <p class="rev-tx">Excelente, lo recomiendo. Supo reconocer un problema que los demás no veían y el presupuesto que me pasó fue más que razonable considerando que, de otro modo, hubiese tenido que literalmente tirar la compu.</p>
+        <span class="rev-tag t-diag">Diagnóstico</span>
+      </article>
+      <article class="rev" data-cat="hw">
+        <span class="qm">"</span>
+        <div class="rev-top">
+          <div class="av" style="background:linear-gradient(135deg,#34A853,#0f9d58)">EC</div>
+          <div class="rev-who">
+            <div class="nm">Enzo Carolo</div>
+            <div class="dt">Local Guide · 17 opiniones · hace 3 meses <span class="verified"><i class="fas fa-circle-check"></i> Google</span></div>
+          </div>
+        </div>
+        <div class="rev-st">★★★★★</div>
+        <p class="rev-tx">Cambié el disco sólido por uno SSD, le agregué más memoria y me quedó como nueva la Vaio. Muy recomendable.</p>
+        <span class="rev-tag t-hw">Hardware</span>
+      </article>
+      <article class="rev" data-cat="hw">
+        <span class="qm">"</span>
+        <div class="rev-top">
+          <div class="av" style="background:linear-gradient(135deg,#ea4335,#fbbc04)">DC</div>
+          <div class="rev-who">
+            <div class="nm">Daiana Cardilli</div>
+            <div class="dt">2 opiniones · hace 1 mes <span class="verified"><i class="fas fa-circle-check"></i> Google</span></div>
+          </div>
+        </div>
+        <div class="rev-st">★★★★★</div>
+        <p class="rev-tx">Son bárbaros, me ayudaron con una Toshiba vieja a hacerla andar como nueva. Re amables y todo en término. ¡Los recomiendo!</p>
+        <span class="rev-tag t-hw">Hardware</span>
+      </article>
     </div>
   </div>
 
-  <section class="testimonials" id="opiniones">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag reveal">Qué dicen los clientes</span>
-                <h2 class="section-title reveal">Opiniones reales</h2>
-            </div>
-
-            <div class="reviews-header reveal">
-                <div class="google-badge">
-                    <svg class="google-logo" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    <span class="stars">★★★★★</span>
-                    <span class="rating-text">5.0</span>
-                    <span class="count">Google Maps</span>
-                </div>
-            </div>
-
-            <div class="testimonials-grid">
-
-                <div class="testimonial-card reveal reveal-delay-1">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Claudio Percara · <span class="review-date">hace 2 semanas</span></div>
-                    <p class="testimonial-text">Excelente experiencia. No solo solucionaron mi inconveniente técnico con mucha solvencia, sino que el trato fue sumamente amable y paciente. Se nota cuando hay profesionales que realmente dominan su área. Totalmente recomendados.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#4285F4,#34A853);">CP</div>
-                        <div>
-                            <div class="author-name">Claudio Percara</div>
-                            <div class="author-detail">Local Guide · 11 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal reveal-delay-2">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Daiana Cardilli · <span class="review-date">hace 1 mes</span></div>
-                    <p class="testimonial-text">Son bárbaros, me ayudaron con una Toshiba vieja a hacerla andar como nueva. Re amables y todo en término. ¡Los recomiendo!</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#ea4335,#fbbc04);">DC</div>
-                        <div>
-                            <div class="author-name">Daiana Cardilli</div>
-                            <div class="author-detail">2 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal reveal-delay-3">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Guillermo Ferraioli · <span class="review-date">hace 2 meses</span></div>
-                    <p class="testimonial-text">Excelente, lo recomiendo. Supo reconocer un problema que los demás no veían y el presupuesto que me pasó fue más que razonable considerando que, de otro modo, hubiese tenido que literalmente tirar la compu.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#1a3a5c,#2563eb);">GF</div>
-                        <div>
-                            <div class="author-name">Guillermo Ferraioli</div>
-                            <div class="author-detail">5 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal reveal-delay-4">
-                    <span class="testimonial-quote">"</span>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <div class="testimonial-meta">Enzo Carolo · <span class="review-date">hace 3 meses</span></div>
-                    <p class="testimonial-text">Cambié el disco sólido por uno SSD, le agregué más memoria y me quedó como nueva la Vaio. Muy recomendable.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar" style="background:linear-gradient(135deg,#34A853,#0f9d58);">EC</div>
-                        <div>
-                            <div class="author-name">Enzo Carolo</div>
-                            <div class="author-detail">Local Guide · 17 opiniones</div>
-                        </div>
-                        <svg class="google-icon-small" width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                        </svg>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="reviews-cta reveal">
-                <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank" rel="noopener">
-                    <svg width="16" height="16" viewBox="0 0 24 24">
-                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-                    </svg>
-                    Ver todas las opiniones en Google Maps
-                    <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-  <div style="padding:0 0 64px">
-    <div class="container">
-      <div class="cta-strip">
-        <div>
-          <h3>¿Querés ser el próximo?</h3>
-          <p>La primera consulta es sin cargo. Presupuesto antes de empezar, siempre.</p>
-        </div>
-        <a href="https://wa.me/5491166804450?text=Hola%2C%20quiero%20consultar%20sobre%20sus%20servicios" target="_blank" class="cta-strip-btn">
-          <i class="fab fa-whatsapp"></i> Contactar ahora
-        </a>
-      </div>
+  <div class="rev-cta"><div class="rev-cta-in">
+    <h3>¿Querés ser la próxima reseña?</h3>
+    <p>La consulta inicial no tiene costo y el presupuesto se acuerda antes de empezar. Y no hace falta que traslades tu equipo: vamos nosotros o lo retiramos en tu domicilio.</p>
+    <div class="rev-btns">
+      <a class="b1" href="https://wa.me/5491166804450?text=Hola!%20Vi%20las%20opiniones%20en%20la%20web%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
+      <a class="b2" href="https://www.google.com/maps/search/?api=1&query=Soporte+Cyclops" target="_blank" rel="noopener"><i class="fab fa-google"></i> Ver el perfil en Google</a>
     </div>
-  </div>
+  </div></div>
+
+  <div class="trust"><div class="trust-grid">
+    <div class="trust-i"><i class="fas fa-file-signature"></i>
+      <h4>Orden de trabajo firmada</h4>
+      <p>Si retiramos tu equipo, queda documentado: modelo, estado, fecha y firma. Tu comprobante de que está en manos profesionales.</p></div>
+    <div class="trust-i"><i class="fas fa-comments"></i>
+      <h4>Seguimiento en cada etapa</h4>
+      <p>Te avisamos por WhatsApp el diagnóstico, el presupuesto y la entrega. Nunca te quedás sin saber en qué anda.</p></div>
+    <div class="trust-i"><i class="fas fa-handshake-angle"></i>
+      <h4>Te decimos si no conviene</h4>
+      <p>Si la reparación no vale la pena, lo decimos aunque signifique no vender el trabajo. Es lo que hace que los clientes vuelvan.</p></div>
+  </div></div>
+
 
   <footer>
     <div class="container">
@@ -254,5 +220,17 @@
     window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20);});
     mt.addEventListener('click',function(){nm.classList.toggle('open');mt.innerHTML=nm.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
   </script>
+<script>
+document.querySelectorAll('.rev-f').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.rev-f').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var f=b.dataset.f;
+    document.querySelectorAll('.rev').forEach(function(r){
+      r.style.display=(f==='all'||r.dataset.cat===f)?'':'none';
+    });
+  });
+});
+</script>
 </body>
 </html>

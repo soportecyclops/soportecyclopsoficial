@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autoevaluación de seguridad informática para pymes | Soporte Cyclops</title>
+<link rel="icon" href="../public/images/logo-icon.png" type="image/png">
+<meta name="description" content="10 preguntas para saber qué tan expuesta está tu empresa a un incidente informático. Puntaje inmediato y las prioridades concretas para corregir. Gratis.">
+<meta property="og:title" content="¿Qué tan expuesta está tu empresa? Autoevaluación en 10 preguntas">
+<meta property="og:description" content="Puntaje inmediato y prioridades concretas de seguridad informática para pymes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.soportecyclops.com.ar/herramientas/chequeo-seguridad.html">
+<meta property="og:image" content="https://www.soportecyclops.com.ar/public/images/og-preview.jpg">
+<link rel="canonical" href="https://www.soportecyclops.com.ar/herramientas/chequeo-seguridad.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Autoevaluación de seguridad informática para pymes","applicationCategory":"SecurityApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"ARS"},"description":"Cuestionario de 10 puntos que evalúa el nivel de exposición de una pyme a incidentes informáticos y devuelve prioridades de corrección.","publisher":{"@type":"Organization","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar"}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="base.css">
+<style>
+.q{border-bottom:1px solid var(--g100);padding:16px 0}
+.q:last-child{border:none;padding-bottom:0}
+.q .txt{font-size:.92rem;font-weight:700;color:var(--dark);margin-bottom:4px;display:flex;gap:10px}
+.q .num{width:23px;height:23px;background:var(--g100);color:var(--g500);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0}
+.q.done .num{background:var(--blue);color:#fff}
+.q .ex{font-size:.79rem;color:var(--g500);margin:0 0 10px 33px;line-height:1.5}
+.ans{display:flex;gap:8px;margin-left:33px;flex-wrap:wrap}
+.ans button{border:1.5px solid var(--g200);background:#fff;border-radius:9px;padding:7px 15px;font-family:inherit;font-size:.82rem;font-weight:700;color:var(--g500);cursor:pointer;transition:all .16s}
+.ans button:hover{border-color:var(--blue);color:var(--blue)}
+.ans button.on[data-v="2"]{background:var(--green);border-color:var(--green);color:#fff}
+.ans button.on[data-v="1"]{background:var(--amber);border-color:var(--amber);color:#fff}
+.ans button.on[data-v="0"]{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:'Space Grotesk',sans-serif;font-size:3rem;font-weight:800;line-height:1}
+.score small{font-size:1.1rem;opacity:.7}
+.bar{height:9px;background:rgba(255,255,255,.22);border-radius:6px;overflow:hidden;margin:14px 0 10px}
+.bar i{display:block;height:100%;border-radius:6px;background:#fff;width:0;transition:width .45s}
+.prio{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--g200);font-size:.85rem;line-height:1.55}
+.prio:last-child{border:none}
+.prio .n{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:.7rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.prio b{display:block;color:var(--dark)}
+.prio span{color:var(--g700)}
+</style>
+</head>
+<body>
+
+<nav class="topnav"><div class="in">
+  <a href="../index.html" class="brand"><img src="../public/images/logo-icon.png" alt="">Soporte<span style="color:#2563eb">Cyclops</span></a>
+  <div class="lk">
+    <a href="../servicios.html">Servicios</a>
+    <a href="index.html" class="on">Herramientas</a>
+    <a href="../blog/">Blog</a>
+    <a href="../index.html#contacto" class="cta">Contacto</a>
+  </div>
+</div></nav>
+
+<div class="hero"><div class="in">
+  <span class="tagline">Herramienta gratuita</span>
+  <h1>¿Qué tan expuesta está tu empresa?</h1>
+  <p>Diez preguntas, dos minutos, y un puntaje con las prioridades concretas para corregir. Sin registro y sin vueltas: la mayoría de los incidentes graves que atendemos se habrían evitado con dos o tres de estos puntos.</p>
+</div></div>
+
+<div class="wrap">
+<div class="print-head">
+  <h1>Autoevaluación de seguridad informática</h1>
+  <p>Soporte Cyclops · soportecyclops.com.ar · +54 9 11 6680-4450</p>
+</div>
+<div class="grid">
+
+  <div>
+    <div class="card">
+      <h2><i class="fas fa-shield-halved"></i> Las diez preguntas</h2>
+      <p class="sub">Respondé con sinceridad: el valor está en detectar lo que falta, no en sacar buena nota.</p>
+      <div id="preguntas"></div>
+    </div>
+  </div>
+
+  <div class="res">
+    <div class="res-box">
+      <div class="lbl">Tu nivel de exposición</div>
+      <div class="score"><span id="pts">—</span><small> / 100</small></div>
+      <div class="bar"><i id="barra"></i></div>
+      <div class="sm" id="nivel">Respondé las preguntas para ver el resultado.</div>
+    </div>
+
+    <div class="detail" id="prioBox" style="display:none">
+      <h3>Tus prioridades, en orden</h3>
+      <div id="prios"></div>
+    </div>
+
+    <div id="notas"></div>
+
+    <div class="no-print">
+      <a class="btn btn-wa" id="wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Quiero ayuda con esto</a>
+      <button class="btn btn-gh" onclick="window.print()"><i class="fas fa-file-pdf"></i> Guardar o imprimir el informe</button>
+    </div>
+
+    <p class="disc">Esta autoevaluación es orientativa y se basa en tus respuestas. No reemplaza una auditoría de seguridad, que revisa la configuración real de los equipos, la red y los accesos. Sirve para ordenar prioridades y detectar los huecos más frecuentes.</p>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <p><a href="../index.html">soportecyclops.com.ar</a> · Seguridad informática para pymes en CABA y GBA · <a href="https://wa.me/5491166804450">+54 9 11 6680-4450</a></p>
+</footer>
+
+<script>
+var PREGUNTAS = [
+  { t: '¿Tenés backups automáticos de la información crítica?',
+    e: 'Facturación, base de clientes, documentos de trabajo. Automáticos, no "cuando me acuerdo".',
+    o: ['Sí, automáticos y verificados', 'Sí, pero manuales o sin revisar', 'No'],
+    p: 'Backup automático 3-2-1',
+    d: 'Es la única medida que te salva cuando todo lo demás falló. Tres copias, dos medios, una fuera del lugar.' },
+
+  { t: '¿Alguna vez probaste restaurar un archivo del backup?',
+    e: 'Un backup que nunca se probó restaurar es una expresión de deseo, no un backup.',
+    o: ['Sí, en los últimos meses', 'Hace mucho o no estoy seguro', 'Nunca'],
+    p: 'Probar la restauración',
+    d: 'Elegí un archivo del backup e intentá recuperarlo hoy. Si no funciona, encontraste el problema más barato de tu vida.' },
+
+  { t: '¿Hay al menos una copia desconectada o fuera del lugar?',
+    e: 'Un disco que se enchufa, copia y se desenchufa. O una copia en la nube.',
+    o: ['Sí', 'Está todo conectado siempre', 'No hay segunda copia'],
+    p: 'Copia desconectada',
+    d: 'El ransomware moderno busca y cifra los backups conectados antes de atacar. Sin copia offline, el respaldo no te protege del caso más frecuente.' },
+
+  { t: '¿Tienen verificación en dos pasos en los correos de la empresa?',
+    e: 'El correo es la llave maestra: desde ahí se restablece la contraseña de todo lo demás.',
+    o: ['Sí, en todas las cuentas', 'Solo en algunas', 'No'],
+    p: 'Doble factor en el correo',
+    d: 'Es la medida individual más efectiva que existe y se activa en un minuto por cuenta. Prioridad absoluta.' },
+
+  { t: '¿Cada persona tiene su propio usuario en los sistemas?',
+    e: 'En las computadoras, en el sistema de gestión, en las carpetas compartidas.',
+    o: ['Sí, uno por persona', 'Algunos compartidos', 'Todos usan el mismo'],
+    p: 'Un usuario por persona',
+    d: 'Sin esto no se puede saber quién hizo qué, ni quitarle el acceso a una sola persona sin afectar al resto.' },
+
+  { t: '¿Cómo se accede a los sistemas desde afuera de la oficina?',
+    e: 'Trabajo remoto, acceso al servidor, escritorio remoto.',
+    o: ['Por VPN o con doble factor', 'No se accede desde afuera', 'Escritorio remoto abierto a internet'],
+    p: 'Cerrar el acceso remoto expuesto',
+    d: 'El escritorio remoto abierto a internet es la vía de entrada favorita del ransomware. Se reemplaza por VPN.' },
+
+  { t: 'Cuando alguien deja la empresa, ¿se dan de baja sus accesos?',
+    e: 'Correo, carpetas, sistema de gestión, redes sociales, acceso remoto.',
+    o: ['Sí, el mismo día y con checklist', 'A veces, sin procedimiento fijo', 'No, o nunca lo revisamos'],
+    p: 'Procedimiento de baja de accesos',
+    d: 'Es de los huecos más comunes: ex empleados con acceso vigente meses después. Un checklist de cinco minutos lo resuelve.' },
+
+  { t: '¿Los equipos y el sistema operativo están actualizados?',
+    e: 'Windows con soporte vigente y actualizaciones de seguridad al día.',
+    o: ['Sí, todos', 'Algunos atrasados', 'Hay equipos sin soporte'],
+    p: 'Actualizaciones al día',
+    d: 'Cuando se publica un parche, la falla que corrige se hace pública. Un equipo sin actualizar es vulnerable a algo conocido.' },
+
+  { t: '¿El equipamiento crítico está protegido con UPS?',
+    e: 'Servidor, punto de venta, grabador de cámaras, router.',
+    o: ['Sí, con batería en buen estado', 'Hay UPS pero sin revisar', 'No'],
+    p: 'UPS en equipos críticos',
+    d: 'Un corte con la base de datos escribiendo puede corromperla y frenar la operación por días.' },
+
+  { t: '¿El equipo sabe reconocer un correo o mensaje sospechoso?',
+    e: 'Facturas que nadie pidió, pedidos urgentes de transferencia, links de "verificación".',
+    o: ['Sí, lo hablamos y hay reglas claras', 'Nunca se habló del tema', 'No sabría decir'],
+    p: 'Capacitación básica del equipo',
+    d: 'La mayoría de los incidentes graves entra por un mail que alguien abrió. Media hora de conversación con el equipo cambia el panorama.' }
+];
+
+var resp = new Array(PREGUNTAS.length).fill(null);
+
+function render() {
+  document.getElementById('preguntas').innerHTML = PREGUNTAS.map(function (q, i) {
+    return '<div class="q" id="q' + i + '">' +
+      '<div class="txt"><span class="num">' + (i + 1) + '</span><span>' + q.t + '</span></div>' +
+      '<p class="ex">' + q.e + '</p>' +
+      '<div class="ans">' +
+        q.o.map(function (o, j) {
+          var val = [2, 1, 0][j];
+          return '<button data-q="' + i + '" data-v="' + val + '">' + o + '</button>';
+        }).join('') +
+      '</div></div>';
+  }).join('');
+
+  document.querySelectorAll('.ans button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var qi = +b.dataset.q;
+      resp[qi] = +b.dataset.v;
+      document.querySelectorAll('.ans button[data-q="' + qi + '"]').forEach(function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      document.getElementById('q' + qi).classList.add('done');
+      calcular();
+    });
+  });
+}
+
+function calcular() {
+  var contestadas = resp.filter(function (r) { return r !== null; }).length;
+  var pts = resp.reduce(function (a, r) { return a + (r || 0); }, 0);
+  var max = PREGUNTAS.length * 2;
+  var score = Math.round(pts / max * 100);
+
+  document.getElementById('pts').textContent = contestadas ? score : '—';
+  document.getElementById('barra').style.width = (contestadas ? score : 0) + '%';
+
+  var nivel;
+  if (!contestadas)      nivel = 'Respondé las preguntas para ver el resultado.';
+  else if (contestadas < PREGUNTAS.length) nivel = 'Llevás ' + contestadas + ' de ' + PREGUNTAS.length + ' preguntas. El resultado se ajusta a medida que respondés.';
+  else if (score >= 85)  nivel = '<b>Buen nivel.</b> Estás cubierto en lo esencial. Revisá los puntos amarillos para cerrar del todo.';
+  else if (score >= 60)  nivel = '<b>Nivel intermedio.</b> Tenés lo básico, pero quedan huecos que en un incidente se sienten.';
+  else if (score >= 35)  nivel = '<b>Exposición alta.</b> Faltan medidas fundamentales. Vale la pena resolverlo antes de que pase algo.';
+  else                   nivel = '<b>Exposición crítica.</b> Un incidente hoy podría frenar la operación por días y con pérdida de información.';
+  document.getElementById('nivel').innerHTML = nivel;
+
+  // Prioridades: lo que quedó en 0 primero, después lo que quedó en 1
+  var faltantes = [];
+  resp.forEach(function (r, i) { if (r === 0) faltantes.push(PREGUNTAS[i]); });
+  resp.forEach(function (r, i) { if (r === 1) faltantes.push(PREGUNTAS[i]); });
+
+  var box = document.getElementById('prioBox');
+  if (faltantes.length) {
+    box.style.display = 'block';
+    document.getElementById('prios').innerHTML = faltantes.slice(0, 5).map(function (q, i) {
+      return '<div class="prio"><span class="n">' + (i + 1) + '</span><span><b>' + q.p + '</b><span>' + q.d + '</span></span></div>';
+    }).join('');
+  } else if (contestadas === PREGUNTAS.length) {
+    box.style.display = 'block';
+    document.getElementById('prios').innerHTML = '<p style="font-size:.86rem;color:var(--g700);line-height:1.6">No quedaron puntos pendientes. Lo que corresponde ahora es sostenerlo: verificar los backups todas las semanas y probar una restauración cada tres meses.</p>';
+  } else box.style.display = 'none';
+
+  // Nota destacada según el punto más grave
+  var notas = [];
+  if (resp[0] === 0 || resp[2] === 0)
+    notas.push(['bad', 'Lo más urgente: el backup', 'Sin respaldo desconectado, un ransomware o una falla de disco significa empezar de cero. Es el único punto de esta lista que no tiene solución después del incidente.']);
+  else if (resp[5] === 0)
+    notas.push(['bad', 'Acceso remoto expuesto', 'El escritorio remoto abierto a internet es escaneado automáticamente las 24 horas. Es el punto de entrada más explotado contra pymes.']);
+  else if (resp[3] === 0)
+    notas.push(['warn', 'Empezá por el correo', 'Activar la verificación en dos pasos en todas las casillas lleva un minuto por cuenta y cierra la mayoría de los caminos de entrada.']);
+  document.getElementById('notas').innerHTML = notas.map(function (n) {
+    return '<div class="note n-' + n[0] + '"><b>' + n[1] + '</b>' + n[2] + '</div>';
+  }).join('');
+
+  var t = 'Hola! Hice la autoevaluación de seguridad del sitio. Mi puntaje: ' + score + '/100' +
+    (faltantes.length ? '. Los puntos flojos: ' + faltantes.slice(0, 3).map(function (f) { return f.p; }).join(', ') : '') +
+    '. Quiero consultar cómo mejorarlo.';
+  document.getElementById('wa').href = 'https://wa.me/5491166804450?text=' + encodeURIComponent(t);
+}
+
+render();
+calcular();
+</script>
+</body>
+</html>
