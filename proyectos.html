@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyectos | Soporte Cyclops — Desarrollos propios</title>
+  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <meta name="description" content="Proyectos de software desarrollados por Soporte Cyclops: automatización, IA local y herramientas propias.">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/proyectos.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
+    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
+    .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{border-radius:6px}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
+    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
+    .nav-cta:hover{background:#1d4ed8;text-decoration:none}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
+    @media(max-width:900px){
+      .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
+      .nav-menu.open{display:flex}
+      .nav-menu li{width:100%}
+      .nav-link{display:block}
+      .menu-toggle{display:block}
+    }
+    .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
+    .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+    .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
+    .page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:12px}
+    .page-hero p{font-size:1rem;opacity:0.85;max-width:600px;line-height:1.7}
+
+    .proyectos{padding:70px 0}
+    .proyectos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+    .proyecto-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:32px 28px;transition:var(--transition);position:relative;overflow:hidden}
+    .proyecto-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#00c6ff);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+    .proyecto-card:hover{border-color:rgba(37,99,235,0.2);box-shadow:var(--shadow-md);transform:translateY(-6px);background:var(--white)}
+    .proyecto-card:hover::before{transform:scaleX(1)}
+    .proyecto-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:var(--blue-dark);margin-bottom:6px}
+    .proyecto-estado{font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;display:inline-block;padding:3px 10px;border-radius:20px}
+    .proyecto-estado--usable{color:#15803d;background:rgba(21,128,61,0.1)}
+    .proyecto-estado--progreso{color:#c2410c;background:rgba(194,65,12,0.1)}
+    .proyecto-card p{font-size:0.9rem;color:var(--gray-600);line-height:1.65;margin-bottom:10px}
+    .proyecto-nota{font-size:0.82rem;color:var(--gray-400)}
+    .proyecto-card a{font-weight:700;font-size:0.88rem}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+        <li><a href="index.html#paquetes" class="nav-link">Paquetes Web</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="proyectos.html" class="nav-link active">Proyectos</a></li>
+        <li><a href="login.html" class="nav-link"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Proyectos</span></div>
+      <h1>Proyectos</h1>
+      <p>Desarrollos propios, fuera del trabajo de soporte técnico diario. Cada uno nace de un problema concreto que necesitaba resolver.</p>
+    </div>
+  </div>
+
+  <section class="proyectos">
+    <div class="container">
+      <div class="proyectos-grid">
+
+        <article class="proyecto-card">
+          <h3>Buscador de rostros local</h3>
+          <span class="proyecto-estado proyecto-estado--usable">Versión 1 funcional</span>
+          <p>
+            Herramienta para encontrar personas específicas entre miles de
+            fotografías. Se sube una sola foto de referencia y el sistema
+            detecta coincidencias por similitud facial en todo el archivo,
+            sin subir nada a la nube. Nació de la necesidad de buscar
+            personas puntuales en volúmenes grandes de imágenes sin depender
+            de Google Fotos ni de otros servicios en la nube.
+          </p>
+          <p class="proyecto-nota">Próximos pasos: mayor precisión, selección y búsqueda múltiple.</p>
+          <a href="https://github.com/soportecyclops/face-detector" target="_blank" rel="noopener">Ver en GitHub →</a>
+        </article>
+
+        <article class="proyecto-card">
+          <h3>Agente de formularios web</h3>
+          <span class="proyecto-estado proyecto-estado--usable">Versión 1 funcional</span>
+          <p>
+            Agente que completa formularios en páginas web de forma casi
+            autónoma, a partir de la información que se le brinda. Usa un
+            modelo de lenguaje corriendo local (sin depender de APIs pagas
+            como OpenAI o Anthropic), con una interfaz web simple para cargar
+            los datos a usar.
+          </p>
+          <a href="https://github.com/soportecyclops/form-agent-v2" target="_blank" rel="noopener">Ver en GitHub →</a>
+        </article>
+
+        <article class="proyecto-card">
+          <h3>Keyboard to Gamepad</h3>
+          <span class="proyecto-estado proyecto-estado--usable">Versión 1 funcional</span>
+          <p>
+            Utilidad que traduce entradas de teclado a señales de gamepad
+            virtual, para jugar con teclado en juegos o emuladores pensados
+            solo para control.
+          </p>
+          <a href="https://github.com/soportecyclops/keyboard-to-gamepad" target="_blank" rel="noopener">Ver en GitHub →</a>
+        </article>
+
+        <article class="proyecto-card">
+          <h3>GeopoliticalSim</h3>
+          <span class="proyecto-estado proyecto-estado--progreso">En desarrollo</span>
+          <p>
+            Simulador de estrategia y toma de decisiones geopolíticas, estilo
+            juego. Todavía en construcción activa.
+          </p>
+          <a href="https://github.com/soportecyclops/GeopoliticalSim" target="_blank" rel="noopener">Ver en GitHub →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Soporte Cyclops</h3>
+          <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Páginas</h3>
+          <a href="index.html">Inicio</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="opiniones.html">Opiniones</a>
+          <a href="faq.html">Preguntas frecuentes</a>
+          <a href="blog/index.html">Blog técnico</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <a href="tel:+5491166804450">+54 9 11 6680-4450</a>
+          <a href="mailto:contacto@soportecyclops.com.ar">contacto@soportecyclops.com.ar</a>
+          <a href="https://wa.me/5491166804450" target="_blank">WhatsApp</a>
+          <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank">Ver en Google Maps</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a></p></div>
+    </div>
+  </footer>
+
+  <script>
+    var nb=document.getElementById('navbar'),mt=document.getElementById('menuToggle'),nm=document.getElementById('navMenu');
+    window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20);});
+    mt.addEventListener('click',function(){nm.classList.toggle('open');mt.innerHTML=nm.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
+  </script>
+</body>
+</html>
