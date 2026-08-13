@@ -1,0 +1,11 @@
+/* proyectos.css — sección "Proyectos" en la home */
+.proyectos-cyclops { padding: 3rem 1.5rem; max-width: 1100px; margin: 0 auto; }
+.proyectos-intro { max-width: 60ch; opacity: .8; margin-bottom: 2rem; }
+.proyectos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+.proyecto-card { border: 1px solid #33333322; border-radius: 12px; padding: 1.25rem; }
+.proyecto-card h3 { margin: 0 0 .35rem; }
+.proyecto-estado { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; margin: 0 0 .75rem; }
+.proyecto-estado--usable { color: #2f9e44; }
+.proyecto-estado--progreso { color: #e8590c; }
+.proyecto-nota { font-size: .85rem; opacity: .7; }
+.proyecto-card a { display: inline-block; margin-top: .5rem; font-weight: 600; }

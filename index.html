@@ -86,6 +86,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/proyectos.css">
 </head>
 
 <body>
@@ -1149,5 +1150,68 @@
   try{if(localStorage.getItem('cyclops_txt')==='1')aplicar(true)}catch(e){}
 })();
 </script>
+<section id="proyectos" class="proyectos-cyclops">
+  <h2>Proyectos</h2>
+  <p class="proyectos-intro">
+    Desarrollos propios, fuera del trabajo de soporte técnico diario.
+    Cada uno nace de un problema concreto que necesitaba resolver.
+  </p>
+
+  <div class="proyectos-grid">
+
+    <article class="proyecto-card">
+      <h3>Buscador de rostros local</h3>
+      <p class="proyecto-estado proyecto-estado--usable">Versión 1 funcional</p>
+      <p>
+        Herramienta para encontrar personas específicas entre miles de
+        fotografías. Se sube una sola foto de referencia y el sistema
+        detecta coincidencias por similitud facial en todo el archivo,
+        sin subir nada a la nube. Nació de la necesidad de buscar
+        personas puntuales en volúmenes grandes de imágenes sin depender
+        de Google Fotos ni de otros servicios en la nube.
+      </p>
+      <p class="proyecto-nota">
+        Próximos pasos: mayor precisión, selección y búsqueda múltiple.
+      </p>
+      <a href="https://github.com/soportecyclops/face-detector" target="_blank" rel="noopener">Ver en GitHub →</a>
+    </article>
+
+    <article class="proyecto-card">
+      <h3>Agente de formularios web</h3>
+      <p class="proyecto-estado proyecto-estado--usable">Versión 1 funcional</p>
+      <p>
+        Agente que completa formularios en páginas web de forma casi
+        autónoma, a partir de la información que se le brinda. Usa un
+        modelo de lenguaje corriendo local (sin depender de APIs pagas
+        como OpenAI o Anthropic), con una interfaz web simple para cargar
+        los datos a usar.
+      </p>
+      <a href="https://github.com/soportecyclops/form-agent-v2" target="_blank" rel="noopener">Ver en GitHub →</a>
+    </article>
+
+    <article class="proyecto-card">
+      <h3>Keyboard to Gamepad</h3>
+      <p class="proyecto-estado proyecto-estado--usable">Versión 1 funcional</p>
+      <p>
+        Utilidad que traduce entradas de teclado a señales de gamepad
+        virtual, para jugar con teclado en juegos o emuladores pensados
+        solo para control.
+      </p>
+      <a href="https://github.com/soportecyclops/keyboard-to-gamepad" target="_blank" rel="noopener">Ver en GitHub →</a>
+    </article>
+
+    <article class="proyecto-card">
+      <h3>GeopoliticalSim</h3>
+      <p class="proyecto-estado proyecto-estado--progreso">En desarrollo</p>
+      <p>
+        Simulador de estrategia y toma de decisiones geopolíticas, estilo
+        juego. Todavía en construcción activa.
+      </p>
+      <a href="https://github.com/soportecyclops/GeopoliticalSim" target="_blank" rel="noopener">Ver en GitHub →</a>
+    </article>
+
+  </div>
+</section>
+
 </body>
 </html>
