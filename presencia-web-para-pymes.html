@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presencia Web para Pymes en CABA | Web + SEO Local | Soporte Cyclops</title>
+  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <meta name="description" content="Creamos y optimizamos la presencia digital de pymes en CABA: sitio web, Google Business, SEO local, WhatsApp y medición. Diagnóstico inicial sin compromiso.">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/presencia-web-para-pymes.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
+    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
+    .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{border-radius:6px}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
+    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
+    .nav-cta:hover{background:#1d4ed8;text-decoration:none}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
+    @media(max-width:900px){
+      .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
+      .nav-menu.open{display:flex}
+      .nav-menu li{width:100%}
+      .nav-link{display:block;padding:12px 16px}
+      .menu-toggle{display:block}
+      .nav-cta{text-align:center;margin-top:8px}
+    }
+    .section-tag{display:inline-block;background:rgba(37,99,235,0.08);color:var(--blue);padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+    .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--blue-dark);margin-bottom:12px;letter-spacing:-0.01em}
+    .section-subtitle{font-size:0.97rem;color:var(--gray-600);max-width:600px;margin:0 auto;line-height:1.7}
+    .section-header{text-align:center;margin-bottom:48px}
+    footer{background:var(--blue-dark);color:rgba(255,255,255,0.6);padding:40px 0 24px}
+    .footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:32px}
+    .footer-section h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:white;margin-bottom:14px}
+    .footer-section p,.footer-section a{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;display:block;text-decoration:none}
+    .footer-section a:hover{color:white}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
+    @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
+
+    /* ===== HERO ===== */
+    .pw-hero{background:var(--hero-gradient,linear-gradient(135deg,#0f2444 0%,#1a3a5c 40%,#1e4976 70%,#0d3460 100%));color:white;padding:76px 0 64px;position:relative;overflow:hidden}
+    .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:18px;display:flex;align-items:center;gap:6px}
+    .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
+    .pw-hero-inner{max-width:680px}
+    .pw-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,4.2vw,2.8rem);font-weight:800;letter-spacing:-0.02em;line-height:1.18;margin-bottom:18px}
+    .pw-hero .lead{font-size:1.05rem;opacity:0.85;line-height:1.75;margin-bottom:10px}
+    .pw-hero .lead strong{color:#7db8ff}
+    .pw-hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+    .btn-hero-primary{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--blue-dark);padding:14px 28px;border-radius:50px;font-weight:700;font-size:0.95rem;transition:var(--transition)}
+    .btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.25);text-decoration:none}
+    .btn-hero-outline{display:inline-flex;align-items:center;gap:9px;border:2px solid rgba(255,255,255,0.35);color:white;padding:12px 26px;border-radius:50px;font-weight:700;font-size:0.95rem;transition:var(--transition)}
+    .btn-hero-outline:hover{border-color:white;text-decoration:none;background:rgba(255,255,255,0.06)}
+
+    /* ===== IG vs GOOGLE ===== */
+    .ig-section{padding:70px 0;background:var(--gray-50)}
+    .ig-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:820px;margin:0 auto 28px}
+    .ig-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px 24px}
+    .ig-card h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .ig-card p{font-size:0.9rem;color:var(--gray-600)}
+    .ig-card .ig-quote{font-style:italic;background:var(--gray-50);border-radius:8px;padding:10px 14px;font-size:0.85rem;margin-bottom:10px;color:#334155}
+    .ig-note{text-align:center;max-width:640px;margin:0 auto;font-size:0.95rem;color:var(--gray-600)}
+    @media(max-width:700px){.ig-grid{grid-template-columns:1fr}}
+
+    /* ===== OBJECIONES (no tenés / ya tenés) ===== */
+    .obj-section{padding:70px 0}
+    .obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .obj-card{border:1px solid var(--gray-200);border-radius:var(--radius);padding:30px 26px}
+    .obj-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;color:var(--blue-dark);margin-bottom:14px}
+    .obj-card ul{list-style:none;margin:14px 0}
+    .obj-card ul li{font-size:0.9rem;color:var(--gray-600);padding:5px 0 5px 22px;position:relative}
+    .obj-card ul li::before{content:'✓';position:absolute;left:0;color:var(--blue);font-weight:700}
+    .obj-card p{font-size:0.9rem;color:var(--gray-600);margin-bottom:8px}
+    @media(max-width:700px){.obj-grid{grid-template-columns:1fr}}
+
+    /* ===== PROBLEMA REAL / CHECKLIST ===== */
+    .check-section{padding:70px 0;background:var(--gray-50)}
+    .check-list{max-width:640px;margin:0 auto;list-style:none}
+    .check-list li{background:white;border:1px solid var(--gray-200);border-radius:10px;padding:16px 20px;margin-bottom:10px;font-size:0.95rem;font-weight:600;color:var(--blue-dark);display:flex;align-items:center;gap:12px}
+    .check-list li i{color:var(--blue);flex-shrink:0}
+
+    /* ===== SISTEMA (5 bloques) ===== */
+    .sistema-section{padding:70px 0}
+    .sistema-steps{max-width:720px;margin:0 auto}
+    .sistema-step{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid var(--gray-200)}
+    .sistema-step:last-child{border-bottom:none}
+    .sistema-num{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:800;color:rgba(37,99,235,0.25);flex-shrink:0;width:52px}
+    .sistema-step h4{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--blue-dark);margin-bottom:5px}
+    .sistema-step p{font-size:0.9rem;color:var(--gray-600)}
+    .sistema-step .tag{display:inline-block;margin-top:8px;font-size:0.78rem;font-weight:700;color:var(--blue);background:rgba(37,99,235,0.07);padding:3px 10px;border-radius:20px}
+    .sistema-callout{text-align:center;max-width:600px;margin:40px auto 0;font-size:1rem;font-weight:700;color:var(--blue-dark)}
+    .sistema-callout span{display:block;font-weight:400;font-size:0.88rem;color:var(--gray-600);margin-top:6px}
+
+    /* ===== FUNNEL ===== */
+    .funnel-section{padding:60px 0;background:var(--gray-50)}
+    .funnel-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;max-width:900px;margin:0 auto}
+    .funnel-step{background:white;border:1px solid var(--gray-200);border-radius:10px;padding:12px 18px;font-size:0.85rem;font-weight:700;color:var(--blue-dark);text-align:center}
+    .funnel-arrow{color:var(--gray-400);font-size:0.9rem}
+
+    /* ===== PACKS ===== */
+    .packs-section{padding:70px 0}
+    .packs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .pack-card{border:2px solid var(--gray-200);border-radius:var(--radius);padding:32px 26px;position:relative;transition:var(--transition)}
+    .pack-card:hover{border-color:rgba(37,99,235,0.3);box-shadow:var(--shadow-md);transform:translateY(-4px)}
+    .pack-card.featured{border-color:var(--blue);box-shadow:var(--shadow-md)}
+    .pack-badge{position:absolute;top:-13px;left:26px;background:var(--blue);color:white;font-size:0.72rem;font-weight:700;padding:4px 12px;border-radius:20px}
+    .pack-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--blue-dark);margin-bottom:6px}
+    .pack-intent{font-size:0.85rem;font-style:italic;color:var(--blue);margin-bottom:12px}
+    .pack-desc{font-size:0.88rem;color:var(--gray-600);margin-bottom:16px}
+    .pack-features{list-style:none}
+    .pack-features li{font-size:0.87rem;color:var(--gray-600);padding:6px 0;border-bottom:1px solid var(--gray-100);display:flex;gap:8px}
+    .pack-features li:last-child{border-bottom:none}
+    .pack-features li .check{color:var(--blue);font-weight:700;flex-shrink:0}
+    .btn-pack{display:block;text-align:center;margin-top:20px;padding:12px;border-radius:50px;font-weight:700;font-size:0.88rem;transition:var(--transition)}
+    .btn-pack-primary{background:var(--blue);color:white!important}
+    .btn-pack-primary:hover{background:#1d4ed8;text-decoration:none}
+    .btn-pack-outline{border:2px solid rgba(37,99,235,0.25);color:var(--blue)!important}
+    .btn-pack-outline:hover{border-color:var(--blue);background:rgba(37,99,235,0.05);text-decoration:none}
+    @media(max-width:900px){.packs-grid{grid-template-columns:1fr}}
+
+    /* ===== GAP SCORE ===== */
+    .gap-section{padding:70px 0;background:var(--blue-dark);color:white}
+    .gap-section .section-tag{background:rgba(255,255,255,0.1);color:#7db8ff}
+    .gap-section .section-title{color:white}
+    .gap-section .section-subtitle{color:rgba(255,255,255,0.75)}
+    .gap-areas{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:40px}
+    .gap-area-chip{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);padding:8px 16px;border-radius:20px;font-size:0.85rem;font-weight:600}
+    .gap-bars{max-width:600px;margin:0 auto}
+    .gap-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+    .gap-bar-label{width:190px;font-size:0.82rem;color:rgba(255,255,255,0.75);flex-shrink:0}
+    .gap-bar-track{flex:1;height:8px;background:rgba(255,255,255,0.12);border-radius:10px;overflow:hidden}
+    .gap-bar-fill{height:100%;border-radius:10px}
+    .gap-cta{text-align:center;margin-top:44px}
+    .gap-cta p{color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:18px}
+
+    /* ===== CTA STRIP ===== */
+    .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 60px}
+    .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
+    .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
+    .cta-strip-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--blue-dark);padding:13px 26px;border-radius:50px;font-weight:700;font-size:0.9rem;flex-shrink:0;white-space:nowrap;transition:var(--transition)}
+    .cta-strip-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15);text-decoration:none}
+    @media(max-width:640px){.cta-strip{flex-direction:column;text-align:center}}
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+        <li><a href="presencia-web-para-pymes.html" class="nav-link active">Paquetes Web</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="proyectos.html" class="nav-link">Proyectos</a></li>
+        <li><a href="login.html" class="nav-link"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pw-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Presencia Web para Pymes</span></div>
+      <div class="pw-hero-inner">
+        <h1>Tu negocio puede estar perdiendo clientes antes de que lleguen a conocerte</h1>
+        <p class="lead">Tenés Instagram. Tenés WhatsApp. Tenés buenas referencias. Pero, ¿qué pasa cuando alguien busca en Google exactamente el servicio que ofrecés?</p>
+        <p class="lead"><strong>Construimos la presencia digital que conecta tu negocio con esas búsquedas:</strong> web + Google + SEO local + WhatsApp + medición. Todo integrado.</p>
+        <div class="pw-hero-cta">
+          <a href="#diagnostico" class="btn-hero-primary"><i class="fas fa-magnifying-glass-chart"></i> Quiero analizar mi negocio</a>
+          <a href="#sistema" class="btn-hero-outline">Ver cómo funciona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ¿YA TENÉS INSTAGRAM? -->
+  <section class="ig-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">Objeción más común</span>
+        <h2 class="section-title reveal">"Pero yo ya tengo Instagram"</h2>
+        <p class="section-subtitle reveal">Perfecto — no venimos a reemplazarlo. Venimos a complementarlo. Instagram y Google resuelven necesidades distintas.</p>
+      </div>
+      <div class="ig-grid">
+        <div class="ig-card">
+          <h4><i class="fab fa-instagram" style="color:#e1306c"></i> Instagram</h4>
+          <p class="ig-quote">"Hoy tenemos nuevos diseños 💅"</p>
+          <p>Le habla a alguien que <strong>ya te conoce</strong> y ya te sigue. Construye comunidad con tu público actual.</p>
+        </div>
+        <div class="ig-card">
+          <h4><i class="fab fa-google" style="color:#4285f4"></i> Google</h4>
+          <p class="ig-quote">"manicura semipermanente Palermo"</p>
+          <p>Le responde a alguien que <strong>necesita el servicio ahora</strong> y todavía no sabe que existís. Captura demanda que ya está buscando.</p>
+        </div>
+      </div>
+      <p class="ig-note">La oportunidad está en conectar ambos mundos: Instagram construye comunidad, Google te ayuda a capturar la demanda que ya existe y todavía no te encontró.</p>
+    </div>
+  </section>
+
+  <!-- NO TENÉS / YA TENÉS PÁGINA -->
+  <section class="obj-section">
+    <div class="container">
+      <div class="obj-grid">
+        <div class="obj-card">
+          <h3><i class="fas fa-circle-plus" style="color:var(--blue)"></i> ¿No tenés página web?</h3>
+          <p>No hay problema. Empezamos desde cero: dominio, web, Google Business, SEO local, WhatsApp y medición.</p>
+          <ul>
+            <li>Dominio propio (.com.ar)</li>
+            <li>Sitio web profesional</li>
+            <li>Alta en Google Business</li>
+            <li>Sistema de contacto por WhatsApp</li>
+          </ul>
+          <p style="font-size:0.85rem;color:var(--gray-400)">¿Ya tenés una página? No necesariamente hay que reemplazarla — primero la analizamos.</p>
+        </div>
+        <div class="obj-card">
+          <h3><i class="fas fa-magnifying-glass" style="color:var(--blue)"></i> ¿Ya tenés página?</h3>
+          <p>No te vamos a vender otra porque sí. Primero analizamos:</p>
+          <ul>
+            <li>Cómo aparece en Google hoy</li>
+            <li>Qué servicios está posicionando</li>
+            <li>Cómo funciona en celular</li>
+            <li>Qué tan fácil es contactarte</li>
+            <li>Qué oportunidades tiene frente a tu competencia</li>
+          </ul>
+          <p style="font-size:0.85rem;color:var(--gray-400)">Si funciona bien, la optimizamos. Si está limitada, la mejoramos. Si quedó obsoleta, proponemos reemplazarla.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA REAL -->
+  <section class="check-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">El problema real</span>
+        <h2 class="section-title reveal">No tener web no siempre es un problema</h2>
+        <p class="section-subtitle reveal">Pero prácticamente cualquier negocio que quiera crecer debería poder responder que sí a esto:</p>
+      </div>
+      <ul class="check-list">
+        <li><i class="fas fa-circle-check"></i> ¿Puedo ser encontrado cuando alguien busca lo que vendo?</li>
+        <li><i class="fas fa-circle-check"></i> ¿La persona puede comprobar que soy confiable?</li>
+        <li><i class="fas fa-circle-check"></i> ¿Puede contactarme inmediatamente?</li>
+        <li><i class="fas fa-circle-check"></i> ¿Google entiende qué hago y dónde trabajo?</li>
+        <li><i class="fas fa-circle-check"></i> ¿Sé de dónde vienen mis consultas?</li>
+      </ul>
+      <p class="ig-note" style="margin-top:24px">Si alguna respuesta es "no", ahí hay una oportunidad de mejorar — no un diagnóstico de que algo está mal.</p>
+    </div>
+  </section>
+
+  <!-- SISTEMA -->
+  <section class="sistema-section" id="sistema">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">Cómo trabajamos</span>
+        <h2 class="section-title reveal">Sistema de Captación Local Cyclops</h2>
+        <p class="section-subtitle reveal">No hacemos solamente páginas web. Construimos sistemas de presencia y captación digital — la página es solo una parte.</p>
+      </div>
+      <div class="sistema-steps">
+        <div class="sistema-step">
+          <div class="sistema-num">01</div>
+          <div>
+            <h4>Presencia</h4>
+            <p>Tu negocio necesita una base digital profesional.</p>
+            <span class="tag">Web + dominio + información comercial</span>
+          </div>
+        </div>
+        <div class="sistema-step">
+          <div class="sistema-num">02</div>
+          <div>
+            <h4>Visibilidad</h4>
+            <p>Hacemos que Google pueda entender tu negocio.</p>
+            <span class="tag">SEO + Google Business + búsquedas locales</span>
+          </div>
+        </div>
+        <div class="sistema-step">
+          <div class="sistema-num">03</div>
+          <div>
+            <h4>Confianza</h4>
+            <p>Cuando alguien te encuentra, tiene que saber por qué elegirte.</p>
+            <span class="tag">Reseñas + información + servicios + experiencia</span>
+          </div>
+        </div>
+        <div class="sistema-step">
+          <div class="sistema-num">04</div>
+          <div>
+            <h4>Conversión</h4>
+            <p>El visitante tiene que poder convertirse fácilmente en contacto.</p>
+            <span class="tag">WhatsApp + llamadas + formularios + CTA</span>
+          </div>
+        </div>
+        <div class="sistema-step">
+          <div class="sistema-num">05</div>
+          <div>
+            <h4>Medición</h4>
+            <p>Lo que no se mide no se puede mejorar.</p>
+            <span class="tag">Search Console + Analytics + informes</span>
+          </div>
+        </div>
+      </div>
+      <p class="sistema-callout">No hacemos solamente páginas web. Construimos sistemas de presencia y captación digital.<span>La página es solamente una parte del sistema.</span></p>
+    </div>
+  </section>
+
+  <!-- FUNNEL -->
+  <section class="funnel-section">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:32px">
+        <span class="section-tag reveal">El objetivo</span>
+        <h2 class="section-title reveal">Construir un canal de captación</h2>
+      </div>
+      <div class="funnel-row">
+        <div class="funnel-step">Persona busca</div>
+        <span class="funnel-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="funnel-step">Encuentra tu negocio</div>
+        <span class="funnel-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="funnel-step">Visita tu presencia digital</div>
+        <span class="funnel-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="funnel-step">Genera confianza</div>
+        <span class="funnel-arrow"><i class="fas fa-arrow-right"></i></span>
+        <div class="funnel-step">Consulta por WhatsApp / llamada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKS -->
+  <section class="packs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">No todos necesitan lo mismo</span>
+        <h2 class="section-title reveal">¿Qué nivel necesita tu negocio?</h2>
+        <p class="section-subtitle reveal">Los precios se acuerdan según las necesidades de cada negocio. ¿No encontrás lo que buscás? Armamos un paquete a medida.</p>
+      </div>
+      <div class="packs-grid">
+        <div class="pack-card">
+          <h3>Arranque</h3>
+          <p class="pack-intent">"Quiero estar correctamente en internet."</p>
+          <p class="pack-desc">Para negocios sin presencia digital o con una presencia mínima.</p>
+          <ul class="pack-features">
+            <li><span class="check">✓</span> Diseño y desarrollo del sitio (full responsive)</li>
+            <li><span class="check">✓</span> Dominio .com.ar — reserva y renovación incluida</li>
+            <li><span class="check">✓</span> Hasta 3 casillas de email con tu dominio</li>
+            <li><span class="check">✓</span> Alta en Google Business (Google Maps)</li>
+            <li><span class="check">✓</span> Formulario de contacto + botón WhatsApp</li>
+            <li><span class="check">✓</span> Mantenimiento y actualizaciones incluidas</li>
+          </ul>
+          <a href="#diagnostico" class="btn-pack btn-pack-outline">Consultar precio</a>
+        </div>
+        <div class="pack-card featured">
+          <span class="pack-badge">⭐ Más elegido</span>
+          <h3>Captación</h3>
+          <p class="pack-intent">"Quiero que más personas puedan encontrarme."</p>
+          <p class="pack-desc">Web + SEO local + Google + optimización + medición.</p>
+          <ul class="pack-features">
+            <li><span class="check">✓</span> Todo lo del paquete Arranque</li>
+            <li><span class="check">✓</span> Hasta 5 casillas de email con tu dominio</li>
+            <li><span class="check">✓</span> Optimización SEO para búsquedas locales</li>
+            <li><span class="check">✓</span> Gestión de publicidad en Meta (Instagram y Facebook)</li>
+            <li><span class="check">✓</span> Gestión de publicidad en Google Ads</li>
+            <li><span class="check">✓</span> Reporte mensual de visitas y rendimiento</li>
+            <li><span class="check">✓</span> Soporte prioritario ante problemas del sitio</li>
+          </ul>
+          <a href="#diagnostico" class="btn-pack btn-pack-primary">Consultar precio</a>
+        </div>
+        <div class="pack-card">
+          <h3>Crecimiento</h3>
+          <p class="pack-intent">"Quiero convertir Internet en un canal comercial."</p>
+          <p class="pack-desc">SEO avanzado + contenidos + análisis de competencia + conversión + automatización.</p>
+          <ul class="pack-features">
+            <li><span class="check">✓</span> Todo lo del paquete Captación</li>
+            <li><span class="check">✓</span> Casillas de email ilimitadas</li>
+            <li><span class="check">✓</span> Contenido y blog orientado a SEO</li>
+            <li><span class="check">✓</span> Análisis de competencia y oportunidades</li>
+            <li><span class="check">✓</span> Automatización de captación (WhatsApp / formularios)</li>
+            <li><span class="check">✓</span> Asesoramiento continuo sin cargo adicional</li>
+          </ul>
+          <a href="#diagnostico" class="btn-pack btn-pack-outline">Consultar precio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIGITAL GAP SCORE -->
+  <section class="gap-section" id="diagnostico">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">Diagnóstico de presencia digital</span>
+        <h2 class="section-title reveal">Descubrí cuál es tu brecha digital</h2>
+        <p class="section-subtitle reveal">Analizamos tu presencia actual en estos frentes y te contamos, en criollo, dónde estás perdiendo oportunidades.</p>
+      </div>
+      <div class="gap-areas">
+        <span class="gap-area-chip">Web</span>
+        <span class="gap-area-chip">Google</span>
+        <span class="gap-area-chip">Google Maps</span>
+        <span class="gap-area-chip">SEO</span>
+        <span class="gap-area-chip">Reputación</span>
+        <span class="gap-area-chip">Conversión</span>
+      </div>
+      <div class="gap-bars">
+        <div class="gap-bar-row"><span class="gap-bar-label">Presencia sólida</span><div class="gap-bar-track"><div class="gap-bar-fill" style="width:25%;background:#22c55e"></div></div></div>
+        <div class="gap-bar-row"><span class="gap-bar-label">Oportunidades de mejora</span><div class="gap-bar-track"><div class="gap-bar-fill" style="width:50%;background:#84cc16"></div></div></div>
+        <div class="gap-bar-row"><span class="gap-bar-label">Brecha importante</span><div class="gap-bar-track"><div class="gap-bar-fill" style="width:75%;background:#f59e0b"></div></div></div>
+        <div class="gap-bar-row"><span class="gap-bar-label">Alta oportunidad</span><div class="gap-bar-track"><div class="gap-bar-fill" style="width:95%;background:#ef4444"></div></div></div>
+      </div>
+      <div class="gap-cta">
+        <p>¿Querés saber dónde está parado tu negocio? Solicitá un diagnóstico inicial de presencia digital. Sin compromiso.</p>
+        <a href="https://wa.me/5491166804450?text=Hola%2C%20quiero%20un%20diagn%C3%B3stico%20de%20presencia%20digital%20para%20mi%20negocio" target="_blank" class="btn-hero-primary"><i class="fab fa-whatsapp"></i> Analizar mi negocio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" id="faq" style="padding:70px 0">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">Preguntas frecuentes</span>
+        <h2 class="section-title reveal">Antes de escribirnos</h2>
+      </div>
+      <div class="faq-grid reveal">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Ya tengo Instagram, ¿para qué necesito esto?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">Instagram le habla a quien ya te conoce. Este sistema captura a quien te busca en Google sin saber que existís todavía.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cuánto tarda en verse resultados?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">La web y Google Business quedan operativos en días. El posicionamiento SEO es un proceso continuo: los primeros movimientos se ven en semanas, la consolidación lleva meses.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Tengo muchos clientes, ¿igual me sirve?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">No buscamos reemplazar tus clientes actuales, sino ayudarte a captar los que todavía no te conocen.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            ¿Cuánto cuesta?
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">Depende del paquete y de las necesidades de tu negocio. Se acuerda después del diagnóstico inicial, sin compromiso.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="cta-strip">
+      <div>
+        <h3>¿Listo para que te encuentren?</h3>
+        <p>Escribinos por WhatsApp y empezamos con el diagnóstico inicial, sin compromiso.</p>
+      </div>
+      <a href="https://wa.me/5491166804450?text=Hola%2C%20quiero%20consultar%20por%20presencia%20web%20para%20mi%20negocio" target="_blank" class="cta-strip-btn">
+        <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Soporte Cyclops</h3>
+          <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Páginas</h3>
+          <a href="index.html">Inicio</a>
+          <a href="servicios.html">Servicios</a>
+          <a href="presencia-web-para-pymes.html">Presencia Web para Pymes</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="opiniones.html">Opiniones</a>
+          <a href="faq.html">Preguntas frecuentes</a>
+          <a href="blog/index.html">Blog técnico</a>
+          <a href="proyectos.html">Proyectos</a>
+        </div>
+        <div class="footer-section">
+          <h3>Contacto</h3>
+          <a href="tel:+5491166804450">+54 9 11 6680-4450</a>
+          <a href="mailto:contacto@soportecyclops.com.ar">contacto@soportecyclops.com.ar</a>
+          <a href="https://wa.me/5491166804450" target="_blank">WhatsApp</a>
+          <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank">Ver en Google Maps</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© 2026 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a></p></div>
+    </div>
+  </footer>
+
+  <script>
+    var nb=document.getElementById('navbar'),mt=document.getElementById('menuToggle'),nm=document.getElementById('navMenu');
+    window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20);});
+    mt.addEventListener('click',function(){nm.classList.toggle('open');mt.innerHTML=nm.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
+    function toggleFaq(btn){
+      var item=btn.parentElement, ans=item.querySelector('.faq-answer'), open=btn.classList.contains('open');
+      document.querySelectorAll('.faq-question.open').forEach(function(b){b.classList.remove('open');b.nextElementSibling.classList.remove('open');});
+      if(!open){btn.classList.add('open');ans.classList.add('open');}
+    }
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');});
+  </script>
+</body>
+</html>
