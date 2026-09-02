@@ -160,7 +160,7 @@
         <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="blog/index.html" class="nav-link">Blog</a></li>
         <li><a href="proyectos.html" class="nav-link">Proyectos</a></li>
-        <li><a href="login.html" class="nav-link"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
+        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
         <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
@@ -612,5 +612,22 @@
     }catch(e){/* fallback: quedan los valores estáticos */}
   })();
   </script>
+<script>
+(function(){
+  try {
+    var u = JSON.parse(sessionStorage.getItem("cyclops_user"));
+    var link = document.getElementById("navIngresarLink");
+    if (u && u.rol && u.rol !== "ninguno" && link) {
+      if (u.rol === "admin") {
+        link.href = "admin.html";
+        link.innerHTML = (window.innerWidth<=900?"":"") + "<i class=\"fas fa-gauge\" style=\"margin-right:4px;font-size:0.85em;\"></i>Panel Admin";
+      } else {
+        link.href = "cliente_panel.html";
+        link.innerHTML = "<i class=\"fas fa-user-circle\" style=\"margin-right:4px;font-size:0.85em;\"></i>Mi Panel";
+      }
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>

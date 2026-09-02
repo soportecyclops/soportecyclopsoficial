@@ -382,6 +382,55 @@
     .sem-cita.confirmada{border-left-color:#16a34a}
     .sem-cita.cancelada{border-left-color:#94a3b8;opacity:.6}
     .sem-vacio{font-size:.72rem;color:#cbd5e1;text-align:center;padding-top:12px}
+    /* ── DOCUMENTOS (Presupuestos / Hojas de Trabajo / Remitos) ── */
+    .doc-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
+    .doc-tab { background: var(--white); border: 1px solid var(--gray-200); color: var(--gray-600); padding: 9px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+    .doc-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .doc-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
+    .doc-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; align-items: start; }
+    @media (max-width: 1100px) { .doc-layout { grid-template-columns: 1fr; } }
+    .doc-form-card, .doc-preview-card { padding: 22px; }
+    .doc-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+    .doc-input { width: 100%; padding: 9px 12px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 0.85rem; font-family: inherit; color: var(--gray-800); }
+    .doc-input:focus { outline: none; border-color: var(--accent); }
+    textarea.doc-input { resize: vertical; }
+    .doc-num-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
+    .doc-num { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent); background: var(--accent-glow); padding: 8px 12px; border-radius: 8px; }
+    .doc-num-mode { font-size: 0.7rem; color: var(--gray-400); margin-top: 4px; }
+    .doc-item-row { display: grid; grid-template-columns: 1fr 70px 110px 110px 32px; gap: 8px; margin-bottom: 8px; align-items: center; }
+    @media (max-width: 640px) { .doc-item-row { grid-template-columns: 1fr; } }
+    .doc-item-row input { padding: 8px 10px; border: 1px solid var(--gray-200); border-radius: 6px; font-size: 0.82rem; }
+    .doc-item-del { background: var(--red-bg); color: var(--red); border: none; border-radius: 6px; width: 30px; height: 30px; cursor: pointer; }
+    .doc-totales { margin-top: 12px; text-align: right; }
+    .doc-totales-line { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 4px; }
+    .doc-totales-line.total { font-size: 1rem; font-weight: 700; color: var(--gray-900); border-top: 1px solid var(--gray-200); padding-top: 6px; margin-top: 6px; }
+    .doc-check { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--gray-600); float: left; margin-top: 4px; }
+    .doc-print-area { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 28px; min-height: 400px; font-size: 0.85rem; color: #1e293b; }
+    .doc-print-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 18px; }
+    .doc-print-logo { display: flex; align-items: center; gap: 10px; }
+    .doc-print-logo img { height: 40px; }
+    .doc-print-logo strong { font-size: 1.05rem; color: var(--gray-900); display: block; }
+    .doc-print-logo span { font-size: 0.72rem; color: var(--gray-500); }
+    .doc-print-type { text-align: right; }
+    .doc-print-type .tname { font-size: 1rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
+    .doc-print-type .tnum { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--gray-800); margin-top: 2px; }
+    .doc-print-type .tfecha { font-size: 0.78rem; color: var(--gray-500); }
+    .doc-print-section-title { font-size: 0.72rem; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 6px; }
+    .doc-print-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; font-size: 0.83rem; }
+    table.doc-print-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.82rem; }
+    table.doc-print-table th { text-align: left; background: var(--gray-50); padding: 6px 8px; font-size: 0.72rem; text-transform: uppercase; color: var(--gray-500); }
+    table.doc-print-table td { padding: 6px 8px; border-bottom: 1px solid var(--gray-100); }
+    table.doc-print-table td.num { text-align: right; }
+    .doc-print-totales { text-align: right; margin-top: 10px; font-size: 0.85rem; }
+    .doc-print-totales .grand { font-size: 1.05rem; font-weight: 700; color: var(--gray-900); }
+    .doc-print-firmas { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 46px; }
+    .doc-print-firmas div { border-top: 1px solid var(--gray-400); padding-top: 6px; text-align: center; font-size: 0.75rem; color: var(--gray-500); }
+    .doc-print-obs { font-size: 0.78rem; color: var(--gray-600); margin-top: 12px; white-space: pre-wrap; }
+    @media print {
+      body * { visibility: hidden; }
+      .doc-print-area, .doc-print-area * { visibility: visible; }
+      .doc-print-area { position: absolute; left: 0; top: 0; width: 100%; border: none; padding: 0; }
+    }
   </style>
 </head>
 <body>
@@ -444,6 +493,11 @@
       </button>
       <button class="sb-item" onclick="window.location.href='admin-portal.html'">
         <i class="fas fa-circle-question"></i> <span>Preguntas</span>
+      </button>
+
+      <div class="sb-section-label">Documentos</div>
+      <button class="sb-item" data-section="documentos" onclick="showSection('documentos', this)">
+        <i class="fas fa-file-invoice-dollar"></i> <span>Presupuestos / Remitos</span>
       </button>
 
       <div class="sb-section-label">Accesos</div>
@@ -762,9 +816,143 @@
         </div>
       </div>
 
+      <!-- ═══ DOCUMENTOS (Presupuestos / Hojas de Trabajo / Remitos) ═══ -->
+      <div class="section" id="sec-documentos">
+        <div class="sec-header">
+          <div class="sec-title">Presupuestos, Hojas de Trabajo y Remitos</div>
+          <button class="btn btn-secondary btn-sm" onclick="abrirConfigEmpresa()"><i class="fas fa-gear"></i> Datos de la empresa</button>
+        </div>
+
+        <div class="doc-tabs">
+          <button class="doc-tab active" data-tipo="presupuesto" onclick="cambiarTipoDoc('presupuesto', this)"><i class="fas fa-file-invoice-dollar"></i> Presupuesto</button>
+          <button class="doc-tab" data-tipo="hoja" onclick="cambiarTipoDoc('hoja', this)"><i class="fas fa-clipboard-list"></i> Hoja de Trabajo</button>
+          <button class="doc-tab" data-tipo="remito" onclick="cambiarTipoDoc('remito', this)"><i class="fas fa-dolly"></i> Remito</button>
+        </div>
+
+        <div class="doc-layout">
+          <!-- FORM -->
+          <div class="card doc-form-card">
+            <div class="doc-num-row">
+              <div>
+                <label class="doc-label">N° de documento</label>
+                <div class="doc-num" id="docNumPreview">—</div>
+                <div class="doc-num-mode" id="docNumMode"></div>
+              </div>
+              <div>
+                <label class="doc-label">Fecha</label>
+                <input type="date" id="docFecha" class="doc-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="doc-label">Cliente</label>
+              <div class="field-row">
+                <input type="text" id="docClienteNombre" class="doc-input" placeholder="Nombre y apellido / Razón social">
+                <input type="text" id="docClienteTel" class="doc-input" placeholder="Teléfono">
+              </div>
+              <div class="field-row" style="margin-top:8px">
+                <input type="text" id="docClienteEmail" class="doc-input" placeholder="Email (opcional)">
+                <input type="text" id="docClienteDireccion" class="doc-input" placeholder="Dirección / zona">
+              </div>
+            </div>
+
+            <div class="form-group" id="blockEquipo">
+              <label class="doc-label">Equipo</label>
+              <div class="field-row">
+                <input type="text" id="docEquipoTipo" class="doc-input" placeholder="Tipo (PC / Notebook / Router / Cámara...)">
+                <input type="text" id="docEquipoMarcaModelo" class="doc-input" placeholder="Marca y modelo">
+              </div>
+              <div class="field-row" style="margin-top:8px">
+                <input type="text" id="docEquipoSerie" class="doc-input" placeholder="N° de serie (opcional)">
+                <input type="text" id="docEquipoAccesorios" class="doc-input" placeholder="Accesorios que deja (cargador, mouse...)">
+              </div>
+            </div>
+
+            <div class="form-group" id="blockDiagnostico">
+              <label class="doc-label" id="labelDiagnostico">Diagnóstico / trabajo a realizar</label>
+              <textarea id="docDiagnostico" class="doc-input" rows="3" placeholder="Descripción del problema y/o trabajo a realizar"></textarea>
+            </div>
+
+            <div class="form-group" id="blockItems">
+              <label class="doc-label">Ítems</label>
+              <div id="docItemsList"></div>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="agregarItemDoc()" style="margin-top:6px"><i class="fas fa-plus"></i> Agregar ítem</button>
+              <div class="doc-totales" id="docTotalesBox">
+                <label class="doc-check"><input type="checkbox" id="docIva" onchange="renderPreviewDoc()"> Discriminar IVA (21%)</label>
+                <div class="doc-totales-line">Subtotal: <strong id="docSubtotalTxt">$ 0</strong></div>
+                <div class="doc-totales-line" id="docIvaLine" style="display:none">IVA (21%): <strong id="docIvaTxt">$ 0</strong></div>
+                <div class="doc-totales-line total">Total: <strong id="docTotalTxt">$ 0</strong></div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="doc-label">Observaciones</label>
+              <textarea id="docObservaciones" class="doc-input" rows="2" placeholder="Condiciones, validez del presupuesto, garantía, etc."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="doc-label">Validez / condición de pago (opcional)</label>
+              <input type="text" id="docValidez" class="doc-input" placeholder="Ej: Presupuesto válido por 15 días. Seña 50%.">
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:16px">
+              <button class="btn btn-primary" onclick="guardarDocumento()"><i class="fas fa-save"></i> Guardar</button>
+              <button class="btn btn-secondary" onclick="imprimirDocumento()"><i class="fas fa-print"></i> Imprimir / PDF</button>
+              <button class="btn btn-secondary" onclick="nuevoDocumento()"><i class="fas fa-file-circle-plus"></i> Nuevo</button>
+            </div>
+          </div>
+
+          <!-- PREVIEW -->
+          <div class="card doc-preview-card">
+            <div id="docPreview" class="doc-print-area"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:20px">
+          <div class="sec-title" style="margin-bottom:12px">Historial</div>
+          <div style="display:flex;gap:10px;margin-bottom:14px">
+            <input type="text" class="filter-input search" id="docHistSearch" placeholder="🔍 Buscar por N° o cliente..." style="flex:1" oninput="pintarHistorialDocs()">
+          </div>
+          <div id="docHistorial"><div class="loading-spinner"><i class="fas fa-spinner"></i> Sin documentos guardados todavía.</div></div>
+        </div>
+      </div>
+
     </div><!-- /content -->
   </main>
 </div><!-- /appShell -->
+
+<!-- ════════ MODAL: DATOS DE LA EMPRESA (membrete) ════════ -->
+<div class="modal-overlay" id="modalConfigEmpresa">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Datos de la empresa (membrete)</h3>
+      <button class="modal-close" onclick="closeModal('modalConfigEmpresa')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="field-row">
+        <div class="field"><label>Razón social / nombre</label><input type="text" id="cfgNombre" placeholder="Soporte Cyclops"></div>
+        <div class="field"><label>CUIT</label><input type="text" id="cfgCuit" placeholder="20-XXXXXXXX-X"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Condición frente al IVA</label><input type="text" id="cfgIvaCond" placeholder="Responsable Monotributo / IVA..."></div>
+        <div class="field"><label>Teléfono</label><input type="text" id="cfgTelefono" placeholder="+54 9 11 6680-4450"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Email</label><input type="text" id="cfgEmail" placeholder="contacto@soportecyclops.com.ar"></div>
+        <div class="field"><label>Dirección</label><input type="text" id="cfgDireccion" placeholder="CABA, Argentina"></div>
+      </div>
+      <div class="field">
+        <label>URL del logo (opcional, usa el ícono del sitio si se deja vacío)</label>
+        <input type="text" id="cfgLogo" placeholder="public/images/logo-icon.png">
+      </div>
+      <p style="font-size:0.78rem;color:var(--gray-500);margin-top:6px">Estos datos se guardan en este navegador y se usan como membrete en todos los documentos que generes.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modalConfigEmpresa')">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarConfigEmpresa()"><i class="fas fa-save"></i> Guardar</button>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ TOAST CONTAINER ═══ -->
 <div id="toastContainer"></div>
@@ -1035,7 +1223,8 @@ const SECTION_TITLES = {
   clientes: 'Clientes',
   llamados: 'Llamados',
   usuarios: 'Gestión de Usuarios',
-  accesos: 'Accesos Rápidos'
+  accesos: 'Accesos Rápidos',
+  documentos: 'Presupuestos / Remitos'
 };
 
 function showSection(id, btn) {
@@ -1051,6 +1240,7 @@ function showSection(id, btn) {
   if (id === 'llamados'     && allLlamados.length === 0) loadLlamados();
   if (id === 'usuarios') loadUsuarios();
   if (id === 'clientes') loadClientes();
+  if (id === 'documentos') initDocumentos();
 }
 
 function refreshCurrentSection() {
@@ -1553,6 +1743,413 @@ function openNewCita() {
   document.getElementById('citaEstado').value='pendiente';
   openModal('modalCita');
 }
+
+// ══════════════════════════════════════════════════════════
+// DOCUMENTOS: Presupuestos / Hojas de Trabajo / Remitos
+// ══════════════════════════════════════════════════════════
+const DOC_TIPOS = {
+  presupuesto: { nombre: 'Presupuesto',      prefijo: 'PRE', items: true,  equipo: false, diag: true,  labelDiag: 'Diagnóstico / trabajo a realizar' },
+  hoja:        { nombre: 'Hoja de Trabajo',  prefijo: 'HDT', items: false, equipo: true,  diag: true,  labelDiag: 'Problema reportado / diagnóstico / trabajo realizado' },
+  remito:      { nombre: 'Remito',           prefijo: 'REM', items: false, equipo: true,  diag: false, labelDiag: '' }
+};
+let docTipoActual = 'presupuesto';
+let docItems = [];
+let docHistorialCache = null;
+
+function initDocumentos() {
+  if (!document.getElementById('docFecha').value) {
+    document.getElementById('docFecha').value = new Date().toISOString().slice(0,10);
+  }
+  cargarConfigEmpresaEnMemoria();
+  if (docItems.length === 0) agregarItemDoc();
+  actualizarNumeroDoc();
+  renderPreviewDoc();
+  pintarHistorialDocs();
+}
+
+function cambiarTipoDoc(tipo, btn) {
+  docTipoActual = tipo;
+  document.querySelectorAll('.doc-tab').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const cfg = DOC_TIPOS[tipo];
+  document.getElementById('blockEquipo').style.display = cfg.equipo ? '' : 'none';
+  document.getElementById('blockDiagnostico').style.display = cfg.diag ? '' : 'none';
+  document.getElementById('blockItems').style.display = cfg.items ? '' : 'none';
+  if (cfg.diag) document.getElementById('labelDiagnostico').textContent = cfg.labelDiag;
+  actualizarNumeroDoc();
+  renderPreviewDoc();
+}
+
+function nuevoDocumento() {
+  document.getElementById('docClienteNombre').value = '';
+  document.getElementById('docClienteTel').value = '';
+  document.getElementById('docClienteEmail').value = '';
+  document.getElementById('docClienteDireccion').value = '';
+  document.getElementById('docEquipoTipo').value = '';
+  document.getElementById('docEquipoMarcaModelo').value = '';
+  document.getElementById('docEquipoSerie').value = '';
+  document.getElementById('docEquipoAccesorios').value = '';
+  document.getElementById('docDiagnostico').value = '';
+  document.getElementById('docObservaciones').value = '';
+  document.getElementById('docValidez').value = '';
+  document.getElementById('docFecha').value = new Date().toISOString().slice(0,10);
+  docItems = [];
+  agregarItemDoc();
+  actualizarNumeroDoc();
+  renderPreviewDoc();
+  showToast('Formulario limpio, listo para un nuevo documento');
+}
+
+// ── Numeración correlativa: ddmmyyyy-NNN por tipo y día ──
+// Intenta pedir el próximo número al backend (Apps Script, acción "siguiente_numero_doc").
+// Si el backend todavía no tiene esa acción implementada, usa un contador local
+// por navegador (localStorage) como respaldo — ver nota en docNumMode.
+async function actualizarNumeroDoc() {
+  const fecha = document.getElementById('docFecha').value || new Date().toISOString().slice(0,10);
+  const [y,m,d] = fecha.split('-');
+  const fechaCorta = d + m + y; // ddmmyyyy
+  const modeEl = document.getElementById('docNumMode');
+
+  let seq = null;
+  try {
+    const resp = await apiGet('siguiente_numero_doc', { tipo: docTipoActual, fecha: fechaCorta, peek: '1' });
+    if (resp && resp.ok && resp.siguiente) {
+      seq = resp.siguiente;
+      modeEl.textContent = '';
+    }
+  } catch(e) { /* backend sin esa acción todavía — seguimos con el respaldo local */ }
+
+  if (seq === null) {
+    seq = obtenerSiguienteLocal(docTipoActual, fechaCorta, false);
+    modeEl.textContent = 'Numeración local de este navegador (agregá el backend para que sea multi-dispositivo)';
+  }
+
+  const num = fechaCorta + '-' + String(seq).padStart(3, '0');
+  document.getElementById('docNumPreview').textContent = num;
+  document.getElementById('docNumPreview').dataset.num = num;
+  renderPreviewDoc();
+}
+
+function obtenerSiguienteLocal(tipo, fechaCorta, consumir) {
+  const key = 'cyclops_doc_counter_' + tipo + '_' + fechaCorta;
+  let n = parseInt(localStorage.getItem(key) || '0', 10);
+  if (consumir) { n += 1; localStorage.setItem(key, String(n)); return n; }
+  return n + 1;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const f = document.getElementById('docFecha');
+  if (f) f.addEventListener('change', actualizarNumeroDoc);
+});
+
+// ── Ítems dinámicos (presupuesto) ──
+function agregarItemDoc() {
+  const id = 'it' + Date.now() + Math.floor(Math.random()*1000);
+  docItems.push({ id, desc: '', cant: 1, precio: 0 });
+  renderItemsDoc();
+}
+function quitarItemDoc(id) {
+  docItems = docItems.filter(it => it.id !== id);
+  renderItemsDoc();
+}
+function actualizarItemDoc(id, campo, valor) {
+  const it = docItems.find(i => i.id === id);
+  if (!it) return;
+  it[campo] = (campo === 'cant' || campo === 'precio') ? (parseFloat(valor) || 0) : valor;
+  renderPreviewDoc();
+}
+function renderItemsDoc() {
+  const box = document.getElementById('docItemsList');
+  box.innerHTML = docItems.map(it => `
+    <div class="doc-item-row">
+      <input type="text" placeholder="Descripción" value="${esc(it.desc)}" oninput="actualizarItemDoc('${it.id}','desc',this.value)">
+      <input type="number" min="0" step="1" placeholder="Cant." value="${it.cant}" oninput="actualizarItemDoc('${it.id}','cant',this.value)">
+      <input type="number" min="0" step="0.01" placeholder="P. unit." value="${it.precio}" oninput="actualizarItemDoc('${it.id}','precio',this.value)">
+      <div style="font-size:0.82rem;padding:8px 4px;color:var(--gray-600);text-align:right">$ ${fmtMoney(it.cant * it.precio)}</div>
+      <button type="button" class="doc-item-del" onclick="quitarItemDoc('${it.id}')" title="Quitar"><i class="fas fa-trash"></i></button>
+    </div>`).join('');
+  renderPreviewDoc();
+}
+function fmtMoney(n) {
+  return (n || 0).toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function calcularTotalesDoc() {
+  const subtotal = docItems.reduce((a, it) => a + (it.cant * it.precio), 0);
+  const conIva = document.getElementById('docIva') ? document.getElementById('docIva').checked : false;
+  const iva = conIva ? subtotal * 0.21 : 0;
+  return { subtotal, iva, total: subtotal + iva, conIva };
+}
+
+// ── Datos de la empresa (membrete, configurable) ──
+function cargarConfigEmpresaEnMemoria() {
+  const cfg = getConfigEmpresa();
+  document.getElementById('cfgNombre')?.setAttribute('value', cfg.nombre || '');
+}
+function getConfigEmpresa() {
+  try { return JSON.parse(localStorage.getItem('cyclops_empresa_cfg')) || {}; }
+  catch(e) { return {}; }
+}
+function abrirConfigEmpresa() {
+  const cfg = getConfigEmpresa();
+  document.getElementById('cfgNombre').value    = cfg.nombre    || 'Soporte Cyclops';
+  document.getElementById('cfgCuit').value      = cfg.cuit      || '';
+  document.getElementById('cfgIvaCond').value   = cfg.ivaCond   || '';
+  document.getElementById('cfgTelefono').value  = cfg.telefono  || '+54 9 11 6680-4450';
+  document.getElementById('cfgEmail').value     = cfg.email     || 'contacto@soportecyclops.com.ar';
+  document.getElementById('cfgDireccion').value = cfg.direccion || 'CABA, Argentina';
+  document.getElementById('cfgLogo').value      = cfg.logo      || '';
+  document.getElementById('modalConfigEmpresa').classList.add('active');
+}
+function guardarConfigEmpresa() {
+  const cfg = {
+    nombre:    document.getElementById('cfgNombre').value,
+    cuit:      document.getElementById('cfgCuit').value,
+    ivaCond:   document.getElementById('cfgIvaCond').value,
+    telefono:  document.getElementById('cfgTelefono').value,
+    email:     document.getElementById('cfgEmail').value,
+    direccion: document.getElementById('cfgDireccion').value,
+    logo:      document.getElementById('cfgLogo').value
+  };
+  localStorage.setItem('cyclops_empresa_cfg', JSON.stringify(cfg));
+  closeModal('modalConfigEmpresa');
+  showToast('Datos de la empresa guardados ✓', 'success');
+  renderPreviewDoc();
+}
+
+// ── Preview / membrete impreso ──
+function renderPreviewDoc() {
+  const tipo = DOC_TIPOS[docTipoActual];
+  const cfg = getConfigEmpresa();
+  const num = document.getElementById('docNumPreview') ? document.getElementById('docNumPreview').dataset.num || document.getElementById('docNumPreview').textContent : '—';
+  const fecha = document.getElementById('docFecha').value || '';
+  const fechaFmt = fecha ? fecha.split('-').reverse().join('/') : '';
+
+  const cliNombre = document.getElementById('docClienteNombre').value;
+  const cliTel = document.getElementById('docClienteTel').value;
+  const cliEmail = document.getElementById('docClienteEmail').value;
+  const cliDir = document.getElementById('docClienteDireccion').value;
+
+  let html = `
+    <div class="doc-print-header">
+      <div class="doc-print-logo">
+        ${cfg.logo ? `<img src="${esc(cfg.logo)}" onerror="this.style.display='none'">` : `<img src="public/images/logo-icon.png" onerror="this.style.display='none'">`}
+        <div>
+          <strong>${esc(cfg.nombre || 'Soporte Cyclops')}</strong>
+          <span>${esc(cfg.cuit ? 'CUIT ' + cfg.cuit : '')}${cfg.ivaCond ? ' · ' + esc(cfg.ivaCond) : ''}</span><br>
+          <span>${esc(cfg.telefono || '')}${cfg.email ? ' · ' + esc(cfg.email) : ''}</span><br>
+          <span>${esc(cfg.direccion || '')}</span>
+        </div>
+      </div>
+      <div class="doc-print-type">
+        <div class="tname">${esc(tipo.nombre)}</div>
+        <div class="tnum">N° ${esc(num)}</div>
+        <div class="tfecha">${esc(fechaFmt)}</div>
+      </div>
+    </div>
+
+    <div class="doc-print-section-title">Cliente</div>
+    <div class="doc-print-grid">
+      <div><strong>${esc(cliNombre) || '—'}</strong></div>
+      <div>${esc(cliTel) || ''}</div>
+      <div>${esc(cliEmail) || ''}</div>
+      <div>${esc(cliDir) || ''}</div>
+    </div>`;
+
+  if (tipo.equipo) {
+    const eTipo = document.getElementById('docEquipoTipo').value;
+    const eMM = document.getElementById('docEquipoMarcaModelo').value;
+    const eSerie = document.getElementById('docEquipoSerie').value;
+    const eAcc = document.getElementById('docEquipoAccesorios').value;
+    html += `
+      <div class="doc-print-section-title">Equipo</div>
+      <div class="doc-print-grid">
+        <div>${esc(eTipo) || '—'}${eMM ? ' — ' + esc(eMM) : ''}</div>
+        <div>${eSerie ? 'N° serie: ' + esc(eSerie) : ''}</div>
+        <div style="grid-column:1/-1">${eAcc ? 'Accesorios: ' + esc(eAcc) : ''}</div>
+      </div>`;
+  }
+
+  if (tipo.diag) {
+    const diag = document.getElementById('docDiagnostico').value;
+    html += `
+      <div class="doc-print-section-title">${esc(tipo.labelDiag)}</div>
+      <div class="doc-print-obs">${esc(diag) || '—'}</div>`;
+  }
+
+  if (tipo.items) {
+    const { subtotal, iva, total, conIva } = calcularTotalesDoc();
+    html += `
+      <div class="doc-print-section-title">Detalle</div>
+      <table class="doc-print-table">
+        <thead><tr><th>Descripción</th><th class="num">Cant.</th><th class="num">P. Unit.</th><th class="num">Subtotal</th></tr></thead>
+        <tbody>
+          ${docItems.map(it => `<tr><td>${esc(it.desc) || '—'}</td><td class="num">${it.cant}</td><td class="num">$ ${fmtMoney(it.precio)}</td><td class="num">$ ${fmtMoney(it.cant*it.precio)}</td></tr>`).join('')}
+        </tbody>
+      </table>
+      <div class="doc-print-totales">
+        <div>Subtotal: $ ${fmtMoney(subtotal)}</div>
+        ${conIva ? `<div>IVA (21%): $ ${fmtMoney(iva)}</div>` : ''}
+        <div class="grand">Total: $ ${fmtMoney(total)}</div>
+      </div>`;
+
+    document.getElementById('docSubtotalTxt').textContent = '$ ' + fmtMoney(subtotal);
+    document.getElementById('docIvaLine').style.display = conIva ? '' : 'none';
+    document.getElementById('docIvaTxt').textContent = '$ ' + fmtMoney(iva);
+    document.getElementById('docTotalTxt').textContent = '$ ' + fmtMoney(total);
+  }
+
+  const obs = document.getElementById('docObservaciones').value;
+  const validez = document.getElementById('docValidez').value;
+  if (obs || validez) {
+    html += `<div class="doc-print-section-title">Observaciones</div><div class="doc-print-obs">${esc(obs)}${validez ? '\n' + esc(validez) : ''}</div>`;
+  }
+
+  html += `
+    <div class="doc-print-firmas">
+      <div>Firma cliente</div>
+      <div>Firma / sello Soporte Cyclops</div>
+    </div>`;
+
+  document.getElementById('docPreview').innerHTML = html;
+}
+
+function imprimirDocumento() {
+  renderPreviewDoc();
+  window.print();
+}
+
+// ── Guardado (backend con respaldo local) ──
+async function guardarDocumento() {
+  if (!document.getElementById('docClienteNombre').value.trim()) {
+    showToast('Ingresá al menos el nombre del cliente', 'warning'); return;
+  }
+  const fecha = document.getElementById('docFecha').value || new Date().toISOString().slice(0,10);
+  const [y,m,d] = fecha.split('-');
+  const fechaCorta = d + m + y;
+  const seqLocal = obtenerSiguienteLocal(docTipoActual, fechaCorta, false);
+
+  const { subtotal, iva, total, conIva } = calcularTotalesDoc();
+  const doc = {
+    tipo: docTipoActual,
+    tipoNombre: DOC_TIPOS[docTipoActual].nombre,
+    numero: null, // se completa abajo según backend/local
+    fecha,
+    cliente: {
+      nombre: document.getElementById('docClienteNombre').value,
+      telefono: document.getElementById('docClienteTel').value,
+      email: document.getElementById('docClienteEmail').value,
+      direccion: document.getElementById('docClienteDireccion').value
+    },
+    equipo: {
+      tipo: document.getElementById('docEquipoTipo').value,
+      marcaModelo: document.getElementById('docEquipoMarcaModelo').value,
+      serie: document.getElementById('docEquipoSerie').value,
+      accesorios: document.getElementById('docEquipoAccesorios').value
+    },
+    diagnostico: document.getElementById('docDiagnostico').value,
+    items: docItems,
+    subtotal, iva, total, conIva,
+    observaciones: document.getElementById('docObservaciones').value,
+    validez: document.getElementById('docValidez').value,
+    creadoEn: new Date().toISOString()
+  };
+
+  let numeroFinal = null;
+  try {
+    const resp = await apiGet('siguiente_numero_doc', { tipo: docTipoActual, fecha: fechaCorta, peek: '0' });
+    if (resp && resp.ok && resp.siguiente) numeroFinal = fechaCorta + '-' + String(resp.siguiente).padStart(3,'0');
+  } catch(e) {}
+
+  if (!numeroFinal) {
+    const seq = obtenerSiguienteLocal(docTipoActual, fechaCorta, true);
+    numeroFinal = fechaCorta + '-' + String(seq).padStart(3,'0');
+  }
+  doc.numero = numeroFinal;
+
+  // Intentar guardar en backend; si no existe la acción todavía, cae al respaldo local
+  let guardadoRemoto = false;
+  try {
+    const resp = await apiPost({ action: 'guardar_documento', ...doc, items: JSON.stringify(doc.items), cliente: JSON.stringify(doc.cliente), equipo: JSON.stringify(doc.equipo) });
+    if (resp && resp.ok) guardadoRemoto = true;
+  } catch(e) {}
+
+  const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
+  historial.unshift(doc);
+  localStorage.setItem('cyclops_docs_historial', JSON.stringify(historial.slice(0, 500)));
+
+  document.getElementById('docNumPreview').textContent = numeroFinal;
+  document.getElementById('docNumPreview').dataset.num = numeroFinal;
+  renderPreviewDoc();
+  pintarHistorialDocs();
+  showToast(guardadoRemoto ? 'Documento guardado ✓' : 'Documento guardado en este navegador ✓ (agregá el backend para multi-dispositivo)', 'success');
+}
+
+function pintarHistorialDocs() {
+  const box = document.getElementById('docHistorial');
+  const q = (document.getElementById('docHistSearch')?.value || '').toLowerCase();
+  const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
+  const filtrado = historial.filter(d =>
+    !q || (d.numero||'').toLowerCase().includes(q) || (d.cliente?.nombre||'').toLowerCase().includes(q));
+
+  if (filtrado.length === 0) {
+    box.innerHTML = '<div style="padding:20px;text-align:center;color:var(--gray-400);font-size:0.85rem">Sin documentos guardados todavía.</div>';
+    return;
+  }
+
+  box.innerHTML = `
+    <table>
+      <thead><tr><th>N°</th><th>Tipo</th><th>Fecha</th><th>Cliente</th><th>Total</th><th>Acciones</th></tr></thead>
+      <tbody>
+        ${filtrado.map((d,i) => `
+          <tr>
+            <td style="font-family:'JetBrains Mono',monospace">${esc(d.numero)}</td>
+            <td>${esc(d.tipoNombre)}</td>
+            <td>${esc((d.fecha||'').split('-').reverse().join('/'))}</td>
+            <td>${esc(d.cliente?.nombre || '—')}</td>
+            <td>${d.items && d.items.length ? '$ ' + fmtMoney(d.total) : '—'}</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="cargarDocDeHistorial(${i}, '${q.replace(/'/g,"")}')" title="Ver / reimprimir"><i class="fas fa-eye"></i></button></td>
+          </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+function cargarDocDeHistorial(idxFiltrado, q) {
+  const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
+  const filtrado = historial.filter(d =>
+    !q || (d.numero||'').toLowerCase().includes(q) || (d.cliente?.nombre||'').toLowerCase().includes(q));
+  const d = filtrado[idxFiltrado];
+  if (!d) return;
+
+  docTipoActual = d.tipo;
+  document.querySelectorAll('.doc-tab').forEach(b => b.classList.toggle('active', b.dataset.tipo === d.tipo));
+  const cfg = DOC_TIPOS[d.tipo];
+  document.getElementById('blockEquipo').style.display = cfg.equipo ? '' : 'none';
+  document.getElementById('blockDiagnostico').style.display = cfg.diag ? '' : 'none';
+  document.getElementById('blockItems').style.display = cfg.items ? '' : 'none';
+  if (cfg.diag) document.getElementById('labelDiagnostico').textContent = cfg.labelDiag;
+
+  document.getElementById('docFecha').value = d.fecha || '';
+  document.getElementById('docClienteNombre').value = d.cliente?.nombre || '';
+  document.getElementById('docClienteTel').value = d.cliente?.telefono || '';
+  document.getElementById('docClienteEmail').value = d.cliente?.email || '';
+  document.getElementById('docClienteDireccion').value = d.cliente?.direccion || '';
+  document.getElementById('docEquipoTipo').value = d.equipo?.tipo || '';
+  document.getElementById('docEquipoMarcaModelo').value = d.equipo?.marcaModelo || '';
+  document.getElementById('docEquipoSerie').value = d.equipo?.serie || '';
+  document.getElementById('docEquipoAccesorios').value = d.equipo?.accesorios || '';
+  document.getElementById('docDiagnostico').value = d.diagnostico || '';
+  document.getElementById('docObservaciones').value = d.observaciones || '';
+  document.getElementById('docValidez').value = d.validez || '';
+  document.getElementById('docIva').checked = !!d.conIva;
+  docItems = (d.items && d.items.length) ? d.items : [];
+  if (docItems.length === 0) agregarItemDoc(); else renderItemsDoc();
+
+  document.getElementById('docNumPreview').textContent = d.numero;
+  document.getElementById('docNumPreview').dataset.num = d.numero;
+  renderPreviewDoc();
+  showToast('Documento ' + d.numero + ' cargado — podés reimprimirlo');
+}
+
 
 async function guardarCita() {
   const idx = document.getElementById('citaId').value;
