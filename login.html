@@ -12,7 +12,7 @@
     :root {
       --blue: #2563eb; --blue-dark: #1a3a5c; --gray-50: #f8fafc;
       --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b;
-      --gray-900: #0f172a; --red: #dc2626;
+      --gray-900: #0f172a; --red: #dc2626; --green: #16a34a;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -22,29 +22,65 @@
       padding: 20px;
     }
     .login-card {
-      background: white; border-radius: 20px; padding: 48px 40px;
-      width: 100%; max-width: 420px;
+      background: white; border-radius: 20px; padding: 40px;
+      width: 100%; max-width: 440px;
       box-shadow: 0 25px 60px rgba(0,0,0,0.35);
-      text-align: center;
     }
-    .logo-wrap { margin-bottom: 28px; }
+    .logo-wrap { margin-bottom: 24px; text-align: center; }
     .logo-wrap img { height: 48px; margin-bottom: 10px; }
     .logo-wrap h1 { font-size: 1.4rem; font-weight: 800; color: var(--blue-dark); }
     .logo-wrap p  { font-size: 0.85rem; color: var(--gray-500); margin-top: 4px; }
-    .divider { border: none; border-top: 1px solid var(--gray-200); margin: 24px 0; }
+
+    .tabs { display: flex; gap: 6px; background: var(--gray-100); border-radius: 12px; padding: 4px; margin-bottom: 24px; }
+    .tabbtn { flex: 1; border: none; background: transparent; padding: 10px; border-radius: 9px; font-family: inherit; font-weight: 700; font-size: 0.85rem; color: var(--gray-500); cursor: pointer; transition: all .2s; }
+    .tabbtn.on { background: white; color: var(--blue-dark); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+    .panel { display: none; }
+    .panel.on { display: block; }
+
+    .divider { border: none; border-top: 1px solid var(--gray-200); margin: 20px 0; }
     .google-btn-wrap { display: flex; justify-content: center; }
+
     .msg-error {
       background: #fef2f2; border: 1px solid #fecaca; color: var(--red);
       border-radius: 10px; padding: 12px 16px; font-size: 0.85rem;
       margin-top: 16px; display: none;
     }
-    .msg-loading {
-      color: var(--gray-500); font-size: 0.85rem;
-      margin-top: 16px; display: none;
+    .msg-ok {
+      background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534;
+      border-radius: 10px; padding: 12px 16px; font-size: 0.85rem;
+      margin-top: 16px; display: none; line-height: 1.5;
     }
-    .footer-link {
-      margin-top: 28px; font-size: 0.78rem; color: var(--gray-500);
+    .msg-loading { color: var(--gray-500); font-size: 0.85rem; margin-top: 16px; display: none; text-align: center; }
+
+    .f { margin-bottom: 14px; }
+    .f label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+    .f label .req { color: var(--red); }
+    .f label .opt { color: var(--gray-500); font-weight: 400; }
+    .f input, .f textarea {
+      width: 100%; border: 1.5px solid var(--gray-200); border-radius: 9px;
+      padding: 10px 13px; font-family: inherit; font-size: 0.88rem;
     }
+    .f input:focus, .f textarea:focus { outline: none; border-color: var(--blue); }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 420px) { .row2 { grid-template-columns: 1fr; } }
+
+    .btn-registrar {
+      width: 100%; background: var(--blue); color: white; border: none;
+      padding: 13px; border-radius: 10px; font-family: inherit; font-weight: 700;
+      font-size: 0.9rem; cursor: pointer; transition: background .2s;
+    }
+    .btn-registrar:hover { background: #1d4ed8; }
+    .btn-registrar:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .opcionales-toggle {
+      font-size: 0.78rem; color: var(--blue); cursor: pointer; margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 5px; font-weight: 600;
+    }
+    .opcionales { display: none; }
+    .opcionales.on { display: block; }
+
+    .footer-link { margin-top: 24px; font-size: 0.78rem; color: var(--gray-500); text-align: center; }
     .footer-link a { color: var(--blue); text-decoration: none; }
     .footer-link a:hover { text-decoration: underline; }
   </style>
@@ -54,21 +90,73 @@
     <div class="logo-wrap">
       <img src="public/images/logo-nav.png" alt="Soporte Cyclops" onerror="this.style.display='none'">
       <h1>Soporte Cyclops</h1>
-      <p>Ingresá con tu cuenta de Google</p>
+      <p>Accedé a tu panel</p>
     </div>
 
-    <hr class="divider">
-
-    <div class="google-btn-wrap">
-      <div id="googleSignInBtn"></div>
+    <div class="tabs">
+      <button class="tabbtn on" id="tabIngresar" onclick="cambiarTab('ingresar')">Ingresar</button>
+      <button class="tabbtn" id="tabRegistrar" onclick="cambiarTab('registrar')">Registrarme</button>
     </div>
 
-    <div class="msg-loading" id="msgLoading">
-      <i class="fas fa-circle-notch fa-spin"></i> Verificando acceso...
+    <!-- PANEL: INGRESAR -->
+    <div class="panel on" id="panelIngresar">
+      <p style="font-size:0.83rem;color:var(--gray-500);text-align:center;margin-bottom:18px">Ingresá con tu cuenta de Google</p>
+      <div class="google-btn-wrap">
+        <div id="googleSignInBtn"></div>
+      </div>
+
+      <div class="msg-loading" id="msgLoading">
+        <i class="fas fa-circle-notch fa-spin"></i> Verificando acceso...
+      </div>
+      <div class="msg-error" id="msgError">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="msgErrorTxt">Tu cuenta no tiene acceso. Contactá al administrador.</span>
+      </div>
     </div>
-    <div class="msg-error" id="msgError">
-      <i class="fas fa-exclamation-circle"></i>
-      <span id="msgErrorTxt">Tu cuenta no tiene acceso. Contactá al administrador.</span>
+
+    <!-- PANEL: REGISTRARME -->
+    <div class="panel" id="panelRegistrar">
+      <p style="font-size:0.83rem;color:var(--gray-500);margin-bottom:18px">
+        Dejá tus datos y después iniciá sesión con Google usando el mismo email — así ya te vamos a reconocer como cliente y tu perfil va a estar completo.
+      </p>
+
+      <div class="f">
+        <label>Nombre y apellido <span class="req">*</span></label>
+        <input id="regNombre" placeholder="Tu nombre completo">
+      </div>
+      <div class="row2">
+        <div class="f">
+          <label>Teléfono <span class="req">*</span></label>
+          <input id="regTelefono" placeholder="11 xxxx-xxxx">
+        </div>
+        <div class="f">
+          <label>Email <span class="req">*</span></label>
+          <input id="regEmail" type="email" placeholder="vos@email.com">
+        </div>
+      </div>
+
+      <span class="opcionales-toggle" onclick="toggleOpcionales()">
+        <i class="fas fa-chevron-down" id="opcIcon"></i> Datos opcionales (dirección, empresa...)
+      </span>
+
+      <div class="opcionales" id="opcionalesBox">
+        <div class="row2">
+          <div class="f"><label>Dirección <span class="opt">(opcional)</span></label><input id="regDireccion" placeholder="Calle y número"></div>
+          <div class="f"><label>Localidad <span class="opt">(opcional)</span></label><input id="regLocalidad" placeholder="Barrio / localidad"></div>
+        </div>
+        <div class="row2">
+          <div class="f"><label>CP <span class="opt">(opcional)</span></label><input id="regCp" placeholder="Código postal"></div>
+          <div class="f"><label>Empresa <span class="opt">(opcional)</span></label><input id="regEmpresa" placeholder="Si es para una empresa"></div>
+        </div>
+        <div class="f"><label>Nota <span class="opt">(opcional)</span></label><textarea id="regNota" rows="2" placeholder="Algo que quieras contarnos"></textarea></div>
+      </div>
+
+      <button class="btn-registrar" id="btnRegistrar" onclick="registrarCliente()">
+        <i class="fas fa-user-plus"></i> Registrarme
+      </button>
+
+      <div class="msg-error" id="msgErrorReg"><i class="fas fa-exclamation-circle"></i> <span id="msgErrorRegTxt"></span></div>
+      <div class="msg-ok" id="msgOkReg"><i class="fas fa-circle-check"></i> <span id="msgOkRegTxt"></span></div>
     </div>
 
     <div class="footer-link">
@@ -91,6 +179,80 @@
       );
     };
 
+    function cambiarTab(t) {
+      document.getElementById('tabIngresar').classList.toggle('on', t === 'ingresar');
+      document.getElementById('tabRegistrar').classList.toggle('on', t === 'registrar');
+      document.getElementById('panelIngresar').classList.toggle('on', t === 'ingresar');
+      document.getElementById('panelRegistrar').classList.toggle('on', t === 'registrar');
+    }
+
+    function toggleOpcionales() {
+      const box = document.getElementById('opcionalesBox');
+      const icon = document.getElementById('opcIcon');
+      box.classList.toggle('on');
+      icon.classList.toggle('fa-chevron-down');
+      icon.classList.toggle('fa-chevron-up');
+    }
+
+    async function registrarCliente() {
+      const nombre = document.getElementById('regNombre').value.trim();
+      const telefono = document.getElementById('regTelefono').value.trim();
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const errEl = document.getElementById('msgErrorReg');
+      const errTxt = document.getElementById('msgErrorRegTxt');
+      const okEl = document.getElementById('msgOkReg');
+      errEl.style.display = 'none';
+      okEl.style.display = 'none';
+
+      if (!nombre || !telefono || !email) {
+        errTxt.textContent = 'Completá nombre, teléfono y email — son obligatorios.';
+        errEl.style.display = 'block';
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errTxt.textContent = 'Ingresá un email válido.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      const btn = document.getElementById('btnRegistrar');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Registrando...';
+
+      try {
+        const fd = new FormData();
+        fd.append('action', 'registro_cliente');
+        fd.append('nombre', nombre);
+        fd.append('telefono', telefono);
+        fd.append('email', email);
+        fd.append('direccion', document.getElementById('regDireccion').value.trim());
+        fd.append('localidad', document.getElementById('regLocalidad').value.trim());
+        fd.append('cp', document.getElementById('regCp').value.trim());
+        fd.append('empresa', document.getElementById('regEmpresa').value.trim());
+        fd.append('nota', document.getElementById('regNota').value.trim());
+
+        const resp = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: fd });
+        const data = await resp.json();
+
+        if (data.ok) {
+          okEl.querySelector('span').textContent = '¡Listo! Ya quedaste registrado. Ahora hacé clic en "Ingresar" y elegí tu cuenta de Google usando el mismo email (' + email + ') para entrar a tu panel.';
+          okEl.style.display = 'block';
+          document.getElementById('regNombre').value = '';
+          document.getElementById('regTelefono').value = '';
+          document.getElementById('regEmail').value = '';
+        } else {
+          errTxt.textContent = data.error || 'No se pudo completar el registro. Probá de nuevo.';
+          errEl.style.display = 'block';
+        }
+      } catch(e) {
+        errTxt.textContent = 'Error de conexión. Probá de nuevo en un momento.';
+        errEl.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-user-plus"></i> Registrarme';
+      }
+    }
+
     function parsearJWT(token) {
       const b64 = token.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');
       return JSON.parse(decodeURIComponent(atob(b64).split('').map(c =>
@@ -99,7 +261,7 @@
     }
 
     // Destinos permitidos para ?next= (evita open redirect)
-    const DESTINOS_ADMIN   = ['admin.html', 'admin-blog.html'];
+    const DESTINOS_ADMIN   = ['admin.html', 'admin-blog.html', 'admin-portal.html'];
     const DESTINOS_CLIENTE = ['cliente_panel.html'];
 
     function destinoFinal(rol) {

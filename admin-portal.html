@@ -12,11 +12,14 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--blue:#2563eb;--dark:#1a3a5c;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g500:#64748b;--g900:#0f172a;--green:#16a34a;--amber:#d97706;--red:#dc2626}
 body{font-family:'Open Sans',sans-serif;background:var(--g50);color:var(--g900)}
-.top{background:var(--dark);color:#fff;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:50}
-.top .b{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:.92rem}
+.top{background:var(--dark);color:#fff;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:50;flex-wrap:wrap;gap:6px}
+.top .b{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:.92rem;text-decoration:none;color:#fff}
 .top .b img{height:28px;border-radius:5px}
-.top a{color:rgba(255,255,255,.7);font-size:.78rem;margin-left:14px}
+.top .navlinks{display:flex;align-items:center;flex-wrap:wrap}
+.top a{color:rgba(255,255,255,.7);font-size:.78rem;margin-left:14px;text-decoration:none;white-space:nowrap}
 .top a:hover{color:#fff}
+.top a.sep{border-left:1px solid rgba(255,255,255,.15);padding-left:14px}
+@media(max-width:900px){.top{height:auto;padding:10px 16px}.top .navlinks{width:100%;justify-content:flex-start;gap:2px 0;margin-top:8px}.top a{margin:2px 10px 2px 0}.top a.sep{border-left:none;padding-left:0}}
 .wrap{max-width:1000px;margin:0 auto;padding:22px 20px 60px}
 .tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
 .tab{padding:9px 18px;border-radius:50px;border:1.5px solid var(--g200);background:#fff;color:var(--g500);font-family:inherit;font-size:.83rem;font-weight:700;cursor:pointer}
@@ -72,11 +75,16 @@ body{font-family:'Open Sans',sans-serif;background:var(--g50);color:var(--g900)}
 <body>
 
 <div class="top">
-  <div class="b"><img src="public/images/logo-icon.png" alt="" onerror="this.style.display='none'"> Portal Admin</div>
-  <div>
-    <a href="admin.html"><i class="fas fa-gauge"></i> Panel</a>
+  <a href="admin.html" class="b"><img src="public/images/logo-icon.png" alt="" onerror="this.style.display='none'"> Portal Admin</a>
+  <div class="navlinks">
+    <a href="admin.html"><i class="fas fa-gauge"></i> Dashboard</a>
+    <a href="admin.html#tickets"><i class="fas fa-ticket"></i> Tickets</a>
+    <a href="admin.html#clientes"><i class="fas fa-users"></i> Clientes</a>
+    <a href="admin.html#agenda"><i class="fas fa-calendar-days"></i> Agenda</a>
+    <a href="admin.html#documentos"><i class="fas fa-file-invoice-dollar"></i> Documentos</a>
     <a href="admin-blog.html"><i class="fas fa-newspaper"></i> Blog</a>
-    <a href="#" onclick="salir();return false"><i class="fas fa-sign-out-alt"></i> Salir</a>
+    <a href="index.html" class="sep"><i class="fas fa-house"></i> Sitio público</a>
+    <a href="#" onclick="salir();return false" class="sep"><i class="fas fa-sign-out-alt"></i> Salir</a>
   </div>
 </div>
 
@@ -160,23 +168,57 @@ async function cargar(){
 
 function pintarPreg(){
   const arr=D.preguntas||[];
-  document.getElementById('nPreg').textContent = arr.filter(p=>p.estado==='pendiente').length;
-  document.getElementById('lPreg').innerHTML = arr.length ? arr.map(p=>`
+  const pendientes = arr.filter(p=>p.estado==='pendiente');
+  const resueltas  = arr.filter(p=>p.estado!=='pendiente');
+  document.getElementById('nPreg').textContent = pendientes.length;
+
+  const bloquePendientes = pendientes.map(p=>`
     <div class="q">
       <div class="q-top">
         <div class="q-who"><b>${esc(p.nombre)}</b> · ${esc(p.email)} · <a href="blog/${esc(p.slug)}.html" target="_blank">${esc(p.slug)}</a></div>
         <div><span class="pill p-${esc(p.estado)}">${esc(p.estado)}</span> <span style="font-size:.72rem;color:#94a3b8">${esc(p.fecha)}</span></div>
       </div>
       <div class="q-txt">${esc(p.pregunta)}</div>
-      ${p.respuesta?`<div class="q-resp"><b>Tu respuesta:</b> ${esc(p.respuesta)}</div>`:''}
-      <textarea id="r${p.rowIndex}" rows="3" placeholder="Escribí la respuesta…">${esc(p.respuesta||'')}</textarea>
+      <textarea id="r${p.rowIndex}" rows="3" placeholder="Escribí la respuesta…"></textarea>
       <div class="acts">
         <button class="btn btn-s btn-sm" onclick="responder(${p.rowIndex},true)"><i class="fas fa-paper-plane"></i> Responder y publicar</button>
         <button class="btn btn-g btn-sm" onclick="responder(${p.rowIndex},false)">Responder en privado</button>
         <button class="btn btn-r btn-sm" onclick="moderar(${p.rowIndex},'rechazada')">Rechazar</button>
       </div>
-    </div>`).join('')
-   : `<div class="empty"><i class="fas fa-comments"></i>No hay preguntas todavía.</div>`;
+    </div>`).join('');
+
+  const bloqueResueltas = resueltas.length ? `
+    <div class="card-h" style="border-top:1px solid var(--g100);margin-top:${pendientes.length?'0':'0'}">
+      <h3 style="color:var(--g500)"><i class="fas fa-check" style="color:var(--green)"></i> Ya respondidas (${resueltas.length})</h3>
+    </div>
+    ${resueltas.map(p=>`
+    <div class="q" style="opacity:.85">
+      <div class="q-top">
+        <div class="q-who"><b>${esc(p.nombre)}</b> · ${esc(p.email)} · <a href="blog/${esc(p.slug)}.html" target="_blank">${esc(p.slug)}</a></div>
+        <div><span class="pill p-${esc(p.estado)}">${esc(p.estado)}</span> <span style="font-size:.72rem;color:#94a3b8">${esc(p.fecha)}</span></div>
+      </div>
+      <div class="q-txt">${esc(p.pregunta)}</div>
+      ${p.respuesta?`<div class="q-resp"><b>Tu respuesta:</b> ${esc(p.respuesta)}</div>`:''}
+      <div class="acts">
+        <button class="btn btn-g btn-sm" onclick="editarRespuesta(${p.rowIndex},this)"><i class="fas fa-pen"></i> Editar respuesta</button>
+      </div>
+      <div id="editBox${p.rowIndex}" style="display:none;margin-top:9px">
+        <textarea id="r${p.rowIndex}" rows="3">${esc(p.respuesta||'')}</textarea>
+        <div class="acts">
+          <button class="btn btn-s btn-sm" onclick="responder(${p.rowIndex},true)"><i class="fas fa-paper-plane"></i> Guardar y publicar</button>
+          <button class="btn btn-g btn-sm" onclick="responder(${p.rowIndex},false)">Guardar en privado</button>
+        </div>
+      </div>
+    </div>`).join('')}` : '';
+
+  document.getElementById('lPreg').innerHTML = (pendientes.length || resueltas.length)
+    ? bloquePendientes + bloqueResueltas
+    : `<div class="empty"><i class="fas fa-comments"></i>No hay preguntas todavía.</div>`;
+}
+
+function editarRespuesta(ri, btn){
+  const box = document.getElementById('editBox'+ri);
+  box.style.display = box.style.display==='none' ? 'block' : 'none';
 }
 
 async function responder(ri,pub){

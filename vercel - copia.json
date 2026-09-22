@@ -1,0 +1,1070 @@
+{
+  "ai_interpretation": {
+    "status": "DISABLED"
+  },
+  "business_activity": {
+    "components": {
+      "number_of_locations": {
+        "contribution": 10.0,
+        "source": "inferencia",
+        "status": "INFERRED",
+        "value": 1,
+        "weight": 10
+      },
+      "number_of_services": {
+        "contribution": 0,
+        "source": "web_analyzer",
+        "status": "INFERRED",
+        "value": 0,
+        "weight": 10
+      },
+      "recent_content": {
+        "contribution": 0,
+        "source": "web_analyzer",
+        "status": "INFERRED",
+        "value": 0,
+        "weight": 10
+      },
+      "recent_reviews": {
+        "contribution": 0,
+        "source": null,
+        "status": "NOT_AVAILABLE",
+        "value": 0,
+        "weight": 15
+      },
+      "review_count": {
+        "contribution": 0,
+        "source": null,
+        "status": "NOT_AVAILABLE",
+        "value": 0,
+        "weight": 15
+      },
+      "social_activity": {
+        "contribution": 0,
+        "source": "inferencia",
+        "status": "INFERRED",
+        "value": 0,
+        "weight": 10
+      },
+      "social_presence": {
+        "contribution": 0,
+        "source": "prospect_data",
+        "status": "NOT_AVAILABLE",
+        "value": 0,
+        "weight": 10
+      },
+      "website_accessible": {
+        "contribution": 0,
+        "source": "web_analyzer",
+        "status": "NOT_AVAILABLE",
+        "value": 0,
+        "weight": 5
+      },
+      "website_age": {
+        "contribution": 0,
+        "source": "inferencia",
+        "status": "INFERRED",
+        "value": 0,
+        "weight": 10
+      },
+      "website_exists": {
+        "contribution": 0,
+        "source": "prospect_data",
+        "status": "NOT_AVAILABLE",
+        "value": 0,
+        "weight": 5
+      }
+    },
+    "metric_name": "business_activity",
+    "signals": {
+      "number_of_locations": {
+        "source": "inferencia",
+        "status": "INFERRED",
+        "value": 1
+      },
+      "number_of_services": {
+        "source": "web_analyzer",
+        "status": "INFERRED",
+        "value": 0
+      },
+      "recent_content": {
+        "source": "web_analyzer",
+        "status": "INFERRED",
+        "value": 0
+      },
+      "recent_reviews": {
+        "source": null,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "review_count": {
+        "source": null,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "social_activity": {
+        "source": "inferencia",
+        "status": "INFERRED",
+        "value": 0
+      },
+      "social_presence": {
+        "source": "prospect_data",
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "website_accessible": {
+        "source": "web_analyzer",
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "website_age": {
+        "source": "inferencia",
+        "status": "INFERRED",
+        "value": 0
+      },
+      "website_exists": {
+        "source": "prospect_data",
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      }
+    },
+    "sources": [],
+    "status": "ESTIMATED",
+    "timestamp": "2026-08-31T22:50:42.659817",
+    "value": 10.0,
+    "version": "BA-0.1"
+  },
+  "city": "Caba",
+  "commercial_opportunity": {
+    "categories": {
+      "brecha_digital": {
+        "components": {
+          "digital_gap": {
+            "score": 91.43,
+            "status": "VERIFIED",
+            "value": 91.43
+          }
+        },
+        "score": 91.43,
+        "status": "VERIFIED"
+      },
+      "capacidad_pago": {
+        "components": {
+          "content": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": "limitado"
+          },
+          "digital_presence": {
+            "score": 5,
+            "status": "NOT_AVAILABLE",
+            "value": "ninguna"
+          },
+          "images": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "industry": {
+            "score": 10,
+            "status": "ESTIMATED",
+            "value": "servicios"
+          }
+        },
+        "score": 25
+      },
+      "competencia_demanda": {
+        "components": {
+          "internal_links": {
+            "score": 10,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "score": 10
+      },
+      "demanda_demostrable": {
+        "components": {
+          "demanda": {
+            "reason": "Requiere integraci\u00f3n con fuentes de datos de demanda (Google Trends, Keyword Planner)",
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          }
+        },
+        "score": 0,
+        "status": "NOT_AVAILABLE"
+      },
+      "facilidad_contacto": {
+        "components": {
+          "email": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          },
+          "form": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "phone": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          },
+          "whatsapp": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          }
+        },
+        "score": 0
+      },
+      "probabilidad_cierre": {
+        "components": {},
+        "score": 0
+      },
+      "valor_potencial": {
+        "components": {
+          "industry": {
+            "score": 10,
+            "status": "ESTIMATED",
+            "value": "servicios"
+          },
+          "services": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": 0.0
+          },
+          "size": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": "muy peque\u00f1o"
+          }
+        },
+        "score": 20
+      }
+    },
+    "components": {
+      "brecha_digital": {
+        "components": {
+          "digital_gap": {
+            "score": 91.43,
+            "status": "VERIFIED",
+            "value": 91.43
+          }
+        },
+        "normalized_score": 91.43,
+        "score": 91.43,
+        "status": "VERIFIED",
+        "weight": 20
+      },
+      "capacidad_pago": {
+        "components": {
+          "content": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": "limitado"
+          },
+          "digital_presence": {
+            "score": 5,
+            "status": "NOT_AVAILABLE",
+            "value": "ninguna"
+          },
+          "images": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "industry": {
+            "score": 10,
+            "status": "ESTIMATED",
+            "value": "servicios"
+          }
+        },
+        "normalized_score": 25.0,
+        "score": 25,
+        "status": "UNKNOWN",
+        "weight": 15
+      },
+      "competencia_demanda": {
+        "components": {
+          "internal_links": {
+            "score": 10,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "normalized_score": 10.0,
+        "score": 10,
+        "status": "UNKNOWN",
+        "weight": 10
+      },
+      "demanda_demostrable": {
+        "components": {
+          "demanda": {
+            "reason": "Requiere integraci\u00f3n con fuentes de datos de demanda (Google Trends, Keyword Planner)",
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          }
+        },
+        "normalized_score": 0,
+        "score": 0,
+        "status": "NOT_AVAILABLE",
+        "weight": 20
+      },
+      "facilidad_contacto": {
+        "components": {
+          "email": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          },
+          "form": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "phone": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          },
+          "whatsapp": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": null
+          }
+        },
+        "normalized_score": 0,
+        "score": 0,
+        "status": "UNKNOWN",
+        "weight": 10
+      },
+      "probabilidad_cierre": {
+        "components": {},
+        "normalized_score": 0,
+        "score": 0,
+        "status": "UNKNOWN",
+        "weight": 5
+      },
+      "valor_potencial": {
+        "components": {
+          "industry": {
+            "score": 10,
+            "status": "ESTIMATED",
+            "value": "servicios"
+          },
+          "services": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": 0.0
+          },
+          "size": {
+            "score": 5,
+            "status": "INFERRED",
+            "value": "muy peque\u00f1o"
+          }
+        },
+        "normalized_score": 20.0,
+        "score": 20,
+        "status": "UNKNOWN",
+        "weight": 20
+      }
+    },
+    "digital_gap_used": 91.43,
+    "score_name": "commercial_opportunity",
+    "sources": [
+      "digital_gap"
+    ],
+    "status": "INFERRED",
+    "timestamp": "2026-08-31T22:50:42.679788",
+    "value": 27.04,
+    "version": "CO-0.1"
+  },
+  "confidence": {
+    "categories": {
+      "html_parsed": {
+        "components": {
+          "content": {
+            "score": 0,
+            "status": "ERROR",
+            "value": "Error"
+          }
+        },
+        "score": 0,
+        "status": "ERROR"
+      },
+      "seo_analyzed": {
+        "components": {
+          "seo_elements": {
+            "score": 10,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "score": 10,
+        "status": "NOT_AVAILABLE"
+      },
+      "signals_collected": {
+        "components": {
+          "signals_count": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "score": 0,
+        "status": "NOT_AVAILABLE"
+      },
+      "structured_data_found": {
+        "components": {
+          "count": {
+            "score": 30,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "score": 30,
+        "status": "NOT_AVAILABLE"
+      },
+      "website_analyzed": {
+        "components": {
+          "analysis": {
+            "score": 0,
+            "status": "ERROR",
+            "value": "Error"
+          }
+        },
+        "score": 0,
+        "status": "ERROR"
+      },
+      "website_collected": {
+        "components": {
+          "status": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": "No website"
+          }
+        },
+        "score": 0,
+        "status": "NOT_AVAILABLE"
+      }
+    },
+    "components": {
+      "html_parsed": {
+        "components": {
+          "content": {
+            "score": 0,
+            "status": "ERROR",
+            "value": "Error"
+          }
+        },
+        "normalized_score": 0,
+        "score": 0,
+        "status": "ERROR",
+        "weight": 20
+      },
+      "seo_analyzed": {
+        "components": {
+          "seo_elements": {
+            "score": 10,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "normalized_score": 10.0,
+        "score": 10,
+        "status": "NOT_AVAILABLE",
+        "weight": 10
+      },
+      "signals_collected": {
+        "components": {
+          "signals_count": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "normalized_score": 0,
+        "score": 0,
+        "status": "NOT_AVAILABLE",
+        "weight": 20
+      },
+      "structured_data_found": {
+        "components": {
+          "count": {
+            "score": 30,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "normalized_score": 30.0,
+        "score": 30,
+        "status": "NOT_AVAILABLE",
+        "weight": 10
+      },
+      "website_analyzed": {
+        "components": {
+          "analysis": {
+            "score": 0,
+            "status": "ERROR",
+            "value": "Error"
+          }
+        },
+        "normalized_score": 0,
+        "score": 0,
+        "status": "ERROR",
+        "weight": 20
+      },
+      "website_collected": {
+        "components": {
+          "status": {
+            "score": 0,
+            "status": "NOT_AVAILABLE",
+            "value": "No website"
+          }
+        },
+        "normalized_score": 0,
+        "score": 0,
+        "status": "NOT_AVAILABLE",
+        "weight": 20
+      }
+    },
+    "interpretation": {
+      "description": "Evidencia insuficiente",
+      "level": "Insuficiente",
+      "max_score": 59,
+      "min_score": 0
+    },
+    "score_name": "confidence",
+    "sources": [],
+    "status": "ESTIMATED",
+    "timestamp": "2026-08-31T22:50:42.680805",
+    "value": 4.0,
+    "version": "CF-0.1"
+  },
+  "coverage": {
+    "components": {
+      "available_items": 0,
+      "coverage_percentage": 0.0,
+      "total_items": 19
+    },
+    "coverage_summary": {
+      "available": [],
+      "available_count": 0,
+      "not_available": [
+        "website",
+        "title",
+        "meta_description",
+        "h1",
+        "h2",
+        "h3",
+        "images",
+        "alt",
+        "internal_links",
+        "external_links",
+        "canonical",
+        "robots",
+        "sitemap",
+        "viewport",
+        "structured_data",
+        "contact_info",
+        "phone",
+        "email",
+        "whatsapp"
+      ],
+      "not_available_count": 19
+    },
+    "interpretation": {
+      "description": "Muy baja cobertura de informaci\u00f3n",
+      "level": "Muy Baja",
+      "max_score": 39,
+      "min_score": 0
+    },
+    "items": {
+      "alt": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": false
+      },
+      "canonical": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "contact_info": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": false
+      },
+      "email": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "external_links": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "h1": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "h2": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "h3": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "images": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "internal_links": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "meta_description": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "phone": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "robots": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "sitemap": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": false
+      },
+      "structured_data": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": 0
+      },
+      "title": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "viewport": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "website": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": null
+      },
+      "whatsapp": {
+        "available": false,
+        "status": "NOT_AVAILABLE",
+        "value": []
+      }
+    },
+    "score_name": "coverage",
+    "sources": [],
+    "status": "NOT_AVAILABLE",
+    "timestamp": "2026-08-31T22:50:42.682794",
+    "value": 0.0,
+    "version": "EC-0.1"
+  },
+  "created_at": "2026-08-31T19:18:38.404332",
+  "digital_gap": {
+    "categories": {
+      "confianza": {
+        "components": {
+          "has_email": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_https": {
+            "score": 4,
+            "status": "VERIFIED",
+            "value": 0
+          },
+          "has_phone": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "score": 10
+      },
+      "conversion": {
+        "components": {
+          "has_contact_link": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_form": {
+            "score": 8,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_phone": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_whatsapp": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "score": 20
+      },
+      "presencia_local": {
+        "components": {
+          "has_email": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_location": {
+            "score": 0,
+            "status": "VERIFIED",
+            "value": 1
+          },
+          "has_phone": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_whatsapp": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "score": 11
+      },
+      "presencia_web": {
+        "components": {
+          "has_website": {
+            "score": 20,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "score": 20
+      },
+      "seo": {
+        "components": {
+          "h2_count": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "h3_count": {
+            "score": 2,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_h1": {
+            "score": 5,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "images": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "internal_links": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "score": 18
+      },
+      "visibilidad": {
+        "components": {
+          "has_canonical": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_meta_description": {
+            "score": 4,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "has_robots": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_title": {
+            "score": 4,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "has_viewport": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "score": 17
+      }
+    },
+    "components": {
+      "confianza": {
+        "components": {
+          "has_email": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_https": {
+            "score": 4,
+            "status": "VERIFIED",
+            "value": 0
+          },
+          "has_phone": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "normalized_score": 100.0,
+        "score": 10,
+        "weight": 10
+      },
+      "conversion": {
+        "components": {
+          "has_contact_link": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_form": {
+            "score": 8,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_phone": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_whatsapp": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "normalized_score": 100.0,
+        "score": 20,
+        "weight": 20
+      },
+      "presencia_local": {
+        "components": {
+          "has_email": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_location": {
+            "score": 0,
+            "status": "VERIFIED",
+            "value": 1
+          },
+          "has_phone": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_whatsapp": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "normalized_score": 73.33,
+        "score": 11,
+        "weight": 15
+      },
+      "presencia_web": {
+        "components": {
+          "has_website": {
+            "score": 20,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          }
+        },
+        "normalized_score": 100.0,
+        "score": 20,
+        "weight": 20
+      },
+      "seo": {
+        "components": {
+          "h2_count": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "h3_count": {
+            "score": 2,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_h1": {
+            "score": 5,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "images": {
+            "score": 4,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "internal_links": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "normalized_score": 90.0,
+        "score": 18,
+        "weight": 20
+      },
+      "visibilidad": {
+        "components": {
+          "has_canonical": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_meta_description": {
+            "score": 4,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "has_robots": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          },
+          "has_title": {
+            "score": 4,
+            "status": "NOT_AVAILABLE",
+            "value": 0
+          },
+          "has_viewport": {
+            "score": 3,
+            "status": "INFERRED",
+            "value": 0
+          }
+        },
+        "normalized_score": 85.0,
+        "score": 17,
+        "weight": 20
+      }
+    },
+    "score_name": "digital_gap",
+    "sources": [],
+    "status": "INFERRED",
+    "timestamp": "2026-08-31T22:50:42.678788",
+    "value": 91.43,
+    "version": "DG-0.1"
+  },
+  "email": null,
+  "id": "CYC-506620",
+  "industry": "Servicios",
+  "instagram": null,
+  "name": "Ident - Im\u00e1genes Dentales",
+  "neighborhood": null,
+  "phone": null,
+  "priority": {
+    "classification": "C",
+    "commercial_opportunity_used": 27.04,
+    "components": {
+      "commercial_opportunity": {
+        "available": true,
+        "contribution": 16.224,
+        "value": 27.04,
+        "weight": 0.6
+      },
+      "digital_gap": {
+        "available": true,
+        "contribution": 36.572,
+        "value": 91.43,
+        "weight": 0.4
+      }
+    },
+    "confidence_used": 4.0,
+    "coverage_used": 0.0,
+    "digital_gap_used": 91.43,
+    "requires_review": true,
+    "review_reasons": [
+      "Confidence bajo (4.0). Evidencia insuficiente.",
+      "Evidence Coverage bajo (0.0). Poca informaci\u00f3n disponible.",
+      "An\u00e1lisis web no disponible o fall\u00f3. Las conclusiones dependen de inferencias."
+    ],
+    "score_name": "commercial_priority",
+    "sources": [
+      "digital_gap",
+      "commercial_opportunity",
+      "confidence",
+      "coverage"
+    ],
+    "timestamp": "2026-08-31T22:50:42.683791",
+    "value": 52.8,
+    "version": "CP-0.1"
+  },
+  "proposal": {
+    "generated_at": "2026-08-31T22:50:42.712796",
+    "prospect_id": "CYC-506620",
+    "prospect_name": "Ident - Im\u00e1genes Dentales",
+    "sections": {
+      "diagnostico": "\nDIAGN\u00d3STICO DE SITUACI\u00d3N DIGITAL\n\nBrecha Digital: alta (91.4/100)\nActividad Comercial: baja (10.0/100 si est\u00e1 disponible)\n\nPrincipales brechas detectadas:\n  \u2022 Brecha digital significativa detectada\n\nLa presencia digital actual de Ident - Im\u00e1genes Dentales presenta \u00e1reas de mejora que \npueden impactar directamente en su capacidad de captar nuevos clientes \ny fortalecer su posicionamiento en el mercado local.\n",
+      "evidencia": "\nEVIDENCIA QUE RESPALDA LA RECOMENDACI\u00d3N\n\n\u2022 Brecha Digital: 91.4/100 - Indica oportunidades de mejora\n\u2022 Actividad Comercial: 10.0/100 - Negocio activo con potencial\n\u2022 Oportunidad Comercial: 27.0/100 - Alto potencial de conversi\u00f3n\n\nEstos datos se basan en el an\u00e1lisis de la presencia digital de Ident - Im\u00e1genes Dentales \ny son trazables a fuentes verificables.\n",
+      "oportunidades": "\nOPORTUNIDADES COMERCIALES\n\nPotencial comercial detectado: moderada (27.0/100)\n\nOportunidades identificadas:\n  1. Implementar Presencia Web, SEO Local, Conversi\u00f3n Digital para mejorar la captaci\u00f3n de clientes\n  2. Fortalecer la presencia digital en el mercado local\n  3. Optimizar la experiencia de usuario para aumentar conversiones\n\nIdent - Im\u00e1genes Dentales tiene un potencial significativo para incrementar su visibilidad \ny captaci\u00f3n de clientes mediante una estrategia digital enfocada.\n",
+      "proximos_pasos": "\nPR\u00d3XIMOS PASOS\n\n1. Agendar una reuni\u00f3n para presentar la propuesta detallada\n2. Realizar una demo de las soluciones propuestas\n3. Definir un plan de implementaci\u00f3n personalizado\n4. Iniciar la ejecuci\u00f3n del proyecto\n\nQuedamos a disposici\u00f3n para ampliar cualquier aspecto de esta propuesta.\n",
+      "resumen_ejecutivo": "\nIdent - Im\u00e1genes Dentales es un negocio del sector Servicios ubicado en Caba, Buenos Aires. \nNuestro an\u00e1lisis ha identificado una brecha digital significativa que representa \nuna oportunidad comercial concreta para mejorar su presencia digital y captaci\u00f3n \nde clientes.\n\nRecomendamos implementar Presencia Web, SEO Local, Conversi\u00f3n Digital como estrategia para \npotenciar su visibilidad y crecimiento.\n",
+      "solucion": "\nSOLUCI\u00d3N RECOMENDADA\n\nBasado en el an\u00e1lisis de Ident - Im\u00e1genes Dentales, recomendamos:\n\n1. Presencia Web, SEO Local, Conversi\u00f3n Digital\n2. Desarrollo de una estrategia de marketing digital local\n3. Optimizaci\u00f3n de la presencia en buscadores para captar tr\u00e1fico cualificado\n\nEsta soluci\u00f3n est\u00e1 dise\u00f1ada para abordar las brechas identificadas y \nmaximizar el retorno de la inversi\u00f3n en marketing digital.\n"
+    },
+    "text": "============================================================\nRESUMEN EJECUTIVO\n============================================================\nIdent - Im\u00e1genes Dentales es un negocio del sector Servicios ubicado en Caba, Buenos Aires. \nNuestro an\u00e1lisis ha identificado una brecha digital significativa que representa \nuna oportunidad comercial concreta para mejorar su presencia digital y captaci\u00f3n \nde clientes.\n\nRecomendamos implementar Presencia Web, SEO Local, Conversi\u00f3n Digital como estrategia para \npotenciar su visibilidad y crecimiento.\n\n============================================================\nDIAGNOSTICO\n============================================================\nDIAGN\u00d3STICO DE SITUACI\u00d3N DIGITAL\n\nBrecha Digital: alta (91.4/100)\nActividad Comercial: baja (10.0/100 si est\u00e1 disponible)\n\nPrincipales brechas detectadas:\n  \u2022 Brecha digital significativa detectada\n\nLa presencia digital actual de Ident - Im\u00e1genes Dentales presenta \u00e1reas de mejora que \npueden impactar directamente en su capacidad de captar nuevos clientes \ny fortalecer su posicionamiento en el mercado local.\n\n============================================================\nOPORTUNIDADES\n============================================================\nOPORTUNIDADES COMERCIALES\n\nPotencial comercial detectado: moderada (27.0/100)\n\nOportunidades identificadas:\n  1. Implementar Presencia Web, SEO Local, Conversi\u00f3n Digital para mejorar la captaci\u00f3n de clientes\n  2. Fortalecer la presencia digital en el mercado local\n  3. Optimizar la experiencia de usuario para aumentar conversiones\n\nIdent - Im\u00e1genes Dentales tiene un potencial significativo para incrementar su visibilidad \ny captaci\u00f3n de clientes mediante una estrategia digital enfocada.\n\n============================================================\nSOLUCION\n============================================================\nSOLUCI\u00d3N RECOMENDADA\n\nBasado en el an\u00e1lisis de Ident - Im\u00e1genes Dentales, recomendamos:\n\n1. Presencia Web, SEO Local, Conversi\u00f3n Digital\n2. Desarrollo de una estrategia de marketing digital local\n3. Optimizaci\u00f3n de la presencia en buscadores para captar tr\u00e1fico cualificado\n\nEsta soluci\u00f3n est\u00e1 dise\u00f1ada para abordar las brechas identificadas y \nmaximizar el retorno de la inversi\u00f3n en marketing digital.\n\n============================================================\nEVIDENCIA\n============================================================\nEVIDENCIA QUE RESPALDA LA RECOMENDACI\u00d3N\n\n\u2022 Brecha Digital: 91.4/100 - Indica oportunidades de mejora\n\u2022 Actividad Comercial: 10.0/100 - Negocio activo con potencial\n\u2022 Oportunidad Comercial: 27.0/100 - Alto potencial de conversi\u00f3n\n\nEstos datos se basan en el an\u00e1lisis de la presencia digital de Ident - Im\u00e1genes Dentales \ny son trazables a fuentes verificables.\n\n============================================================\nPROXIMOS PASOS\n============================================================\nPR\u00d3XIMOS PASOS\n\n1. Agendar una reuni\u00f3n para presentar la propuesta detallada\n2. Realizar una demo de las soluciones propuestas\n3. Definir un plan de implementaci\u00f3n personalizado\n4. Iniciar la ejecuci\u00f3n del proyecto\n\nQuedamos a disposici\u00f3n para ampliar cualquier aspecto de esta propuesta.\n",
+    "version": "0.1"
+  },
+  "province": "Buenos Aires",
+  "redteam": {
+    "ai_enhancement": null,
+    "issues": [],
+    "score": 100,
+    "status": "APPROVED",
+    "summary": "\u2705 Propuesta aprobada. No se detectaron problemas.",
+    "timestamp": "2026-08-31T22:50:42.724788"
+  },
+  "requires_review": true,
+  "source": "manual",
+  "source_file": "https://www.google.com/maps",
+  "source_row": null,
+  "status": "DISCOVERED",
+  "updated_at": "2026-08-31T19:18:38.404332",
+  "website": null
+}

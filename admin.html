@@ -406,15 +406,18 @@
     .doc-totales-line.total { font-size: 1rem; font-weight: 700; color: var(--gray-900); border-top: 1px solid var(--gray-200); padding-top: 6px; margin-top: 6px; }
     .doc-check { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--gray-600); float: left; margin-top: 4px; }
     .doc-print-area { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 28px; min-height: 400px; font-size: 0.85rem; color: #1e293b; }
-    .doc-print-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 18px; }
-    .doc-print-logo { display: flex; align-items: center; gap: 10px; }
-    .doc-print-logo img { height: 40px; }
-    .doc-print-logo strong { font-size: 1.05rem; color: var(--gray-900); display: block; }
-    .doc-print-logo span { font-size: 0.72rem; color: var(--gray-500); }
+    .doc-print-header { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg,#0f2444,#1a3a5c); border-radius: 10px 10px 0 0; padding: 20px 24px; margin: -28px -28px 20px; }
+    .doc-print-logo { display: flex; align-items: center; gap: 12px; }
+    .doc-print-logo .badge-circle { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+    .doc-print-logo .badge-circle img { width: 30px; height: 30px; object-fit: contain; }
+    .doc-print-logo strong { font-size: 1.15rem; color: #fff; display: block; letter-spacing: -0.01em; }
+    .doc-print-logo .tagline { font-size: 0.68rem; color: #93c5fd; display: block; margin-top: 1px; }
+    .doc-print-logo span { font-size: 0.72rem; color: rgba(255,255,255,0.75); }
     .doc-print-type { text-align: right; }
-    .doc-print-type .tname { font-size: 1rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.04em; }
-    .doc-print-type .tnum { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; color: var(--gray-800); margin-top: 2px; }
-    .doc-print-type .tfecha { font-size: 0.78rem; color: var(--gray-500); }
+    .doc-print-type .tname { font-size: 1.05rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
+    .doc-print-type .tnum { font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; color: #7db8ff; margin-top: 3px; font-weight: 700; }
+    .doc-print-type .tfecha { font-size: 0.75rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
+    .doc-print-footer { margin-top: 30px; padding-top: 12px; border-top: 1px solid var(--gray-200); text-align: center; font-size: 0.7rem; color: var(--gray-400); }
     .doc-print-section-title { font-size: 0.72rem; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 6px; }
     .doc-print-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; font-size: 0.83rem; }
     table.doc-print-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.82rem; }
@@ -428,8 +431,9 @@
     .doc-print-obs { font-size: 0.78rem; color: var(--gray-600); margin-top: 12px; white-space: pre-wrap; }
     @media print {
       body * { visibility: hidden; }
-      .doc-print-area, .doc-print-area * { visibility: visible; }
-      .doc-print-area { position: absolute; left: 0; top: 0; width: 100%; border: none; padding: 0; }
+      .doc-print-area, .doc-print-area * { visibility: visible; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .doc-print-area { position: absolute; left: 0; top: 0; width: 100%; border: none; padding: 28px; }
+      .doc-print-header { margin: -28px -28px 20px !important; }
     }
   </style>
 </head>
@@ -477,7 +481,7 @@
         <span class="sb-badge-count" id="badgeCitas">0</span>
       </button>
       <button class="sb-item" data-section="diagnosticos" onclick="showSection('diagnosticos', this)">
-        <i class="fas fa-stethoscope"></i> <span>Diagnósticos</span>
+        <i class="fas fa-ticket"></i> <span>Tickets</span>
         <span class="sb-badge-count" id="badgeDiags">0</span>
       </button>
 
@@ -545,7 +549,7 @@
         <div class="stat-grid" id="statGrid"></div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px" id="recentGridWrap">
           <div>
-            <div class="sec-header"><span class="sec-title">Diagnósticos recientes</span></div>
+            <div class="sec-header"><span class="sec-title">Tickets recientes</span></div>
             <div class="table-wrap" id="recentDiags"><div class="table-empty"><i class="fas fa-stethoscope"></i>Cargando...</div></div>
           </div>
           <div>
@@ -601,17 +605,17 @@
       <div class="section" id="sec-diagnosticos">
         <div class="sec-header">
           <div>
-            <div class="sec-title">Diagnósticos</div>
-            <div class="sec-subtitle">Todos los tickets de diagnóstico técnico</div>
+            <div class="sec-title">Tickets</div>
+            <div class="sec-subtitle">Todos los tickets de soporte técnico</div>
           </div>
-          <button class="btn btn-primary" onclick="openNewDiag()"><i class="fas fa-plus"></i> Nuevo diagnóstico</button>
+          <button class="btn btn-primary" onclick="openNewDiag()"><i class="fas fa-plus"></i> Nuevo ticket</button>
         </div>
 
         <div class="stat-grid" id="diagStatGrid" style="margin-bottom:20px"></div>
 
         <div class="table-wrap">
           <div class="table-filters">
-            <input type="text" class="filter-input search" placeholder="🔍 Buscar por cliente, equipo, N° de diagnóstico..." oninput="filterDiags()" id="diagsSearch">
+            <input type="text" class="filter-input search" placeholder="🔍 Buscar por cliente, equipo, N° de ticket..." oninput="filterDiags()" id="diagsSearch">
             <select class="filter-input" onchange="filterDiags()" id="diagEstadoFilter">
               <option value="">Todos los estados</option>
               <option value="nuevo">Nuevo</option>
@@ -626,12 +630,22 @@
               <option value="media">Media</option>
               <option value="baja">Baja</option>
             </select>
+            <select class="filter-input" onchange="filterDiags()" id="diagCatFilter">
+              <option value="">Toda categoría</option>
+              <option value="hardware">Hardware</option>
+              <option value="software">Software</option>
+              <option value="redes">Redes</option>
+              <option value="seguridad">Ciberseguridad</option>
+              <option value="cctv">CCTV/Alarmas</option>
+              <option value="web">Web/SEO</option>
+              <option value="otro">Otro</option>
+            </select>
             <input type="date" class="filter-input" onchange="filterDiags()" id="diagFechaDesde" title="Desde">
             <input type="date" class="filter-input" onchange="filterDiags()" id="diagFechaHasta" title="Hasta">
             <button class="btn btn-secondary btn-sm" onclick="limpiarFiltrosFecha()" title="Limpiar fechas" style="padding:6px 10px"><i class="fas fa-times"></i></button>
           </div>
           <div id="diagsTableBody">
-            <div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando diagnósticos...</div>
+            <div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando tickets...</div>
           </div>
         </div>
       </div>
@@ -660,6 +674,10 @@
             </div>
           </div>
           <div id="clienteHistorial"><div class="loading-spinner"><i class="fas fa-spinner"></i></div></div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--gray-100)">
+            <div class="sec-title" style="font-size:0.85rem;margin-bottom:10px"><i class="fas fa-file-invoice-dollar"></i> Presupuestos / Hojas de Trabajo / Remitos</div>
+            <div id="clienteDocumentos"><div class="loading-spinner"><i class="fas fa-spinner"></i></div></div>
+          </div>
         </div>
       </div>
 
@@ -767,7 +785,7 @@
             <label class="rol-switch" id="rolSwitch">
               <input type="checkbox" id="usuarioEsAdmin">
               <span><b>Dar acceso de administrador</b>
-              <span>Podrá ver y editar todos los diagnósticos, citas, clientes y el blog. Dáselo solo a gente de tu equipo.</span></span>
+              <span>Podrá ver y editar todos los tickets, citas, clientes y el blog. Dáselo solo a gente de tu equipo.</span></span>
             </label>
           </div>
           <div class="modal-footer">
@@ -791,7 +809,7 @@
           </a>
           <a class="quick-card" href="https://docs.google.com/spreadsheets" target="_blank">
             <div class="quick-card-icon" style="background:#f0fdf4;color:#16a34a"><i class="fas fa-table"></i></div>
-            <span>Google Sheets</span><small>Datos y diagnósticos</small>
+            <span>Google Sheets</span><small>Datos y tickets</small>
           </a>
           <a class="quick-card" href="https://wa.me/5491166804450" target="_blank">
             <div class="quick-card-icon" style="background:#f0fdf4;color:#16a34a"><i class="fab fa-whatsapp"></i></div>
@@ -842,6 +860,13 @@
                 <label class="doc-label">Fecha</label>
                 <input type="date" id="docFecha" class="doc-input">
               </div>
+            </div>
+
+            <div class="form-group">
+              <label class="doc-label">Cliente existente (opcional)</label>
+              <input type="text" id="docClienteBuscar" class="doc-input" list="docClientesList" placeholder="Buscar por nombre o email y seleccionar..." autocomplete="off" oninput="seleccionarClienteExistente(this.value)">
+              <datalist id="docClientesList"></datalist>
+              <div class="doc-num-mode" id="docClienteVinculadoMsg"></div>
             </div>
 
             <div class="form-group">
@@ -1011,8 +1036,8 @@
           </select>
         </div>
         <div class="field">
-          <label>N° Diagnóstico asociado</label>
-          <input type="text" id="citaDiagNum" placeholder="DIAG-XXXX (opcional)">
+          <label>N° de Ticket asociado</label>
+          <input type="text" id="citaDiagNum" placeholder="DIAG-XXXX (opcional, N° de ticket)">
         </div>
       </div>
       <div class="field">
@@ -1031,7 +1056,7 @@
 <div class="modal-overlay" id="modalDiag">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="modalDiagTitle">Nuevo Diagnóstico</h3>
+      <h3 id="modalDiagTitle">Nuevo Ticket</h3>
       <button class="modal-close" onclick="closeModal('modalDiag')"><i class="fas fa-times"></i></button>
     </div>
     <div class="modal-body">
@@ -1055,6 +1080,32 @@
         <div class="field">
           <label>Servicio</label>
           <input type="text" id="diagServicio" placeholder="Tipo de servicio">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Categoría</label>
+          <select id="diagCategoria">
+            <option value="">Sin categorizar</option>
+            <option value="hardware">Hardware</option>
+            <option value="software">Software</option>
+            <option value="redes">Redes / Conectividad</option>
+            <option value="seguridad">Ciberseguridad</option>
+            <option value="cctv">CCTV / Alarmas</option>
+            <option value="web">Presencia web / SEO</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Canal de ingreso</label>
+          <select id="diagCanal">
+            <option value="">Sin especificar</option>
+            <option value="web">Web / chatbot</option>
+            <option value="whatsapp">WhatsApp</option>
+            <option value="telefono">Teléfono</option>
+            <option value="presencial">Presencial</option>
+            <option value="referido">Referido</option>
+          </select>
         </div>
       </div>
       <div class="field">
@@ -1102,7 +1153,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('modalDiag')">Cancelar</button>
-      <button class="btn btn-primary" onclick="guardarDiagnostico()"><i class="fas fa-save"></i> Guardar diagnóstico</button>
+      <button class="btn btn-primary" onclick="guardarDiagnostico()"><i class="fas fa-save"></i> Guardar ticket</button>
     </div>
   </div>
 </div>
@@ -1205,6 +1256,15 @@ function initApp() {
 
   // Cargar datos
   loadDashboard();
+
+  // Deep-link por #hash (usado por admin-portal.html y otros accesos directos)
+  const hash = window.location.hash.replace('#', '');
+  const HASH_TO_SECTION = { tickets: 'diagnosticos', diagnosticos: 'diagnosticos', clientes: 'clientes', agenda: 'agenda', documentos: 'documentos', llamados: 'llamados', usuarios: 'usuarios' };
+  if (hash && HASH_TO_SECTION[hash]) {
+    const id = HASH_TO_SECTION[hash];
+    const btn = document.querySelector('[data-section="' + id + '"]');
+    if (btn) setTimeout(() => showSection(id, btn), 60);
+  }
 }
 
 function doLogout() {
@@ -1219,7 +1279,7 @@ function doLogout() {
 const SECTION_TITLES = {
   dashboard: 'Dashboard',
   agenda: 'Agenda',
-  diagnosticos: 'Diagnósticos',
+  diagnosticos: 'Tickets',
   clientes: 'Clientes',
   llamados: 'Llamados',
   usuarios: 'Gestión de Usuarios',
@@ -1337,11 +1397,11 @@ function renderKPIs() {
   }).reduce((s,d) => s + (parseFloat(d.presupuesto)||0), 0);
 
   document.getElementById('kpiGrid').innerHTML = `
-    ${kpiCard('Diagnósticos este mes', diagsMes.length, 'blue', 'fa-stethoscope', 'Desde el 1° del mes')}
+    ${kpiCard('Tickets este mes', diagsMes.length, 'blue', 'fa-ticket', 'Desde el 1° del mes')}
     ${kpiCard('Pendientes', pendientes, pendientes > 5 ? 'red' : 'amber', 'fa-clock', 'Nuevos + en proceso')}
     ${kpiCard('Citas hoy', citasHoy, 'green', 'fa-calendar-check', 'Turnos del día')}
     ${kpiCard('Facturación del mes', 'ARS ' + ingresos.toLocaleString('es-AR'), 'purple', 'fa-dollar-sign', 'Presupuestos cerrados')}
-    ${kpiCard('Total diagnósticos', allDiags.length, 'blue', 'fa-database', 'Histórico total')}
+    ${kpiCard('Total tickets', allDiags.length, 'blue', 'fa-database', 'Histórico total')}
     ${kpiCardPreguntas()}
   `;
   setTimeout(contarPreguntas, 60);
@@ -1418,7 +1478,7 @@ function renderStatCharts() {
 function renderRecentDiags() {
   const recent = [...allDiags].sort((a,b) => parseFechaAR(b.fecha)-parseFechaAR(a.fecha)).slice(0,5);
   document.getElementById('recentDiags').innerHTML = recent.length === 0
-    ? `<div class="table-empty"><i class="fas fa-stethoscope"></i>Sin diagnósticos</div>`
+    ? `<div class="table-empty"><i class="fas fa-ticket"></i>Sin tickets</div>`
     : `<table><thead><tr><th>N°</th><th>Cliente</th><th>Estado</th></tr></thead><tbody>
         ${recent.map(d=>`<tr>
           <td><code style="font-size:0.75rem;color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
@@ -1479,8 +1539,9 @@ function sortDiags(col) {
 
 let _sortCol = 'fecha', _sortDir = -1;
 
+const CATEGORIA_LABELS = { hardware:'Hardware', software:'Software', redes:'Redes', seguridad:'Ciberseguridad', cctv:'CCTV/Alarmas', web:'Web/SEO', otro:'Otro' };
 function renderDiagsTable(diags) {
-  if (!diags.length) { document.getElementById('diagsTableBody').innerHTML='<div class="table-empty"><i class="fas fa-stethoscope"></i>Sin resultados</div>'; return; }
+  if (!diags.length) { document.getElementById('diagsTableBody').innerHTML='<div class="table-empty"><i class="fas fa-ticket"></i>Sin resultados</div>'; return; }
   const sorted = [...diags].sort((a,b) => {
     let va = a[_sortCol]||'', vb = b[_sortCol]||'';
     if (_sortCol==='fecha') {
@@ -1494,7 +1555,7 @@ function renderDiagsTable(diags) {
   document.getElementById('diagsTableBody').innerHTML = `
     <table>
       <thead><tr>
-        ${th('diagNum','N° Diagnóstico')}${th('fecha','Fecha')}${th('nombre','Cliente')}${th('sintoma','Equipo')}${th('estado','Estado')}${th('severidad','Severidad')}<th>Acciones</th>
+        ${th('diagNum','N° Ticket')}${th('fecha','Fecha')}${th('nombre','Cliente')}${th('sintoma','Equipo')}${th('categoria','Categoría')}${th('estado','Estado')}${th('severidad','Severidad')}<th>Acciones</th>
       </tr></thead>
       <tbody>
         ${sorted.map(d => `<tr>
@@ -1505,6 +1566,7 @@ function renderDiagsTable(diags) {
             <div style="font-size:0.73rem;color:var(--gray-400)">${esc(d.email||'')}</div>
           </td>
           <td style="font-size:0.8rem">${esc((d.sintoma||d.equipo||'—').substring(0,50))}</td>
+          <td>${d.categoria ? `<span class="badge" style="background:var(--gray-100);color:var(--gray-600)">${esc(CATEGORIA_LABELS[d.categoria]||d.categoria)}</span>` : '<span style="color:var(--gray-300);font-size:0.75rem">—</span>'}</td>
           <td>${badgeEstado(d.estado||'nuevo')}</td>
           <td>${badgeSev(d.severidad||'media')}</td>
           <td>
@@ -1547,16 +1609,18 @@ function filterDiags() {
   const txt    = (document.getElementById('diagsSearch')?.value||'').toLowerCase();
   const est    = (document.getElementById('diagEstadoFilter')?.value||'').toLowerCase();
   const sev    = (document.getElementById('diagSevFilter')?.value||'').toLowerCase();
+  const cat    = (document.getElementById('diagCatFilter')?.value||'').toLowerCase();
   const desde  = document.getElementById('diagFechaDesde')?.value||'';
   const hasta  = document.getElementById('diagFechaHasta')?.value||'';
   const filtered = allDiags.filter(d => {
     const matchTxt  = !txt || (d.diagNum||'').toLowerCase().includes(txt) || (d.nombre||'').toLowerCase().includes(txt) || (d.email||'').toLowerCase().includes(txt) || (d.sintoma||d.equipo||'').toLowerCase().includes(txt);
     const matchEst  = !est || (d.estado||'').toLowerCase()===est;
     const matchSev  = !sev || (d.severidad||'').toLowerCase()===sev;
+    const matchCat  = !cat || (d.categoria||'').toLowerCase()===cat;
     const fd = parseFechaAR(d.fecha||'');
     const matchDesde = !desde || fd >= new Date(desde+'T00:00:00');
     const matchHasta = !hasta || fd <= new Date(hasta+'T23:59:59');
-    return matchTxt && matchEst && matchSev && matchDesde && matchHasta;
+    return matchTxt && matchEst && matchSev && matchCat && matchDesde && matchHasta;
   });
   renderDiagsTable(filtered);
 }
@@ -1572,14 +1636,16 @@ function limpiarFiltrosFecha() {
 
 function editarDiag(diagNum) {
   const d = allDiags.find(x => x.diagNum === diagNum);
-  if (!d) { showToast('Diagnóstico no encontrado', 'error'); return; }
-  document.getElementById('modalDiagTitle').textContent = 'Editar Diagnóstico';
+  if (!d) { showToast('Ticket no encontrado', 'error'); return; }
+  document.getElementById('modalDiagTitle').textContent = 'Editar Ticket';
   document.getElementById('diagRowIndex').value = d.rowIndex ?? '';
   document.getElementById('diagDiagNum').value  = d.diagNum || '';
   document.getElementById('diagNombre').value    = d.nombre||'';
   document.getElementById('diagEmail').value     = d.email||'';
   document.getElementById('diagEquipo').value    = d.equipo || (d.sintoma||'').split(' / ')[0] || '';
   document.getElementById('diagServicio').value  = d.servicio||'';
+  document.getElementById('diagCategoria').value = d.categoria||'';
+  document.getElementById('diagCanal').value     = d.canal||'';
   document.getElementById('diagSintoma').value   = d.sintoma||d.resumen||'';
   document.getElementById('diagTexto').value     = d.resumen||'';
   document.getElementById('diagEstado').value    = d.estado||'nuevo';
@@ -1602,6 +1668,8 @@ async function guardarDiagnostico() {
     email:       document.getElementById('diagEmail').value,
     equipo:      document.getElementById('diagEquipo').value,
     servicio:    document.getElementById('diagServicio').value,
+    categoria:   document.getElementById('diagCategoria').value,
+    canal:       document.getElementById('diagCanal').value,
     sintoma:     document.getElementById('diagSintoma').value,
     diagnostico: document.getElementById('diagTexto').value,
     estado:      document.getElementById('diagEstado').value,
@@ -1612,17 +1680,17 @@ async function guardarDiagnostico() {
   };
   if (!data.nombre || !data.email || !data.sintoma) { showToast('Completá los campos obligatorios', 'warning'); return; }
   closeModal('modalDiag');
-  showToast('Guardando diagnóstico...', 'info');
+  showToast('Guardando ticket...', 'info');
   try {
     const resp = await apiPost(data);
-    if (resp.ok) { showToast('Diagnóstico guardado ✓', 'success'); await loadDiagnosticos(); }
+    if (resp.ok) { showToast('Ticket guardado ✓', 'success'); await loadDiagnosticos(); }
     else showToast('Error: ' + (resp.error||'desconocido'), 'error');
   } catch(e) { showToast('Error de conexión', 'error'); }
 }
 
 async function cambiarEstadoDiag(diagNum) {
   const d = allDiags.find(x => x.diagNum === diagNum);
-  if (!d) { showToast('Diagnóstico no encontrado', 'error'); return; }
+  if (!d) { showToast('Ticket no encontrado', 'error'); return; }
   const ciclo = ['nuevo','en proceso','resuelto','cerrado'];
   const actual = ciclo.indexOf((d.estado||'nuevo').toLowerCase());
   const siguiente = ciclo[(actual+1) % ciclo.length];
@@ -1641,7 +1709,7 @@ async function cambiarEstadoDiag(diagNum) {
 
 async function marcarLeidoDiag(diagNum) {
   const d = allDiags.find(x => x.diagNum === diagNum);
-  if (!d) { showToast('Diagnóstico no encontrado', 'error'); return; }
+  if (!d) { showToast('Ticket no encontrado', 'error'); return; }
   try {
     await apiPost({
       action:        'admin_editar_diag',
@@ -1656,9 +1724,11 @@ async function marcarLeidoDiag(diagNum) {
 }
 
 function openNewDiag() {
-  document.getElementById('modalDiagTitle').textContent = 'Nuevo Diagnóstico';
+  document.getElementById('modalDiagTitle').textContent = 'Nuevo Ticket';
   document.getElementById('diagRowIndex').value = '';
   ['diagNombre','diagEmail','diagEquipo','diagServicio','diagSintoma','diagTexto','diagTecnico','diagPresupuesto','diagNotas'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('diagCategoria').value='';
+  document.getElementById('diagCanal').value='';
   document.getElementById('diagEstado').value='nuevo';
   document.getElementById('diagSeveridad').value='media';
   openModal('modalDiag');
@@ -1755,6 +1825,8 @@ const DOC_TIPOS = {
 let docTipoActual = 'presupuesto';
 let docItems = [];
 let docHistorialCache = null;
+let docEditandoNumero = null;   // si !== null, Guardar actualiza este documento en vez de crear uno nuevo
+let docClientesCache = null;    // cache de listar_clientes_completo
 
 function initDocumentos() {
   if (!document.getElementById('docFecha').value) {
@@ -1765,6 +1837,33 @@ function initDocumentos() {
   actualizarNumeroDoc();
   renderPreviewDoc();
   pintarHistorialDocs();
+  cargarClientesParaDocs();
+}
+
+async function cargarClientesParaDocs() {
+  try {
+    const resp = await apiGet('listar_clientes_completo');
+    if (resp && resp.ok) {
+      docClientesCache = resp.clientes || [];
+      const dl = document.getElementById('docClientesList');
+      dl.innerHTML = docClientesCache.map(c =>
+        `<option value="${esc(c.nombre || c.email)} — ${esc(c.email)}">`).join('');
+    }
+  } catch(e) { /* sin conexión con el backend: el buscador de clientes queda vacío, no rompe nada más */ }
+}
+
+function seleccionarClienteExistente(valor) {
+  if (!docClientesCache) return;
+  const email = (valor.split('—').pop() || '').trim().toLowerCase();
+  const c = docClientesCache.find(x => String(x.email || '').toLowerCase() === email);
+  if (!c) return;
+  document.getElementById('docClienteNombre').value = c.nombre || '';
+  document.getElementById('docClienteTel').value = c.telefono || '';
+  document.getElementById('docClienteEmail').value = c.email || '';
+  const dir = [c.direccion, c.localidad].filter(Boolean).join(', ');
+  document.getElementById('docClienteDireccion').value = dir;
+  document.getElementById('docClienteVinculadoMsg').textContent = 'Vinculado a cliente existente ✓';
+  renderPreviewDoc();
 }
 
 function cambiarTipoDoc(tipo, btn) {
@@ -1781,6 +1880,9 @@ function cambiarTipoDoc(tipo, btn) {
 }
 
 function nuevoDocumento() {
+  docEditandoNumero = null;
+  document.getElementById('docClienteBuscar').value = '';
+  document.getElementById('docClienteVinculadoMsg').textContent = '';
   document.getElementById('docClienteNombre').value = '';
   document.getElementById('docClienteTel').value = '';
   document.getElementById('docClienteEmail').value = '';
@@ -1805,6 +1907,13 @@ function nuevoDocumento() {
 // Si el backend todavía no tiene esa acción implementada, usa un contador local
 // por navegador (localStorage) como respaldo — ver nota en docNumMode.
 async function actualizarNumeroDoc() {
+  if (docEditandoNumero) {
+    document.getElementById('docNumPreview').textContent = docEditandoNumero;
+    document.getElementById('docNumPreview').dataset.num = docEditandoNumero;
+    document.getElementById('docNumMode').textContent = 'Editando documento existente — el número no cambia';
+    renderPreviewDoc();
+    return;
+  }
   const fecha = document.getElementById('docFecha').value || new Date().toISOString().slice(0,10);
   const [y,m,d] = fecha.split('-');
   const fechaCorta = d + m + y; // ddmmyyyy
@@ -1898,7 +2007,7 @@ function abrirConfigEmpresa() {
   document.getElementById('cfgEmail').value     = cfg.email     || 'contacto@soportecyclops.com.ar';
   document.getElementById('cfgDireccion').value = cfg.direccion || 'CABA, Argentina';
   document.getElementById('cfgLogo').value      = cfg.logo      || '';
-  document.getElementById('modalConfigEmpresa').classList.add('active');
+  openModal('modalConfigEmpresa');
 }
 function guardarConfigEmpresa() {
   const cfg = {
@@ -1932,12 +2041,10 @@ function renderPreviewDoc() {
   let html = `
     <div class="doc-print-header">
       <div class="doc-print-logo">
-        ${cfg.logo ? `<img src="${esc(cfg.logo)}" onerror="this.style.display='none'">` : `<img src="public/images/logo-icon.png" onerror="this.style.display='none'">`}
+        <div class="badge-circle">${cfg.logo ? `<img src="${esc(cfg.logo)}" onerror="this.style.display='none'">` : `<img src="public/images/logo-icon.png" onerror="this.style.display='none'">`}</div>
         <div>
           <strong>${esc(cfg.nombre || 'Soporte Cyclops')}</strong>
-          <span>${esc(cfg.cuit ? 'CUIT ' + cfg.cuit : '')}${cfg.ivaCond ? ' · ' + esc(cfg.ivaCond) : ''}</span><br>
-          <span>${esc(cfg.telefono || '')}${cfg.email ? ' · ' + esc(cfg.email) : ''}</span><br>
-          <span>${esc(cfg.direccion || '')}</span>
+          <span class="tagline">Servicio técnico IT · CABA y GBA</span>
         </div>
       </div>
       <div class="doc-print-type">
@@ -2008,6 +2115,10 @@ function renderPreviewDoc() {
     <div class="doc-print-firmas">
       <div>Firma cliente</div>
       <div>Firma / sello Soporte Cyclops</div>
+    </div>
+    <div class="doc-print-footer">
+      ${esc(cfg.nombre || 'Soporte Cyclops')}${cfg.cuit ? ' · CUIT ' + esc(cfg.cuit) : ''}${cfg.ivaCond ? ' · ' + esc(cfg.ivaCond) : ''}<br>
+      ${esc(cfg.telefono || '')}${cfg.email ? ' · ' + esc(cfg.email) : ''}${cfg.direccion ? ' · ' + esc(cfg.direccion) : ''}
     </div>`;
 
   document.getElementById('docPreview').innerHTML = html;
@@ -2018,76 +2129,124 @@ function imprimirDocumento() {
   window.print();
 }
 
-// ── Guardado (backend con respaldo local) ──
+// ── Guardado (backend con respaldo local; soporta edición sin duplicar número) ──
+let _guardandoDoc = false;
 async function guardarDocumento() {
+  if (_guardandoDoc) return; // evita doble-submit por doble click
   if (!document.getElementById('docClienteNombre').value.trim()) {
     showToast('Ingresá al menos el nombre del cliente', 'warning'); return;
   }
-  const fecha = document.getElementById('docFecha').value || new Date().toISOString().slice(0,10);
-  const [y,m,d] = fecha.split('-');
-  const fechaCorta = d + m + y;
-  const seqLocal = obtenerSiguienteLocal(docTipoActual, fechaCorta, false);
-
-  const { subtotal, iva, total, conIva } = calcularTotalesDoc();
-  const doc = {
-    tipo: docTipoActual,
-    tipoNombre: DOC_TIPOS[docTipoActual].nombre,
-    numero: null, // se completa abajo según backend/local
-    fecha,
-    cliente: {
-      nombre: document.getElementById('docClienteNombre').value,
-      telefono: document.getElementById('docClienteTel').value,
-      email: document.getElementById('docClienteEmail').value,
-      direccion: document.getElementById('docClienteDireccion').value
-    },
-    equipo: {
-      tipo: document.getElementById('docEquipoTipo').value,
-      marcaModelo: document.getElementById('docEquipoMarcaModelo').value,
-      serie: document.getElementById('docEquipoSerie').value,
-      accesorios: document.getElementById('docEquipoAccesorios').value
-    },
-    diagnostico: document.getElementById('docDiagnostico').value,
-    items: docItems,
-    subtotal, iva, total, conIva,
-    observaciones: document.getElementById('docObservaciones').value,
-    validez: document.getElementById('docValidez').value,
-    creadoEn: new Date().toISOString()
-  };
-
-  let numeroFinal = null;
+  _guardandoDoc = true;
   try {
-    const resp = await apiGet('siguiente_numero_doc', { tipo: docTipoActual, fecha: fechaCorta, peek: '0' });
-    if (resp && resp.ok && resp.siguiente) numeroFinal = fechaCorta + '-' + String(resp.siguiente).padStart(3,'0');
-  } catch(e) {}
+    const fecha = document.getElementById('docFecha').value || new Date().toISOString().slice(0,10);
+    const [y,m,d] = fecha.split('-');
+    const fechaCorta = d + m + y;
 
-  if (!numeroFinal) {
-    const seq = obtenerSiguienteLocal(docTipoActual, fechaCorta, true);
-    numeroFinal = fechaCorta + '-' + String(seq).padStart(3,'0');
+    const { subtotal, iva, total, conIva } = calcularTotalesDoc();
+    const doc = {
+      tipo: docTipoActual,
+      tipoNombre: DOC_TIPOS[docTipoActual].nombre,
+      numero: docEditandoNumero || null,
+      fecha,
+      cliente: {
+        nombre: document.getElementById('docClienteNombre').value,
+        telefono: document.getElementById('docClienteTel').value,
+        email: document.getElementById('docClienteEmail').value,
+        direccion: document.getElementById('docClienteDireccion').value
+      },
+      equipo: {
+        tipo: document.getElementById('docEquipoTipo').value,
+        marcaModelo: document.getElementById('docEquipoMarcaModelo').value,
+        serie: document.getElementById('docEquipoSerie').value,
+        accesorios: document.getElementById('docEquipoAccesorios').value
+      },
+      diagnostico: document.getElementById('docDiagnostico').value,
+      items: docItems,
+      subtotal, iva, total, conIva,
+      observaciones: document.getElementById('docObservaciones').value,
+      validez: document.getElementById('docValidez').value,
+      creadoEn: new Date().toISOString()
+    };
+
+    const esEdicion = !!docEditandoNumero;
+    let guardadoRemoto = false;
+
+    if (esEdicion) {
+      doc.numero = docEditandoNumero;
+      try {
+        const resp = await apiPost({ action: 'actualizar_documento', ...doc, items: JSON.stringify(doc.items), cliente: JSON.stringify(doc.cliente), equipo: JSON.stringify(doc.equipo) });
+        if (resp && resp.ok) guardadoRemoto = true;
+      } catch(e) {}
+
+      const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
+      const idx = historial.findIndex(x => x.numero === doc.numero);
+      if (idx >= 0) historial[idx] = doc; else historial.unshift(doc);
+      localStorage.setItem('cyclops_docs_historial', JSON.stringify(historial.slice(0, 500)));
+
+    } else {
+      let numeroFinal = null;
+      try {
+        const resp = await apiGet('siguiente_numero_doc', { tipo: docTipoActual, fecha: fechaCorta, peek: '0' });
+        if (resp && resp.ok && resp.siguiente) numeroFinal = fechaCorta + '-' + String(resp.siguiente).padStart(3,'0');
+      } catch(e) {}
+
+      if (!numeroFinal) {
+        const seq = obtenerSiguienteLocal(docTipoActual, fechaCorta, true);
+        numeroFinal = fechaCorta + '-' + String(seq).padStart(3,'0');
+      }
+      doc.numero = numeroFinal;
+
+      try {
+        const resp = await apiPost({ action: 'guardar_documento', ...doc, items: JSON.stringify(doc.items), cliente: JSON.stringify(doc.cliente), equipo: JSON.stringify(doc.equipo) });
+        if (resp && resp.ok) guardadoRemoto = true;
+      } catch(e) {}
+
+      const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
+      historial.unshift(doc);
+      localStorage.setItem('cyclops_docs_historial', JSON.stringify(historial.slice(0, 500)));
+    }
+
+    docEditandoNumero = doc.numero;
+    document.getElementById('docNumPreview').textContent = doc.numero;
+    document.getElementById('docNumPreview').dataset.num = doc.numero;
+    document.getElementById('docNumMode').textContent = guardadoRemoto ? '' : 'Guardado solo en este navegador (sin conexión con el backend)';
+    renderPreviewDoc();
+    pintarHistorialDocs();
+    showToast(
+      guardadoRemoto
+        ? (esEdicion ? 'Documento actualizado ✓' : 'Documento guardado ✓')
+        : 'Documento guardado en este navegador ✓ (sin conexión con el backend)',
+      'success'
+    );
+  } finally {
+    _guardandoDoc = false;
   }
-  doc.numero = numeroFinal;
-
-  // Intentar guardar en backend; si no existe la acción todavía, cae al respaldo local
-  let guardadoRemoto = false;
-  try {
-    const resp = await apiPost({ action: 'guardar_documento', ...doc, items: JSON.stringify(doc.items), cliente: JSON.stringify(doc.cliente), equipo: JSON.stringify(doc.equipo) });
-    if (resp && resp.ok) guardadoRemoto = true;
-  } catch(e) {}
-
-  const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
-  historial.unshift(doc);
-  localStorage.setItem('cyclops_docs_historial', JSON.stringify(historial.slice(0, 500)));
-
-  document.getElementById('docNumPreview').textContent = numeroFinal;
-  document.getElementById('docNumPreview').dataset.num = numeroFinal;
-  renderPreviewDoc();
-  pintarHistorialDocs();
-  showToast(guardadoRemoto ? 'Documento guardado ✓' : 'Documento guardado en este navegador ✓ (agregá el backend para multi-dispositivo)', 'success');
 }
 
-function pintarHistorialDocs() {
+// Trae el historial del backend (multi-dispositivo) y lo fusiona con el local como respaldo.
+async function pintarHistorialDocs() {
   const box = document.getElementById('docHistorial');
   const q = (document.getElementById('docHistSearch')?.value || '').toLowerCase();
-  const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
+
+  let historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
+  try {
+    const resp = await apiGet('listar_documentos');
+    if (resp && resp.ok && Array.isArray(resp.documentos)) {
+      historial = resp.documentos.map(r => ({
+        numero: r['Numero'], tipo: r['Tipo'],
+        tipoNombre: (DOC_TIPOS[r['Tipo']] || {}).nombre || r['Tipo'],
+        fecha: r['Fecha'],
+        cliente: { nombre: r['Cliente Nombre'], telefono: r['Cliente Telefono'], email: r['Cliente Email'], direccion: r['Cliente Direccion'] },
+        equipo: (() => { try { return JSON.parse(r['Equipo'] || '{}'); } catch(e) { return {}; } })(),
+        diagnostico: r['Diagnostico'],
+        items: (() => { try { return JSON.parse(r['Items'] || '[]'); } catch(e) { return []; } })(),
+        subtotal: r['Subtotal'], iva: r['IVA'], total: r['Total'], conIva: Number(r['IVA']) > 0,
+        observaciones: r['Observaciones'], validez: r['Validez']
+      }));
+      localStorage.setItem('cyclops_docs_historial', JSON.stringify(historial.slice(0, 500)));
+    }
+  } catch(e) { /* backend no disponible: se muestra el respaldo local */ }
+
   const filtrado = historial.filter(d =>
     !q || (d.numero||'').toLowerCase().includes(q) || (d.cliente?.nombre||'').toLowerCase().includes(q));
 
@@ -2095,6 +2254,8 @@ function pintarHistorialDocs() {
     box.innerHTML = '<div style="padding:20px;text-align:center;color:var(--gray-400);font-size:0.85rem">Sin documentos guardados todavía.</div>';
     return;
   }
+
+  window._docHistorialFiltrado = filtrado; // referencia para editar/borrar por índice
 
   box.innerHTML = `
     <table>
@@ -2107,20 +2268,49 @@ function pintarHistorialDocs() {
             <td>${esc((d.fecha||'').split('-').reverse().join('/'))}</td>
             <td>${esc(d.cliente?.nombre || '—')}</td>
             <td>${d.items && d.items.length ? '$ ' + fmtMoney(d.total) : '—'}</td>
-            <td><button class="btn btn-secondary btn-sm" onclick="cargarDocDeHistorial(${i}, '${q.replace(/'/g,"")}')" title="Ver / reimprimir"><i class="fas fa-eye"></i></button></td>
+            <td style="white-space:nowrap">
+              <button class="btn btn-secondary btn-sm" onclick="cargarDocDeHistorial(${i})" title="Ver / reimprimir"><i class="fas fa-eye"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="editarDocDeHistorial(${i})" title="Editar"><i class="fas fa-pen"></i></button>
+              <button class="btn btn-secondary btn-sm" onclick="borrarDocDeHistorial(${i})" title="Borrar" style="color:var(--red)"><i class="fas fa-trash"></i></button>
+            </td>
           </tr>`).join('')}
       </tbody>
     </table>`;
 }
 
-function cargarDocDeHistorial(idxFiltrado, q) {
+function cargarDocDeHistorial(idx) {
+  _cargarDocEnForm(window._docHistorialFiltrado[idx], false);
+}
+
+function editarDocDeHistorial(idx) {
+  _cargarDocEnForm(window._docHistorialFiltrado[idx], true);
+}
+
+async function borrarDocDeHistorial(idx) {
+  const d = window._docHistorialFiltrado[idx];
+  if (!d) return;
+  if (!confirm('¿Borrar el documento ' + d.numero + '? Esta acción no se puede deshacer.')) return;
+
+  let borradoRemoto = false;
+  try {
+    const resp = await apiPost({ action: 'eliminar_documento', numero: d.numero });
+    if (resp && resp.ok) borradoRemoto = true;
+  } catch(e) {}
+
   const historial = JSON.parse(localStorage.getItem('cyclops_docs_historial') || '[]');
-  const filtrado = historial.filter(d =>
-    !q || (d.numero||'').toLowerCase().includes(q) || (d.cliente?.nombre||'').toLowerCase().includes(q));
-  const d = filtrado[idxFiltrado];
+  const nuevo = historial.filter(x => x.numero !== d.numero);
+  localStorage.setItem('cyclops_docs_historial', JSON.stringify(nuevo));
+
+  if (docEditandoNumero === d.numero) nuevoDocumento();
+  pintarHistorialDocs();
+  showToast(borradoRemoto ? 'Documento borrado ✓' : 'Borrado solo en este navegador (sin conexión con el backend)', 'success');
+}
+
+function _cargarDocEnForm(d, modoEdicion) {
   if (!d) return;
 
   docTipoActual = d.tipo;
+  docEditandoNumero = modoEdicion ? d.numero : null;
   document.querySelectorAll('.doc-tab').forEach(b => b.classList.toggle('active', b.dataset.tipo === d.tipo));
   const cfg = DOC_TIPOS[d.tipo];
   document.getElementById('blockEquipo').style.display = cfg.equipo ? '' : 'none';
@@ -2129,6 +2319,8 @@ function cargarDocDeHistorial(idxFiltrado, q) {
   if (cfg.diag) document.getElementById('labelDiagnostico').textContent = cfg.labelDiag;
 
   document.getElementById('docFecha').value = d.fecha || '';
+  document.getElementById('docClienteBuscar').value = '';
+  document.getElementById('docClienteVinculadoMsg').textContent = '';
   document.getElementById('docClienteNombre').value = d.cliente?.nombre || '';
   document.getElementById('docClienteTel').value = d.cliente?.telefono || '';
   document.getElementById('docClienteEmail').value = d.cliente?.email || '';
@@ -2146,8 +2338,9 @@ function cargarDocDeHistorial(idxFiltrado, q) {
 
   document.getElementById('docNumPreview').textContent = d.numero;
   document.getElementById('docNumPreview').dataset.num = d.numero;
+  document.getElementById('docNumMode').textContent = modoEdicion ? 'Editando documento existente — el número no cambia' : '';
   renderPreviewDoc();
-  showToast('Documento ' + d.numero + ' cargado — podés reimprimirlo');
+  showToast(modoEdicion ? ('Editando ' + d.numero + ' — el próximo Guardar lo actualiza') : ('Documento ' + d.numero + ' cargado — podés reimprimirlo'));
 }
 
 
@@ -2227,7 +2420,7 @@ async function buscarCliente() {
 
   document.getElementById('clienteHistorial').innerHTML = `
     <h4 style="font-size:0.83rem;font-weight:700;color:var(--gray-700);margin-bottom:14px">
-      <i class="fas fa-stethoscope" style="color:var(--accent)"></i> Historial de diagnósticos (${diags.length})
+      <i class="fas fa-ticket" style="color:var(--accent)"></i> Historial de tickets (${diags.length})
     </h4>
     <table>
       <thead><tr><th>N°</th><th>Fecha</th><th>Equipo</th><th>Síntoma</th><th>Estado</th><th>Severidad</th></tr></thead>
@@ -2242,6 +2435,7 @@ async function buscarCliente() {
         </tr>`).join('')}
       </tbody>
     </table>`;
+  cargarDocumentosDeCliente(first.email);
 }
 
 function abrirWhatsApp() {
@@ -2563,7 +2757,7 @@ function pintarClientes() {
     return;
   }
   cont.innerHTML = `<table class="data-table"><thead><tr>
-      <th>Cliente</th><th>Email</th><th style="text-align:center">Diagnósticos</th><th>Último</th><th style="text-align:right">Acciones</th>
+      <th>Cliente</th><th>Email</th><th style="text-align:center">Tickets</th><th>Último</th><th style="text-align:right">Acciones</th>
     </tr></thead><tbody>` +
     lista.map(c => `<tr>
       <td><strong>${esc(c.nombre || '—')}</strong></td>
@@ -2591,8 +2785,55 @@ function verCliente(email) {
         <td>${esc((x.sintoma || x.resumen || '').substring(0, 60))}</td>
         <td><span class="badge badge-${(x.estado||'nuevo').toLowerCase().replace(/ /g,'-')}">${esc(x.estado || 'nuevo')}</span></td></tr>`).join('') +
       '</tbody></table>'
-    : '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">Este cliente todavía no tiene diagnósticos registrados.</p>';
+    : '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">Este cliente todavía no tiene tickets registrados.</p>';
   document.getElementById('clienteDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  cargarDocumentosDeCliente(email);
+}
+
+async function cargarDocumentosDeCliente(email) {
+  const cont = document.getElementById('clienteDocumentos');
+  if (!cont) return;
+  cont.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner"></i> Cargando documentos...</div>';
+  try {
+    const resp = await apiGet('listar_documentos', { email });
+    const docs = (resp && resp.ok) ? resp.documentos : [];
+    if (!docs.length) {
+      cont.innerHTML = '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">Este cliente todavía no tiene presupuestos, hojas de trabajo ni remitos.</p>';
+      return;
+    }
+    cont.innerHTML = `<table class="data-table"><thead><tr><th>N°</th><th>Tipo</th><th>Fecha</th><th>Total</th><th></th></tr></thead><tbody>` +
+      docs.map(r => `<tr>
+        <td style="font-family:'JetBrains Mono',monospace">${esc(r['Numero'])}</td>
+        <td>${esc(r['Tipo'])}</td>
+        <td style="white-space:nowrap">${esc(r['Fecha'])}</td>
+        <td>${Number(r['Total']) ? '$ ' + fmtMoney(Number(r['Total'])) : '—'}</td>
+        <td style="text-align:right"><button class="btn btn-secondary btn-sm" onclick="irADocumento('${esc(r['Numero'])}')" title="Abrir en Documentos"><i class="fas fa-arrow-up-right-from-square"></i></button></td>
+      </tr>`).join('') + '</tbody></table>';
+  } catch(e) {
+    cont.innerHTML = '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">No se pudo conectar con el backend para traer los documentos de este cliente.</p>';
+  }
+}
+
+function irADocumento(numero) {
+  document.querySelector('[data-section="documentos"]').click();
+  setTimeout(async () => {
+    try {
+      const resp = await apiGet('listar_documentos');
+      const r = (resp.documentos || []).find(x => x['Numero'] === numero);
+      if (!r) return;
+      const d = {
+        numero: r['Numero'], tipo: r['Tipo'],
+        fecha: r['Fecha'],
+        cliente: { nombre: r['Cliente Nombre'], telefono: r['Cliente Telefono'], email: r['Cliente Email'], direccion: r['Cliente Direccion'] },
+        equipo: (() => { try { return JSON.parse(r['Equipo'] || '{}'); } catch(e) { return {}; } })(),
+        diagnostico: r['Diagnostico'],
+        items: (() => { try { return JSON.parse(r['Items'] || '[]'); } catch(e) { return []; } })(),
+        subtotal: r['Subtotal'], iva: r['IVA'], total: r['Total'], conIva: Number(r['IVA']) > 0,
+        observaciones: r['Observaciones'], validez: r['Validez']
+      };
+      _cargarDocEnForm(d, false);
+    } catch(e) { showToast('No se pudo abrir el documento', 'warning'); }
+  }, 200);
 }
 
 function waCliente(email) {
