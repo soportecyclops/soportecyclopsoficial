@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html><html lang="es-AR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soporte IT para Estudios Contables y Jurídicos | Cyclops</title>
-<meta name="description" content="Soporte técnico externo, VPNs para home office, y backups seguros. Protegemos los datos sensibles de tu estudio profesional en CABA y GBA.">
-<link rel="canonical" href="https://www.soportecyclops.com.ar/servicios-profesionales.html">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Soporte Cyclops - Estudios Profesionales","telephone":"+5491166804450","areaServed":["CABA","GBA"]}</script>
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soporte IT para Estudios Contables y Jurídicos | Cyclops</title>
+  <meta name="description" content="Soporte técnico externo, VPNs para home office, y backups seguros. Protegemos los datos sensibles de tu estudio profesional en CABA y GBA.">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/servicios-profesionales.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Soporte Cyclops - Estudios Profesionales","telephone":"+5491166804450","areaServed":["CABA","GBA"]}</script>
   <link rel="icon" href="public/images/logo-icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
@@ -13,6 +16,8 @@
     body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
     a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
     .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    
+    /* NAV UNIFICADO */
     .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
     .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
     .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
@@ -27,10 +32,11 @@
     .nav-cta:hover{background:#1d4ed8;text-decoration:none}
     .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
     @media(max-width:900px){.nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}.nav-menu.open{display:flex}.nav-menu li{width:100%}.nav-link{display:block;padding:12px 16px}.menu-toggle{display:block}.nav-cta{text-align:center;margin-top:8px}}
+    
     .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
     .hero-hogar{background:linear-gradient(135deg,#0284c7 0%,#2563eb 100%)}
     .hero-pyme{background:linear-gradient(135deg,#b45309 0%,#1e3a8a 100%)}
-    .hero-prof{background:linear-gradient(135deg,#166534 0%,#0f172a 100%)}
+    .hero-prof{background:linear-gradient(135deg,#166534 0%,#0f172a 100%); border-bottom: 4px solid #22c55e}
     .hero-obra{background:linear-gradient(135deg,#334155 0%,#0f172a 100%); border-bottom: 4px solid #06b6d4}
     .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
     .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
@@ -75,6 +81,18 @@
     .step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;margin:0 auto 16px}
     .step-card h4{font-family:'Space Grotesk',sans-serif;font-size:0.97rem;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
     .step-card p{font-size:0.85rem;color:var(--gray-600);line-height:1.65}
+    .preventive-section{padding:64px 0;background:white}
+    .comp-table-wrap{overflow-x:auto;margin-top:32px}
+    .comp-table{width:100%;border-collapse:collapse;font-size:0.9rem}
+    .comp-table th{background:var(--blue-dark);color:white;padding:14px 20px;text-align:left;font-weight:700}
+    .comp-table th:first-child{border-radius:var(--radius) 0 0 0}
+    .comp-table th:last-child{border-radius:0 var(--radius) 0 0}
+    .comp-table td{padding:13px 20px;border-bottom:1px solid var(--gray-200);color:var(--gray-600);vertical-align:top}
+    .comp-table tr:last-child td:first-child{border-radius:0 0 0 var(--radius)}
+    .comp-table tr:last-child td:last-child{border-radius:0 0 var(--radius) 0}
+    .comp-table tr:nth-child(even) td{background:var(--gray-50)}
+    .comp-table .good{color:#16a34a;font-weight:600}
+    .comp-table .bad{color:#dc2626}
     .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:48px 0}
     .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
     .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
@@ -116,7 +134,28 @@
     .cta-servicio:hover{transform:translateY(-2px)}
     @media(max-width:860px){.mod-grid,.confianza-strip{grid-template-columns:1fr}.obj-grid{grid-template-columns:1fr}}
   </style>
+</head>
 <body>
+  
+  <!-- NAV UNIFICADO -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
   <div class="page-hero hero-prof">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Estudios Profesionales</span></div>
@@ -125,10 +164,58 @@
     </div>
   </div>
   
-  <section class="modalidades"><div class="container"><div class="section-header"><span class="section-tag" style="color:#166534; background:rgba(22,101,52,0.1)">Orden y Confidencialidad</span><h2 class="section-title">El lunes a las 9:15 deja de funcionar el servidor principal. ¿A quién llamás?</h2><p class="section-subtitle">Garantizamos respuesta rápida, resguardo de información legal y conectividad segura para los socios.</p></div><div class="mod-grid"><div class="mod-card"><span class="mod-badge" style="background:#dcfce7;color:#166534">Confidencial</span><div class="mod-ico">🔐</div><h3>Soporte Remoto Seguro</h3><p>Conexiones encriptadas. Solucionamos problemas de AFIP, Lex-Doctor o red interna mientras el socio supervisa. No quedan accesos residuales.</p></div><div class="mod-card"><div class="mod-ico">📁</div><h3>Backups Inviolables</h3><p>Automatizamos copias de seguridad de expedientes, bases contables y documentos sensibles para protegerte de ransomware y fallos de disco.</p></div><div class="mod-card"><div class="mod-ico">🌐</div><h3>VPN & Trabajo Remoto</h3><p>Configuramos túneles seguros para que los abogados o contadores puedan trabajar desde sus casas accediendo a los archivos del servidor local.</p></div></div>
-  <div class="confianza-strip" style="background:#0f172a"><div class="conf-item"><i class="fas fa-user-tie"></i><div><h4>Trato Ejecutivo</h4><p>Entendemos los tiempos de un estudio. Interrupciones mínimas y comunicación directa con Juan Pablo Alza, profesional IT Senior.</p></div></div><div class="conf-item"><i class="fas fa-shield-alt"></i><div><h4>Políticas de Acceso</h4><p>Configuración de Active Directory para que cada pasante o asociado solo vea las carpetas y documentos que le corresponden.</p></div></div><div class="conf-item"><i class="fas fa-plug"></i><div><h4>Energía Ininterrumpida</h4><p>Instalamos UPS para evitar que un corte de luz apague el servidor abruptamente, corrompiendo la base de datos contable.</p></div></div></div></div></section>
+  <section class="modalidades">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" style="color:#166534; background:rgba(22,101,52,0.1)">Orden y Confidencialidad</span>
+        <h2 class="section-title">El lunes a las 9:15 deja de funcionar el servidor principal. ¿A quién llamás?</h2>
+        <p class="section-subtitle">Garantizamos respuesta rápida, resguardo de información legal y conectividad segura para los socios.</p>
+      </div>
+      <div class="mod-grid">
+        <div class="mod-card">
+          <span class="mod-badge" style="background:#dcfce7;color:#166534">Confidencial</span>
+          <div class="mod-ico">🔐</div>
+          <h3>Soporte Remoto Seguro</h3>
+          <p>Conexiones encriptadas. Solucionamos problemas de AFIP, Lex-Doctor o red interna mientras el socio supervisa. No quedan accesos residuales.</p>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">📁</div>
+          <h3>Backups Inviolables</h3>
+          <p>Automatizamos copias de seguridad de expedientes, bases contables y documentos sensibles para protegerte de ransomware y fallos de disco.</p>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">🌐</div>
+          <h3>VPN & Trabajo Remoto</h3>
+          <p>Configuramos túneles seguros para que los abogados o contadores puedan trabajar desde sus casas accediendo a los archivos del servidor local.</p>
+        </div>
+      </div>
+      <div class="confianza-strip" style="background:#0f172a">
+        <div class="conf-item">
+          <i class="fas fa-user-tie"></i>
+          <div>
+            <h4>Trato Ejecutivo</h4>
+            <p>Entendemos los tiempos de un estudio. Interrupciones mínimas y comunicación directa con Juan Pablo Alza, profesional IT Senior.</p>
+          </div>
+        </div>
+        <div class="conf-item">
+          <i class="fas fa-shield-alt"></i>
+          <div>
+            <h4>Políticas de Acceso</h4>
+            <p>Configuración de Active Directory para que cada pasante o asociado solo vea las carpetas y documentos que le corresponden.</p>
+          </div>
+        </div>
+        <div class="conf-item">
+          <i class="fas fa-plug"></i>
+          <div>
+            <h4>Energía Ininterrumpida</h4>
+            <p>Instalamos UPS para evitar que un corte de luz apague el servidor abruptamente, corrompiendo la base de datos contable.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
-    <section class="paquetes" style="padding:70px 0; background:var(--gray-100); border-top:1px solid var(--gray-200)">
+  <section class="paquetes" style="padding:70px 0; background:var(--gray-100); border-top:1px solid var(--gray-200)">
     <div class="container">
       <div class="section-header" style="text-align:center; max-width:700px; margin:0 auto 30px">
         <span class="section-tag" style="display:inline-block;background:rgba(37,99,235,0.1);color:var(--blue);padding:6px 16px;border-radius:30px;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:12px">Captación Digital</span>
@@ -141,67 +228,96 @@
     </div>
   </section>
 
-<section class="objeciones"><div class="container"><div class="section-header"><span class="section-tag">Hablemos claro</span><h2 class="section-title">Las preocupaciones de los socios</h2></div><div class="obj-grid"><div class="obj-card"><h4>“Tenemos datos muy sensibles de clientes”</h4><p>Trabajamos bajo estrictos Acuerdos de Confidencialidad (NDA) si el estudio lo requiere. Nuestro acceso remoto es siempre auditado y con su autorización en tiempo real.</p></div><div class="obj-card"><h4>“Si nos entra un virus, perdemos años de trabajo”</h4><p>Exacto. Por eso no vendemos solo 'arreglos'. Implementamos esquemas de respaldo (Regla 3-2-1) y antivirus corporativo ESET Endpoint para mitigar cualquier amenaza cibernética antes de que impacte.</p></div><div class="obj-card"><h4>“El chico de los sistemas tarda 3 días en venir”</h4><p>El 90% de los incidentes de software en estudios se resuelven de forma remota en la primera hora. Si el hardware falla (un disco muerto), vamos al estudio con repuestos listos para cambio rápido.</p></div><div class="obj-card"><h4>“Necesito que los asociados trabajen desde tribunales”</h4><p>Habilitamos conexiones VPN empresariales. Podrán acceder a la carpeta compartida Z: del servidor del estudio desde su notebook, con el mismo nivel de seguridad que si estuvieran en su oficina.</p></div></div></div></section>
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Soporte Cyclops</h3>
-        <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa en resolución de incidentes críticos.</p>
+  <section class="objeciones">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Hablemos claro</span>
+        <h2 class="section-title">Las preocupaciones de los socios</h2>
       </div>
-      <div class="footer-section">
-        <h3>Sectores</h3>
-        <a href="servicios-hogares.html">Para Hogares</a>
-        <a href="servicios-pymes.html">Para Pymes y Comercios</a>
-        <a href="servicios-profesionales.html">Para Estudios Profesionales</a>
-        <a href="servicios-obras.html">Para Arquitectos y Obras</a>
-      </div>
-      <div class="footer-section">
-        <h3>Contacto</h3>
-        <a href="tel:+5491166804450"><i class="fas fa-phone"></i> +54 9 11 6680-4450</a>
-        <a href="mailto:contacto@soportecyclops.com.ar"><i class="fas fa-envelope"></i> contacto@soportecyclops.com.ar</a>
-        <a href="https://wa.me/5491166804450" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <h4>“Tenemos datos muy sensibles de clientes”</h4>
+          <p>Trabajamos bajo estrictos Acuerdos de Confidencialidad (NDA) si el estudio lo requiere. Nuestro acceso remoto es siempre auditado y con su autorización en tiempo real.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“Si nos entra un virus, perdemos años de trabajo”</h4>
+          <p>Exacto. Por eso no vendemos solo 'arreglos'. Implementamos esquemas de respaldo (Regla 3-2-1) y antivirus corporativo ESET Endpoint para mitigar cualquier amenaza cibernética antes de que impacte.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“El chico de los sistemas tarda 3 días en venir”</h4>
+          <p>El 90% de los incidentes de software en estudios se resuelven de forma remota en la primera hora. Si el hardware falla (un disco muerto), vamos al estudio con repuestos listos para cambio rápido.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“Necesito que los asociados trabajen desde tribunales”</h4>
+          <p>Habilitamos conexiones VPN empresariales. Podrán acceder a la carpeta compartida Z: del servidor del estudio desde su notebook, con el mismo nivel de seguridad que si estuvieran en su oficina.</p>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a> | Defensa del Consumidor (Ley 24.240)</p>
+  </section>
+
+  <!-- FOOTER UNIFICADO -->
+  <footer>
+    <div class="container">
+      <div class="footer-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Soporte Cyclops</h3>
+          <p style="font-size:0.85rem; line-height:1.6;">Infraestructura IT, Seguridad Electrónica y Sistemas de Captación Web para CABA y GBA. +11 años de experiencia corporativa.</p>
+        </div>
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Sectores</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="servicios-hogares.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Hogares</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-pymes.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Pymes y Comercios</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-profesionales.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Estudios Profesionales</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-obras.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Arquitectos y Obras</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Contacto</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="tel:+5491166804450" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">📞 +54 9 11 6680-4450</a></li>
+            <li style="margin-bottom:8px;"><a href="mailto:contacto@soportecyclops.com.ar" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">✉️ contacto@soportecyclops.com.ar</a></li>
+            <li style="margin-bottom:8px;"><a href="https://wa.me/5491166804450" target="_blank" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">💬 WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom" style="text-align:center; padding-top:24px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+        <p>© 2026 Soporte Cyclops | CABA y Gran Buenos Aires | Ley 24.240 Defensa del Consumidor</p>
+      </div>
     </div>
-  </div>
-</footer>
-<script>
-  var navbar = document.getElementById('navbar');
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
-  menuToggle.addEventListener('click', function(){
-    navMenu.classList.toggle('open');
-    menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-  });
-  function switchTab(id, btn) {
-    document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-    document.getElementById('tc-' + id).classList.add('active');
-    btn.classList.add('active');
-    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
-  }
-</script>
-<script>
-(async function(){
-  try{
-    var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
-    var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
-    var d=await r.json();
-    if(d.venta>0){
-      document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
-        var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
-        el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
-      });
+  </footer>
+
+  <script>
+    var navbar = document.getElementById('navbar');
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+    window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    menuToggle.addEventListener('click', function(){
+      navMenu.classList.toggle('open');
+      menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.getElementById('tc-' + id).classList.add('active');
+      btn.classList.add('active');
+      btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
     }
-  }catch(e){}
-})();
-</script>
+  </script>
+  <script>
+  (async function(){
+    try{
+      var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
+      var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
+      var d=await r.json();
+      if(d.venta>0){
+        document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
+          var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
+          el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
+        });
+      }
+    }catch(e){}
+  })();
+  </script>
 </body>
 </html>
-
-
-
