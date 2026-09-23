@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html><html lang="es-AR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infraestructura IT y Domótica para Obras | Soporte Cyclops</title>
-<meta name="description" content="Partner tecnológico para arquitectos en CABA y GBA. Diseño de red, cableado estructurado, domótica y cámaras antes de cerrar paredes.">
-<link rel="canonical" href="https://www.soportecyclops.com.ar/servicios-obras.html">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Soporte Cyclops - Obras e Infraestructura","telephone":"+5491166804450","areaServed":["CABA","GBA"]}</script>
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infraestructura IT y Domótica para Obras | Soporte Cyclops</title>
+  <meta name="description" content="Partner tecnológico para arquitectos en CABA y GBA. Diseño de red, cableado estructurado, domótica y cámaras antes de cerrar paredes.">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/servicios-obras.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Soporte Cyclops - Obras e Infraestructura","telephone":"+5491166804450","areaServed":["CABA","GBA"]}</script>
   <link rel="icon" href="public/images/logo-icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
@@ -13,6 +16,8 @@
     body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
     a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
     .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    
+    /* NAV UNIFICADO */
     .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
     .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
     .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
@@ -27,6 +32,7 @@
     .nav-cta:hover{background:#1d4ed8;text-decoration:none}
     .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
     @media(max-width:900px){.nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}.nav-menu.open{display:flex}.nav-menu li{width:100%}.nav-link{display:block;padding:12px 16px}.menu-toggle{display:block}.nav-cta{text-align:center;margin-top:8px}}
+    
     .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
     .hero-hogar{background:linear-gradient(135deg,#0284c7 0%,#2563eb 100%)}
     .hero-pyme{background:linear-gradient(135deg,#b45309 0%,#1e3a8a 100%)}
@@ -75,6 +81,18 @@
     .step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;margin:0 auto 16px}
     .step-card h4{font-family:'Space Grotesk',sans-serif;font-size:0.97rem;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
     .step-card p{font-size:0.85rem;color:var(--gray-600);line-height:1.65}
+    .preventive-section{padding:64px 0;background:white}
+    .comp-table-wrap{overflow-x:auto;margin-top:32px}
+    .comp-table{width:100%;border-collapse:collapse;font-size:0.9rem}
+    .comp-table th{background:var(--blue-dark);color:white;padding:14px 20px;text-align:left;font-weight:700}
+    .comp-table th:first-child{border-radius:var(--radius) 0 0 0}
+    .comp-table th:last-child{border-radius:0 var(--radius) 0 0}
+    .comp-table td{padding:13px 20px;border-bottom:1px solid var(--gray-200);color:var(--gray-600);vertical-align:top}
+    .comp-table tr:last-child td:first-child{border-radius:0 0 0 var(--radius)}
+    .comp-table tr:last-child td:last-child{border-radius:0 0 var(--radius) 0}
+    .comp-table tr:nth-child(even) td{background:var(--gray-50)}
+    .comp-table .good{color:#16a34a;font-weight:600}
+    .comp-table .bad{color:#dc2626}
     .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:48px 0}
     .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
     .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
@@ -116,7 +134,28 @@
     .cta-servicio:hover{transform:translateY(-2px)}
     @media(max-width:860px){.mod-grid,.confianza-strip{grid-template-columns:1fr}.obj-grid{grid-template-columns:1fr}}
   </style>
+</head>
 <body>
+
+  <!-- NAVBAR UNIFICADO -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
   <div class="page-hero hero-obra">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Arquitectos y Obras</span></div>
@@ -125,86 +164,223 @@
     </div>
   </div>
   
-  <section class="modalidades"><div class="container"><div class="section-header"><span class="section-tag" style="color:#0f172a; background:rgba(15,23,42,0.1)">Arquitectura + IT</span><h2 class="section-title">Evitá canaletas a la vista y sorpresas de presupuesto</h2><p class="section-subtitle">Diseñamos e instalamos en conjunto con la dirección de obra. Redes invisibles, cobertura total.</p></div><div class="mod-grid"><div class="mod-card"><span class="mod-badge" style="background:#e2e8f0;color:#0f172a">Desde el plano</span><div class="mod-ico">📐</div><h3>Diseño Proyectual</h3><p>Analizamos los planos AutoCAD para ubicar el Rack central, trazar cañerías exclusivas para datos y definir la ubicación de Access Points (WiFi) para evitar puntos ciegos.</p></div><div class="mod-card"><div class="mod-ico">👷</div><h3>Trabajo en Obra</h3><p>Entramos a cablear (Norma T568B) en el momento justo. Coordinamos con el electricista y yesero para dejar las puntas listas antes de las terminaciones finales.</p></div><div class="mod-card"><div class="mod-ico">✅</div><h3>Puesta en Marcha</h3><p>Al entregar la obra, instalamos los equipos, configuramos la red segmentada, las cámaras y la domótica. Le entregamos el sistema llave en mano a tu cliente.</p></div></div>
-  <div class="confianza-strip" style="background:var(--gray-200); color:#0f172a"><div class="conf-item"><i class="fas fa-network-wired" style="color:#2563eb"></i><div><h4>Experiencia de Alto Volumen</h4><p>El diseño de red está a cargo de Juan Pablo Alza, responsable de la conectividad en grandes eventos del Autódromo de Bs As. Sabemos lidiar con ruido electromagnético e interferencias.</p></div></div><div class="conf-item"><i class="fas fa-lightbulb" style="color:#2563eb"></i><div><h4>Domótica Integrada</h4><p>No usamos adaptadores horribles. Integramos módulos WiFi detrás de los bastidores originales para mantener la estética elegida por el estudio.</p></div></div></div></div></section>
+  <section class="modalidades">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" style="color:#0f172a; background:rgba(15,23,42,0.1)">Arquitectura + IT</span>
+        <h2 class="section-title">Evitá canaletas a la vista y sorpresas de presupuesto</h2>
+        <p class="section-subtitle">Diseñamos e instalamos en conjunto con la dirección de obra. Redes invisibles, cobertura total.</p>
+      </div>
+      <div class="mod-grid">
+        <div class="mod-card">
+          <span class="mod-badge" style="background:#e2e8f0;color:#0f172a">Desde el plano</span>
+          <div class="mod-ico">📐</div>
+          <h3>Diseño Proyectual</h3>
+          <p>Analizamos los planos AutoCAD para ubicar el Rack central, trazar cañerías exclusivas para datos y definir la ubicación de Access Points (WiFi) para evitar puntos ciegos.</p>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">👷</div>
+          <h3>Trabajo en Obra</h3>
+          <p>Entramos a cablear (Norma T568B) en el momento justo. Coordinamos con el electricista y yesero para dejar las puntas listas antes de las terminaciones finales.</p>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">✅</div>
+          <h3>Puesta en Marcha</h3>
+          <p>Al entregar la obra, instalamos los equipos, configuramos la red segmentada, las cámaras y la domótica. Le entregamos el sistema llave en mano a tu cliente.</p>
+        </div>
+      </div>
+      <div class="confianza-strip" style="background:var(--gray-200); color:#0f172a">
+        <div class="conf-item">
+          <i class="fas fa-network-wired" style="color:#2563eb"></i>
+          <div>
+            <h4>Experiencia de Alto Volumen</h4>
+            <p>El diseño de red está a cargo de Juan Pablo Alza, responsable de la conectividad en grandes eventos del Autódromo de Bs As. Sabemos lidiar con ruido electromagnético e interferencias.</p>
+          </div>
+        </div>
+        <div class="conf-item">
+          <i class="fas fa-lightbulb" style="color:#2563eb"></i>
+          <div>
+            <h4>Domótica Integrada</h4>
+            <p>No usamos adaptadores horribles. Integramos módulos WiFi detrás de los bastidores originales para mantener la estética elegida por el estudio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   
-  <section class="service-tabs-section"><div class="container"><div class="section-header"><span class="section-tag">Soluciones para el Proyecto</span><h2 class="section-title">¿Qué instalamos en tus obras?</h2></div>
-    <div class="tabs-nav">
-      <button class="tab-btn active" id="tab-redes" onclick="switchTab('redes',this)">📡 Cableado y WiFi</button>
-      <button class="tab-btn" id="tab-domotica" onclick="switchTab('domotica',this)">🏠 Domótica Oculta</button>
-      <button class="tab-btn" id="tab-cctv" onclick="switchTab('cctv',this)">📷 CCTV de Diseño</button>
-      <button class="tab-btn" id="tab-accesos" onclick="switchTab('accesos',this)">🚪 Control de Accesos</button>
+  <section class="service-tabs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Soluciones para el Proyecto</span>
+        <h2 class="section-title">¿Qué instalamos en tus obras?</h2>
+      </div>
+      <div class="tabs-nav">
+        <button class="tab-btn active" id="tab-redes" onclick="switchTab('redes',this)">📡 Cableado y WiFi</button>
+        <button class="tab-btn" id="tab-domotica" onclick="switchTab('domotica',this)">🏠 Domótica Oculta</button>
+        <button class="tab-btn" id="tab-cctv" onclick="switchTab('cctv',this)">📷 CCTV de Diseño</button>
+        <button class="tab-btn" id="tab-accesos" onclick="switchTab('accesos',this)">🚪 Control de Accesos</button>
+      </div>
+      
+      <div class="tab-content active" id="tc-redes">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Redes Estructuradas y WiFi Ubiquiti</h3>
+            <p>El hormigón y el vidrio destruyen el WiFi. Proyectamos redes Ethernet Cat6 cableadas a cada Smart TV y escritorio, y ubicamos Access Points PoE de techo (tipo sensor de humo) para un WiFi de roaming perfecto (sin cortes al caminar por la casa).</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4>
+            <ul class="cases-list">
+              <li>Cero repetidores enchufados a la pared.</li>
+              <li>Rack centralizado en despensa o sala de máquinas.</li>
+              <li>Señal estable incluso en subsuelos y quinchos.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tc-domotica">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Domótica Estética y Funcional</h3>
+            <p>Automatizamos la iluminación y climatización sin obligarte a cambiar la línea de llaves (Jeluz, Cambre, etc.). El módulo va empotrado en la caja rectangular. Todo controlable por Alexa, Google o celular.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4>
+            <ul class="cases-list">
+              <li>Respeta la estética del interiorismo.</li>
+              <li>Creación de "escenas" (ej: Modo Cine, Modo Noche).</li>
+              <li>Motores de cortinas integrados al sistema de red.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tc-cctv">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Videovigilancia IP PoE</h3>
+            <p>Planificamos el recorrido del UTP para las cámaras exteriores e interiores. Utilizamos cámaras IP PoE (se alimentan por el mismo cable de red), eliminando fuentes aparatosas cerca de las cámaras.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4>
+            <ul class="cases-list">
+              <li>Cámaras de domo discretas para el interior.</li>
+              <li>El grabador (NVR) queda escondido y protegido en el Rack.</li>
+              <li>Cables 100% ocultos en fachada y muros.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tc-accesos">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Cerraduras Inteligentes y Porteros IP</h3>
+            <p>Timbres con cámara IP que suenan en el celular del cliente, y cerraduras biométricas (huella o PIN) para puertas principales o áreas de servicio.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4>
+            <ul class="cases-list">
+              <li>Integración con el celular del propietario.</li>
+              <li>Sin llaves físicas para el personal doméstico.</li>
+              <li>Diseños premium que acompañan la puerta principal.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <div class="tab-content active" id="tc-redes"><div class="tab-body"><div class="tab-info"><h3>Redes Estructuradas y WiFi Ubiquiti</h3><p>El hormigón y el vidrio destruyen el WiFi. Proyectamos redes Ethernet Cat6 cableadas a cada Smart TV y escritorio, y ubicamos Access Points PoE de techo (tipo sensor de humo) para un WiFi de roaming perfecto (sin cortes al caminar por la casa).</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Cero repetidores enchufados a la pared.</li><li>Rack centralizado en despensa o sala de máquinas.</li><li>Señal estable incluso en subsuelos y quinchos.</li></ul></div></div></div>
-    
-    <div class="tab-content" id="tc-domotica"><div class="tab-body"><div class="tab-info"><h3>Domótica Estética y Funcional</h3><p>Automatizamos la iluminación y climatización sin obligarte a cambiar la línea de llaves (Jeluz, Cambre, etc.). El módulo va empotrado en la caja rectangular. Todo controlable por Alexa, Google o celular.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Respeta la estética del interiorismo.</li><li>Creación de "escenas" (ej: Modo Cine, Modo Noche).</li><li>Motores de cortinas integrados al sistema de red.</li></ul></div></div></div>
-    
-    <div class="tab-content" id="tc-cctv"><div class="tab-body"><div class="tab-info"><h3>Videovigilancia IP PoE</h3><p>Planificamos el recorrido del UTP para las cámaras exteriores e interiores. Utilizamos cámaras IP PoE (se alimentan por el mismo cable de red), eliminando fuentes aparatosas cerca de las cámaras.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Cámaras de domo discretas para el interior.</li><li>El grabador (NVR) queda escondido y protegido en el Rack.</li><li>Cables 100% ocultos en fachada y muros.</li></ul></div></div></div>
-    
-    <div class="tab-content" id="tc-accesos"><div class="tab-body"><div class="tab-info"><h3>Cerraduras Inteligentes y Porteros IP</h3><p>Timbres con cámara IP que suenan en el celular del cliente, y cerraduras biométricas (huella o PIN) para puertas principales o áreas de servicio.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Integración con el celular del propietario.</li><li>Sin llaves físicas para el personal doméstico.</li><li>Diseños premium que acompañan la puerta principal.</li></ul></div></div></div>
-  </div></section>
+  </section>
   
-  <section class="objeciones"><div class="container"><div class="section-header"><span class="section-tag">Partner técnico</span><h2 class="section-title">Trabajando con Arquitectos</h2></div><div class="obj-grid"><div class="obj-card"><h4>“El electricista ya me pasa los cables de red”</h4><p>El cable de datos (UTP) no puede ir por la misma cañería que el de tensión (220v) por interferencia. Además, el electricista empalma; el cable de red no se puede empalmar, pierde velocidad. Nosotros certificamos los nodos.</p></div><div class="obj-card"><h4>“La obra ya está muy avanzada, cerramos paredes”</h4><p>Siempre hay soluciones. Si no podemos cablear, armamos esquemas de red Mesh inalámbrica de alta gama. Pero si nos llamás en la etapa de proyecto, le ahorramos dolores de cabeza (y plata) al cliente.</p></div><div class="obj-card"><h4>“¿Cómo se maneja la facturación y el presupuesto?”</h4><p>Podemos facturarle directo al cliente final o al estudio, como prefieran. Presentamos un presupuesto detallado de mano de obra y lista de materiales a comprar.</p></div><div class="obj-card"><h4>“No quiero racks ruidosos en la casa”</h4><p>Elegimos racks murales pequeños y silenciosos, escondidos en lavaderos, bajo escaleras o tableros técnicos, asegurando ventilación sin arruinar el diseño del espacio.</p></div></div></div></section>
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Soporte Cyclops</h3>
-        <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa en resolución de incidentes críticos.</p>
+  <section class="objeciones">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Partner técnico</span>
+        <h2 class="section-title">Trabajando con Arquitectos</h2>
       </div>
-      <div class="footer-section">
-        <h3>Sectores</h3>
-        <a href="servicios-hogares.html">Para Hogares</a>
-        <a href="servicios-pymes.html">Para Pymes y Comercios</a>
-        <a href="servicios-profesionales.html">Para Estudios Profesionales</a>
-        <a href="servicios-obras.html">Para Arquitectos y Obras</a>
-      </div>
-      <div class="footer-section">
-        <h3>Contacto</h3>
-        <a href="tel:+5491166804450"><i class="fas fa-phone"></i> +54 9 11 6680-4450</a>
-        <a href="mailto:contacto@soportecyclops.com.ar"><i class="fas fa-envelope"></i> contacto@soportecyclops.com.ar</a>
-        <a href="https://wa.me/5491166804450" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <h4>“El electricista ya me pasa los cables de red”</h4>
+          <p>El cable de datos (UTP) no puede ir por la misma cañería que el de tensión (220v) por interferencia. Además, el electricista empalma; el cable de red no se puede empalmar, pierde velocidad. Nosotros certificamos los nodos.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“La obra ya está muy avanzada, cerramos paredes”</h4>
+          <p>Siempre hay soluciones. Si no podemos cablear, armamos esquemas de red Mesh inalámbrica de alta gama. Pero si nos llamás en la etapa de proyecto, le ahorramos dolores de cabeza (y plata) al cliente.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“¿Cómo se maneja la facturación y el presupuesto?”</h4>
+          <p>Podemos facturarle directo al cliente final o al estudio, como prefieran. Presentamos un presupuesto detallado de mano de obra y lista de materiales a comprar.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“No quiero racks ruidosos en la casa”</h4>
+          <p>Elegimos racks murales pequeños y silenciosos, escondidos en lavaderos, bajo escaleras o tableros técnicos, asegurando ventilación sin arruinar el diseño del espacio.</p>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a> | Defensa del Consumidor (Ley 24.240)</p>
+  </section>
+
+  <!-- FOOTER UNIFICADO -->
+  <footer>
+    <div class="container">
+      <div class="footer-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Soporte Cyclops</h3>
+          <p style="font-size:0.85rem; line-height:1.6;">Infraestructura IT, Seguridad Electrónica y Sistemas de Captación Web para CABA y GBA. +11 años de experiencia corporativa.</p>
+        </div>
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Sectores</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="servicios-hogares.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Hogares</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-pymes.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Pymes y Comercios</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-profesionales.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Estudios Profesionales</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-obras.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Arquitectos y Obras</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Contacto</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="tel:+5491166804450" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">📞 +54 9 11 6680-4450</a></li>
+            <li style="margin-bottom:8px;"><a href="mailto:contacto@soportecyclops.com.ar" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">✉️ contacto@soportecyclops.com.ar</a></li>
+            <li style="margin-bottom:8px;"><a href="https://wa.me/5491166804450" target="_blank" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">💬 WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom" style="text-align:center; padding-top:24px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+        <p>© 2026 Soporte Cyclops | CABA y Gran Buenos Aires | Ley 24.240 Defensa del Consumidor</p>
+      </div>
     </div>
-  </div>
-</footer>
-<script>
-  var navbar = document.getElementById('navbar');
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
-  menuToggle.addEventListener('click', function(){
-    navMenu.classList.toggle('open');
-    menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-  });
-  function switchTab(id, btn) {
-    document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-    document.getElementById('tc-' + id).classList.add('active');
-    btn.classList.add('active');
-    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
-  }
-</script>
-<script>
-(async function(){
-  try{
-    var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
-    var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
-    var d=await r.json();
-    if(d.venta>0){
-      document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
-        var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
-        el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
-      });
+  </footer>
+
+  <script>
+    var navbar = document.getElementById('navbar');
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+    window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    menuToggle.addEventListener('click', function(){
+      navMenu.classList.toggle('open');
+      menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.getElementById('tc-' + id).classList.add('active');
+      btn.classList.add('active');
+      btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
     }
-  }catch(e){}
-})();
-</script>
+  </script>
+  <script>
+  (async function(){
+    try{
+      var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
+      var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
+      var d=await r.json();
+      if(d.venta>0){
+        document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
+          var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
+          el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
+        });
+      }
+    }catch(e){}
+  })();
+  </script>
 </body>
 </html>
-
-
