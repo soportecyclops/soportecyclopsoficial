@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preguntas Frecuentes | Soporte Cyclops</title>
-    <link rel="icon" href="public/images/logo-icon.png" type="image/png">
-  <meta name="description" content="Respuestas a las dudas más comunes sobre soporte IT, precios, horarios, zona de cobertura y garantías. Soporte Cyclops — CABA y GBA.">
+  <title>Preguntas Frecuentes | Soporte Cyclops — CABA y GBA</title>
+  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <meta name="description" content="Respuestas a las dudas más comunes sobre soporte informático, WiFi, reparación de PC, backups, cámaras, zona de cobertura y garantías en CABA y GBA.">
   <link rel="canonical" href="https://www.soportecyclops.com.ar/faq.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
     body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
     a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
     .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    
+    /* NAV UNIFICADO */
     .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
     .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
     .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
@@ -37,6 +39,7 @@
       .menu-toggle{display:block}
       .nav-cta{text-align:center;margin-top:8px}
     }
+
     .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
     .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
     .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
@@ -45,13 +48,31 @@
     .section-tag{display:inline-block;background:rgba(37,99,235,0.08);color:var(--blue);padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
     .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--blue-dark);margin-bottom:12px;letter-spacing:-0.01em}
     .section-subtitle{font-size:0.97rem;color:var(--gray-600);max-width:560px;margin:0 auto;line-height:1.7}
-    .section-header{text-align:center;margin-bottom:48px}
+    .section-header{text-align:center;margin-bottom:40px}
+
+    /* ESTILOS DE FAQ Y ACCORDEON */
+    .faq-category{margin-bottom:48px}
+    .faq-cat-title{font-family:'Space Grotesk',sans-serif;font-size:1.25rem;font-weight:800;color:var(--blue-dark);margin-bottom:20px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--gray-200);padding-bottom:10px}
+    .faq-grid{display:flex;flex-direction:column;gap:14px}
+    .faq-item{background:#fff;border:1px solid var(--gray-200);border-radius:12px;overflow:hidden;transition:var(--transition)}
+    .faq-item:hover{border-color:rgba(37,99,235,0.3)}
+    .faq-question{width:100%;text-align:left;background:none;border:none;padding:18px 22px;font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:var(--transition)}
+    .faq-question i{font-size:0.85rem;color:var(--blue);transition:transform 0.3s ease}
+    .faq-question.open i{transform:rotate(180deg)}
+    .faq-answer{padding:0 22px 20px;font-size:0.92rem;color:var(--gray-600);line-height:1.7;display:none;border-top:1px solid transparent}
+    .faq-answer.open{display:block;border-color:var(--gray-100)}
+    .faq-answer p{margin-bottom:10px}
+    .faq-answer p:last-child{margin-bottom:0}
+    .blog-link-badge{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:0.82rem;font-weight:700;color:var(--blue);background:rgba(37,99,235,0.06);padding:6px 14px;border-radius:20px;text-decoration:none;transition:var(--transition)}
+    .blog-link-badge:hover{background:var(--blue);color:white;text-decoration:none}
+
     .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:48px 0}
     .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
     .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
     .cta-strip-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--blue-dark);padding:13px 26px;border-radius:50px;font-weight:700;font-size:0.9rem;flex-shrink:0;white-space:nowrap;transition:var(--transition)}
     .cta-strip-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15);text-decoration:none}
     @media(max-width:640px){.cta-strip{flex-direction:column;text-align:center}}
+    
     footer{background:var(--blue-dark);color:rgba(255,255,255,0.6);padding:40px 0 24px}
     .footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:32px}
     .footer-section h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:white;margin-bottom:14px}
@@ -60,8 +81,67 @@
     .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
     @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
   </style>
+
+  <!-- SCHEMA JSON-LD FAQPAGE OBLIGATORIO PARA GOOGLE RESULTADOS ENRIQUECIDOS -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cuánto cuesta una visita técnica o evaluación inicial?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La consulta inicial para evaluar el problema no tiene costo. El costo del trabajo o visita presencial varía según la zona y la complejidad, pero el presupuesto siempre se acuerda antes de empezar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Tengo que llevar la computadora a algún lado?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Atendemos a domicilio en CABA y GBA, por soporte remoto o retirando el equipo en tu casa con orden de trabajo firmada y comprobante de retiro."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué mi computadora anda muy lenta y cómo se resuelve?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "En el 90% de los casos se debe a un disco rígido mecánico gastado. Al reemplazarlo por un disco sólido SSD y optimizar el sistema operativo, el equipo vuelve a funcionar como nuevo por una fracción de lo que cuesta una PC nueva."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué el WiFi no llega bien a todas las habitaciones u oficinas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Las paredes de hormigón y la interferencia bloquean la señal. La solución profesional consiste en cablear puntos de acceso de techo (Access Points) tipo Ubiquiti o instalar un sistema Mesh de alta gama."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo se protege una pyme o estudio contable contra un ransomware o virus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Implementando la regla 3-2-1 de backups (3 copias, 2 medios distintos, 1 fuera de línea en la nube) e instalando un antivirus corporativo con políticas de permisos estrictos en la red."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Emiten Factura y atienden pymes con abono mensual?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, emitimos comprobante fiscal en blanco. Atendemos a particulares por demanda y a empresas o estudios mediante esquemas de mantenimiento preventivo y abonos a medida."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <!-- NAV UNIFICADO -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">
@@ -70,170 +150,216 @@
       </a>
       <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">Inicio</a></li>
-        <li><a href="servicios.html" class="nav-link">Servicios</a></li>
-        <li><a href="presencia-web-para-pymes.html" class="nav-link">Presencia + Captación</a></li>
         <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
         <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
-        <li><a href="faq.html" class="nav-link active">FAQ</a></li>
         <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-        <li><a href="proyectos.html" class="nav-link">Proyectos</a></li>
-        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
+        <li><a href="login.html" rel="nofollow" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
         <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
     </div>
   </nav>
+
   <div class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Preguntas frecuentes</span></div>
       <h1>Preguntas frecuentes</h1>
-      <p>Todo lo que necesitás saber antes de contactarnos. Si no encontrás lo que buscás, escribinos por WhatsApp.</p>
+      <p>Respuestas claras sobre nuestro servicio, modalidades de atención y soluciones técnicas cotidianas.</p>
     </div>
   </div>
 
   <section class="faq-section" id="faq" style="padding:64px 0;">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag reveal">Preguntas frecuentes</span>
-                <h2 class="section-title reveal">Lo que más nos preguntan</h2>
-                <p class="section-subtitle reveal">Respuestas honestas a las dudas más comunes antes de contratar.</p>
+    <div class="container">
+      
+      <!-- CATEGORÍA 1: ATENCIÓN Y COMERCIAL -->
+      <div class="faq-category">
+        <h3 class="faq-cat-title"><i class="fas fa-briefcase" style="color:var(--blue)"></i> Servicio, Costos y Atención</h3>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Cuánto cuesta una visita técnica o evaluación inicial?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>El costo varía según el tipo de servicio, la zona y la complejidad del trabajo. Lo que no varía: el presupuesto siempre se acuerda antes de empezar. La consulta inicial por WhatsApp o teléfono para evaluar el problema no tiene costo.</p>
             </div>
-            <div class="faq-grid reveal">
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Cuánto cuesta una visita técnica?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        El costo varía según el tipo de servicio, la zona y la complejidad del trabajo. Lo que no varía: el presupuesto se acuerda antes de empezar. La consulta inicial para evaluar el problema no tiene costo.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Atienden sábados o fines de semana?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Sí. Los sábados de 9:00 a 13:00 con turno previo. Para urgencias fuera de horario, consultá disponibilidad por WhatsApp — se atienden según agenda.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Hacen factura / tienen CUIT?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Sí, emitimos comprobante fiscal. Consultá el tipo de facturación disponible según tu situación impositiva al momento de contratar.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Atienden fuera de CABA?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Sí, trabajamos en toda la zona de Gran Buenos Aires (GBA Norte, Sur y Oeste). Para zonas alejadas o interior del país, consultamos disponibilidad caso a caso.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Cuánto tarda en llegar el técnico?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Para consultas y soporte remoto: respondemos en menos de 2 horas en horario laboral. Para visitas presenciales: generalmente disponemos turno el mismo día o el siguiente, según agenda.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Qué pasa si el equipo no tiene solución?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Si tras el diagnóstico determinamos que el equipo no tiene reparación viable (por costo o disponibilidad de piezas), te lo informamos antes de cobrar el trabajo. Solo se cobra el diagnóstico si fue acordado previamente.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Puedo resolver mi problema sin una visita?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Muchos problemas se resuelven de manera remota en menos de 30 minutos: configuraciones, software, correo, optimización. Consultá por WhatsApp y evaluamos juntos si tu caso lo permite.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" onclick="toggleFaq(this)">
-                        ¿Trabajan con empresas o solo particulares?
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Ambos. Tenemos clientes que son particulares y pymes con hasta 50 empleados. También ofrecemos abonos mensuales de soporte para empresas que necesitan atención continua.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-  <div class="container">
-    <div class="cta-strip">
-      <div>
-        <h3>¿No encontraste lo que buscabas?</h3>
-        <p>Escribinos por WhatsApp — respondemos en menos de 2 horas en horario laboral.</p>
-      </div>
-      <a href="https://wa.me/5491166804450?text=Hola%2C%20tengo%20una%20consulta" target="_blank" class="cta-strip-btn">
-        <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
-      </a>
-    </div>
-  </div>
+          </div>
 
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Tengo que trasladar mi equipo a algún local?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>No trabajamos con local a la calle — y eso es a tu favor: no tenés que cargar con la PC. El servicio va hacia vos: lo resolvemos por soporte remoto, visita a domicilio en CABA/GBA, o retiramos el equipo en tu casa con orden de trabajo firmada.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Atienden sábados o urgencias fuera de horario?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Sí, los sábados trabajamos de 9:00 a 13:00 con turno previo. Para urgencias críticas de comercios o empresas fuera de horario, evaluamos disponibilidad inmediata por WhatsApp.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Hacen factura y atienden empresas?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Sí, emitimos comprobante fiscal en blanco (Factura A o C). Atendemos tanto a particulares como a pymes y estudios profesionales con opción de abono preventivo mensual.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Qué pasa si el equipo no tiene solución viable?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Te lo decimos antes de cobrar un trabajo. Si reparar no conviene por costo de repuestos o antigüedad, te damos el diagnóstico honesto y te recomendamos la mejor opción de reemplazo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CATEGORÍA 2: TÉCNICAS Y BLOG -->
+      <div class="faq-category">
+        <h3 class="faq-cat-title"><i class="fas fa-wrench" style="color:var(--blue)"></i> Consultas Técnicas Frecuentes</h3>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Por qué mi computadora anda lenta si no tiene virus?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>En el 90% de los casos el cuello de botella es el viejo disco rígido mecánico (HDD). Cambiarlo por un disco sólido SSD revive la computadora al instante, haciéndola volar por una fracción del costo de un equipo nuevo.</p>
+              <a href="blog/ssd-vs-hdd-cuando-conviene.html" class="blog-link-badge"><i class="fas fa-book-open"></i> Leer guía: SSD vs HDD en el Blog</a>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Por qué el WiFi no llega bien a todas las habitaciones u oficinas?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Las paredes de hormigón y la interferencia de redes vecinas atenúan la señal. Los repetidores de enchufe baratos suelen empeorar el problema. La solución real es tirar un cable Cat6 hacia un Access Point de techo (tipo Ubiquiti) o instalar una red Mesh profesional.</p>
+              <a href="blog/wifi-no-llega.html" class="blog-link-badge"><i class="fas fa-book-open"></i> Leer guía: Soluciones para mala cobertura WiFi</a>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Cómo protejo mi empresa o estudio contable contra un ransomware?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>El ransomware encripta tus archivos y pide rescate. La única defensa infalible es la Regla 3-2-1 de Backup: 3 copias de tus datos, en 2 medios distintos, y 1 fuera de línea (desconectada de la red). Además de contar con antivirus corporativo activo.</p>
+              <a href="blog/ransomware-que-hacer.html" class="blog-link-badge"><i class="fas fa-book-open"></i> Leer guía: Respuesta ante Ransomware</a>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+              ¿Es seguro que un técnico acceda remotamente a mi PC?
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Totalmente. El acceso se realiza únicamente con tu autorización explícita, en vivo mientras vos ves todo lo que se hace en pantalla. Al cerrar el programa, el código de acceso expira y la conexión muere automáticamente.</p>
+              <a href="blog/diagnostico-guiado.html" class="blog-link-badge"><i class="fas fa-book-open"></i> Leer cómo funciona nuestro Soporte Remoto</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STRIP CTA -->
+      <div class="cta-strip">
+        <div>
+          <h3>¿Tenés una consulta específica sobre tu equipo o red?</h3>
+          <p>Escribinos por WhatsApp. Te decimos de entrada si tiene arreglo, cuánto sale y cómo lo resolvemos.</p>
+        </div>
+        <a href="https://wa.me/5491166804450?text=Hola%2C%20tengo%20una%20consulta%20t%C3%A9cnica" target="_blank" class="cta-strip-btn">
+          <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER UNIFICADO -->
   <footer>
     <div class="container">
-      <div class="footer-content">
+      <div class="footer-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1);">
         <div class="footer-section">
-          <h3>Soporte Cyclops</h3>
-          <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa.</p>
+          <h3 style="color:white; margin-bottom:16px;">Soporte Cyclops</h3>
+          <p style="font-size:0.85rem; line-height:1.6;">Infraestructura IT, Seguridad Electrónica y Sistemas de Captación Web para CABA y GBA. +11 años de experiencia corporativa.</p>
         </div>
         <div class="footer-section">
-          <h3>Páginas</h3>
-          <a href="index.html">Inicio</a>
-          <a href="servicios.html">Servicios</a>
-          <a href="nosotros.html">Nosotros</a>
-          <a href="opiniones.html">Opiniones</a>
-          <a href="faq.html">Preguntas frecuentes</a>
-          <a href="blog/index.html">Blog técnico</a>
+          <h3 style="color:white; margin-bottom:16px;">Sectores</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="servicios-hogares.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Hogares</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-pymes.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Pymes y Comercios</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-profesionales.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Estudios Profesionales</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-obras.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Arquitectos y Obras</a></li>
+          </ul>
         </div>
         <div class="footer-section">
-          <h3>Contacto</h3>
-          <a href="tel:+5491166804450">+54 9 11 6680-4450</a>
-          <a href="mailto:contacto@soportecyclops.com.ar">contacto@soportecyclops.com.ar</a>
-          <a href="https://wa.me/5491166804450" target="_blank">WhatsApp</a>
-          <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank">Ver en Google Maps</a>
+          <h3 style="color:white; margin-bottom:16px;">Contacto</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="tel:+5491166804450" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">📞 +54 9 11 6680-4450</a></li>
+            <li style="margin-bottom:8px;"><a href="mailto:contacto@soportecyclops.com.ar" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">✉️ contacto@soportecyclops.com.ar</a></li>
+            <li style="margin-bottom:8px;"><a href="https://wa.me/5491166804450" target="_blank" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">💬 WhatsApp</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-bottom"><p>© 2025 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a></p></div>
+      <div class="footer-bottom" style="text-align:center; padding-top:24px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+        <p>© 2026 Soporte Cyclops | CABA y Gran Buenos Aires | Ley 24.240 Defensa del Consumidor</p>
+      </div>
     </div>
   </footer>
+
   <script>
     var nb=document.getElementById('navbar'),mt=document.getElementById('menuToggle'),nm=document.getElementById('navMenu');
     window.addEventListener('scroll',function(){nb.classList.toggle('scrolled',window.scrollY>20);});
     mt.addEventListener('click',function(){nm.classList.toggle('open');mt.innerHTML=nm.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';});
   </script>
-<script>
-(function(){
-  try {
-    var u = JSON.parse(sessionStorage.getItem("cyclops_user"));
-    var link = document.getElementById("navIngresarLink");
-    if (u && u.rol && u.rol !== "ninguno" && link) {
-      if (u.rol === "admin") {
-        link.href = "admin.html";
-        link.innerHTML = (window.innerWidth<=900?"":"") + "<i class=\"fas fa-gauge\" style=\"margin-right:4px;font-size:0.85em;\"></i>Panel Admin";
-      } else {
-        link.href = "cliente_panel.html";
-        link.innerHTML = "<i class=\"fas fa-user-circle\" style=\"margin-right:4px;font-size:0.85em;\"></i>Mi Panel";
+  
+  <script>
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.faq-question.open').forEach(q => {
+        q.classList.remove('open');
+        q.nextElementSibling.classList.remove('open');
+      });
+      if (!isOpen) {
+        btn.classList.add('open');
+        answer.classList.add('open');
       }
     }
-  } catch(e) {}
-})();
-</script>
+  </script>
+
+  <script>
+  (function(){
+    try {
+      var u = JSON.parse(sessionStorage.getItem("cyclops_user"));
+      var link = document.getElementById("navIngresarLink");
+      if (u && u.rol && u.rol !== "ninguno" && link) {
+        if (u.rol === "admin") {
+          link.href = "admin.html";
+          link.innerHTML = (window.innerWidth<=900?"":"") + "<i class=\"fas fa-gauge\" style=\"margin-right:4px;font-size:0.85em;\"></i>Panel Admin";
+        } else {
+          link.href = "cliente_panel.html";
+          link.innerHTML = "<i class=\"fas fa-user-circle\" style=\"margin-right:4px;font-size:0.85em;\"></i>Mi Panel";
+        }
+      }
+    } catch(e) {}
+  })();
+  </script>
 </body>
 </html>
