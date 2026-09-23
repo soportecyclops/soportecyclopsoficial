@@ -26,10 +26,8 @@
     .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
     .logo-text strong{color:var(--blue)}
     .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
-    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
-    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
-    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
-    .nav-cta:hover{background:#1d4ed8;text-decoration:none}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap;text-decoration:none}
+    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06)}
     .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
     @media(max-width:900px){
       .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
@@ -37,7 +35,6 @@
       .nav-menu li{width:100%}
       .nav-link{display:block;padding:12px 16px}
       .menu-toggle{display:block}
-      .nav-cta{text-align:center;margin-top:8px}
     }
 
     .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
@@ -117,7 +114,7 @@
     .trust-i p{font-size:.83rem;color:#64748b;line-height:1.6;margin:0}
   </style>
 
-  <!-- SCHEMA OBLIGATORIO PARA RICH SNIPPETS DE GOOGLE (ESTRELLITAS EN BUSCADOR) -->
+  <!-- SCHEMA JSON-LD PARA RICH SNIPPETS DE GOOGLE (ESTRELLITAS EN BUSCADOR) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -138,54 +135,26 @@
     "review": [
       {
         "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Claudio Percara"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
+        "author": { "@type": "Person", "name": "Claudio Percara" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Excelente experiencia. No solo solucionaron mi inconveniente técnico con mucha solvencia, sino que el trato fue sumamente amable y paciente. Se nota cuando hay profesionales que realmente dominan su área. Totalmente recomendados."
       },
       {
         "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Guillermo Ferraioli"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
+        "author": { "@type": "Person", "name": "Guillermo Ferraioli" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Excelente, lo recomiendo. Supo reconocer un problema que los demás no veían y el presupuesto que me pasó fue más que razonable considerando que, de otro modo, hubiese tenido que literalmente tirar la compu."
       },
       {
         "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Enzo Carolo"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
+        "author": { "@type": "Person", "name": "Enzo Carolo" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Cambié el disco sólido por uno SSD, le agregué más memoria y me quedó como nueva la Vaio. Muy recomendable."
       },
       {
         "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Daiana Cardilli"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
+        "author": { "@type": "Person", "name": "Daiana Cardilli" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "reviewBody": "Son bárbaros, me ayudaron con una Toshiba vieja a hacerla andar como nueva. Re amables y todo en término. ¡Los recomiendo!"
       }
     ]
@@ -206,7 +175,7 @@
         <li><a href="opiniones.html" class="nav-link active">Opiniones</a></li>
         <li><a href="blog/index.html" class="nav-link">Blog</a></li>
         <li><a href="login.html" rel="nofollow" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
-        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+        <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
     </div>
