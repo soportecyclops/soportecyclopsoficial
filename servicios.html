@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Servicios de Soporte IT | Soporte Cyclops — CABA y GBA</title>
@@ -111,7 +111,7 @@
     .footer-section a:hover{color:white}
     .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
     @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
-  
+
     /* ===== Modalidades de atención ===== */
     .modalidades{padding:56px 0;background:linear-gradient(180deg,#f8fafc 0%,#fff 100%)}
     .mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
@@ -145,6 +145,7 @@
 </head>
 <body>
 
+  <!-- NAVBAR UNIFICADO -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="index.html" class="logo">
@@ -153,14 +154,10 @@
       </a>
       <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">Inicio</a></li>
-        <li><a href="servicios.html" class="nav-link active">Servicios</a></li>
-        <li><a href="presencia-web-para-pymes.html" class="nav-link">Presencia + Captación</a></li>
         <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
         <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
-        <li><a href="faq.html" class="nav-link">FAQ</a></li>
         <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-        <li><a href="proyectos.html" class="nav-link">Proyectos</a></li>
-        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
+        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
         <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
@@ -545,31 +542,35 @@
     </div>
   </section>
 
+  <!-- FOOTER UNIFICADO -->
   <footer>
     <div class="container">
-      <div class="footer-content">
+      <div class="footer-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1);">
         <div class="footer-section">
-          <h3>Soporte Cyclops</h3>
-          <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa.</p>
+          <h3 style="color:white; margin-bottom:16px;">Soporte Cyclops</h3>
+          <p style="font-size:0.85rem; line-height:1.6;">Infraestructura IT, Seguridad Electrónica y Sistemas de Captación Web para CABA y GBA. +11 años de experiencia corporativa.</p>
         </div>
         <div class="footer-section">
-          <h3>Páginas</h3>
-          <a href="index.html">Inicio</a>
-          <a href="servicios.html">Servicios</a>
-          <a href="nosotros.html">Nosotros</a>
-          <a href="opiniones.html">Opiniones</a>
-          <a href="faq.html">Preguntas frecuentes</a>
-          <a href="blog/index.html">Blog técnico</a>
+          <h3 style="color:white; margin-bottom:16px;">Sectores</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="servicios-hogares.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Hogares</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-pymes.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Pymes y Comercios</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-profesionales.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Estudios Profesionales</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-obras.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Arquitectos y Obras</a></li>
+          </ul>
         </div>
         <div class="footer-section">
-          <h3>Contacto</h3>
-          <a href="tel:+5491166804450">+54 9 11 6680-4450</a>
-          <a href="mailto:contacto@soportecyclops.com.ar">contacto@soportecyclops.com.ar</a>
-          <a href="https://wa.me/5491166804450" target="_blank">WhatsApp</a>
-          <a href="https://maps.app.goo.gl/cXApFjJhDCfg2D4s5" target="_blank">Ver en Google Maps</a>
+          <h3 style="color:white; margin-bottom:16px;">Contacto</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="tel:+5491166804450" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">📞 +54 9 11 6680-4450</a></li>
+            <li style="margin-bottom:8px;"><a href="mailto:contacto@soportecyclops.com.ar" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">✉️ contacto@soportecyclops.com.ar</a></li>
+            <li style="margin-bottom:8px;"><a href="https://wa.me/5491166804450" target="_blank" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">💬 WhatsApp</a></li>
+          </ul>
         </div>
       </div>
-      <div class="footer-bottom"><p>© 2025 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a></p></div>
+      <div class="footer-bottom" style="text-align:center; padding-top:24px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+        <p>© 2026 Soporte Cyclops | CABA y Gran Buenos Aires | Ley 24.240 Defensa del Consumidor</p>
+      </div>
     </div>
   </footer>
 
