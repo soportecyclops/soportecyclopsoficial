@@ -3,105 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Soporte técnico informático a domicilio en CABA y GBA. Redes, CCTV, ciberseguridad, y mantenimiento preventivo. +11 años de experiencia corporativa.">
+    <meta name="description" content="Soporte técnico a domicilio en CABA y GBA. Redes, CCTV, y soporte informático. +11 años de experiencia corporativa.">
     <title>Soporte Cyclops | Técnico IT a domicilio — CABA y GBA</title>
     <link rel="canonical" href="https://www.soportecyclops.com.ar/">
     <link rel="icon" href="public/images/logo-icon.png" type="image/png">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
-    
-    <style>
-        /* GRILLA DE NICHOS HERO */
-        .niche-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 48px;
-            position: relative;
-            z-index: 10;
-            text-align: left;
-        }
-        .niche-card {
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 26px 20px;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-            color: white;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        .niche-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-            background: rgba(15, 23, 42, 0.85);
-        }
-        
-        /* Colores extraídos de la UI original */
-        .niche-card.hogar { border-top: 3px solid #3b82f6; }
-        .niche-card.pyme { border-top: 3px solid #f59e0b; }
-        .niche-card.estudio { border-top: 3px solid #10b981; }
-        .niche-card.obra { border-top: 3px solid #06b6d4; }
-        
-        .niche-icon {
-            font-size: 2.2rem;
-            margin-bottom: 16px;
-            display: inline-block;
-        }
-        .niche-card.hogar .niche-icon { color: #3b82f6; }
-        .niche-card.pyme .niche-icon { color: #f59e0b; }
-        .niche-card.estudio .niche-icon { color: #10b981; }
-        .niche-card.obra .niche-icon { color: #06b6d4; }
-
-        .niche-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-        .niche-card p {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 24px;
-            flex-grow: 1;
-        }
-        .niche-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 10px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            transition: all 0.2s ease;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-        .niche-card.hogar:hover .niche-btn { background: #3b82f6; border-color: #3b82f6; color: #fff; }
-        .niche-card.pyme:hover .niche-btn { background: #f59e0b; border-color: #f59e0b; color: #fff; }
-        .niche-card.estudio:hover .niche-btn { background: #10b981; border-color: #10b981; color: #fff; }
-        .niche-card.obra:hover .niche-btn { background: #06b6d4; border-color: #06b6d4; color: #fff; }
-
-        @media (max-width: 1024px) {
-            .niche-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero { padding: 120px 0 90px; }
-        }
-        @media (max-width: 600px) {
-            .niche-grid { grid-template-columns: 1fr; }
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar" id="navbar">
@@ -116,181 +25,155 @@
                 <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
                 <li><a href="blog/index.html" class="nav-link">Blog</a></li>
                 <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
-                <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
             </ul>
-            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
         </div>
     </nav>
 
-    <main>
-    <section class="hero" id="inicio">
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
+    <main id="contenido-principal">
+        <section class="hero" id="inicio">
+            <canvas id="hero-canvas"></canvas>
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
 
-        <div class="hero-content container">
-            <div class="hero-badge"><span class="dot"></span>Un solo punto de contacto · CABA y GBA · Sin letra chica</div>
-            <h1>Soporte técnico que resuelve.<br><em>Sin vueltas.</em></h1>
-            <p>Redes, CCTV, soporte informático y domótica. +11 años de experiencia en infraestructura corporativa, ahora al servicio de tu negocio o familia.</p>
-            
-            <div class="niche-grid">
-                <a href="servicios-hogares.html" class="niche-card hogar reveal">
-                    <i class="fas fa-house-signal niche-icon"></i>
-                    <h3>Servicios para el Hogar</h3>
-                    <p>Soluciones WiFi, cámaras y mantenimiento de PC para tu familia. Tono simple, sin tecnicismos.</p>
-                    <span class="niche-btn">Pedí tu diagnóstico</span>
-                </a>
-                <a href="servicios-pymes.html" class="niche-card pyme reveal reveal-delay-1">
-                    <i class="fas fa-store niche-icon"></i>
-                    <h3>Pymes y Comercios</h3>
-                    <p>Tu negocio no puede frenar. Soporte rápido, redes redundantes y CCTV.</p>
-                    <span class="niche-btn">Hablemos ahora</span>
-                </a>
-                <a href="servicios-profesionales.html" class="niche-card estudio reveal reveal-delay-2">
-                    <i class="fas fa-gavel niche-icon"></i>
-                    <h3>Estudios Profesionales</h3>
-                    <p>Protección de datos y backups empresariales. El socio tecnológico que tu estudio necesita.</p>
-                    <span class="niche-btn">Consultá tu plan</span>
-                </a>
-                <a href="servicios-obras.html" class="niche-card obra reveal reveal-delay-3">
-                    <i class="fas fa-hard-hat niche-icon"></i>
-                    <h3>Obras e Infraestructura</h3>
-                    <p>Infraestructura de red, domótica y control de accesos. Planificación desde el diseño de obra.</p>
-                    <span class="niche-btn">Colaborá con nosotros</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- PAIN SECTION -->
-    <section class="pain-section">
-        <div class="container">
-            <div class="pain-header reveal">
-                <h2>¿Tu red o equipos tienen alguno de estos problemas?</h2>
-            </div>
-            <div class="pain-chips reveal">
-                <a class="pain-chip critical" href="blog/wifi-no-llega.html"><span class="chip-icon">📶</span> WiFi que no llega a todos los ambientes<span class="chip-label">Problema</span></a>
-                <a class="pain-chip critical" href="blog/pc-lenta-causas.html"><span class="chip-icon">🐢</span> PC lenta que frena el trabajo<span class="chip-label">Problema</span></a>
-                <a class="pain-chip critical" href="blog/ransomware-que-hacer.html"><span class="chip-icon">🦠</span> Virus o ransomware que bloqueó todo<span class="chip-label">Crítico</span></a>
-                <a class="pain-chip critical" href="blog/camaras-acceso-remoto-seguro.html"><span class="chip-icon">📷</span> Cámaras sin acceso remoto<span class="chip-label">Problema</span></a>
-                <span class="pain-chip critical"><span class="chip-icon">🔀</span> Pagás 4 proveedores distintos para lo mismo<span class="chip-label">Problema</span></span>
-            </div>
-        </div>
-    </section>
-
-    <!-- LOGOS -->
-    <section class="clients-section">
-        <div class="container">
-            <div class="clients-label reveal">Experiencia corporativa verificable</div>
-            <div class="clients-logos reveal">
-                <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-nacional.png" alt="Radio Nacional"></div><span class="client-logo-name">Radio Nacional</span></div>
-                <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-autodromo.png" alt="Autódromo BA"></div><span class="client-logo-name">Autódromo BA</span></div>
-                <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-cordial.png" alt="Cordial Supervielle"></div><span class="client-logo-name">Cordial / Supervielle</span></div>
-                <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-loreal.png" alt="L'Oréal"></div><span class="client-logo-name">L'Oréal</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- GARANTÍAS -->
-    <section class="garantias-strip" style="background:var(--blue-dark); padding:60px 0; color:white; margin-top:40px;">
-        <div class="container">
-            <div class="section-header" style="margin-bottom:32px;"><h2 class="section-title" style="color:white;">Trabajamos con garantía en todo</h2></div>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
-                <div style="background:rgba(255,255,255,0.06); padding:24px; border-radius:12px; text-align:center">
-                    <div style="font-size:2rem; margin-bottom:10px">💻</div>
-                    <h4 style="color:#60a5fa; margin-bottom:8px">Software y formateos</h4>
-                    <p style="font-size:0.85rem; opacity:0.8">15 días de garantía. Si el problema reaparece, se revisa sin cargo.</p>
+            <div class="hero-content container">
+                <div class="hero-badge">
+                    <span class="dot"></span>Un solo punto de contacto · CABA y GBA · Sin letra chica
                 </div>
-                <div style="background:rgba(255,255,255,0.06); padding:24px; border-radius:12px; text-align:center">
-                    <div style="font-size:2rem; margin-bottom:10px">🔧</div>
-                    <h4 style="color:#60a5fa; margin-bottom:8px">Mantenimiento físico</h4>
-                    <p style="font-size:0.85rem; opacity:0.8">30 días de garantía en reemplazo de componentes y hardware.</p>
-                </div>
-                <div style="background:rgba(255,255,255,0.06); padding:24px; border-radius:12px; text-align:center">
-                    <div style="font-size:2rem; margin-bottom:10px">📡</div>
-                    <h4 style="color:#60a5fa; margin-bottom:8px">Redes y CCTV</h4>
-                    <p style="font-size:0.85rem; opacity:0.8">90 días en instalaciones de infraestructura y sistemas de seguridad.</p>
+                <h1>Soporte técnico que resuelve.<br><em>Sin vueltas.</em></h1>
+                <p>Redes, CCTV, soporte informático y domótica. +11 años de experiencia en infraestructura corporativa, ahora al servicio de tu negocio o familia.</p>
+                
+                <div class="niche-grid">
+                    <a href="servicios-hogares.html" class="niche-card hogar">
+                        <i class="fas fa-house-signal niche-icon"></i>
+                        <h3>Servicios para el Hogar</h3>
+                        <p>Soluciones WiFi, cámaras y mantenimiento de PC para tu familia. Tono simple, sin tecnicismos.</p>
+                        <span class="niche-btn">Pedí tu diagnóstico</span>
+                    </a>
+                    <a href="servicios-pymes.html" class="niche-card pyme">
+                        <i class="fas fa-store niche-icon"></i>
+                        <h3>Pymes y Comercios</h3>
+                        <p>Tu negocio no puede frenar. Soporte rápido, redes redundantes y CCTV.</p>
+                        <span class="niche-btn">Hablemos ahora</span>
+                    </a>
+                    <a href="servicios-profesionales.html" class="niche-card estudio">
+                        <i class="fas fa-gavel niche-icon"></i>
+                        <h3>Estudios Profesionales</h3>
+                        <p>Protección de datos y backups empresariales. El socio confidencial que tu estudio necesita.</p>
+                        <span class="niche-btn">Consultá tu plan</span>
+                    </a>
+                    <a href="servicios-obras.html" class="niche-card obra">
+                        <i class="fas fa-hard-hat niche-icon"></i>
+                        <h3>Obras e Infraestructura</h3>
+                        <p>Infraestructura de red, domótica y control de accesos. Planificación desde el diseño de obra.</p>
+                        <span class="niche-btn">Colaborá con nosotros</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CONTACTO -->
-    <section class="contact" id="contacto">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag reveal">¿Necesitás ayuda?</span>
-                <h2 class="section-title reveal">Contacto directo</h2>
-                <p class="section-subtitle reveal">Respondemos en menos de 2 horas en horario laboral. Sin formularios eternos.</p>
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start;">
-                <div class="contact-info reveal">
-                    <div style="background:var(--gray-50); padding:20px; border-radius:12px; border:1px solid var(--gray-200); margin-bottom:16px;">
-                        <h4 style="color:var(--blue-dark); margin-bottom:4px"><i class="fas fa-phone" style="color:var(--blue); margin-right:8px"></i> WhatsApp Urgente</h4>
-                        <p style="font-size:0.9rem; color:var(--gray-600)">+54 9 11 6680-4450</p>
-                    </div>
-                    <div style="background:var(--gray-50); padding:20px; border-radius:12px; border:1px solid var(--gray-200); margin-bottom:16px;">
-                        <h4 style="color:var(--blue-dark); margin-bottom:4px"><i class="fas fa-clock" style="color:var(--blue); margin-right:8px"></i> Horarios</h4>
-                        <p style="font-size:0.9rem; color:var(--gray-600)">Lun a Vie: 9:00 - 18:00 | Sáb: 9:00 - 13:00</p>
-                    </div>
+        <section class="pain-section">
+            <div class="container">
+                <div class="pain-header reveal">
+                    <h2>¿Tu red o equipos tienen alguno de estos problemas?</h2>
+                    <p>Si reconocés alguno de estos síntomas, podemos ayudarte hoy mismo.</p>
                 </div>
-                <form class="contact-form reveal" style="background:var(--gray-50); padding:32px; border-radius:12px; border:1px solid var(--gray-200);">
-                    <div style="margin-bottom:16px">
-                        <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:6px">Nombre</label>
-                        <input type="text" id="nombre" style="width:100%; padding:10px; border:1px solid var(--gray-200); border-radius:6px">
-                    </div>
-                    <div style="margin-bottom:16px">
-                        <label style="display:block; font-size:0.85rem; font-weight:700; margin-bottom:6px">¿En qué te podemos ayudar?</label>
-                        <textarea id="descripcion" style="width:100%; padding:10px; border:1px solid var(--gray-200); border-radius:6px; height:80px; resize:vertical;"></textarea>
-                    </div>
-                    <button type="button" id="whatsappBtn" style="width:100%; padding:12px; background:#25D366; color:white; border:none; border-radius:50px; font-weight:700; cursor:pointer; font-size:0.95rem;">
-                        <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-                    </button>
-                </form>
+                <div class="pain-chips reveal">
+                    <a class="pain-chip critical" href="blog/wifi-no-llega.html"><span class="chip-icon">📶</span> WiFi que no llega a los ambientes<span class="chip-label">Problema</span></a>
+                    <a class="pain-chip critical" href="blog/pc-lenta-causas.html"><span class="chip-icon">🐢</span> PC lenta que frena el trabajo<span class="chip-label">Problema</span></a>
+                    <a class="pain-chip critical" href="blog/ransomware-que-hacer.html"><span class="chip-icon">🦠</span> Virus o ransomware activo<span class="chip-label">Crítico</span></a>
+                    <a class="pain-chip critical" href="blog/camaras-acceso-remoto-seguro.html"><span class="chip-icon">📷</span> Cámaras sin acceso remoto<span class="chip-label">Problema</span></a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <section class="clients-section">
+            <div class="container">
+                <div class="clients-label reveal">Experiencia corporativa verificable</div>
+                <div class="clients-logos reveal">
+                    <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-nacional.png" alt="Radio Nacional" loading="lazy"></div><span class="client-logo-name">Radio Nacional</span></div>
+                    <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-autodromo.png" alt="Autódromo BA" loading="lazy"></div><span class="client-logo-name">Autódromo BA</span></div>
+                    <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-cordial.png" alt="Cordial Supervielle" loading="lazy"></div><span class="client-logo-name">Cordial / Supervielle</span></div>
+                    <div class="client-logo-item"><div class="client-logo-box"><img src="public/images/logo-loreal.png" alt="L'Oréal" loading="lazy"></div><span class="client-logo-name">L'Oréal</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact" id="contacto">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag reveal">¿Necesitás ayuda?</span>
+                    <h2 class="section-title reveal">Contacto directo</h2>
+                    <p class="section-subtitle reveal">Respondemos en menos de 2 horas en horario laboral. Sin formularios eternos.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info reveal reveal-left">
+                        <div class="contact-item"><i class="fas fa-phone"></i><div><h4>Teléfono / WhatsApp</h4><p>+54 9 11 6680-4450</p></div></div>
+                        <div class="contact-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>contacto@soportecyclops.com.ar</p></div></div>
+                        <div class="contact-item"><i class="fas fa-clock"></i><div><h4>Horarios</h4><p>Lun a Vie: 9:00 - 18:00 | Sáb: 9:00 - 13:00</p></div></div>
+                    </div>
+                    <form class="contact-form reveal reveal-right">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion">¿En qué te podemos ayudar? *</label>
+                            <textarea id="descripcion" required placeholder="Describí brevemente tu consulta..."></textarea>
+                        </div>
+                        <button type="button" class="btn-primary btn-whatsapp" id="whatsappBtn">
+                            <i class="fab fa-whatsapp"></i> Enviar consulta por WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="container" style="text-align:center">
-            <p style="color:rgba(255,255,255,0.7); font-size:0.85rem">© 2026 Soporte Cyclops | Defensa del Consumidor (Ley 24.240)</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Soporte Cyclops</h3>
+                    <p>Soluciones técnicas profesionales para hogares y empresas en CABA y GBA. +11 años de experiencia corporativa (Juan Pablo Alza).</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Sectores</h3>
+                    <ul>
+                        <li><a href="servicios-hogares.html">Servicios para Hogares</a></li>
+                        <li><a href="servicios-pymes.html">Pymes y Comercios</a></li>
+                        <li><a href="servicios-profesionales.html">Estudios Profesionales</a></li>
+                        <li><a href="servicios-obras.html">Obras e Infraestructura</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>Tel: +54 9 11 6680-4450</li>
+                        <li>contacto@soportecyclops.com.ar</li>
+                        <li>CABA y GBA, Argentina</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Soporte Cyclops. Todos los derechos reservados. | Ley 24.240 Defensa del Consumidor</p>
+            </div>
         </div>
     </footer>
 
+    <a href="https://wa.me/5491166804450?text=¡Hola!%20Necesito%20soporte%20técnico." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    
+    <!-- Scripts esenciales para recuperar el scroll y la UI -->
+    <script src="chatbot.js"></script>
+    <script src="main.js"></script>
     <script>
-    // Navbar Scroll & Menú
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
-    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('navMenu').classList.toggle('open'));
-
-    // Form WhatsApp
     document.getElementById('whatsappBtn').addEventListener('click', function() {
         const nombre = document.getElementById('nombre').value;
         const desc = document.getElementById('descripcion').value;
-        window.open(`https://wa.me/5491166804450?text=Hola, soy ${nombre}.\%0A\%0AConsulta:${desc}`, '_blank');
+        window.open(`https://wa.me/5491166804450?text=Hola, soy ${nombre}.%0A%0AConsulta: ${desc}`, '_blank');
     });
-
-    // Partículas Hero (Liviano)
-    const canvas = document.getElementById('hero-canvas');
-    if(canvas){
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = canvas.offsetWidth;
-      let h = canvas.height = canvas.offsetHeight;
-      const particles = Array.from({length: 40}, () => ({x: Math.random()*w, y: Math.random()*h, r: Math.random()*1.5+0.5, sy: -Math.random()*0.5-0.1}));
-      function draw() {
-        ctx.clearRect(0,0,w,h);
-        ctx.fillStyle = 'rgba(96,165,250,0.3)';
-        particles.forEach(p => {
-            p.y += p.sy; if(p.y < 0) p.y = h;
-            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
     </script>
 </body>
 </html>

@@ -4,64 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre Nosotros | Juan Pablo Alza | Soporte Cyclops</title>
-  <meta name="description" content="Conocé al equipo detrás de Soporte Cyclops. +11 años de experiencia en infraestructura IT corporativa aplicados a tu pyme o domicilio en CABA y GBA.">
+  <meta name="description" content="Conocé a Juan Pablo Alza. +11 años de experiencia en infraestructura IT corporativa (Radio Nacional, Autódromo BA) aplicados a tu pyme o domicilio.">
   <link rel="icon" href="public/images/logo-icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
-    a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
-    .container{max-width:1140px;margin:0 auto;padding:0 24px}
-    /* NAVBAR */
-    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);}
-    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
-    .logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
-    .logo strong{color:var(--blue)}
-    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
-    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);white-space:nowrap;transition:var(--transition)}
-    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
-    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
-    .nav-cta:hover{background:#1d4ed8;text-decoration:none}
-    .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.5rem;color:var(--blue-dark);padding:6px}
-    @media(max-width:900px){.nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;border-top:1px solid var(--gray-200)}.nav-menu.open{display:flex}.nav-menu li{width:100%}.nav-link{display:block;padding:12px 16px}.menu-toggle{display:block}}
-    
-    /* HERO */
-    .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:72px 0 64px}
-    .breadcrumb{font-size:0.85rem;opacity:0.8;margin-bottom:16px;display:flex;gap:8px}
-    .breadcrumb a{color:white;text-decoration:none}
-    .page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:16px}
-    .page-hero p{font-size:1.1rem;opacity:0.9;max-width:700px;line-height:1.6}
-    
-    /* ABOUT CONTENT */
-    .about-section{padding:80px 0;}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-    @media(max-width:850px){.about-grid{grid-template-columns:1fr;gap:40px}}
-    .about-text h2{font-family:'Space Grotesk',sans-serif;font-size:2rem;color:var(--blue-dark);margin-bottom:20px;line-height:1.2}
-    .about-text p{font-size:1.05rem;color:var(--gray-600);margin-bottom:16px;line-height:1.7}
-    .about-text strong{color:var(--blue-dark)}
-    .cv-box{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:32px;margin-top:24px}
-    .cv-box h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;color:var(--blue-dark);margin-bottom:16px}
-    .timeline{list-style:none;border-left:2px solid var(--blue);padding-left:20px;margin-left:8px}
-    .timeline li{position:relative;margin-bottom:24px}
-    .timeline li::before{content:"";position:absolute;left:-27px;top:4px;width:12px;height:12px;background:white;border:2px solid var(--blue);border-radius:50%}
-    .timeline h4{font-size:1rem;color:var(--blue-dark);margin-bottom:4px}
-    .timeline span{display:block;font-size:0.85rem;color:var(--blue);font-weight:700;margin-bottom:6px}
-    .timeline p{font-size:0.9rem;color:var(--gray-600);line-height:1.5;margin:0}
-    
-    footer{background:#0f172a;color:rgba(255,255,255,0.6);padding:60px 0 24px;margin-top:60px}
-    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px;margin-bottom:48px}
-    .footer-col h4{color:white;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;margin-bottom:20px}
-    .footer-col a{display:block;color:rgba(255,255,255,0.6);margin-bottom:12px;font-size:0.9rem}
-    .footer-col a:hover{color:white}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:24px;text-align:center;font-size:0.85rem}
-  </style>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <nav class="navbar" id="navbar">
-    <div class="nav-container">
+    <div class="nav-container container">
       <a href="index.html" class="logo">
         <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
         <span class="logo-text">Soporte<strong>Cyclops</strong></span>
@@ -74,7 +26,7 @@
         <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
         <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
       </ul>
-      <button class="menu-toggle" id="menuToggle">☰</button>
+      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
     </div>
   </nav>
 
@@ -86,32 +38,32 @@
     </div>
   </header>
 
-  <section class="about-section">
-    <div class="container about-grid">
-      <div class="about-text">
-        <h2>Conocé a tu Partner Tecnológico</h2>
-        <p>Mi nombre es <strong>Juan Pablo Alza</strong>, fundador y responsable técnico de Soporte Cyclops. No somos una agencia gigante donde sos un número más, ni derivamos los arreglos a terceros.</p>
-        <p>Llevo <strong>más de 11 años gestionando infraestructura IT corporativa</strong>. Cuando falla el servidor en un banco o se corta la red en un autódromo con 10.000 personas, no hay margen para "googlear el problema" o pedir que la apaguen y la prendan. Esa misma metodología resolutiva es la que aplicamos acá.</p>
-        <p>Creamos Soporte Cyclops para cubrir un hueco enorme en CABA y GBA: el cliente local (un comercio, un arquitecto o un hogar) está cansado del técnico informal que desaparece. Nosotros venimos a dar <strong>diagnósticos honestos, presupuesto cerrado y continuidad operativa</strong>.</p>
+  <section class="section" style="padding: 80px 0;">
+    <div class="container" style="display:grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+      <div>
+        <h2 class="section-title">Conocé a tu Partner Tecnológico</h2>
+        <p style="font-size:1.05rem; color:var(--gray-600); margin-bottom:16px; line-height:1.7;">Mi nombre es <strong>Juan Pablo Alza</strong>, fundador y responsable técnico de Soporte Cyclops. No somos una agencia gigante donde sos un número más, ni derivamos los arreglos a terceros.</p>
+        <p style="font-size:1.05rem; color:var(--gray-600); margin-bottom:16px; line-height:1.7;">Llevo <strong>más de 11 años gestionando infraestructura IT corporativa</strong>. Cuando falla el servidor en un banco o se corta la red en un autódromo con 10.000 personas, no hay margen para "googlear el problema" o pedir que la apaguen y la prendan. Esa misma metodología resolutiva es la que aplicamos acá.</p>
+        <p style="font-size:1.05rem; color:var(--gray-600); margin-bottom:16px; line-height:1.7;">Creamos Soporte Cyclops para cubrir un hueco enorme en CABA y GBA: el cliente local (un comercio, un arquitecto o un hogar) está cansado del técnico informal que desaparece. Nosotros venimos a dar <strong>diagnósticos honestos, presupuesto cerrado y continuidad operativa</strong>.</p>
       </div>
       
       <div class="cv-box">
         <h3>Experiencia Corporativa Comprobable</h3>
         <ul class="timeline">
           <li>
-            <h4>Analista IT Sr. - Operaciones de Infraestructura</h4>
+            <h4>Analista IT Sr. - Infraestructura</h4>
             <span>LRA1 Radio Nacional (2015 - Presente)</span>
-            <p>Responsable de soporte y operaciones para la sede central y más de 50 emisoras nacionales. Resoluciones críticas en redes distribuidas, servidores y Active Directory bajo protocolos estrictos de alta disponibilidad.</p>
+            <p>Responsable de soporte y operaciones para la sede central y más de 50 emisoras nacionales. Resoluciones críticas en redes distribuidas, servidores y Active Directory bajo protocolos estrictos.</p>
           </li>
           <li>
-            <h4>Responsable de Infraestructura y Conectividad</h4>
-            <span>Autódromo de la Ciudad de Buenos Aires (2019 - 2021)</span>
-            <p>Diseño y ejecución de topologías de red segmentadas para eventos masivos (Turismo Carretera, TC2000). Balanceo de cargas para prensa, boxes y administración, logrando cero caídas operativas.</p>
+            <h4>Responsable de Redes y Conectividad</h4>
+            <span>Autódromo de Buenos Aires (2019 - 2021)</span>
+            <p>Diseño y ejecución de topologías de red segmentadas para eventos masivos (Turismo Carretera, TC2000). Balanceo de cargas para prensa y boxes, logrando cero caídas operativas.</p>
           </li>
           <li>
             <h4>Soporte Técnico Corporativo</h4>
             <span>Grupo Supervielle / L'Oréal Argentina (2012 - 2015)</span>
-            <p>Mesa de ayuda y resolución de incidentes bajo fuertes exigencias de compliance (normativas bancarias) y SLA.</p>
+            <p>Mesa de ayuda y resolución de incidentes bajo fuertes exigencias de compliance (normativas bancarias) y SLA de respuesta.</p>
           </li>
         </ul>
       </div>
@@ -119,34 +71,11 @@
   </section>
 
   <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Soporte Cyclops</h4>
-          <p style="font-size:0.9rem; line-height:1.6; margin-bottom:16px;">Infraestructura IT y Seguridad Electrónica. Soluciones reales, sin tercerizaciones.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Sectores</h4>
-          <a href="servicios-hogares.html">Para Hogares</a>
-          <a href="servicios-pymes.html">Para Pymes</a>
-          <a href="servicios-profesionales.html">Para Estudios</a>
-          <a href="servicios-obras.html">Para Obras</a>
-        </div>
-        <div class="footer-col">
-          <h4>Contacto</h4>
-          <a href="tel:+5491166804450">📞 +54 9 11 6680-4450</a>
-          <a href="https://wa.me/5491166804450" target="_blank">💬 WhatsApp</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2026 Soporte Cyclops | CABA y GBA | Ley 24.240</p>
-      </div>
+    <div class="container" style="text-align:center; padding: 40px 0;">
+      <p style="color:var(--gray-600); font-size:0.85rem">© 2026 Soporte Cyclops | CABA y GBA | Ley 24.240</p>
     </div>
   </footer>
-  <script>
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navMenu').classList.toggle('open');
-    });
-  </script>
+  <script src="chatbot.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
