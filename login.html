@@ -14,17 +14,46 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --blue: #2563eb; --blue-dark: #1a3a5c; --gray-50: #f8fafc;
-      --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-500: #64748b;
-      --gray-900: #0f172a; --red: #dc2626; --green: #16a34a;
-      --radius: 14px; --transition: all 0.25s ease;
+      --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-400: #94a3b8; --gray-500: #64748b;
+      --gray-600: #475569; --gray-900: #0f172a; --red: #dc2626; --green: #16a34a;
+      --radius: 12px; --transition: all 0.25s ease; --shadow-md: 0 8px 32px rgba(37,99,235,0.12);
     }
     body {
       font-family: 'Open Sans', sans-serif;
       background: linear-gradient(135deg, #0f172a 0%, #1a3a5c 100%);
       min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      padding: 20px;
+      display: flex;
+      flex-direction: column;
       color: var(--gray-900);
+    }
+
+    /* NAVBAR UNIFICADO */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: white; border-bottom: 1px solid var(--gray-200); transition: box-shadow 0.3s; }
+    .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 64px; max-width: 1140px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo img { border-radius: 6px; }
+    .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); }
+    .logo-text strong { color: var(--blue); }
+    .nav-menu { display: flex; list-style: none; gap: 4px; align-items: center; }
+    .nav-link { padding: 8px 14px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; color: var(--gray-600); transition: var(--transition); white-space: nowrap; text-decoration: none; }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: rgba(37,99,235,0.06); }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.3rem; color: var(--blue-dark); padding: 6px; }
+    @media(max-width:900px){
+      .nav-menu { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: white; padding: 16px; box-shadow: var(--shadow-md); gap: 2px; border-top: 1px solid var(--gray-200); }
+      .nav-menu.open { display: flex; }
+      .nav-menu li { width: 100%; }
+      .nav-link { display: block; padding: 12px 16px; }
+      .menu-toggle { display: block; }
+    }
+
+    /* CONTENEDOR Y TARJETA LOGIN */
+    .login-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
     }
     .login-card {
       background: white; border-radius: 20px; padding: 48px;
@@ -73,89 +102,121 @@
   </style>
 </head>
 <body>
-  <div class="login-card">
-    <div class="logo-wrap">
-      <img src="public/images/logo-icon.png" alt="Soporte Cyclops" onerror="this.style.display='none'">
-      <h1>Soporte Cyclops</h1>
-      <p>Portal de Clientes</p>
+
+  <!-- NAVBAR UNIFICADO -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="login.html" rel="nofollow" class="nav-link active" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
+        <li><a href="index.html#contacto" class="nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
     </div>
+  </nav>
 
-    <div class="tabs">
-      <button class="tabbtn on" id="tabIngresar" onclick="cambiarTab('ingresar')">Ingresar</button>
-      <button class="tabbtn" id="tabRegistrar" onclick="cambiarTab('registrar')">Registrarme</button>
-    </div>
-
-    <!-- PANEL: INGRESAR -->
-    <div class="panel on" id="panelIngresar">
-      <p style="font-size:0.9rem;color:var(--gray-500);text-align:center;margin-bottom:24px;line-height:1.5;">Ingresá con tu cuenta de Google para acceder a tus diagnósticos y reportes.</p>
-      
-      <div class="google-btn-wrap">
-        <div id="googleSignInBtn"></div>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="logo-wrap">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" onerror="this.style.display='none'">
+        <h1>Soporte Cyclops</h1>
+        <p>Portal de Clientes</p>
       </div>
 
-      <p style="font-size:0.75rem;color:var(--gray-400);text-align:center;margin-top:20px;">
-        <i class="fas fa-shield-alt"></i> Solo usamos tu nombre y email. Sin contraseñas extra.
-      </p>
-
-      <div class="msg-loading" id="msgLoading">
-        <i class="fas fa-circle-notch fa-spin"></i> Verificando acceso...
+      <div class="tabs">
+        <button class="tabbtn on" id="tabIngresar" onclick="cambiarTab('ingresar')">Ingresar</button>
+        <button class="tabbtn" id="tabRegistrar" onclick="cambiarTab('registrar')">Registrarme</button>
       </div>
-      <div class="msg-error" id="msgError">
-        <i class="fas fa-exclamation-circle"></i>
-        <span id="msgErrorTxt">Tu cuenta no tiene acceso. Contactá al administrador.</span>
-      </div>
-    </div>
 
-    <!-- PANEL: REGISTRARME -->
-    <div class="panel" id="panelRegistrar">
-      <p style="font-size:0.88rem;color:var(--gray-500);margin-bottom:24px;line-height:1.6;">
-        Dejá tus datos. Después iniciá sesión en la pestaña <strong>Ingresar</strong> usando el mismo email de Google para que tu panel se asocie automáticamente.
-      </p>
+      <!-- PANEL: INGRESAR -->
+      <div class="panel on" id="panelIngresar">
+        <p style="font-size:0.9rem;color:var(--gray-500);text-align:center;margin-bottom:24px;line-height:1.5;">Ingresá con tu cuenta de Google para acceder a tus diagnósticos y reportes.</p>
+        
+        <div class="google-btn-wrap">
+          <div id="googleSignInBtn"></div>
+        </div>
 
-      <div class="f">
-        <label>Nombre y apellido <span class="req">*</span></label>
-        <input id="regNombre" placeholder="Tu nombre completo">
+        <p style="font-size:0.75rem;color:var(--gray-400);text-align:center;margin-top:20px;">
+          <i class="fas fa-shield-alt"></i> Solo usamos tu nombre y email. Sin contraseñas extra.
+        </p>
+
+        <div class="msg-loading" id="msgLoading">
+          <i class="fas fa-circle-notch fa-spin"></i> Verificando acceso...
+        </div>
+        <div class="msg-error" id="msgError">
+          <i class="fas fa-exclamation-circle"></i>
+          <span id="msgErrorTxt">Tu cuenta no tiene acceso. Contactá al administrador.</span>
+        </div>
       </div>
-      <div class="row2">
+
+      <!-- PANEL: REGISTRARME -->
+      <div class="panel" id="panelRegistrar">
+        <p style="font-size:0.88rem;color:var(--gray-500);margin-bottom:24px;line-height:1.6;">
+          Dejá tus datos. Después iniciá sesión en la pestaña <strong>Ingresar</strong> usando el mismo email de Google para que tu panel se asocie automáticamente.
+        </p>
+
         <div class="f">
-          <label>Teléfono <span class="req">*</span></label>
-          <input id="regTelefono" type="tel" placeholder="11 xxxx-xxxx">
-        </div>
-        <div class="f">
-          <label>Email <span class="req">*</span></label>
-          <input id="regEmail" type="email" placeholder="vos@email.com">
-        </div>
-      </div>
-
-      <span class="opcionales-toggle" onclick="toggleOpcionales()">
-        <i class="fas fa-chevron-down" id="opcIcon"></i> Datos adicionales (dirección, empresa)
-      </span>
-
-      <div class="opcionales" id="opcionalesBox">
-        <div class="row2">
-          <div class="f"><label>Dirección <span class="opt">(opcional)</span></label><input id="regDireccion" placeholder="Calle y número"></div>
-          <div class="f"><label>Localidad <span class="opt">(opcional)</span></label><input id="regLocalidad" placeholder="Barrio / localidad"></div>
+          <label>Nombre y apellido <span class="req">*</span></label>
+          <input id="regNombre" placeholder="Tu nombre completo">
         </div>
         <div class="row2">
-          <div class="f"><label>CP <span class="opt">(opcional)</span></label><input id="regCp" placeholder="Código postal"></div>
-          <div class="f"><label>Empresa <span class="opt">(opcional)</span></label><input id="regEmpresa" placeholder="Razón social"></div>
+          <div class="f">
+            <label>Teléfono <span class="req">*</span></label>
+            <input id="regTelefono" type="tel" placeholder="11 xxxx-xxxx">
+          </div>
+          <div class="f">
+            <label>Email <span class="req">*</span></label>
+            <input id="regEmail" type="email" placeholder="vos@email.com">
+          </div>
         </div>
-        <div class="f"><label>Nota <span class="opt">(opcional)</span></label><textarea id="regNota" rows="2" placeholder="Algo que quieras contarnos..."></textarea></div>
+
+        <span class="opcionales-toggle" onclick="toggleOpcionales()">
+          <i class="fas fa-chevron-down" id="opcIcon"></i> Datos adicionales (dirección, empresa)
+        </span>
+
+        <div class="opcionales" id="opcionalesBox">
+          <div class="row2">
+            <div class="f"><label>Dirección <span class="opt">(opcional)</span></label><input id="regDireccion" placeholder="Calle y número"></div>
+            <div class="f"><label>Localidad <span class="opt">(opcional)</span></label><input id="regLocalidad" placeholder="Barrio / localidad"></div>
+          </div>
+          <div class="row2">
+            <div class="f"><label>CP <span class="opt">(opcional)</span></label><input id="regCp" placeholder="Código postal"></div>
+            <div class="f"><label>Empresa <span class="opt">(opcional)</span></label><input id="regEmpresa" placeholder="Razón social"></div>
+          </div>
+          <div class="f"><label>Nota <span class="opt">(opcional)</span></label><textarea id="regNota" rows="2" placeholder="Algo que quieras contarnos..."></textarea></div>
+        </div>
+
+        <button class="btn-registrar" id="btnRegistrar" onclick="registrarCliente()">
+          <i class="fas fa-user-plus"></i> Crear mi registro
+        </button>
+
+        <div class="msg-error" id="msgErrorReg"><i class="fas fa-exclamation-circle"></i> <span id="msgErrorRegTxt"></span></div>
+        <div class="msg-ok" id="msgOkReg"><i class="fas fa-check-circle"></i> <span id="msgOkRegTxt"></span></div>
       </div>
 
-      <button class="btn-registrar" id="btnRegistrar" onclick="registrarCliente()">
-        <i class="fas fa-user-plus"></i> Crear mi registro
-      </button>
-
-      <div class="msg-error" id="msgErrorReg"><i class="fas fa-exclamation-circle"></i> <span id="msgErrorRegTxt"></span></div>
-      <div class="msg-ok" id="msgOkReg"><i class="fas fa-check-circle"></i> <span id="msgOkRegTxt"></span></div>
-    </div>
-
-    <div class="footer-link">
-      <a href="index.html"><i class="fas fa-arrow-left"></i> Volver a la página principal</a>
+      <div class="footer-link">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Volver a la página principal</a>
+      </div>
     </div>
   </div>
 
+  <script>
+    var navbar = document.getElementById('navbar');
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+    window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    menuToggle.addEventListener('click', function(){
+      navMenu.classList.toggle('open');
+      menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+  </script>
   <script>
     const GOOGLE_CLIENT_ID  = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
     const APPS_SCRIPT_URL   = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
