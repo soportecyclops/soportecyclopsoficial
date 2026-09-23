@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html><html lang="es-AR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Soporte IT para Pymes y Comercios en CABA | Cyclops</title>
-<meta name="description" content="Mantenimiento de PC, redes con balanceo de carga, CCTV y soporte urgente para que tu comercio no deje de vender. Resoluciones nivel corporativo.">
-<link rel="canonical" href="https://www.soportecyclops.com.ar/servicios-pymes.html">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Soporte Cyclops - División Pymes","telephone":"+5491166804450","areaServed":["CABA","GBA"]}</script>
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soporte IT para Pymes y Comercios en CABA | Cyclops</title>
+  <meta name="description" content="Mantenimiento de PC, redes con balanceo de carga, CCTV y soporte urgente para que tu comercio no deje de vender. Resoluciones nivel corporativo.">
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/servicios-pymes.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Soporte Cyclops - División Pymes","telephone":"+5491166804450","areaServed":["CABA","GBA"]}</script>
   <link rel="icon" href="public/images/logo-icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
@@ -13,6 +16,8 @@
     body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
     a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
     .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    
+    /* NAV UNIFICADO */
     .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
     .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
     .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
@@ -27,6 +32,7 @@
     .nav-cta:hover{background:#1d4ed8;text-decoration:none}
     .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
     @media(max-width:900px){.nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}.nav-menu.open{display:flex}.nav-menu li{width:100%}.nav-link{display:block;padding:12px 16px}.menu-toggle{display:block}.nav-cta{text-align:center;margin-top:8px}}
+    
     .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
     .hero-hogar{background:linear-gradient(135deg,#0284c7 0%,#2563eb 100%)}
     .hero-pyme{background:linear-gradient(135deg,#b45309 0%,#1e3a8a 100%)}
@@ -75,6 +81,18 @@
     .step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;margin:0 auto 16px}
     .step-card h4{font-family:'Space Grotesk',sans-serif;font-size:0.97rem;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
     .step-card p{font-size:0.85rem;color:var(--gray-600);line-height:1.65}
+    .preventive-section{padding:64px 0;background:white}
+    .comp-table-wrap{overflow-x:auto;margin-top:32px}
+    .comp-table{width:100%;border-collapse:collapse;font-size:0.9rem}
+    .comp-table th{background:var(--blue-dark);color:white;padding:14px 20px;text-align:left;font-weight:700}
+    .comp-table th:first-child{border-radius:var(--radius) 0 0 0}
+    .comp-table th:last-child{border-radius:0 var(--radius) 0 0}
+    .comp-table td{padding:13px 20px;border-bottom:1px solid var(--gray-200);color:var(--gray-600);vertical-align:top}
+    .comp-table tr:last-child td:first-child{border-radius:0 0 0 var(--radius)}
+    .comp-table tr:last-child td:last-child{border-radius:0 0 var(--radius) 0}
+    .comp-table tr:nth-child(even) td{background:var(--gray-50)}
+    .comp-table .good{color:#16a34a;font-weight:600}
+    .comp-table .bad{color:#dc2626}
     .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:48px 0}
     .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
     .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
@@ -116,7 +134,28 @@
     .cta-servicio:hover{transform:translateY(-2px)}
     @media(max-width:860px){.mod-grid,.confianza-strip{grid-template-columns:1fr}.obj-grid{grid-template-columns:1fr}}
   </style>
+</head>
 <body>
+  
+  <!-- NAV UNIFICADO -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
   <div class="page-hero hero-pyme">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Pymes y Comercios</span></div>
@@ -125,30 +164,158 @@
     </div>
   </div>
   
-  <section class="modalidades"><div class="container"><div class="section-header"><span class="section-tag" style="color:#b45309; background:rgba(180,83,9,0.1)">Urgencia Operativa</span><h2 class="section-title">Respuesta acorde a un comercio</h2><p class="section-subtitle">Sabemos que el posnet sin internet o la PC de caja clavada es plata que se pierde.</p></div><div class="mod-grid"><div class="mod-card"><span class="mod-badge" style="background:#fef3c7;color:#b45309">Inmediato</span><div class="mod-ico">⚡</div><h3>Soporte Remoto Crítico</h3><p>Tomamos control de la terminal de punto de venta, servidor o PC administrativa en minutos para destrabar el sistema de facturación al instante.</p></div><div class="mod-card"><div class="mod-ico">🏃‍♂️</div><h3>Intervención en el Local</h3><p>Asistencia in situ en CABA y GBA para problemas físicos: cableado cortado, switch quemado o cámaras caídas. Vamos con repuestos listos.</p></div><div class="mod-card"><div class="mod-ico">🛡️</div><h3>Mantenimiento Preventivo</h3><p>No esperamos a que se rompa. Hacemos rutinas de backup, revisión de discos y actualizaciones fuera del horario comercial.</p></div></div>
-  <div class="confianza-strip" style="background:#1e3a8a"><div class="conf-item"><i class="fas fa-server"></i><div><h4>Background Corporativo</h4><p>Toda la experiencia de +11 años administrando infraestructura de misión crítica (Radio Nacional, sector financiero) bajada a la escala de tu negocio.</p></div></div><div class="conf-item"><i class="fas fa-file-invoice"></i><div><h4>Factura A o C</h4><p>Servicio registrado y en blanco. Contratá con la tranquilidad fiscal que tu pyme necesita en cada orden de mantenimiento.</p></div></div><div class="conf-item"><i class="fas fa-network-wired"></i><div><h4>Redes sin caída</h4><p>Implementamos sistemas de conexión redundante. Si se corta tu proveedor principal, el de respaldo asume automáticamente.</p></div></div></div></div></section>
-  
-  <section class="service-tabs-section"><div class="container"><div class="section-header"><span class="section-tag">Nuestros Servicios Pyme</span><h2 class="section-title">Un solo proveedor tecnológico</h2></div>
-    <div class="tabs-nav">
-      <button class="tab-btn active" id="tab-soporte" onclick="switchTab('soporte',this)">💻 Equipos de Trabajo</button>
-      <button class="tab-btn" id="tab-redes" onclick="switchTab('redes',this)">📡 Redes y Balanceo</button>
-      <button class="tab-btn" id="tab-cctv" onclick="switchTab('cctv',this)">📷 CCTV Monitoreo</button>
-      <button class="tab-btn" id="tab-ciber" onclick="switchTab('ciber',this)">🛡️ Backups y Seguridad</button>
-      <button class="tab-btn" id="tab-ups" onclick="switchTab('ups',this)">🔋 Energía (UPS)</button>
+  <section class="modalidades">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" style="color:#b45309; background:rgba(180,83,9,0.1)">Urgencia Operativa</span>
+        <h2 class="section-title">Respuesta acorde a un comercio</h2>
+        <p class="section-subtitle">Sabemos que el posnet sin internet o la PC de caja clavada es plata que se pierde.</p>
+      </div>
+      <div class="mod-grid">
+        <div class="mod-card">
+          <span class="mod-badge" style="background:#fef3c7;color:#b45309">Inmediato</span>
+          <div class="mod-ico">⚡</div>
+          <h3>Soporte Remoto Crítico</h3>
+          <p>Tomamos control de la terminal de punto de venta, servidor o PC administrativa en minutos para destrabar el sistema de facturación al instante.</p>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">🏃‍♂️</div>
+          <h3>Intervención en el Local</h3>
+          <p>Asistencia in situ en CABA y GBA para problemas físicos: cableado cortado, switch quemado o cámaras caídas. Vamos con repuestos listos.</p>
+        </div>
+        <div class="mod-card">
+          <div class="mod-ico">🛡️</div>
+          <h3>Mantenimiento Preventivo</h3>
+          <p>No esperamos a que se rompa. Hacemos rutinas de backup, revisión de discos y actualizaciones fuera del horario comercial.</p>
+        </div>
+      </div>
+      <div class="confianza-strip" style="background:#1e3a8a">
+        <div class="conf-item">
+          <i class="fas fa-server"></i>
+          <div>
+            <h4>Background Corporativo</h4>
+            <p>Toda la experiencia de +11 años administrando infraestructura de misión crítica (Radio Nacional, sector financiero) bajada a la escala de tu negocio.</p>
+          </div>
+        </div>
+        <div class="conf-item">
+          <i class="fas fa-file-invoice"></i>
+          <div>
+            <h4>Factura A o C</h4>
+            <p>Servicio registrado y en blanco. Contratá con la tranquilidad fiscal que tu pyme necesita en cada orden de mantenimiento.</p>
+          </div>
+        </div>
+        <div class="conf-item">
+          <i class="fas fa-network-wired"></i>
+          <div>
+            <h4>Redes sin caída</h4>
+            <p>Implementamos sistemas de conexión redundante. Si se corta tu proveedor principal, el de respaldo asume automáticamente.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <div class="tab-content active" id="tc-soporte"><div class="tab-body"><div class="tab-info"><h3>Mantenimiento de PC y Puntos de Venta</h3><p>Soporte integral para máquinas de mostrador, oficinas administrativas y depósitos. Resoluciones rápidas para hardware y Windows, garantizando que el sistema de gestión ERP o facturación corra fluido.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4><ul class="cases-list"><li>PC de caja trabada o que tarda en reiniciar.</li><li>Configuración de tickeadoras e impresoras fiscales.</li><li>Clonación preventiva de discos rígidos a punto de fallar.</li></ul></div></div></div>
-    
-    <div class="tab-content" id="tc-redes"><div class="tab-body"><div class="tab-info"><h3>Redes y Balanceo de Carga</h3><p>Implementación de routers MikroTik y APs Ubiquiti. Hacemos que tus dos conexiones de internet (ej. Fibertel y Telecentro) trabajen juntas. Si una se corta, la otra levanta en segundos. Tu cobro por tarjeta nunca falla.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4><ul class="cases-list"><li>El WiFi del salón es un desastre cuando el local se llena.</li><li>Se corta internet y el posnet o MercadoPago dejan de andar.</li><li>Red segmentada: WiFi de clientes separado del de cobranzas.</li></ul></div></div></div>
-    
-    <div class="tab-content" id="tc-cctv"><div class="tab-body"><div class="tab-info"><h3>CCTV y Control para Sucursales</h3><p>Sistemas de grabación NVR/DVR 24/7. Monitoreá tu local, depósito o caja registradora en vivo desde el celular con alta definición, e instalá control de acceso por huella para depósito o sector gerencia.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4><ul class="cases-list"><li>Verificación de ingresos y salidas fuera de horario.</li><li>Cámaras apuntadas directo a la línea de cajas.</li><li>Respaldo de grabaciones ante faltantes o incidentes.</li></ul></div></div></div>
-    
-    <div class="tab-content" id="tc-ciber"><div class="tab-body"><div class="tab-info"><h3>Backups y Seguridad Corporativa</h3><p>La base de datos de tus clientes y tu contabilidad es oro. Automatizamos copias de seguridad a discos externos o a la nube, y bloqueamos ataques de ransomware que buscan encriptar tu servidor.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4><ul class="cases-list"><li>El servidor donde está el sistema de gestión fue hackeado.</li><li>Empleados abriendo correos con virus por error.</li><li>Instalación de ESET Endpoint para 5 a 50 computadoras.</li></ul></div></div></div>
-    
-    <div class="tab-content" id="tc-ups"><div class="tab-body"><div class="tab-info"><h3>Protección Eléctrica Continua</h3><p>Un microcorte no puede arruinar tu base de datos ni apagar el módem. Calculamos e instalamos equipos UPS de respaldo para la red, la caja y el servidor.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4><ul class="cases-list"><li>Fuentes de PC quemadas por bajones de tensión del barrio.</li><li>Que el WiFi y cámaras sigan andando 2 horas sin luz.</li></ul></div></div></div>
-  </div></section>
+  </section>
   
-    <section class="paquetes" style="padding:70px 0; background:var(--gray-100); border-top:1px solid var(--gray-200)">
+  <section class="service-tabs-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Nuestros Servicios Pyme</span>
+        <h2 class="section-title">Un solo proveedor tecnológico</h2>
+      </div>
+      <div class="tabs-nav">
+        <button class="tab-btn active" id="tab-soporte" onclick="switchTab('soporte',this)">💻 Equipos de Trabajo</button>
+        <button class="tab-btn" id="tab-redes" onclick="switchTab('redes',this)">📡 Redes y Balanceo</button>
+        <button class="tab-btn" id="tab-cctv" onclick="switchTab('cctv',this)">📷 CCTV Monitoreo</button>
+        <button class="tab-btn" id="tab-ciber" onclick="switchTab('ciber',this)">🛡️ Backups y Seguridad</button>
+        <button class="tab-btn" id="tab-ups" onclick="switchTab('ups',this)">🔋 Energía (UPS)</button>
+      </div>
+      
+      <div class="tab-content active" id="tc-soporte">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Mantenimiento de PC y Puntos de Venta</h3>
+            <p>Soporte integral para máquinas de mostrador, oficinas administrativas y depósitos. Resoluciones rápidas para hardware y Windows, garantizando que el sistema de gestión ERP o facturación corra fluido.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4>
+            <ul class="cases-list">
+              <li>PC de caja trabada o que tarda en reiniciar.</li>
+              <li>Configuración de tickeadoras e impresoras fiscales.</li>
+              <li>Clonación preventiva de discos rígidos a punto de fallar.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tc-redes">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Redes y Balanceo de Carga</h3>
+            <p>Implementación de routers MikroTik y APs Ubiquiti. Hacemos que tus dos conexiones de internet (ej. Fibertel y Telecentro) trabajen juntas. Si una se corta, la otra levanta en segundos. Tu cobro por tarjeta nunca falla.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4>
+            <ul class="cases-list">
+              <li>El WiFi del salón es un desastre cuando el local se llena.</li>
+              <li>Se corta internet y el posnet o MercadoPago dejan de andar.</li>
+              <li>Red segmentada: WiFi de clientes separado del de cobranzas.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tc-cctv">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>CCTV y Control para Sucursales</h3>
+            <p>Sistemas de grabación NVR/DVR 24/7. Monitoreá tu local, depósito o caja registradora en vivo desde el celular con alta definición, e instalá control de acceso por huella para depósito o sector gerencia.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4>
+            <ul class="cases-list">
+              <li>Verificación de ingresos y salidas fuera de horario.</li>
+              <li>Cámaras apuntadas directo a la línea de cajas.</li>
+              <li>Respaldo de grabaciones ante faltantes o incidentes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tc-ciber">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Backups y Seguridad Corporativa</h3>
+            <p>La base de datos de tus clientes y tu contabilidad es oro. Automatizamos copias de seguridad a discos externos o a la nube, y bloqueamos ataques de ransomware que buscan encriptar tu servidor.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4>
+            <ul class="cases-list">
+              <li>El servidor donde está el sistema de gestión fue hackeado.</li>
+              <li>Empleados abriendo correos con virus por error.</li>
+              <li>Instalación de ESET Endpoint para 5 a 50 computadoras.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="tc-ups">
+        <div class="tab-body">
+          <div class="tab-info">
+            <h3>Protección Eléctrica Continua</h3>
+            <p>Un microcorte no puede arruinar tu base de datos ni apagar el módem. Calculamos e instalamos equipos UPS de respaldo para la red, la caja y el servidor.</p>
+          </div>
+          <div>
+            <h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Casos típicos</h4>
+            <ul class="cases-list">
+              <li>Fuentes de PC quemadas por bajones de tensión del barrio.</li>
+              <li>Que el WiFi y cámaras sigan andando 2 horas sin luz.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="paquetes" style="padding:70px 0; background:var(--gray-100); border-top:1px solid var(--gray-200)">
     <div class="container">
       <div class="section-header" style="text-align:center; max-width:700px; margin:0 auto 30px">
         <span class="section-tag" style="display:inline-block;background:rgba(37,99,235,0.1);color:var(--blue);padding:6px 16px;border-radius:30px;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:12px">Captación Digital</span>
@@ -161,67 +328,96 @@
     </div>
   </section>
 
-<section class="objeciones"><div class="container"><div class="section-header"><span class="section-tag">Hablemos claro</span><h2 class="section-title">Las dudas frecuentes del comerciante</h2></div><div class="obj-grid"><div class="obj-card"><h4>“Tengo un sobrino que me arregla las compus barato”</h4><p>El problema no es que ande la PC, el problema es qué pasa cuando falla a las 11 AM con el local lleno. Nosotros brindamos SLA (tiempos de respuesta garantizados) y conocimiento para no improvisar.</p></div><div class="obj-card"><h4>“Es muy caro tener un abono IT”</h4><p>Más caro es tener 5 empleados de brazos cruzados porque no hay sistema, o perder 20 ventas con tarjeta. Podés llamarnos por demanda (incidente) o armar un mantenimiento preventivo a medida de tu pyme.</p></div><div class="obj-card"><h4>“¿Trabajan fuera de mi horario de atención?”</h4><p>Sí. Las actualizaciones pesadas, cableados e instalaciones ruidosas se coordinan para momentos de baja actividad o local cerrado, para no afectar la experiencia de tus clientes.</p></div><div class="obj-card"><h4>“¿Por qué elegirlos a ustedes?”</h4><p>Por Juan Pablo Alza. +11 años manejando la red del Autódromo de BA en plenas carreras, y de Grupo Supervielle. Si resolvimos la red para 10.000 personas sin caída, podemos hacer blindado tu negocio.</p></div></div></div></section>
-<footer>
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Soporte Cyclops</h3>
-        <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa en resolución de incidentes críticos.</p>
+  <section class="objeciones">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Hablemos claro</span>
+        <h2 class="section-title">Las dudas frecuentes del comerciante</h2>
       </div>
-      <div class="footer-section">
-        <h3>Sectores</h3>
-        <a href="servicios-hogares.html">Para Hogares</a>
-        <a href="servicios-pymes.html">Para Pymes y Comercios</a>
-        <a href="servicios-profesionales.html">Para Estudios Profesionales</a>
-        <a href="servicios-obras.html">Para Arquitectos y Obras</a>
-      </div>
-      <div class="footer-section">
-        <h3>Contacto</h3>
-        <a href="tel:+5491166804450"><i class="fas fa-phone"></i> +54 9 11 6680-4450</a>
-        <a href="mailto:contacto@soportecyclops.com.ar"><i class="fas fa-envelope"></i> contacto@soportecyclops.com.ar</a>
-        <a href="https://wa.me/5491166804450" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+      <div class="obj-grid">
+        <div class="obj-card">
+          <h4>“Tengo un sobrino que me arregla las compus barato”</h4>
+          <p>El problema no es que ande la PC, el problema es qué pasa cuando falla a las 11 AM con el local lleno. Nosotros brindamos SLA (tiempos de respuesta garantizados) y conocimiento para no improvisar.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“Es muy caro tener un abono IT”</h4>
+          <p>Más caro es tener 5 empleados de brazos cruzados porque no hay sistema, o perder 20 ventas con tarjeta. Podés llamarnos por demanda (incidente) o armar un mantenimiento preventivo a medida de tu pyme.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“¿Trabajan fuera de mi horario de atención?”</h4>
+          <p>Sí. Las actualizaciones pesadas, cableados e instalaciones ruidosas se coordinan para momentos de baja actividad o local cerrado, para no afectar la experiencia de tus clientes.</p>
+        </div>
+        <div class="obj-card">
+          <h4>“¿Por qué elegirlos a ustedes?”</h4>
+          <p>Por Juan Pablo Alza. +11 años manejando la red del Autódromo de BA en plenas carreras, y de Grupo Supervielle. Si resolvimos la red para 10.000 personas sin caída, podemos hacer blindado tu negocio.</p>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <p>© 2026 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a> | Defensa del Consumidor (Ley 24.240)</p>
+  </section>
+
+  <!-- FOOTER UNIFICADO -->
+  <footer>
+    <div class="container">
+      <div class="footer-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Soporte Cyclops</h3>
+          <p style="font-size:0.85rem; line-height:1.6;">Infraestructura IT, Seguridad Electrónica y Sistemas de Captación Web para CABA y GBA. +11 años de experiencia corporativa.</p>
+        </div>
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Sectores</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="servicios-hogares.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Hogares</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-pymes.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Pymes y Comercios</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-profesionales.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Estudios Profesionales</a></li>
+            <li style="margin-bottom:8px;"><a href="servicios-obras.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Arquitectos y Obras</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3 style="color:white; margin-bottom:16px;">Contacto</h3>
+          <ul style="list-style:none;">
+            <li style="margin-bottom:8px;"><a href="tel:+5491166804450" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">📞 +54 9 11 6680-4450</a></li>
+            <li style="margin-bottom:8px;"><a href="mailto:contacto@soportecyclops.com.ar" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">✉️ contacto@soportecyclops.com.ar</a></li>
+            <li style="margin-bottom:8px;"><a href="https://wa.me/5491166804450" target="_blank" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">💬 WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom" style="text-align:center; padding-top:24px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+        <p>© 2026 Soporte Cyclops | CABA y Gran Buenos Aires | Ley 24.240 Defensa del Consumidor</p>
+      </div>
     </div>
-  </div>
-</footer>
-<script>
-  var navbar = document.getElementById('navbar');
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
-  menuToggle.addEventListener('click', function(){
-    navMenu.classList.toggle('open');
-    menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-  });
-  function switchTab(id, btn) {
-    document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
-    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
-    document.getElementById('tc-' + id).classList.add('active');
-    btn.classList.add('active');
-    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
-  }
-</script>
-<script>
-(async function(){
-  try{
-    var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
-    var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
-    var d=await r.json();
-    if(d.venta>0){
-      document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
-        var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
-        el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
-      });
+  </footer>
+
+  <script>
+    var navbar = document.getElementById('navbar');
+    var menuToggle = document.getElementById('menuToggle');
+    var navMenu = document.getElementById('navMenu');
+    window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
+    menuToggle.addEventListener('click', function(){
+      navMenu.classList.toggle('open');
+      menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+      document.getElementById('tc-' + id).classList.add('active');
+      btn.classList.add('active');
+      btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
     }
-  }catch(e){}
-})();
-</script>
+  </script>
+  <script>
+  (async function(){
+    try{
+      var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
+      var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
+      var d=await r.json();
+      if(d.venta>0){
+        document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
+          var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
+          el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
+        });
+      }
+    }catch(e){}
+  })();
+  </script>
 </body>
 </html>
-
-
-
