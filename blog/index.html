@@ -1,21 +1,46 @@
-﻿<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog tÃ©cnico | Soporte Cyclops â€” GuÃ­as IT para pymes y hogares</title>
+  <title>Blog técnico | Soporte Cyclops — Guías IT para pymes y hogares</title>
   <link rel="icon" href="../public/images/logo-icon.png" type="image/png">
-  <meta name="description" content="ArtÃ­culos tÃ©cnicos prÃ¡cticos sobre redes WiFi, seguridad informÃ¡tica, hardware, mantenimiento de PC y CCTV. Sin tecnicismos innecesarios.">
-  <meta property="og:title" content="Blog tÃ©cnico â€” Soporte Cyclops"><meta property="og:type" content="website">
+  <meta name="description" content="Artículos técnicos prácticos sobre redes WiFi, seguridad informática, hardware, mantenimiento de PC y CCTV. Sin tecnicismos innecesarios.">
+  <meta property="og:title" content="Blog técnico — Soporte Cyclops"><meta property="og:type" content="website">
   <meta property="og:url" content="https://www.soportecyclops.com.ar/blog/">
   <link rel="canonical" href="https://www.soportecyclops.com.ar/blog/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#f8fafc;line-height:1.7}a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
-.top-bar{background:#1a3a5c;padding:14px 0}.top-bar .inner{max-width:1000px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.top-bar .brand{color:white;font-weight:700;font-size:0.9rem;display:flex;align-items:center;gap:8px;text-decoration:none}
-.top-bar .cta{background:rgba(255,255,255,0.12);color:white;padding:8px 16px;border-radius:20px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:background 0.2s}.top-bar .cta:hover{background:rgba(255,255,255,0.2)}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
+body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#f8fafc;line-height:1.7}
+a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
+
+/* MENU UNIFICADO */
+.container{max-width:1140px;margin:0 auto;padding:0 24px}
+.navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
+.navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+.nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo img{border-radius:6px}
+.logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
+.logo-text strong{color:var(--blue)}
+.nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+.nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
+.nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
+.nav-cta:hover{background:#1d4ed8;text-decoration:none}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
+@media(max-width:900px){
+  .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
+  .nav-menu.open{display:flex}
+  .nav-menu li{width:100%}
+  .nav-link{display:block;padding:12px 16px}
+  .menu-toggle{display:block}
+  .nav-cta{text-align:center;margin-top:8px}
+}
+
 .hero{background:linear-gradient(135deg,#0f2444 0%,#1a3a5c 100%);color:white;padding:56px 0 44px}.hero .inner{max-width:1000px;margin:0 auto;padding:0 24px}
 .hero-tag{display:inline-block;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.8);padding:4px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px}
 .hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;margin-bottom:12px;letter-spacing:-0.02em}
@@ -50,16 +75,29 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.85);text-align:center;padding
   </style>
 </head>
 <body>
-  <div class="top-bar"><div class="inner">
-    <a href="../index.html" class="brand"><img src="../public/images/logo-icon.png" alt="Cyclops" width="28" height="29" style="border-radius:4px;"> Soporte Cyclops</a>
-    <span style="display:flex;gap:8px;align-items:center"><a href="../herramientas/" style="color:rgba(255,255,255,.9);font-size:.82rem;font-weight:600;text-decoration:none">Herramientas</a>
-    <a href="https://wa.me/5491166804450" target="_blank" class="cta"><i class="fab fa-whatsapp"></i> Consulta tÃ©cnica</a></span>
-  </div></div>
+  
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="logo">
+        <img src="../public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="../index.html" class="nav-link">Inicio</a></li>
+        <li><a href="../nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="../opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="index.html" class="nav-link active">Blog</a></li>
+        <li><a href="../login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
+        <li><a href="../index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
 
   <div class="hero"><div class="inner">
     <span class="hero-tag">Recursos gratuitos</span>
-    <h1>ArtÃ­culos tÃ©cnicos</h1>
-    <p>GuÃ­as prÃ¡cticas sobre redes, hardware, seguridad informÃ¡tica y mÃ¡s. Sin tecnicismos innecesarios.</p>
+    <h1>Artículos técnicos</h1>
+    <p>Guías prácticas sobre redes, hardware, seguridad informática y más. Sin tecnicismos innecesarios.</p>
   </div></div>
 
   <div class="main">
@@ -76,845 +114,845 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.85);text-align:center;padding
     <div class="articles-grid" id="grid">
 
       <a href="tu-pc-con-windows-10-ya-no-recibe-actualizaciones-que-hacer-ahora.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Tu PC con Windows 10 ya no recibe actualizaciones: quÃ© hacer ahora</h3>
-          <p>Windows 10 dejÃ³ de recibir parches de seguridad. QuÃ© riesgo real corrÃ©s y las 3 opciones que tenÃ©s segÃºn tu equipo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Tu PC con Windows 10 ya no recibe actualizaciones: qué hacer ahora</h3>
+          <p>Windows 10 dejó de recibir parches de seguridad. Qué riesgo real corrés y las 3 opciones que tenés según tu equipo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="diagnostico-guiado.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>CÃ³mo funciona nuestro diagnÃ³stico guiado (y por quÃ© no hace falta traer el equipo)</h3>
-          <p>QuÃ© te dice el resultado, quÃ© no puede hacer y quÃ© pasa despuÃ©s.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cómo funciona nuestro diagnóstico guiado (y por qué no hace falta traer el equipo)</h3>
+          <p>Qué te dice el resultado, qué no puede hacer y qué pasa después.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="teletrabajo-seguro-pymes.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
           <h3>Teletrabajo seguro en pymes: los 5 pilares que no pueden faltar</h3>
-          <p>El acceso remoto mal configurado es la entrada favorita del ransomware. CÃ³mo cerrarlo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>El acceso remoto mal configurado es la entrada favorita del ransomware. Cómo cerrarlo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="abono-mantenimiento-pyme.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>Mantenimiento preventivo en pymes: la cuenta que casi nadie hace</h3>
-          <p>QuÃ© cambia con un esquema preventivo, quÃ© deberÃ­a incluir y quÃ© preguntar antes de contratar.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Qué cambia con un esquema preventivo, qué debería incluir y qué preguntar antes de contratar.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="domotica-por-donde-empezar.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>DomÃ³tica: por dÃ³nde empezar sin gastar de mÃ¡s</h3>
-          <p>Los 5 puntos de entrada, quÃ© protocolo elegir y el error que se paga a largo plazo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Domótica: por dónde empezar sin gastar de más</h3>
+          <p>Los 5 puntos de entrada, qué protocolo elegir y el error que se paga a largo plazo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="reparar-o-cambiar-equipo.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Â¿Le meto plata o compro nueva? La regla del 50%</h3>
-          <p>Las seÃ±ales que indican invertir, las que indican reemplazar y la cuenta completa.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>¿Le meto plata o compro nueva? La regla del 50%</h3>
+          <p>Las señales que indican invertir, las que indican reemplazar y la cuenta completa.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="nube-vs-nas-vs-servidor.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Nube, NAS o servidor: dÃ³nde guardar los archivos de tu empresa</h3>
-          <p>ComparaciÃ³n honesta de las 3 opciones y cÃ³mo decidir segÃºn gente, volumen y conexiÃ³n.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Nube, NAS o servidor: dónde guardar los archivos de tu empresa</h3>
+          <p>Comparación honesta de las 3 opciones y cómo decidir según gente, volumen y conexión.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="mantenimiento-servidor.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Mantenimiento de servidores: la rutina que evita el dÃ­a malo</h3>
-          <p>QuÃ© revisar cada semana, mes y trimestre, y por quÃ© RAID no es backup.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Mantenimiento de servidores: la rutina que evita el día malo</h3>
+          <p>Qué revisar cada semana, mes y trimestre, y por qué RAID no es backup.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="instalacion-electrica-equipos.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Tus equipos fallan y quizÃ¡s el problema sea la instalaciÃ³n elÃ©ctrica</h3>
-          <p>Las seÃ±ales de alerta, quÃ© hace cada protecciÃ³n y las recomendaciones para el sector de equipos.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Tus equipos fallan y quizás el problema sea la instalación eléctrica</h3>
+          <p>Las señales de alerta, qué hace cada protección y las recomendaciones para el sector de equipos.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="tecnologia-adultos-mayores.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>EnseÃ±ar tecnologÃ­a a un adulto mayor: lo que realmente funciona</h3>
-          <p>Los ajustes que hacen enorme diferencia y cÃ³mo acompaÃ±ar sin frustrar a nadie.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Enseñar tecnología a un adulto mayor: lo que realmente funciona</h3>
+          <p>Los ajustes que hacen enorme diferencia y cómo acompañar sin frustrar a nadie.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="borrar-datos-antes-de-vender.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>Vas a vender tu PC: formatear no borra tus datos</h3>
-          <p>QuÃ© se puede recuperar de un disco formateado y cÃ³mo borrar de verdad segÃºn el tipo de disco.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Qué se puede recuperar de un disco formateado y cómo borrar de verdad según el tipo de disco.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="redes-sociales-empresa.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Las redes de tu empresa: cÃ³mo no perder la cuenta que construiste</h3>
+          <h3>Las redes de tu empresa: cómo no perder la cuenta que construiste</h3>
           <p>Cuentas a nombre de la empresa, accesos por rol y el procedimiento de baja que evita problemas.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="correo-con-dominio-propio.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Correo con tu propio dominio: por quÃ© conviene y cÃ³mo configurarlo bien</h3>
+          <h3>Correo con tu propio dominio: por qué conviene y cómo configurarlo bien</h3>
           <p>Las opciones, y los 3 registros que casi nadie configura y hacen que no caigas en spam.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="mudanza-oficina-checklist.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
           <h3>Mudar la oficina sin que el lunes no funcione nada</h3>
-          <p>QuÃ© hacer un mes antes, dos semanas antes, el dÃ­a de la mudanza y al llegar.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Qué hacer un mes antes, dos semanas antes, el día de la mudanza y al llegar.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="notebook-no-carga.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>La notebook no carga: diagnÃ³stico por sÃ­ntoma</h3>
-          <p>Cada sÃ­ntoma apunta a una causa distinta. La prueba de descarte que lo ordena sin abrir nada.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>La notebook no carga: diagnóstico por síntoma</h3>
+          <p>Cada síntoma apunta a una causa distinta. La prueba de descarte que lo ordena sin abrir nada.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="punto-de-venta-comercio.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Punto de venta para comercios: quÃ© necesitÃ¡s de verdad</h3>
-          <p>Los 4 componentes, instalado o en la nube, y los 3 errores mÃ¡s caros.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Punto de venta para comercios: qué necesitás de verdad</h3>
+          <p>Los 4 componentes, instalado o en la nube, y los 3 errores más caros.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="reciclar-pc-vieja.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>QuÃ© hacer con una PC vieja: 5 formas de darle otra vida</h3>
-          <p>Revivirla con SSD y Linux, servidor casero, donaciÃ³n o descarte responsable.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Qué hacer con una PC vieja: 5 formas de darle otra vida</h3>
+          <p>Revivirla con SSD y Linux, servidor casero, donación o descarte responsable.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="antes-de-instalar-camaras.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Las 7 preguntas que hay que responder antes de pedir presupuesto de cÃ¡maras</h3>
-          <p>No son tÃ©cnicas: son decisiones. Y quÃ© deberÃ­a incluir un presupuesto serio.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Las 7 preguntas que hay que responder antes de pedir presupuesto de cámaras</h3>
+          <p>No son técnicas: son decisiones. Y qué debería incluir un presupuesto serio.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="red-oficina-pyme.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>CÃ³mo armar la red de una oficina chica sin que sea un parche</h3>
-          <p>Las 4 capas de una red que funciona, los errores mÃ¡s comunes y el detalle que ahorra horas.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cómo armar la red de una oficina chica sin que sea un parche</h3>
+          <p>Las 4 capas de una red que funciona, los errores más comunes y el detalle que ahorra horas.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="camaras-privacidad.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>CÃ¡maras y privacidad: cÃ³mo evitar conflictos con vecinos y empleados</h3>
-          <p>Las 3 situaciones que generan reclamos y las buenas prÃ¡cticas que los previenen.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cámaras y privacidad: cómo evitar conflictos con vecinos y empleados</h3>
+          <p>Las 3 situaciones que generan reclamos y las buenas prácticas que los previenen.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="como-elegir-alarma.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Alarmas para casa y comercio: cÃ³mo elegir sin errar</h3>
-          <p>Cableada o inalÃ¡mbrica, con o sin monitoreo, y los detalles que definen si funciona.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Alarmas para casa y comercio: cómo elegir sin errar</h3>
+          <p>Cableada o inalámbrica, con o sin monitoreo, y los detalles que definen si funciona.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="videoportero-como-elegir.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Videoportero: ver quiÃ©n toca el timbre estÃ©s donde estÃ©s</h3>
-          <p>Las tres generaciones, quÃ© mirar al elegir y si se puede aprovechar el cableado existente.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Videoportero: ver quién toca el timbre estés donde estés</h3>
+          <p>Las tres generaciones, qué mirar al elegir y si se puede aprovechar el cableado existente.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="impresora-no-imprime.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>La impresora no imprime: diagnÃ³stico ordenado antes de llamar al tÃ©cnico</h3>
-          <p>Los 4 motivos por los que desaparece de Windows y la tabla de fallas de impresiÃ³n.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>La impresora no imprime: diagnóstico ordenado antes de llamar al técnico</h3>
+          <p>Los 4 motivos por los que desaparece de Windows y la tabla de fallas de impresión.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="cableado-estructurado.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
           <h3>Cableado de red: los errores que generan fallas imposibles de diagnosticar</h3>
-          <p>QuÃ© categorÃ­a corresponde, los 5 errores tÃ­picos y por quÃ© el cable barato sale caro.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Qué categoría corresponde, los 5 errores típicos y por qué el cable barato sale caro.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="camaras-acceso-remoto-seguro.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Ver tus cÃ¡maras desde el celular sin exponerlas a internet</h3>
-          <p>Por quÃ© abrir puertos es peligroso, las 5 medidas imprescindibles y las seÃ±ales de intrusiÃ³n.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Ver tus cámaras desde el celular sin exponerlas a internet</h3>
+          <p>Por qué abrir puertos es peligroso, las 5 medidas imprescindibles y las señales de intrusión.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="computadora-para-estudiar.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>QuÃ© computadora comprar para estudiar, segÃºn la etapa</h3>
-          <p>Tablet o notebook, quÃ© importa de verdad y el error mÃ¡s comÃºn al comprar.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Qué computadora comprar para estudiar, según la etapa</h3>
+          <p>Tablet o notebook, qué importa de verdad y el error más común al comprar.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="contrasenas-seguras-gestor.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>ContraseÃ±as: por quÃ© repetirlas es el mayor riesgo (y cÃ³mo dejar de hacerlo)</h3>
-          <p>Las 3 reglas que importan, por quÃ© tu correo es la llave maestra y el plan de 30 minutos.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Contraseñas: por qué repetirlas es el mayor riesgo (y cómo dejar de hacerlo)</h3>
+          <p>Las 3 reglas que importan, por qué tu correo es la llave maestra y el plan de 30 minutos.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="elegir-pc-escritorio.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>PC de escritorio: quÃ© componentes importan y en cuÃ¡les no ahorrar</h3>
-          <p>Escritorio o notebook, los 5 componentes en orden de importancia y las trampas de los equipos econÃ³micos.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>PC de escritorio: qué componentes importan y en cuáles no ahorrar</h3>
+          <p>Escritorio o notebook, los 5 componentes en orden de importancia y las trampas de los equipos económicos.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="como-elegir-impresora.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>CÃ³mo elegir impresora: el precio del equipo importa poco</h3>
-          <p>LÃ¡ser, tinta o tinta continua segÃºn tu caso, y la cuenta del costo por pÃ¡gina.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cómo elegir impresora: el precio del equipo importa poco</h3>
+          <p>Láser, tinta o tinta continua según tu caso, y la cuenta del costo por página.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="elegir-nas-hogar.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>NAS en casa: tu propia nube sin abono mensual</h3>
-          <p>Para quÃ© sirve, quÃ© mirar al elegir y por quÃ© el espejo de discos no es un backup.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Para qué sirve, qué mirar al elegir y por qué el espejo de discos no es un backup.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="notebook-mojada-que-hacer.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Se te mojÃ³ la notebook: los primeros 10 minutos definen todo</h3>
-          <p>QuÃ© hacer, quÃ© NO hacer, y por quÃ© el arroz no sirve. GuÃ­a de emergencia.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Se te mojó la notebook: los primeros 10 minutos definen todo</h3>
+          <p>Qué hacer, qué NO hacer, y por qué el arroz no sirve. Guía de emergencia.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="comprar-tecnologia-usada.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Comprar tecnologÃ­a usada sin que te estafen</h3>
-          <p>El checklist de 6 puntos al revisar el equipo y quÃ© conviene comprar usado y quÃ© no.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Comprar tecnología usada sin que te estafen</h3>
+          <p>El checklist de 6 puntos al revisar el equipo y qué conviene comprar usado y qué no.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="como-elegir-notebook.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>CÃ³mo elegir una notebook: primero el uso, despuÃ©s las caracterÃ­sticas</h3>
-          <p>La tabla por perfil de uso, lo que hay que mirar sÃ­ o sÃ­ y las trampas mÃ¡s comunes.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cómo elegir una notebook: primero el uso, después las características</h3>
+          <p>La tabla por perfil de uso, lo que hay que mirar sí o sí y las trampas más comunes.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="cambiar-proveedor-internet.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Â¿Conviene cambiar de proveedor de internet? CÃ³mo saberlo</h3>
-          <p>La mediciÃ³n que define si el problema es el servicio o tu instalaciÃ³n, y quÃ© comparar de verdad.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>¿Conviene cambiar de proveedor de internet? Cómo saberlo</h3>
+          <p>La medición que define si el problema es el servicio o tu instalación, y qué comparar de verdad.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="windows-10-sin-soporte.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Tu PC con Windows 10 ya no recibe actualizaciones: quÃ© hacer ahora</h3>
-          <p>QuÃ© riesgo real corrÃ©s y las 3 opciones que tenÃ©s segÃºn tu equipo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Tu PC con Windows 10 ya no recibe actualizaciones: qué hacer ahora</h3>
+          <p>Qué riesgo real corrés y las 3 opciones que tenés según tu equipo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="oficina-sin-papel.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Digitalizar la oficina: por dÃ³nde empezar sin abandonar a la semana</h3>
-          <p>La estructura antes de escanear, dÃ³nde guardarlo y quÃ© papel conviene conservar igual.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Digitalizar la oficina: por dónde empezar sin abandonar a la semana</h3>
+          <p>La estructura antes de escanear, dónde guardarlo y qué papel conviene conservar igual.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="me-hackearon-el-correo.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Me hackearon el correo: quÃ© hacer, paso a paso</h3>
-          <p>Los primeros 15 minutos, y el paso que casi nadie hace: revisar lo que dejÃ³ configurado.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Me hackearon el correo: qué hacer, paso a paso</h3>
+          <p>Los primeros 15 minutos, y el paso que casi nadie hace: revisar lo que dejó configurado.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="gestion-usuarios-empresa.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Todos entran con el mismo usuario: por quÃ© es un problema</h3>
-          <p>Los 4 pilares, el checklist de baja y por quÃ© deshabilitar en vez de borrar.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Todos entran con el mismo usuario: por qué es un problema</h3>
+          <p>Los 4 pilares, el checklist de baja y por qué deshabilitar en vez de borrar.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="cuantas-camaras-necesito.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Â¿CuÃ¡ntas cÃ¡maras necesito y dÃ³nde las pongo?</h3>
-          <p>La cantidad importa menos que la ubicaciÃ³n. La regla de los tres anillos y los errores que se repiten.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>¿Cuántas cámaras necesito y dónde las pongo?</h3>
+          <p>La cantidad importa menos que la ubicación. La regla de los tres anillos y los errores que se repiten.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="control-de-acceso.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Control de acceso: adiÃ³s a las llaves que nadie sabe quiÃ©n tiene</h3>
-          <p>Las 5 tecnologÃ­as, lo que se pasa por alto y el punto de seguridad que no es negociable.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Control de acceso: adiós a las llaves que nadie sabe quién tiene</h3>
+          <p>Las 5 tecnologías, lo que se pasa por alto y el punto de seguridad que no es negociable.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="migrar-a-pc-nueva.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>CÃ³mo pasar todo a una PC nueva sin perder nada</h3>
-          <p>El inventario previo que nadie hace, los 3 mÃ©todos de migraciÃ³n y el orden de trabajo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cómo pasar todo a una PC nueva sin perder nada</h3>
+          <p>El inventario previo que nadie hace, los 3 métodos de migración y el orden de trabajo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="que-es-una-vpn.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>VPN: quÃ© hace realmente y cuÃ¡ndo la necesitÃ¡s</h3>
-          <p>La diferencia entre VPN corporativa y comercial, y quÃ© promesas del marketing son falsas.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>VPN: qué hace realmente y cuándo la necesitás</h3>
+          <p>La diferencia entre VPN corporativa y comercial, y qué promesas del marketing son falsas.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="backup-pymes.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Backup para pymes: quÃ© respaldar, cada cuÃ¡nto y los errores clÃ¡sicos</h3>
-          <p>La regla 3-2-1 explicada, quÃ© respaldar segÃºn prioridad y la prueba que casi nadie hace.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Backup para pymes: qué respaldar, cada cuánto y los errores clásicos</h3>
+          <p>La regla 3-2-1 explicada, qué respaldar según prioridad y la prueba que casi nadie hace.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="fotos-celular-respaldo.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Tus fotos estÃ¡n en un solo celular: el esquema de respaldo que funciona</h3>
-          <p>Por quÃ© sincronizar no es respaldar, las 3 capas y el momento crÃ­tico del cambio de equipo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Tus fotos están en un solo celular: el esquema de respaldo que funciona</h3>
+          <p>Por qué sincronizar no es respaldar, las 3 capas y el momento crítico del cambio de equipo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="camara-graba-mal-de-noche.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Mis cÃ¡maras no se ven de noche: las 5 causas reales</h3>
-          <p>Casi nunca se resuelve comprando cÃ¡maras mÃ¡s caras. QuÃ© revisar hoy mismo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Mis cámaras no se ven de noche: las 5 causas reales</h3>
+          <p>Casi nunca se resuelve comprando cámaras más caras. Qué revisar hoy mismo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="recuperar-cuenta-google.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>PerdÃ­ el acceso a mi cuenta: cÃ³mo recuperarla y cÃ³mo prevenirlo</h3>
-          <p>Los 3 respaldos que hay que tener hoy y quÃ© hacer si ya perdiste el acceso.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Perdí el acceso a mi cuenta: cómo recuperarla y cómo prevenirlo</h3>
+          <p>Los 3 respaldos que hay que tener hoy y qué hacer si ya perdiste el acceso.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="estafas-whatsapp-mail.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 7 min</span></div>
-          <h3>Estafas por WhatsApp y mail: cÃ³mo detectarlas antes de caer</h3>
-          <p>Las 5 modalidades mÃ¡s usadas hoy, las seÃ±ales de alerta y las 4 defensas que sirven de verdad.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Estafas por WhatsApp y mail: cómo detectarlas antes de caer</h3>
+          <p>Las 5 modalidades más usadas hoy, las señales de alerta y las 4 defensas que sirven de verdad.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="compras-online-seguras.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Comprar online sin caer: cÃ³mo verificar un sitio antes de pagar</h3>
+          <h3>Comprar online sin caer: cómo verificar un sitio antes de pagar</h3>
           <p>El candado ya no garantiza nada. Los 5 chequeos y la tabla de medios de pago por seguridad.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="videollamadas-se-cortan.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>Las videollamadas se me cortan y el test de velocidad da bien</h3>
-          <p>Por quÃ© la velocidad importa menos que la estabilidad, y el orden para diagnosticar.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Por qué la velocidad importa menos que la estabilidad, y el orden para diagnosticar.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="mails-que-no-llegan.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Mis mails llegan a spam o no llegan: por quÃ© pasa</h3>
-          <p>Los 3 registros que definen todo, otras causas frecuentes y cÃ³mo diagnosticarlo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Mis mails llegan a spam o no llegan: por qué pasa</h3>
+          <p>Los 3 registros que definen todo, otras causas frecuentes y cómo diagnosticarlo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="camaras-seguridad-guia.html" class="article-card" data-cat="cctv">
-        <div class="card-img cctv"><span class="card-emoji">ðŸ“·</span></div>
+        <div class="card-img cctv"><span class="card-emoji">📷</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag cctv">CCTV</span><span class="c-time"><i class="fas fa-clock"></i> 7 min</span></div>
-          <h3>CÃ¡maras de seguridad para el hogar y la empresa: guÃ­a completa antes de comprar</h3>
-          <p>IP vs analÃ³gica, resoluciÃ³n, almacenamiento, acceso remoto. Todo lo necesario para elegir bien.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cámaras de seguridad para el hogar y la empresa: guía completa antes de comprar</h3>
+          <p>IP vs analógica, resolución, almacenamiento, acceso remoto. Todo lo necesario para elegir bien.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="conexion-zonas-sin-fibra.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>Internet donde no llega la fibra: las alternativas reales</h3>
-          <p>4G, WISP local, satelital y doble enlace. ComparaciÃ³n honesta y por quÃ© la latencia importa mÃ¡s.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>4G, WISP local, satelital y doble enlace. Comparación honesta y por qué la latencia importa más.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="monitor-puesto-trabajo.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Monitor y puesto de trabajo: por quÃ© te duele el cuello al final del dÃ­a</h3>
-          <p>QuÃ© mirar al elegir monitor y las 4 medidas de una postura correcta.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Monitor y puesto de trabajo: por qué te duele el cuello al final del día</h3>
+          <p>Qué mirar al elegir monitor y las 4 medidas de una postura correcta.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="mantenimiento-notebook.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>Cuidados de una notebook: lo que la desgasta sin que te des cuenta</h3>
-          <p>Los 5 hÃ¡bitos que la arruinan, cÃ³mo cuidar la baterÃ­a y la rutina de mantenimiento.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Los 5 hábitos que la arruinan, cómo cuidar la batería y la rutina de mantenimiento.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="wifi-lento-ciertas-horas.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Mi WiFi anda lento solo a ciertas horas: por quÃ© pasa</h3>
-          <p>Las 5 razones por las que la red empeora de noche y cuÃ¡les se resuelven gratis.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Mi WiFi anda lento solo a ciertas horas: por qué pasa</h3>
+          <p>Las 5 razones por las que la red empeora de noche y cuáles se resuelven gratis.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="control-parental.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Control parental: las capas tÃ©cnicas y los acuerdos que realmente funcionan</h3>
-          <p>QuÃ© configurar segÃºn la edad, lo que ningÃºn filtro cubre y las reglas que sostienen todo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Control parental: las capas técnicas y los acuerdos que realmente funcionan</h3>
+          <p>Qué configurar según la edad, lo que ningún filtro cubre y las reglas que sostienen todo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="antivirus-pago-o-gratis.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Â¿Hace falta pagar un antivirus? Respuesta honesta</h3>
-          <p>CuÃ¡ndo alcanza el que viene con Windows y cuÃ¡ndo se justifica pagar uno.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>¿Hace falta pagar un antivirus? Respuesta honesta</h3>
+          <p>Cuándo alcanza el que viene con Windows y cuándo se justifica pagar uno.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="doble-monitor.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Sumar una segunda pantalla: la mejora que mÃ¡s rinde en una oficina</h3>
-          <p>DÃ³nde mÃ¡s se nota, cÃ³mo conectarla y configurarla, y cuÃ¡ndo no conviene.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Sumar una segunda pantalla: la mejora que más rinde en una oficina</h3>
+          <p>Dónde más se nota, cómo conectarla y configurarla, y cuándo no conviene.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="ups-proteccion-energia.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>UPS y protecciÃ³n de energÃ­a: por quÃ© un corte de luz puede destruir tus equipos</h3>
-          <p>QuÃ© es un UPS, cÃ³mo elegirlo y cuÃ¡ndo es imprescindible para una pyme.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>UPS y protección de energía: por qué un corte de luz puede destruir tus equipos</h3>
+          <p>Qué es un UPS, cómo elegirlo y cuándo es imprescindible para una pyme.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="que-hacer-corte-de-luz.html" class="article-card" data-cat="ups">
-        <div class="card-img ups"><span class="card-emoji">ðŸ”‹</span></div>
+        <div class="card-img ups"><span class="card-emoji">🔋</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag ups">Infraestructura</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Corte de luz: quÃ© hacer antes, durante y cuando vuelve</h3>
-          <p>El momento peligroso no es el corte: es el regreso. Y quÃ© revisar despuÃ©s de cada uno.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Corte de luz: qué hacer antes, durante y cuando vuelve</h3>
+          <p>El momento peligroso no es el corte: es el regreso. Y qué revisar después de cada uno.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="internet-se-corta.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Internet se corta a cada rato: cÃ³mo encontrar la causa</h3>
-          <p>Las 5 causas reales de los cortes intermitentes y cÃ³mo documentarlos para el reclamo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Internet se corta a cada rato: cómo encontrar la causa</h3>
+          <p>Las 5 causas reales de los cortes intermitentes y cómo documentarlos para el reclamo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="programas-imprescindibles.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Los programas gratuitos que sÃ­ conviene instalar (y los que no)</h3>
-          <p>La lista que instalamos en cualquier equipo, y cÃ³mo instalar sin llenarte de basura.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Los programas gratuitos que sí conviene instalar (y los que no)</h3>
+          <p>La lista que instalamos en cualquier equipo, y cómo instalar sin llenarte de basura.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="como-elegir-router.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>CÃ³mo elegir un router para tu casa u oficina sin pagar de mÃ¡s</h3>
-          <p>QuÃ© mirar de verdad al comprar, quÃ© nÃºmeros de la caja son marketing, y cuÃ¡ndo no hace falta cambiarlo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Cómo elegir un router para tu casa u oficina sin pagar de más</h3>
+          <p>Qué mirar de verdad al comprar, qué números de la caja son marketing, y cuándo no hace falta cambiarlo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="windows-no-arranca.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Windows no arranca: quÃ© probar antes de reinstalar</h3>
-          <p>DiagnÃ³stico por sÃ­ntoma, los 5 pasos en orden y cÃ³mo rescatar los archivos primero.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Windows no arranca: qué probar antes de reinstalar</h3>
+          <p>Diagnóstico por síntoma, los 5 pasos en orden y cómo rescatar los archivos primero.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="pantalla-azul-errores.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Pantalla azul en Windows: quÃ© significa cada error</h3>
-          <p>La tabla de cÃ³digos mÃ¡s frecuentes y el diagnÃ³stico segÃºn cuÃ¡ndo aparece.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Pantalla azul en Windows: qué significa cada error</h3>
+          <p>La tabla de códigos más frecuentes y el diagnóstico según cuándo aparece.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="nombres-archivos-carpetas.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 4 min</span></div>
-          <h3>&quot;Presupuesto final BUENO.docx&quot;: cÃ³mo ordenar archivos de una vez</h3>
-          <p>La convenciÃ³n de nombres que funciona y la estructura de carpetas que la gente sÃ­ respeta.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>"Presupuesto final BUENO.docx": cómo ordenar archivos de una vez</h3>
+          <p>La convención de nombres que funciona y la estructura de carpetas que la gente sí respeta.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="ransomware-que-hacer.html" class="article-card" data-cat="seguridad">
-        <div class="card-img seguridad"><span class="card-emoji">ðŸ”’</span></div>
+        <div class="card-img seguridad"><span class="card-emoji">🔒</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag seguridad">Seguridad</span><span class="c-time"><i class="fas fa-clock"></i> 8 min</span></div>
-          <h3>Â¿QuÃ© hacer si un ransomware bloqueÃ³ tu empresa? GuÃ­a de respuesta</h3>
-          <p>Los primeros 30 minutos son crÃ­ticos. QuÃ© hacer, en quÃ© orden, y quÃ© nunca hacer.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>¿Qué hacer si un ransomware bloqueó tu empresa? Guía de respuesta</h3>
+          <p>Los primeros 30 minutos son críticos. Qué hacer, en qué orden, y qué nunca hacer.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="teclado-mouse-perifericos.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Teclado y mouse: lo Ãºnico que tocÃ¡s ocho horas por dÃ­a</h3>
-          <p>CÃ³mo elegir segÃºn tu mano, postura correcta y por quÃ© el apoya-muÃ±ecas se usa mal.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Teclado y mouse: lo único que tocás ocho horas por día</h3>
+          <p>Cómo elegir según tu mano, postura correcta y por qué el apoya-muñecas se usa mal.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="wifi-invitados-seguridad.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>La contraseÃ±a de tu WiFi la tiene medio barrio: cÃ³mo ordenar tu red</h3>
+          <h3>La contraseña de tu WiFi la tiene medio barrio: cómo ordenar tu red</h3>
           <p>Red de invitados y el checklist de 5 puntos para asegurar tu router en 10 minutos.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="sonido-no-funciona.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>No hay sonido en la PC: la causa mÃ¡s comÃºn y cÃ³mo resolverla</h3>
-          <p>Dispositivo equivocado, volumen por app, micrÃ³fono en videollamadas y cÃ³mo saber si es hardware.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>No hay sonido en la PC: la causa más común y cómo resolverla</h3>
+          <p>Dispositivo equivocado, volumen por app, micrófono en videollamadas y cómo saber si es hardware.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="pc-lenta-causas.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Mi PC anda lenta: 7 causas reales y quÃ© mirar primero</h3>
-          <p>Las 7 causas que encontramos una y otra vez, y cÃ³mo identificar cuÃ¡l es la tuya sin adivinar.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Mi PC anda lenta: 7 causas reales y qué mirar primero</h3>
+          <p>Las 7 causas que encontramos una y otra vez, y cómo identificar cuál es la tuya sin adivinar.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="celular-lento.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Mi celular anda lento: quÃ© revisar antes de cambiarlo</h3>
-          <p>Las 5 causas reales, el plan de media hora y cuÃ¡ndo sÃ­ conviene cambiarlo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Mi celular anda lento: qué revisar antes de cambiarlo</h3>
+          <p>Las 5 causas reales, el plan de media hora y cuándo sí conviene cambiarlo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="ampliar-memoria-ram.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Ampliar la memoria RAM: cuÃ¡nta necesitÃ¡s y cuÃ¡l comprar</h3>
-          <p>CÃ³mo saber si te falta de verdad y los 3 datos que necesitÃ¡s antes de comprar un mÃ³dulo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Ampliar la memoria RAM: cuánta necesitás y cuál comprar</h3>
+          <p>Cómo saber si te falta de verdad y los 3 datos que necesitás antes de comprar un módulo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="primeros-pasos-pc-nueva.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>Computadora nueva: los 10 pasos antes de empezar a usarla</h3>
-          <p>Una hora bien invertida el primer dÃ­a evita meses de molestias. El paso que nadie hace.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Una hora bien invertida el primer día evita meses de molestias. El paso que nadie hace.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="ssd-vs-hdd-cuando-conviene.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>SSD vs HDD: por quÃ© cambiar el disco revive una PC lenta</h3>
-          <p>La mejora que mÃ¡s se nota por peso invertido. QuÃ© SSD elegir y quÃ© pasa con tu disco viejo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>SSD vs HDD: por qué cambiar el disco revive una PC lenta</h3>
+          <p>La mejora que más se nota por peso invertido. Qué SSD elegir y qué pasa con tu disco viejo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="actualizaciones-windows.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Actualizaciones de Windows: por quÃ© no conviene postergarlas seis meses</h3>
-          <p>Los tres tipos de actualizaciÃ³n, cÃ³mo manejarlas sin que te compliquen y quÃ© hacer si rompen algo.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Actualizaciones de Windows: por qué no conviene postergarlas seis meses</h3>
+          <p>Los tres tipos de actualización, cómo manejarlas sin que te compliquen y qué hacer si rompen algo.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="sobrecalentamiento-limpieza.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>Tu PC se apaga sola o suena a turbina: guÃ­a de sobrecalentamiento</h3>
-          <p>Por quÃ© &quot;anda bien los primeros minutos&quot; es la firma del problema tÃ©rmico, y cada cuÃ¡nto limpiar.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Tu PC se apaga sola o suena a turbina: guía de sobrecalentamiento</h3>
+          <p>Por qué "anda bien los primeros minutos" es la firma del problema térmico, y cada cuánto limpiar.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="atajos-teclado-utiles.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 4 min</span></div>
           <h3>15 atajos de teclado que realmente vas a usar</h3>
-          <p>Los que casi nadie conoce y mÃ¡s tiempo ahorran, incluido el que evita pegar con formato raro.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <p>Los que casi nadie conoce y más tiempo ahorran, incluido el que evita pegar con formato raro.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="senales-disco-por-fallar.html" class="article-card" data-cat="hardware">
-        <div class="card-img hardware"><span class="card-emoji">ðŸ’¾</span></div>
+        <div class="card-img hardware"><span class="card-emoji">💾</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag hardware">Hardware</span><span class="c-time"><i class="fas fa-clock"></i> 7 min</span></div>
-          <h3>6 seÃ±ales de que tu disco duro estÃ¡ por fallar (antes de perder todo)</h3>
-          <p>Tu PC te avisa antes de morir. SabÃ©s interpretarlas a tiempo para hacer el backup.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>6 señales de que tu disco duro está por fallar (antes de perder todo)</h3>
+          <p>Tu PC te avisa antes de morir. Sabés interpretarlas a tiempo para hacer el backup.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="antes-de-llamar-al-tecnico.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>5 cosas para probar antes de llamar al tÃ©cnico</h3>
-          <p>Los chequeos universales que resuelven buena parte de los problemas, y quÃ© informaciÃ³n nos sirve.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>5 cosas para probar antes de llamar al técnico</h3>
+          <p>Los chequeos universales que resuelven buena parte de los problemas, y qué información nos sirve.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="recuperar-archivos-borrados.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
-          <h3>BorrÃ© un archivo importante: quÃ© hacer (y quÃ© no) para recuperarlo</h3>
-          <p>Los datos siguen ahÃ­, pero lo que hagas en los prÃ³ximos minutos decide si se recuperan.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Borré un archivo importante: qué hacer (y qué no) para recuperarlo</h3>
+          <p>Los datos siguen ahí, pero lo que hagas en los próximos minutos decide si se recuperan.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="wifi-no-llega.html" class="article-card" data-cat="redes">
-        <div class="card-img redes"><span class="card-emoji">ðŸ“¶</span></div>
+        <div class="card-img redes"><span class="card-emoji">📶</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag redes">Redes</span><span class="c-time"><i class="fas fa-clock"></i> 7 min</span></div>
-          <h3>Por quÃ© el WiFi no llega a todos los ambientes (y cÃ³mo solucionarlo)</h3>
-          <p>Las 5 causas mÃ¡s comunes de mala cobertura WiFi y quÃ© hacer en cada caso sin gastar de mÃ¡s.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Por qué el WiFi no llega a todos los ambientes (y cómo solucionarlo)</h3>
+          <p>Las 5 causas más comunes de mala cobertura WiFi y qué hacer en cada caso sin gastar de más.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
       <a href="mantenimiento-preventivo-pc.html" class="article-card" data-cat="mantenimiento">
-        <div class="card-img mantenimiento"><span class="card-emoji">ðŸ”§</span></div>
+        <div class="card-img mantenimiento"><span class="card-emoji">🔧</span></div>
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 6 min</span></div>
-          <h3>Mantenimiento preventivo de PC: quÃ© hacer cada cuÃ¡nto para que dure mÃ¡s</h3>
-          <p>Checklist completo semanal, mensual y anual. EvitÃ¡ el 80% de las fallas.</p>
-          <span class="card-read-more">Leer artÃ­culo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
+          <h3>Mantenimiento preventivo de PC: qué hacer cada cuánto para que dure más</h3>
+          <p>Checklist completo semanal, mensual y anual. Evitá el 80% de las fallas.</p>
+          <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
 
     </div>
 
     <div class="cta-strip">
-      <div><h3>Â¿Un problema que no da para leer artÃ­culos?</h3>
-      <p>Contanos quÃ© pasa y te decimos si tiene arreglo, cuÃ¡nto sale y cuÃ¡ndo podemos ir.</p></div>
-      <a href="https://wa.me/5491166804450?text=Hola!%20Tengo%20un%20problema%20t%C3%A9cnico" target="_blank" class="cta-strip-btn"><i class="fab fa-whatsapp"></i> Consultar ahora</a>
+      <div><h3>¿Un problema que no da para leer artículos?</h3>
+      <p>Contanos qué pasa y te decimos si tiene arreglo, cuánto sale y cuándo podemos ir.</p></div>
+      <a href="https://wa.me/5491166804450?text=Hola!%20Tengo%20un%20problema%20técnico" target="_blank" class="cta-strip-btn"><i class="fab fa-whatsapp"></i> Consultar ahora</a>
     </div>
   </div>
 
-  <footer><p><a href="../index.html">soportecyclops.com.ar</a> Â· TÃ©cnico IT a domicilio en CABA y GBA Â· <a href="https://wa.me/5491166804450">+54 9 11 6680-4450</a></p></footer>
+  <footer><p><a href="../index.html" style="color:white;text-decoration:none;">soportecyclops.com.ar</a> · Técnico IT a domicilio en CABA y GBA · <a href="https://wa.me/5491166804450" style="color:white;text-decoration:none;">+54 9 11 6680-4450</a></p></footer>
 
   <script>
   document.querySelectorAll(".filter-btn").forEach(function(btn){
@@ -927,8 +965,20 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.85);text-align:center;padding
       });
     });
   });
+
+  // Scripts para el Menú
+  var navbar = document.getElementById('navbar');
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (navbar) {
+    window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 20); });
+  }
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      navMenu.classList.toggle('open');
+      menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+  }
   </script>
 </body>
 </html>
-
-
