@@ -1,5 +1,5 @@
-﻿<!DOCTYPE html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="es-AR">
 
 <head>
     <meta charset="UTF-8">
@@ -25,6 +25,7 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://www.soportecyclops.com.ar/">
     <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+    
     <!-- Schema LocalBusiness -->
     <script type="application/ld+json">
     {
@@ -75,6 +76,45 @@
       }
     }
     </script>
+
+    <!-- SCHEMA EXCLUSIVO PARA FORZAR SITELINKS DE GOOGLE -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "Servicios para Hogares",
+          "description": "Soporte técnico de PC y redes WiFi a domicilio para familias.",
+          "url": "https://www.soportecyclops.com.ar/servicios-hogares.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Soporte para Pymes y Comercios",
+          "description": "Mantenimiento IT, redes de alta disponibilidad y cámaras de seguridad.",
+          "url": "https://www.soportecyclops.com.ar/servicios-pymes.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "Para Estudios Profesionales",
+          "description": "Ciberseguridad, backups automáticos y VPN para abogados y contadores.",
+          "url": "https://www.soportecyclops.com.ar/servicios-profesionales.html"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "Infraestructura y Obras",
+          "description": "Cableado estructurado, domótica oculta y CCTV desde los planos.",
+          "url": "https://www.soportecyclops.com.ar/servicios-obras.html"
+        }
+      ]
+    }
+    </script>
+
     <title>Soporte Cyclops | Técnico IT a domicilio — CABA y GBA</title>
 
     <!-- Google Fonts -->
@@ -157,7 +197,8 @@
                 <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
                 <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
                 <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-                <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
+                <!-- REL NOFOLLOW INYECTADO PARA DESPRIORIZAR EL LOGIN ANTE GOOGLE BOT -->
+                <li><a href="login.html" rel="nofollow" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
             </ul>
             <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -184,7 +225,7 @@
             <h1>Soporte técnico que resuelve.<br><em>Sin vueltas.</em></h1>
             <p>Redes, CCTV, soporte informático y presencia web para hogares y pymes. +11 años de experiencia en infraestructura corporativa al servicio de tu negocio.</p>
             
-            <!-- NUEVA GRILLA DE NICHOS (Reemplaza a los viejos botones) -->
+            <!-- NUEVA GRILLA DE NICHOS -->
             <div class="niche-grid">
                 <a href="servicios-hogares.html" class="niche-card hogar reveal">
                     <i class="fas fa-house-signal niche-icon"></i>
@@ -520,8 +561,9 @@
                     </div>
                 </div>
 
+                <!-- REL NOFOLLOW INYECTADO A FAQ GENERAL PARA DESPRIORIZAR ANTE GOOGLE BOT -->
                 <div style="text-align:center;margin-top:16px">
-                  <a href="faq.html" style="display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-weight:700;font-size:0.87rem;padding:10px 22px;border:2px solid rgba(37,99,235,0.2);border-radius:50px;text-decoration:none">
+                  <a href="faq.html" rel="nofollow" style="display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-weight:700;font-size:0.87rem;padding:10px 22px;border:2px solid rgba(37,99,235,0.2);border-radius:50px;text-decoration:none">
                     Ver todas las preguntas <i class="fas fa-arrow-right" style="font-size:0.7rem"></i>
                   </a>
                 </div>
@@ -741,12 +783,10 @@
                 <div class="footer-section">
                     <h3>Servicios</h3>
                     <ul>
-                        <li><a href="#servicios">Soporte Informático</a></li>
-                        <li><a href="#servicios">Redes y Conectividad</a></li>
-                        <li><a href="#servicios">Cámaras y CCTV</a></li>
-                        <li><a href="#servicios">Alarmas</a></li>
-                        <li><a href="#servicios">Domótica</a></li>
-                        <li><a href="#servicios">Ciberseguridad</a></li>
+                        <li><a href="servicios-hogares.html">Para Hogares</a></li>
+                        <li><a href="servicios-pymes.html">Para Pymes y Comercios</a></li>
+                        <li><a href="servicios-profesionales.html">Para Estudios Profesionales</a></li>
+                        <li><a href="servicios-obras.html">Para Arquitectos y Obras</a></li>
                         <li><a href="presencia-web-para-pymes.html">Presencia Web para Pymes</a></li>
                     </ul>
                 </div>
