@@ -17,7 +17,7 @@
 body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#f8fafc;line-height:1.7}
 a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
 
-/* MENU UNIFICADO */
+/* NAV UNIFICADO */
 .container{max-width:1140px;margin:0 auto;padding:0 24px}
 .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
 .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
@@ -27,10 +27,8 @@ a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
 .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
 .logo-text strong{color:var(--blue)}
 .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
-.nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
-.nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
-.nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
-.nav-cta:hover{background:#1d4ed8;text-decoration:none}
+.nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap;text-decoration:none}
+.nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06)}
 .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
 @media(max-width:900px){
   .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
@@ -38,7 +36,6 @@ a{color:#2563eb;text-decoration:none}a:hover{text-decoration:underline}
   .nav-menu li{width:100%}
   .nav-link{display:block;padding:12px 16px}
   .menu-toggle{display:block}
-  .nav-cta{text-align:center;margin-top:8px}
 }
 
 .hero{background:linear-gradient(135deg,#0f2444 0%,#1a3a5c 100%);color:white;padding:56px 0 44px}.hero .inner{max-width:1000px;margin:0 auto;padding:0 24px}
@@ -76,6 +73,7 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.85);text-align:center;padding
 </head>
 <body>
   
+  <!-- NAV UNIFICADO (RUTAS RELATIVAS ../) -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
       <a href="../index.html" class="logo">
@@ -87,8 +85,8 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.85);text-align:center;padding
         <li><a href="../nosotros.html" class="nav-link">Nosotros</a></li>
         <li><a href="../opiniones.html" class="nav-link">Opiniones</a></li>
         <li><a href="index.html" class="nav-link active">Blog</a></li>
-        <li><a href="../login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
-        <li><a href="../index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+        <li><a href="../login.html" rel="nofollow" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
+        <li><a href="../index.html#contacto" class="nav-link">Contacto</a></li>
       </ul>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
     </div>
@@ -878,7 +876,7 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.85);text-align:center;padding
         <div class="card-body">
           <div class="card-meta"><span class="c-tag mantenimiento">Mantenimiento</span><span class="c-time"><i class="fas fa-clock"></i> 5 min</span></div>
           <h3>Tu PC se apaga sola o suena a turbina: guía de sobrecalentamiento</h3>
-          <p>Por qué "anda bien los primeros minutos" es la firma del problema térmico, y cada cuánto limpiar.</p>
+          <p>Por qué &quot;anda bien los primeros minutos&quot; es la firma del problema térmico, y cada cuánto limpiar.</p>
           <span class="card-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
         </div>
       </a>
@@ -944,41 +942,3 @@ footer{background:#1a3a5c;color:rgba(255,255,255,0.85);text-align:center;padding
       </a>
 
     </div>
-
-    <div class="cta-strip">
-      <div><h3>¿Un problema que no da para leer artículos?</h3>
-      <p>Contanos qué pasa y te decimos si tiene arreglo, cuánto sale y cuándo podemos ir.</p></div>
-      <a href="https://wa.me/5491166804450?text=Hola!%20Tengo%20un%20problema%20técnico" target="_blank" class="cta-strip-btn"><i class="fab fa-whatsapp"></i> Consultar ahora</a>
-    </div>
-  </div>
-
-  <footer><p><a href="../index.html" style="color:white;text-decoration:none;">soportecyclops.com.ar</a> · Técnico IT a domicilio en CABA y GBA · <a href="https://wa.me/5491166804450" style="color:white;text-decoration:none;">+54 9 11 6680-4450</a></p></footer>
-
-  <script>
-  document.querySelectorAll(".filter-btn").forEach(function(btn){
-    btn.addEventListener("click", function(){
-      document.querySelectorAll(".filter-btn").forEach(function(b){b.classList.remove("active")});
-      btn.classList.add("active");
-      var f = btn.dataset.filter;
-      document.querySelectorAll(".article-card").forEach(function(c){
-        c.style.display = (f === "all" || c.dataset.cat === f) ? "" : "none";
-      });
-    });
-  });
-
-  // Scripts para el Menú
-  var navbar = document.getElementById('navbar');
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (navbar) {
-    window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 20); });
-  }
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      navMenu.classList.toggle('open');
-      menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    });
-  }
-  </script>
-</body>
-</html>
