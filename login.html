@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ingresar — Soporte Cyclops</title>
+  <title>Ingresar â€” Soporte Cyclops</title>
   <link rel="icon" href="public/images/logo-icon.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -90,7 +90,7 @@
     <div class="logo-wrap">
       <img src="public/images/logo-nav.png" alt="Soporte Cyclops" onerror="this.style.display='none'">
       <h1>Soporte Cyclops</h1>
-      <p>Accedé a tu panel</p>
+      <p>AccedÃ© a tu panel</p>
     </div>
 
     <div class="tabs">
@@ -100,7 +100,7 @@
 
     <!-- PANEL: INGRESAR -->
     <div class="panel on" id="panelIngresar">
-      <p style="font-size:0.83rem;color:var(--gray-500);text-align:center;margin-bottom:18px">Ingresá con tu cuenta de Google</p>
+      <p style="font-size:0.83rem;color:var(--gray-500);text-align:center;margin-bottom:18px">IngresÃ¡ con tu cuenta de Google</p>
       <div class="google-btn-wrap">
         <div id="googleSignInBtn"></div>
       </div>
@@ -110,14 +110,14 @@
       </div>
       <div class="msg-error" id="msgError">
         <i class="fas fa-exclamation-circle"></i>
-        <span id="msgErrorTxt">Tu cuenta no tiene acceso. Contactá al administrador.</span>
+        <span id="msgErrorTxt">Tu cuenta no tiene acceso. ContactÃ¡ al administrador.</span>
       </div>
     </div>
 
     <!-- PANEL: REGISTRARME -->
     <div class="panel" id="panelRegistrar">
       <p style="font-size:0.83rem;color:var(--gray-500);margin-bottom:18px">
-        Dejá tus datos y después iniciá sesión con Google usando el mismo email — así ya te vamos a reconocer como cliente y tu perfil va a estar completo.
+        DejÃ¡ tus datos y despuÃ©s iniciÃ¡ sesiÃ³n con Google usando el mismo email â€” asÃ­ ya te vamos a reconocer como cliente y tu perfil va a estar completo.
       </p>
 
       <div class="f">
@@ -126,7 +126,7 @@
       </div>
       <div class="row2">
         <div class="f">
-          <label>Teléfono <span class="req">*</span></label>
+          <label>TelÃ©fono <span class="req">*</span></label>
           <input id="regTelefono" placeholder="11 xxxx-xxxx">
         </div>
         <div class="f">
@@ -136,16 +136,16 @@
       </div>
 
       <span class="opcionales-toggle" onclick="toggleOpcionales()">
-        <i class="fas fa-chevron-down" id="opcIcon"></i> Datos opcionales (dirección, empresa...)
+        <i class="fas fa-chevron-down" id="opcIcon"></i> Datos opcionales (direcciÃ³n, empresa...)
       </span>
 
       <div class="opcionales" id="opcionalesBox">
         <div class="row2">
-          <div class="f"><label>Dirección <span class="opt">(opcional)</span></label><input id="regDireccion" placeholder="Calle y número"></div>
+          <div class="f"><label>DirecciÃ³n <span class="opt">(opcional)</span></label><input id="regDireccion" placeholder="Calle y nÃºmero"></div>
           <div class="f"><label>Localidad <span class="opt">(opcional)</span></label><input id="regLocalidad" placeholder="Barrio / localidad"></div>
         </div>
         <div class="row2">
-          <div class="f"><label>CP <span class="opt">(opcional)</span></label><input id="regCp" placeholder="Código postal"></div>
+          <div class="f"><label>CP <span class="opt">(opcional)</span></label><input id="regCp" placeholder="CÃ³digo postal"></div>
           <div class="f"><label>Empresa <span class="opt">(opcional)</span></label><input id="regEmpresa" placeholder="Si es para una empresa"></div>
         </div>
         <div class="f"><label>Nota <span class="opt">(opcional)</span></label><textarea id="regNota" rows="2" placeholder="Algo que quieras contarnos"></textarea></div>
@@ -205,12 +205,12 @@
       okEl.style.display = 'none';
 
       if (!nombre || !telefono || !email) {
-        errTxt.textContent = 'Completá nombre, teléfono y email — son obligatorios.';
+        errTxt.textContent = 'CompletÃ¡ nombre, telÃ©fono y email â€” son obligatorios.';
         errEl.style.display = 'block';
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        errTxt.textContent = 'Ingresá un email válido.';
+        errTxt.textContent = 'IngresÃ¡ un email vÃ¡lido.';
         errEl.style.display = 'block';
         return;
       }
@@ -235,17 +235,17 @@
         const data = await resp.json();
 
         if (data.ok) {
-          okEl.querySelector('span').textContent = '¡Listo! Ya quedaste registrado. Ahora hacé clic en "Ingresar" y elegí tu cuenta de Google usando el mismo email (' + email + ') para entrar a tu panel.';
+          okEl.querySelector('span').textContent = 'Â¡Listo! Ya quedaste registrado. Ahora hacÃ© clic en "Ingresar" y elegÃ­ tu cuenta de Google usando el mismo email (' + email + ') para entrar a tu panel.';
           okEl.style.display = 'block';
           document.getElementById('regNombre').value = '';
           document.getElementById('regTelefono').value = '';
           document.getElementById('regEmail').value = '';
         } else {
-          errTxt.textContent = data.error || 'No se pudo completar el registro. Probá de nuevo.';
+          errTxt.textContent = data.error || 'No se pudo completar el registro. ProbÃ¡ de nuevo.';
           errEl.style.display = 'block';
         }
       } catch(e) {
-        errTxt.textContent = 'Error de conexión. Probá de nuevo en un momento.';
+        errTxt.textContent = 'Error de conexiÃ³n. ProbÃ¡ de nuevo en un momento.';
         errEl.style.display = 'block';
       } finally {
         btn.disabled = false;
@@ -287,12 +287,12 @@
         mostrarLoading(false);
 
         if (!data.ok || data.rol === 'ninguno') {
-          mostrarError('Tu cuenta no tiene acceso al portal. Contactá al administrador.');
+          mostrarError('Tu cuenta no tiene acceso al portal. ContactÃ¡ al administrador.');
           sessionStorage.removeItem('cyclops_user');
           return;
         }
 
-        // Guardar sesión (incluye rol) para todos los paneles
+        // Guardar sesiÃ³n (incluye rol) para todos los paneles
         sessionStorage.setItem('cyclops_user', JSON.stringify({
           name: p.name, email: p.email, picture: p.picture,
           rol: data.rol, credential: response.credential
@@ -301,11 +301,11 @@
         window.location.href = destinoFinal(data.rol);
       } catch(e) {
         mostrarLoading(false);
-        mostrarError('Error al verificar acceso. Intentá de nuevo.');
+        mostrarError('Error al verificar acceso. IntentÃ¡ de nuevo.');
       }
     }
 
-    // Si ya hay sesión activa en esta pestaña, redirigir directo
+    // Si ya hay sesiÃ³n activa en esta pestaÃ±a, redirigir directo
     (function autoRedirect() {
       try {
         const u = JSON.parse(sessionStorage.getItem('cyclops_user'));
@@ -326,3 +326,4 @@
   </script>
 </body>
 </html>
+

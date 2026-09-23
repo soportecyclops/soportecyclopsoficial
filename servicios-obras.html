@@ -1,25 +1,210 @@
-﻿<!DOCTYPE html>
-<html lang="es-AR">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Infraestructura IT y Domótica para Obras | Soporte Cyclops</title>
+﻿<!DOCTYPE html><html lang="es-AR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infraestructura IT y Domótica para Obras | Soporte Cyclops</title>
+<meta name="description" content="Partner tecnológico para arquitectos en CABA y GBA. Diseño de red, cableado estructurado, domótica y cámaras antes de cerrar paredes.">
+<link rel="canonical" href="https://www.soportecyclops.com.ar/servicios-obras.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Soporte Cyclops - Obras e Infraestructura","telephone":"+5491166804450","areaServed":["CABA","GBA"]}</script>
+  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body{font-family:'Open Sans',sans-serif;color:#1e293b; margin:0; line-height:1.6}
-    .hero{background:#0f172a;color:white;padding:60px 24px;text-align:center;border-bottom:5px solid #06b6d4;}
-    .hero h1{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;margin-bottom:16px;}
-    .container{max-width:900px;margin:0 auto;padding:40px 24px;}
-    .cta{background:#06b6d4;color:#0f172a;padding:12px 24px;border-radius:0px;text-decoration:none;font-weight:bold;display:inline-block;}
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
+    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
+    .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{border-radius:6px}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
+    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;transition:var(--transition)}
+    .nav-cta:hover{background:#1d4ed8;text-decoration:none}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--blue-dark);padding:6px}
+    @media(max-width:900px){.nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}.nav-menu.open{display:flex}.nav-menu li{width:100%}.nav-link{display:block;padding:12px 16px}.menu-toggle{display:block}.nav-cta{text-align:center;margin-top:8px}}
+    .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
+    .hero-hogar{background:linear-gradient(135deg,#0284c7 0%,#2563eb 100%)}
+    .hero-pyme{background:linear-gradient(135deg,#b45309 0%,#1e3a8a 100%)}
+    .hero-prof{background:linear-gradient(135deg,#166534 0%,#0f172a 100%)}
+    .hero-obra{background:linear-gradient(135deg,#334155 0%,#0f172a 100%); border-bottom: 4px solid #06b6d4}
+    .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+    .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
+    .page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:12px}
+    .page-hero p{font-size:1rem;opacity:0.85;max-width:600px;line-height:1.7}
+    .services{padding:64px 0;background:var(--gray-50)}
+    .section-header{text-align:center;margin-bottom:48px}
+    .section-tag{display:inline-block;background:rgba(37,99,235,0.08);color:var(--blue);padding:5px 14px;border-radius:20px;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+    .section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--blue-dark);margin-bottom:12px;letter-spacing:-0.01em}
+    .section-subtitle{font-size:0.97rem;color:var(--gray-600);max-width:560px;margin:0 auto;line-height:1.7}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+    .service-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px;transition:var(--transition);cursor:pointer}
+    .service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(37,99,235,0.2)}
+    .service-icon{width:52px;height:52px;background:linear-gradient(135deg,rgba(37,99,235,0.1),rgba(0,198,255,0.1));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:16px}
+    .service-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
+    .service-card p{font-size:0.88rem;color:var(--gray-600);line-height:1.65;margin-bottom:16px}
+    .service-tags{display:flex;flex-wrap:wrap;gap:6px}
+    .service-tag{font-size:0.7rem;background:var(--gray-100);color:var(--gray-600);padding:3px 9px;border-radius:20px;font-weight:600}
+    .service-tabs-section{padding:64px 0;background:white}
+    .tabs-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;border-bottom:2px solid var(--gray-200);padding-bottom:0}
+    .tab-btn{padding:12px 20px;border:none;background:none;font-family:'Open Sans',sans-serif;font-size:0.88rem;font-weight:600;color:var(--gray-600);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:var(--transition);border-radius:0;display:flex;align-items:center;gap:8px}
+    .tab-btn:hover{color:var(--blue)}
+    .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+    .tab-content{display:none}.tab-content.active{display:block}
+    .tab-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+    @media(max-width:768px){.tab-body{grid-template-columns:1fr}}
+    .tab-info h3{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;color:var(--blue-dark);margin-bottom:12px}
+    .tab-info p{font-size:0.93rem;color:var(--gray-600);line-height:1.75;margin-bottom:16px}
+    .process-steps{list-style:none;counter-reset:steps}
+    .process-steps li{padding:12px 16px 12px 52px;position:relative;counter-increment:steps;border-left:3px solid var(--gray-200);margin-bottom:8px;font-size:0.9rem;color:var(--gray-600)}
+    .process-steps li::before{content:counter(steps);position:absolute;left:-18px;top:10px;width:32px;height:32px;background:var(--blue);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.82rem}
+    .process-steps li strong{display:block;color:var(--blue-dark);margin-bottom:2px}
+    .cases-list{list-style:none}
+    .cases-list li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--gray-100);font-size:0.88rem;color:var(--gray-600)}
+    .cases-list li:last-child{border-bottom:none}
+    .cases-list li::before{content:"→";color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px}
+    .how-it-works{padding:64px 0;background:var(--gray-50)}
+    .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px;counter-reset:howsteps}
+    @media(max-width:900px){.steps-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.steps-grid{grid-template-columns:1fr}}
+    .step-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:24px;text-align:center;counter-increment:howsteps;position:relative}
+    .step-num{width:40px;height:40px;background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:1rem;margin:0 auto 16px}
+    .step-card h4{font-family:'Space Grotesk',sans-serif;font-size:0.97rem;font-weight:700;color:var(--blue-dark);margin-bottom:8px}
+    .step-card p{font-size:0.85rem;color:var(--gray-600);line-height:1.65}
+    .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:48px 0}
+    .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:800;color:white;margin-bottom:6px}
+    .cta-strip p{font-size:0.9rem;color:rgba(255,255,255,0.8);max-width:500px}
+    .cta-strip-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--blue-dark);padding:13px 26px;border-radius:50px;font-weight:700;font-size:0.9rem;flex-shrink:0;white-space:nowrap;transition:var(--transition)}
+    .cta-strip-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15);text-decoration:none}
+    @media(max-width:640px){.cta-strip{flex-direction:column;text-align:center}}
+    footer{background:var(--blue-dark);color:rgba(255,255,255,0.6);padding:40px 0 24px}
+    .footer-content{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-bottom:32px}
+    .footer-section h3{font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:white;margin-bottom:14px}
+    .footer-section p,.footer-section a{font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.8;display:block;text-decoration:none}
+    .footer-section a:hover{color:white}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;text-align:center;font-size:0.8rem}
+    @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
+    .modalidades{padding:56px 0;background:linear-gradient(180deg,#f8fafc 0%,#fff 100%)}
+    .mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:8px}
+    .mod-card{background:white;border:1px solid var(--border,#e2e8f0);border-radius:16px;padding:26px 24px;position:relative;transition:all .25s}
+    .mod-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(37,99,235,.10)}
+    .mod-card .mod-ico{font-size:1.9rem;margin-bottom:12px}
+    .mod-card h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:800;color:var(--blue-dark,#1a3a5c);margin-bottom:8px}
+    .mod-card p{font-size:.88rem;color:#64748b;line-height:1.65;margin-bottom:12px}
+    .mod-precio{display:inline-block;background:#eff6ff;color:#1d4ed8;font-weight:800;font-size:.82rem;padding:5px 13px;border-radius:20px}
+    .mod-nota{font-size:.72rem;color:#94a3b8;margin-top:10px;display:block}
+    .mod-badge{position:absolute;top:14px;right:14px;background:#dcfce7;color:#166534;font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:10px}
+    .confianza-strip{margin-top:26px;background:var(--blue-dark,#1a3a5c);border-radius:16px;padding:26px 28px;color:white;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .conf-item{display:flex;gap:12px;align-items:flex-start}
+    .conf-item i{font-size:1.15rem;color:#7dd3fc;margin-top:2px}
+    .conf-item h4{font-size:.9rem;font-weight:700;margin-bottom:3px}
+    .conf-item p{font-size:.78rem;opacity:.8;line-height:1.55}
+    .chatbot-bridge{margin-top:26px;border:2px dashed #bfdbfe;background:#f0f7ff;border-radius:16px;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .chatbot-bridge h4{font-family:'Space Grotesk',sans-serif;color:var(--blue-dark,#1a3a5c);font-size:1rem;margin-bottom:4px}
+    .chatbot-bridge p{font-size:.85rem;color:#64748b}
+    .chatbot-bridge .cb-btn{background:var(--blue,#2563eb);color:white;font-weight:700;font-size:.88rem;padding:12px 22px;border-radius:50px;text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:8px}
+    .objeciones{padding:56px 0;background:#f8fafc}
+    .obj-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .obj-card{background:white;border:1px solid #e2e8f0;border-left:4px solid var(--blue,#2563eb);border-radius:12px;padding:20px 22px}
+    .obj-card h4{font-size:.95rem;font-weight:700;color:var(--blue-dark,#1a3a5c);margin-bottom:8px}
+    .obj-card p{font-size:.86rem;color:#64748b;line-height:1.65}
+    .cta-servicio{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:#25D366;color:white;font-weight:700;font-size:.84rem;padding:10px 18px;border-radius:50px;text-decoration:none}
+    .cta-servicio:hover{transform:translateY(-2px)}
+    @media(max-width:860px){.mod-grid,.confianza-strip{grid-template-columns:1fr}.obj-grid{grid-template-columns:1fr}}
   </style>
-</head>
 <body>
-  <div class="hero">
-    <h1>La infraestructura tecnológica también se diseña.</h1>
-    <p>El mejor momento para definir WiFi, cámaras, rack y cableado no es después de pintar. Es durante el proyecto. Sumá un partner técnico antes de cerrar paredes.</p>
-    <br><a href="https://wa.me/5491166804450" class="cta">Sumar a Cyclops al proyecto</a>
+  <div class="page-hero hero-obra">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Arquitectos y Obras</span></div>
+      <h1>La infraestructura tecnológica también se diseña.</h1>
+      <p>El mejor momento para definir los nodos WiFi, las bocas de cámara, el rack y el cableado no es después de pintar. Es durante el proyecto. Sumá un partner técnico a la obra antes de cerrar el cielorraso.</p>
+    </div>
   </div>
+  
+  <section class="modalidades"><div class="container"><div class="section-header"><span class="section-tag" style="color:#0f172a; background:rgba(15,23,42,0.1)">Arquitectura + IT</span><h2 class="section-title">Evitá canaletas a la vista y sorpresas de presupuesto</h2><p class="section-subtitle">Diseñamos e instalamos en conjunto con la dirección de obra. Redes invisibles, cobertura total.</p></div><div class="mod-grid"><div class="mod-card"><span class="mod-badge" style="background:#e2e8f0;color:#0f172a">Desde el plano</span><div class="mod-ico">📐</div><h3>Diseño Proyectual</h3><p>Analizamos los planos AutoCAD para ubicar el Rack central, trazar cañerías exclusivas para datos y definir la ubicación de Access Points (WiFi) para evitar puntos ciegos.</p></div><div class="mod-card"><div class="mod-ico">👷</div><h3>Trabajo en Obra</h3><p>Entramos a cablear (Norma T568B) en el momento justo. Coordinamos con el electricista y yesero para dejar las puntas listas antes de las terminaciones finales.</p></div><div class="mod-card"><div class="mod-ico">✅</div><h3>Puesta en Marcha</h3><p>Al entregar la obra, instalamos los equipos, configuramos la red segmentada, las cámaras y la domótica. Le entregamos el sistema llave en mano a tu cliente.</p></div></div>
+  <div class="confianza-strip" style="background:var(--gray-200); color:#0f172a"><div class="conf-item"><i class="fas fa-network-wired" style="color:#2563eb"></i><div><h4>Experiencia de Alto Volumen</h4><p>El diseño de red está a cargo de Juan Pablo Alza, responsable de la conectividad en grandes eventos del Autódromo de Bs As. Sabemos lidiar con ruido electromagnético e interferencias.</p></div></div><div class="conf-item"><i class="fas fa-lightbulb" style="color:#2563eb"></i><div><h4>Domótica Integrada</h4><p>No usamos adaptadores horribles. Integramos módulos WiFi detrás de los bastidores originales para mantener la estética elegida por el estudio.</p></div></div></div></div></section>
+  
+  <section class="service-tabs-section"><div class="container"><div class="section-header"><span class="section-tag">Soluciones para el Proyecto</span><h2 class="section-title">¿Qué instalamos en tus obras?</h2></div>
+    <div class="tabs-nav">
+      <button class="tab-btn active" id="tab-redes" onclick="switchTab('redes',this)">📡 Cableado y WiFi</button>
+      <button class="tab-btn" id="tab-domotica" onclick="switchTab('domotica',this)">🏠 Domótica Oculta</button>
+      <button class="tab-btn" id="tab-cctv" onclick="switchTab('cctv',this)">📷 CCTV de Diseño</button>
+      <button class="tab-btn" id="tab-accesos" onclick="switchTab('accesos',this)">🚪 Control de Accesos</button>
+    </div>
+    
+    <div class="tab-content active" id="tc-redes"><div class="tab-body"><div class="tab-info"><h3>Redes Estructuradas y WiFi Ubiquiti</h3><p>El hormigón y el vidrio destruyen el WiFi. Proyectamos redes Ethernet Cat6 cableadas a cada Smart TV y escritorio, y ubicamos Access Points PoE de techo (tipo sensor de humo) para un WiFi de roaming perfecto (sin cortes al caminar por la casa).</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Cero repetidores enchufados a la pared.</li><li>Rack centralizado en despensa o sala de máquinas.</li><li>Señal estable incluso en subsuelos y quinchos.</li></ul></div></div></div>
+    
+    <div class="tab-content" id="tc-domotica"><div class="tab-body"><div class="tab-info"><h3>Domótica Estética y Funcional</h3><p>Automatizamos la iluminación y climatización sin obligarte a cambiar la línea de llaves (Jeluz, Cambre, etc.). El módulo va empotrado en la caja rectangular. Todo controlable por Alexa, Google o celular.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Respeta la estética del interiorismo.</li><li>Creación de "escenas" (ej: Modo Cine, Modo Noche).</li><li>Motores de cortinas integrados al sistema de red.</li></ul></div></div></div>
+    
+    <div class="tab-content" id="tc-cctv"><div class="tab-body"><div class="tab-info"><h3>Videovigilancia IP PoE</h3><p>Planificamos el recorrido del UTP para las cámaras exteriores e interiores. Utilizamos cámaras IP PoE (se alimentan por el mismo cable de red), eliminando fuentes aparatosas cerca de las cámaras.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Cámaras de domo discretas para el interior.</li><li>El grabador (NVR) queda escondido y protegido en el Rack.</li><li>Cables 100% ocultos en fachada y muros.</li></ul></div></div></div>
+    
+    <div class="tab-content" id="tc-accesos"><div class="tab-body"><div class="tab-info"><h3>Cerraduras Inteligentes y Porteros IP</h3><p>Timbres con cámara IP que suenan en el celular del cliente, y cerraduras biométricas (huella o PIN) para puertas principales o áreas de servicio.</p></div><div><h4 style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:700;color:#1a3a5c;margin-bottom:14px">Ventajas en Obra</h4><ul class="cases-list"><li>Integración con el celular del propietario.</li><li>Sin llaves físicas para el personal doméstico.</li><li>Diseños premium que acompañan la puerta principal.</li></ul></div></div></div>
+  </div></section>
+  
+  <section class="objeciones"><div class="container"><div class="section-header"><span class="section-tag">Partner técnico</span><h2 class="section-title">Trabajando con Arquitectos</h2></div><div class="obj-grid"><div class="obj-card"><h4>“El electricista ya me pasa los cables de red”</h4><p>El cable de datos (UTP) no puede ir por la misma cañería que el de tensión (220v) por interferencia. Además, el electricista empalma; el cable de red no se puede empalmar, pierde velocidad. Nosotros certificamos los nodos.</p></div><div class="obj-card"><h4>“La obra ya está muy avanzada, cerramos paredes”</h4><p>Siempre hay soluciones. Si no podemos cablear, armamos esquemas de red Mesh inalámbrica de alta gama. Pero si nos llamás en la etapa de proyecto, le ahorramos dolores de cabeza (y plata) al cliente.</p></div><div class="obj-card"><h4>“¿Cómo se maneja la facturación y el presupuesto?”</h4><p>Podemos facturarle directo al cliente final o al estudio, como prefieran. Presentamos un presupuesto detallado de mano de obra y lista de materiales a comprar.</p></div><div class="obj-card"><h4>“No quiero racks ruidosos en la casa”</h4><p>Elegimos racks murales pequeños y silenciosos, escondidos en lavaderos, bajo escaleras o tableros técnicos, asegurando ventilación sin arruinar el diseño del espacio.</p></div></div></div></section>
+<footer>
   <div class="container">
-    <h2>Arquitectura + Infraestructura IT desde el inicio</h2>
-    <p>Evitá canaletas a la vista, puntos ciegos de WiFi y sorpresas de presupuesto. Diseñamos e instalamos cableado estructurado, domótica, CCTV y control de accesos trabajando en equipo con la dirección de obra.</p>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Soporte Cyclops</h3>
+        <p>Soluciones técnicas para hogares y pymes en CABA y GBA. +11 años de experiencia corporativa en resolución de incidentes críticos.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Sectores</h3>
+        <a href="servicios-hogares.html">Para Hogares</a>
+        <a href="servicios-pymes.html">Para Pymes y Comercios</a>
+        <a href="servicios-profesionales.html">Para Estudios Profesionales</a>
+        <a href="servicios-obras.html">Para Arquitectos y Obras</a>
+      </div>
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <a href="tel:+5491166804450"><i class="fas fa-phone"></i> +54 9 11 6680-4450</a>
+        <a href="mailto:contacto@soportecyclops.com.ar"><i class="fas fa-envelope"></i> contacto@soportecyclops.com.ar</a>
+        <a href="https://wa.me/5491166804450" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Soporte Cyclops · <a href="index.html" style="color:rgba(255,255,255,0.4)">soportecyclops.com.ar</a> | Defensa del Consumidor (Ley 24.240)</p>
+    </div>
   </div>
+</footer>
+<script>
+  var navbar = document.getElementById('navbar');
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  window.addEventListener('scroll', function(){ navbar.classList.toggle('scrolled', window.scrollY > 20); });
+  menuToggle.addEventListener('click', function(){
+    navMenu.classList.toggle('open');
+    menuToggle.innerHTML = navMenu.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  });
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(function(t){ t.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+    document.getElementById('tc-' + id).classList.add('active');
+    btn.classList.add('active');
+    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
+  }
+</script>
+<script>
+(async function(){
+  try{
+    var c=new AbortController();var t=setTimeout(function(){c.abort()},4000);
+    var r=await fetch('https://dolarapi.com/v1/dolares/oficial',{signal:c.signal});clearTimeout(t);
+    var d=await r.json();
+    if(d.venta>0){
+      document.querySelectorAll('.precio-ars[data-usd]').forEach(function(el){
+        var ars=Math.round(parseFloat(el.dataset.usd)*d.venta/1000)*1000;
+        el.textContent=new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(ars);
+      });
+    }
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
+
+
