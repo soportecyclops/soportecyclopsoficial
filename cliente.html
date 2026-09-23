@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal de Clientes | Soporte Cyclops</title>
-    <link rel="icon" href="public/images/logo-icon.png" type="image/png">
-  <meta name="description" content="AccedÃ© a tus diagnÃ³sticos y el estado de tus servicios tÃ©cnicos.">
+  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <meta name="description" content="Accedé a tus diagnósticos y el estado de tus servicios técnicos.">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://www.soportecyclops.com.ar/cliente.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -27,17 +28,30 @@
     html { scroll-behavior: smooth; }
     body { font-family: 'Open Sans', sans-serif; background: var(--gray-50); color: var(--gray-800); line-height: 1.6; min-height: 100vh; }
 
-    /* â”€â”€ NAVBAR â”€â”€ */
-    .navbar { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 200; }
-    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 40px; width: auto; }
-    .nav-logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue-dark); }
-    .nav-logo-text strong { color: var(--blue); }
-    .nav-back { display: flex; align-items: center; gap: 7px; font-size: 0.85rem; font-weight: 600; color: var(--gray-600); text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: var(--transition); }
-    .nav-back:hover { color: var(--blue); background: rgba(37,99,235,0.06); }
+    /* ── NAVBAR (Ajustado para integrarse con main.css) ── */
+    .navbar { background: rgba(255,255,255,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 1000; transition: box-shadow 0.3s; }
+    .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 64px; max-width: 1140px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo img { border-radius: 6px; }
+    .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); }
+    .logo-text strong { color: var(--blue); }
+    .nav-menu { display: flex; list-style: none; gap: 4px; align-items: center; }
+    .nav-link { padding: 8px 14px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; color: var(--gray-600); transition: var(--transition); white-space: nowrap; }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: rgba(37,99,235,0.06); text-decoration: none; }
+    .nav-cta { background: var(--blue); color: white !important; padding: 9px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; transition: var(--transition); }
+    .nav-cta:hover { background: #1d4ed8; text-decoration: none; }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.3rem; color: var(--blue-dark); padding: 6px; }
+    @media(max-width:900px){
+      .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
+      .nav-menu.open{display:flex}
+      .nav-menu li{width:100%}
+      .nav-link{display:block;padding:12px 16px}
+      .menu-toggle{display:block}
+      .nav-cta{text-align:center;margin-top:8px}
+    }
 
-    /* â”€â”€ LOGIN SCREEN â”€â”€ */
+    /* ── LOGIN SCREEN ── */
     .login-screen { min-height: calc(100vh - 64px); display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
     .login-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 20px; padding: 52px 48px; max-width: 420px; width: 100%; text-align: center; box-shadow: var(--shadow-lg); }
     .login-icon { width: 72px; height: 72px; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(0,198,255,0.1)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 2rem; }
@@ -47,11 +61,11 @@
     .login-note { font-size: 0.78rem; color: var(--gray-400); margin-top: 20px; line-height: 1.55; }
     .login-note i { margin-right: 4px; }
 
-    /* â”€â”€ PORTAL SCREEN â”€â”€ */
+    /* ── PORTAL SCREEN ── */
     .portal-screen { display: none; max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; }
     .portal-screen.visible { display: block; }
 
-    /* â”€â”€ PORTAL HEADER â”€â”€ */
+    /* ── PORTAL HEADER ── */
     .portal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px; }
     .portal-welcome h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--blue-dark); letter-spacing: -0.02em; margin-bottom: 4px; }
     .portal-welcome p { font-size: 0.88rem; color: var(--gray-600); }
@@ -65,7 +79,7 @@
     .btn-admin { display: none; align-items: center; gap: 8px; padding: 8px 18px; background: var(--blue); color: white; border: none; border-radius: 50px; font-family: 'Open Sans', sans-serif; font-size: 0.82rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: var(--transition); box-shadow: 0 3px 10px rgba(37,99,235,0.3); }
     .btn-admin:hover { background: #1d4ed8; transform: translateY(-1px); }
 
-    /* â”€â”€ CTA NUEVO DIAGNÃ“STICO â”€â”€ */
+    /* ── CTA NUEVO DIAGNÓSTICO ── */
     .diag-cta-bar {
       background: linear-gradient(135deg, var(--blue-dark) 0%, #1e4a7a 100%);
       border-radius: var(--radius);
@@ -99,7 +113,7 @@
     .btn-nuevo-diag:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
     .btn-nuevo-diag i { color: var(--blue); font-size: 1rem; }
 
-    /* â”€â”€ STATS BAR â”€â”€ */
+    /* ── STATS BAR ── */
     .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 32px; }
     .stat-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px 22px; display: flex; align-items: center; gap: 14px; box-shadow: var(--shadow-sm); }
     .stat-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
@@ -110,11 +124,11 @@
     .stat-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--blue-dark); line-height: 1; }
     .stat-label { font-size: 0.78rem; color: var(--gray-600); margin-top: 3px; }
 
-    /* â”€â”€ SECTION LABEL â”€â”€ */
+    /* ── SECTION LABEL ── */
     .section-label { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
     .section-label span { background: rgba(37,99,235,0.08); color: var(--blue); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
 
-    /* â”€â”€ DIAG CARDS â”€â”€ */
+    /* ── DIAG CARDS ── */
     .diags-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
     .diag-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-sm); transition: var(--transition); position: relative; overflow: hidden; }
     .diag-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
@@ -141,7 +155,7 @@
     .diag-meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--gray-400); }
     .diag-meta-item i { font-size: 0.7rem; }
 
-    /* â”€â”€ EMPTY STATE â”€â”€ */
+    /* ── EMPTY STATE ── */
     .empty-state { text-align: center; padding: 72px 24px; color: var(--gray-600); }
     .empty-icon { font-size: 3rem; margin-bottom: 20px; opacity: 0.4; }
     .empty-state h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 10px; }
@@ -149,19 +163,19 @@
     .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--blue); color: white; border: none; border-radius: 50px; font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 0.88rem; text-decoration: none; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
     .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
 
-    /* â”€â”€ LOADING / ERROR â”€â”€ */
+    /* ── LOADING / ERROR ── */
     .loading-state { text-align: center; padding: 60px 24px; color: var(--gray-600); }
     .spinner { width: 36px; height: 36px; border: 3px solid var(--gray-200); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 16px; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-banner { display: none; background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.25); border-radius: 10px; padding: 14px 18px; color: #b91c1c; font-size: 0.88rem; margin-bottom: 24px; align-items: center; gap: 10px; }
     .error-banner.visible { display: flex; }
 
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    /* ════════════════════════════════════════════════════════════════
        MODAL DEL CHATBOT
        Overlay fullscreen que contiene el chatbot
-       completo. Se abre desde cualquier botÃ³n
-       "Iniciar diagnÃ³stico" del portal.
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+       completo. Se abre desde cualquier botón
+       "Iniciar diagnóstico" del portal.
+    ════════════════════════════════════════════════════════════════ */
     .chatbot-modal-overlay {
       display: none;
       position: fixed;
@@ -326,7 +340,7 @@
     }
     .chatbot-modal-send:hover { background: #1d4ed8; transform: scale(1.08); }
 
-    /* â”€â”€ RESPONSIVE â”€â”€ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .login-card { padding: 36px 24px; }
       .portal-header { flex-direction: column; align-items: flex-start; }
@@ -337,7 +351,7 @@
       .chatbot-modal-window { width: 100%; max-width: 100%; border-radius: 20px 20px 0 0; height: 85vh; max-height: 85vh; }
     }
 
-    /* â”€â”€ BUSCADOR PÃšBLICO â”€â”€ */
+    /* ── BUSCADOR PÚBLICO ── */
     .search-bar-section {
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -403,7 +417,7 @@
     .search-result.found { border-color: rgba(37,99,235,0.25); background: rgba(37,99,235,0.04); }
     .search-result.not-found { border-color: rgba(239,68,68,0.2); background: rgba(239,68,68,0.04); }
 
-    /* â”€â”€ ALERTA TÃ‰CNICO LEYÃ“ â”€â”€ */
+    /* ── ALERTA TÉCNICO LEYÓ ── */
     .badge-leido {
       display: inline-flex;
       align-items: center;
@@ -433,7 +447,7 @@
     }
     .badge-no-leido i { font-size: 0.65rem; }
 
-    /* â”€â”€ PERFIL DEL CLIENTE â”€â”€ */
+    /* ── PERFIL DEL CLIENTE ── */
     .perfil-section {
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -561,49 +575,52 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="nav-inner">
-      <a href="index.html" class="nav-logo">
-        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="40">
-        <span class="nav-logo-text">Soporte<strong>Cyclops</strong></span>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
       </a>
-      <a href="index.html" class="nav-back">
-        <i class="fas fa-arrow-left"></i> Volver al inicio
-      </a>
-      <button class="btn-logout" id="navLogoutBtn" onclick="cerrarSesion()" style="display:none">
-        <i class="fas fa-sign-out-alt"></i> Cerrar sesiÃ³n
-      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
+        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
     </div>
   </nav>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ════════════════════════════════════════════════════════════════
        PANTALLA DE LOGIN
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  ════════════════════════════════════════════════════════════════ -->
   <div class="login-screen" id="loginScreen">
     <div class="login-card">
       <div class="login-icon">
         <i class="fas fa-user-shield" style="color:var(--blue)"></i>
       </div>
       <h1>Portal de Clientes</h1>
-      <p>AccedÃ© a tus diagnÃ³sticos tÃ©cnicos y el estado de tus servicios con tu cuenta de Google.</p>
+      <p>Accedé a tus diagnósticos técnicos y el estado de tus servicios con tu cuenta de Google.</p>
       <div id="g_id_signin"></div>
       <p class="login-note">
         <i class="fas fa-lock"></i>
-        Solo usamos tu nombre y email. Sin contraseÃ±as, sin datos adicionales.
+        Solo usamos tu nombre y email. Sin contraseñas, sin datos adicionales.
       </p>
     </div>
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ════════════════════════════════════════════════════════════════
        PANTALLA DEL PORTAL
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  ════════════════════════════════════════════════════════════════ -->
   <div class="portal-screen" id="portalScreen">
 
     <!-- Header con usuario -->
     <div class="portal-header">
       <div class="portal-welcome">
         <h2 id="welcomeTitle">Bienvenido</h2>
-        <p id="welcomeSub">Estos son tus diagnÃ³sticos registrados.</p>
+        <p id="welcomeSub">Estos son tus diagnósticos registrados.</p>
       </div>
       <div class="portal-user">
         <div>
@@ -621,9 +638,9 @@
     </div>
 
 
-    <!-- BUSCADOR PÃšBLICO POR NÃšMERO DE DIAGNÃ“STICO -->
+    <!-- BUSCADOR PÚBLICO POR NÚMERO DE DIAGNÓSTICO -->
     <div class="search-bar-section">
-      <h3><i class="fas fa-search" style="color:var(--blue);margin-right:8px;"></i>Buscar diagnÃ³stico por nÃºmero</h3>
+      <h3><i class="fas fa-search" style="color:var(--blue);margin-right:8px;"></i>Buscar diagnóstico por número</h3>
       <div class="search-row">
         <input
           type="text"
@@ -651,42 +668,42 @@
       <div class="perfil-fields" id="perfilFields">
         <div class="perfil-field">
           <label>Nombre</label>
-          <div class="perfil-field-val" id="pv-nombre">â€”</div>
+          <div class="perfil-field-val" id="pv-nombre">—</div>
           <input type="text" id="pi-nombre" placeholder="Tu nombre completo" maxlength="80">
         </div>
         <div class="perfil-field">
           <label>Email</label>
-          <div class="perfil-field-val" id="pv-email">â€”</div>
+          <div class="perfil-field-val" id="pv-email">—</div>
           <input type="email" id="pi-email" placeholder="tu@email.com" maxlength="100">
         </div>
         <div class="perfil-field">
-          <label>TelÃ©fono</label>
-          <div class="perfil-field-val" id="pv-telefono">â€”</div>
+          <label>Teléfono</label>
+          <div class="perfil-field-val" id="pv-telefono">—</div>
           <input type="tel" id="pi-telefono" placeholder="11 XXXX-XXXX" maxlength="30">
         </div>
         <div class="perfil-field">
-          <label>DirecciÃ³n</label>
-          <div class="perfil-field-val" id="pv-direccion">â€”</div>
-          <input type="text" id="pi-direccion" placeholder="Calle, nÃºmero, piso" maxlength="120">
+          <label>Dirección</label>
+          <div class="perfil-field-val" id="pv-direccion">—</div>
+          <input type="text" id="pi-direccion" placeholder="Calle, número, piso" maxlength="120">
         </div>
         <div class="perfil-field">
           <label>Localidad</label>
-          <div class="perfil-field-val" id="pv-localidad">â€”</div>
+          <div class="perfil-field-val" id="pv-localidad">—</div>
           <input type="text" id="pi-localidad" placeholder="Ej: Palermo, CABA" maxlength="80">
         </div>
         <div class="perfil-field">
-          <label>CÃ³digo postal</label>
-          <div class="perfil-field-val" id="pv-cp">â€”</div>
+          <label>Código postal</label>
+          <div class="perfil-field-val" id="pv-cp">—</div>
           <input type="text" id="pi-cp" placeholder="Ej: 1425" maxlength="10">
         </div>
         <div class="perfil-field">
           <label>Empresa / Negocio</label>
-          <div class="perfil-field-val" id="pv-empresa">â€”</div>
+          <div class="perfil-field-val" id="pv-empresa">—</div>
           <input type="text" id="pi-empresa" placeholder="Opcional" maxlength="80">
         </div>
         <div class="perfil-field">
           <label>Nota adicional</label>
-          <div class="perfil-field-val" id="pv-nota">â€”</div>
+          <div class="perfil-field-val" id="pv-nota">—</div>
           <input type="text" id="pi-nota" placeholder="Horario preferido, etc." maxlength="120">
         </div>
       </div>
@@ -701,15 +718,15 @@
       </div>
     </div>
 
-    <!-- CTA Nuevo diagnÃ³stico â€” siempre visible -->
+    <!-- CTA Nuevo diagnóstico — siempre visible -->
     <div class="diag-cta-bar">
       <div class="diag-cta-bar-text">
-        <h3>Â¿TenÃ©s un nuevo problema tÃ©cnico?</h3>
-        <p>El asistente te hace preguntas guiadas y genera un diagnÃ³stico detallado en minutos.</p>
+        <h3>¿Tenés un nuevo problema técnico?</h3>
+        <p>El asistente te hace preguntas guiadas y genera un diagnóstico detallado en minutos.</p>
       </div>
       <button class="btn-nuevo-diag" onclick="abrirChatbot()">
         <i class="fas fa-stethoscope"></i>
-        Iniciar diagnÃ³stico guiado
+        Iniciar diagnóstico guiado
       </button>
     </div>
 
@@ -717,7 +734,7 @@
     <div class="stats-bar" id="statsBar" style="display:none">
       <div class="stat-card">
         <div class="stat-icon blue"><i class="fas fa-clipboard-list"></i></div>
-        <div><div class="stat-val" id="statTotal">0</div><div class="stat-label">DiagnÃ³sticos totales</div></div>
+        <div><div class="stat-val" id="statTotal">0</div><div class="stat-label">Diagnósticos totales</div></div>
       </div>
       <div class="stat-card">
         <div class="stat-icon amber"><i class="fas fa-clock"></i></div>
@@ -729,39 +746,39 @@
       </div>
       <div class="stat-card">
         <div class="stat-icon red"><i class="fas fa-exclamation-triangle"></i></div>
-        <div><div class="stat-val" id="statCriticos">0</div><div class="stat-label">Riesgo crÃ­tico / alto</div></div>
+        <div><div class="stat-val" id="statCriticos">0</div><div class="stat-label">Riesgo crítico / alto</div></div>
       </div>
     </div>
 
     <!-- Error banner -->
     <div class="error-banner" id="errorBanner">
       <i class="fas fa-exclamation-circle"></i>
-      <span id="errorMsg">No se pudieron cargar los diagnÃ³sticos.</span>
+      <span id="errorMsg">No se pudieron cargar los diagnósticos.</span>
     </div>
 
-    <!-- TÃ­tulo secciÃ³n -->
+    <!-- Título sección -->
     <div class="section-label" id="sectionLabel" style="display:none">
-      Mis diagnÃ³sticos <span id="diagCount">0</span>
+      Mis diagnósticos <span id="diagCount">0</span>
     </div>
 
     <!-- Loading -->
     <div class="loading-state" id="loadingState">
       <div class="spinner"></div>
-      <p>Cargando tus diagnÃ³sticos...</p>
+      <p>Cargando tus diagnósticos...</p>
     </div>
 
-    <!-- Grid diagnÃ³sticos -->
+    <!-- Grid diagnósticos -->
     <div class="diags-grid" id="diagsGrid"></div>
 
   </div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  <!-- ════════════════════════════════════════════════════════════════
        MODAL DEL CHATBOT
        Se abre sobre el portal cuando el usuario
-       hace click en "Iniciar diagnÃ³stico guiado".
-       El chatbot arranca directo en el menÃº de
-       diagnÃ³stico, sin pasar por el saludo.
-  â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+       hace click en "Iniciar diagnóstico guiado".
+       El chatbot arranca directo en el menú de
+       diagnóstico, sin pasar por el saludo.
+  ════════════════════════════════════════════════════════════════ -->
   <div class="chatbot-modal-overlay" id="chatbotModalOverlay">
     <div class="chatbot-modal-window" id="chatbotModalWindow">
 
@@ -772,7 +789,7 @@
           <h3>Asistente Cyclops</h3>
           <div class="chatbot-modal-status">
             <span class="chatbot-modal-status-dot"></span>
-            DiagnÃ³stico guiado
+            Diagnóstico guiado
           </div>
         </div>
         <button class="chatbot-modal-close" onclick="cerrarChatbot()" title="Cerrar">
@@ -789,7 +806,7 @@
           type="text"
           class="chatbot-modal-input"
           id="chatbotModalInput"
-          placeholder="EscribÃ­ tu respuesta..."
+          placeholder="Escribí tu respuesta..."
           autocomplete="off"
         >
         <button class="chatbot-modal-send" id="chatbotModalSend">
@@ -807,22 +824,32 @@
   <script src="chatbot.js"></script>
 
   <script>
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-  // CONFIGURACIÃ“N
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // Navbar y Menú Mobile Toggle para cliente.html
+  var nb = document.getElementById('navbar');
+  var mt = document.getElementById('menuToggle');
+  var nm = document.getElementById('navMenu');
+  window.addEventListener('scroll', function() { nb.classList.toggle('scrolled', window.scrollY > 20); });
+  mt.addEventListener('click', function() {
+      nm.classList.toggle('open');
+      mt.innerHTML = nm.classList.contains('open') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+  });
+
+  // ════════════════════════════════════════════════════════════════
+  // CONFIGURACIÓN
+  // ════════════════════════════════════════════════════════════════
   const GOOGLE_CLIENT_ID = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
   const APPS_SCRIPT_URL  = "hhttps://script.google.com/macros/s/AKfycbya19vtvoelLNYInDTeLepNDKBmJDrAOlJ3tPScPRXPT-_rRrwCAu1-gyviO_5cSgAp/exec";
-  // âš ï¸ Sincronizar con ADMIN_EMAILS en admin.html
+  // ⚠️ Sincronizar con ADMIN_EMAILS en admin.html
   const ADMIN_EMAILS     = ["juanpabloalza@gmail.com"];
 
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-  // PORTAL â€” LOGIN Y CARGA DE DIAGNÃ“STICOS
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // ════════════════════════════════════════════════════════════════
+  // PORTAL — LOGIN Y CARGA DE DIAGNÓSTICOS
+  // ════════════════════════════════════════════════════════════════
   var usuarioActual = null;
 
   window.addEventListener('load', function() {
     setTimeout(function() {
-      if (typeof google === 'undefined') { console.error('âŒ GSI no cargÃ³'); return; }
+      if (typeof google === 'undefined') { console.error('❌ GSI no cargó'); return; }
       google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onGoogleSignIn });
       google.accounts.id.renderButton(document.getElementById('g_id_signin'), {
         theme: 'outline', size: 'large', text: 'signin_with', shape: 'pill', locale: 'es'
@@ -836,7 +863,7 @@
       usuarioActual = { name: p.name || 'Usuario', email: p.email || '', picture: p.picture || '' };
       // Verificar rol contra el sheet de accesos
       verificarAcceso(usuarioActual);
-    } catch(e) { mostrarError('Error al iniciar sesiÃ³n. IntentÃ¡ de nuevo.'); }
+    } catch(e) { mostrarError('Error al iniciar sesión. Intentá de nuevo.'); }
   }
 
   async function verificarAcceso(u) {
@@ -844,14 +871,14 @@
       var res  = await fetch(APPS_SCRIPT_URL + '?action=verificar_acceso&email=' + encodeURIComponent(u.email));
       var data = await res.json();
       if (!data.ok || data.rol === 'ninguno') {
-        // Sin acceso â€” mostrar mensaje especÃ­fico
+        // Sin acceso — mostrar mensaje específico
         document.getElementById('loginScreen').style.display = '';
         document.getElementById('loginError') && (document.getElementById('loginError').style.display = 'block');
-        mostrarError('Tu cuenta no tiene acceso al portal. ContactÃ¡ al administrador.');
+        mostrarError('Tu cuenta no tiene acceso al portal. Contactá al administrador.');
         return;
       }
       mostrarPortal(u);
-      // Si es admin, mostrar botÃ³n de panel
+      // Si es admin, mostrar botón de panel
       if (data.rol === 'admin') {
         var btn = document.getElementById('adminPanelBtn');
         if (btn) btn.style.display = 'inline-flex';
@@ -875,8 +902,8 @@
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('portalScreen').classList.add('visible');
     var nombre = u.name.split(' ')[0];
-    document.getElementById('welcomeTitle').textContent = 'Hola, ' + nombre + ' ðŸ‘‹';
-    document.getElementById('welcomeSub').textContent   = 'Estos son tus diagnÃ³sticos registrados en Soporte Cyclops.';
+    document.getElementById('welcomeTitle').textContent = 'Hola, ' + nombre + ' 👋';
+    document.getElementById('welcomeSub').textContent   = 'Estos son tus diagnósticos registrados en Soporte Cyclops.';
     document.getElementById('userName').textContent  = u.name;
     document.getElementById('userEmail').textContent = u.email;
     var av = document.getElementById('userAvatar');
@@ -897,11 +924,11 @@
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       loadingEl.style.display = 'none';
-      if (!data.ok) { mostrarError('Error del servidor: ' + (data.error || 'respuesta invÃ¡lida')); return; }
+      if (!data.ok) { mostrarError('Error del servidor: ' + (data.error || 'respuesta inválida')); return; }
       renderizarDiagnosticos(data.diagnosticos || []);
     } catch(err) {
       loadingEl.style.display = 'none';
-      mostrarError('No se pudo conectar. VerificÃ¡ tu conexiÃ³n o intentÃ¡ mÃ¡s tarde. (' + err.message + ')');
+      mostrarError('No se pudo conectar. Verificá tu conexión o intentá más tarde. (' + err.message + ')');
     }
   }
 
@@ -927,16 +954,16 @@
   function renderDiagCard(d) {
     var sev    = (d.severidad || 'media').toLowerCase();
     var estado = (d.estado    || 'nuevo').toLowerCase();
-    var sevL   = { critica:'ðŸ”´ CrÃ­tico', alta:'ðŸŸ  Elevado', media:'ðŸŸ¡ A evaluar', baja:'ðŸŸ¢ Estable' };
+    var sevL   = { critica:'🔴 Crítico', alta:'🟠 Elevado', media:'🟡 A evaluar', baja:'🟢 Estable' };
     var estL   = { nuevo:'Nuevo', 'en proceso':'En proceso', resuelto:'Resuelto', cerrado:'Cerrado' };
     var estBadge = (estado === 'resuelto' || estado === 'cerrado') ? 'badge-' + estado : (estado === 'en proceso' ? 'badge-proceso' : 'badge-nuevo');
     var leido = d.leido_por && String(d.leido_por).trim() !== '';
     var leidoBadge = leido
-      ? '<span class="badge-leido"><i class="fas fa-eye"></i> TÃ©cnico revisÃ³</span>'
-      : '<span class="badge-no-leido"><i class="fas fa-clock"></i> Pendiente revisiÃ³n</span>';
+      ? '<span class="badge-leido"><i class="fas fa-eye"></i> Técnico revisó</span>'
+      : '<span class="badge-no-leido"><i class="fas fa-clock"></i> Pendiente revisión</span>';
     return '<div class="diag-card sev-' + sev + '">'
       + '<div class="diag-card-top">'
-        + '<div class="diag-num">' + escapeHtml(d.diagNum || 'â€”') + '</div>'
+        + '<div class="diag-num">' + escapeHtml(d.diagNum || '—') + '</div>'
         + '<div class="diag-badges">'
           + '<span class="badge badge-' + sev + '">' + (sevL[sev] || sev) + '</span>'
           + '<span class="badge ' + estBadge + '">' + (estL[estado] || estado) + '</span>'
@@ -956,10 +983,10 @@
   function renderEmptyState() {
     return '<div class="empty-state" style="grid-column:1/-1">'
       + '<div class="empty-icon"><i class="fas fa-clipboard"></i></div>'
-      + '<h3>Sin diagnÃ³sticos registrados</h3>'
-      + '<p>TodavÃ­a no tenÃ©s diagnÃ³sticos asociados a este email. UsÃ¡ el botÃ³n de arriba para iniciar uno.</p>'
+      + '<h3>Sin diagnósticos registrados</h3>'
+      + '<p>Todavía no tenés diagnósticos asociados a este email. Usá el botón de arriba para iniciar uno.</p>'
       + '<button class="btn-primary" onclick="abrirChatbot()">'
-        + '<i class="fas fa-stethoscope"></i> Iniciar diagnÃ³stico guiado'
+        + '<i class="fas fa-stethoscope"></i> Iniciar diagnóstico guiado'
       + '</button>'
     + '</div>';
   }
@@ -987,7 +1014,7 @@
   }
 
   function formatFecha(s) {
-    if (!s) return 'â€”';
+    if (!s) return '—';
     return String(s).split(',')[0] || s;
   }
 
@@ -996,12 +1023,12 @@
   }
 
 
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-  // GRUPO B â€” BUSCADOR, PERFIL Y ALERTA DE LECTURA
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // ════════════════════════════════════════════════════════════════
+  // GRUPO B — BUSCADOR, PERFIL Y ALERTA DE LECTURA
+  // ════════════════════════════════════════════════════════════════
 
-  // â”€â”€ Cargar perfil desde localStorage al mostrar portal â”€â”€â”€
-  // Se llama desde mostrarPortal() existente â€” extendemos
+  // ── Cargar perfil desde localStorage al mostrar portal ───
+  // Se llama desde mostrarPortal() existente — extendemos
   var _mostrarPortalOriginal = mostrarPortal;
   function mostrarPortal(u) {
     _mostrarPortalOriginal(u);
@@ -1010,7 +1037,7 @@
     if (nb) nb.style.display = 'flex';
   }
 
-  // â”€â”€ Cargar datos del perfil guardados en localStorage â”€â”€â”€â”€
+  // ── Cargar datos del perfil guardados en localStorage ────
   function cargarPerfilLocal(usuario) {
     var key   = 'cyclops_perfil_' + (usuario.email || 'unknown');
     var saved = null;
@@ -1030,13 +1057,13 @@
       if (valEl) {
         valEl.textContent = data[c] || '';
         valEl.className   = 'perfil-field-val' + (data[c] ? '' : ' empty');
-        if (!data[c]) valEl.textContent = 'â€”';
+        if (!data[c]) valEl.textContent = '—';
       }
       if (inEl) inEl.value = data[c] || '';
     });
   }
 
-  // â”€â”€ Toggle modo ediciÃ³n del perfil â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Toggle modo edición del perfil ───────────────────────
   function toggleEditPerfil() {
     var section = document.getElementById('perfilFields').parentElement;
     var isEditing = section.classList.contains('perfil-editing');
@@ -1057,7 +1084,7 @@
     if (usuarioActual) cargarPerfilLocal(usuarioActual);
   }
 
-  // â”€â”€ Guardar perfil en localStorage y en Apps Script â”€â”€â”€â”€â”€â”€
+  // ── Guardar perfil en localStorage y en Apps Script ──────
   function guardarPerfil() {
     if (!usuarioActual) return;
     var campos = ['nombre','email','telefono','direccion','localidad','cp','empresa','nota'];
@@ -1075,7 +1102,7 @@
     campos.forEach(function(c) {
       var valEl = document.getElementById('pv-' + c);
       if (valEl) {
-        valEl.textContent = data[c] || 'â€”';
+        valEl.textContent = data[c] || '—';
         valEl.className   = 'perfil-field-val' + (data[c] ? '' : ' empty');
       }
     });
@@ -1083,18 +1110,18 @@
     // Enviar al Apps Script para persistir en hoja Clientes
     enviarPerfilAScript(data);
 
-    // Mostrar confirmaciÃ³n
+    // Mostrar confirmación
     var msg = document.getElementById('perfilSaveMsg');
     msg.classList.add('visible');
     setTimeout(function() { msg.classList.remove('visible'); }, 3000);
 
-    // Salir del modo ediciÃ³n
+    // Salir del modo edición
     var section = document.getElementById('perfilFields').parentElement;
     section.classList.remove('perfil-editing');
     document.getElementById('btnEditPerfil').innerHTML = '<i class="fas fa-pencil-alt"></i> Editar';
   }
 
-  // â”€â”€ Enviar perfil al Apps Script (actualiza hoja Clientes) â”€
+  // ── Enviar perfil al Apps Script (actualiza hoja Clientes) ─
   async function enviarPerfilAScript(data) {
     if (!APPS_SCRIPT_URL || !usuarioActual) return;
     try {
@@ -1105,9 +1132,9 @@
     } catch(e) { console.warn('No se pudo sincronizar perfil con el servidor:', e.message); }
   }
 
-  // â”€â”€ Buscador por nÃºmero de diagnÃ³stico â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  // Busca en los diagnÃ³sticos ya cargados del usuario logueado.
-  // Si no estÃ¡ logueado, hace una consulta pÃºblica al Apps Script.
+  // ── Buscador por número de diagnóstico ───────────────────
+  // Busca en los diagnósticos ya cargados del usuario logueado.
+  // Si no está logueado, hace una consulta pública al Apps Script.
   var _todosLosDiags = []; // cache de los diags del usuario actual
 
   var _renderizarDiagnosticosOriginal = renderizarDiagnosticos;
@@ -1116,7 +1143,7 @@
     _renderizarDiagnosticosOriginal(diags);
   }
 
-  // Enter en el input dispara la bÃºsqueda
+  // Enter en el input dispara la búsqueda
   document.addEventListener('DOMContentLoaded', function() {
     var inp = document.getElementById('searchDiagInput');
     if (inp) {
@@ -1144,7 +1171,7 @@
     resultEl.className = 'search-result visible';
     resultEl.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
 
-    // 1. Buscar en los diagnÃ³sticos del usuario logueado (cache local)
+    // 1. Buscar en los diagnósticos del usuario logueado (cache local)
     if (_todosLosDiags.length > 0) {
       var match = _todosLosDiags.find(function(d) {
         return (d.diagNum || '').toUpperCase() === query;
@@ -1156,7 +1183,7 @@
       }
     }
 
-    // 2. Consulta al Apps Script (bÃºsqueda pÃºblica)
+    // 2. Consulta al Apps Script (búsqueda pública)
     try {
       var url  = APPS_SCRIPT_URL + '?action=buscar_diag&diagNum=' + encodeURIComponent(query);
       var res  = await fetch(url);
@@ -1168,39 +1195,39 @@
       } else {
         resultEl.className = 'search-result visible not-found';
         resultEl.innerHTML = '<i class="fas fa-times-circle" style="color:var(--red)"></i> '
-          + 'No se encontrÃ³ ningÃºn diagnÃ³stico con el nÃºmero <strong>' + escapeHtml(query) + '</strong>. '
-          + 'VerificÃ¡ que el nÃºmero sea correcto (formato: DIAG-DDMMAA-NNNN).';
+          + 'No se encontró ningún diagnóstico con el número <strong>' + escapeHtml(query) + '</strong>. '
+          + 'Verificá que el número sea correcto (formato: DIAG-DDMMAA-NNNN).';
       }
     } catch(e) {
       resultEl.className = 'search-result visible not-found';
-      resultEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error al buscar. VerificÃ¡ tu conexiÃ³n.';
+      resultEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error al buscar. Verificá tu conexión.';
     }
   }
 
   function renderBusquedaResultado(d) {
     var sev    = (d.severidad || 'media').toLowerCase();
     var estado = (d.estado    || 'nuevo').toLowerCase();
-    var sevL   = { critica:'ðŸ”´ CrÃ­tico', alta:'ðŸŸ  Elevado', media:'ðŸŸ¡ A evaluar', baja:'ðŸŸ¢ Estable' };
+    var sevL   = { critica:'🔴 Crítico', alta:'🟠 Elevado', media:'🟡 A evaluar', baja:'🟢 Estable' };
     var leido  = d.leido_por && String(d.leido_por).trim() !== '';
     return '<div style="display:flex;flex-direction:column;gap:8px;">'
       + '<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">'
         + '<strong style="font-family:Space Grotesk,sans-serif;color:var(--blue-dark);">' + escapeHtml(d.diagNum || '') + '</strong>'
         + '<span class="badge badge-' + sev + '">' + (sevL[sev] || sev) + '</span>'
         + '<span class="badge badge-nuevo">' + escapeHtml(estado) + '</span>'
-        + (leido ? '<span class="badge-leido"><i class="fas fa-eye"></i> TÃ©cnico revisÃ³</span>' : '<span class="badge-no-leido"><i class="fas fa-clock"></i> Pendiente revisiÃ³n</span>')
+        + (leido ? '<span class="badge-leido"><i class="fas fa-eye"></i> Técnico revisó</span>' : '<span class="badge-no-leido"><i class="fas fa-clock"></i> Pendiente revisión</span>')
       + '</div>'
-      + '<div><strong>Servicio:</strong> ' + escapeHtml(d.servicio || 'â€”') + '</div>'
-      + '<div><strong>SÃ­ntoma:</strong> ' + escapeHtml(d.sintoma || d.resumen || 'â€”') + '</div>'
-      + '<div><strong>Fecha:</strong> ' + escapeHtml(formatFecha(d.fecha)) + ' &nbsp;|&nbsp; <strong>Cliente:</strong> ' + escapeHtml(d.nombre || 'â€”') + '</div>'
+      + '<div><strong>Servicio:</strong> ' + escapeHtml(d.servicio || '—') + '</div>'
+      + '<div><strong>Síntoma:</strong> ' + escapeHtml(d.sintoma || d.resumen || '—') + '</div>'
+      + '<div><strong>Fecha:</strong> ' + escapeHtml(formatFecha(d.fecha)) + ' &nbsp;|&nbsp; <strong>Cliente:</strong> ' + escapeHtml(d.nombre || '—') + '</div>'
     + '</div>';
   }
 
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-  // CHATBOT MODAL â€” motor completo integrado
-  // Reproduce toda la lÃ³gica de chatbot.js adaptada
-  // al modal del portal. Arranca directo en el menÃº
-  // de diagnÃ³stico sin mostrar el saludo genÃ©rico.
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // ════════════════════════════════════════════════════════════════
+  // CHATBOT MODAL — motor completo integrado
+  // Reproduce toda la lógica de chatbot.js adaptada
+  // al modal del portal. Arranca directo en el menú
+  // de diagnóstico sin mostrar el saludo genérico.
+  // ════════════════════════════════════════════════════════════════
 
   var chatState = {
     history:          [],
@@ -1208,37 +1235,37 @@
     initialized:      false
   };
 
-  // ConfiguraciÃ³n del chatbot (igual que chatbot.js)
+  // Configuración del chatbot (igual que chatbot.js)
   var CYCLOPS = {
     whatsapp:      "5491166804450",
     telefono:      "+54 9 11 6680-4450",
     appsScriptUrl: APPS_SCRIPT_URL
   };
 
-  // â”€â”€ Abrir el modal y arrancar el diagnÃ³stico â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Abrir el modal y arrancar el diagnóstico ──────────────
   function abrirChatbot() {
     var overlay = document.getElementById('chatbotModalOverlay');
     overlay.classList.add('visible');
-    document.body.style.overflow = 'hidden'; // evitar scroll detrÃ¡s
+    document.body.style.overflow = 'hidden'; // evitar scroll detrás
 
     // Foco al input para mobile
     setTimeout(function() {
       document.getElementById('chatbotModalInput').focus();
     }, 350);
 
-    // Si es la primera vez, inicializar y arrancar diagnÃ³stico
+    // Si es la primera vez, inicializar y arrancar diagnóstico
     if (!chatState.initialized) {
       chatState.initialized = true;
       setupChatbotEvents();
-      // Saludo breve y directo al menÃº de diagnÃ³stico
-      chatAddMsg('Â¡Hola! ðŸ‘‹ Soy el **Asistente Cyclops**.\n\nVoy a hacerte algunas preguntas para generar tu diagnÃ³stico tÃ©cnico. Â¿Empezamos?', 'bot', [
-        { text: 'ðŸ” SÃ­, iniciar diagnÃ³stico', next: 'menu_diagnostico' },
-        { text: 'ðŸ’¬ Tengo una consulta', action: 'consulta_general' }
+      // Saludo breve y directo al menú de diagnóstico
+      chatAddMsg('¡Hola! 👋 Soy el **Asistente Cyclops**.\n\nVoy a hacerte algunas preguntas para generar tu diagnóstico técnico. ¿Empezamos?', 'bot', [
+        { text: '🔍 Sí, iniciar diagnóstico', next: 'menu_diagnostico' },
+        { text: '💬 Tengo una consulta', action: 'consulta_general' }
       ]);
     }
   }
 
-  // â”€â”€ Cerrar el modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Cerrar el modal ───────────────────────────────────────
   function cerrarChatbot() {
     document.getElementById('chatbotModalOverlay').classList.remove('visible');
     document.body.style.overflow = '';
@@ -1249,7 +1276,7 @@
     if (e.target === this) cerrarChatbot();
   });
 
-  // â”€â”€ Setup de eventos del input â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Setup de eventos del input ────────────────────────────
   function setupChatbotEvents() {
     document.getElementById('chatbotModalSend').addEventListener('click', enviarMensajeChat);
     document.getElementById('chatbotModalInput').addEventListener('keypress', function(e) {
@@ -1266,7 +1293,7 @@
     setTimeout(function() { procesarMensajeChat(msg); }, 700);
   }
 
-  // â”€â”€ Agregar mensaje al chat â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Agregar mensaje al chat ───────────────────────────────
   function chatAddMsg(text, sender, options) {
     options = options || [];
     var msgs = document.getElementById('chatbotModalMessages');
@@ -1280,7 +1307,7 @@
 
     var bubble = document.createElement('div');
     bubble.className = 'chat-msg-bubble';
-    // Formato: **negrita**, saltos de lÃ­nea
+    // Formato: **negrita**, saltos de línea
     bubble.innerHTML = escapeHtml(text)
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\n/g, '<br>');
@@ -1313,7 +1340,7 @@
     chatState.history.push({ text, sender, options });
   }
 
-  // â”€â”€ Mostrar typing indicator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Mostrar typing indicator ──────────────────────────────
   function chatShowTyping() {
     var msgs = document.getElementById('chatbotModalMessages');
     var t = document.createElement('div');
@@ -1323,7 +1350,7 @@
     msgs.scrollTop = msgs.scrollHeight;
   }
 
-  // â”€â”€ Procesar input de texto libre â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Procesar input de texto libre ───────────────────────
   function procesarMensajeChat(msg) {
     var ds = chatState.diagState;
 
@@ -1333,7 +1360,7 @@
       ds.waitingForEmail   = true;
       chatShowTyping();
       setTimeout(function() {
-        chatAddMsg('Perfecto, **' + escapeHtml(msg) + '**.\n\nÂ¿A quÃ© email te enviamos el informe? (EscribÃ­ "no" para omitirlo)', 'bot');
+        chatAddMsg('Perfecto, **' + escapeHtml(msg) + '**.\n\n¿A qué email te enviamos el informe? (Escribí "no" para omitirlo)', 'bot');
       }, 600);
       return;
     }
@@ -1350,21 +1377,21 @@
     chatShowTyping();
     setTimeout(function() {
       if (m.includes('horario') || m.includes('atienden')) {
-        chatAddMsg('â° **Horarios:**\n\nLunâ€“Vie: 9:00 a 18:00 hs\nSÃ¡b: 9:00 a 13:00 hs\nDom: Cerrado', 'bot', [{ text:'ðŸ’¬ WhatsApp', action:'whatsapp_urgente' }]);
+        chatAddMsg('⏱️ **Horarios:**\n\nLun–Vie: 9:00 a 18:00 hs\nSáb: 9:00 a 13:00 hs\nDom: Cerrado', 'bot', [{ text:'💬 WhatsApp', action:'whatsapp_urgente' }]);
       } else if (m.includes('precio') || m.includes('costo') || m.includes('presupuesto')) {
-        chatAddMsg('ðŸ’° La consulta remota inicial es **sin cargo**. El presupuesto se acuerda antes de empezar.', 'bot', [{ text:'ðŸ“… Solicitar presupuesto', action:'whatsapp_urgente' }]);
+        chatAddMsg('💰 La consulta remota inicial es **sin cargo**. El presupuesto se acuerda antes de empezar.', 'bot', [{ text:'📅 Solicitar presupuesto', action:'whatsapp_urgente' }]);
       } else if (m.includes('urgente') || m.includes('emergency')) {
-        chatAddMsg('ðŸš¨ Para urgencias inmediatas:', 'bot', [{ text:'ðŸ“ž Llamar ahora', action:'llamar_ahora' }, { text:'ðŸ’¬ WhatsApp urgente', action:'whatsapp_urgente' }]);
+        chatAddMsg('🚨 Para urgencias inmediatas:', 'bot', [{ text:'📞 Llamar ahora', action:'llamar_ahora' }, { text:'💬 WhatsApp urgente', action:'whatsapp_urgente' }]);
       } else {
-        chatAddMsg('ðŸ’¡ Â¿Hacemos un **diagnÃ³stico guiado**? Te hago unas preguntas y generamos un informe tÃ©cnico.', 'bot', [
-          { text:'ðŸ” SÃ­, empezar diagnÃ³stico', next:'menu_diagnostico' },
-          { text:'ðŸ’¬ Prefiero hablar con alguien', action:'whatsapp_urgente' }
+        chatAddMsg('💡 ¿Hacemos un **diagnóstico guiado**? Te hago unas preguntas y generamos un informe técnico.', 'bot', [
+          { text:'🔍 Sí, empezar diagnóstico', next:'menu_diagnostico' },
+          { text:'💬 Prefiero hablar con alguien', action:'whatsapp_urgente' }
         ]);
       }
     }, 700);
   }
 
-  // â”€â”€ Procesar flows â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Procesar flows ────────────────────────────────────────
   function chatProcessFlow(flowKey) {
     var flowMap = {
       'iniciar_diag_pc':       'pc_diagnostico',
@@ -1396,14 +1423,14 @@
     if (flowKey === 'menu_diagnostico') {
       chatShowTyping();
       setTimeout(function() {
-        chatAddMsg('ðŸ” **Â¿Con quÃ© Ã¡rea necesitÃ¡s ayuda?**\n\nElegÃ­ la categorÃ­a:', 'bot', [
-          { text:'ðŸ’» PC / Laptop / Software',        next:'iniciar_diag_pc' },
-          { text:'ðŸ“¡ Internet / Redes / WiFi',       next:'iniciar_diag_redes' },
-          { text:'ðŸ“· CÃ¡maras de Seguridad (CCTV)',   next:'iniciar_diag_camaras' },
-          { text:'ðŸš¨ Alarmas / Control de Acceso',   next:'iniciar_diag_alarmas' },
-          { text:'ðŸ  DomÃ³tica / AutomatizaciÃ³n',     next:'iniciar_diag_domotica' },
-          { text:'ðŸ›¡ï¸ Ciberseguridad',               next:'iniciar_diag_ciber' },
-          { text:'ðŸ”‹ UPS / ProtecciÃ³n de EnergÃ­a',  next:'iniciar_diag_ups' }
+        chatAddMsg('🔍 **¿Con qué área necesitás ayuda?**\n\nElegí la categoría:', 'bot', [
+          { text:'💻 PC / Laptop / Software',        next:'iniciar_diag_pc' },
+          { text:'📡 Internet / Redes / WiFi',       next:'iniciar_diag_redes' },
+          { text:'📷 Cámaras de Seguridad (CCTV)',   next:'iniciar_diag_camaras' },
+          { text:'🚨 Alarmas / Control de Acceso',   next:'iniciar_diag_alarmas' },
+          { text:'🏠 Domótica / Automatización',     next:'iniciar_diag_domotica' },
+          { text:'🛡️ Ciberseguridad',               next:'iniciar_diag_ciber' },
+          { text:'🔋 UPS / Protección de Energía',  next:'iniciar_diag_ups' }
         ]);
       }, 500);
       return;
@@ -1412,17 +1439,17 @@
     if (flowKey === 'consulta_general') {
       chatShowTyping();
       setTimeout(function() {
-        chatAddMsg('ðŸ’¬ **Â¿En quÃ© puedo ayudarte?**', 'bot', [
-          { text:'â° Horarios de atenciÃ³n', action:'info_horarios' },
-          { text:'ðŸ’° Precios y garantÃ­as',  action:'info_precios' },
-          { text:'ðŸ“ Zona de cobertura',    action:'info_zona' }
+        chatAddMsg('💬 **¿En qué puedo ayudarte?**', 'bot', [
+          { text:'⏱️ Horarios de atención', action:'info_horarios' },
+          { text:'💰 Precios y garantías',  action:'info_precios' },
+          { text:'📍 Zona de cobertura',    action:'info_zona' }
         ]);
       }, 500);
       return;
     }
   }
 
-  // â”€â”€ Iniciar un flow de diagnÃ³stico â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Iniciar un flow de diagnóstico ────────────────────────
   function chatStartFlow(flowKey) {
     var flow = chatbotFlows[flowKey];
     if (!flow) return;
@@ -1451,14 +1478,14 @@
     chatState.diagState.active = false;
     Promise.resolve(flow.diagnose(chatState.diagState.answers)).then(function(result) {
       chatState.diagState.tempResult = result;
-      var niveles = { critica:'ðŸ”´ Riesgo crÃ­tico', alta:'ðŸŸ  Riesgo elevado', media:'ðŸŸ¡ A tener en cuenta', baja:'ðŸŸ¢ SituaciÃ³n estable' };
+      var niveles = { critica:'🔴 Riesgo crítico', alta:'🟠 Riesgo elevado', media:'🟡 A tener en cuenta', baja:'🟢 Situación estable' };
       chatShowTyping();
       setTimeout(function() {
         chatAddMsg(
-          'ðŸ“‹ **EvaluaciÃ³n preliminar completada.**\n\n'
-          + (niveles[result.severidad] || 'ðŸŸ¡ A tener en cuenta')
-          + '\n\nâš ï¸ **Nota tÃ©cnica:** ' + result.riskWarning
-          + '\n\nÂ¿A nombre de quiÃ©n querÃ©s que figure el informe?',
+          '📋 **Evaluación preliminar completada.**\n\n'
+          + (niveles[result.severidad] || '🟡 A tener en cuenta')
+          + '\n\n⚠️ **Nota técnica:** ' + result.riskWarning
+          + '\n\n¿A nombre de quién querés que figure el informe?',
           'bot'
         );
         chatState.diagState.waitingForName = true;
@@ -1466,7 +1493,7 @@
     });
   }
 
-  // â”€â”€ Procesar y enviar diagnÃ³stico (async, igual que chatbot.js) â”€â”€
+  // ── Procesar y enviar diagnóstico (async, igual que chatbot.js) ──
   async function chatProcesarYEnviar() {
     var result = chatState.diagState.tempResult;
     var nombre = chatState.diagState.answers.nombre || 'Cliente';
@@ -1490,15 +1517,15 @@
     payload.diagNum = diagNum;
     chatState.diagState.diagNum = diagNum;
 
-    var report = 'âœ… **' + result.icono + ' ' + result.titulo + '**\n\n'
-      + 'ðŸ“Œ **NÂº de DiagnÃ³stico: ' + diagNum + '**\n\n'
-      + result.resumen + '\n\n**EvaluaciÃ³n tÃ©cnica:**\n';
+    var report = '✅ **' + result.icono + ' ' + result.titulo + '**\n\n'
+      + '📌 **Nº de Diagnóstico: ' + diagNum + '**\n\n'
+      + result.resumen + '\n\n**Evaluación técnica:**\n';
     result.pasos.forEach(function(p, i) { report += (i+1) + '. ' + p + '\n'; });
 
     var waMsg = encodeURIComponent(
-      'Hola! CompletÃ© el diagnÃ³stico online.\nNÃºmero: *' + diagNum + '*\n'
+      'Hola! Completé el diagnóstico online.\nNúmero: *' + diagNum + '*\n'
       + 'Nombre: ' + nombre + '\nServicio: ' + result.servicio
-      + '\nProblema: ' + result.sintomaLabel + '\nÂ¿Me pueden contactar?'
+      + '\nProblema: ' + result.sintomaLabel + '\n¿Me pueden contactar?'
     );
 
     window.__lastDiagData = {
@@ -1512,14 +1539,14 @@
     };
 
     var pdfAction = pdfUrlSrv ? '__pdf_drive__' + pdfUrlSrv : 'descargar_pdf_diag';
-    var pdfText   = pdfUrlSrv ? 'ðŸ“„ Descargar informe PDF' : 'ðŸ“„ Generar informe PDF';
+    var pdfText   = pdfUrlSrv ? '📄 Descargar informe PDF' : '📄 Generar informe PDF';
 
     setTimeout(function() {
       chatAddMsg(report, 'bot', [
-        { text:'ðŸ’¬ Enviar diagnÃ³stico al tÃ©cnico', action:'__whatsapp_diag__' + waMsg },
+        { text:'💬 Enviar diagnóstico al técnico', action:'__whatsapp_diag__' + waMsg },
         { text: pdfText,                           action: pdfAction },
-        { text:'ðŸ” Hacer otro diagnÃ³stico',        next:'menu_diagnostico' },
-        { text:'âœ– Cerrar',                         action:'cerrar_chatbot' }
+        { text:'🔍 Hacer otro diagnóstico',        next:'menu_diagnostico' },
+        { text:'✖ Cerrar',                        action:'cerrar_chatbot' }
       ]);
       if (usuarioActual && usuarioActual.email) {
         setTimeout(function() { cargarDiagnosticos(usuarioActual.email); }, 2000);
@@ -1544,11 +1571,11 @@
     } catch(e) { return fallback(); }
   }
 
-  // â”€â”€ Manejar acciones â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Manejar acciones ──────────────────────────────────────
   function chatHandleAction(action) {
     if (action.startsWith('__whatsapp_diag__')) {
       window.open('https://wa.me/' + CYCLOPS.whatsapp + '?text=' + action.replace('__whatsapp_diag__',''), '_blank');
-      chatAddMsg('ðŸ’¬ Abriendo WhatsApp con tu diagnÃ³stico...\n\nNuestro tÃ©cnico lo va a revisar antes de contactarte.', 'bot');
+      chatAddMsg('💬 Abriendo WhatsApp con tu diagnóstico...\n\nNuestro técnico lo va a revisar antes de contactarte.', 'bot');
       return;
     }
     if (action.startsWith('__pdf_drive__')) {
@@ -1560,241 +1587,237 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      chatAddMsg('ðŸ“„ **Abriendo tu informe en Google Drive...**\n\nEl PDF se abre en una nueva pestaÃ±a. Desde ahÃ­ podÃ©s descargarlo con el Ã­cono de descarga.', 'bot');
+      chatAddMsg('📄 **Abriendo tu informe en Google Drive...**\n\nEl PDF se abre en una nueva pestaña. Desde ahí podés descargarlo con el ícono de descarga.', 'bot');
       return;
     }
     if (action === 'descargar_pdf_diag') {
       var data = window.__lastDiagData || null;
       if (!data) {
-        chatAddMsg('âŒ No se encontraron datos. CompletÃ¡ el diagnÃ³stico primero.', 'bot');
+        chatAddMsg('❌ No se encontraron datos. Completá el diagnóstico primero.', 'bot');
         return;
       }
       generarPDFDiagnostico(data);
-      chatAddMsg('ðŸ“„ **Generando tu informe PDF...**\n\nEl archivo se descarga automÃ¡ticamente.', 'bot');
+      chatAddMsg('📄 **Generando tu informe PDF...**\n\nEl archivo se descarga automáticamente.', 'bot');
       return;
     }
     if (action === 'cerrar_chatbot') { cerrarChatbot(); return; }
     switch(action) {
       case 'llamar_ahora':
         window.open('tel:' + CYCLOPS.telefono.replace(/\s/g,''));
-        chatAddMsg('ðŸ“ž ConectÃ¡ndote al ' + CYCLOPS.telefono, 'bot');
+        chatAddMsg('📞 Conectándote al ' + CYCLOPS.telefono, 'bot');
         break;
       case 'whatsapp_urgente':
-        window.open('https://wa.me/' + CYCLOPS.whatsapp + '?text=' + encodeURIComponent('Â¡Hola! Necesito ayuda tÃ©cnica urgente.'), '_blank');
-        chatAddMsg('ðŸ’¬ Abriendo WhatsApp...', 'bot');
+        window.open('https://wa.me/' + CYCLOPS.whatsapp + '?text=' + encodeURIComponent('¡Hola! Necesito ayuda técnica urgente.'), '_blank');
+        chatAddMsg('💬 Abriendo WhatsApp...', 'bot');
         break;
       case 'consulta_general': chatProcessFlow('consulta_general'); break;
-      case 'info_horarios': chatAddMsg('â° Lunâ€“Vie: 9:00â€“18:00 hs\nSÃ¡b: 9:00â€“13:00 hs\nDom: Cerrado', 'bot'); break;
-      case 'info_precios':  chatAddMsg('ðŸ’° Consulta remota inicial **sin cargo**. Presupuesto antes de empezar, siempre.', 'bot'); break;
-      case 'info_zona':     chatAddMsg('ðŸ“ CABA y Gran Buenos Aires (Norte, Sur y Oeste).', 'bot'); break;
-      default: chatAddMsg('ðŸ’¡ Contactanos al ' + CYCLOPS.telefono, 'bot', [{ text:'ðŸ’¬ WhatsApp', action:'whatsapp_urgente' }]);
+      case 'info_horarios': chatAddMsg('⏱️ Lun–Vie: 9:00–18:00 hs\nSáb: 9:00–13:00 hs\nDom: Cerrado', 'bot'); break;
+      case 'info_precios':  chatAddMsg('💰 Consulta remota inicial **sin cargo**. Presupuesto antes de empezar, siempre.', 'bot'); break;
+      case 'info_zona':     chatAddMsg('📍 CABA y Gran Buenos Aires (Norte, Sur y Oeste).', 'bot'); break;
+      default: chatAddMsg('💡 Contactanos al ' + CYCLOPS.telefono, 'bot', [{ text:'💬 WhatsApp', action:'whatsapp_urgente' }]);
     }
   }
 
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-  // FLOWS DE DIAGNÃ“STICO
-  // Exactamente los mismos de chatbot.js â€” se mantienen
-  // sincronizados. Si modificÃ¡s uno, modificÃ¡ el otro.
-  // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+  // ════════════════════════════════════════════════════════════════
+  // FLOWS DE DIAGNÓSTICO
+  // Exactamente los mismos de chatbot.js — se mantienen
+  // sincronizados. Si modificás uno, modificá el otro.
+  // ════════════════════════════════════════════════════════════════
   var riskW = {
-    'âš¡ No enciende o no arranca':'Seguir forzando el encendido puede agravar el daÃ±o y aumentar el costo de reparaciÃ³n.',
-    'ðŸ”¥ Se sobrecalienta o apaga solo':'El calor excesivo deteriora los componentes internos de forma progresiva.',
-    'ðŸŒ Va muy lento o se traba':'La lentitud sostenida puede indicar un disco con sectores daÃ±ados.',
-    'ðŸ’¥ Pantalla negra o sin imagen':'Apagar y encender repetidamente sin diagnÃ³stico puede daÃ±ar permanentemente los conectores internos.',
-    'ðŸ¦  Sospecho de virus o malware':'Ciertos tipos de malware pueden cifrar archivos de forma irreversible si no se detienen a tiempo.',
-    'ðŸ’¾ PerdÃ­ archivos o datos importantes':'No usar el equipo hasta la revisiÃ³n para maximizar las chances de recuperaciÃ³n.',
-    'ðŸ”Š Hace ruidos extraÃ±os (clicks o raspados)':'Hacer backup inmediato antes de que el disco falle completamente.',
-    'ðŸš« Sin internet en absoluto':'Cada hora sin red tiene un costo operativo real.',
-    'ðŸ¦  Virus / ransomware activo':'ACCIÃ“N INMEDIATA: DesconectÃ¡ el equipo de la red YA.',
-    'âš¡ Picos de tensiÃ³n / cortes frecuentes':'Los picos al restaurarse la energÃ­a son la principal causa de fuentes quemadas.'
+    '⚡ No enciende o no arranca':'Seguir forzando el encendido puede agravar el daño y aumentar el costo de reparación.',
+    '🔥 Se sobrecalienta o apaga solo':'El calor excesivo deteriora los componentes internos de forma progresiva.',
+    '🐌 Va muy lento o se traba':'La lentitud sostenida puede indicar un disco con sectores dañados.',
+    '💥 Pantalla negra o sin imagen':'Apagar y encender repetidamente sin diagnóstico puede dañar permanentemente los conectores internos.',
+    '🦠 Sospecho de virus o malware':'Ciertos tipos de malware pueden cifrar archivos de forma irreversible si no se detienen a tiempo.',
+    '💾 Perdí archivos o datos importantes':'No usar el equipo hasta la revisión para maximizar las chances de recuperación.',
+    '🔊 Hace ruidos extraños (clicks o raspados)':'Hacer backup inmediato antes de que el disco falle completamente.',
+    '🚫 Sin internet en absoluto':'Cada hora sin red tiene un costo operativo real.',
+    '🦠 Virus / ransomware activo':'ACCIÓN INMEDIATA: Desconectá el equipo de la red YA.',
+    '⚡ Picos de tensión / cortes frecuentes':'Los picos al restaurarse la energía son la principal causa de fuentes quemadas.'
   };
 
   var chatbotFlows = {
     'pc_diagnostico': {
-      intro: 'ðŸ” **DiagnÃ³stico de equipo informÃ¡tico**\n\nTe voy a hacer 5 preguntas para evaluar tu situaciÃ³n.',
+      intro: '🔍 **Diagnóstico de equipo informático**\n\nTe voy a hacer 5 preguntas para evaluar tu situación.',
       steps: [
-        { key:'tipo_equipo',          question:'Â¿QuÃ© tipo de equipo tiene el problema?',   options:['ðŸ’» Laptop / Notebook','ðŸ–¥ï¸ PC de escritorio','ðŸ–¨ï¸ Impresora / PerifÃ©rico','ðŸ“± Tablet / Dispositivo mÃ³vil'] },
-        { key:'sintoma',              question:'Â¿CuÃ¡l es el sÃ­ntoma principal?',             options:['âš¡ No enciende o no arranca','ðŸ”¥ Se sobrecalienta o apaga solo','ðŸŒ Va muy lento o se traba','ðŸ’¥ Pantalla negra o sin imagen','ðŸ¦  Sospecho de virus o malware','ðŸ’¾ PerdÃ­ archivos o datos importantes','ðŸ”Š Hace ruidos extraÃ±os (clicks o raspados)'] },
-        { key:'duracion',             question:'Â¿Desde cuÃ¡ndo tiene este problema?',        options:['Hoy mismo (es nuevo)','Desde esta semana','Hace mÃ¡s de un mes','Es intermitente, va y viene'] },
-        { key:'ultimo_mantenimiento', question:'Â¿CuÃ¡ndo fue el Ãºltimo mantenimiento?',      options:['Nunca o no recuerdo','Hace mÃ¡s de 2 aÃ±os','Hace 1-2 aÃ±os','Hace menos de 1 aÃ±o'] },
-        { key:'tiene_backup',         question:'Â¿TenÃ©s backup actualizado de tus archivos?',options:['âœ… SÃ­, tengo backup reciente','âš ï¸ Tengo algo pero desactualizado','âŒ No tengo backup','ðŸ¤· No sÃ© quÃ© es un backup'] }
+        { key:'tipo_equipo',          question:'¿Qué tipo de equipo tiene el problema?',   options:['💻 Laptop / Notebook','🖥️ PC de escritorio','🖨️ Impresora / Periférico','📱 Tablet / Dispositivo móvil'] },
+        { key:'sintoma',              question:'¿Cuál es el síntoma principal?',             options:['⚡ No enciende o no arranca','🔥 Se sobrecalienta o apaga solo','🐌 Va muy lento o se traba','💥 Pantalla negra o sin imagen','🦠 Sospecho de virus o malware','💾 Perdí archivos o datos importantes','🔊 Hace ruidos extraños (clicks o raspados)'] },
+        { key:'duracion',             question:'¿Desde cuándo tiene este problema?',        options:['Hoy mismo (es nuevo)','Desde esta semana','Hace más de un mes','Es intermitente, va y viene'] },
+        { key:'ultimo_mantenimiento', question:'¿Cuándo fue el último mantenimiento?',      options:['Nunca o no recuerdo','Hace más de 2 años','Hace 1-2 años','Hace menos de 1 año'] },
+        { key:'tiene_backup',         question:'¿Tenés backup actualizado de tus archivos?',options:['✅ Sí, tengo backup reciente','⚠️ Tengo algo pero desactualizado','❌ No tengo backup','🤷 No sé qué es un backup'] }
       ],
       diagnose: function(a) {
-        var sinBackup = ['âŒ No tengo backup','ðŸ¤· No sÃ© quÃ© es un backup'].includes(a.tiene_backup);
-        var sinMant   = ['Nunca o no recuerdo','Hace mÃ¡s de 2 aÃ±os'].includes(a.ultimo_mantenimiento);
-        var critico   = a.sintoma === 'ðŸ’¾ PerdÃ­ archivos o datos importantes';
-        var urgente   = critico || ['âš¡ No enciende o no arranca','ðŸ’¥ Pantalla negra o sin imagen','ðŸ”Š Hace ruidos extraÃ±os (clicks o raspados)'].includes(a.sintoma);
+        var sinBackup = ['❌ No tengo backup','🤷 No sé qué es un backup'].includes(a.tiene_backup);
+        var sinMant   = ['Nunca o no recuerdo','Hace más de 2 años'].includes(a.ultimo_mantenimiento);
+        var critico   = a.sintoma === '💾 Perdí archivos o datos importantes';
+        var urgente   = critico || ['⚡ No enciende o no arranca','💥 Pantalla negra o sin imagen','🔊 Hace ruidos extraños (clicks o raspados)'].includes(a.sintoma);
         var sev       = critico ? 'critica' : urgente ? 'alta' : 'media';
         var extra     = [];
-        if (sinBackup) extra.push('ðŸ”´ **Sin backup detectado** â€” Como parte del servicio configuramos backup automÃ¡tico.');
-        if (sinMant)   extra.push('ðŸ§¹ **Mantenimiento pendiente** â€” Incluimos limpieza de polvo y revisiÃ³n de pasta tÃ©rmica.');
-        return { titulo:'DiagnÃ³stico de PC / Equipo InformÃ¡tico', icono:'ðŸ’»', severidad:sev,
-          equipoLabel:(a.tipo_equipo||'').replace(/[ðŸ’»ðŸ–¥ï¸ðŸ–¨ï¸ðŸ“±]/gu,'').trim(),
-          sintomaLabel:(a.sintoma||'').replace(/[âš¡ðŸ”¥ðŸŒðŸ’¥ðŸ¦ ðŸ’¾ðŸ”Š]/gu,'').trim(),
+        if (sinBackup) extra.push('🔴 **Sin backup detectado** — Como parte del servicio configuramos backup automático.');
+        if (sinMant)   extra.push('🧹 **Mantenimiento pendiente** — Incluimos limpieza de polvo y revisión de pasta térmica.');
+        return { titulo:'Diagnóstico de PC / Equipo Informático', icono:'💻', severidad:sev,
+          equipoLabel:(a.tipo_equipo||'').replace(/[💻🖥️🖨️📱]/gu,'').trim(),
+          sintomaLabel:(a.sintoma||'').replace(/[⚡🔥🐌💥🦠💾🔊]/gu,'').trim(),
           duracionLabel:a.duracion||'',
-          riskWarning: riskW[a.sintoma] || 'Se recomienda revisiÃ³n tÃ©cnica para descartar fallas secundarias.',
-          resumen:'Equipo: '+(a.tipo_equipo||'').replace(/[ðŸ’»ðŸ–¥ï¸ðŸ–¨ï¸ðŸ“±]/gu,'').trim()+'. SÃ­ntoma: '+(a.sintoma||'').replace(/[âš¡ðŸ”¥ðŸŒðŸ’¥ðŸ¦ ðŸ’¾ðŸ”Š]/gu,'').trim()+'. Tiempo: '+(a.duracion||'No especificado')+'.',
-          pasos:[ critico ? 'ðŸš¨ **SituaciÃ³n crÃ­tica** â€” No usar el equipo hasta la revisiÃ³n.' : urgente ? 'âš ï¸ **AtenciÃ³n prioritaria** â€” El problema puede agravarse.' : 'âœ… El problema tiene soluciÃ³n y puede programarse.',
-            'ðŸ” DiagnÃ³stico tÃ©cnico completo antes de cualquier presupuesto, **sin cargo**.',
-            'ðŸ  Servicio a domicilio disponible en CABA y GBA.',
-            'â±ï¸ Tiempo estimado de resoluciÃ³n: 2 a 6 horas.', ...extra ],
-          servicio:'Soporte InformÃ¡tico' };
+          riskWarning: riskW[a.sintoma] || 'Se recomienda revisión técnica para descartar fallas secundarias.',
+          resumen:'Equipo: '+(a.tipo_equipo||'').replace(/[💻🖥️🖨️📱]/gu,'').trim()+'. Síntoma: '+(a.sintoma||'').replace(/[⚡🔥🐌💥🦠💾🔊]/gu,'').trim()+'. Tiempo: '+(a.duracion||'No especificado')+'.',
+          pasos:[ critico ? '🚨 **Situación crítica** — No usar el equipo hasta la revisión.' : urgente ? '⚠️ **Atención prioritaria** — El problema puede agravarse.' : '✅ El problema tiene solución y puede programarse.',
+            '🔍 Diagnóstico técnico completo antes de cualquier presupuesto, **sin cargo**.',
+            '🏠 Servicio a domicilio disponible en CABA y GBA.',
+            '⏱️ Tiempo estimado de resolución: 2 a 6 horas.', ...extra ],
+          servicio:'Soporte Informático' };
       }
     },
     'redes_diagnostico': {
-      intro:'ðŸ“¡ **DiagnÃ³stico de redes y conectividad**\n\nUnas preguntas para entender tu situaciÃ³n.',
+      intro:'📡 **Diagnóstico de redes y conectividad**\n\nUnas preguntas para entender tu situación.',
       steps:[
-        { key:'problema_red',     question:'Â¿CuÃ¡l es el problema principal?',    options:['ðŸš« Sin internet en absoluto','ðŸŒ ConexiÃ³n lenta o inestable','ðŸ“¶ WiFi con mala cobertura','ðŸ”— No conecta a la red interna','ðŸ”’ Necesito configurar una red segura nueva'] },
-        { key:'tipo_instalacion', question:'Â¿QuÃ© tipo de instalaciÃ³n es?',       options:['ðŸ  Hogar / Departamento','ðŸ¢ Oficina pequeÃ±a (hasta 10 equipos)','ðŸ—ï¸ Empresa o local (mÃ¡s de 10 equipos)','ðŸ“¦ Local comercial'] },
-        { key:'equipos_afectados',question:'Â¿CuÃ¡ntos equipos estÃ¡n afectados?',  options:['Solo 1 dispositivo','Entre 2 y 5 dispositivos','Toda la red / todos los dispositivos','No lo sÃ© aÃºn'] }
+        { key:'problema_red',     question:'¿Cuál es el problema principal?',    options:['🚫 Sin internet en absoluto','🐌 Conexión lenta o inestable','📶 WiFi con mala cobertura','🔗 No conecta a la red interna','🔒 Necesito configurar una red segura nueva'] },
+        { key:'tipo_instalacion', question:'¿Qué tipo de instalación es?',       options:['🏠 Hogar / Departamento','🏢 Oficina pequeña (hasta 10 equipos)','🏗️ Empresa o local (más de 10 equipos)','📦 Local comercial'] },
+        { key:'equipos_afectados',question:'¿Cuántos equipos están afectados?',  options:['Solo 1 dispositivo','Entre 2 y 5 dispositivos','Toda la red / todos los dispositivos','No lo sé aún'] }
       ],
       diagnose: function(a) {
-        var emp  = ['ðŸ—ï¸ Empresa o local (mÃ¡s de 10 equipos)','ðŸ¢ Oficina pequeÃ±a (hasta 10 equipos)'].includes(a.tipo_instalacion);
+        var emp  = ['🏗️ Empresa o local (más de 10 equipos)','🏢 Oficina pequeña (hasta 10 equipos)'].includes(a.tipo_instalacion);
         var wifi = a.problema_red && a.problema_red.includes('WiFi');
-        return { titulo:'DiagnÃ³stico de Red / Conectividad', icono:'ðŸ“¡', severidad: a.equipos_afectados === 'Toda la red / todos los dispositivos' ? 'alta' : 'media',
-          equipoLabel:(a.tipo_instalacion||'').replace(/[ðŸ ðŸ¢ðŸ—ï¸ðŸ“¦]/gu,'').trim(),
-          sintomaLabel:(a.problema_red||'').replace(/[ðŸš«ðŸŒðŸ“¶ðŸ”—ðŸ”’]/gu,'').trim(),
+        return { titulo:'Diagnóstico de Red / Conectividad', icono:'📡', severidad: a.equipos_afectados === 'Toda la red / todos los dispositivos' ? 'alta' : 'media',
+          equipoLabel:(a.tipo_instalacion||'').replace(/[🏠🏢🏗️📦]/gu,'').trim(),
+          sintomaLabel:(a.problema_red||'').replace(/[🚫🐌📶🔗🔒]/gu,'').trim(),
           duracionLabel:a.equipos_afectados||'',
           riskWarning: riskW[a.problema_red] || 'Una red con problemas intermitentes puede afectar la productividad y la seguridad.',
-          resumen:'Tipo: '+(a.tipo_instalacion||'').replace(/[ðŸ ðŸ¢ðŸ—ï¸ðŸ“¦]/gu,'').trim()+'. Problema: '+(a.problema_red||'').replace(/[ðŸš«ðŸŒðŸ“¶ðŸ”—ðŸ”’]/gu,'').trim()+'. Afectados: '+(a.equipos_afectados||'No especificado')+'.',
-          pasos:[ emp ? 'ðŸ¢ **Caso empresarial** â€” Enviamos tÃ©cnico con equipamiento profesional.' : 'ðŸ”§ DiagnÃ³stico remoto inicial disponible.',
-            wifi ? 'ðŸ“¶ Trabajamos con MikroTik y Ubiquiti.' : 'ðŸ“Š Revisamos router, modem, switches y puntos de acceso.',
-            'ðŸ“‹ Entregamos informe de infraestructura al finalizar.', 'âš¡ ResoluciÃ³n en el dÃ­a para la mayorÃ­a de los casos.' ],
-          servicio:'Redes Cableadas e InalÃ¡mbricas' };
+          resumen:'Tipo: '+(a.tipo_instalacion||'').replace(/[🏠🏢🏗️📦]/gu,'').trim()+'. Problema: '+(a.problema_red||'').replace(/[🚫🐌📶🔗🔒]/gu,'').trim()+'. Afectados: '+(a.equipos_afectados||'No especificado')+'.',
+          pasos:[ emp ? '🏢 **Caso empresarial** — Enviamos técnico con equipamiento profesional.' : '🔧 Diagnóstico remoto inicial disponible.',
+            wifi ? '📶 Trabajamos con MikroTik y Ubiquiti.' : '📊 Revisamos router, modem, switches y puntos de acceso.',
+            '📋 Entregamos informe de infraestructura al finalizar.', '⚡ Resolución en el día para la mayoría de los casos.' ],
+          servicio:'Redes Cableadas e Inalámbricas' };
       }
     },
     'camaras_diagnostico': {
-      intro:'ðŸ“· **DiagnÃ³stico de sistemas CCTV**\n\nContame un poco mÃ¡s para la mejor recomendaciÃ³n.',
+      intro:'📷 **Diagnóstico de sistemas CCTV**\n\nContame un poco más para la mejor recomendación.',
       steps:[
-        { key:'necesidad_camara', question:'Â¿QuÃ© necesitÃ¡s exactamente?',    options:['ðŸ“¦ InstalaciÃ³n nueva desde cero','ðŸ”§ ReparaciÃ³n o mantenimiento de sistema existente','â¬†ï¸ Ampliar el sistema actual','ðŸ’» Configurar acceso remoto o app'] },
-        { key:'tipo_lugar',       question:'Â¿DÃ³nde se instalarÃ­a?',           options:['ðŸ  Casa / Departamento','ðŸ¢ Oficina / Consultorio','ðŸª Local comercial / Negocio','ðŸ­ DepÃ³sito / Nave industrial'] },
-        { key:'cantidad_camaras', question:'Â¿CuÃ¡ntas cÃ¡maras necesitarÃ­as?', options:['1-2 cÃ¡maras (vigilancia bÃ¡sica)','3-5 cÃ¡maras (cobertura media)','6-10 cÃ¡maras (cobertura completa)','MÃ¡s de 10 cÃ¡maras (sistema empresarial)'] }
+        { key:'necesidad_camara', question:'¿Qué necesitás exactamente?',    options:['📦 Instalación nueva desde cero','🔧 Reparación o mantenimiento de sistema existente','⬆️ Ampliar el sistema actual','💻 Configurar acceso remoto o app'] },
+        { key:'tipo_lugar',       question:'¿Dónde se instalaría?',           options:['🏠 Casa / Departamento','🏢 Oficina / Consultorio','🏪 Local comercial / Negocio','🏭 Depósito / Nave industrial'] },
+        { key:'cantidad_camaras', question:'¿Cuántas cámaras necesitarías?', options:['1-2 cámaras (vigilancia básica)','3-5 cámaras (cobertura media)','6-10 cámaras (cobertura completa)','Más de 10 cámaras (sistema empresarial)'] }
       ],
       diagnose: function(a) {
-        var emp = ['ðŸ­ DepÃ³sito / Nave industrial','MÃ¡s de 10 cÃ¡maras (sistema empresarial)'].some(function(o){ return [a.tipo_lugar,a.cantidad_camaras].includes(o); });
-        return { titulo:'DiagnÃ³stico de Sistema CCTV', icono:'ðŸ“·', severidad: emp ? 'alta' : 'media',
-          equipoLabel:(a.tipo_lugar||'').replace(/[ðŸ ðŸ¢ðŸªðŸ­]/gu,'').trim(),
-          sintomaLabel:(a.necesidad_camara||'').replace(/[ðŸ“¦ðŸ”§â¬†ï¸ðŸ’»]/gu,'').trim(),
+        var emp = ['🏭 Depósito / Nave industrial','Más de 10 cámaras (sistema empresarial)'].some(function(o){ return [a.tipo_lugar,a.cantidad_camaras].includes(o); });
+        return { titulo:'Diagnóstico de Sistema CCTV', icono:'📷', severidad: emp ? 'alta' : 'media',
+          equipoLabel:(a.tipo_lugar||'').replace(/[🏠🏢🏪🏭]/gu,'').trim(),
+          sintomaLabel:(a.necesidad_camara||'').replace(/[📦🔧⬆️💻]/gu,'').trim(),
           duracionLabel:a.cantidad_camaras||'',
-          riskWarning:'Un sistema sin mantenimiento puede tener puntos ciegos en el momento en que mÃ¡s importan.',
-          resumen:'Servicio: '+(a.necesidad_camara||'').replace(/[ðŸ“¦ðŸ”§â¬†ï¸ðŸ’»]/gu,'').trim()+'. Lugar: '+(a.tipo_lugar||'').replace(/[ðŸ ðŸ¢ðŸªðŸ­]/gu,'').trim()+'. Cantidad: '+(a.cantidad_camaras||'No especificado')+'.',
-          pasos:[ a.necesidad_camara === 'ðŸ“¦ InstalaciÃ³n nueva desde cero' ? 'ðŸ“ **Relevamiento tÃ©cnico gratuito** para diseÃ±ar el sistema Ã³ptimo.' : 'ðŸ” Revisamos el sistema existente.',
-            emp ? 'ðŸ¢ CÃ¡maras IP HD/4K, NVR, almacenamiento local o cloud.' : 'ðŸŽ¥ CÃ¡maras HD con visiÃ³n nocturna y detecciÃ³n de movimiento.',
-            'ðŸ“± Configuramos app mÃ³vil para ver tus cÃ¡maras desde cualquier lugar.',
-            'âš™ï¸ InstalaciÃ³n con cableado prolijo y garantÃ­a de 90 dÃ­as.' ],
-          servicio:'InstalaciÃ³n CCTV' };
+          riskWarning:'Un sistema sin mantenimiento puede tener puntos ciegos en el momento en que más importan.',
+          resumen:'Servicio: '+(a.necesidad_camara||'').replace(/[📦🔧⬆️💻]/gu,'').trim()+'. Lugar: '+(a.tipo_lugar||'').replace(/[🏠🏢🏪🏭]/gu,'').trim()+'. Cantidad: '+(a.cantidad_camaras||'No especificado')+'.',
+          pasos:[ a.necesidad_camara === '📦 Instalación nueva desde cero' ? '📐 **Relevamiento técnico gratuito** para diseñar el sistema óptimo.' : '🔍 Revisamos el sistema existente.',
+            emp ? '🏢 Cámaras IP HD/4K, NVR, almacenamiento local o cloud.' : '🎥 Cámaras HD con visión nocturna y detección de movimiento.',
+            '📱 Configuramos app móvil para ver tus cámaras desde cualquier lugar.',
+            '⚙️ Instalación con cableado prolijo y garantía de 90 días.' ],
+          servicio:'Instalación CCTV' };
       }
     },
     'alarmas_diagnostico': {
-      intro:'ðŸš¨ **DiagnÃ³stico de sistemas de alarma**\n\nÂ¿QuÃ© tipo de soluciÃ³n estÃ¡s buscando?',
+      intro:'🚨 **Diagnóstico de sistemas de alarma**\n\n¿Qué tipo de solución estás buscando?',
       steps:[
-        { key:'tipo_alarma',      question:'Â¿QuÃ© sistema te interesa?',                        options:['ðŸ”” Alarma domiciliaria con sensores','âš¡ Cerco elÃ©ctrico perimetral','ðŸš¨ Alarma monitoreada 24/7','ðŸ” Control de acceso (tarjeta / huella)','ðŸ”§ ReparaciÃ³n o mantenimiento de alarma existente'] },
-        { key:'ubicacion_alarma', question:'Â¿DÃ³nde se instalarÃ­a?',                             options:['ðŸ  Casa / Departamento','ðŸ¢ Oficina / Local comercial','ðŸ­ DepÃ³sito / GalpÃ³n','ðŸ—ï¸ Obra en construcciÃ³n'] },
-        { key:'zonas_proteger',   question:'Â¿CuÃ¡ntas zonas/ambientes necesitÃ¡s proteger?',      options:['1-3 ambientes (bÃ¡sico)','4-6 ambientes (intermedio)','7-10 ambientes (completo)','PerÃ­metro externo completo'] }
+        { key:'tipo_alarma',      question:'¿Qué sistema te interesa?',                        options:['🔔 Alarma domiciliaria con sensores','⚡ Cerco eléctrico perimetral','🚨 Alarma monitoreada 24/7','🔐 Control de acceso (tarjeta / huella)','🔧 Reparación o mantenimiento de alarma existente'] },
+        { key:'ubicacion_alarma', question:'¿Dónde se instalaría?',                              options:['🏠 Casa / Departamento','🏢 Oficina / Local comercial','🏭 Depósito / Galpón','🏗️ Obra en construcción'] },
+        { key:'zonas_proteger',   question:'¿Cuántas zonas/ambientes necesitás proteger?',       options:['1-3 ambientes (básico)','4-6 ambientes (intermedio)','7-10 ambientes (completo)','Perímetro externo completo'] }
       ],
       diagnose: function(a) {
         var cerco = a.tipo_alarma && a.tipo_alarma.includes('Cerco');
         var mon   = a.tipo_alarma && a.tipo_alarma.includes('monitoreada');
         var acc   = a.tipo_alarma && a.tipo_alarma.includes('acceso');
-        return { titulo:'DiagnÃ³stico de Sistema de Alarma', icono:'ðŸš¨', severidad:(cerco||mon)?'alta':'media',
-          equipoLabel:(a.ubicacion_alarma||'').replace(/[ðŸ ðŸ¢ðŸ­ðŸ—ï¸]/gu,'').trim(),
-          sintomaLabel:(a.tipo_alarma||'').replace(/[ðŸ””âš¡ðŸš¨ðŸ”ðŸ”§]/gu,'').trim(),
+        return { titulo:'Diagnóstico de Sistema de Alarma', icono:'🚨', severidad:(cerco||mon)?'alta':'media',
+          equipoLabel:(a.ubicacion_alarma||'').replace(/[🏠🏢🏭🏗️]/gu,'').trim(),
+          sintomaLabel:(a.tipo_alarma||'').replace(/[🔔⚡🚨🔐🔧]/gu,'').trim(),
           duracionLabel:a.zonas_proteger||'',
           riskWarning:'Una alarma mal configurada puede activarse en falso o no responder ante un evento real.',
-          resumen:'Sistema: '+(a.tipo_alarma||'').replace(/[ðŸ””âš¡ðŸš¨ðŸ”ðŸ”§]/gu,'').trim()+'. Lugar: '+(a.ubicacion_alarma||'').replace(/[ðŸ ðŸ¢ðŸ­ðŸ—ï¸]/gu,'').trim()+'. Zonas: '+(a.zonas_proteger||'No especificado')+'.',
-          pasos:[ cerco ? 'âš¡ **Cerco elÃ©ctrico** â€” Impulsos no letales, certificaciÃ³n de seguridad.' : acc ? 'ðŸ” **Control de acceso** â€” Tarjeta, huella o PIN con log de ingresos.' : 'ðŸ”” Alarma con sensores de movimiento, magnÃ©ticos y botÃ³n de pÃ¡nico.',
-            mon ? 'ðŸ‘® ConexiÃ³n con central de monitoreo 24/7.' : 'ðŸ“± App mÃ³vil con notificaciones push ante cualquier evento.',
-            'ðŸ”Š Sirena exterior de alta potencia (120dB).',
-            'ðŸ” InstalaciÃ³n profesional con garantÃ­a y soporte posterior.' ],
+          resumen:'Sistema: '+(a.tipo_alarma||'').replace(/[🔔⚡🚨🔐🔧]/gu,'').trim()+'. Lugar: '+(a.ubicacion_alarma||'').replace(/[🏠🏢🏭🏗️]/gu,'').trim()+'. Zonas: '+(a.zonas_proteger||'No especificado')+'.',
+          pasos:[ cerco ? '⚡ **Cerco eléctrico** — Impulsos no letales, certificación de seguridad.' : acc ? '🔐 **Control de acceso** — Tarjeta, huella o PIN con log de ingresos.' : '🔔 Alarma con sensores de movimiento, magnéticos y botón de pánico.',
+            mon ? '👮 Conexión con central de monitoreo 24/7.' : '📱 App móvil con notificaciones push ante cualquier evento.',
+            '🔊 Sirena exterior de alta potencia (120dB).',
+            '🔐 Instalación profesional con garantía y soporte posterior.' ],
           servicio:'Sistemas de Alarmas y Control de Acceso' };
       }
     },
     'domotica_diagnostico': {
-      intro:'ðŸ  **DiagnÃ³stico de domÃ³tica y automatizaciÃ³n**\n\nContame quÃ© querÃ©s automatizar.',
+      intro:'🏠 **Diagnóstico de domótica y automatización**\n\nContame qué querés automatizar.',
       steps:[
-        { key:'sistema_domotica', question:'Â¿QuÃ© querÃ©s automatizar?',              options:['ðŸ’¡ IluminaciÃ³n inteligente','ðŸŒ¡ï¸ ClimatizaciÃ³n / Aire acondicionado','ðŸ”Œ Enchufes y electrodomÃ©sticos','ðŸŽ¬ Sistema completo (todo integrado)'] },
-        { key:'control_deseado',  question:'Â¿CÃ³mo te gustarÃ­a controlarlo?',        options:['ðŸ“± App desde el celular','ðŸ—£ï¸ Comandos de voz (Alexa/Google)','â° AutomatizaciÃ³n por horarios','ðŸ  Todo lo anterior (control total)'] },
-        { key:'tipo_lugar_dom',   question:'Â¿DÃ³nde se instalarÃ­a?',                 options:['ðŸ  Casa / Departamento','ðŸ¢ Oficina / Local','ðŸ—ï¸ ConstrucciÃ³n nueva','ðŸ˜ï¸ Propiedad con infraestructura existente'] }
+        { key:'sistema_domotica', question:'¿Qué querés automatizar?',              options:['💡 Iluminación inteligente','🌡️ Climatización / Aire acondicionado','🔌 Enchufes y electrodomésticos','🎬 Sistema completo (todo integrado)'] },
+        { key:'control_deseado',  question:'¿Cómo te gustaría controlarlo?',        options:['📱 App desde el celular','🗣️ Comandos de voz (Alexa/Google)','⏰ Automatización por horarios','🏠 Todo lo anterior (control total)'] },
+        { key:'tipo_lugar_dom',   question:'¿Dónde se instalaría?',                 options:['🏠 Casa / Departamento','🏢 Oficina / Local','🏗️ Construcción nueva','🏘️ Propiedad con infraestructura existente'] }
       ],
       diagnose: function(a) {
         var completo = a.sistema_domotica && a.sistema_domotica.includes('completo');
         var voz      = a.control_deseado  && a.control_deseado.includes('voz');
-        return { titulo:'DiagnÃ³stico de Sistema DomÃ³tico', icono:'ðŸ ', severidad:completo?'alta':'media',
-          equipoLabel:(a.tipo_lugar_dom||'').replace(/[ðŸ ðŸ¢ðŸ—ï¸ðŸ˜ï¸]/gu,'').trim(),
-          sintomaLabel:(a.sistema_domotica||'').replace(/[ðŸ’¡ðŸŒ¡ï¸ðŸ”ŒðŸŽ¬]/gu,'').trim(),
-          duracionLabel:(a.control_deseado||'').replace(/[ðŸ“±ðŸ—£ï¸â°ðŸ ]/gu,'').trim(),
-          riskWarning:'Una instalaciÃ³n domÃ³tica sin configuraciÃ³n de seguridad puede dejar dispositivos IoT expuestos en la red.',
-          resumen:'AutomatizaciÃ³n: '+(a.sistema_domotica||'').replace(/[ðŸ’¡ðŸŒ¡ï¸ðŸ”ŒðŸŽ¬]/gu,'').trim()+'. Control: '+(a.control_deseado||'').replace(/[ðŸ“±ðŸ—£ï¸â°ðŸ ]/gu,'').trim()+'. Lugar: '+(a.tipo_lugar_dom||'No especificado')+'.',
-          pasos:[ completo ? 'ðŸ  **Sistema integral** â€” ControlÃ¡ luces, climatizaciÃ³n, cortinas y seguridad desde una sola app.' : 'ðŸ’¡ AutomatizaciÃ³n modular que podÃ©s ampliar con el tiempo.',
-            voz ? 'ðŸ—£ï¸ IntegraciÃ³n con Alexa o Google Assistant.' : 'ðŸ“± App mÃ³vil con control remoto desde cualquier lugar.',
-            'âš¡ InstalaciÃ³n sin romper paredes en la mayorÃ­a de los casos.',
-            'ðŸŽ“ CapacitaciÃ³n completa incluida para que uses el sistema desde el primer dÃ­a.' ],
-          servicio:'AutomatizaciÃ³n DomÃ³tica' };
+        return { titulo:'Diagnóstico de Sistema Domótico', icono:'🏠', severidad:completo?'alta':'media',
+          equipoLabel:(a.tipo_lugar_dom||'').replace(/[🏠🏢🏗️🏘️]/gu,'').trim(),
+          sintomaLabel:(a.sistema_domotica||'').replace(/[💡🌡️🔌🎬]/gu,'').trim(),
+          duracionLabel:(a.control_deseado||'').replace(/[📱🗣️⏰🏠]/gu,'').trim(),
+          riskWarning:'Una instalación domótica sin configuración de seguridad puede dejar dispositivos IoT expuestos en la red.',
+          resumen:'Automatización: '+(a.sistema_domotica||'').replace(/[💡🌡️🔌🎬]/gu,'').trim()+'. Control: '+(a.control_deseado||'').replace(/[📱🗣️⏰🏠]/gu,'').trim()+'. Lugar: '+(a.tipo_lugar_dom||'No especificado')+'.',
+          pasos:[ completo ? '🏠 **Sistema integral** — Controlá luces, climatización, cortinas y seguridad desde una sola app.' : '💡 Automatización modular que podés ampliar con el tiempo.',
+            voz ? '🗣️ Integración con Alexa o Google Assistant.' : '📱 App móvil con control remoto desde cualquier lugar.',
+            '⚡ Instalación sin romper paredes en la mayoría de los casos.',
+            '🎓 Capacitación completa incluida para que uses el sistema desde el primer día.' ],
+          servicio:'Automatización Domótica' };
       }
     },
     'ciber_diagnostico': {
-      intro:'ðŸ›¡ï¸ **DiagnÃ³stico de ciberseguridad**\n\nUnas preguntas para evaluar tu situaciÃ³n actual.',
+      intro:'🛡️ **Diagnóstico de ciberseguridad**\n\nUnas preguntas para evaluar tu situación actual.',
       steps:[
-        { key:'problema_ciber',  question:'Â¿CuÃ¡l es la situaciÃ³n?',                             options:['ðŸ¦  Virus / ransomware activo','ðŸ”“ Creo que me hackearon','ðŸ”’ Quiero proteger la red antes de que pase algo','ðŸ“‹ Necesito auditorÃ­a de seguridad para la empresa','ðŸ” Configurar VPN / acceso remoto seguro'] },
-        { key:'alcance_ciber',   question:'Â¿CuÃ¡ntos equipos estÃ¡n involucrados?',               options:['Solo 1 equipo / uso personal','2-10 equipos (pyme pequeÃ±a)','11-50 equipos (pyme mediana)','MÃ¡s de 50 equipos (empresa grande)'] },
-        { key:'tiene_antivirus', question:'Â¿TenÃ©s antivirus o soluciÃ³n de seguridad activa?',   options:['âœ… Antivirus corporativo pago (ESET, Bitdefender, etc.)','âš ï¸ Solo Windows Defender / gratuito','âŒ No tengo nada instalado','ðŸ¤· No estoy seguro'] },
-        { key:'backup_ciber',    question:'Â¿TenÃ©s backup reciente de los datos crÃ­ticos?',      options:['âœ… SÃ­, backup automÃ¡tico al dÃ­a','âš ï¸ Backup manual pero desactualizado','âŒ No tengo backup','â˜ï¸ Solo en la nube (OneDrive / Google Drive)'] }
+        { key:'problema_ciber',  question:'¿Cuál es la situación?',                               options:['🦠 Virus / ransomware activo','🔓 Creo que me hackearon','🔒 Quiero proteger la red antes de que pase algo','📋 Necesito auditoría de seguridad para la empresa','🔐 Configurar VPN / acceso remoto seguro'] },
+        { key:'alcance_ciber',   question:'¿Cuántos equipos están involucrados?',               options:['Solo 1 equipo / uso personal','2-10 equipos (pyme pequeña)','11-50 equipos (pyme mediana)','Más de 50 equipos (empresa grande)'] },
+        { key:'tiene_antivirus', question:'¿Tenés antivirus o solución de seguridad activa?',   options:['✅ Antivirus corporativo pago (ESET, Bitdefender, etc.)','⚠️ Solo Windows Defender / gratuito','❌ No tengo nada instalado','🤷 No estoy seguro'] },
+        { key:'backup_ciber',    question:'¿Tenés backup reciente de los datos críticos?',      options:['✅ Sí, backup automático al día','⚠️ Backup manual pero desactualizado','❌ No tengo backup','☁️ Solo en la nube (OneDrive / Google Drive)'] }
       ],
       diagnose: function(a) {
         var activo  = a.problema_ciber && a.problema_ciber.includes('activo');
         var hack    = a.problema_ciber && a.problema_ciber.includes('hackearon');
-        var sinAV   = ['âŒ No tengo nada instalado','ðŸ¤· No estoy seguro'].includes(a.tiene_antivirus);
-        var sinBkp  = a.backup_ciber === 'âŒ No tengo backup';
+        var sinAV   = ['❌ No tengo nada instalado','🤷 No estoy seguro'].includes(a.tiene_antivirus);
+        var sinBkp  = a.backup_ciber === '❌ No tengo backup';
         var emp     = a.alcance_ciber !== 'Solo 1 equipo / uso personal';
         var sev     = (activo||hack) ? 'critica' : (sinAV&&sinBkp) ? 'alta' : emp ? 'media' : 'baja';
         var alertas = [];
-        if (sinBkp) alertas.push('ðŸ”´ **Sin backup** â€” En caso de ransomware, la recuperaciÃ³n puede ser imposible.');
-        if (sinAV)  alertas.push('ðŸŸ  **Sin protecciÃ³n activa** â€” Los equipos sin antivirus son el vector mÃ¡s comÃºn para malware.');
-        return { titulo:'DiagnÃ³stico de Ciberseguridad', icono:'ðŸ›¡ï¸', severidad:sev,
+        if (sinBkp) alertas.push('🔴 **Sin backup** — En caso de ransomware, la recuperación puede ser imposible.');
+        if (sinAV)  alertas.push('🟠 **Sin protección activa** — Los equipos sin antivirus son el vector más común para malware.');
+        return { titulo:'Diagnóstico de Ciberseguridad', icono:'🛡️', severidad:sev,
           equipoLabel:a.alcance_ciber||'',
-          sintomaLabel:(a.problema_ciber||'').replace(/[ðŸ¦ ðŸ”“ðŸ”’ðŸ“‹ðŸ”]/gu,'').trim(),
+          sintomaLabel:(a.problema_ciber||'').replace(/[🦠🔓🔒📋🔐]/gu,'').trim(),
           duracionLabel:a.tiene_antivirus||'',
-          riskWarning: riskW[a.problema_ciber] || (sinAV ? 'Equipos sin protecciÃ³n activa son el vector mÃ¡s comÃºn para malware en pymes.' : 'La seguridad preventiva cuesta entre 10 y 100 veces menos que la respuesta a un incidente.'),
-          resumen:'SituaciÃ³n: '+(a.problema_ciber||'').replace(/[ðŸ¦ ðŸ”“ðŸ”’ðŸ“‹ðŸ”]/gu,'').trim()+'. Alcance: '+(a.alcance_ciber||'No especificado')+'.',
-          pasos:[ activo ? 'ðŸš¨ **Ransomware activo:** DesconectÃ¡ de la red YA. No apagues el equipo todavÃ­a.' : hack ? 'âš ï¸ **Posible intrusiÃ³n** â€” CambiÃ¡ contraseÃ±as desde un dispositivo limpio.' : 'ðŸ”’ Instalamos y configuramos ESET Endpoint segÃºn el tamaÃ±o de la red.',
-            emp ? 'ðŸ¢ Firewall perimetral, VLAN segmentada, VPN para acceso remoto.' : 'ðŸ” ConfiguraciÃ³n segura de red WiFi, router y backup automÃ¡tico.',
+          riskWarning: riskW[a.problema_ciber] || (sinAV ? 'Equipos sin protección activa son el vector más común para malware en pymes.' : 'La seguridad preventiva cuesta entre 10 y 100 veces menos que la respuesta a un incidente.'),
+          resumen:'Situación: '+(a.problema_ciber||'').replace(/[🦠🔓🔒📋🔐]/gu,'').trim()+'. Alcance: '+(a.alcance_ciber||'No especificado')+'.',
+          pasos:[ activo ? '🚨 **Ransomware activo:** Desconectá de la red YA. No apagues el equipo todavía.' : hack ? '⚠️ **Posible intrusión** — Cambiá contraseñas desde un dispositivo limpio.' : '🔒 Instalamos y configuramos ESET Endpoint según el tamaño de la red.',
+            emp ? '🏢 Firewall perimetral, VLAN segmentada, VPN para acceso remoto.' : '🔐 Configuración segura de red WiFi, router y backup automático.',
             ...alertas,
-            'ðŸ“‹ Entregamos informe de vulnerabilidades con priorizaciÃ³n.' ],
+            '📋 Entregamos informe de vulnerabilidades con priorización.' ],
           servicio:'Ciberseguridad' };
       }
     },
     'ups_diagnostico': {
-      intro:'ðŸ”‹ **DiagnÃ³stico de UPS y protecciÃ³n de energÃ­a**\n\nUnas preguntas para recomendarte el equipo correcto.',
+      intro:'🔋 **Diagnóstico de UPS y protección de energía**\n\nUnas preguntas para recomendarte el equipo correcto.',
       steps:[
-        { key:'motivo_ups',         question:'Â¿Por quÃ© necesitÃ¡s un UPS?',                   options:['âš¡ Picos de tensiÃ³n / cortes frecuentes','ðŸ’¾ Quiero proteger equipos o datos ante cortes','ðŸ”‡ El UPS actual ya no sostiene la carga','ðŸ†• InstalaciÃ³n nueva, quiero hacerlo bien'] },
-        { key:'equipos_a_proteger', question:'Â¿QuÃ© equipos querÃ©s proteger?',                options:['ðŸ–¥ï¸ 1 PC + monitor (puesto individual)','ðŸ–¥ï¸ðŸ–¥ï¸ 2-5 PCs + red (oficina pequeÃ±a)','ðŸ—„ï¸ Servidor o NAS (equipos crÃ­ticos)','ðŸ”€ Router / switch / telecomunicaciones solamente'] },
-        { key:'autonomia_deseada',  question:'Â¿CuÃ¡nta autonomÃ­a necesitÃ¡s ante un corte?',  options:['â±ï¸ Solo para guardar y apagar bien (5-10 min)','ðŸ• Hasta 30 minutos','ðŸ•’ MÃ¡s de 1 hora (operaciÃ³n continua)','ðŸ¤· No sÃ©, necesito asesoramiento'] }
+        { key:'motivo_ups',         question:'¿Por qué necesitás un UPS?',                    options:['⚡ Picos de tensión / cortes frecuentes','💾 Quiero proteger equipos o datos ante cortes','🪫 El UPS actual ya no sostiene la carga','🆕 Instalación nueva, quiero hacerlo bien'] },
+        { key:'equipos_a_proteger', question:'¿Qué equipos querés proteger?',                options:['🖥️ 1 PC + monitor (puesto individual)','🖥️🖥️ 2-5 PCs + red (oficina pequeña)','🗄️ Servidor o NAS (equipos críticos)','🔀 Router / switch / telecomunicaciones solamente'] },
+        { key:'autonomia_deseada',  question:'¿Cuánta autonomía necesitás ante un corte?',  options:['⏱️ Solo para guardar y apagar bien (5-10 min)','🕑 Hasta 30 minutos','🕒 Más de 1 hora (operación continua)','🤷 No sé, necesito asesoramiento'] }
       ],
       diagnose: function(a) {
         var crit  = a.equipos_a_proteger && a.equipos_a_proteger.includes('Servidor');
         var largo = a.autonomia_deseada  && a.autonomia_deseada.includes('1 hora');
         var picos = a.motivo_ups         && a.motivo_ups.includes('Picos');
-        var tipo  = (crit||largo) ? 'Online / Doble ConversiÃ³n' : 'Line Interactive';
+        var tipo  = (crit||largo) ? 'Online / Doble Conversión' : 'Line Interactive';
         var va    = crit ? '1500VA' : (a.equipos_a_proteger && a.equipos_a_proteger.includes('2-5 PCs')) ? '1000VA' : '650VA';
-        return { titulo:'DiagnÃ³stico de UPS / ProtecciÃ³n de EnergÃ­a', icono:'ðŸ”‹', severidad:(crit||picos)?'alta':'media',
-          equipoLabel:(a.equipos_a_proteger||'').replace(/[ðŸ–¥ï¸ðŸ—„ï¸ðŸ”€]/gu,'').trim(),
-          sintomaLabel:(a.motivo_ups||'').replace(/[âš¡ðŸ’¾ðŸ”‡ðŸ†•]/gu,'').trim(),
+        return { titulo:'Diagnóstico de UPS / Protección de Energía', icono:'🔋', severidad:(crit||picos)?'alta':'media',
+          equipoLabel:(a.equipos_a_proteger||'').replace(/[🖥️🗄️🔀]/gu,'').trim(),
+          sintomaLabel:(a.motivo_ups||'').replace(/[⚡💾🪫🆕]/gu,'').trim(),
           duracionLabel:a.autonomia_deseada||'',
-          riskWarning: riskW[a.motivo_ups] || 'Los picos al restaurarse la energÃ­a son la principal causa de fuentes quemadas.',
-          resumen:'Motivo: '+(a.motivo_ups||'').replace(/[âš¡ðŸ’¾ðŸ”‡ðŸ†•]/gu,'').trim()+'. Equipos: '+(a.equipos_a_proteger||'No especificado')+'.',
-          pasos:[ 'ðŸ”‹ **UPS recomendado:** '+tipo+' â€” capacidad mÃ­nima sugerida: '+va+'.',
-            crit ? 'ðŸ—„ï¸ Para servidores recomendamos UPS Online con tiempo de conmutaciÃ³n cero.' : picos ? 'âš¡ El Line Interactive incluye regulador de tensiÃ³n (AVR).' : 'âœ… Un UPS Line Interactive cubre el 90% de los casos.',
-            'ðŸ“Š Incluimos configuraciÃ³n del software de apagado automÃ¡tico.',
-            'ðŸ”§ Instalamos, configuramos y probamos el UPS.' ],
-          servicio:'UPS y ProtecciÃ³n de EnergÃ­a' };
+          riskWarning: riskW[a.motivo_ups] || 'Los picos al restaurarse la energía son la principal causa de fuentes quemadas.',
+          resumen:'Motivo: '+(a.motivo_ups||'').replace(/[⚡💾🪫🆕]/gu,'').trim()+'. Equipos: '+(a.equipos_a_proteger||'No especificado')+'.',
+          pasos:[ '🔋 **UPS recomendado:** '+tipo+' — capacidad mínima sugerida: '+va+'.',
+            crit ? '🗄️ Para servidores recomendamos UPS Online con tiempo de conmutación cero.' : picos ? '⚡ El Line Interactive incluye regulador de tensión (AVR).' : '✅ Un UPS Line Interactive cubre el 90% de los casos.',
+            '📊 Incluimos configuración del software de apagado automático.',
+            '🔧 Instalamos, configuramos y probamos el UPS.' ],
+          servicio:'UPS y Protección de Energía' };
       }
     }
   };
-  // generarPDFDiagnostico() se carga desde chatbot.js (script externo)
-
 
 </script>
-
 </body>
 </html>
-
