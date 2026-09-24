@@ -76,45 +76,6 @@
       }
     }
     </script>
-
-    <!-- SCHEMA EXCLUSIVO PARA FORZAR SITELINKS DE GOOGLE -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "SiteNavigationElement",
-          "position": 1,
-          "name": "Servicios para Hogares",
-          "description": "Soporte técnico de PC y redes WiFi a domicilio para familias.",
-          "url": "https://www.soportecyclops.com.ar/servicios-hogares.html"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 2,
-          "name": "Soporte para Pymes y Comercios",
-          "description": "Mantenimiento IT, redes de alta disponibilidad y cámaras de seguridad.",
-          "url": "https://www.soportecyclops.com.ar/servicios-pymes.html"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 3,
-          "name": "Para Estudios Profesionales",
-          "description": "Ciberseguridad, backups automáticos y VPN para abogados y contadores.",
-          "url": "https://www.soportecyclops.com.ar/servicios-profesionales.html"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 4,
-          "name": "Infraestructura y Obras",
-          "description": "Cableado estructurado, domótica oculta y CCTV desde los planos.",
-          "url": "https://www.soportecyclops.com.ar/servicios-obras.html"
-        }
-      ]
-    }
-    </script>
-
     <title>Soporte Cyclops | Técnico IT a domicilio — CABA y GBA</title>
 
     <!-- Google Fonts -->
@@ -124,10 +85,9 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <link rel="stylesheet" href="css/main.css">
 
-    <!-- ESTILOS INYECTADOS EXCLUSIVOS PARA LA GRILLA DE NICHOS DEL HERO -->
+    <!-- ESTILOS EXCLUSIVOS PARA LA GRILLA DE NICHOS DEL HERO -->
     <style>
         .niche-grid {
             display: grid;
@@ -157,30 +117,30 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
             background: rgba(15, 23, 42, 0.75);
         }
-        .niche-card.hogar { border-top: 3px solid #38bdf8; }
+        .niche-card.hogar { border-top: 3px solid #00c6ff; }
         .niche-card.pyme { border-top: 3px solid #f59e0b; }
         .niche-card.estudio { border-top: 3px solid #22c55e; }
         .niche-card.obra { border-top: 3px solid #94a3b8; }
-        .niche-card:hover.hogar { border-color: #38bdf8; }
+        .niche-card:hover.hogar { border-color: #00c6ff; }
         .niche-card:hover.pyme { border-color: #f59e0b; }
         .niche-card:hover.estudio { border-color: #22c55e; }
         .niche-card:hover.obra { border-color: #94a3b8; }
         .niche-icon { font-size: 1.8rem; margin-bottom: 16px; display: inline-block; }
-        .niche-card.hogar .niche-icon { color: #38bdf8; }
+        .niche-card.hogar .niche-icon { color: #00c6ff; }
         .niche-card.pyme .niche-icon { color: #f59e0b; }
         .niche-card.estudio .niche-icon { color: #22c55e; }
         .niche-card.obra .niche-icon { color: #94a3b8; }
         .niche-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.3; }
         .niche-card p { font-size: 0.85rem; color: rgba(255, 255, 255, 0.8); line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
         .niche-btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 10px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; transition: all 0.2s ease; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); color: white; }
-        .niche-card.hogar:hover .niche-btn { background: #38bdf8; border-color: #38bdf8; color: #0f172a; }
+        .niche-card.hogar:hover .niche-btn { background: #00c6ff; border-color: #00c6ff; color: #0f172a; }
         .niche-card.pyme:hover .niche-btn { background: #f59e0b; border-color: #f59e0b; color: #0f172a; }
         .niche-card.estudio:hover .niche-btn { background: #22c55e; border-color: #22c55e; color: #0f172a; }
         .niche-card.obra:hover .niche-btn { background: #94a3b8; border-color: #94a3b8; color: #0f172a; }
         @media (max-width: 1024px) { .niche-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .niche-grid { grid-template-columns: 1fr; } }
     </style>
-  </head>
+</head>
 
 <body>
 
@@ -188,16 +148,15 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container container">
             <a href="index.html" class="logo">
-                <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+                <img src="public/images/logo-icon.png" alt="Logo de Soporte Cyclops - Servicio Técnico IT en CABA" height="48" width="47">
                 <span class="logo-text">Soporte<strong>Cyclops</strong></span>
             </a>
-            <!-- MENÚ SIMPLIFICADO -->
+            <!-- MENU SIMPLIFICADO -->
             <ul class="nav-menu" id="navMenu">
                 <li><a href="#inicio" class="nav-link active">Inicio</a></li>
                 <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
                 <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
                 <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-                <!-- REL NOFOLLOW INYECTADO PARA DESPRIORIZAR EL LOGIN ANTE GOOGLE BOT -->
                 <li><a href="login.html" rel="nofollow" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
                 <li><a href="#contacto" class="nav-link">Contacto</a></li>
             </ul>
@@ -225,7 +184,7 @@
             <h1>Soporte técnico que resuelve.<br><em>Sin vueltas.</em></h1>
             <p>Redes, CCTV, soporte informático y presencia web para hogares y pymes. +11 años de experiencia en infraestructura corporativa al servicio de tu negocio.</p>
             
-            <!-- NUEVA GRILLA DE NICHOS -->
+            <!-- GRILLA DE NICHOS -->
             <div class="niche-grid">
                 <a href="servicios-hogares.html" class="niche-card hogar reveal">
                     <i class="fas fa-house-signal niche-icon"></i>
@@ -254,7 +213,7 @@
             </div>
         </div>
 
-        <div class="hero-scroll" style="bottom: 10px;">
+        <div class="hero-scroll">
             <span>scroll</span>
             <div class="scroll-mouse">
                 <div class="scroll-wheel"></div>
@@ -262,8 +221,7 @@
         </div>
     </section>
 
-    <!-- ===================== SERVICIOS ===================== -->
-    <!-- PAIN SECTION (P2) -->
+    <!-- ===================== PAIN SECTION ===================== -->
     <section class="pain-section">
         <div class="container">
             <div class="pain-header reveal">
@@ -306,67 +264,41 @@
         </div>
     </section>
 
-    <!-- LOGOS CLIENTES (P1) -->
+    <!-- ===================== LOGOS CLIENTES ===================== -->
     <section class="clients-section">
         <div class="container">
             <div class="clients-label reveal">Experiencia corporativa verificable</div>
             <div class="clients-logos reveal">
-
-                <!-- Radio Nacional -->
                 <div class="client-logo-item">
                     <div class="client-logo-box">
-                        <img src="public/images/logo-nacional.png"
-                             alt="Radio Nacional Argentina LRA1"
-                             width="80" height="80"
-                             loading="lazy">
+                        <img src="public/images/logo-nacional.png" alt="Radio Nacional Argentina LRA1" width="80" height="80" loading="lazy">
                     </div>
                     <span class="client-logo-name">Radio Nacional</span>
                 </div>
-
-                <!-- Autódromo Oscar y Juan Gálvez -->
                 <div class="client-logo-item">
                     <div class="client-logo-box">
-                        <img src="public/images/logo-autodromo.png"
-                             alt="Ciudad Autódromo Oscar y Juan Gálvez"
-                             width="80" height="80"
-                             loading="lazy">
+                        <img src="public/images/logo-autodromo.png" alt="Ciudad Autódromo Oscar y Juan Gálvez" width="80" height="80" loading="lazy">
                     </div>
                     <span class="client-logo-name">Autódromo BA</span>
                 </div>
-
-                <!-- Cordial Compañía Financiera -->
                 <div class="client-logo-item">
                     <div class="client-logo-box">
-                        <img src="public/images/logo-cordial.png"
-                             alt="Cordial Compañía Financiera – Grupo Supervielle"
-                             width="140" height="49"
-                             loading="lazy">
+                        <img src="public/images/logo-cordial.png" alt="Cordial Compañía Financiera – Grupo Supervielle" width="140" height="49" loading="lazy">
                     </div>
                     <span class="client-logo-name">Cordial / Supervielle</span>
                 </div>
-
-                <!-- L'Oréal -->
                 <div class="client-logo-item">
                     <div class="client-logo-box">
-                        <img src="public/images/logo-loreal.png"
-                             alt="L'Oréal"
-                             width="78" height="80"
-                             loading="lazy">
+                        <img src="public/images/logo-loreal.png" alt="L'Oréal" width="78" height="80" loading="lazy">
                     </div>
                     <span class="client-logo-name">L'Oréal</span>
                 </div>
-
-                <!-- Megatech -->
                 <div class="client-logo-item">
                     <div class="client-logo-box">
-                        <img src="public/images/logo-megatech.png"
-                             alt="Megatech"
-                             width="80" height="80"
-                             loading="lazy">
+                        <img src="public/images/logo-megatech.png" alt="Megatech" width="80" height="80" loading="lazy">
                     </div>
                     <span class="client-logo-name">Megatech</span>
                 </div>
-
             </div>
         </div>
     </section>
@@ -379,96 +311,58 @@
                 <p class="section-subtitle reveal">Soluciones técnicas reales para hogares y pymes, con diagnóstico honesto y soporte post-instalación.</p>
             </div>
             <div class="services-grid">
-
-                <!-- Soporte Informático -->
                 <div class="service-card reveal reveal-delay-1">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
                     <h3>Soporte Informático</h3>
-                    <p>Diagnóstico y reparación de PCs, notebooks y equipos de oficina. Reinstalación de Windows, recuperación de datos, optimización de equipos lentos y soporte remoto. Diagnóstico honesto: si el equipo no tiene solución viable, te lo decimos antes de cobrar.</p>
+                    <p>Diagnóstico y reparación de PCs, notebooks y equipos de oficina. Reinstalación de Windows, recuperación de datos, optimización de equipos lentos y soporte remoto.</p>
                 </div>
-
-                <!-- Redes -->
                 <div class="service-card reveal reveal-delay-2">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/>
-                            <line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="12" y1="7" x2="5" y2="17"/><line x1="12" y1="7" x2="19" y2="17"/></svg>
                     </div>
                     <h3>Redes y Conectividad</h3>
-                    <p>Diseño e instalación de redes para hogares, oficinas y locales comerciales. WiFi que realmente llega a todos los rincones. Trabajamos con MikroTik y Ubiquiti, configuramos routers y access points.</p>
+                    <p>Diseño e instalación de redes para hogares, oficinas y locales comerciales. WiFi que realmente llega a todos los rincones. Trabajamos con MikroTik y Ubiquiti.</p>
                 </div>
-
-                <!-- CCTV -->
                 <div class="service-card reveal reveal-delay-3">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M15 10l4.553-2.069A1 1 0 0121 8.845v6.31a1 1 0 01-1.447.894L15 14"/><rect x="1" y="8" width="15" height="8" rx="2"/><circle cx="7.5" cy="12" r="1.5"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.069A1 1 0 0121 8.845v6.31a1 1 0 01-1.447.894L15 14"/><rect x="1" y="8" width="15" height="8" rx="2"/><circle cx="7.5" cy="12" r="1.5"/></svg>
                     </div>
                     <h3>Cámaras y CCTV</h3>
-                    <p>Instalación de sistemas de videovigilancia IP y analógicos con acceso remoto desde el celular. DVR/NVR, almacenamiento local o en la nube, asesoramiento real sin venta de equipo innecesario.</p>
+                    <p>Instalación de sistemas de videovigilancia IP y analógicos con acceso remoto desde el celular. DVR/NVR, almacenamiento local o en la nube.</p>
                 </div>
-
-                <!-- Alarmas -->
                 <div class="service-card reveal reveal-delay-4">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
                     </div>
                     <h3>Alarmas y Control de Acceso</h3>
-                    <p>Instalación de sistemas de alarma perimetral, cercos eléctricos y control de acceso con tarjeta o huella. Integración con CCTV existente y alertas en el celular. Todo con cableado prolijo y soporte posterior.</p>
+                    <p>Instalación de sistemas de alarma perimetral, cercos eléctricos y control de acceso con tarjeta o huella. Integración con CCTV existente.</p>
                 </div>
-
-                <!-- Domótica -->
                 <div class="service-card reveal reveal-delay-5">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
                     </div>
                     <h3>Domótica</h3>
-                    <p>Automatización de luces, enchufes, climatización y accesos desde tu smartphone. Compatible con Google Home y Alexa. Sin obras complejas: en la mayoría de los casos se instala sobre la infraestructura existente.</p>
+                    <p>Automatización de luces, enchufes, climatización y accesos desde tu smartphone. Compatible con Google Home y Alexa. Sin obras complejas.</p>
                 </div>
-
-                <!-- Ciberseguridad -->
                 <div class="service-card reveal reveal-delay-1">
                     <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                     </div>
                     <h3>Ciberseguridad</h3>
-                    <p>Protección práctica para pymes y hogares. Configuración segura de redes y routers, firewall, antivirus corporativo y respuesta ante incidentes como virus o ransomware. Sin paranoia, con criterio.</p>
+                    <p>Protección práctica para pymes y hogares. Configuración segura de redes y routers, firewall, antivirus corporativo y respuesta ante incidentes.</p>
                 </div>
-
-                <!-- UPS / Protección de Energía -->
-                <div class="service-card reveal reveal-delay-2">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/>
-                        </svg>
-                    </div>
-                    <h3>UPS y Protección de Energía</h3>
-                    <p>Instalación y asesoramiento de sistemas UPS para proteger equipos ante cortes y picos de tensión. Selección del equipo adecuado según carga, autonomía requerida y presupuesto. Sin sobredimensionar.</p>
-                </div>
+            </div>
+            <div style="text-align:center;padding:24px 0 0;background:var(--gray-50)">
+              <a href="servicios.html" style="display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:700;font-size:0.9rem;padding:11px 24px;border:2px solid rgba(37,99,235,0.25);border-radius:50px;text-decoration:none;transition:all 0.2s">
+                Ver todos los servicios en detalle <i class="fas fa-arrow-right" style="font-size:0.75rem"></i>
+              </a>
+            </div>
         </div>
     </section>
 
-
-    <!-- Ver servicios completos -->
-    <div style="text-align:center;padding:24px 0 0;background:var(--gray-50)">
-      <a href="servicios.html" style="display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-weight:700;font-size:0.9rem;padding:11px 24px;border:2px solid rgba(37,99,235,0.25);border-radius:50px;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='rgba(37,99,235,0.06)';this.style.borderColor='#2563eb'" onmouseout="this.style.background='';this.style.borderColor='rgba(37,99,235,0.25)'">
-        Ver todos los servicios en detalle <i class="fas fa-arrow-right" style="font-size:0.75rem"></i>
-      </a>
-    </div>
-
-        <section class="paquetes" id="paquetes">
+    <section class="paquetes" id="paquetes">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag reveal">Servicios digitales</span>
@@ -476,17 +370,14 @@
                 <p class="section-subtitle reveal">No se trata solamente de tener una página. Se trata de que tus clientes puedan encontrarte, confiar en tu negocio y contactarte. Web + Google + SEO local + WhatsApp + medición.</p>
             </div>
             <div style="text-align:center">
-                <a href="presencia-web-para-pymes.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:white;padding:14px 30px;border-radius:50px;font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.2s" onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='var(--blue)'">
+                <a href="presencia-web-para-pymes.html" style="display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:white;padding:14px 30px;border-radius:50px;font-weight:700;font-size:0.95rem;text-decoration:none;transition:all 0.2s">
                     Conocé el Sistema de Captación <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
     </section>
 
-
-    <!-- ===================== CONTACTO ===================== -->
-
-    <!-- GARANTÍAS (P4) -->
+    <!-- ===================== GARANTÍAS ===================== -->
     <section class="garantias-strip">
         <div class="container">
             <div class="section-header" style="margin-bottom:32px;">
@@ -515,7 +406,7 @@
         </div>
     </section>
 
-    <!-- FAQ (P32) -->
+    <!-- ===================== FAQ ===================== -->
     <section class="faq-section" id="faq">
         <div class="container">
             <div class="section-header">
@@ -560,17 +451,11 @@
                         Sí, trabajamos en toda la zona de Gran Buenos Aires (GBA Norte, Sur y Oeste). Para zonas alejadas o interior del país, consultamos disponibilidad caso a caso.
                     </div>
                 </div>
-
-                <!-- REL NOFOLLOW INYECTADO A FAQ GENERAL PARA DESPRIORIZAR ANTE GOOGLE BOT -->
-                <div style="text-align:center;margin-top:16px">
-                  <a href="faq.html" rel="nofollow" style="display:inline-flex;align-items:center;gap:7px;color:var(--blue);font-weight:700;font-size:0.87rem;padding:10px 22px;border:2px solid rgba(37,99,235,0.2);border-radius:50px;text-decoration:none">
-                    Ver todas las preguntas <i class="fas fa-arrow-right" style="font-size:0.7rem"></i>
-                  </a>
-                </div>
             </div>
         </div>
     </section>
 
+    <!-- ===================== CONTACTO ===================== -->
     <section class="contact" id="contacto">
         <div class="container">
             <div class="section-header">
@@ -618,6 +503,9 @@
                 </div>
 
                 <form class="contact-form reveal reveal-right">
+                    <!-- Campo Honeypot para frenar Spam (invisible para usuarios reales) -->
+                    <input type="text" name="b_honeypot" id="b_honeypot" style="display:none !important;" tabindex="-1" autocomplete="off">
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombre">Nombre Completo *</label>
@@ -670,12 +558,8 @@
                         <label for="descripcion">Descripción del Problema/Servicio *</label>
                         <textarea id="descripcion" required placeholder="Describí brevemente qué necesitás..."></textarea>
                     </div>
-                    <div id="formMessage" style="margin: 10px 0; padding: 10px; border-radius: 8px; display: none;"></div>
                     <button type="button" class="btn-primary btn-whatsapp" id="whatsappBtn">
                         <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-                    </button>
-                    <button type="button" class="btn-primary" id="scheduleGoogleBtn" style="margin-top: 10px;">
-                        <i class="fab fa-google"></i> Agendar en Google Calendar
                     </button>
                 </form>
             </div>
@@ -693,68 +577,41 @@
                 <p class="section-subtitle reveal">Guías prácticas para pymes y hogares. Sin tecnicismos innecesarios.</p>
             </div>
             <div class="blog-grid">
-
                 <a href="blog/wifi-no-llega.html" class="blog-card reveal reveal-delay-1">
-                    <div class="blog-card-img redes">
-                        <span class="blog-card-emoji">📶</span>
-                    </div>
+                    <div class="blog-card-img redes"><span class="blog-card-emoji">📶</span></div>
                     <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span class="blog-tag redes">Redes</span>
-                            <span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 5 min</span>
-                        </div>
+                        <div class="blog-card-meta"><span class="blog-tag redes">Redes</span><span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 5 min</span></div>
                         <h4>Por qué el WiFi no llega a todos los ambientes (y cómo solucionarlo)</h4>
                         <p>Las 5 causas más comunes de mala cobertura WiFi y qué hacer en cada caso sin gastar de más.</p>
                         <span class="blog-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
                     </div>
                 </a>
-
                 <a href="blog/senales-disco-por-fallar.html" class="blog-card reveal reveal-delay-2">
-                    <div class="blog-card-img hardware">
-                        <span class="blog-card-emoji">💾</span>
-                    </div>
+                    <div class="blog-card-img hardware"><span class="blog-card-emoji">💾</span></div>
                     <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span class="blog-tag hardware">Hardware</span>
-                            <span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 6 min</span>
-                        </div>
+                        <div class="blog-card-meta"><span class="blog-tag hardware">Hardware</span><span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 6 min</span></div>
                         <h4>6 señales de que tu disco duro está por fallar (antes de perder todo)</h4>
                         <p>Tu PC te avisa antes de morir. Sabés interpretarlas para hacer el backup a tiempo.</p>
                         <span class="blog-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
                     </div>
                 </a>
-
                 <a href="blog/ransomware-que-hacer.html" class="blog-card reveal reveal-delay-3">
-                    <div class="blog-card-img seguridad">
-                        <span class="blog-card-emoji">🔒</span>
-                    </div>
+                    <div class="blog-card-img seguridad"><span class="blog-card-emoji">🔒</span></div>
                     <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span class="blog-tag seguridad">Seguridad</span>
-                            <span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 7 min</span>
-                        </div>
+                        <div class="blog-card-meta"><span class="blog-tag seguridad">Seguridad</span><span class="blog-read-time"><i class="fas fa-clock" style="font-size:0.65rem;"></i> 7 min</span></div>
                         <h4>¿Qué hacer si un ransomware bloqueó tu empresa? Primeros pasos</h4>
                         <p>Qué hacer primero, qué nunca hacer, y cómo recuperarse sin pagar el rescate.</p>
                         <span class="blog-read-more">Leer artículo <i class="fas fa-arrow-right" style="font-size:0.7rem;"></i></span>
                     </div>
                 </a>
-
-                
-
-                
-
-                
-
             </div>
             <div class="blog-footer-link reveal">
-                <a href="blog/index.html">
-                    Ver todos los artículos <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i>
-                </a>
+                <a href="blog/index.html">Ver todos los artículos <i class="fas fa-arrow-right" style="font-size:0.75rem;"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- EXIT INTENT POPUP (P31) -->
+    <!-- EXIT INTENT POPUP -->
     <div class="popup-overlay" id="exitPopup">
         <div class="popup-box">
             <button class="popup-close" onclick="closePopup()" aria-label="Cerrar">✕</button>
@@ -768,51 +625,41 @@
             <button class="popup-skip" onclick="closePopup()">Cerrar</button>
         </div>
     </div>
+
+    <!-- FOOTER UNIFICADO (Con enlace a privacidad y leyes de Argentina) -->
     <footer>
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1);">
                 <div class="footer-section">
-                    <h3>Soporte Cyclops</h3>
-                    <p>Soluciones técnicas profesionales para hogares, empresas y organizaciones en CABA y GBA. +11 años de experiencia corporativa.</p>
-                    <div class="social-links">
+                    <h3 style="color:white; margin-bottom:16px;">Soporte Cyclops</h3>
+                    <p style="font-size:0.85rem; line-height:1.6;">Infraestructura IT, Seguridad Electrónica y Sistemas de Captación Web para CABA y GBA. +11 años de experiencia corporativa.</p>
+                    <div class="social-links" style="margin-top:16px; display:flex; gap:12px;">
                         <a href="https://facebook.com/soportecyclops" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://instagram.com/soportecyclops" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="https://linkedin.com/company/soportecyclops" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
-                    <h3>Servicios</h3>
-                    <ul>
-                        <li><a href="servicios-hogares.html">Para Hogares</a></li>
-                        <li><a href="servicios-pymes.html">Para Pymes y Comercios</a></li>
-                        <li><a href="servicios-profesionales.html">Para Estudios Profesionales</a></li>
-                        <li><a href="servicios-obras.html">Para Arquitectos y Obras</a></li>
-                        <li><a href="presencia-web-para-pymes.html">Presencia Web para Pymes</a></li>
+                    <h3 style="color:white; margin-bottom:16px;">Sectores</h3>
+                    <ul style="list-style:none;">
+                        <li style="margin-bottom:8px;"><a href="servicios-hogares.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Hogares</a></li>
+                        <li style="margin-bottom:8px;"><a href="servicios-pymes.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Pymes y Comercios</a></li>
+                        <li style="margin-bottom:8px;"><a href="servicios-profesionales.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Estudios Profesionales</a></li>
+                        <li style="margin-bottom:8px;"><a href="servicios-obras.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Arquitectos y Obras</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Contacto</h3>
-                    <ul>
-                        <li>Tel: +54 9 11 6680-4450</li>
-                        <li>contacto@soportecyclops.com.ar</li>
-                        <li>CABA y GBA, Argentina</li>
-                        <li>Lun–Vie 9:00–18:00</li>
-                        <li>Sáb 9:00–13:00</li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Zona de cobertura</h3>
-                    <ul>
-                        <li>Ciudad Autónoma de Buenos Aires</li>
-                        <li>Gran Buenos Aires</li>
-                        <li>Zona Norte, Sur y Oeste</li>
-                        <li><a href="#opiniones">⭐ Ver opiniones en Google</a></li>
-                        <li><a href="blog/index.html">📚 Blog técnico</a></li>
+                    <h3 style="color:white; margin-bottom:16px;">Contacto</h3>
+                    <ul style="list-style:none;">
+                        <li style="margin-bottom:8px;"><a href="tel:+5491166804450" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;"><i class="fas fa-phone" style="width:16px;"></i> +54 9 11 6680-4450</a></li>
+                        <li style="margin-bottom:8px;"><a href="mailto:contacto@soportecyclops.com.ar" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;"><i class="fas fa-envelope" style="width:16px;"></i> contacto@soportecyclops.com.ar</a></li>
+                        <li style="margin-bottom:8px;"><a href="https://wa.me/5491166804450" target="_blank" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;"><i class="fab fa-whatsapp" style="width:16px;"></i> WhatsApp</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Soporte Cyclops. Todos los derechos reservados. — <a href="https://www.soportecyclops.com.ar" style="color:inherit;">soportecyclops.com.ar</a></p>
+            <div class="footer-bottom" style="text-align:center; padding-top:24px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+                <p style="margin-bottom: 6px;">© 2026 Soporte Cyclops | CABA y Gran Buenos Aires</p>
+                <p><a href="politica-de-privacidad.html" style="color:rgba(255,255,255,0.7); text-decoration:underline;">Política de Privacidad</a> | Ley 25.326 Protección de Datos Personales | Ley 24.240 Defensa del Consumidor</p>
             </div>
         </div>
     </footer>
@@ -854,8 +701,8 @@
         </div>
     </div>
 
+    <!-- MAIN SCRIPTS -->
     <script>
-    // ===================== INTERSECTION OBSERVER (Reveal) =====================
     const revealElements = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -866,11 +713,9 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     revealElements.forEach(el => observer.observe(el));
 
-    // ===================== NAVBAR SCROLL =====================
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
         navbar.classList.toggle('scrolled', window.scrollY > 40);
-        // Active nav link
         const sections = document.querySelectorAll('section[id]');
         let current = '';
         sections.forEach(s => {
@@ -881,13 +726,11 @@
         });
     });
 
-    // ===================== MOBILE MENU =====================
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     menuToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
     document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', () => navMenu.classList.remove('open')));
 
-    // ===================== HERO PARTICLES =====================
     const canvas = document.getElementById('hero-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -929,7 +772,6 @@
     function animateParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         particles.forEach(p => { p.update(); p.draw(); });
-        // Draw connecting lines
         particles.forEach((p1, i) => {
             particles.slice(i + 1).forEach(p2 => {
                 const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
@@ -947,32 +789,6 @@
     }
     animateParticles();
 
-    // ===================== COUNTER ANIMATION =====================
-    function animateCounter(el) {
-        const target = parseInt(el.dataset.target);
-        if (!target) return;
-        const prefix = target >= 50 ? '+' : '+';
-        let current = 0;
-        const step = target / 60;
-        const interval = setInterval(() => {
-            current = Math.min(current + step, target);
-            el.textContent = prefix + Math.floor(current);
-            if (current >= target) { el.textContent = prefix + target; clearInterval(interval); }
-        }, 20);
-    }
-
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('[data-target]').forEach(animateCounter);
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.4 });
-    const statsSection = document.querySelector('.stats');
-    if (statsSection) statsObserver.observe(statsSection);
-
-    // ===================== RIPPLE EFFECT =====================
     document.querySelectorAll('.btn-primary, .cta-button').forEach(btn => {
         btn.addEventListener('click', function(e) {
             const rect = this.getBoundingClientRect();
@@ -985,7 +801,6 @@
         });
     });
 
-    // ===================== CHATBOT =====================
     const toggle = document.getElementById('chatbotToggle');
     const win = document.getElementById('chatbotWindow');
     const closeBtn = document.getElementById('chatbotClose');
@@ -1003,55 +818,22 @@
         });
     });
 
-    // Handlers de formulario en main.js (no duplicar aquí)
-    </script>
-
-    <!-- Scripts externos -->
-    <script src="chatbot.js"></script>
-    <script src="main.js"></script>
-
-    <script>
-    // ===================== SERVICE TABS (P13) =====================
-    document.querySelectorAll('.srv-tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const tab = btn.dataset.tab;
-            // Update buttons
-            document.querySelectorAll('.srv-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            // Update panels
-            document.querySelectorAll('.srv-tab-panel').forEach(p => p.classList.remove('active'));
-            const panel = document.getElementById('tab-' + tab);
-            if (panel) {
-                panel.classList.add('active');
-                // Smooth scroll to panel on mobile
-                if (window.innerWidth < 768) {
-                    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
-            }
-        });
-    });
-
-    // ===================== FAQ ACCORDION (P32) =====================
     function toggleFaq(btn) {
         const answer = btn.nextElementSibling;
         const isOpen = btn.classList.contains('open');
-        // Close all open FAQs
         document.querySelectorAll('.faq-question.open').forEach(q => {
             q.classList.remove('open');
             q.nextElementSibling.classList.remove('open');
         });
-        // Open clicked one if it was closed
         if (!isOpen) {
             btn.classList.add('open');
             answer.classList.add('open');
         }
     }
 
-    // ===================== EXIT INTENT POPUP (P31) =====================
     let popupShown = false;
     function showPopup() {
         if (popupShown) return;
-        // Don't show if already on contact section
         const contactEl = document.getElementById('contacto');
         if (contactEl) {
             const rect = contactEl.getBoundingClientRect();
@@ -1059,35 +841,15 @@
         }
         popupShown = true;
         document.getElementById('exitPopup').classList.add('show');
-        // Save to sessionStorage so it doesn't show again this session
         sessionStorage.setItem('popupShown', '1');
     }
-
-    function closePopup() {
-        document.getElementById('exitPopup').classList.remove('show');
-    }
-
-    // Close on overlay click
-    document.getElementById('exitPopup').addEventListener('click', function(e) {
-        if (e.target === this) closePopup();
-    });
-
-    // Exit intent: mouse leaves viewport toward top
+    function closePopup() { document.getElementById('exitPopup').classList.remove('show'); }
+    document.getElementById('exitPopup').addEventListener('click', function(e) { if (e.target === this) closePopup(); });
+    
     if (!sessionStorage.getItem('popupShown')) {
-        document.addEventListener('mouseleave', function(e) {
-            if (e.clientY <= 0) {
-                setTimeout(showPopup, 300);
-            }
-        });
-        // Also trigger on mobile: page visibility change (user switches tab)
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'hidden') {
-                popupShown = true; // Don't show after they come back
-            }
-        });
+        document.addEventListener('mouseleave', function(e) { if (e.clientY <= 0) setTimeout(showPopup, 300); });
     }
 
-    // ===================== LAZY LOADING IMAGES (P24) =====================
     if ('IntersectionObserver' in window) {
         const imgObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1107,84 +869,27 @@
         });
     }
 
-    // ===================== REVIEWS JSON (P33) =====================
-    // Reviews hardcoded from real Google Maps reviews — no API needed
-    const reviews = [
-        {
-            name: "Claudio Percara",
-            initials: "CP",
-            color: "linear-gradient(135deg,#4285F4,#34A853)",
-            date: "hace 2 semanas",
-            detail: "Local Guide · 11 opiniones",
-            text: "Excelente experiencia. No solo solucionaron mi inconveniente técnico con mucha solvencia, sino que el trato fue sumamente amable y paciente. Se nota cuando hay profesionales que realmente dominan su área. Totalmente recomendados."
-        },
-        {
-            name: "Daiana Cardilli",
-            initials: "DC",
-            color: "linear-gradient(135deg,#ea4335,#fbbc04)",
-            date: "hace 1 mes",
-            detail: "2 opiniones",
-            text: "Son bárbaros, me ayudaron con una Toshiba vieja a hacerla andar como nueva. Re amables y todo en término. ¡Los recomiendo!"
-        },
-        {
-            name: "Guillermo Ferraioli",
-            initials: "GF",
-            color: "linear-gradient(135deg,#1a3a5c,#2563eb)",
-            date: "hace 2 meses",
-            detail: "5 opiniones",
-            text: "Excelente, lo recomiendo. Supo reconocer un problema que los demás no veían y el presupuesto que me pasó fue más que razonable considerando que, de otro modo, hubiese tenido que literalmente tirar la compu."
-        },
-        {
-            name: "Enzo Carolo",
-            initials: "EC",
-            color: "linear-gradient(135deg,#34A853,#0f9d58)",
-            date: "hace 3 meses",
-            detail: "Local Guide · 17 opiniones",
-            text: "Cambié el disco sólido por uno SSD, le agregué más memoria y me quedó como nueva la Vaio. Muy recomendable."
-        }
-    ];
-
-    // The reviews are already rendered in HTML — this JSON is the source of truth
-    // for future dynamic rendering if needed. Currently static HTML is used.
-    // To add new reviews: update both the HTML section AND this array.
-
-
-    // ===================== FUNCIÓN GLOBAL: ABRIR CHATBOT CON DIAGNÓSTICO =====================
-    // Llamada desde el botón del hero y desde cualquier otro punto de la página.
-    // Abre la ventana del chatbot y arranca directo en el menú de diagnóstico.
     function abrirChatbotDiagnostico() {
         var win = document.getElementById('chatbotWindow');
         if (!win) return;
-        // Abrir la ventana
         win.classList.add('active');
         win.classList.add('open');
-        // Ocultar notification dot
         var dot = document.getElementById('notificationDot');
         if (dot) dot.style.display = 'none';
-        // Scroll suave hacia abajo para que se vea el chatbot en mobile
         setTimeout(function() {
             win.scrollIntoView && win.scrollIntoView({ behavior: 'smooth', block: 'end' });
         }, 100);
-        // Esperar a que chatbot.js inicialice y disparar el menú de diagnóstico
-        // Si el chatbot ya tiene historial, no repetir el saludo
         setTimeout(function() {
-            // Verificar si el chatbot ya fue inicializado por chatbot.js
             var msgs = document.getElementById('chatbotMessages');
             if (msgs && msgs.children.length === 0) {
-                // Todavía no hay mensajes — simular click en toggle para inicializar
                 var toggle = document.getElementById('chatbotToggle');
                 if (toggle) {
-                    // Cerrar primero por si ya estaba abierto
                     win.classList.remove('active');
                     win.classList.remove('open');
-                    // Trigger del toggle que inicializa chatbot.js
                     toggle.click();
                 }
             }
-            // Ahora disparar el flow de diagnóstico después de un momento
             setTimeout(function() {
-                // Buscar si existe la función global de chatbot
-                // chatbot.js expone processFlow vía el evento de quick-question
                 var diagBtn = document.createElement('button');
                 diagBtn.setAttribute('data-action', 'pc_problemas');
                 diagBtn.className = 'quick-question';
@@ -1196,36 +901,7 @@
         }, 150);
     }
     </script>
-<div class="a11y"><button id="tgTxt" title="Agrandar el texto de la página">A+</button></div>
-<script>
-(function(){
-  var b=document.getElementById('tgTxt');
-  function aplicar(on){
-    document.documentElement.style.fontSize = on ? '117%' : '';
-    b.classList.toggle('on',on); b.textContent = on?'A-':'A+';
-    b.title = on?'Volver al tamaño normal':'Agrandar el texto de la página';
-    try{localStorage.setItem('cyclops_txt',on?'1':'0')}catch(e){}
-  }
-  b.addEventListener('click',function(){aplicar(document.documentElement.style.fontSize==='')});
-  try{if(localStorage.getItem('cyclops_txt')==='1')aplicar(true)}catch(e){}
-})();
-</script>
-<script>
-(function(){
-  try {
-    var u = JSON.parse(sessionStorage.getItem("cyclops_user"));
-    var link = document.getElementById("navIngresarLink");
-    if (u && u.rol && u.rol !== "ninguno" && link) {
-      if (u.rol === "admin") {
-        link.href = "admin.html";
-        link.innerHTML = (window.innerWidth<=900?"":"") + "<i class=\"fas fa-gauge\" style=\"margin-right:4px;font-size:0.85em;\"></i>Panel Admin";
-      } else {
-        link.href = "cliente_panel.html";
-        link.innerHTML = "<i class=\"fas fa-user-circle\" style=\"margin-right:4px;font-size:0.85em;\"></i>Mi Panel";
-      }
-    }
-  } catch(e) {}
-})();
-</script>
+    <script src="chatbot.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
