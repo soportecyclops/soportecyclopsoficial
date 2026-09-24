@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada | Soporte Cyclops</title>
+  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <meta name="robots" content="noindex, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-600:#475569;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
+    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#f8fafc;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:600;color:var(--gray-600);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none}
+    .err-hero{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;text-align:center}
+    .err-box{max-width:580px;background:white;border:1px solid var(--gray-200);border-radius:16px;padding:48px 32px;box-shadow:var(--shadow-md)}
+    .err-code{font-family:'Space Grotesk',sans-serif;font-size:5rem;font-weight:800;color:var(--blue);line-height:1;margin-bottom:8px}
+    .err-box h1{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:800;color:var(--blue-dark);margin-bottom:12px}
+    .err-box p{font-size:0.95rem;color:var(--gray-600);margin-bottom:28px}
+    .err-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-home{background:var(--blue-dark);color:white;padding:12px 24px;border-radius:50px;font-weight:700;font-size:0.88rem;text-decoration:none}
+    .btn-wsp{background:#25D366;color:white;padding:12px 24px;border-radius:50px;font-weight:700;font-size:0.88rem;text-decoration:none}
+    footer{background:var(--blue-dark);color:rgba(255,255,255,0.6);padding:24px 0;text-align:center;font-size:0.8rem;margin-top:auto}
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="index.html#contacto" class="nav-cta">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="err-hero">
+    <div class="err-box">
+      <div class="err-code">404</div>
+      <h1>Esta página no existe o cambió de lugar</h1>
+      <p>Es posible que el enlace esté mal escrito o que la publicación haya sido movida. Podés volver al inicio o escribirnos directamente si necesitás asistencia técnica.</p>
+      <div class="err-btns">
+        <a href="index.html" class="btn-home"><i class="fas fa-house"></i> Volver al Inicio</a>
+        <a href="https://wa.me/5491166804450?text=Hola%2C%20estaba%20navegando%20en%20la%20web%20y%20llegu%C3%A9%20a%20una%20p%C3%A1gina%20que%20no%20existe" target="_blank" class="btn-wsp"><i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Soporte Cyclops | CABA y Gran Buenos Aires | Ley 24.240 Defensa del Consumidor</p>
+  </footer>
+</body>
+</html>
