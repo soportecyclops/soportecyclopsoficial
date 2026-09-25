@@ -11,7 +11,8 @@ description: "Guías técnicas, ciberseguridad y mantenimiento para Pymes y hoga
 
 <div class="related-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
     {% for articulo in collections.post | reverse %}
-    <a href="{{ articulo.url }}" class="related-card" style="text-decoration: none; display: flex; flex-direction: column; height: 100%;">
+    <!-- Acá está la magia: forzamos el directorio /blog/ -->
+    <a href="/blog/{{ articulo.fileSlug }}.html" class="related-card" style="text-decoration: none; display: flex; flex-direction: column; height: 100%;">
         <span class="c-tag {{ articulo.data.categoria | lower }}">{{ articulo.data.categoria }}</span>
         <h4 style="margin-top: 12px; margin-bottom: 12px; font-size: 1rem;">{{ articulo.data.title }}</h4>
         <div class="r-time" style="margin-top: auto; font-weight: 600;">
