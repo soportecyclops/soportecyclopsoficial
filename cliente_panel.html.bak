@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Mi portal — Soporte Cyclops</title>
+<title>Mi portal â€” Soporte Cyclops</title>
 <link rel="icon" href="public/images/logo-icon.png" type="image/png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
@@ -152,7 +152,7 @@ a{text-decoration:none}
     <div class="sb-label">Mi cuenta</div>
     <button class="sb-item active" data-s="diags" onclick="ver('diags',this)"><i class="fas fa-stethoscope"></i><span>Diagnósticos</span><span class="sb-count" id="cDiags">0</span></button>
     <button class="sb-item" data-s="turnos" onclick="ver('turnos',this)"><i class="fas fa-calendar-check"></i><span>Mis turnos</span><span class="sb-count" id="cTurnos">0</span></button>
-    <button class="sb-item" data-s="ordenes" onclick="ver('ordenes',this)"><i class="fas fa-file-signature"></i><span>Órdenes</span><span class="sb-count" id="cOrd">0</span></button>
+    <button class="sb-item" data-s="ordenes" onclick="ver('ordenes',this)"><i class="fas fa-file-signature"></i><span>Ã“rdenes</span><span class="sb-count" id="cOrd">0</span></button>
     <button class="sb-item" data-s="perfil" onclick="ver('perfil',this)"><i class="fas fa-user"></i><span>Mi perfil</span></button>
     <div class="sb-label">Ayuda</div>
     <button class="sb-item" onclick="window.open('https://wa.me/5491166804450','_blank')"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></button>
@@ -162,7 +162,7 @@ a{text-decoration:none}
   <div class="sb-foot">
     <div class="sb-user">
       <div class="sb-av" id="av">?</div>
-      <div><div class="sb-name" id="uName">—</div><div class="sb-role">Cliente</div></div>
+      <div><div class="sb-name" id="uName">â€”</div><div class="sb-role">Cliente</div></div>
     </div>
     <button class="btn-out" onclick="salir()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
   </div>
@@ -177,20 +177,20 @@ a{text-decoration:none}
   <div class="main">
     <div id="avisoPerfil"></div>
 
-    <!-- DIAGNÓSTICOS -->
+    <!-- DIAGNÃ“STICOS -->
     <div class="sec active" id="s-diags">
       <div class="kpis">
-        <div class="kpi"><div class="kpi-l">Total</div><div class="kpi-v" id="kT">—</div></div>
-        <div class="kpi"><div class="kpi-l">Abiertos</div><div class="kpi-v" id="kA">—</div></div>
-        <div class="kpi"><div class="kpi-l">Resueltos</div><div class="kpi-v" id="kR">—</div></div>
-        <div class="kpi"><div class="kpi-l">Turnos</div><div class="kpi-v" id="kC">—</div></div>
+        <div class="kpi"><div class="kpi-l">Total</div><div class="kpi-v" id="kT">â€”</div></div>
+        <div class="kpi"><div class="kpi-l">Abiertos</div><div class="kpi-v" id="kA">â€”</div></div>
+        <div class="kpi"><div class="kpi-l">Resueltos</div><div class="kpi-v" id="kR">â€”</div></div>
+        <div class="kpi"><div class="kpi-l">Turnos</div><div class="kpi-v" id="kC">â€”</div></div>
       </div>
       <div class="card">
         <div class="card-h">
           <div><h3>Mis diagnósticos</h3><p>Tocá uno para ver el detalle y hablar con el técnico</p></div>
           <a class="btn btn-p btn-sm" href="index.html#chatbot" onclick="try{sessionStorage.setItem('abrir_chatbot','1')}catch(e){}"><i class="fas fa-plus"></i> Nuevo diagnóstico</a>
         </div>
-        <div id="lDiags"><div class="load"><span class="spin"></span> Cargando…</div></div>
+        <div id="lDiags"><div class="load"><span class="spin"></span> Cargandoâ€¦</div></div>
       </div>
     </div>
 
@@ -224,15 +224,15 @@ a{text-decoration:none}
       </div>
       <div class="card">
         <div class="card-h"><div><h3>Mis turnos</h3></div></div>
-        <div id="lTurnos"><div class="load"><span class="spin"></span> Cargando…</div></div>
+        <div id="lTurnos"><div class="load"><span class="spin"></span> Cargandoâ€¦</div></div>
       </div>
     </div>
 
-    <!-- ÓRDENES -->
+    <!-- Ã“RDENES -->
     <div class="sec" id="s-ordenes">
       <div class="card">
-        <div class="card-h"><div><h3>Órdenes de trabajo</h3><p>Comprobantes de los equipos que retiramos de tu domicilio</p></div></div>
-        <div id="lOrd"><div class="load"><span class="spin"></span> Cargando…</div></div>
+        <div class="card-h"><div><h3>Ã“rdenes de trabajo</h3><p>Comprobantes de los equipos que retiramos de tu domicilio</p></div></div>
+        <div id="lOrd"><div class="load"><span class="spin"></span> Cargandoâ€¦</div></div>
       </div>
     </div>
 
@@ -258,7 +258,7 @@ a{text-decoration:none}
   </div>
 </div>
 
-<!-- MODAL DIAGNÓSTICO -->
+<!-- MODAL DIAGNÃ“STICO -->
 <div class="ov" id="ovDiag">
   <div class="modal">
     <div class="m-h"><h3 id="mdTit">Diagnóstico</h3><button class="m-x" onclick="cerrar('ovDiag')"><i class="fas fa-times"></i></button></div>
@@ -274,7 +274,7 @@ a{text-decoration:none}
 
 <script>
 const API = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
-const TIT = { diags:'Mis diagnósticos', turnos:'Mis turnos', ordenes:'Órdenes de trabajo', perfil:'Mi perfil' };
+const TIT = { diags:'Mis diagnósticos', turnos:'Mis turnos', ordenes:'Ã“rdenes de trabajo', perfil:'Mi perfil' };
 
 let U=null, D={}, diagAbierto=null, slotSel=null;
 
@@ -365,8 +365,8 @@ async function abrirDiag(num) {
   document.getElementById('mdBody').innerHTML = `
     <dl class="dl">
       <dt>Fecha</dt><dd>${esc(d.fecha||'')}</dd>
-      <dt>Servicio</dt><dd>${esc(d.servicio||'—')}</dd>
-      <dt>Equipo / síntoma</dt><dd>${esc(d.sintoma||'—')}</dd>
+      <dt>Servicio</dt><dd>${esc(d.servicio||'â€”')}</dd>
+      <dt>Equipo / síntoma</dt><dd>${esc(d.sintoma||'â€”')}</dd>
       <dt>Estado</dt><dd><span class="pill p-${(d.estado||'nuevo').toLowerCase().replace(/ /g,'-')}">${esc(d.estado||'nuevo')}</span></dd>
       ${d.presupuesto?`<dt>Presupuesto</dt><dd>${esc(d.presupuesto)}</dd>`:''}
     </dl>
@@ -375,7 +375,7 @@ async function abrirDiag(num) {
     <div class="chat">
       <div class="chat-b" id="chatB"><div class="load"><span class="spin"></span></div></div>
       <div class="chat-i">
-        <input id="chatI" placeholder="Escribí tu consulta…" onkeydown="if(event.key==='Enter')enviarMsg()">
+        <input id="chatI" placeholder="Escribí tu consultaâ€¦" onkeydown="if(event.key==='Enter')enviarMsg()">
         <button onclick="enviarMsg()"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>`;
