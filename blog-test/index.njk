@@ -1,0 +1,22 @@
+---
+layout: base.njk
+title: "Blog Técnico"
+description: "Guías técnicas, ciberseguridad y mantenimiento para Pymes y hogares."
+---
+
+<div style="margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
+    <h1 style="font-family: 'Space Grotesk', sans-serif; color: #1a3a5c; font-weight: 800; font-size: 2rem; margin-bottom: 0.5rem;">Blog de Soporte Cyclops</h1>
+    <p style="color: #475569; font-size: 1.05rem;">Guías técnicas, ciberseguridad y mantenimiento para Pymes y hogares.</p>
+</div>
+
+<div class="related-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+    {% for articulo in collections.post | reverse %}
+    <a href="{{ articulo.url }}" class="related-card" style="text-decoration: none; display: flex; flex-direction: column; height: 100%;">
+        <span class="c-tag {{ articulo.data.categoria | lower }}">{{ articulo.data.categoria }}</span>
+        <h4 style="margin-top: 12px; margin-bottom: 12px; font-size: 1rem;">{{ articulo.data.title }}</h4>
+        <div class="r-time" style="margin-top: auto; font-weight: 600;">
+            <i class="fas fa-clock"></i> {{ articulo.data.tiempo_lectura }}
+        </div>
+    </a>
+    {% endfor %}
+</div>
