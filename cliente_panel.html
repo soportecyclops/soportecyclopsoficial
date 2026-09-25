@@ -150,7 +150,7 @@ a{text-decoration:none}
   </div>
   <nav class="sb-nav">
     <div class="sb-label">Mi cuenta</div>
-    <button class="sb-item active" data-s="diags" onclick="ver('diags',this)"><i class="fas fa-stethoscope"></i><span>DiagnÃ³sticos</span><span class="sb-count" id="cDiags">0</span></button>
+    <button class="sb-item active" data-s="diags" onclick="ver('diags',this)"><i class="fas fa-stethoscope"></i><span>Diagnósticos</span><span class="sb-count" id="cDiags">0</span></button>
     <button class="sb-item" data-s="turnos" onclick="ver('turnos',this)"><i class="fas fa-calendar-check"></i><span>Mis turnos</span><span class="sb-count" id="cTurnos">0</span></button>
     <button class="sb-item" data-s="ordenes" onclick="ver('ordenes',this)"><i class="fas fa-file-signature"></i><span>Ã“rdenes</span><span class="sb-count" id="cOrd">0</span></button>
     <button class="sb-item" data-s="perfil" onclick="ver('perfil',this)"><i class="fas fa-user"></i><span>Mi perfil</span></button>
@@ -164,13 +164,13 @@ a{text-decoration:none}
       <div class="sb-av" id="av">?</div>
       <div><div class="sb-name" id="uName">â€”</div><div class="sb-role">Cliente</div></div>
     </div>
-    <button class="btn-out" onclick="salir()"><i class="fas fa-sign-out-alt"></i> Cerrar sesiÃ³n</button>
+    <button class="btn-out" onclick="salir()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
   </div>
 </aside>
 
 <div class="wrap">
   <div class="topbar">
-    <h1 id="tTitle">Mis diagnÃ³sticos</h1>
+    <h1 id="tTitle">Mis diagnósticos</h1>
     <button class="btn btn-g btn-sm" onclick="cargar()"><i class="fas fa-rotate"></i></button>
   </div>
 
@@ -187,8 +187,8 @@ a{text-decoration:none}
       </div>
       <div class="card">
         <div class="card-h">
-          <div><h3>Mis diagnÃ³sticos</h3><p>TocÃ¡ uno para ver el detalle y hablar con el tÃ©cnico</p></div>
-          <a class="btn btn-p btn-sm" href="index.html#chatbot" onclick="try{sessionStorage.setItem('abrir_chatbot','1')}catch(e){}"><i class="fas fa-plus"></i> Nuevo diagnÃ³stico</a>
+          <div><h3>Mis diagnósticos</h3><p>Tocá uno para ver el detalle y hablar con el técnico</p></div>
+          <a class="btn btn-p btn-sm" href="index.html#chatbot" onclick="try{sessionStorage.setItem('abrir_chatbot','1')}catch(e){}"><i class="fas fa-plus"></i> Nuevo diagnóstico</a>
         </div>
         <div id="lDiags"><div class="load"><span class="spin"></span> Cargandoâ€¦</div></div>
       </div>
@@ -203,13 +203,13 @@ a{text-decoration:none}
             <div class="f"><label>Fecha</label><input type="date" id="cbFecha" onchange="verHorarios()"></div>
             <div class="f"><label>Servicio</label>
               <select id="cbServ">
-                <option>Soporte informÃ¡tico (PC/notebook)</option>
+                <option>Soporte informático (PC/notebook)</option>
                 <option>Redes / WiFi</option>
-                <option>CÃ¡maras de seguridad</option>
+                <option>Cámaras de seguridad</option>
                 <option>Alarmas / Control de acceso</option>
-                <option>DomÃ³tica</option>
+                <option>Domótica</option>
                 <option>Ciberseguridad</option>
-                <option>UPS / EnergÃ­a</option>
+                <option>UPS / Energía</option>
                 <option>Otro / A definir</option>
               </select>
             </div>
@@ -240,16 +240,16 @@ a{text-decoration:none}
     <div class="sec" id="s-perfil">
       <div class="card">
         <div class="card-h">
-          <div><h3>Mis datos</h3><p>Nombre, telÃ©fono y direcciÃ³n son necesarios para agendar</p></div>
+          <div><h3>Mis datos</h3><p>Nombre, teléfono y dirección son necesarios para agendar</p></div>
           <button class="btn btn-p btn-sm" onclick="guardarPerfil()"><i class="fas fa-save"></i> Guardar</button>
         </div>
         <div class="card-b">
           <div class="grid2">
             <div class="f"><label>Nombre completo <span class="req">*</span></label><input id="pNom"></div>
             <div class="f"><label>Email</label><input id="pMail" disabled></div>
-            <div class="f"><label>TelÃ©fono <span class="req">*</span></label><input id="pTel" placeholder="+54 9 11 ..."></div>
+            <div class="f"><label>Teléfono <span class="req">*</span></label><input id="pTel" placeholder="+54 9 11 ..."></div>
             <div class="f"><label>Empresa (opcional)</label><input id="pEmp"></div>
-            <div class="f"><label>DirecciÃ³n <span class="req">*</span></label><input id="pDir" placeholder="Calle y nÃºmero"></div>
+            <div class="f"><label>Dirección <span class="req">*</span></label><input id="pDir" placeholder="Calle y número"></div>
             <div class="f"><label>Localidad</label><input id="pLoc"></div>
           </div>
         </div>
@@ -261,7 +261,7 @@ a{text-decoration:none}
 <!-- MODAL DIAGNÃ“STICO -->
 <div class="ov" id="ovDiag">
   <div class="modal">
-    <div class="m-h"><h3 id="mdTit">DiagnÃ³stico</h3><button class="m-x" onclick="cerrar('ovDiag')"><i class="fas fa-times"></i></button></div>
+    <div class="m-h"><h3 id="mdTit">Diagnóstico</h3><button class="m-x" onclick="cerrar('ovDiag')"><i class="fas fa-times"></i></button></div>
     <div class="m-b" id="mdBody"></div>
     <div class="m-f">
       <button class="btn btn-g" onclick="cerrar('ovDiag')">Cerrar</button>
@@ -274,11 +274,11 @@ a{text-decoration:none}
 
 <script>
 const API = "https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec";
-const TIT = { diags:'Mis diagnÃ³sticos', turnos:'Mis turnos', ordenes:'Ã“rdenes de trabajo', perfil:'Mi perfil' };
+const TIT = { diags:'Mis diagnósticos', turnos:'Mis turnos', ordenes:'Ã“rdenes de trabajo', perfil:'Mi perfil' };
 
 let U=null, D={}, diagAbierto=null, slotSel=null;
 
-/* ---- sesiÃ³n ---- */
+/* ---- sesión ---- */
 try { U = JSON.parse(sessionStorage.getItem('cyclops_user')); } catch(e){}
 if (!U || !U.credential) location.href = 'login.html?next=cliente_panel.html';
 else {
@@ -294,18 +294,18 @@ async function apiGet(action, params={}) {
   const q = new URLSearchParams({ p_action:action, credential:U.credential, ...params });
   const r = await fetch(API + '?' + q);
   const d = await r.json();
-  if (d.auth === false) { toast('Tu sesiÃ³n expirÃ³','err'); setTimeout(salir,1500); throw new Error('auth'); }
+  if (d.auth === false) { toast('Tu sesión expiró','err'); setTimeout(salir,1500); throw new Error('auth'); }
   return d;
 }
 async function apiPost(action, body={}) {
   const r = await fetch(API, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
     body: JSON.stringify({ p_action:action, credential:U.credential, ...body }) });
   const d = await r.json();
-  if (d.auth === false) { toast('Tu sesiÃ³n expirÃ³','err'); setTimeout(salir,1500); throw new Error('auth'); }
+  if (d.auth === false) { toast('Tu sesión expiró','err'); setTimeout(salir,1500); throw new Error('auth'); }
   return d;
 }
 
-/* ---- navegaciÃ³n ---- */
+/* ---- navegación ---- */
 function ver(s, btn) {
   document.querySelectorAll('.sec').forEach(x=>x.classList.remove('active'));
   document.getElementById('s-'+s).classList.add('active');
@@ -328,13 +328,13 @@ function avisoPerfil() {
   const el = document.getElementById('avisoPerfil');
   el.innerHTML = D.perfilCompleto ? '' :
    `<div class="alert"><i class="fas fa-circle-exclamation"></i><div>
-      <h4>CompletÃ¡ tu perfil</h4>
-      <p>Necesitamos tu nombre, telÃ©fono y direcciÃ³n para poder agendar turnos y coordinar retiros.</p>
+      <h4>Completá tu perfil</h4>
+      <p>Necesitamos tu nombre, teléfono y dirección para poder agendar turnos y coordinar retiros.</p>
       <button onclick="ver('perfil',document.querySelector('[data-s=perfil]'))">Completar ahora</button>
     </div></div>`;
 }
 
-/* ---- diagnÃ³sticos ---- */
+/* ---- diagnósticos ---- */
 function pintarDiags() {
   const arr = D.diagnosticos||[];
   document.getElementById('cDiags').textContent = arr.length;
@@ -346,13 +346,13 @@ function pintarDiags() {
   document.getElementById('lDiags').innerHTML = arr.length ? arr.map(d=>`
     <div class="row" onclick="abrirDiag('${esc(d.diagNum)}')">
       <div class="row-main">
-        <div class="row-t">${esc(d.diagNum)} Â· ${esc(d.servicio||'DiagnÃ³stico')}</div>
+        <div class="row-t">${esc(d.diagNum)} · ${esc(d.servicio||'Diagnóstico')}</div>
         <div class="row-s">${esc(d.sintoma||d.resumen||'')}</div>
       </div>
       <span class="pill sev-${(d.severidad||'media').toLowerCase()}">${esc(d.severidad||'media')}</span>
       <span class="pill p-${(d.estado||'nuevo').toLowerCase().replace(/ /g,'-')}">${esc(d.estado||'nuevo')}</span>
     </div>`).join('')
-   : `<div class="empty"><i class="fas fa-stethoscope"></i><p>TodavÃ­a no tenÃ©s diagnÃ³sticos.<br>HacÃ© uno gratis desde el chat del sitio.</p></div>`;
+   : `<div class="empty"><i class="fas fa-stethoscope"></i><p>Todavía no tenés diagnósticos.<br>Hacé uno gratis desde el chat del sitio.</p></div>`;
 }
 
 async function abrirDiag(num) {
@@ -366,16 +366,16 @@ async function abrirDiag(num) {
     <dl class="dl">
       <dt>Fecha</dt><dd>${esc(d.fecha||'')}</dd>
       <dt>Servicio</dt><dd>${esc(d.servicio||'â€”')}</dd>
-      <dt>Equipo / sÃ­ntoma</dt><dd>${esc(d.sintoma||'â€”')}</dd>
+      <dt>Equipo / síntoma</dt><dd>${esc(d.sintoma||'â€”')}</dd>
       <dt>Estado</dt><dd><span class="pill p-${(d.estado||'nuevo').toLowerCase().replace(/ /g,'-')}">${esc(d.estado||'nuevo')}</span></dd>
       ${d.presupuesto?`<dt>Presupuesto</dt><dd>${esc(d.presupuesto)}</dd>`:''}
     </dl>
     ${d.resumen?`<p style="font-size:.86rem;color:#475569;line-height:1.6;margin-bottom:18px">${esc(d.resumen)}</p>`:''}
-    <h4 style="font-family:'Space Grotesk';font-size:.88rem;color:var(--dark);margin-bottom:10px">ConversaciÃ³n con el tÃ©cnico</h4>
+    <h4 style="font-family:'Space Grotesk';font-size:.88rem;color:var(--dark);margin-bottom:10px">Conversación con el técnico</h4>
     <div class="chat">
       <div class="chat-b" id="chatB"><div class="load"><span class="spin"></span></div></div>
       <div class="chat-i">
-        <input id="chatI" placeholder="EscribÃ­ tu consultaâ€¦" onkeydown="if(event.key==='Enter')enviarMsg()">
+        <input id="chatI" placeholder="Escribí tu consultaâ€¦" onkeydown="if(event.key==='Enter')enviarMsg()">
         <button onclick="enviarMsg()"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>`;
@@ -388,8 +388,8 @@ async function cargarChat() {
     const r = await apiGet('mensajes', { diagNum: diagAbierto });
     const b = document.getElementById('chatB'); if(!b) return;
     b.innerHTML = (r.mensajes&&r.mensajes.length) ? r.mensajes.map(m=>`
-      <div class="msg ${m.autor==='tecnico'?'tec':'cli'}">${esc(m.mensaje)}<small>${esc(m.autor==='tecnico'?'TÃ©cnico':'Vos')} Â· ${esc(m.fecha)}</small></div>`).join('')
-      : `<div style="text-align:center;color:#94a3b8;font-size:.8rem;padding:18px">Escribinos cualquier duda sobre este diagnÃ³stico.</div>`;
+      <div class="msg ${m.autor==='tecnico'?'tec':'cli'}">${esc(m.mensaje)}<small>${esc(m.autor==='tecnico'?'Técnico':'Vos')} · ${esc(m.fecha)}</small></div>`).join('')
+      : `<div style="text-align:center;color:#94a3b8;font-size:.8rem;padding:18px">Escribinos cualquier duda sobre este diagnóstico.</div>`;
     b.scrollTop = b.scrollHeight;
   } catch(e){}
 }
@@ -411,14 +411,14 @@ function pintarTurnos() {
   document.getElementById('lTurnos').innerHTML = arr.length ? arr.map(c=>`
     <div class="row" style="cursor:default">
       <div class="row-main">
-        <div class="row-t"><i class="fas fa-calendar-day" style="color:#2563eb"></i> ${esc(c.fecha)} Â· ${esc(c.hora)}</div>
-        <div class="row-s">${esc(c.servicio||'')} ${c.direccion?'Â· '+esc(c.direccion):''}</div>
+        <div class="row-t"><i class="fas fa-calendar-day" style="color:#2563eb"></i> ${esc(c.fecha)} · ${esc(c.hora)}</div>
+        <div class="row-s">${esc(c.servicio||'')} ${c.direccion?'· '+esc(c.direccion):''}</div>
       </div>
       <span class="pill p-${(c.estado||'pendiente').toLowerCase()}">${esc(c.estado||'pendiente')}</span>
       ${['pendiente','confirmada'].includes((c.estado||'').toLowerCase())
         ? `<button class="btn btn-g btn-sm" onclick="cancelarCita(${c.rowIndex})">Cancelar</button>`:''}
     </div>`).join('')
-   : `<div class="empty"><i class="fas fa-calendar"></i><p>No tenÃ©s turnos agendados.</p></div>`;
+   : `<div class="empty"><i class="fas fa-calendar"></i><p>No tenés turnos agendados.</p></div>`;
 
   const f = document.getElementById('cbFecha');
   const hoy = new Date(); const max = new Date(Date.now()+60*86400000);
@@ -435,7 +435,7 @@ async function verHorarios() {
     const r = await apiGet('horarios_libres', { fecha });
     c.innerHTML = (r.horarios&&r.horarios.length)
       ? r.horarios.map(h=>`<button class="slot" onclick="elegir(this,'${h}')">${h}</button>`).join('')
-      : `<p style="font-size:.82rem;color:#94a3b8">No hay horarios disponibles ese dÃ­a. ProbÃ¡ otra fecha (no atendemos domingos).</p>`;
+      : `<p style="font-size:.82rem;color:#94a3b8">No hay horarios disponibles ese día. Probá otra fecha (no atendemos domingos).</p>`;
   } catch(e){}
 }
 function elegir(btn,h){
@@ -444,7 +444,7 @@ function elegir(btn,h){
 }
 
 async function pedirCita() {
-  if (!D.perfilCompleto) { toast('CompletÃ¡ tu perfil antes de agendar','err'); ver('perfil',document.querySelector('[data-s=perfil]')); return; }
+  if (!D.perfilCompleto) { toast('Completá tu perfil antes de agendar','err'); ver('perfil',document.querySelector('[data-s=perfil]')); return; }
   const b = document.getElementById('btnCita'); b.disabled=true;
   try {
     const r = await apiPost('pedir_cita', {
@@ -459,25 +459,25 @@ async function pedirCita() {
 }
 
 async function cancelarCita(ri) {
-  if(!confirm('Â¿Cancelar este turno?')) return;
+  if(!confirm('¿Cancelar este turno?')) return;
   const r = await apiPost('cancelar_cita', { rowIndex: ri });
   if (r.ok) { toast('Turno cancelado','ok'); cargar(); } else toast(r.error,'err');
 }
 
-/* ---- Ã³rdenes ---- */
+/* ---- órdenes ---- */
 function pintarOrdenes() {
   const arr = D.ordenes||[];
   document.getElementById('cOrd').textContent = arr.length;
   document.getElementById('lOrd').innerHTML = arr.length ? arr.map(o=>`
     <div class="row" style="cursor:default">
       <div class="row-main">
-        <div class="row-t">${esc(o.numero)} Â· ${esc(o.equipo)}</div>
-        <div class="row-s">${esc(o.fecha)} ${o.falla?'Â· '+esc(o.falla):''}</div>
+        <div class="row-t">${esc(o.numero)} · ${esc(o.equipo)}</div>
+        <div class="row-s">${esc(o.fecha)} ${o.falla?'· '+esc(o.falla):''}</div>
       </div>
       <span class="pill p-${(o.estado||'retirado').toLowerCase().replace(/ /g,'-')}">${esc(o.estado||'retirado')}</span>
       ${o.pdf?`<a class="btn btn-g btn-sm" href="${esc(o.pdf)}" target="_blank"><i class="fas fa-file-pdf"></i></a>`:''}
     </div>`).join('')
-   : `<div class="empty"><i class="fas fa-file-signature"></i><p>No tenÃ©s Ã³rdenes de trabajo.<br>Se generan cuando retiramos un equipo de tu domicilio.</p></div>`;
+   : `<div class="empty"><i class="fas fa-file-signature"></i><p>No tenés órdenes de trabajo.<br>Se generan cuando retiramos un equipo de tu domicilio.</p></div>`;
 }
 
 /* ---- perfil ---- */
@@ -499,7 +499,7 @@ async function guardarPerfil() {
     localidad:document.getElementById('pLoc').value.trim(),
     empresa:  document.getElementById('pEmp').value.trim()
   };
-  if (!b.nombre || !b.telefono || !b.direccion) { toast('Nombre, telÃ©fono y direcciÃ³n son obligatorios','err'); return; }
+  if (!b.nombre || !b.telefono || !b.direccion) { toast('Nombre, teléfono y dirección son obligatorios','err'); return; }
   const r = await apiPost('guardar_perfil', b);
   if (r.ok) { D.perfil=r.perfil; D.perfilCompleto=r.perfilCompleto; avisoPerfil(); toast('Datos guardados','ok'); }
   else toast(r.error||'Error al guardar','err');
