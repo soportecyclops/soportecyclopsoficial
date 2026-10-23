@@ -1,38 +1,41 @@
-﻿<!DOCTYPE html>
-<html lang="es-AR">
+<!DOCTYPE html><html lang="es-AR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sobre Nosotros | Juan Pablo Alza | Soporte Cyclops</title>
   <meta name="description" content="Conocé a Juan Pablo Alza. +11 años de experiencia en infraestructura IT corporativa (Radio Nacional, Autódromo BA) aplicados a tu pyme o domicilio.">
-  <link rel="icon" href="public/images/logo-icon.png" type="image/png">
+  <link rel="icon" href="/public/images/logo-icon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
+
+  <!-- Header Universal -->
   <nav class="navbar" id="navbar">
-    <div class="nav-container container">
-      <a href="index.html" class="logo">
-        <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
-        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
-      </a>
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="index.html" class="nav-link">Inicio</a></li>
-        <li><a href="nosotros.html" class="nav-link active">Nosotros</a></li>
-        <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
-        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-        <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;"></i>Ingresar</a></li>
-        <li><a href="index.html#contacto" class="nav-cta nav-link">Contacto</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
-    </div>
+      <div class="nav-container container">
+          <a href="/" class="logo">
+              <img src="/public/images/logo-icon.png" alt="Logo de Soporte Cyclops - Servicio Técnico IT en CABA" height="48" width="47">
+              <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+          </a>
+          <ul class="nav-menu" id="navMenu">
+              <li><a href="/" class="nav-link">Inicio</a></li>
+              <li><a href="/nosotros.html" class="nav-link active">Nosotros</a></li>
+              <li><a href="/opiniones.html" class="nav-link">Opiniones</a></li>
+              <li><a href="/blog/index.html" class="nav-link">Blog</a></li>
+              <li><a href="/login.html" rel="nofollow" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
+              <li><a href="/#contacto" class="nav-link">Contacto</a></li>
+          </ul>
+          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+              <i class="fas fa-bars"></i>
+          </button>
+      </div>
   </nav>
 
   <header class="page-hero">
     <div class="container">
-      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>›</span> <span>Nosotros</span></div>
+      <div class="breadcrumb"><a href="/">Inicio</a> <span>›</span> <span>Nosotros</span></div>
       <h1>Soporte técnico, pero de verdad.</h1>
       <p>Sin tercerizaciones ni improvisaciones. Toda la experiencia de administrar infraestructura de misión crítica bajada al territorio local: tu casa, tu estudio o tu pyme.</p>
     </div>
@@ -52,7 +55,7 @@
         <ul class="timeline">
           <li>
             <h4>Analista IT Sr. - Infraestructura</h4>
-            <span>LRA1 Radio Nacional (2015 - Presente)</span>
+            <span>LRA1 Radio Nacional (2015 - 2026)</span>
             <p>Responsable de soporte y operaciones para la sede central y más de 50 emisoras nacionales. Resoluciones críticas en redes distribuidas, servidores y Active Directory bajo protocolos estrictos.</p>
           </li>
           <li>
@@ -70,12 +73,83 @@
     </div>
   </section>
 
+  <!-- FOOTER UNIFICADO -->
   <footer>
-    <div class="container" style="text-align:center; padding: 40px 0;">
-      <p style="color:var(--gray-600); font-size:0.85rem">© 2026 Soporte Cyclops | CABA y GBA | Ley 24.240</p>
-    </div>
+      <div class="container">
+          <div class="footer-content" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+              <div class="footer-section">
+                  <h3 style="color:white; margin-bottom:16px;">Soporte Cyclops</h3>
+                  <p style="font-size:0.85rem; line-height:1.6;">Infraestructura IT, Seguridad Electrónica y Sistemas de Captación Web para CABA y GBA. +11 años de experiencia corporativa.</p>
+                  <div class="social-links" style="margin-top:16px; display:flex; gap:12px;">
+                      <a href="https://facebook.com/soportecyclops" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                      <a href="https://instagram.com/soportecyclops" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                      <a href="https://linkedin.com/company/soportecyclops" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+              </div>
+              <div class="footer-section">
+                  <h3 style="color:white; margin-bottom:16px;">Sectores</h3>
+                  <ul style="list-style:none;">
+                      <li style="margin-bottom:8px;"><a href="/servicios-hogares.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Hogares</a></li>
+                      <li style="margin-bottom:8px;"><a href="/servicios-pymes.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Pymes y Comercios</a></li>
+                      <li style="margin-bottom:8px;"><a href="/servicios-profesionales.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Estudios Profesionales</a></li>
+                      <li style="margin-bottom:8px;"><a href="/servicios-obras.html" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;">Para Arquitectos y Obras</a></li>
+                  </ul>
+              </div>
+              <div class="footer-section">
+                  <h3 style="color:white; margin-bottom:16px;">Contacto</h3>
+                  <ul style="list-style:none;">
+                      <li style="margin-bottom:8px;"><a href="tel:+5491166804450" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;"><i class="fas fa-phone" style="width:16px;"></i> +54 9 11 6680-4450</a></li>
+                      <li style="margin-bottom:8px;"><a href="mailto:contacto@soportecyclops.com.ar" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;"><i class="fas fa-envelope" style="width:16px;"></i> contacto@soportecyclops.com.ar</a></li>
+                      <li style="margin-bottom:8px;"><a href="https://wa.me/5491166804450" target="_blank" style="color:rgba(255,255,255,0.7); text-decoration:none; font-size:0.85rem;"><i class="fab fa-whatsapp" style="width:16px;"></i> WhatsApp</a></li>
+                  </ul>
+              </div>
+          </div>
+          <div class="footer-bottom" style="text-align:center; padding-top:24px; font-size:0.8rem; color:rgba(255,255,255,0.5);">
+              <p style="margin-bottom: 6px;">© 2026 Soporte Cyclops | CABA y Gran Buenos Aires</p>
+              <p><a href="/politica-de-privacidad.html" style="color:rgba(255,255,255,0.7); text-decoration:underline;">Política de Privacidad</a> | Ley 25.326 Protección de Datos Personales | Ley 24.240 Defensa del Consumidor</p>
+          </div>
+      </div>
   </footer>
-  <script src="chatbot.js"></script>
-  <script src="main.js"></script>
+
+  <!-- Botón WhatsApp Flotante -->
+  <a href="https://wa.me/5491166804450?text=¡Hola!%20Necesito%20información%20sobre%20sus%20servicios%20técnicos." 
+     class="whatsapp-float" 
+     target="_blank" 
+     aria-label="Contactar por WhatsApp" 
+     title="Chatea con nosotros por WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Chatbot -->
+  <div class="chatbot-container">
+      <div class="chatbot-toggle" id="chatbotToggle">
+          <i class="fas fa-comments"></i>
+          <span class="notification-dot" id="notificationDot"></span>
+      </div>
+      <div class="chatbot-window" id="chatbotWindow">
+          <div class="chatbot-header">
+              <div class="chatbot-avatar"><i class="fas fa-eye"></i></div>
+              <div class="chatbot-info">
+                  <h3>Asistente Cyclops</h3>
+                  <span class="status"><span class="status-dot"></span>En línea</span>
+              </div>
+              <button class="chatbot-close" id="chatbotClose"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="chatbot-messages" id="chatbotMessages"></div>
+          <div class="chatbot-suggestions">
+              <button class="suggestion-btn">¿Horarios?</button>
+              <button class="suggestion-btn">¿Precios?</button>
+              <button class="suggestion-btn">¿Zona de cobertura?</button>
+          </div>
+          <div class="chatbot-input-container">
+              <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Escribe tu mensaje...">
+              <button class="chatbot-send" id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+          </div>
+      </div>
+  </div>
+
+  <script src="/chatbot.js"></script>
+  <script src="/main.js"></script>
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"dc7c13e333f94571a08426672e2ddaca","r":1,"spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
