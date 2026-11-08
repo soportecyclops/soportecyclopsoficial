@@ -21,3 +21,5 @@ desktop.ini
 .env.local
 
 *.rar
+*.bak
+*BACKUP*/
