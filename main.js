@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cerrar menú mobile al hacer clic en un enlace
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
+            if (link.parentElement.classList.contains('nav-dropdown')) return; // no cerrar al abrir "Accesos"
             if (navMenu) {
                 navMenu.classList.remove('active');
                 navMenu.classList.remove('open');

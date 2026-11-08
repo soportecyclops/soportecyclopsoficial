@@ -138,30 +138,34 @@
         .whatsapp-float { position:fixed; bottom:28px; right:28px; width:52px; height:52px; background:linear-gradient(135deg,var(--whatsapp),#128C7E); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; text-decoration:none; z-index:999; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:var(--transition); }
         .whatsapp-float:hover { transform:scale(1.1) translateY(-3px); }
     </style>
+  <link rel="stylesheet" href="/css/nav.css">
 </head>
 <body>
 
 <nav class="navbar" id="navbar">
-    <div class="nav-container container">
-        <a href="index.html" class="logo">
-            <img src="public/images/logo-icon.png" alt="Soporte Cyclops" height="48" width="47">
-            <span class="logo-text">Soporte<strong>Cyclops</strong></span>
-        </a>
-        <ul class="nav-menu" id="navMenu">
-            <li><a href="index.html" class="nav-link">Inicio</a></li>
-            <li><a href="servicios.html" class="nav-link">Servicios</a></li>
-            <li><a href="presencia-web-para-pymes.html" class="nav-link">Presencia + Captación</a></li>
-            <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
-            <li><a href="opiniones.html" class="nav-link">Opiniones</a></li>
-            <li><a href="faq.html" class="nav-link">FAQ</a></li>
-            <li><a href="blog/index.html" class="nav-link">Blog</a></li>
-            <li><a href="proyectos.html" class="nav-link">Proyectos</a></li>
-            <li><a href="login.html" class="nav-link" id="navIngresarLink"><i class="fas fa-user-circle" style="margin-right:4px;font-size:0.85em;"></i>Ingresar</a></li>
-            <li><a href="soporte.html" class="nav-link active" style="color:var(--blue);font-weight:700;"><i class="fas fa-robot" style="margin-right:4px;font-size:0.85em;"></i>Asistente IA</a></li>
-        </ul>
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
+    <div class="nav-container">
+      <a href="/" class="logo" aria-label="Soporte Cyclops - Inicio">
+        <img src="/public/images/logo-icon.png" alt="Soporte Cyclops" width="47" height="48">
+        <span class="logo-text">Soporte<strong>Cyclops</strong></span>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="/" class="nav-link">Inicio</a></li>
+        <li><a href="/nosotros.html" class="nav-link">Nosotros</a></li>
+        <li><a href="/opiniones.html" class="nav-link">Opiniones</a></li>
+        <li><a href="/blog/index.html" class="nav-link">Blog</a></li>
+        <li class="nav-dropdown">
+          <span class="nav-link" role="button" tabindex="0" aria-haspopup="true"><i class="fas fa-user-circle"></i>Accesos <i class="fas fa-chevron-down"></i></span>
+          <div class="dropdown-menu">
+            <a href="/login.html" class="dropdown-item" id="navSoporteLink" rel="nofollow"><i class="fas fa-tools"></i><span>Soporte Técnico<small>Gestión de tickets</small></span></a>
+            <a href="https://consorcio.soportecyclops.com.ar/login" target="_blank" rel="noopener" class="dropdown-item"><i class="fas fa-building"></i><span>Consorcios<small>Plataforma para edificios</small></span></a>
+            <a href="https://tienda.soportecyclops.com.ar/#login" target="_blank" rel="noopener" class="dropdown-item"><i class="fas fa-store"></i><span>Sistema Pronto<small>Gestión ERP Pymes</small></span></a>
+          </div>
+        </li>
+        <li><a href="/#contacto" class="nav-link nav-cta">Contacto</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><i class="fas fa-bars"></i></button>
     </div>
-</nav>
+  </nav>
 
 <div class="page-hero">
     <div class="container">
@@ -407,5 +411,7 @@ addMsg('¡Hola! 👋 Soy el **Asistente Técnico de Soporte Cyclops**.\n\nDescri
   } catch(e) {}
 })();
 </script>
+
+<script src="/js/nav.js"></script>
 </body>
 </html>
