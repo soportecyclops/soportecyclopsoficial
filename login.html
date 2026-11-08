@@ -6,21 +6,17 @@
   <title>Ingresar | Soporte Cyclops</title>
   <link rel="icon" href="public/images/logo-icon.png">
   <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --blue: #2563eb; --blue-dark: #1a3a5c; --gray-50: #f8fafc;
-      --gray-100: #f1f5f9; --gray-200: #e2e8f0; --gray-400: #94a3b8; --gray-500: #64748b;
-      --gray-600: #475569; --gray-900: #0f172a; --red: #dc2626; --green: #16a34a;
-      --radius: 12px; --transition: all 0.25s ease; --shadow-md: 0 8px 32px rgba(37,99,235,0.12);
-    }
+    
     body {
       font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(135deg, #0f172a 0%, #1a3a5c 100%);
+      background: linear-gradient(135deg, var(--slate-950) 0%, var(--blue-dark) 100%);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -89,7 +85,7 @@
     @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } .login-card { padding: 36px 24px; } }
 
     .btn-registrar { width: 100%; background: var(--blue); color: white; border: none; padding: 14px; border-radius: 50px; font-family: inherit; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(37,99,235,0.25); }
-    .btn-registrar:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
+    .btn-registrar:hover { background: var(--blue-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
     .btn-registrar:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
     .opcionales-toggle { font-size: 0.85rem; color: var(--blue); cursor: pointer; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; padding: 8px 0; }

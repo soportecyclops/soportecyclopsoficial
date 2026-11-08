@@ -67,14 +67,15 @@
     ]
   }
   </script>
+  <link rel="stylesheet" href="/css/tokens.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/main.css">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
-    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+    
+    body{font-family:'Open Sans',sans-serif;color:var(--slate-800);background:#fff;line-height:1.7}
     a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
     .container{max-width:1140px;margin:0 auto;padding:0 24px}
 
@@ -112,7 +113,7 @@
     @media(max-width:768px){.footer-content{grid-template-columns:1fr}}
 
     /* ===== HERO ===== */
-    .pw-hero{background:var(--hero-gradient,linear-gradient(135deg,#0f2444 0%,#1a3a5c 40%,#1e4976 70%,#0d3460 100%));color:white;padding:76px 0 64px;position:relative;overflow:hidden}
+    .pw-hero{background:var(--hero-gradient,linear-gradient(135deg,#0f2444 0%,var(--blue-dark) 40%,#1e4976 70%,#0d3460 100%));color:white;padding:76px 0 64px;position:relative;overflow:hidden}
     .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:18px;display:flex;align-items:center;gap:6px}
     .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
     .pw-hero-inner{max-width:680px}
@@ -131,7 +132,7 @@
     .ig-card{background:white;border:1px solid var(--gray-200);border-radius:var(--radius);padding:28px 24px}
     .ig-card h4{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--blue-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px}
     .ig-card p{font-size:0.9rem;color:var(--gray-600)}
-    .ig-card .ig-quote{font-style:italic;background:var(--gray-50);border-radius:8px;padding:10px 14px;font-size:0.85rem;margin-bottom:10px;color:#334155}
+    .ig-card .ig-quote{font-style:italic;background:var(--gray-50);border-radius:8px;padding:10px 14px;font-size:0.85rem;margin-bottom:10px;color:var(--slate-700)}
     .ig-note{text-align:center;max-width:640px;margin:0 auto;font-size:0.95rem;color:var(--gray-600)}
     @media(max-width:700px){.ig-grid{grid-template-columns:1fr}}
 
@@ -186,7 +187,7 @@
     .pack-features li .check{color:var(--blue);font-weight:700;flex-shrink:0}
     .btn-pack{display:block;text-align:center;margin-top:20px;padding:12px;border-radius:50px;font-weight:700;font-size:0.88rem;transition:var(--transition)}
     .btn-pack-primary{background:var(--blue);color:white!important}
-    .btn-pack-primary:hover{background:#1d4ed8;text-decoration:none}
+    .btn-pack-primary:hover{background:var(--blue-hover);text-decoration:none}
     .btn-pack-outline{border:2px solid rgba(37,99,235,0.25);color:var(--blue)!important}
     .btn-pack-outline:hover{border-color:var(--blue);background:rgba(37,99,235,0.05);text-decoration:none}
     @media(max-width:900px){.packs-grid{grid-template-columns:1fr}}
@@ -213,7 +214,7 @@
     .diag-field label{display:block;font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:6px}
     .diag-field input[type="text"],.diag-field input[type="tel"],.diag-field select{width:100%;padding:11px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:white;font-size:0.9rem;font-family:inherit}
     .diag-field input::placeholder{color:rgba(255,255,255,0.4)}
-    .diag-field select option{color:#1e293b}
+    .diag-field select option{color:var(--slate-800)}
     .diag-checks label{display:flex;align-items:center;gap:8px;font-weight:400;font-size:0.85rem;color:rgba(255,255,255,0.85);margin-bottom:8px;cursor:pointer}
     .diag-nav{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
     .diag-btn{padding:11px 22px;border-radius:50px;font-weight:700;font-size:0.85rem;cursor:pointer;border:none;transition:var(--transition)}

@@ -8,19 +8,14 @@
     <meta name="description" content="Asistente técnico con inteligencia artificial. Describí tu problema y recibí orientación técnica en tiempo real.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="https://www.soportecyclops.com.ar/soporte.html">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-        :root {
-            --blue-dark:#1a3a5c; --blue:#2563eb; --accent:#00c6ff;
-            --white:#ffffff; --gray-50:#f8fafc; --gray-100:#f1f5f9;
-            --gray-200:#e2e8f0; --gray-400:#94a3b8; --gray-600:#475569; --gray-800:#1e293b;
-            --shadow-sm:0 2px 8px rgba(0,0,0,0.08); --shadow-md:0 8px 32px rgba(0,0,0,0.12);
-            --radius:14px; --transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
-        }
+        
         html { scroll-behavior:smooth; }
         body { font-family:'Open Sans',sans-serif; color:var(--gray-800); background:var(--gray-50); min-height:100vh; display:flex; flex-direction:column; }
         .container { width:100%; max-width:1200px; margin:0 auto; padding:0 24px; }
@@ -49,7 +44,7 @@
         }
 
         /* PAGE HERO */
-        .page-hero { background:linear-gradient(135deg,#0f2444 0%,#1a3a5c 40%,#1e4976 70%,#0d3460 100%); color:white; padding:40px 0 32px; position:relative; overflow:hidden; }
+        .page-hero { background:linear-gradient(135deg,#0f2444 0%,var(--blue-dark) 40%,#1e4976 70%,#0d3460 100%); color:white; padding:40px 0 32px; position:relative; overflow:hidden; }
         .page-hero::before { content:''; position:absolute; inset:0; pointer-events:none; background-image:linear-gradient(rgba(37,99,235,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(37,99,235,0.06) 1px,transparent 1px); background-size:40px 40px; }
         .page-hero-inner { position:relative; z-index:1; display:flex; align-items:center; gap:20px; }
         .page-hero-icon { width:56px; height:56px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; box-shadow:0 0 30px rgba(37,99,235,0.3); }
@@ -109,7 +104,7 @@
         #user-input:focus { border-color:var(--blue); }
         #user-input::placeholder { color:var(--gray-400); }
         #send-btn { width:40px; height:40px; background:var(--blue); border:none; border-radius:50%; color:white; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; justify-content:center; transition:var(--transition); box-shadow:0 3px 10px rgba(37,99,235,0.3); flex-shrink:0; }
-        #send-btn:hover { background:#1d4ed8; transform:scale(1.08); }
+        #send-btn:hover { background:var(--blue-hover); transform:scale(1.08); }
         #send-btn:disabled { background:var(--gray-400); box-shadow:none; transform:none; cursor:not-allowed; }
 
         /* SIDEBAR */
@@ -120,7 +115,7 @@
         .sidebar-item { display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px solid var(--gray-100); font-size:0.83rem; color:var(--gray-600); }
         .sidebar-item:last-child { border-bottom:none; padding-bottom:0; }
         .sidebar-item i { color:var(--blue); font-size:0.8rem; margin-top:2px; flex-shrink:0; }
-        .wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; background:linear-gradient(135deg,#25D366,#128C7E); color:white; border-radius:50px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:var(--transition); box-shadow:0 4px 14px rgba(37,211,102,0.3); margin-top:4px; }
+        .wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; background:linear-gradient(135deg,var(--whatsapp),#128C7E); color:white; border-radius:50px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:var(--transition); box-shadow:0 4px 14px rgba(37,211,102,0.3); margin-top:4px; }
         .wa-btn:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(37,211,102,0.4); text-decoration:none; }
         .call-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:11px; background:white; color:var(--blue-dark); border:2px solid var(--gray-200); border-radius:50px; font-weight:700; font-size:0.88rem; text-decoration:none; transition:var(--transition); margin-top:8px; }
         .call-btn:hover { border-color:var(--blue); color:var(--blue); text-decoration:none; }
@@ -140,7 +135,7 @@
         .footer-bottom { padding-top:22px; text-align:center; font-size:0.8rem; opacity:0.5; }
         @media(max-width:768px){ .footer-content{grid-template-columns:1fr 1fr} }
         @media(max-width:480px){ .footer-content{grid-template-columns:1fr} }
-        .whatsapp-float { position:fixed; bottom:28px; right:28px; width:52px; height:52px; background:linear-gradient(135deg,#25D366,#128C7E); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; text-decoration:none; z-index:999; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:var(--transition); }
+        .whatsapp-float { position:fixed; bottom:28px; right:28px; width:52px; height:52px; background:linear-gradient(135deg,var(--whatsapp),#128C7E); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:1.5rem; text-decoration:none; z-index:999; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:var(--transition); }
         .whatsapp-float:hover { transform:scale(1.1) translateY(-3px); }
     </style>
 </head>

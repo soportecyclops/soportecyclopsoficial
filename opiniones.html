@@ -6,14 +6,15 @@
   <link rel="icon" href="/public/images/logo-icon.png" type="image/png">
   <meta name="description" content="Reseñas reales de Google sobre Soporte Cyclops. Calificación 5.0 en reparación de PC, notebooks, redes y cámaras para hogares y empresas en CABA y GBA.">
   <link rel="canonical" href="https://www.soportecyclops.com.ar/opiniones.html">
+  <link rel="stylesheet" href="/css/tokens.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="/css/main.css">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    :root{--blue:#2563eb;--blue-dark:#1a3a5c;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-600:#475569;--radius:12px;--transition:all 0.25s ease;--shadow-md:0 8px 32px rgba(37,99,235,0.12)}
-    body{font-family:'Open Sans',sans-serif;color:#1e293b;background:#fff;line-height:1.7}
+    
+    body{font-family:'Open Sans',sans-serif;color:var(--slate-800);background:#fff;line-height:1.7}
     a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
     .container{max-width:1140px;margin:0 auto;padding:0 24px}
     
@@ -37,7 +38,7 @@
       .menu-toggle{display:block}
     }
 
-    .page-hero{background:linear-gradient(135deg,#1a3a5c 0%,#2563eb 100%);color:white;padding:56px 0 44px}
+    .page-hero{background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 100%);color:white;padding:56px 0 44px}
     .breadcrumb{font-size:0.8rem;opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
     .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
     .page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:12px}
@@ -63,47 +64,47 @@
     .score-card .n{font-family:'Space Grotesk',sans-serif;font-size:3rem;font-weight:800;line-height:1;color:#fff}
     .score-card .st{color:#fbbc04;font-size:1.15rem;letter-spacing:3px;margin:4px 0 6px}
     .score-card .g{font-size:.78rem;color:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;gap:6px}
-    .rev-stats{background:#f8fafc;border-bottom:1px solid #e2e8f0;padding:26px 0}
+    .rev-stats{background:var(--gray-50);border-bottom:1px solid var(--gray-200);padding:26px 0}
     .rev-stats .container{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
     @media(max-width:760px){.rev-stats .container{grid-template-columns:1fr 1fr}}
     .stat{text-align:center}
-    .stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:800;color:#1a3a5c;line-height:1.15}
-    .stat span{font-size:.78rem;color:#64748b;display:block;margin-top:5px;line-height:1.4}
+    .stat b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.7rem;font-weight:800;color:var(--blue-dark);line-height:1.15}
+    .stat span{font-size:.78rem;color:var(--gray-500);display:block;margin-top:5px;line-height:1.4}
     .rev-wrap{max-width:1080px;margin:0 auto;padding:44px 24px 20px}
     .rev-filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
-    .rev-f{padding:8px 17px;border-radius:50px;border:1.5px solid #e2e8f0;background:#fff;color:#64748b;font-family:inherit;font-size:.81rem;font-weight:700;cursor:pointer;transition:all .18s}
-    .rev-f:hover{border-color:#2563eb;color:#2563eb}
-    .rev-f.on{background:#2563eb;border-color:#2563eb;color:#fff}
+    .rev-f{padding:8px 17px;border-radius:50px;border:1.5px solid var(--gray-200);background:#fff;color:var(--gray-500);font-family:inherit;font-size:.81rem;font-weight:700;cursor:pointer;transition:all .18s}
+    .rev-f:hover{border-color:var(--blue);color:var(--blue)}
+    .rev-f.on{background:var(--blue);border-color:var(--blue);color:#fff}
     .rev-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     @media(max-width:800px){.rev-grid{grid-template-columns:1fr}}
-    .rev-grid .rev{background:#fff;border:1px solid #e2e8f0;border-radius:15px;padding:24px 26px;position:relative;transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column;overflow:hidden}
+    .rev-grid .rev{background:#fff;border:1px solid var(--gray-200);border-radius:15px;padding:24px 26px;position:relative;transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column;overflow:hidden}
     .rev-grid .rev:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(37,99,235,.09);border-color:rgba(37,99,235,.25)}
     .rev .qm{position:absolute;top:10px;right:20px;font-family:Georgia,serif;font-size:3.6rem;color:#eff6ff;line-height:1;pointer-events:none;z-index:0}
     .rev-top{display:flex;align-items:center;gap:12px;margin-bottom:13px;position:relative;z-index:1}
     .rev .av{width:44px;height:44px;min-width:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:.95rem;flex-shrink:0;line-height:1}
-    .rev-who .nm{font-size:.92rem;font-weight:700;color:#1a3a5c;line-height:1.25}
-    .rev-who .dt{font-size:.75rem;color:#64748b;display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:2px}
+    .rev-who .nm{font-size:.92rem;font-weight:700;color:var(--blue-dark);line-height:1.25}
+    .rev-who .dt{font-size:.75rem;color:var(--gray-500);display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:2px}
     .rev-st{color:#fbbc04;font-size:.9rem;letter-spacing:2px;margin-bottom:9px;position:relative;z-index:1}
-    .rev-tx{font-size:.91rem;color:#475569;line-height:1.72;position:relative;z-index:1;flex:1;margin:0}
+    .rev-tx{font-size:.91rem;color:var(--gray-600);line-height:1.72;position:relative;z-index:1;flex:1;margin:0}
     .rev-tag{display:inline-block;margin-top:14px;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:20px;width:fit-content;position:relative;z-index:1}
     .t-hw{background:#dcfce7;color:#166534}.t-diag{background:#dbeafe;color:#1e40af}
-    .verified{display:inline-flex;align-items:center;gap:4px;font-size:.7rem;color:#16a34a;font-weight:700}
+    .verified{display:inline-flex;align-items:center;gap:4px;font-size:.7rem;color:var(--ok);font-weight:700}
     .rev-cta{max-width:1080px;margin:34px auto 0;padding:0 24px 46px}
-    .rev-cta-in{background:linear-gradient(135deg,#1a3a5c,#2563eb);border-radius:18px;padding:38px;text-align:center;color:#fff}
+    .rev-cta-in{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:18px;padding:38px;text-align:center;color:#fff}
     .rev-cta-in h3{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:10px;color:#fff}
     .rev-cta-in p{font-size:.93rem;color:rgba(255,255,255,.92);margin:0 auto 22px;max-width:520px;line-height:1.65}
     .rev-btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
     .rev-btns a{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:50px;font-weight:700;font-size:.9rem;text-decoration:none;transition:transform .18s}
     .rev-btns a:hover{transform:translateY(-2px)}
-    .rev-btns .b1{background:#fff;color:#1a3a5c}
+    .rev-btns .b1{background:#fff;color:var(--blue-dark)}
     .rev-btns .b2{background:rgba(255,255,255,.16);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
     .trust{max-width:1080px;margin:0 auto;padding:0 24px 46px}
     .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     @media(max-width:780px){.trust-grid{grid-template-columns:1fr}}
-    .trust-i{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:22px}
-    .trust-i i{font-size:1.4rem;color:#2563eb;margin-bottom:10px;display:block}
-    .trust-i h4{font-family:'Space Grotesk',sans-serif;font-size:.95rem;color:#1a3a5c;margin-bottom:6px}
-    .trust-i p{font-size:.83rem;color:#64748b;line-height:1.6;margin:0}
+    .trust-i{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:14px;padding:22px}
+    .trust-i i{font-size:1.4rem;color:var(--blue);margin-bottom:10px;display:block}
+    .trust-i h4{font-family:'Space Grotesk',sans-serif;font-size:.95rem;color:var(--blue-dark);margin-bottom:6px}
+    .trust-i p{font-size:.83rem;color:var(--gray-500);line-height:1.6;margin:0}
   </style>
 
   <!-- SCHEMA JSON-LD PARA RICH SNIPPETS DE GOOGLE (ESTRELLITAS EN BUSCADOR) -->
