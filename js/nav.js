@@ -11,9 +11,10 @@
     }
     // Dropdown "Accesos": click en mobile / teclado
     [].forEach.call(nav.querySelectorAll('.nav-dropdown > .nav-link'),function(t){
-      t.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();t.parentElement.classList.toggle('open');});
+      t.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();t.parentElement.classList.toggle('open');t.blur();});
       t.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();t.parentElement.classList.toggle('open');}});
     });
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')[].forEach.call(nav.querySelectorAll('.nav-dropdown.open'),function(d){d.classList.remove('open');});});
     document.addEventListener('click',function(e){[].forEach.call(nav.querySelectorAll('.nav-dropdown.open'),function(d){if(!d.contains(e.target))d.classList.remove('open');});});
     // Acceso según sesión
     try{
