@@ -145,7 +145,9 @@
     .obj-card ul li{font-size:var(--t-small);color:var(--gray-600);padding:5px 0 5px 22px;position:relative}
     .obj-card ul li::before{content:'✓';position:absolute;left:0;color:var(--blue);font-weight:700}
     .obj-card p{font-size:var(--t-small);color:var(--gray-600);margin-bottom:8px}
-    @media(max-width:900px){.obj-grid{grid-template-columns:1fr}}
+    .obj-grid--4{grid-template-columns:repeat(4,1fr)}
+    @media(max-width:900px){.obj-grid,.obj-grid--4{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){.obj-grid,.obj-grid--4{grid-template-columns:1fr}}
 
     /* ===== PROBLEMA REAL ===== */
     .check-section{padding:70px 0;background:var(--gray-50)}
@@ -373,7 +375,7 @@
         <h2 class="section-title reveal">¿Para qué tipo de negocios trabajamos?</h2>
         <p class="section-subtitle reveal">Pymes, profesionales y comercios de CABA y GBA que quieren que los encuentren cuando alguien busca lo que ofrecen.</p>
       </div>
-      <div class="obj-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="obj-grid obj-grid--4">
         <div class="obj-card" style="padding:24px 20px">
           <h3 style="font-size:var(--t-body)"><i class="fas fa-user-doctor" style="color:var(--blue)"></i> Profesionales</h3>
           <p style="font-size:var(--t-small)">Odontólogos, kinesiólogos, psicólogos, abogados, contadores.</p>
@@ -482,12 +484,85 @@
   </section>
 
   <!-- PACKS -->
+  <!-- ===================== EJEMPLOS POR RUBRO ===================== -->
+  <section class="ejemplos-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">Diez ejemplos, diez rubros</span>
+        <h2 class="section-title reveal">Mirá cómo quedaría la tuya</h2>
+        <p class="section-subtitle reveal">Hicimos una página completa para diez rubros distintos. Los negocios son ficticios, las páginas son de verdad: entrá, tocá los botones y abrilas en el celular.</p>
+      </div>
+      <div class="demos-strip demos-strip--6">
+        <a class="demos-strip__item" href="/demos/estudio-juridico/"><span class="demos-strip__mock" style="--d-bg:#16302a;--d-ac:#a98b52;--d-rad:2px" aria-hidden="true"><b></b><b class="is-short"></b><i></i></span><span class="demos-strip__rubro">Estudio jurídico</span></a>
+        <a class="demos-strip__item" href="/demos/gimnasio/"><span class="demos-strip__mock" style="--d-bg:#09090b;--d-ac:#d4ff47;--d-rad:0px" aria-hidden="true"><b></b><b class="is-short"></b><i></i></span><span class="demos-strip__rubro">Gimnasio</span></a>
+        <a class="demos-strip__item" href="/demos/taller-mecanico/"><span class="demos-strip__mock" style="--d-bg:#123540;--d-ac:#e8641a;--d-rad:4px" aria-hidden="true"><b></b><b class="is-short"></b><i></i></span><span class="demos-strip__rubro">Taller mecánico</span></a>
+        <a class="demos-strip__item" href="/demos/parrilla/"><span class="demos-strip__mock" style="--d-bg:#35180f;--d-ac:#9e2b14;--d-rad:10px" aria-hidden="true"><b></b><b class="is-short"></b><i></i></span><span class="demos-strip__rubro">Parrilla</span></a>
+        <a class="demos-strip__item" href="/demos/inmobiliaria/"><span class="demos-strip__mock" style="--d-bg:#23282c;--d-ac:#b2703f;--d-rad:6px" aria-hidden="true"><b></b><b class="is-short"></b><i></i></span><span class="demos-strip__rubro">Inmobiliaria</span></a>
+        <a class="demos-strip__item" href="/demos/barberia/"><span class="demos-strip__mock" style="--d-bg:#0a0a0a;--d-ac:#ff4500;--d-rad:0px" aria-hidden="true"><b></b><b class="is-short"></b><i></i></span><span class="demos-strip__rubro">Barbería</span></a>
+      </div>
+      <div class="paquetes-acts">
+        <a href="/demos/" class="cta-button">Ver los 10 ejemplos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CÓMO TRABAJAMOS ===================== -->
+  <section class="proceso-section" id="proceso">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">Sin sorpresas</span>
+        <h2 class="section-title reveal">Cómo trabajamos</h2>
+        <p class="section-subtitle reveal">Cinco pasos, en este orden. En ninguno hay que adivinar qué sigue ni cuánto falta.</p>
+      </div>
+
+      <ol class="proceso-lista">
+        <li class="proceso-paso">
+          <h3>Conocemos el negocio</h3>
+          <p>Una charla de cuarenta minutos, presencial o por videollamada. Qué vendés, quién te compra, cómo te contactan hoy y qué te está faltando.</p>
+        </li>
+        <li class="proceso-paso">
+          <h3>Propuesta por escrito</h3>
+          <p>Qué secciones va a tener, qué funciones, qué queda afuera y cuánto sale. Un documento que podés leer tranquilo y comparar con otro presupuesto.</p>
+        </li>
+        <li class="proceso-paso">
+          <h3>Te mostramos el diseño antes de programar</h3>
+          <p>Ves cómo va a quedar y pedís los cambios que quieras. Recién cuando lo aprobás, se escribe la primera línea de código.</p>
+        </li>
+        <li class="proceso-paso">
+          <h3>Desarrollo y revisión</h3>
+          <p>La armamos y la probamos en computadora, tablet y celular, con conexión buena y con conexión mala. Vos la revisás antes de que esté online.</p>
+        </li>
+        <li class="proceso-paso">
+          <h3>Publicación y entrega</h3>
+          <p>Queda online con tu dominio, enlazada a Google y a tu WhatsApp. Te explicamos cómo cambiar precios y horarios vos mismo, sin depender de nadie.</p>
+        </li>
+      </ol>
+
+      <div class="aporta">
+        <h3 class="aporta__t">Qué necesitamos de vos</h3>
+        <p class="aporta__d">Nada de esto es urgente el primer día, pero cuanto antes lo tengamos, antes sale. Si falta algo, lo resolvemos juntos.</p>
+        <ul class="aporta__lista">
+          <li><i class="fas fa-image" aria-hidden="true"></i><span><b>Logo</b><em>Si no tenés, lo armamos.</em></span></li>
+          <li><i class="fas fa-camera" aria-hidden="true"></i><span><b>Fotos del negocio</b><em>Del local, del trabajo o de los productos.</em></span></li>
+          <li><i class="fas fa-list-check" aria-hidden="true"></i><span><b>Qué ofrecés</b><em>Servicios o productos, con precios si querés mostrarlos.</em></span></li>
+          <li><i class="fas fa-location-dot" aria-hidden="true"></i><span><b>Datos de contacto</b><em>Dirección, teléfono, WhatsApp y horarios.</em></span></li>
+          <li><i class="fas fa-comment" aria-hidden="true"></i><span><b>Cómo hablás</b><em>De usted o de vos, formal o cercano. La web tiene que sonar a tu negocio.</em></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
   <section class="packs-section">
     <div class="container">
       <div class="section-header">
         <span class="section-tag reveal">No todos necesitan lo mismo</span>
         <h2 class="section-title reveal">¿Qué nivel necesita tu negocio?</h2>
         <p class="section-subtitle reveal">Los precios se acuerdan según las necesidades de cada negocio. ¿No encontrás lo que buscás? Armamos un paquete a medida.</p>
+        <!-- PENDIENTE: poner el numero del "desde" y descomentar las dos lineas de abajo.
+             Va un solo numero de entrada, no una tabla de tres planes.
+             Ver DESIGN.md y la decision del 16/11.
+        <p class="desde reveal"><b>Desde $XXX.XXX</b> <span>pago unico, con dominio y hosting del primer ano incluidos</span></p>
+        -->
       </div>
       <div class="packs-grid">
         <div class="pack-card">
