@@ -18,8 +18,8 @@
       --sidebar-w: 240px;
       --sidebar-bg: #0d1117;
       --sidebar-border: rgba(255,255,255,0.07);
-      --accent: #2563eb;
-      --accent-light: #3b82f6;
+      --accent: var(--blue);
+      --accent-light: var(--blue-light);
       --accent-glow: rgba(37,99,235,0.15);
       --content-bg: #f8fafc;
       --white: #ffffff;
@@ -360,7 +360,7 @@
     .form-group{margin-bottom:14px}
     .form-label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:6px}
     .rol-switch{display:flex;gap:10px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:13px 15px;margin-top:14px;cursor:pointer}
-    .rol-switch input{margin-top:3px;accent-color:var(--blue,#2563eb);flex-shrink:0}
+    .rol-switch input{margin-top:3px;accent-color:var(--blue,var(--blue));flex-shrink:0}
     .rol-switch b{display:block;font-size:.85rem;color:var(--gray-900);margin-bottom:2px}
     .rol-switch span{font-size:.78rem;color:var(--gray-500);line-height:1.5}
 
@@ -371,11 +371,11 @@
     .sem-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
     @media(max-width:900px){.sem-grid{grid-template-columns:repeat(2,1fr)}}
     .sem-dia{border:1px solid var(--gray-200);border-radius:10px;min-height:104px;padding:9px;background:var(--gray-50)}
-    .sem-dia.hoy{border-color:#2563eb;background:#eff6ff;box-shadow:0 0 0 2px rgba(37,99,235,.12)}
+    .sem-dia.hoy{border-color:var(--blue);background:#eff6ff;box-shadow:0 0 0 2px rgba(37,99,235,.12)}
     .sem-dia .d{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:2px}
     .sem-dia .n{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;color:var(--gray-900);line-height:1;margin-bottom:8px}
-    .sem-dia.hoy .n{color:#2563eb}
-    .sem-cita{background:#fff;border-left:3px solid #2563eb;border-radius:6px;padding:6px 8px;margin-bottom:5px;font-size:.74rem;line-height:1.35;cursor:pointer}
+    .sem-dia.hoy .n{color:var(--blue)}
+    .sem-cita{background:#fff;border-left:3px solid var(--blue);border-radius:6px;padding:6px 8px;margin-bottom:5px;font-size:.74rem;line-height:1.35;cursor:pointer}
     .sem-cita:hover{background:#eff6ff}
     .sem-cita b{display:block;color:var(--gray-900);font-size:.78rem}
     .sem-cita span{color:var(--gray-500)}
@@ -805,7 +805,7 @@
             <span>Google Calendar</span><small>Agenda completa</small>
           </a>
           <a class="quick-card" href="https://drive.google.com" target="_blank">
-            <div class="quick-card-icon" style="background:#eff6ff;color:#2563eb"><i class="fab fa-google-drive"></i></div>
+            <div class="quick-card-icon" style="background:#eff6ff;color:var(--blue)"><i class="fab fa-google-drive"></i></div>
             <span>Google Drive</span><small>Archivos y docs</small>
           </a>
           <a class="quick-card" href="https://docs.google.com/spreadsheets" target="_blank">
@@ -1439,7 +1439,7 @@ function renderStatCharts() {
   });
   const total = allDiags.length || 1;
   const estados = [
-    {k:'nuevo',label:'Nuevo',color:'#2563eb'},
+    {k:'nuevo',label:'Nuevo',color:'var(--blue)'},
     {k:'en proceso',label:'En proceso',color:'#f59e0b'},
     {k:'resuelto',label:'Resuelto',color:'#22c55e'},
     {k:'cerrado',label:'Cerrado',color:'#94a3b8'}
@@ -1597,7 +1597,7 @@ function renderDiagStats() {
   document.getElementById('diagStatGrid').innerHTML = `
     <div class="stat-card">
       <h4>Distribución de estados</h4>
-      ${[{k:'nuevo',l:'Nuevo',c:'#2563eb'},{k:'en proceso',l:'En proceso',c:'#f59e0b'},{k:'resuelto',l:'Resuelto',c:'#22c55e'},{k:'cerrado',l:'Cerrado',c:'#94a3b8'}].map(e=>`
+      ${[{k:'nuevo',l:'Nuevo',c:'var(--blue)'},{k:'en proceso',l:'En proceso',c:'#f59e0b'},{k:'resuelto',l:'Resuelto',c:'#22c55e'},{k:'cerrado',l:'Cerrado',c:'#94a3b8'}].map(e=>`
       <div class="bar-row"><span class="bar-label">${e.l}</span><div class="bar-track"><div class="bar-fill" style="width:${Math.round(((estadoCount[e.k]||0)/total)*100)}%;background:${e.c}"></div></div><span class="bar-count">${estadoCount[e.k]||0}</span></div>`).join('')}
     </div>
     <div class="stat-card">

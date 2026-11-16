@@ -16,7 +16,7 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --blue: #2563eb; --blue-dark: #1a3a5c; --blue-light: #3b82f6;
+      --blue: var(--blue); --blue-dark: #1a3a5c; --blue-light: var(--blue-light);
       --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9;
       --gray-200: #e2e8f0; --gray-400: #94a3b8; --gray-600: #475569; --gray-800: #1e293b;
       --green: #22c55e; --amber: #f59e0b; --red: #ef4444; --purple: #8b5cf6;
@@ -41,7 +41,7 @@
     .nav-link { padding: 8px 14px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; color: var(--gray-600); transition: var(--transition); white-space: nowrap; }
     .nav-link:hover, .nav-link.active { color: var(--blue); background: rgba(37,99,235,0.06); text-decoration: none; }
     .nav-cta { background: var(--blue); color: white !important; padding: 9px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; transition: var(--transition); }
-    .nav-cta:hover { background: #1d4ed8; text-decoration: none; }
+    .nav-cta:hover { background: var(--blue-hover); text-decoration: none; }
     .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.3rem; color: var(--blue-dark); padding: 6px; }
     @media(max-width:900px){
       .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
@@ -78,7 +78,7 @@
     .btn-logout { display: flex; align-items: center; gap: 6px; padding: 8px 16px; background: transparent; border: 2px solid var(--gray-200); border-radius: 50px; font-family: 'Open Sans', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: var(--transition); }
     .btn-logout:hover { border-color: var(--red); color: var(--red); background: rgba(239,68,68,0.05); }
     .btn-admin { display: none; align-items: center; gap: 8px; padding: 8px 18px; background: var(--blue); color: white; border: none; border-radius: 50px; font-family: 'Open Sans', sans-serif; font-size: 0.82rem; font-weight: 700; text-decoration: none; cursor: pointer; transition: var(--transition); box-shadow: 0 3px 10px rgba(37,99,235,0.3); }
-    .btn-admin:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .btn-admin:hover { background: var(--blue-hover); transform: translateY(-1px); }
 
     /* ── CTA NUEVO DIAGNÓSTICO ── */
     .diag-cta-bar {
@@ -162,7 +162,7 @@
     .empty-state h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 10px; }
     .empty-state p { font-size: 0.9rem; max-width: 380px; margin: 0 auto 24px; }
     .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: var(--blue); color: white; border: none; border-radius: 50px; font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 0.88rem; text-decoration: none; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
-    .btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--blue-hover); transform: translateY(-2px); }
 
     /* ── LOADING / ERROR ── */
     .loading-state { text-align: center; padding: 60px 24px; color: var(--gray-600); }
@@ -339,7 +339,7 @@
       transition: var(--transition);
       flex-shrink: 0;
     }
-    .chatbot-modal-send:hover { background: #1d4ed8; transform: scale(1.08); }
+    .chatbot-modal-send:hover { background: var(--blue-hover); transform: scale(1.08); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
@@ -403,7 +403,7 @@
       transition: var(--transition);
       white-space: nowrap;
     }
-    .search-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .search-btn:hover { background: var(--blue-hover); transform: translateY(-1px); }
     .search-result {
       display: none;
       margin-top: 16px;
@@ -543,7 +543,7 @@
       cursor: pointer;
       transition: var(--transition);
     }
-    .btn-save-perfil:hover { background: #1d4ed8; }
+    .btn-save-perfil:hover { background: var(--blue-hover); }
     .btn-cancel-perfil {
       padding: 9px 20px;
       background: transparent;

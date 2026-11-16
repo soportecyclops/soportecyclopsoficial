@@ -5,17 +5,19 @@
    ========================================================== */
 :root {
   /* Marca */
-  --blue: #2563eb;
+  --blue: #174ea6;
   --blue-dark: #1a3a5c;
-  --blue-hover: #1d4ed8;
-  --blue-light: #3b82f6;
-  --navy: #1e3a8a;
-  --cyan: #00c6ff;
+  --blue-hover: #123e85;
+  --blue-light: #3d77d1;
+  --navy: #12356f;
+  --cyan: #00c6ff;          /* SOLO sobre superficie oscura (2.0:1 sobre blanco) */
+  --amber: #b45309;         /* acento calido sobre claro: 5.02:1 con texto blanco */
+  --amber-bright: #f59e0b;  /* acento calido SOLO sobre oscuro: 7.2:1 sobre #0f2444 */
   --cyan-obra: #06b6d4;
   --sky: #7dd3fc;
-  --blue-ui: #60a5fa;
-  --blue-50: #eff6ff;
-  --blue-200: #bfdbfe;
+  --blue-ui: #7ba7e8;
+  --blue-50: #eff4fc;
+  --blue-200: #c3d6f2;
 
   /* Neutros */
   --slate-950: #0f172a;
@@ -46,14 +48,14 @@
   --seg-pyme: #f59e0b;
   --seg-estudio: #22c55e;
   --seg-obra: #94a3b8;
-  --grad-hogar: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-  --grad-pyme: linear-gradient(135deg, #b45309 0%, #1e3a8a 100%);
+  --grad-hogar: linear-gradient(135deg, #0e5f8a 0%, #174ea6 100%);
+  --grad-pyme: linear-gradient(135deg, #b45309 0%, #12356f 100%);
   --grad-estudio: linear-gradient(135deg, #166534 0%, #0f172a 100%);
   --grad-obra: linear-gradient(135deg, #334155 0%, #0f172a 100%);
 
   /* Degradés */
-  --grad-main: linear-gradient(135deg, #1a3a5c 0%, #2563eb 100%);
-  --grad-icon: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(0,198,255,0.1));
+  --grad-main: linear-gradient(135deg, #1a3a5c 0%, #174ea6 100%);
+  --grad-icon: linear-gradient(135deg, rgba(23,78,166,0.10), rgba(23,78,166,0.04));
   --hero-gradient: linear-gradient(135deg, #0f2444 0%, #1a3a5c 40%, #1e4976 70%, #0d3460 100%);
 
   /* Forma */
@@ -62,10 +64,28 @@
   --radius-lg: 16px;
   --radius-pill: 50px;
   --shadow-sm: 0 2px 8px rgba(15,23,42,0.08);
-  --shadow-md: 0 8px 32px rgba(37,99,235,0.12);
+  --shadow-md: 0 8px 24px rgba(15,23,42,0.10);
   --shadow-lg: 0 20px 60px rgba(15,23,42,0.18);
-  --transition: all 0.25s ease;
+  --transition: color .18s var(--ease), background-color .18s var(--ease), border-color .18s var(--ease), box-shadow .18s var(--ease), transform .18s var(--ease);
   --container: 1140px;
+
+  /* Movimiento (DESIGN.md §7) */
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --dur: 180ms;
+  --dur-slow: 280ms;
+
+  /* Escala tipografica cerrada — 7 pasos, ninguno mas (DESIGN.md §3) */
+  --t-label: 0.8125rem;
+  --t-small: 0.875rem;
+  --t-body: 1rem;
+  --t-lead: 1.125rem;
+  --t-h3: 1.375rem;
+  --t-h2: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+  --t-h1: clamp(2.25rem, 1.4rem + 3.2vw, 3.5rem);
+
+  /* Espaciado — escala de 8 (DESIGN.md §4) */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
 
   /* Tipografía */
   --font-head: 'Space Grotesk', sans-serif;
