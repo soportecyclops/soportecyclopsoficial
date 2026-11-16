@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Don Ciro">
+  <rect width="64" height="64" rx="10" fill="#35180f"/>
+  <path d="M32 14c5 6 2 9 0 12-3 4-7 6-7 12a11 11 0 0 0 22 0c0-7-8-12-15-24z" fill="#9e2b14"/>
+  <rect x="18" y="46" width="28" height="4" rx="2" fill="#f6eddf"/>
+</svg>

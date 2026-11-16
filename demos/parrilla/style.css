@@ -1,0 +1,146 @@
+/* ==========================================================
+   Parrilla Don Ciro — carne a la brasa
+   Marrón quemado, rojo brasa, crema. Radio 10px, ritmo
+   cálido y holgado, slab para titulares.
+   La carta es el centro: lista con precios, no tarjetas.
+   ========================================================== */
+:root {
+  --marron: #35180f;
+  --marron-cl: #4b261a;
+  --brasa: #9e2b14;
+  --brasa-cl: #b8381d;
+  --crema: #f6eddf;
+  --crema-os: #ece0cc;
+  --papel: #fffcf7;
+  --tinta: #2b1a12;
+  --tinta-sv: #6b574c;
+  --linea: #ddceb8;
+
+  --head: "Zilla Slab", Georgia, serif;
+  --body: "Karla", system-ui, -apple-system, sans-serif;
+
+  --rad: 10px;
+  --aire: clamp(4rem, 8vw, 6.5rem);
+  --trans: .22s ease;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--papel); color: var(--tinta);
+  font-family: var(--body); font-size: 1.0625rem; line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--head); font-weight: 700; line-height: 1.15; margin: 0 0 1rem; }
+p { margin: 0 0 1.1rem; }
+
+.wrap { width: min(100% - 2.25rem, 66rem); margin-inline: auto; }
+.skip { position: absolute; left: -9999px; background: var(--brasa); color: var(--crema); padding: .75rem 1.25rem; z-index: 100; }
+.skip:focus { left: 1rem; top: 1rem; }
+:focus-visible { outline: 3px solid var(--brasa); outline-offset: 3px; border-radius: 3px; }
+.hero :focus-visible, .pie :focus-visible, .reservas :focus-visible, .top :focus-visible { outline-color: var(--crema); }
+
+/* ---------- cabecera ---------- */
+.top { background: var(--marron); position: sticky; top: 0; z-index: 40; }
+.top__in { display: flex; align-items: center; justify-content: space-between; min-height: 74px; gap: 1rem; }
+.brand { font-family: var(--head); font-size: 1.5rem; color: var(--crema); text-decoration: none; }
+.brand em { font-style: italic; font-weight: 500; color: var(--brasa-cl); }
+.nav { display: flex; align-items: center; gap: 1.75rem; }
+.nav a { font-size: .95rem; color: rgba(246, 237, 223, .82); text-decoration: none; }
+.nav a:hover { color: var(--crema); }
+.nav__cta { background: var(--brasa); color: var(--crema) !important; padding: .75rem 1.5rem; border-radius: var(--rad); min-height: 44px; display: inline-flex; align-items: center; }
+.nav__cta:hover { background: var(--brasa-cl); }
+.burger { display: none; background: none; border: 0; cursor: pointer; width: 44px; height: 44px; padding: .6rem; }
+.burger span { display: block; width: 22px; height: 2px; background: var(--crema); margin: 4px 0; }
+
+/* ---------- hero ---------- */
+.hero { background: var(--marron); color: var(--crema); padding: var(--aire) 0; }
+.kicker { font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; color: var(--brasa-cl); margin-bottom: 1.25rem; }
+.hero h1 { font-size: clamp(2.2rem, 1.3rem + 3.6vw, 4rem); color: var(--crema); margin-bottom: 1.5rem; }
+.hero__lead { max-width: 50ch; color: rgba(246, 237, 223, .8); font-size: 1.1rem; margin-bottom: 2.25rem; }
+.hero__acts { display: flex; align-items: center; gap: 1.75rem; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 50px; padding: .9rem 2rem;
+  background: var(--brasa); color: var(--crema);
+  font-family: var(--body); font-size: 1rem; font-weight: 600;
+  border: 2px solid var(--brasa); border-radius: var(--rad);
+  text-decoration: none; cursor: pointer;
+  transition: background var(--trans), transform var(--trans);
+}
+.btn:hover { background: var(--brasa-cl); border-color: var(--brasa-cl); color: var(--crema); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; pointer-events: none; }
+.btn--line { background: transparent; color: var(--crema); border-color: var(--crema); }
+.btn--line:hover { background: var(--crema); color: var(--marron); border-color: var(--crema); }
+.link { color: var(--crema); text-underline-offset: 5px; }
+
+/* ---------- carta ---------- */
+.carta { padding: var(--aire) 0; background: var(--crema); }
+.carta h2, .lugar h2, .reservas h2 { font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.8rem); color: var(--marron); }
+.sec__lead { color: var(--tinta-sv); max-width: 58ch; margin-bottom: 3rem; }
+.carta__cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 3.5rem; }
+.grupo h3 { font-size: 1.15rem; letter-spacing: .04em; text-transform: uppercase; color: var(--brasa); padding-bottom: .75rem; border-bottom: 2px solid var(--linea); }
+.grupo__sep { margin-top: 2.75rem; }
+.platos { list-style: none; margin: 0; padding: 0; }
+.platos li { display: flex; align-items: baseline; gap: .75rem; padding: .85rem 0; border-bottom: 1px dotted var(--linea); }
+.plato { flex-grow: 1; }
+.plato em { font-style: normal; font-size: .85rem; color: var(--tinta-sv); margin-left: .35rem; }
+.precio { font-family: var(--head); font-weight: 700; color: var(--marron); white-space: nowrap; }
+.aviso { margin-top: 2.5rem; font-size: .92rem; color: var(--tinta-sv); max-width: 64ch; }
+
+/* ---------- lugar ---------- */
+.lugar { padding: var(--aire) 0; }
+.lugar__in { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 4rem; align-items: start; }
+.lugar p { color: var(--tinta-sv); max-width: 54ch; }
+.datos { background: var(--crema); border-radius: var(--rad); padding: 2rem; margin: 0; border: 1px solid var(--linea); }
+.datos dt { font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brasa); margin-top: 1.25rem; }
+.datos dt:first-child { margin-top: 0; }
+.datos dd { margin: .3rem 0 0; font-size: .97rem; color: var(--tinta-sv); }
+
+/* ---------- reservas ---------- */
+.reservas { background: var(--marron); color: var(--crema); padding: var(--aire) 0; }
+.reservas h2 { color: var(--crema); }
+.reservas p { color: rgba(246, 237, 223, .8); max-width: 44ch; margin-bottom: 2rem; }
+.reservas__in { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: 3.5rem; }
+
+.form { background: var(--papel); border-radius: var(--rad); padding: 2rem; }
+.campo { margin-bottom: 1.15rem; }
+.campo label { display: block; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-sv); margin-bottom: .4rem; }
+.campo input, .campo select {
+  width: 100%; padding: .8rem .9rem;
+  border: 1px solid var(--linea); border-radius: var(--rad);
+  font-family: var(--body); font-size: 1rem; color: var(--tinta); background: var(--papel);
+  transition: border-color var(--trans);
+}
+.campo input:focus, .campo select:focus { outline: none; border-color: var(--brasa); box-shadow: 0 0 0 3px rgba(158, 43, 20, .16); }
+.campo input::placeholder { color: #a8948a; }
+.campo[data-error] input, .campo[data-error] select { border-color: #b3261e; }
+.err { margin: .4rem 0 0; font-size: .85rem; color: #b3261e; }
+.form .btn { width: 100%; }
+.form__ok { margin: 1rem 0 0; font-size: .95rem; color: #1f6b4a; }
+
+/* ---------- pie ---------- */
+.pie { background: var(--tinta); color: rgba(246, 237, 223, .6); padding: 2.75rem 0; }
+.pie__brand { font-family: var(--head); font-size: 1.3rem; color: var(--crema); margin-bottom: .4rem; }
+.pie__brand em { font-style: italic; font-weight: 500; color: var(--brasa-cl); }
+.pie p { font-size: .88rem; margin: 0; }
+
+/* ---------- móvil ---------- */
+@media (max-width: 860px) {
+  .lugar__in { grid-template-columns: 1fr; gap: 2.5rem; }
+  .burger { display: block; }
+  .nav {
+    display: none; position: absolute; left: 0; right: 0; top: 74px;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--marron); padding: .5rem 1.125rem 1.125rem;
+  }
+  .nav.abierto { display: flex; }
+  .nav a { padding: .95rem 0; border-bottom: 1px solid rgba(246, 237, 223, .15); }
+  .nav__cta { margin-top: .75rem; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

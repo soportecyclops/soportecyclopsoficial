@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Taller Peralta">
+  <rect width="64" height="64" rx="4" fill="#123540"/>
+  <path d="M20 44 L36 18 L44 24 L28 50 Z" fill="#e8641a"/>
+  <circle cx="24" cy="22" r="6" fill="none" stroke="#e6e6e3" stroke-width="3"/>
+</svg>
