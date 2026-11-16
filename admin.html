@@ -64,14 +64,14 @@
     }
     .login-logo { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 32px; }
     .login-logo img { height: 36px; }
-    .login-logo span { font-size: 1.1rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+    .login-logo span { font-size: var(--t-lead); font-weight: 700; color: white; letter-spacing: -0.02em; }
     .login-logo strong { color: var(--accent-light); }
-    .login-wrap h2 { font-size: 1.5rem; font-weight: 700; color: white; margin-bottom: 8px; letter-spacing: -0.02em; }
-    .login-wrap p { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 36px; }
+    .login-wrap h2 { font-size: var(--t-h2); font-weight: 700; color: white; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .login-wrap p { font-size: var(--t-small); color: rgba(255,255,255,0.45); margin-bottom: 36px; }
     .login-wrap .login-divider { border: none; border-top: 1px solid var(--sidebar-border); margin: 24px 0; }
     #g_id_signin { display: flex; justify-content: center; }
-    .login-note { margin-top: 20px; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
-    .login-error-msg { display:none; margin-top: 16px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; font-size: 0.82rem; padding: 10px 14px; border-radius: 8px; }
+    .login-note { margin-top: 20px; font-size: var(--t-label); color: rgba(255,255,255,0.3); }
+    .login-error-msg { display:none; margin-top: 16px; background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; font-size: var(--t-small); padding: 10px 14px; border-radius: 8px; }
     .login-error-msg.visible { display: block; }
 
     /* ── APP SHELL ── */
@@ -95,7 +95,7 @@
       text-decoration: none; position: relative;
     }
     .sb-logo img { height: 32px; }
-    .sb-logo-text { font-size: 0.95rem; font-weight: 700; color: white; letter-spacing: -0.02em; }
+    .sb-logo-text { font-size: var(--t-small); font-weight: 700; color: white; letter-spacing: -0.02em; }
     .sb-logo-text strong { color: var(--accent-light); }
     .sb-badge {
       margin: 12px 20px; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.25);
@@ -103,14 +103,14 @@
     }
     .sb-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    .sb-badge span { font-size: 0.72rem; color: rgba(255,255,255,0.5); font-family: 'JetBrains Mono', monospace; }
+    .sb-badge span { font-size: var(--t-label); color: rgba(255,255,255,0.5); font-family: 'JetBrains Mono', monospace; }
 
     .sb-nav { flex: 1; overflow-y: auto; padding: 8px 12px; }
-    .sb-section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 12px 8px 6px; }
+    .sb-section-label { font-size: var(--t-label); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); padding: 12px 8px 6px; }
     .sb-item {
       display: flex; align-items: center; gap: 10px; padding: 9px 12px;
       border-radius: var(--radius-sm); cursor: pointer; transition: var(--transition);
-      color: rgba(255,255,255,0.5); font-size: 0.85rem; font-weight: 500;
+      color: rgba(255,255,255,0.5); font-size: var(--t-small); font-weight: 500;
       text-decoration: none; position: relative; border: none; background: none; width: 100%; text-align: left;
     }
     .sb-item i { width: 16px; text-align: center; font-size: 0.85rem; }
@@ -119,21 +119,21 @@
     .sb-item.active i { color: var(--accent-light); }
     .sb-item .sb-badge-count {
       margin-left: auto; background: var(--accent); color: white;
-      font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 10px;
+      font-size: var(--t-label); font-weight: 700; padding: 2px 6px; border-radius: 10px;
       font-family: 'JetBrains Mono', monospace; display: none;
     }
     .sb-item .sb-badge-count.visible { display: block; }
 
     .sb-footer { padding: 16px 12px; border-top: 1px solid var(--sidebar-border); }
     .sb-user { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 8px; margin-bottom: 8px; }
-    .sb-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: white; overflow: hidden; flex-shrink: 0; }
+    .sb-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: var(--t-label); font-weight: 700; color: white; overflow: hidden; flex-shrink: 0; }
     .sb-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .sb-user-info .sb-user-name { font-size: 0.8rem; font-weight: 600; color: white; }
-    .sb-user-info .sb-user-role { font-size: 0.68rem; color: rgba(255,255,255,0.35); }
+    .sb-user-info .sb-user-name { font-size: var(--t-label); font-weight: 600; color: white; }
+    .sb-user-info .sb-user-role { font-size: var(--t-label); color: rgba(255,255,255,0.35); }
     .btn-logout-sb {
       width: 100%; display: flex; align-items: center; gap: 8px; padding: 8px 12px;
       background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.15);
-      border-radius: var(--radius-sm); color: rgba(239,68,68,0.7); font-size: 0.8rem;
+      border-radius: var(--radius-sm); color: rgba(239,68,68,0.7); font-size: var(--t-label);
       font-weight: 500; cursor: pointer; transition: var(--transition); font-family: 'DM Sans', sans-serif;
     }
     .btn-logout-sb:hover { background: rgba(239,68,68,0.15); color: #fca5a5; }
@@ -145,13 +145,13 @@
       padding: 0 32px; height: 60px; display: flex; align-items: center;
       justify-content: space-between; flex-shrink: 0; position: sticky; top: 0; z-index: 10;
     }
-    .topbar-title { font-size: 0.95rem; font-weight: 600; color: var(--gray-800); }
+    .topbar-title { font-size: var(--t-small); font-weight: 600; color: var(--gray-800); }
     .topbar-actions { display: flex; align-items: center; gap: 12px; }
-    .topbar-clock { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--gray-400); }
+    .topbar-clock { font-family: 'JetBrains Mono', monospace; font-size: var(--t-label); color: var(--gray-400); }
     .btn-refresh {
       display: flex; align-items: center; gap: 6px; padding: 7px 14px;
       background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px;
-      font-size: 0.8rem; font-weight: 500; color: var(--gray-600); cursor: pointer;
+      font-size: var(--t-label); font-weight: 500; color: var(--gray-600); cursor: pointer;
       transition: var(--transition); font-family: 'DM Sans', sans-serif;
     }
     .btn-refresh:hover { background: var(--gray-200); }
@@ -171,26 +171,26 @@
     }
     .kpi-card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
     .kpi-top { display: flex; align-items: center; justify-content: space-between; }
-    .kpi-label { font-size: 0.75rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; }
+    .kpi-label { font-size: var(--t-label); font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; }
     .kpi-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
     .kpi-icon.blue { background: rgba(37,99,235,0.1); color: var(--accent); }
     .kpi-icon.green { background: var(--green-bg); color: var(--green); }
     .kpi-icon.amber { background: var(--amber-bg); color: var(--amber); }
     .kpi-icon.red { background: var(--red-bg); color: var(--red); }
     .kpi-icon.purple { background: var(--purple-bg); color: var(--purple); }
-    .kpi-value { font-size: 2rem; font-weight: 700; color: var(--gray-900); font-family: 'JetBrains Mono', monospace; line-height: 1; }
-    .kpi-sub { font-size: 0.75rem; color: var(--gray-400); }
+    .kpi-value { font-size: var(--t-h2); font-weight: 700; color: var(--gray-900); font-family: 'JetBrains Mono', monospace; line-height: 1; }
+    .kpi-sub { font-size: var(--t-label); color: var(--gray-400); }
 
     /* ── SECTION HEADERS ── */
     .sec-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
-    .sec-title { font-size: 1.1rem; font-weight: 700; color: var(--gray-900); }
-    .sec-subtitle { font-size: 0.8rem; color: var(--gray-500); margin-top: 2px; }
+    .sec-title { font-size: var(--t-lead); font-weight: 700; color: var(--gray-900); }
+    .sec-subtitle { font-size: var(--t-label); color: var(--gray-500); margin-top: 2px; }
 
     /* ── BUTTONS ── */
     .btn {
       display: inline-flex; align-items: center; gap: 7px; padding: 8px 16px;
       border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif;
-      font-size: 0.83rem; font-weight: 600; cursor: pointer; border: none;
+      font-size: var(--t-small); font-weight: 600; cursor: pointer; border: none;
       transition: var(--transition); text-decoration: none;
     }
     .btn-primary { background: var(--accent); color: white; }
@@ -199,35 +199,35 @@
     .btn-secondary:hover { background: var(--gray-200); }
     .btn-success { background: var(--green-bg); color: #16a34a; border: 1px solid #bbf7d0; }
     .btn-danger { background: var(--red-bg); color: var(--red); border: 1px solid #fecaca; }
-    .btn-sm { padding: 5px 10px; font-size: 0.75rem; }
+    .btn-sm { padding: 5px 10px; font-size: var(--t-label); }
 
     /* ── TABLE ── */
     .table-wrap { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
     .table-filters { padding: 16px 20px; border-bottom: 1px solid var(--gray-100); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .filter-input {
       padding: 7px 12px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
-      font-family: 'DM Sans', sans-serif; font-size: 0.83rem; color: var(--gray-800);
+      font-family: 'DM Sans', sans-serif; font-size: var(--t-small); color: var(--gray-800);
       background: var(--gray-50); outline: none; transition: var(--transition);
     }
     .filter-input:focus { border-color: var(--accent); background: white; box-shadow: 0 0 0 3px var(--accent-glow); }
     .filter-input.search { min-width: 220px; }
     table { width: 100%; border-collapse: collapse; }
     thead th {
-      padding: 12px 16px; text-align: left; font-size: 0.72rem; font-weight: 600;
+      padding: 12px 16px; text-align: left; font-size: var(--t-label); font-weight: 600;
       color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em;
       background: var(--gray-50); border-bottom: 1px solid var(--gray-200);
     }
     tbody tr { border-bottom: 1px solid var(--gray-100); transition: var(--transition); }
     tbody tr:last-child { border-bottom: none; }
     tbody tr:hover { background: rgba(37,99,235,0.02); }
-    tbody td { padding: 12px 16px; font-size: 0.83rem; color: var(--gray-700); vertical-align: middle; }
-    .table-empty { padding: 48px; text-align: center; color: var(--gray-400); font-size: 0.85rem; }
+    tbody td { padding: 12px 16px; font-size: var(--t-small); color: var(--gray-700); vertical-align: middle; }
+    .table-empty { padding: 48px; text-align: center; color: var(--gray-400); font-size: var(--t-small); }
     .table-empty i { font-size: 2rem; display: block; margin-bottom: 10px; }
 
     /* ── BADGES ── */
     .badge {
       display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px;
-      border-radius: 20px; font-size: 0.71rem; font-weight: 600;
+      border-radius: 20px; font-size: var(--t-label); font-weight: 600;
     }
     .badge-nuevo { background: rgba(37,99,235,0.1); color: var(--accent); }
     .badge-pendiente { background: var(--amber-bg); color: #b45309; }
@@ -255,11 +255,11 @@
       padding: 20px 24px 16px; border-bottom: 1px solid var(--gray-100);
       display: flex; align-items: center; justify-content: space-between;
     }
-    .modal-header h3 { font-size: 1rem; font-weight: 700; color: var(--gray-900); }
+    .modal-header h3 { font-size: var(--t-h3); font-weight: 700; color: var(--gray-900); }
     .modal-close {
       width: 32px; height: 32px; border-radius: 8px; border: none; background: var(--gray-100);
       display: flex; align-items: center; justify-content: center; cursor: pointer;
-      color: var(--gray-500); font-size: 1rem; transition: var(--transition);
+      color: var(--gray-500); font-size: var(--t-body); transition: var(--transition);
     }
     .modal-close:hover { background: var(--gray-200); }
     .modal-body { padding: 24px; }
@@ -267,10 +267,10 @@
 
     /* ── FORM FIELDS ── */
     .field { margin-bottom: 16px; }
-    .field label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+    .field label { display: block; font-size: var(--t-label); font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
     .field input, .field select, .field textarea {
       width: 100%; padding: 9px 12px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm);
-      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; color: var(--gray-800);
+      font-family: 'DM Sans', sans-serif; font-size: var(--t-small); color: var(--gray-800);
       background: white; outline: none; transition: var(--transition); resize: vertical;
     }
     .field input:focus, .field select:focus, .field textarea:focus {
@@ -288,8 +288,8 @@
     }
     .quick-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--accent); }
     .quick-card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-    .quick-card span { font-size: 0.82rem; font-weight: 600; color: var(--gray-700); }
-    .quick-card small { font-size: 0.72rem; color: var(--gray-400); }
+    .quick-card span { font-size: var(--t-small); font-weight: 600; color: var(--gray-700); }
+    .quick-card small { font-size: var(--t-label); color: var(--gray-400); }
 
     /* ── AGENDA CALENDAR EMBED ── */
     .cal-wrap { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
@@ -300,7 +300,7 @@
       background: white; border: 1px solid var(--gray-200); border-radius: var(--radius);
       padding: 20px 24px; margin-bottom: 20px; box-shadow: var(--shadow-sm);
     }
-    .log-form-inline h4 { font-size: 0.85rem; font-weight: 700; color: var(--gray-800); margin-bottom: 14px; }
+    .log-form-inline h4 { font-size: var(--t-h3); font-weight: 700; color: var(--gray-800); margin-bottom: 14px; }
     .log-form-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end; }
 
     /* ── CLIENTES PANEL ── */
@@ -310,24 +310,24 @@
     }
     .cliente-detail.visible { display: block; }
     .cliente-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
-    .cliente-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; color: white; flex-shrink: 0; }
+    .cliente-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: var(--t-h3); font-weight: 700; color: white; flex-shrink: 0; }
 
     /* ── STAT CHARTS (CSS only) ── */
     .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-bottom: 24px; }
     .stat-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm); }
-    .stat-card h4 { font-size: 0.78rem; font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
+    .stat-card h4 { font-size: var(--t-h3); font-weight: 600; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
     .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .bar-label { font-size: 0.78rem; color: var(--gray-600); width: 90px; flex-shrink: 0; }
+    .bar-label { font-size: var(--t-label); color: var(--gray-600); width: 90px; flex-shrink: 0; }
     .bar-track { flex: 1; height: 8px; background: var(--gray-100); border-radius: 4px; overflow: hidden; }
     .bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
-    .bar-count { font-size: 0.75rem; font-weight: 600; color: var(--gray-700); width: 24px; text-align: right; font-family: 'JetBrains Mono', monospace; }
+    .bar-count { font-size: var(--t-label); font-weight: 600; color: var(--gray-700); width: 24px; text-align: right; font-family: 'JetBrains Mono', monospace; }
 
     /* ── TOAST ── */
     #toastContainer { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px; z-index: 9998; }
     .toast {
       display: flex; align-items: center; gap: 10px; padding: 12px 16px;
       background: var(--gray-900); color: white; border-radius: 10px;
-      font-size: 0.83rem; font-weight: 500; box-shadow: var(--shadow-lg);
+      font-size: var(--t-small); font-weight: 500; box-shadow: var(--shadow-lg);
       animation: toastIn 0.25s ease; min-width: 260px;
     }
     .toast.success { background: #166534; }
@@ -336,7 +336,7 @@
     @keyframes toastIn { from{transform:translateX(20px);opacity:0} to{transform:translateX(0);opacity:1} }
 
     /* ── LOADING STATE ── */
-    .loading-spinner { display: flex; align-items: center; justify-content: center; padding: 40px; gap: 10px; color: var(--gray-400); font-size: 0.85rem; }
+    .loading-spinner { display: flex; align-items: center; justify-content: center; padding: 40px; gap: 10px; color: var(--gray-400); font-size: var(--t-small); }
     .loading-spinner i { animation: spin 1s linear infinite; }
 
     /* ── RESPONSIVE ── */
@@ -352,84 +352,84 @@
 
     /* ===== FIX: clases del modal que faltaban ===== */
     .modal-box{background:#fff;border-radius:16px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 50px rgba(15,23,42,.25);animation:modalIn .2s ease}
-    .modal-title{font-size:1rem;font-weight:700;color:var(--gray-900)}
-    .modal-close{background:none;border:none;font-size:1rem;color:var(--gray-500);cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+    .modal-title{font-size:var(--t-body);font-weight:700;color:var(--gray-900)}
+    .modal-close{background:none;border:none;font-size:var(--t-body);color:var(--gray-500);cursor:pointer;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center}
     .modal-close:hover{background:var(--gray-100);color:var(--gray-900)}
     .modal-body{padding:22px 24px}
     .modal-footer{padding:16px 24px;border-top:1px solid var(--gray-100);display:flex;gap:10px;justify-content:flex-end}
     .form-group{margin-bottom:14px}
-    .form-label{display:block;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:6px}
+    .form-label{display:block;font-size:var(--t-label);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:6px}
     .rol-switch{display:flex;gap:10px;align-items:flex-start;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;padding:13px 15px;margin-top:14px;cursor:pointer}
     .rol-switch input{margin-top:3px;accent-color:var(--blue,var(--blue));flex-shrink:0}
-    .rol-switch b{display:block;font-size:.85rem;color:var(--gray-900);margin-bottom:2px}
-    .rol-switch span{font-size:.78rem;color:var(--gray-500);line-height:1.5}
+    .rol-switch b{display:block;font-size:var(--t-small);color:var(--gray-900);margin-bottom:2px}
+    .rol-switch span{font-size:var(--t-label);color:var(--gray-500);line-height:1.5}
 
     /* ===== Vista semanal de citas ===== */
     .sem-wrap{background:#fff;border:1px solid var(--gray-200);border-radius:14px;padding:16px 18px}
     .sem-top{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-    .sem-rango{font-weight:700;color:var(--gray-900);font-size:.9rem;margin-left:6px}
+    .sem-rango{font-weight:700;color:var(--gray-900);font-size:var(--t-small);margin-left:6px}
     .sem-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
     @media(max-width:900px){.sem-grid{grid-template-columns:repeat(2,1fr)}}
     .sem-dia{border:1px solid var(--gray-200);border-radius:10px;min-height:104px;padding:9px;background:var(--gray-50)}
     .sem-dia.hoy{border-color:var(--blue);background:#eff6ff;box-shadow:0 0 0 2px rgba(37,99,235,.12)}
-    .sem-dia .d{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:2px}
-    .sem-dia .n{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:800;color:var(--gray-900);line-height:1;margin-bottom:8px}
+    .sem-dia .d{font-size:var(--t-label);font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gray-500);margin-bottom:2px}
+    .sem-dia .n{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h3);font-weight:800;color:var(--gray-900);line-height:1;margin-bottom:8px}
     .sem-dia.hoy .n{color:var(--blue)}
-    .sem-cita{background:#fff;border-left:3px solid var(--blue);border-radius:6px;padding:6px 8px;margin-bottom:5px;font-size:.74rem;line-height:1.35;cursor:pointer}
+    .sem-cita{background:#fff;border-left:3px solid var(--blue);border-radius:6px;padding:6px 8px;margin-bottom:5px;font-size:var(--t-label);line-height:1.35;cursor:pointer}
     .sem-cita:hover{background:#eff6ff}
-    .sem-cita b{display:block;color:var(--gray-900);font-size:.78rem}
+    .sem-cita b{display:block;color:var(--gray-900);font-size:var(--t-label)}
     .sem-cita span{color:var(--gray-500)}
     .sem-cita.pendiente{border-left-color:#d97706}
     .sem-cita.confirmada{border-left-color:#16a34a}
     .sem-cita.cancelada{border-left-color:#94a3b8;opacity:.6}
-    .sem-vacio{font-size:.72rem;color:#cbd5e1;text-align:center;padding-top:12px}
+    .sem-vacio{font-size:var(--t-label);color:#cbd5e1;text-align:center;padding-top:12px}
     /* ── DOCUMENTOS (Presupuestos / Hojas de Trabajo / Remitos) ── */
     .doc-tabs { display: flex; gap: 8px; margin-bottom: 18px; flex-wrap: wrap; }
-    .doc-tab { background: var(--white); border: 1px solid var(--gray-200); color: var(--gray-600); padding: 9px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
+    .doc-tab { background: var(--white); border: 1px solid var(--gray-200); color: var(--gray-600); padding: 9px 16px; border-radius: 8px; font-size: var(--t-small); font-weight: 600; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; }
     .doc-tab:hover { border-color: var(--accent); color: var(--accent); }
     .doc-tab.active { background: var(--accent); border-color: var(--accent); color: white; }
     .doc-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 20px; align-items: start; }
     @media (max-width: 1100px) { .doc-layout { grid-template-columns: 1fr; } }
     .doc-form-card, .doc-preview-card { padding: 22px; }
-    .doc-label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
-    .doc-input { width: 100%; padding: 9px 12px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: 0.85rem; font-family: inherit; color: var(--gray-800); }
+    .doc-label { display: block; font-size: var(--t-label); font-weight: 600; color: var(--gray-600); margin-bottom: 6px; }
+    .doc-input { width: 100%; padding: 9px 12px; border: 1px solid var(--gray-200); border-radius: 8px; font-size: var(--t-small); font-family: inherit; color: var(--gray-800); }
     .doc-input:focus { outline: none; border-color: var(--accent); }
     textarea.doc-input { resize: vertical; }
     .doc-num-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
-    .doc-num { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--accent); background: var(--accent-glow); padding: 8px 12px; border-radius: 8px; }
-    .doc-num-mode { font-size: 0.7rem; color: var(--gray-400); margin-top: 4px; }
+    .doc-num { font-family: 'JetBrains Mono', monospace; font-size: var(--t-lead); font-weight: 700; color: var(--accent); background: var(--accent-glow); padding: 8px 12px; border-radius: 8px; }
+    .doc-num-mode { font-size: var(--t-label); color: var(--gray-400); margin-top: 4px; }
     .doc-item-row { display: grid; grid-template-columns: 1fr 70px 110px 110px 32px; gap: 8px; margin-bottom: 8px; align-items: center; }
     @media (max-width: 640px) { .doc-item-row { grid-template-columns: 1fr; } }
-    .doc-item-row input { padding: 8px 10px; border: 1px solid var(--gray-200); border-radius: 6px; font-size: 0.82rem; }
+    .doc-item-row input { padding: 8px 10px; border: 1px solid var(--gray-200); border-radius: 6px; font-size: var(--t-small); }
     .doc-item-del { background: var(--red-bg); color: var(--red); border: none; border-radius: 6px; width: 30px; height: 30px; cursor: pointer; }
     .doc-totales { margin-top: 12px; text-align: right; }
-    .doc-totales-line { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 4px; }
-    .doc-totales-line.total { font-size: 1rem; font-weight: 700; color: var(--gray-900); border-top: 1px solid var(--gray-200); padding-top: 6px; margin-top: 6px; }
-    .doc-check { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--gray-600); float: left; margin-top: 4px; }
-    .doc-print-area { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 28px; min-height: 400px; font-size: 0.85rem; color: #1e293b; }
+    .doc-totales-line { font-size: var(--t-small); color: var(--gray-600); margin-bottom: 4px; }
+    .doc-totales-line.total { font-size: var(--t-body); font-weight: 700; color: var(--gray-900); border-top: 1px solid var(--gray-200); padding-top: 6px; margin-top: 6px; }
+    .doc-check { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); color: var(--gray-600); float: left; margin-top: 4px; }
+    .doc-print-area { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 28px; min-height: 400px; font-size: var(--t-small); color: #1e293b; }
     .doc-print-header { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg,#0f2444,#1a3a5c); border-radius: 10px 10px 0 0; padding: 20px 24px; margin: -28px -28px 20px; }
     .doc-print-logo { display: flex; align-items: center; gap: 12px; }
     .doc-print-logo .badge-circle { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
     .doc-print-logo .badge-circle img { width: 30px; height: 30px; object-fit: contain; }
-    .doc-print-logo strong { font-size: 1.15rem; color: #fff; display: block; letter-spacing: -0.01em; }
-    .doc-print-logo .tagline { font-size: 0.68rem; color: #93c5fd; display: block; margin-top: 1px; }
-    .doc-print-logo span { font-size: 0.72rem; color: rgba(255,255,255,0.75); }
+    .doc-print-logo strong { font-size: var(--t-lead); color: #fff; display: block; letter-spacing: -0.01em; }
+    .doc-print-logo .tagline { font-size: var(--t-label); color: #93c5fd; display: block; margin-top: 1px; }
+    .doc-print-logo span { font-size: var(--t-label); color: rgba(255,255,255,0.75); }
     .doc-print-type { text-align: right; }
-    .doc-print-type .tname { font-size: 1.05rem; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
-    .doc-print-type .tnum { font-family: 'JetBrains Mono', monospace; font-size: 0.92rem; color: #7db8ff; margin-top: 3px; font-weight: 700; }
-    .doc-print-type .tfecha { font-size: 0.75rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
-    .doc-print-footer { margin-top: 30px; padding-top: 12px; border-top: 1px solid var(--gray-200); text-align: center; font-size: 0.7rem; color: var(--gray-400); }
-    .doc-print-section-title { font-size: 0.72rem; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 6px; }
-    .doc-print-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; font-size: 0.83rem; }
-    table.doc-print-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 0.82rem; }
-    table.doc-print-table th { text-align: left; background: var(--gray-50); padding: 6px 8px; font-size: 0.72rem; text-transform: uppercase; color: var(--gray-500); }
+    .doc-print-type .tname { font-size: var(--t-body); font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.06em; }
+    .doc-print-type .tnum { font-family: 'JetBrains Mono', monospace; font-size: var(--t-small); color: #7db8ff; margin-top: 3px; font-weight: 700; }
+    .doc-print-type .tfecha { font-size: var(--t-label); color: rgba(255,255,255,0.65); margin-top: 2px; }
+    .doc-print-footer { margin-top: 30px; padding-top: 12px; border-top: 1px solid var(--gray-200); text-align: center; font-size: var(--t-label); color: var(--gray-400); }
+    .doc-print-section-title { font-size: var(--t-label); font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 6px; }
+    .doc-print-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; font-size: var(--t-small); }
+    table.doc-print-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: var(--t-small); }
+    table.doc-print-table th { text-align: left; background: var(--gray-50); padding: 6px 8px; font-size: var(--t-label); text-transform: uppercase; color: var(--gray-500); }
     table.doc-print-table td { padding: 6px 8px; border-bottom: 1px solid var(--gray-100); }
     table.doc-print-table td.num { text-align: right; }
-    .doc-print-totales { text-align: right; margin-top: 10px; font-size: 0.85rem; }
-    .doc-print-totales .grand { font-size: 1.05rem; font-weight: 700; color: var(--gray-900); }
+    .doc-print-totales { text-align: right; margin-top: 10px; font-size: var(--t-small); }
+    .doc-print-totales .grand { font-size: var(--t-body); font-weight: 700; color: var(--gray-900); }
     .doc-print-firmas { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 46px; }
-    .doc-print-firmas div { border-top: 1px solid var(--gray-400); padding-top: 6px; text-align: center; font-size: 0.75rem; color: var(--gray-500); }
-    .doc-print-obs { font-size: 0.78rem; color: var(--gray-600); margin-top: 12px; white-space: pre-wrap; }
+    .doc-print-firmas div { border-top: 1px solid var(--gray-400); padding-top: 6px; text-align: center; font-size: var(--t-label); color: var(--gray-500); }
+    .doc-print-obs { font-size: var(--t-label); color: var(--gray-600); margin-top: 12px; white-space: pre-wrap; }
     @media print {
       body * { visibility: hidden; }
       .doc-print-area, .doc-print-area * { visibility: visible; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
@@ -667,8 +667,8 @@
           <div class="cliente-meta">
             <div class="cliente-avatar" id="clienteAvatar">?</div>
             <div>
-              <div style="font-size:1.1rem;font-weight:700;color:var(--gray-900)" id="clienteNombre">—</div>
-              <div style="font-size:0.83rem;color:var(--gray-500)" id="clienteEmail">—</div>
+              <div style="font-size:var(--t-lead);font-weight:700;color:var(--gray-900)" id="clienteNombre">—</div>
+              <div style="font-size:var(--t-small);color:var(--gray-500)" id="clienteEmail">—</div>
             </div>
             <div style="margin-left:auto;display:flex;gap:8px">
               <button class="btn btn-secondary btn-sm" onclick="abrirWhatsApp()"><i class="fab fa-whatsapp"></i> WhatsApp</button>
@@ -676,7 +676,7 @@
           </div>
           <div id="clienteHistorial"><div class="loading-spinner"><i class="fas fa-spinner"></i></div></div>
           <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--gray-100)">
-            <div class="sec-title" style="font-size:0.85rem;margin-bottom:10px"><i class="fas fa-file-invoice-dollar"></i> Presupuestos / Hojas de Trabajo / Remitos</div>
+            <div class="sec-title" style="font-size:var(--t-small);margin-bottom:10px"><i class="fas fa-file-invoice-dollar"></i> Presupuestos / Hojas de Trabajo / Remitos</div>
             <div id="clienteDocumentos"><div class="loading-spinner"><i class="fas fa-spinner"></i></div></div>
           </div>
         </div>
@@ -745,8 +745,8 @@
         <!-- Clientes autorizados -->
         <div style="margin-bottom:32px">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <h3 style="font-size:1rem;font-weight:700;color:var(--blue-dark);margin:0">Clientes autorizados</h3>
-            <span id="clienteCount" style="background:var(--blue);color:white;font-size:0.72rem;font-weight:700;padding:2px 10px;border-radius:50px">0</span>
+            <h3 style="font-size:var(--t-body);font-weight:700;color:var(--blue-dark);margin:0">Clientes autorizados</h3>
+            <span id="clienteCount" style="background:var(--blue);color:white;font-size:var(--t-label);font-weight:700;padding:2px 10px;border-radius:50px">0</span>
           </div>
           <div class="table-wrap" id="tablaClientes">
             <div class="table-empty"><i class="fas fa-spinner fa-spin"></i> Cargando...</div>
@@ -756,8 +756,8 @@
         <!-- Administradores -->
         <div>
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-            <h3 style="font-size:1rem;font-weight:700;color:var(--blue-dark);margin:0">Administradores</h3>
-            <span id="adminCount" style="background:#7c3aed;color:white;font-size:0.72rem;font-weight:700;padding:2px 10px;border-radius:50px">0</span>
+            <h3 style="font-size:var(--t-body);font-weight:700;color:var(--blue-dark);margin:0">Administradores</h3>
+            <span id="adminCount" style="background:#7c3aed;color:white;font-size:var(--t-label);font-weight:700;padding:2px 10px;border-radius:50px">0</span>
           </div>
           <div class="table-wrap" id="tablaAdmins">
             <div class="table-empty"><i class="fas fa-spinner fa-spin"></i> Cargando...</div>
@@ -971,7 +971,7 @@
         <label>URL del logo (opcional, usa el ícono del sitio si se deja vacío)</label>
         <input type="text" id="cfgLogo" placeholder="public/images/logo-icon.png">
       </div>
-      <p style="font-size:0.78rem;color:var(--gray-500);margin-top:6px">Estos datos se guardan en este navegador y se usan como membrete en todos los documentos que generes.</p>
+      <p style="font-size:var(--t-label);color:var(--gray-500);margin-top:6px">Estos datos se guardan en este navegador y se usan como membrete en todos los documentos que generes.</p>
     </div>
     <div class="modal-footer">
       <button class="btn btn-secondary" onclick="closeModal('modalConfigEmpresa')">Cancelar</button>
@@ -1482,7 +1482,7 @@ function renderRecentDiags() {
     ? `<div class="table-empty"><i class="fas fa-ticket"></i>Sin tickets</div>`
     : `<table><thead><tr><th>N°</th><th>Cliente</th><th>Estado</th></tr></thead><tbody>
         ${recent.map(d=>`<tr>
-          <td><code style="font-size:0.75rem;color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
+          <td><code style="font-size:var(--t-label);color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
           <td>${esc(d.nombre||d.email||'—')}</td>
           <td>${badgeEstado(d.estado)}</td>
         </tr>`).join('')}
@@ -1496,7 +1496,7 @@ function renderRecentCitas() {
     ? `<div class="table-empty"><i class="fas fa-calendar"></i>Sin citas próximas</div>`
     : `<table><thead><tr><th>Fecha</th><th>Cliente</th><th>Estado</th></tr></thead><tbody>
         ${upcoming.map(c=>`<tr>
-          <td style="font-size:0.78rem;white-space:nowrap">${formatFechaCorta(c.fecha)} ${c.hora||''}</td>
+          <td style="font-size:var(--t-label);white-space:nowrap">${formatFechaCorta(c.fecha)} ${c.hora||''}</td>
           <td>${esc(c.nombre||'—')}</td>
           <td>${badgeEstado(c.estado||'pendiente')}</td>
         </tr>`).join('')}
@@ -1552,7 +1552,7 @@ function renderDiagsTable(diags) {
     return String(va).localeCompare(String(vb),'es')*_sortDir;
   });
   const arrow = k => _sortCol===k ? (_sortDir>0?'▲':'▼') : '';
-  const th = (k,label) => `<th style="cursor:pointer;user-select:none;white-space:nowrap" onclick="sortDiags('${k}')">${label} <span style="font-size:0.65rem;opacity:0.5">${arrow(k)}</span></th>`;
+  const th = (k,label) => `<th style="cursor:pointer;user-select:none;white-space:nowrap" onclick="sortDiags('${k}')">${label} <span style="font-size:var(--t-label);opacity:0.5">${arrow(k)}</span></th>`;
   document.getElementById('diagsTableBody').innerHTML = `
     <table>
       <thead><tr>
@@ -1560,14 +1560,14 @@ function renderDiagsTable(diags) {
       </tr></thead>
       <tbody>
         ${sorted.map(d => `<tr>
-          <td><code style="font-size:0.75rem;color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
-          <td style="white-space:nowrap;font-size:0.78rem">${formatFechaCorta(d.fecha)}</td>
+          <td><code style="font-size:var(--t-label);color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
+          <td style="white-space:nowrap;font-size:var(--t-label)">${formatFechaCorta(d.fecha)}</td>
           <td>
-            <div style="font-weight:600;font-size:0.83rem">${esc(d.nombre||'—')}</div>
-            <div style="font-size:0.73rem;color:var(--gray-400)">${esc(d.email||'')}</div>
+            <div style="font-weight:600;font-size:var(--t-small)">${esc(d.nombre||'—')}</div>
+            <div style="font-size:var(--t-label);color:var(--gray-400)">${esc(d.email||'')}</div>
           </td>
-          <td style="font-size:0.8rem">${esc((d.sintoma||d.equipo||'—').substring(0,50))}</td>
-          <td>${d.categoria ? `<span class="badge" style="background:var(--gray-100);color:var(--gray-600)">${esc(CATEGORIA_LABELS[d.categoria]||d.categoria)}</span>` : '<span style="color:var(--gray-300);font-size:0.75rem">—</span>'}</td>
+          <td style="font-size:var(--t-label)">${esc((d.sintoma||d.equipo||'—').substring(0,50))}</td>
+          <td>${d.categoria ? `<span class="badge" style="background:var(--gray-100);color:var(--gray-600)">${esc(CATEGORIA_LABELS[d.categoria]||d.categoria)}</span>` : '<span style="color:var(--gray-300);font-size:var(--t-label)">—</span>'}</td>
           <td>${badgeEstado(d.estado||'nuevo')}</td>
           <td>${badgeSev(d.severidad||'media')}</td>
           <td>
@@ -1758,15 +1758,15 @@ function renderCitasTable(citas) {
       <thead><tr><th>Fecha / Hora</th><th>Cliente</th><th>Servicio</th><th>Dirección</th><th>Estado</th><th>N° Diag</th><th>Acciones</th></tr></thead>
       <tbody>
         ${citas.map((c,i)=>`<tr>
-          <td style="white-space:nowrap;font-size:0.78rem"><strong>${formatFechaCorta(c.fecha)}</strong><br><span style="color:var(--gray-400)">${c.hora||''}</span></td>
+          <td style="white-space:nowrap;font-size:var(--t-label)"><strong>${formatFechaCorta(c.fecha)}</strong><br><span style="color:var(--gray-400)">${c.hora||''}</span></td>
           <td>
-            <div style="font-weight:600;font-size:0.83rem">${esc(c.nombre||'—')}</div>
-            <div style="font-size:0.73rem;color:var(--gray-400)">${esc(c.telefono||'')} ${c.email?'· '+c.email:''}</div>
+            <div style="font-weight:600;font-size:var(--t-small)">${esc(c.nombre||'—')}</div>
+            <div style="font-size:var(--t-label);color:var(--gray-400)">${esc(c.telefono||'')} ${c.email?'· '+c.email:''}</div>
           </td>
-          <td style="font-size:0.8rem;max-width:160px">${esc(c.servicio||'—')}</td>
-          <td style="font-size:0.78rem;color:var(--gray-500)">${esc(c.direccion||'—')}</td>
+          <td style="font-size:var(--t-label);max-width:160px">${esc(c.servicio||'—')}</td>
+          <td style="font-size:var(--t-label);color:var(--gray-500)">${esc(c.direccion||'—')}</td>
           <td>${badgeEstado(c.estado||'pendiente')}</td>
-          <td><code style="font-size:0.72rem;color:var(--accent)">${esc(c.diagNum||'—')}</code></td>
+          <td><code style="font-size:var(--t-label);color:var(--accent)">${esc(c.diagNum||'—')}</code></td>
           <td>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
               <button class="btn btn-secondary btn-sm" onclick="editarCita(${i})" title="Editar"><i class="fas fa-edit"></i></button>
@@ -1975,7 +1975,7 @@ function renderItemsDoc() {
       <input type="text" placeholder="Descripción" value="${esc(it.desc)}" oninput="actualizarItemDoc('${it.id}','desc',this.value)">
       <input type="number" min="0" step="1" placeholder="Cant." value="${it.cant}" oninput="actualizarItemDoc('${it.id}','cant',this.value)">
       <input type="number" min="0" step="0.01" placeholder="P. unit." value="${it.precio}" oninput="actualizarItemDoc('${it.id}','precio',this.value)">
-      <div style="font-size:0.82rem;padding:8px 4px;color:var(--gray-600);text-align:right">$ ${fmtMoney(it.cant * it.precio)}</div>
+      <div style="font-size:var(--t-small);padding:8px 4px;color:var(--gray-600);text-align:right">$ ${fmtMoney(it.cant * it.precio)}</div>
       <button type="button" class="doc-item-del" onclick="quitarItemDoc('${it.id}')" title="Quitar"><i class="fas fa-trash"></i></button>
     </div>`).join('');
   renderPreviewDoc();
@@ -2252,7 +2252,7 @@ async function pintarHistorialDocs() {
     !q || (d.numero||'').toLowerCase().includes(q) || (d.cliente?.nombre||'').toLowerCase().includes(q));
 
   if (filtrado.length === 0) {
-    box.innerHTML = '<div style="padding:20px;text-align:center;color:var(--gray-400);font-size:0.85rem">Sin documentos guardados todavía.</div>';
+    box.innerHTML = '<div style="padding:20px;text-align:center;color:var(--gray-400);font-size:var(--t-small)">Sin documentos guardados todavía.</div>';
     return;
   }
 
@@ -2420,17 +2420,17 @@ async function buscarCliente() {
   document.getElementById('clienteEmail').textContent = first.email||'—';
 
   document.getElementById('clienteHistorial').innerHTML = `
-    <h4 style="font-size:0.83rem;font-weight:700;color:var(--gray-700);margin-bottom:14px">
+    <h4 style="font-size:var(--t-small);font-weight:700;color:var(--gray-700);margin-bottom:14px">
       <i class="fas fa-ticket" style="color:var(--accent)"></i> Historial de tickets (${diags.length})
     </h4>
     <table>
       <thead><tr><th>N°</th><th>Fecha</th><th>Equipo</th><th>Síntoma</th><th>Estado</th><th>Severidad</th></tr></thead>
       <tbody>
         ${diags.map(d=>`<tr>
-          <td><code style="font-size:0.75rem;color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
-          <td style="font-size:0.78rem">${formatFechaCorta(d.fecha)}</td>
-          <td style="font-size:0.8rem">${esc(d.equipo||'—')}</td>
-          <td style="font-size:0.8rem;max-width:200px">${esc((d.sintoma||d.resumen||'').substring(0,80))}${(d.sintoma||'').length>80?'…':''}</td>
+          <td><code style="font-size:var(--t-label);color:var(--accent)">${esc(d.diagNum||'—')}</code></td>
+          <td style="font-size:var(--t-label)">${formatFechaCorta(d.fecha)}</td>
+          <td style="font-size:var(--t-label)">${esc(d.equipo||'—')}</td>
+          <td style="font-size:var(--t-label);max-width:200px">${esc((d.sintoma||d.resumen||'').substring(0,80))}${(d.sintoma||'').length>80?'…':''}</td>
           <td>${badgeEstado(d.estado||'nuevo')}</td>
           <td>${badgeSev(d.severidad||'media')}</td>
         </tr>`).join('')}
@@ -2468,11 +2468,11 @@ function renderLlamadosTable(data) {
       <thead><tr><th>Fecha/Hora</th><th>Tipo</th><th>Cliente</th><th>Contacto</th><th>Notas</th></tr></thead>
       <tbody>
         ${data.map(l=>`<tr>
-          <td style="white-space:nowrap;font-size:0.78rem">${formatFechaCorta(l.fecha)} ${l.hora||''}</td>
-          <td>${iconos[l.tipo]||'📞'} <span style="font-size:0.78rem;text-transform:capitalize">${esc(l.tipo||'llamado')}</span></td>
-          <td style="font-weight:600;font-size:0.83rem">${esc(l.nombre||'—')}</td>
-          <td style="font-size:0.78rem;color:var(--gray-500)">${esc(l.contacto||'—')}</td>
-          <td style="font-size:0.8rem;max-width:250px">${esc(l.notas||'—')}</td>
+          <td style="white-space:nowrap;font-size:var(--t-label)">${formatFechaCorta(l.fecha)} ${l.hora||''}</td>
+          <td>${iconos[l.tipo]||'📞'} <span style="font-size:var(--t-label);text-transform:capitalize">${esc(l.tipo||'llamado')}</span></td>
+          <td style="font-weight:600;font-size:var(--t-small)">${esc(l.nombre||'—')}</td>
+          <td style="font-size:var(--t-label);color:var(--gray-500)">${esc(l.contacto||'—')}</td>
+          <td style="font-size:var(--t-label);max-width:250px">${esc(l.notas||'—')}</td>
         </tr>`).join('')}
       </tbody>
     </table>`;
@@ -2620,8 +2620,8 @@ function renderTablaUsuarios(containerId, usuarios, tipo) {
         ${usuarios.map((u,i) => `
           <tr>
             <td style="font-weight:600">${esc(u.nombre||'—')}</td>
-            <td style="color:var(--gray-500);font-size:0.85rem">${esc(u.email||'—')}</td>
-            <td><span style="background:${badgeColor};color:white;padding:2px 10px;border-radius:50px;font-size:0.72rem;font-weight:700">${badgeLabel}</span></td>
+            <td style="color:var(--gray-500);font-size:var(--t-small)">${esc(u.email||'—')}</td>
+            <td><span style="background:${badgeColor};color:white;padding:2px 10px;border-radius:50px;font-size:var(--t-label);font-weight:700">${badgeLabel}</span></td>
             <td>
               <button class="btn btn-secondary btn-sm" onclick="editarUsuario(${u.rowIndex},'${tipo}')" title="Editar"><i class="fas fa-edit"></i></button>
               <button class="btn btn-sm" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca;margin-left:4px" onclick="eliminarUsuario(${u.rowIndex},'${tipo}','${esc(u.nombre||u.email)}')" title="Eliminar"><i class="fas fa-trash"></i></button>
@@ -2764,7 +2764,7 @@ function pintarClientes() {
       <td><strong>${esc(c.nombre || '—')}</strong></td>
       <td>${esc(c.email)}</td>
       <td style="text-align:center"><span class="badge">${c.diags}</span></td>
-      <td style="white-space:nowrap;font-size:.82rem;color:var(--gray-500)">${esc(c.ultimo || '—')}</td>
+      <td style="white-space:nowrap;font-size:var(--t-small);color:var(--gray-500)">${esc(c.ultimo || '—')}</td>
       <td style="text-align:right;white-space:nowrap">
         <button class="btn btn-secondary btn-sm" onclick="verCliente('${esc(c.email)}')" title="Ver historial"><i class="fas fa-eye"></i></button>
         <button class="btn btn-secondary btn-sm" onclick="waCliente('${esc(c.email)}')" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
@@ -2786,7 +2786,7 @@ function verCliente(email) {
         <td>${esc((x.sintoma || x.resumen || '').substring(0, 60))}</td>
         <td><span class="badge badge-${(x.estado||'nuevo').toLowerCase().replace(/ /g,'-')}">${esc(x.estado || 'nuevo')}</span></td></tr>`).join('') +
       '</tbody></table>'
-    : '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">Este cliente todavía no tiene tickets registrados.</p>';
+    : '<p style="padding:16px;color:var(--gray-500);font-size:var(--t-small)">Este cliente todavía no tiene tickets registrados.</p>';
   document.getElementById('clienteDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   cargarDocumentosDeCliente(email);
 }
@@ -2799,7 +2799,7 @@ async function cargarDocumentosDeCliente(email) {
     const resp = await apiGet('listar_documentos', { email });
     const docs = (resp && resp.ok) ? resp.documentos : [];
     if (!docs.length) {
-      cont.innerHTML = '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">Este cliente todavía no tiene presupuestos, hojas de trabajo ni remitos.</p>';
+      cont.innerHTML = '<p style="padding:16px;color:var(--gray-500);font-size:var(--t-small)">Este cliente todavía no tiene presupuestos, hojas de trabajo ni remitos.</p>';
       return;
     }
     cont.innerHTML = `<table class="data-table"><thead><tr><th>N°</th><th>Tipo</th><th>Fecha</th><th>Total</th><th></th></tr></thead><tbody>` +
@@ -2811,7 +2811,7 @@ async function cargarDocumentosDeCliente(email) {
         <td style="text-align:right"><button class="btn btn-secondary btn-sm" onclick="irADocumento('${esc(r['Numero'])}')" title="Abrir en Documentos"><i class="fas fa-arrow-up-right-from-square"></i></button></td>
       </tr>`).join('') + '</tbody></table>';
   } catch(e) {
-    cont.innerHTML = '<p style="padding:16px;color:var(--gray-500);font-size:.87rem">No se pudo conectar con el backend para traer los documentos de este cliente.</p>';
+    cont.innerHTML = '<p style="padding:16px;color:var(--gray-500);font-size:var(--t-small)">No se pudo conectar con el backend para traer los documentos de este cliente.</p>';
   }
 }
 

@@ -58,6 +58,11 @@
   --grad-icon: linear-gradient(135deg, rgba(23,78,166,0.10), rgba(23,78,166,0.04));
   --hero-gradient: linear-gradient(135deg, #0f2444 0%, #1a3a5c 40%, #1e4976 70%, #0d3460 100%);
 
+  /* Iconos — escala propia, independiente del texto (DESIGN.md §6) */
+  --icon-sm: 1rem;      /* inline en texto */
+  --icon-md: 1.5rem;    /* en tarjeta */
+  --icon-lg: 2rem;      /* en hero de segmento */
+
   /* Forma */
   --radius-sm: 8px;
   --radius: 12px;
@@ -164,4 +169,18 @@ a.btn:active,
   }
   .reveal { opacity: 1 !important; transform: none !important; }
   #hero-canvas, .hero-orb { display: none !important; }
+}
+
+/* ==========================================================
+   Red de contencion de titulares — DESIGN.md §3 y §9
+   Los --t-h* son clamp(), asi que el tamaño ya escala con el
+   viewport y reemplaza a los @media que antes achicaban texto.
+   Esto evita que un titular largo desborde a 390px.
+   ========================================================== */
+h1, h2, h3, h4 {
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+p, li, dd {
+  text-wrap: pretty;
 }
