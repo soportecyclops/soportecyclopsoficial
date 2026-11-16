@@ -93,7 +93,7 @@
     <!-- ACÁ SE INYECTA EL CONTENIDO DEL ARTÍCULO (.md) -->
     <main class="content">
       <p>Toda pyme tiene un backup. El problema es que la mayoría lo descubre el día que necesita restaurarlo: el disco externo dejó de copiar hace ocho meses, la carpeta clave nunca estuvo incluida, o el respaldo estaba en el mismo equipo que se rompió. Esta guía es para que eso no te pase.</p>
-<div class="box box-danger"><strong>🚨 La definición que importa</strong>Un backup que nunca se probó restaurar no es un backup: es una expresión de deseo. La única prueba válida es recuperar un archivo y abrirlo.</div>
+<div class="box box-danger"><strong><i class="fas fa-circle-exclamation" aria-hidden="true"></i> La definición que importa</strong>Un backup que nunca se probó restaurar no es un backup: es una expresión de deseo. La única prueba válida es recuperar un archivo y abrirlo.</div>
 <h2 id="sec-1">Qué respaldar (y qué no)</h2>
 <table class="mat-table">
 <tr><th>Prioridad</th><th>Qué</th><th>Por qué</th></tr>
@@ -116,7 +116,7 @@
 <h3><span class="cause-num">1</span> Una copia fuera del lugar</h3>
 <p>En otra dirección física o en la nube. Un incendio, una inundación o un robo se lleva todo lo que está en el mismo edificio, backup incluido.</p>
 </div>
-<div class="box box-warn"><strong>⚠️ El detalle que cambió todo</strong>El ransomware moderno busca y cifra los backups conectados antes de atacar los archivos. Por eso al menos una copia tiene que estar desconectada (un disco que se enchufa, copia y se desenchufa) o ser inmutable. Un disco externo permanentemente conectado no te protege del escenario más frecuente hoy.</div>
+<div class="box box-warn"><strong><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> El detalle que cambió todo</strong>El ransomware moderno busca y cifra los backups conectados antes de atacar los archivos. Por eso al menos una copia tiene que estar desconectada (un disco que se enchufa, copia y se desenchufa) o ser inmutable. Un disco externo permanentemente conectado no te protege del escenario más frecuente hoy.</div>
 <h2 id="sec-3">Cada cuánto</h2>
 <p>La pregunta correcta no es "cada cuánto copio" sino <strong>"cuánto trabajo puedo perder"</strong>. Si la respuesta es "un día", el backup es diario. Si es "una hora", necesitás algo continuo. Para la mayoría de las pymes:</p>
 <ul>
@@ -131,8 +131,8 @@
 <li><strong>Respaldar en el mismo equipo.</strong> Otra partición del mismo disco no es backup: si el disco muere, muere todo.</li>
 <li><strong>No probar la restauración.</strong> El punto más importante y el que nadie hace.</li>
 </ul>
-<div class="box box-info"><strong>💡 Prueba concreta para hacer hoy</strong>Elegí un archivo cualquiera del backup e intentá restaurarlo. Si tardás más de 15 minutos o descubrís que no está, acabás de encontrar el problema más barato de tu vida: gratis y a tiempo.</div>
-<div class="box box-success"><strong>✅ Recomendación final</strong>Un esquema básico para pyme: backup diario automático a un disco local, sincronización a la nube de las carpetas críticas, y una copia mensual que se desconecta y se guarda fuera. Se configura una vez y corre solo. Si querés, lo armamos y te dejamos el monitoreo andando.</div>
+<div class="box box-info"><strong><i class="fas fa-lightbulb" aria-hidden="true"></i> Prueba concreta para hacer hoy</strong>Elegí un archivo cualquiera del backup e intentá restaurarlo. Si tardás más de 15 minutos o descubrís que no está, acabás de encontrar el problema más barato de tu vida: gratis y a tiempo.</div>
+<div class="box box-success"><strong><i class="fas fa-circle-check" aria-hidden="true"></i> Recomendación final</strong>Un esquema básico para pyme: backup diario automático a un disco local, sincronización a la nube de las carpetas críticas, y una copia mensual que se desconecta y se guarda fuera. Se configura una vez y corre solo. Si querés, lo armamos y te dejamos el monitoreo andando.</div>
 <p><div class="cta-box">
 <h3>¿Necesitás ayuda con esto?</h3>
 <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
@@ -151,7 +151,7 @@
         </nav>
       </div>
       <div class="side-cta">
-        <span class="sc-ico">🔍</span>
+        <span class="sc-ico"><i class="fas fa-magnifying-glass" aria-hidden="true"></i></span>
         <h4>Diagnóstico gratis</h4>
         <p>2 minutos de preguntas y te decimos qué tiene tu equipo. Sin moverlo de tu casa.</p>
         <a href="../index.html#chatbot" onclick="try{sessionStorage.setItem('abrir_chatbot','1')}catch(e){}">Empezar</a>
@@ -179,7 +179,7 @@
       <a id="shareX" class="share-btn x" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X</a>
       <a id="shareFb" class="share-btn fb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
       <a id="shareLi" class="share-btn li" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-      <button id="shareCopy" class="share-btn copy" onclick="copyLink(this)"><i class="fas fa-link"></i> Copiar enlace<span class="copy-feedback" id="copyFeedback">✓ Copiado</span></button>
+      <button id="shareCopy" class="share-btn copy" onclick="copyLink(this)"><i class="fas fa-link"></i> Copiar enlace<span class="copy-feedback" id="copyFeedback"><i class="fas fa-check" aria-hidden="true"></i> Copiado</span></button>
     </div>
   </div>
 

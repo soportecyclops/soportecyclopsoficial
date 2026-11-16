@@ -294,10 +294,10 @@
 
             <div class="tb-group">
               <span class="tb-lbl">Bloques</span>
-              <button class="tb-btn" onclick="bloque('boxinfo')">💡 Info</button>
-              <button class="tb-btn" onclick="bloque('boxwarn')">⚠️ Aviso</button>
-              <button class="tb-btn" onclick="bloque('boxdanger')">🚨 Peligro</button>
-              <button class="tb-btn" onclick="bloque('boxsuccess')">✅ Tip</button>
+              <button class="tb-btn" onclick="bloque('boxinfo')"><i class="fas fa-lightbulb" aria-hidden="true"></i> Info</button>
+              <button class="tb-btn" onclick="bloque('boxwarn')"><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Aviso</button>
+              <button class="tb-btn" onclick="bloque('boxdanger')"><i class="fas fa-circle-exclamation" aria-hidden="true"></i> Peligro</button>
+              <button class="tb-btn" onclick="bloque('boxsuccess')"><i class="fas fa-circle-check" aria-hidden="true"></i> Tip</button>
               <button class="tb-btn" onclick="bloque('causa')"># Tarjeta</button>
               <button class="tb-btn" onclick="bloque('tabla')"><i class="fas fa-table"></i> Tabla</button>
               <div class="tb-sep"></div>
@@ -528,7 +528,7 @@
             tiempo: String(a.tiempo || 6), resumen: a.resumen || '', lead: a.lead || '',
             cuerpo: a.cuerpo, estado: 'publicado', fecha: a.fecha || new Date().toISOString().slice(0,10)
           }});
-          if (r.ok) { st.className = 'st ok'; st.textContent = '✓ ' + (r.commit || 'ok'); ok++; }
+          if (r.ok) { st.className = 'st ok'; st.textContent = 'Guardado · ' + (r.commit || 'ok'); ok++; }
           else { st.className = 'st err'; st.textContent = (r.error || 'error').slice(0, 30); }
         } catch(e) {
           st.className = 'st err'; st.textContent = 'error';
@@ -551,13 +551,13 @@
       causas: {
         n: 'Guía de causas', d: 'Un problema, varias causas posibles y su solución',
         html: '<p>Contexto del problema: por qué pasa, a quién le pasa y qué se busca resolver.</p>'
-          + '<div class="box box-warn"><strong>⚠️ El malentendido más común</strong>Esa creencia equivocada que tiene todo el mundo sobre este tema.</div>'
+          + '<div class="box box-warn"><strong><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> El malentendido más común</strong>Esa creencia equivocada que tiene todo el mundo sobre este tema.</div>'
           + '<h2>Las causas más frecuentes</h2>'
           + '<div class="cause-card"><h3><span class="cause-num">1</span> Primera causa</h3><p>Por qué ocurre.</p><p><strong>Solución:</strong> qué hacer.</p></div>'
           + '<div class="cause-card"><h3><span class="cause-num">2</span> Segunda causa</h3><p>Por qué ocurre.</p><p><strong>Solución:</strong> qué hacer.</p></div>'
           + '<div class="cause-card"><h3><span class="cause-num">3</span> Tercera causa</h3><p>Por qué ocurre.</p><p><strong>Solución:</strong> qué hacer.</p></div>'
           + '<h2>Cómo saber cuál es tu caso</h2><ul><li>Primera señal a chequear</li><li>Segunda señal</li><li>Tercera señal</li></ul>'
-          + '<div class="box box-success"><strong>✅ Recomendación final</strong>El consejo práctico que se lleva el lector.</div>'
+          + '<div class="box box-success"><strong><i class="fas fa-circle-check" aria-hidden="true"></i> Recomendación final</strong>El consejo práctico que se lleva el lector.</div>'
       },
       comparativa: {
         n: 'Comparativa', d: 'Opciones enfrentadas para ayudar a elegir',
@@ -570,21 +570,21 @@
           + '<tr><td>Costo</td><td class="lo">Bajo</td><td class="me">Medio</td></tr>'
           + '<tr><td>Complejidad</td><td class="lo">Simple</td><td class="hi">Alta</td></tr>'
           + '<tr><td>Ideal para</td><td>Caso 1</td><td>Caso 2</td></tr></table>'
-          + '<div class="box box-info"><strong>💡 El dato que casi nadie mira</strong>Ese detalle técnico que cambia la decisión.</div>'
+          + '<div class="box box-info"><strong><i class="fas fa-lightbulb" aria-hidden="true"></i> El dato que casi nadie mira</strong>Ese detalle técnico que cambia la decisión.</div>'
           + '<h2>Qué te conviene según tu caso</h2><ul><li><strong>Si sos X:</strong> opción A</li><li><strong>Si sos Y:</strong> opción B</li></ul>'
-          + '<div class="box box-success"><strong>✅ Recomendación final</strong>La configuración que recomendamos y por qué.</div>'
+          + '<div class="box box-success"><strong><i class="fas fa-circle-check" aria-hidden="true"></i> Recomendación final</strong>La configuración que recomendamos y por qué.</div>'
       },
       pasos: {
         n: 'Paso a paso', d: 'Procedimiento o checklist ordenado',
         html: '<p>Qué vas a lograr siguiendo esta guía y cuánto tiempo lleva.</p>'
-          + '<div class="box box-warn"><strong>⚠️ Antes de empezar</strong>El requisito o precaución imprescindible (backup, apagar el equipo, etc.).</div>'
+          + '<div class="box box-warn"><strong><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Antes de empezar</strong>El requisito o precaución imprescindible (backup, apagar el equipo, etc.).</div>'
           + '<h2>El procedimiento</h2>'
           + '<div class="cause-card"><h3><span class="cause-num">1</span> Primer paso</h3><p>Qué hacer exactamente.</p></div>'
           + '<div class="cause-card"><h3><span class="cause-num">2</span> Segundo paso</h3><p>Qué hacer exactamente.</p></div>'
           + '<div class="cause-card"><h3><span class="cause-num">3</span> Tercer paso</h3><p>Qué hacer exactamente.</p></div>'
           + '<h2>Cómo verificar que salió bien</h2><ul><li>Señal 1</li><li>Señal 2</li></ul>'
-          + '<div class="box box-danger"><strong>🚨 Lo que nunca hay que hacer</strong>El error que arruina todo.</div>'
-          + '<div class="box box-success"><strong>✅ Recomendación final</strong>El cierre práctico.</div>'
+          + '<div class="box box-danger"><strong><i class="fas fa-circle-exclamation" aria-hidden="true"></i> Lo que nunca hay que hacer</strong>El error que arruina todo.</div>'
+          + '<div class="box box-success"><strong><i class="fas fa-circle-check" aria-hidden="true"></i> Recomendación final</strong>El cierre práctico.</div>'
       },
       vacio: { n: 'En blanco', d: 'Empezar desde cero o pegar desde Word/Docs', html: '' }
     };
@@ -643,7 +643,7 @@
 
       const box = document.getElementById('chk');
       const errs = items.filter(x => x.n === 'err').length;
-      box.innerHTML = '<h4>' + (errs ? '⚠ Revisá antes de publicar' : '✓ Listo para publicar') + '</h4>' +
+      box.innerHTML = '<h4>' + (errs ? '<i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Revisá antes de publicar' : '✓ Listo para publicar') + '</h4>' +
         items.map(x => '<div class="chk-i ' + x.n + '"><i class="fas fa-' + (x.n === 'ok' ? 'circle-check' : x.n === 'warn' ? 'triangle-exclamation' : 'circle-xmark') + '"></i><span>' + x.txt + '</span></div>').join('');
       return errs === 0;
     }

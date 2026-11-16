@@ -329,24 +329,24 @@ class AppointmentScheduler {
         const confirmationHTML = `
             <div class="confirmation-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 10000;">
                 <div class="confirmation-content" style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-                    <div style="font-size: 3rem; color: #27ae60; margin-bottom: 15px;">✅</div>
-                    <h3 style="color: #27ae60; margin-bottom: 20px; font-size: 1.5rem;">¡Cita Agendada Exitosamente!</h3>
-                    <div class="appointment-details" style="text-align: left; margin-bottom: 25px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                        <p><strong>📅 Fecha:</strong> ${formattedDate}</p>
-                        <p><strong>🕒 Hora:</strong> ${this.formatTime12(appointmentData.hora)}</p>
-                        <p><strong>👤 Cliente:</strong> ${appointmentData.nombre}</p>
-                        <p><strong>📞 Teléfono:</strong> ${appointmentData.telefono}</p>
-                        <p><strong>📍 Dirección:</strong> ${appointmentData.direccion}</p>
-                        <p><strong>🔧 Servicio:</strong> ${appointmentData.problema}</p>
+                    <div style="font-size: var(--icon-lg); color: var(--ok); margin-bottom: var(--s-4);"><i class="fas fa-circle-check" aria-hidden="true"></i></div>
+                    <h3 style="color: var(--ok-dark); margin-bottom: var(--s-5); font-size: var(--t-h3);">¡Cita agendada!</h3>
+                    <div class="appointment-details" style="text-align: left; margin-bottom: var(--s-5); background: var(--gray-50); padding: var(--s-5); border-radius: var(--radius); border: 1px solid var(--border);">
+                        <p><strong><i class="fas fa-calendar-days" aria-hidden="true"></i> Fecha:</strong> ${formattedDate}</p>
+                        <p><strong><i class="fas fa-clock" aria-hidden="true"></i> Hora:</strong> ${this.formatTime12(appointmentData.hora)}</p>
+                        <p><strong><i class="fas fa-user" aria-hidden="true"></i> Cliente:</strong> ${appointmentData.nombre}</p>
+                        <p><strong><i class="fas fa-phone" aria-hidden="true"></i> Teléfono:</strong> ${appointmentData.telefono}</p>
+                        <p><strong><i class="fas fa-location-dot" aria-hidden="true"></i> Dirección:</strong> ${appointmentData.direccion}</p>
+                        <p><strong><i class="fas fa-wrench" aria-hidden="true"></i> Servicio:</strong> ${appointmentData.problema}</p>
                     </div>
-                    <p style="color: #666; margin-bottom: 20px; font-size: 0.9rem;">
+                    <p style="color: var(--gray-500); margin-bottom: var(--s-5); font-size: var(--t-small);">
                         Te contactaremos pronto para confirmar los detalles de tu servicio.
                     </p>
                     <div class="confirmation-actions" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                        <button class="btn btn-primary" onclick="window.print()" style="padding: 12px 20px; font-size: 16px;">
+                        <button class="btn btn-primary" onclick="window.print()" style="padding: var(--s-3) var(--s-5); font-size: var(--t-body); min-height: 44px;">
                             <i class="fas fa-print"></i> Imprimir Comprobante
                         </button>
-                        <button class="btn btn-secondary" onclick="this.closest('.confirmation-modal').remove(); location.reload();" style="padding: 12px 20px; font-size: 16px;">
+                        <button class="btn btn-secondary" onclick="this.closest('.confirmation-modal').remove(); location.reload();" style="padding: var(--s-3) var(--s-5); font-size: var(--t-body); min-height: 44px;">
                             <i class="fas fa-check"></i> Aceptar
                         </button>
                     </div>
@@ -376,23 +376,25 @@ class AppointmentScheduler {
         }
         
         const messageDiv = document.createElement('div');
-        const backgroundColor = type === 'success' ? '#e8f5e8' : 
-                              type === 'error' ? '#ffeaa7' : '#e3f2fd';
-        const textColor = type === 'success' ? '#27ae60' : 
-                         type === 'error' ? '#e67e22' : '#1976d2';
+        const backgroundColor = type === 'success' ? 'var(--ok-bg)' :
+                              type === 'error' ? '#fef2f2' : 'var(--blue-50)';
+        const textColor = type === 'success' ? 'var(--ok-dark)' :
+                         type === 'error' ? 'var(--error)' : 'var(--blue)';
         
         messageDiv.style.cssText = `
             background: ${backgroundColor}; 
             color: ${textColor}; 
-            padding: 12px 15px; 
-            border-radius: 8px; 
-            margin: 10px 0; 
-            text-align: center; 
-            font-weight: 500;
+            padding: var(--s-3) var(--s-4);
+            border-radius: var(--radius-sm);
+            margin: var(--s-3) 0;
+            text-align: center;
+            font-weight: 600;
             border-left: 4px solid ${textColor};
-            font-size: 14px;
+            font-size: var(--t-small);
         `;
         messageDiv.textContent = message;
+        messageDiv.setAttribute('role', type === 'error' ? 'alert' : 'status');
+        messageDiv.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
         messageDiv.classList.add('temporary-message');
         
         // Insertar después del botón de limpiar

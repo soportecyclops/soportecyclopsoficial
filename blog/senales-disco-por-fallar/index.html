@@ -125,7 +125,7 @@
   <p>Todos los discos tienen un sistema de autodiagnóstico llamado S.M.A.R.T. que cuenta sectores reasignados, errores de lectura y horas de uso. Programas gratuitos como <code>CrystalDiskInfo</code> lo leen y te lo muestran en un semáforo: azul (bien), amarillo (precaución), rojo (peligro).</p>
   <p><strong>Qué hacer:</strong> instalalo y miralo una vez por mes. Un estado "Precaución" con sectores reasignados creciendo significa que el disco está en cuenta regresiva, aunque todavía "ande bien".</p>
 </div>
-<div class="box box-danger"><strong>🚨 Lo que NUNCA hay que hacer</strong>Si el disco hace ruidos o el S.M.A.R.T. está en rojo: no lo desfragmentes, no le corras un chkdsk completo "a ver si se arregla", y no lo dejes prendido toda la noche copiando. Todas esas operaciones lo exigen al máximo y pueden darle el golpe final antes de que rescates los datos. Primero se copia lo importante, después se diagnostica.</div>
+<div class="box box-danger"><strong><i class="fas fa-circle-exclamation" aria-hidden="true"></i> Lo que NUNCA hay que hacer</strong>Si el disco hace ruidos o el S.M.A.R.T. está en rojo: no lo desfragmentes, no le corras un chkdsk completo "a ver si se arregla", y no lo dejes prendido toda la noche copiando. Todas esas operaciones lo exigen al máximo y pueden darle el golpe final antes de que rescates los datos. Primero se copia lo importante, después se diagnostica.</div>
 <h2 id="sec-2">¿HDD o SSD? Las señales cambian</h2>
 <table class="mat-table">
   <tr><th>Señal</th><th>Disco mecánico (HDD)</th><th>Disco sólido (SSD)</th></tr>
@@ -134,10 +134,10 @@
   <tr><td>Forma de morir</td><td>Gradual, suele avisar</td><td class="hi">Súbita: un día no aparece más</td></tr>
   <tr><td>Recuperación de datos</td><td>Posible (costosa en casos graves)</td><td class="hi">Mucho más difícil</td></tr>
 </table>
-<div class="box box-warn"><strong>⚠️ Sobre los SSD</strong>Que el SSD no haga ruido no significa que sea eterno. Suelen morir sin aviso previo, de un día para el otro. Con SSD, el monitoreo S.M.A.R.T. y el backup automático no son opcionales: son la única defensa.</div>
+<div class="box box-warn"><strong><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Sobre los SSD</strong>Que el SSD no haga ruido no significa que sea eterno. Suelen morir sin aviso previo, de un día para el otro. Con SSD, el monitoreo S.M.A.R.T. y el backup automático no son opcionales: son la única defensa.</div>
 <h2 id="sec-3">La única solución real: backup antes de la falla</h2>
 <p>Detectar las señales sirve para ganar tiempo, pero el disco que hoy está sano puede fallar mañana por un golpe, un pico de tensión o simple mala suerte. La regla que recomendamos a todos nuestros clientes es la <strong>3-2-1</strong>: tres copias de tus datos, en dos medios distintos, una de ellas fuera de tu casa u oficina (un disco externo en otro lado, o la nube).</p>
-<div class="box box-success"><strong>✅ Recomendación final</strong>Configurá un backup automático una sola vez y olvidate: Historial de archivos de Windows a un disco externo, o Google Drive / OneDrive para carpetas clave. El mejor backup es el que se hace solo, porque el que depende de que te acuerdes, no existe.</div>
+<div class="box box-success"><strong><i class="fas fa-circle-check" aria-hidden="true"></i> Recomendación final</strong>Configurá un backup automático una sola vez y olvidate: Historial de archivos de Windows a un disco externo, o Google Drive / OneDrive para carpetas clave. El mejor backup es el que se hace solo, porque el que depende de que te acuerdes, no existe.</div>
 <p><div class="cta-box">
 <h3>¿Necesitás ayuda con esto?</h3>
 <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
@@ -156,7 +156,7 @@
         </nav>
       </div>
       <div class="side-cta">
-        <span class="sc-ico">🔍</span>
+        <span class="sc-ico"><i class="fas fa-magnifying-glass" aria-hidden="true"></i></span>
         <h4>Diagnóstico gratis</h4>
         <p>2 minutos de preguntas y te decimos qué tiene tu equipo. Sin moverlo de tu casa.</p>
         <a href="../index.html#chatbot" onclick="try{sessionStorage.setItem('abrir_chatbot','1')}catch(e){}">Empezar</a>
@@ -184,7 +184,7 @@
       <a id="shareX" class="share-btn x" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X</a>
       <a id="shareFb" class="share-btn fb" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
       <a id="shareLi" class="share-btn li" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-      <button id="shareCopy" class="share-btn copy" onclick="copyLink(this)"><i class="fas fa-link"></i> Copiar enlace<span class="copy-feedback" id="copyFeedback">✓ Copiado</span></button>
+      <button id="shareCopy" class="share-btn copy" onclick="copyLink(this)"><i class="fas fa-link"></i> Copiar enlace<span class="copy-feedback" id="copyFeedback"><i class="fas fa-check" aria-hidden="true"></i> Copiado</span></button>
     </div>
   </div>
 
