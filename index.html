@@ -1,5 +1,6 @@
 <!DOCTYPE html><html lang="es-AR">
 <head>
+    <script>document.documentElement.classList.add('js');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Soporte técnico a domicilio en CABA y GBA. Redes, CCTV, soporte informático y páginas web para pymes. +11 años de experiencia corporativa. Atención rápida con garantía en cada trabajo.">
@@ -163,54 +164,65 @@
     <main id="contenido-principal">
     <!-- ===================== HERO ===================== -->
     <section class="hero" id="inicio">
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <h1>Soporte técnico que resuelve. Sin vueltas.</h1>
+                <p class="hero-lead">Redes, CCTV, soporte informático y presencia web para hogares y pymes. Once años de infraestructura corporativa, ahora a domicilio en CABA y GBA.</p>
 
-        <div class="hero-content container">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Un solo punto de contacto · CABA y GBA · Sin letra chica
+                <div class="hero-actions">
+                    <a href="https://wa.me/5491166804450?text=Hola%2C%20tengo%20una%20consulta%20t%C3%A9cnica" class="cta-button" rel="noopener">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedí tu diagnóstico
+                    </a>
+                    <a href="#servicios" class="hero-link">o mirá qué hacemos</a>
+                </div>
+
+                <ul class="hero-proof">
+                    <li><i class="fas fa-user-check" aria-hidden="true"></i> Un solo punto de contacto</li>
+                    <li><i class="fas fa-clock" aria-hidden="true"></i> Respuesta en menos de 2 h hábiles</li>
+                    <li><i class="fas fa-file-signature" aria-hidden="true"></i> Garantía escrita en cada trabajo</li>
+                </ul>
             </div>
-            <h1>Soporte técnico que resuelve.<br><em>Sin vueltas.</em></h1>
-            <p>Redes, CCTV, soporte informático y presencia web para hogares y pymes. +11 años de experiencia en infraestructura corporativa al servicio de tu negocio.</p>
-            
+
+            <figure class="hero-photo">
+                <img src="/public/images/foto-tecnico-rack.jpg"
+                     alt="Juan Alza trabajando sobre un rack de comunicaciones cableado"
+                     width="900" height="1600" fetchpriority="high" decoding="async">
+            </figure>
+        </div>
+    </section>
+
+    <!-- ===================== SEGMENTOS ===================== -->
+    <section class="segments" id="segmentos">
+        <div class="container">
+            <h2 class="segments-title">¿Para quién trabajamos?</h2>
             <div class="niche-grid">
-                <a href="/servicios-hogares.html" class="niche-card hogar reveal">
-                    <i class="fas fa-house-signal niche-icon"></i>
+                <a href="/servicios-hogares.html" class="niche-card hogar">
+                    <i class="fas fa-house-signal niche-icon" aria-hidden="true"></i>
                     <h3>Servicios para el Hogar</h3>
                     <p>Soluciones WiFi, cámaras y mantenimiento de PC para tu familia. Tono simple, sin tecnicismos.</p>
                     <span class="niche-btn">Pedí tu diagnóstico</span>
                 </a>
-                
-                <a href="/servicios-pymes.html" class="niche-card pyme reveal reveal-delay-1">
-                    <i class="fas fa-store niche-icon"></i>
+
+                <a href="/servicios-pymes.html" class="niche-card pyme">
+                    <i class="fas fa-store niche-icon" aria-hidden="true"></i>
                     <h3>Pymes y Comercios</h3>
                     <p>Tu negocio no puede frenar. Soporte rápido, redes redundantes y CCTV.</p>
                     <span class="niche-btn">Hablemos ahora</span>
                 </a>
-                
-                <a href="/servicios-profesionales.html" class="niche-card estudio reveal reveal-delay-2">
-                    <i class="fas fa-gavel niche-icon"></i>
+
+                <a href="/servicios-profesionales.html" class="niche-card estudio">
+                    <i class="fas fa-gavel niche-icon" aria-hidden="true"></i>
                     <h3>Estudios Profesionales</h3>
                     <p>Protección de datos y backups empresariales. El socio que tu estudio necesita.</p>
                     <span class="niche-btn">Consultá tu plan</span>
                 </a>
-                
-                <a href="/pronto.html" class="niche-card obra reveal reveal-delay-3">
-                    <i class="fas fa-hard-hat niche-icon"></i>
+
+                <a href="/pronto.html" class="niche-card obra">
+                    <i class="fas fa-helmet-safety niche-icon" aria-hidden="true"></i>
                     <h3>Obras e Infraestructura</h3>
                     <p>Infraestructura de red, domótica y control de accesos. Planificación de obra.</p>
                     <span class="niche-btn">Ver Sistemas</span>
                 </a>
-            </div>
-        </div>
-
-        <div class="hero-scroll">
-            <span>scroll</span>
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
             </div>
         </div>
     </section>
@@ -466,7 +478,7 @@
             </div>
             
             <div class="contact-grid">
-                <div class="contact-info reveal reveal-left">
+                <div class="contact-info reveal">
                     <div class="contact-item">
                         <i class="fas fa-phone"></i>
                         <div>
@@ -504,7 +516,7 @@
                     </div>
                 </div>
 
-                <form class="contact-form reveal reveal-right">
+                <form class="contact-form reveal">
                     <!-- Campo Honeypot para frenar Spam -->
                     <input type="text" name="b_honeypot" id="b_honeypot" style="display:none !important;" tabindex="-1" autocomplete="off">
                     
@@ -744,64 +756,6 @@
             }
         });
     });
-
-    const canvas = document.getElementById('hero-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    class Particle {
-        constructor() { this.reset(); }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 1.8 + 0.4;
-            this.speedX = (Math.random() - 0.5) * 0.4;
-            this.speedY = -Math.random() * 0.5 - 0.1;
-            this.opacity = Math.random() * 0.6 + 0.1;
-            this.life = 1;
-            this.decay = Math.random() * 0.003 + 0.001;
-        }
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            this.life -= this.decay;
-            if (this.life <= 0 || this.y < 0) this.reset();
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(96, 165, 250, ${this.opacity * this.life})`;
-            ctx.fill();
-        }
-    }
-
-    for (let i = 0; i < 80; i++) particles.push(new Particle());
-
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        particles.forEach((p1, i) => {
-            particles.slice(i + 1).forEach(p2 => {
-                const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-                if (dist < 90) {
-                    ctx.beginPath();
-                    ctx.moveTo(p1.x, p1.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.strokeStyle = `rgba(96, 165, 250, ${0.08 * (1 - dist/90)})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                }
-            });
-        });
-        requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
 
     document.querySelectorAll('.btn-primary, .cta-button').forEach(btn => {
         btn.addEventListener('click', function(e) {
