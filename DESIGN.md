@@ -24,18 +24,31 @@ sale de acá. Si un valor no está acá, no se usa: se agrega acá primero.
 
 ## 2. Color
 
-### Marca (vigente)
-| Token | Valor | Uso |
-|---|---|---|
-| `--blue` | `#2563eb` | acción primaria, enlaces, foco |
-| `--blue-hover` | `#1d4ed8` | hover de acción |
-| `--blue-dark` | `#1a3a5c` | titulares sobre claro, logo |
-| `--navy` | `#1e3a8a` | fondos oscuros profundos |
-| `--cyan` | `#00c6ff` | acento, **≤1 por pantalla** |
+### Marca
+| Token | Valor | Contraste vs blanco | Uso |
+|---|---|---|---|
+| `--blue` | `#174ea6` | 7.85:1 | acción primaria, enlaces, foco |
+| `--blue-hover` | `#123e85` | 10.23:1 | hover de acción |
+| `--blue-dark` | `#1a3a5c` | 9.1:1 | titulares sobre claro, logo |
+| `--blue-light` | `#3d77d1` | 3.9:1 | sólo texto grande o gráficos |
+| `--navy` | `#12356f` | 11.4:1 | fondos oscuros profundos |
+| `--blue-ui` | `#7ba7e8` | 2.1:1 | **sólo sobre oscuro** |
 
-> `#2563eb` es exactamente Tailwind `blue-600`. Es el azul por defecto de
-> toda página generada. Decisión pendiente (ver §10): desplazarlo a un azul
-> propio manteniendo el contraste.
+> Decidido el 15/11/2026: se abandonó `#2563eb`. Era exactamente Tailwind
+> `blue-600`, el azul por defecto de toda página generada, y además el peor
+> contraste de la paleta (5.17:1). `#174ea6` conserva la familia de color —
+> sigue leyéndose como el mismo azul de marca — y sube a 7.85:1.
+
+### Acento cálido
+| Token | Valor | Dónde |
+|---|---|---|
+| `--amber` | `#b45309` | superficie **clara**: 5.02:1 con texto blanco encima, 5.02:1 como texto sobre blanco |
+| `--amber-bright` | `#f59e0b` | superficie **oscura** únicamente: 7.21:1 sobre `#0f2444` |
+| `--cyan` | `#00c6ff` | superficie **oscura** únicamente: 2.0:1 contra blanco, no alcanza para texto |
+
+El acento cálido es el único color que compite con el azul, y compite poco:
+rompe la monocromía fría que iguala a todo sitio de servicios técnicos.
+Un acento por pantalla. El botón primario sigue siendo azul.
 
 ### Neutros
 `--slate-950 #0f172a` · `--slate-800 #1e293b` · `--gray-600 #475569`
@@ -55,7 +68,7 @@ icono de la tarjeta. Nunca el fondo de una sección entera.
 
 ### Contraste
 - Texto normal ≥ 4.5:1 · Texto ≥24px o bold ≥19px: ≥ 3:1
-- Botón azul sobre blanco y texto blanco sobre `--blue`: ambos verificados
+- Botón azul sobre blanco y texto blanco sobre `--blue`: 7.85:1, verificado
 - Todo texto debe ser legible en fondo claro **y** oscuro: usar
   `.on-dark { color: var(--white) }` / `.on-dark .muted { color: #cbd5e1 }`
 
@@ -78,7 +91,7 @@ badges y bordes. Estado actual: 1.788 degradés en el sitio → objetivo ≤ 20 
 | Small | Open Sans | 400 | `0.875rem` | 1.5 | 0 |
 | Label | Open Sans | 600 | `0.8125rem` | 1.4 | +0.02em, mayúscula |
 
-**Escala cerrada — 7 tamaños, ninguno más.** Tokens a crear:
+**Escala cerrada — 7 tamaños, ninguno más.** Tokens ya en `css/tokens.css`:
 `--t-label .8125rem` · `--t-small .875rem` · `--t-body 1rem` · `--t-lead 1.125rem`
 · `--t-h3 1.375rem` · `--t-h2 clamp(...)` · `--t-h1 clamp(...)`
 
@@ -93,7 +106,7 @@ Línea de texto: máx. 72 caracteres (`max-width: 68ch`).
 
 ## 4. Espaciado
 
-Escala de 8 (múltiplos exactos, sin valores intermedios):
+Escala de 8 (múltiplos exactos, sin valores intermedios). Ya en `css/tokens.css`:
 
 `--s-1 4px` · `--s-2 8px` · `--s-3 12px` · `--s-4 16px` · `--s-5 24px`
 `--s-6 32px` · `--s-7 48px` · `--s-8 64px` · `--s-9 96px` · `--s-10 128px`
@@ -246,14 +259,14 @@ Verificados contra el estado real del sitio:
 |---|---|---|
 | 1 | Pill/badge sobre un H1 centrado | `.hero-badge` en index |
 | 2 | Orbes/blobs difuminados detrás del hero | `.hero-orb-1/2/3` |
-| 3 | `linear-gradient(135deg, …)` como recurso general | 759 usos |
+| 3 | `linear-gradient(135deg, …)` como recurso general | 759 usos (pendiente) |
 | 4 | Emoji como icono de tarjeta o chip | 2.163 |
 | 5 | Fade-up con stagger en todas las secciones | `.reveal-delay-*` |
 | 6 | Grilla de 3 o 4 tarjetas idénticas con icono arriba | `.niche-grid` (4) |
 | 7 | Mismo radio + misma sombra blanda en todo | 20 radios / 30 sombras |
 | 8 | Indicador "scroll" con mouse animado | `.hero-scroll` |
 | 9 | Degradé en texto (`background-clip: text`) | revisar |
-| 10 | `transition: all` | token `--transition` |
+| 10 | `transition: all` | ~~token `--transition`~~ corregido 15/11 |
 | 11 | Título centrado en toda sección | 1.471 `text-align:center` |
 | 12 | Números sin fuente verificable | revisar "+11 años" (sí verificable) |
 | 13 | Una sola pantalla con dos CTA (primario degradé + fantasma) | revisar |
@@ -286,7 +299,9 @@ verificable, y una sola acción por pantalla.
 2. Nunca escribir un color, tamaño, espacio o radio literal: usar `var(--*)`.
    Si falta el token, agregarlo acá y a `css/tokens.css` primero.
 3. Nunca agregar un bloque `<style>` a un HTML. El CSS va en `css/`.
-   (Hoy hay 364 bloques `<style>`, 4,1 MB, 337 de ellos idénticos.)
+   (Los 337 idénticos se extrajeron a `css/blog.css` el 15/11. Quedan 26
+   bloques únicos por revisar. `admin-blog.html` genera artículos con
+   `<style>` embebido: hay que hacer que emita un `<link>` a `/css/blog.css`.)
 4. Reutilizar las clases que existen antes de inventar marcado nuevo.
 5. Al terminar una página: `/impeccable polish`, después `/impeccable audit`.
 6. Cualquier excepción a §10 se discute antes, no se implementa y se avisa.
