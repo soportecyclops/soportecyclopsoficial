@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corte Urbano — ejemplo de página web para barberías | Soporte Cyclops</title>
+  <link rel="canonical" href="https://www.soportecyclops.com.ar/demos/barberia/">
+    <meta name="description" content="Ejemplo real de página web para barberías, hecha por Soporte Cyclops. Corte Urbano es un negocio ficticio: la página muestra cómo quedaría la de tu negocio.">
+    
+    <!-- Fuentes Urbanas / Streetwear -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/demos/demobar.css">
+
+    <!-- Datos Estructurados Schema.org para SEO Local -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HairSalon",
+      "name": "Corte Urbano Barber Studio",
+      "image": "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80",
+      "@id": "",
+      "url": "https://www.corteurbano.com.ar",
+      "telephone": "+5491122334455",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Costa Rica 4500",
+        "addressLocality": "Palermo Soho",
+        "addressRegion": "CABA",
+        "postalCode": "1414",
+        "addressCountry": "AR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -34.588,
+        "longitude": -58.425
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        ],
+        "opens": "12:00",
+        "closes": "21:00"
+      },
+      "priceRange": "$$"
+    }
+    </script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <strong>CORTE URBANO</strong>
+                <span>Barber Studio</span>
+            </div>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#vibe">El Estudio</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <h1>CORTES LIMPIOS.<br>DEGRADADOS PERFECTOS.</h1>
+                    <p>Ni de salón antiguo ni de peluquería rápida. <strong>Corte Urbano</strong> es tu estudio en Palermo Soho. Fades precisos, perfiles a navaja, birra fría y barberos que entienden tu estilo.</p>
+                    <div class="hero-actions">
+                        <a href="https://wa.me/5491122334455?text=Qué%20onda,%20quiero%20sacar%20un%20turno." class="btn btn-primary">Sacá tu Turno por WhatsApp</a>
+                        <span class="trust-badge">Atendemos con puntualidad. Sin esperas eternas.</span>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=800&q=80" alt="Barbero moderno realizando un degradado" width="800" height="533">
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="services">
+            <div class="container">
+                <h2>LO QUE HACEMOS</h2>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <svg class="service-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        <h3>Corte & Fade</h3>
+                        <p>Skin fades, taper, mullet, buzz cut. Trabajamos con máquinas Wahl y Andis de última generación para lograr transiciones impecables y sin marcas.</p>
+                    </article>
+                    <article class="service-card highlight">
+                        <svg class="service-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+                        <h3>Barba Premium</h3>
+                        <p>Ritual completo: toalla caliente, aceite pre-shave, perfilado a navaja descartable y bálsamo hidratante. Tu barba con la geometría perfecta.</p>
+                    </article>
+                    <article class="service-card">
+                        <svg class="service-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <h3>Platinados & Color</h3>
+                        <p>Decoloraciones globales, platinados blancos y colores fantasía. Usamos productos protectores para que tu pelo resista el proceso químico a pleno.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="vibe" class="trust-section">
+            <div class="container trust-inner">
+                <div class="trust-image">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80" alt="Herramientas de barbería moderna" width="800" height="533">
+                </div>
+                <div class="trust-content">
+                    <h2>MÁS QUE UN CORTE, EL RITUAL</h2>
+                    <p>Sabemos que venir a la barbería es tu momento de desconexión. Por eso armamos un estudio pensado para vos.</p>
+                    <ul class="check-list">
+                        <li><strong>La barra:</strong> Cortate tomando una cerveza fría, un vermut o un buen café (invita la casa).</li>
+                        <li><strong>Sala de espera:</strong> Sofás cómodos, PS5 y buena música urbana.</li>
+                        <li><strong>Higiene estricta:</strong> Navajas de un solo uso abiertas frente a vos y máquinas desinfectadas entre cada cliente.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq">
+            <div class="container">
+                <h2>PREGUNTAS FRECUENTES</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">¿Atienden por orden de llegada o con turno?</button>
+                        <div class="accordion-content">
+                            <p>Trabajamos exclusivamente con turnos previos. Respetamos tu tiempo a rajatabla, si sacaste a las 18:00, te sentás a las 18:00. Podes caer un rato antes para tomar algo.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button class="accordion-header" aria-expanded="false">¿Qué métodos de pago aceptan?</button>
+                        <div class="accordion-content">
+                            <p>Efectivo, MercadoPago (transferencia o QR) y tarjetas de débito. Los trabajos largos como platinados requieren una seña simbólica al agendar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <h4>CORTE URBANO BARBER STUDIO</h4>
+                <p>Costa Rica 4500, Palermo Soho, CABA.</p>
+                <p>WhatsApp: 11 2233-4455</p>
+            </div>
+            <div class="footer-col legal-col">
+                <p><a href="http://www.consumidor.gob.ar/" target="_blank" rel="noopener">Defensa del Consumidor (Ley 24.240)</a></p>
+                <p>Dirección Nacional de Protección de Datos Personales (Ley 25.326)</p>
+                <p class="copyright">© 2026 Corte Urbano. Todos los derechos reservados.</p>
+            </div>
+        </div>
+      <p class="photo-credit">Fotografías de demostración: Unsplash (Unsplash License).</p>
+  </footer>
+
+    <!-- Botón Flotante WhatsApp (Estilo Oscuro/Urbano) -->
+    <a href="https://wa.me/5491122334455?text=Qué%20onda,%20quiero%20sacar%20un%20turno." class="wa-float" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+        <svg viewBox="0 0 32 32" width="32" height="32" fill="currentColor"><path d="M16 2a13 13 0 0 0-11 20l-2 5 5-2a13 13 0 1 0 8-23zm0 24a11 11 0 0 1-5-1l-3 1 1-3a11 11 0 1 1 7 3zm6-8c0 .5-.3 1-.7 1h-.2c-.3 0-1 0-3-1-2-1-3-3-3-3s-1-1-1-2 .4-2 .8-2h.4c.2 0 .4 0 .5.1l1 2.3c0 .2 0 .3-.1.4l-.4.5c-.1.1-.2.2 0 .4 1 1.6 2.1 2.6 3.6 3.4.2.1.4.1.5 0l.6-.7c.1-.2.3-.2.4-.2l2.3 1c.2.1.2.3.2.4z"/></svg>
+    </a>
+
+    <script src="main.js"></script>
+
+<!-- ===== Barra de demostración — Soporte Cyclops ===== -->
+<div class="sc-demobar" role="complementary" aria-label="Aviso de demostración">
+  <p class="sc-demobar__txt">
+    <strong>Ejemplo de demostración.</strong>
+    <span>Corte Urbano es un negocio ficticio. Esta página la hicimos para mostrar cómo quedaría la tuya.</span>
+  </p>
+  <div class="sc-demobar__acts">
+    <a class="sc-demobar__cta" href="https://wa.me/5491166804450?text=Hola%2C%20vi%20el%20ejemplo%20de%20barberia%20y%20quiero%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero una así</a>
+    <a class="sc-demobar__back" href="/demos/">Ver los otros ejemplos</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+/* ==========================================================
+   Catálogo de ejemplos — /demos/
+   Usa los tokens de css/tokens.css. Ningún valor literal.
+   La tarjeta dibuja una miniatura con la paleta y la
+   tipografía reales de cada ejemplo: el punto de venta es
+   que ninguna se parece a la otra.
+   ========================================================== */
+
+.demos-hero {
+  background: var(--white);
+  padding: var(--s-9) 0 var(--s-7);
+  border-bottom: 1px solid var(--border);
+}
+.demos-hero h1 {
+  font-family: var(--font-head);
+  font-size: var(--t-h1);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--blue-dark);
+  margin-bottom: var(--s-5);
+  max-width: 26ch;
+}
+.demos-hero__lead {
+  font-size: var(--t-lead);
+  line-height: 1.65;
+  color: var(--gray-600);
+  max-width: 62ch;
+  margin-bottom: var(--s-7);
+}
+.demos-hero__acts {
+  display: flex;
+  align-items: center;
+  gap: var(--s-5);
+  flex-wrap: wrap;
+}
+
+/* ---------- grilla ---------- */
+.demos-grid-wrap { background: var(--gray-50); padding: var(--s-9) 0; }
+.demos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+  gap: var(--s-5);
+}
+
+.demo-card { min-width: 0; }
+.demo-card__link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.demo-card__link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--blue-200);
+  text-decoration: none;
+}
+.demo-card__link:active { transform: translateY(0) scale(.995); }
+.demo-card__link:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+/* ---------- miniatura dibujada con la paleta real ---------- */
+.demo-card__preview {
+  display: block;
+  background: var(--d-bg);
+  padding: 0 0 var(--s-6);
+  border-bottom: 1px solid var(--border);
+}
+.demo-card__chrome {
+  display: flex;
+  gap: 6px;
+  padding: var(--s-3) var(--s-4);
+  background: rgba(255, 255, 255, .07);
+}
+.demo-card__chrome i {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .28);
+}
+.demo-card__mock {
+  display: block;
+  padding: var(--s-6) var(--s-5) 0;
+}
+.demo-card__mock-name {
+  display: block;
+  font-family: var(--d-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--d-fg);
+  margin-bottom: var(--s-4);
+}
+.demo-card__mock-line {
+  display: block;
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--d-fg) 22%, transparent);
+  margin-bottom: var(--s-2);
+}
+.demo-card__mock-line--short { width: 62%; margin-bottom: var(--s-5); }
+.demo-card__mock-btn {
+  display: inline-block;
+  padding: var(--s-2) var(--s-5);
+  background: var(--d-ac);
+  color: var(--d-bg);
+  border-radius: var(--d-rad);
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: .02em;
+}
+
+/* ---------- cuerpo ---------- */
+.demo-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  padding: var(--s-5);
+  flex-grow: 1;
+}
+.demo-card__rubro {
+  font-size: var(--t-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--blue);
+}
+.demo-card__name {
+  font-family: var(--font-head);
+  font-size: var(--t-h3);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--blue-dark);
+}
+.demo-card__what {
+  font-size: var(--t-small);
+  line-height: 1.6;
+  color: var(--gray-600);
+  flex-grow: 1;
+  margin-bottom: var(--s-3);
+}
+.demo-card__go {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--blue);
+}
+.demo-card__go i { transition: transform var(--dur) var(--ease); }
+.demo-card__link:hover .demo-card__go i { transform: translateX(3px); }
+
+/* ---------- aviso y cierre ---------- */
+.demos-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  margin-top: var(--s-7);
+  padding: var(--s-4) var(--s-5);
+  background: var(--blue-50);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius-sm);
+  font-size: var(--t-small);
+  line-height: 1.6;
+  color: var(--gray-600);
+}
+.demos-note i { color: var(--blue); margin-top: 2px; flex-shrink: 0; }
+
+.demos-cta { background: var(--blue-dark); padding: var(--s-9) 0; text-align: center; }
+.demos-cta h2 {
+  font-family: var(--font-head);
+  font-size: var(--t-h2);
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.015em;
+  margin-bottom: var(--s-4);
+}
+.demos-cta p {
+  font-size: var(--t-body);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, .78);
+  max-width: 58ch;
+  margin: 0 auto var(--s-6);
+}
+
+@media (max-width: 900px) {
+  .demos-hero { padding: var(--s-7) 0 var(--s-6); }
+  .demos-hero h1 { max-width: none; }
+  .demos-grid-wrap, .demos-cta { padding: var(--s-7) 0; }
+}

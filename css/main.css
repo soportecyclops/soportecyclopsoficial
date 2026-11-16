@@ -1975,3 +1975,75 @@ a.pain-chip:hover::after{opacity:.7;margin-left:13px}
 .obj-card { background: white; border: 1px solid var(--gray-200); border-left: 4px solid var(--blue); border-radius: 12px; padding: 20px 22px; }
 .obj-card h4 { font-size: var(--t-h3); font-weight: 700; color: var(--blue-dark); margin-bottom: 8px; }
 .obj-card p { font-size: var(--t-small); color: var(--gray-600); line-height: 1.65; }
+
+/* ===================== Tira de ejemplos en la home =====================
+   La seccion #paquetes era un titulo, un subtitulo y un boton: nada mas.
+   Ahora muestra cuatro rubros con su paleta y su radio reales.
+   Ver /demos/ para el catalogo completo.
+   ======================================================================= */
+.demos-strip {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s-4);
+    margin-bottom: var(--s-7);
+}
+.demos-strip__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-3);
+    text-decoration: none;
+    color: inherit;
+}
+.demos-strip__mock {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: var(--s-2);
+    padding: var(--s-4);
+    aspect-ratio: 16 / 10;
+    background: var(--d-bg);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.demos-strip__mock b {
+    display: block;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, .16);
+}
+.demos-strip__mock b.is-short { width: 58%; margin-bottom: var(--s-2); }
+.demos-strip__mock i {
+    display: block;
+    width: 52%;
+    height: 14px;
+    border-radius: var(--d-rad);
+    background: var(--d-ac);
+}
+.demos-strip__item:hover .demos-strip__mock {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.demos-strip__item:active .demos-strip__mock { transform: translateY(0) scale(.99); }
+.demos-strip__item:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: var(--radius-sm); }
+.demos-strip__rubro {
+    font-size: var(--t-small);
+    font-weight: 600;
+    color: var(--gray-600);
+    text-align: center;
+}
+.demos-strip__item:hover .demos-strip__rubro { color: var(--blue); }
+
+.paquetes-acts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-5);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+    .demos-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+    .paquetes-acts { flex-direction: column; gap: var(--s-4); }
+}
