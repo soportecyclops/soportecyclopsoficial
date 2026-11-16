@@ -102,3 +102,66 @@
 .page-hero.hero-pyme  { background: var(--grad-pyme);  border-bottom: 4px solid var(--seg-pyme); }
 .page-hero.hero-prof  { background: var(--grad-estudio); border-bottom: 4px solid var(--seg-estudio); }
 .page-hero.hero-obra  { background: var(--grad-obra);  border-bottom: 4px solid var(--seg-obra); }
+
+/* ==========================================================
+   Estados base — DESIGN.md §8
+   Van acá porque tokens.css es la única hoja que cargan las 365
+   páginas. Es lo primero que se carga: especificidad mínima a
+   propósito, para que cualquier hoja posterior pueda afinar.
+   ========================================================== */
+
+/* Foco visible en todo lo enfocable. Antes: 0 ocurrencias en el sitio. */
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.hero :focus-visible,
+.page-hero :focus-visible,
+footer :focus-visible,
+.on-dark :focus-visible,
+.side-cta :focus-visible,
+.cta-box :focus-visible { outline-color: var(--cyan); }
+
+/* Nunca quitar el foco sin reemplazo */
+*:focus:not(:focus-visible) { outline: none; }
+
+/* Deshabilitado. Antes: 0 ocurrencias. */
+button:disabled,
+input:disabled,
+select:disabled,
+textarea:disabled,
+[aria-disabled="true"] {
+  opacity: .55;
+  cursor: not-allowed;
+  filter: grayscale(.35);
+}
+button:disabled,
+[aria-disabled="true"] { pointer-events: none; }
+
+/* Pulsado: todo lo clickeable responde */
+button:not(:disabled):active,
+.btn:not(:disabled):active,
+a.btn:active,
+.nav-cta:active,
+.cta-btn:active,
+.niche-card:active { transform: translateY(0) scale(.985); }
+
+/* Área táctil mínima (DESIGN.md §9) */
+@media (pointer: coarse) {
+  a.btn, button, .btn, .nav-link, .nav-cta, .cta-btn, .qa-btn, .share-btn {
+    min-height: 44px;
+  }
+}
+
+/* Movimiento reducido. Antes: sólo dentro del bloque del blog. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  #hero-canvas, .hero-orb { display: none !important; }
+}
