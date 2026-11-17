@@ -1,5 +1,5 @@
-﻿/* ===== Soporte Cyclops â€” Hoja de estilos principal ===== */
-/* ExtraÃ­do de index.html â€” 13/07/2026 */
+/* ===== Soporte Cyclops — Hoja de estilos principal ===== */
+/* Extraído de index.html — 13/07/2026 */
 
 /* ===================== RESET & BASE ===================== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1646,7 +1646,7 @@ footer {
 .faq-answer.open { display: block; }
 @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
 
-/* ===================== GARANTÃAS (P4) ===================== */
+/* ===================== GARANTÍAS (P4) ===================== */
 .garantias-strip {
     background: linear-gradient(135deg, #0f2444, var(--blue-dark));
     padding: 48px 0;
@@ -1683,7 +1683,7 @@ footer {
 .garantia-card p { font-size: var(--t-small); opacity: 0.8; line-height: 1.55; }
 @media (max-width: 640px) { .garantias-grid { grid-template-columns: 1fr; } }
 
-/* ===================== LOGOS CLIENTES (P2â†’P1) ===================== */
+/* ===================== LOGOS CLIENTES (P2→P1) ===================== */
 .clients-section {
     padding: 52px 0;
     background: var(--gray-50);
@@ -1869,13 +1869,13 @@ img[loading="lazy"] { background: var(--gray-100); }
 }
 
 
-/* ===== Chips de problemas: llevan al artÃ­culo que lo explica ===== */
+/* ===== Chips de problemas: llevan al artículo que lo explica ===== */
 a.pain-chip{text-decoration:none;cursor:pointer;transition:transform .18s,box-shadow .18s}
 a.pain-chip:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(220,38,38,.15)}
 a.pain-chip::after{content:'\203A';margin-left:9px;opacity:0;transition:opacity .18s,margin .18s;font-weight:700}
 a.pain-chip:hover::after{opacity:.7;margin-left:13px}
 
-/* ===== BotÃ³n de texto mÃ¡s grande (accesibilidad) ===== */
+/* ===== Botón de texto más grande (accesibilidad) ===== */
 .a11y{position:fixed;left:18px;bottom:18px;z-index:900}
 .a11y button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--gray-200);background:#fff;color:var(--blue-dark);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:var(--t-body);cursor:pointer;box-shadow:0 3px 14px rgba(15,23,42,.16);transition:all .18s}
 .a11y button:hover{border-color:var(--blue);color:var(--blue);transform:scale(1.06)}

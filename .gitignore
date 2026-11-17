@@ -23,3 +23,6 @@ desktop.ini
 *.rar
 *.bak
 *BACKUP*/
+
+# Salida generada por 11ty en la prueba de blog-test
+blog-test/_site/
