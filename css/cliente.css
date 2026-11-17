@@ -561,3 +561,37 @@
       .perfil-fields { grid-template-columns: 1fr 1fr; }
       .search-row { flex-direction: column; }
     }
+
+/* ==========================================================
+   Severidad y reintento — 17/11/2026
+   El color de severidad vivia en el emoji (🔴🟠🟡🟢), que ningun
+   CSS controla y que el lector de pantalla lee en voz alta.
+   Ahora es un icono con su clase.
+   ========================================================== */
+.sev-dot { font-size: .6em; vertical-align: middle; margin-right: .35em; }
+.sev-dot--critica { color: var(--error); }
+.sev-dot--alta    { color: var(--amber); }
+.sev-dot--media   { color: #ca8a04; }
+.sev-dot--baja    { color: var(--ok); }
+
+/* El estado de error tiene que decir que hacer, no solo que fallo */
+.error-retry {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 36px;
+  padding: var(--s-2) var(--s-4);
+  background: transparent;
+  color: inherit;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: var(--t-small);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.error-retry:hover { background: rgba(220, 38, 38, .08); }
+.error-retry:active { transform: translateY(1px); }
+.error-retry:disabled { opacity: .5; cursor: not-allowed; }

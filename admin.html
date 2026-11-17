@@ -162,7 +162,7 @@
         <!-- Citas table -->
         <div class="table-wrap" id="citasTableWrap">
           <div class="table-filters">
-            <input type="text" class="filter-input search" placeholder="🔍 Buscar cliente o servicio..." oninput="filterCitas(this.value)" id="citasSearch">
+            <input type="text" class="filter-input search" placeholder="Buscar cliente o servicio..." oninput="filterCitas(this.value)" id="citasSearch">
             <select class="filter-input" onchange="filterCitas()" id="citasEstadoFilter">
               <option value="">Todos los estados</option>
               <option value="pendiente">Pendiente</option>
@@ -191,7 +191,7 @@
 
         <div class="table-wrap">
           <div class="table-filters">
-            <input type="text" class="filter-input search" placeholder="🔍 Buscar por cliente, equipo, N° de ticket..." oninput="filterDiags()" id="diagsSearch">
+            <input type="text" class="filter-input search" placeholder="Buscar por cliente, equipo, N° de ticket..." oninput="filterDiags()" id="diagsSearch">
             <select class="filter-input" onchange="filterDiags()" id="diagEstadoFilter">
               <option value="">Todos los estados</option>
               <option value="nuevo">Nuevo</option>
@@ -232,7 +232,7 @@
           <div class="sec-title">Gestión de Clientes</div>
         </div>
         <div style="display:flex;gap:10px;margin-bottom:20px">
-          <input type="text" class="filter-input search" placeholder="🔍 Filtrar por email o nombre..." id="clienteSearch" style="flex:1" oninput="pintarClientes()">
+          <input type="text" class="filter-input search" placeholder="Filtrar por email o nombre..." id="clienteSearch" style="flex:1" oninput="pintarClientes()">
           <button class="btn btn-secondary" onclick="loadClientes()"><i class="fas fa-rotate"></i> Actualizar</button>
         </div>
         <div class="card" style="margin-bottom:18px">
@@ -294,7 +294,7 @@
 
         <div class="table-wrap" id="llamadosTableWrap">
           <div class="table-filters">
-            <input type="text" class="filter-input search" placeholder="🔍 Buscar..." oninput="filterLlamados(this.value)">
+            <input type="text" class="filter-input search" placeholder="Buscar..." oninput="filterLlamados(this.value)">
             <select class="filter-input" onchange="filterLlamados()">
               <option value="">Todos los tipos</option>
               <option value="llamado">Llamado</option>
@@ -512,7 +512,7 @@
         <div class="card" style="margin-top:20px">
           <div class="sec-title" style="margin-bottom:12px">Historial</div>
           <div style="display:flex;gap:10px;margin-bottom:14px">
-            <input type="text" class="filter-input search" id="docHistSearch" placeholder="🔍 Buscar por N° o cliente..." style="flex:1" oninput="pintarHistorialDocs()">
+            <input type="text" class="filter-input search" id="docHistSearch" placeholder="Buscar por N° o cliente..." style="flex:1" oninput="pintarHistorialDocs()">
           </div>
           <div id="docHistorial"><div class="loading-spinner"><i class="fas fa-spinner"></i> Sin documentos guardados todavía.</div></div>
         </div>

@@ -194,9 +194,12 @@
     </div>
 
     <!-- Error banner -->
-    <div class="error-banner" id="errorBanner">
-      <i class="fas fa-exclamation-circle"></i>
+    <div class="error-banner" id="errorBanner" role="alert" aria-live="assertive">
+      <i class="fas fa-exclamation-circle" aria-hidden="true"></i>
       <span id="errorMsg">No se pudieron cargar los diagnósticos.</span>
+      <button type="button" class="error-retry" id="errorRetry">
+        <i class="fas fa-rotate-right" aria-hidden="true"></i> Reintentar
+      </button>
     </div>
 
     <!-- Título sección -->
@@ -397,7 +400,12 @@
   function renderDiagCard(d) {
     var sev    = (d.severidad || 'media').toLowerCase();
     var estado = (d.estado    || 'nuevo').toLowerCase();
-    var sevL   = { critica:'🔴 Crítico', alta:'🟠 Elevado', media:'🟡 A evaluar', baja:'🟢 Estable' };
+    var sevL   = {
+      critica:'<i class="fas fa-circle sev-dot sev-dot--critica" aria-hidden="true"></i> Crítico',
+      alta:   '<i class="fas fa-circle sev-dot sev-dot--alta" aria-hidden="true"></i> Elevado',
+      media:  '<i class="fas fa-circle sev-dot sev-dot--media" aria-hidden="true"></i> A evaluar',
+      baja:   '<i class="fas fa-circle sev-dot sev-dot--baja" aria-hidden="true"></i> Estable'
+    };
     var estL   = { nuevo:'Nuevo', 'en proceso':'En proceso', resuelto:'Resuelto', cerrado:'Cerrado' };
     var estBadge = (estado === 'resuelto' || estado === 'cerrado') ? 'badge-' + estado : (estado === 'en proceso' ? 'badge-proceso' : 'badge-nuevo');
     var leido = d.leido_por && String(d.leido_por).trim() !== '';
@@ -454,6 +462,19 @@
     document.getElementById('errorMsg').textContent = msg;
     document.getElementById('errorBanner').classList.add('visible');
     document.getElementById('loadingState').style.display = 'none';
+    var btn = document.getElementById('errorRetry');
+    if (btn && !btn.dataset.listo) {
+      btn.dataset.listo = '1';
+      btn.addEventListener('click', function () {
+        if (!usuarioActual || !usuarioActual.email) return;
+        btn.disabled = true;
+        btn.setAttribute('aria-disabled', 'true');
+        cargarDiagnosticos(usuarioActual.email).finally(function () {
+          btn.disabled = false;
+          btn.removeAttribute('aria-disabled');
+        });
+      });
+    }
   }
 
   function formatFecha(s) {

@@ -162,6 +162,15 @@ fuerte de página generada.
 - Emoji permitido **sólo** como carácter de texto dentro de una frase, nunca
   como icono de una tarjeta, chip o lista de features.
 
+**Excepción decidida el 17/11: el chatbot.** `chatbot.js` y el asistente
+embebido en `cliente.html` suman unos 1.300 emoji en las etiquetas de los
+botones de respuesta rápida y en el texto de los mensajes
+(`{ text: '🔍 Sí, iniciar diagnóstico' }`). En una interfaz de chat el
+emoji es idioma del medio, no iconografía: se quedan. Lo que sí se
+convirtió es lo que era UI de verdad — las etiquetas de severidad del
+portal, que además llevaban el color dentro del emoji, donde ningún CSS
+llega. Si alguna vez se rehace el chatbot, revisar esta excepción.
+
 ---
 
 ## 7. Movimiento
@@ -224,9 +233,14 @@ Cada control los lleva todos. Estado actual: 61 `:hover`, 2 `:active`,
 - Nunca `alert()` ni mensaje sólo por color
 
 ### Página
-Toda vista que carga datos (panel cliente, blog filtrado, herramientas)
-necesita tres pantallas diseñadas: **cargando**, **vacío** (con la acción que
-saca del vacío) y **error** (con qué hacer). No un div en blanco.
+Toda vista que carga datos necesita tres pantallas diseñadas:
+**cargando**, **vacío** (con la acción que saca del vacío) y **error**
+(con qué hacer). No un div en blanco.
+
+Estado al 17/11: `cliente.html` ya tenía las tres; lo que le faltaba era
+la acción en el error, que ahora es un botón de reintento real.
+`herramientas/` no pide datos a ningún servidor — son calculadoras que
+corren en el navegador — así que no necesita los tres estados.
 
 ### Foco
 ```css
