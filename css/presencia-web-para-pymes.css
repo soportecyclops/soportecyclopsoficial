@@ -164,7 +164,7 @@
     .diag-breakdown{text-align:left;max-width:460px;margin:0 auto 24px}
 
     /* ===== CTA STRIP ===== */
-    .cta-strip{background:linear-gradient(135deg,var(--blue-dark),var(--blue));border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 60px}
+    .cta-strip{background:var(--blue-dark);border-radius:16px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:0 0 60px}
     .cta-strip h3{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h3);font-weight:800;color:white;margin-bottom:6px}
     .cta-strip p{font-size:var(--t-small);color:rgba(255,255,255,0.8);max-width:500px}
     .cta-strip-btn{display:inline-flex;align-items:center;gap:9px;background:white;color:var(--blue-dark);padding:13px 26px;border-radius:50px;font-weight:700;font-size:var(--t-small);flex-shrink:0;white-space:nowrap;transition:var(--transition)}

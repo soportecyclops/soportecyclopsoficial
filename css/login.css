@@ -8,7 +8,7 @@
     
     body {
       font-family: 'Open Sans', sans-serif;
-      background: linear-gradient(135deg, var(--slate-950) 0%, var(--blue-dark) 100%);
+      background: var(--blue-dark);
       min-height: 100vh;
       display: flex;
       flex-direction: column;

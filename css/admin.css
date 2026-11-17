@@ -399,7 +399,7 @@
     .doc-totales-line.total { font-size: var(--t-body); font-weight: 700; color: var(--gray-900); border-top: 1px solid var(--gray-200); padding-top: 6px; margin-top: 6px; }
     .doc-check { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); color: var(--gray-600); float: left; margin-top: 4px; }
     .doc-print-area { background: white; border: 1px solid var(--gray-200); border-radius: 8px; padding: 28px; min-height: 400px; font-size: var(--t-small); color: #1e293b; }
-    .doc-print-header { display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg,#0f2444,#1a3a5c); border-radius: 10px 10px 0 0; padding: 20px 24px; margin: -28px -28px 20px; }
+    .doc-print-header { display: flex; justify-content: space-between; align-items: center; background: var(--blue-dark); border-radius: 10px 10px 0 0; padding: 20px 24px; margin: -28px -28px 20px; }
     .doc-print-logo { display: flex; align-items: center; gap: 12px; }
     .doc-print-logo .badge-circle { width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
     .doc-print-logo .badge-circle img { width: 30px; height: 30px; object-fit: contain; }

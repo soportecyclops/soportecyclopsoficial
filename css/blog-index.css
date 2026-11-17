@@ -33,7 +33,7 @@
     .side-rel .sr-t{display:block;font-size:var(--t-small);font-weight:700;color:#1a3a5c;line-height:1.4}
     .side-rel:hover .sr-t{color:var(--blue)}
     
-    .side-cta{background:linear-gradient(140deg,#1a3a5c,var(--blue));border-radius:14px;padding:26px 20px;color:#fff;text-align:center}
+    .side-cta{background:var(--blue-dark);border-radius:14px;padding:26px 20px;color:#fff;text-align:center}
     .side-cta .sc-ico{font-size:var(--t-h2);display:block;margin-bottom:12px}
     .side-cta h4{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h3);font-weight:800;margin-bottom:8px;color:#fff}
     .side-cta p{font-size:var(--t-small);line-height:1.6;color:rgba(255,255,255,0.92);margin-bottom:20px}

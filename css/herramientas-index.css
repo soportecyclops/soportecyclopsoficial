@@ -28,7 +28,7 @@
 .porque-i i{color:var(--blue);font-size:1.2rem;margin-bottom:8px;display:block}
 .porque-i b{display:block;font-size:var(--t-small);color:var(--dark);margin-bottom:4px}
 .porque-i span{font-size:var(--t-small);color:var(--g700);line-height:1.6}
-.cta-f{background:linear-gradient(135deg,#1a3a5c,var(--blue));border-radius:18px;padding:38px;text-align:center;color:#fff}
+.cta-f{background:var(--blue-dark);border-radius:18px;padding:38px;text-align:center;color:#fff}
 .cta-f h2{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h2);margin-bottom:10px}
 .cta-f p{font-size:var(--t-small);color:rgba(255,255,255,.9);max-width:540px;margin:0 auto 22px;line-height:1.65}
 .cta-f a{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--dark);padding:13px 28px;border-radius:50px;font-weight:800;font-size:var(--t-small);text-decoration:none;transition:transform .18s}
