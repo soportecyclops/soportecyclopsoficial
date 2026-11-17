@@ -1,0 +1,27 @@
+/* ==========================================================
+   Soporte Cyclops — hoja de chequeo-seguridad
+   Extraida del <style> embebido el 17/11/2026, sin cambiar
+   una sola regla. Cargar despues de css/tokens.css.
+   Ver DESIGN.md: no reintroducir <style> en los HTML.
+   ========================================================== */
+.q{border-bottom:1px solid var(--g100);padding:16px 0}
+.q:last-child{border:none;padding-bottom:0}
+.q .txt{font-size:var(--t-small);font-weight:700;color:var(--dark);margin-bottom:4px;display:flex;gap:10px}
+.q .num{width:23px;height:23px;background:var(--g100);color:var(--g500);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:var(--t-label);font-weight:800;flex-shrink:0}
+.q.done .num{background:var(--blue);color:#fff}
+.q .ex{font-size:var(--t-label);color:var(--g500);margin:0 0 10px 33px;line-height:1.5}
+.ans{display:flex;gap:8px;margin-left:33px;flex-wrap:wrap}
+.ans button{border:1.5px solid var(--g200);background:#fff;border-radius:9px;padding:7px 15px;font-family:inherit;font-size:var(--t-small);font-weight:700;color:var(--g500);cursor:pointer;transition:all .16s}
+.ans button:hover{border-color:var(--blue);color:var(--blue)}
+.ans button.on[data-v="2"]{background:var(--green);border-color:var(--green);color:#fff}
+.ans button.on[data-v="1"]{background:var(--amber);border-color:var(--amber);color:#fff}
+.ans button.on[data-v="0"]{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h1);font-weight:800;line-height:1}
+.score small{font-size:var(--t-lead);opacity:.7}
+.bar{height:9px;background:rgba(255,255,255,.22);border-radius:6px;overflow:hidden;margin:14px 0 10px}
+.bar i{display:block;height:100%;border-radius:6px;background:#fff;width:0;transition:width .45s}
+.prio{display:flex;gap:11px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--g200);font-size:var(--t-small);line-height:1.55}
+.prio:last-child{border:none}
+.prio .n{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-size:var(--t-label);font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.prio b{display:block;color:var(--dark)}
+.prio span{color:var(--g700)}

@@ -1,0 +1,89 @@
+/* ==========================================================
+   Soporte Cyclops — hoja de login
+   Extraida del <style> embebido el 17/11/2026, sin cambiar
+   una sola regla. Cargar despues de css/tokens.css.
+   Ver DESIGN.md: no reintroducir <style> en los HTML.
+   ========================================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, var(--slate-950) 0%, var(--blue-dark) 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: var(--gray-900);
+    }
+
+    /* NAVBAR UNIFICADO */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: white; border-bottom: 1px solid var(--gray-200); transition: box-shadow 0.3s; }
+    .navbar.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 64px; max-width: 1140px; margin: 0 auto; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo img { border-radius: 6px; }
+    .logo-text { font-family: 'Space Grotesk', sans-serif; font-size: var(--t-lead); font-weight: 700; color: var(--blue-dark); }
+    .logo-text strong { color: var(--blue); }
+    .nav-menu { display: flex; list-style: none; gap: 4px; align-items: center; }
+    .nav-link { padding: 8px 14px; border-radius: 8px; font-size: var(--t-small); font-weight: 600; color: var(--gray-600); transition: var(--transition); white-space: nowrap; text-decoration: none; }
+    .nav-link:hover, .nav-link.active { color: var(--blue); background: rgba(37,99,235,0.06); }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; font-size: var(--t-h3); color: var(--blue-dark); padding: 6px; }
+    @media(max-width:900px){
+      .nav-menu { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: white; padding: 16px; box-shadow: var(--shadow-md); gap: 2px; border-top: 1px solid var(--gray-200); }
+      .nav-menu.open { display: flex; }
+      .nav-menu li { width: 100%; }
+      .nav-link { display: block; padding: 12px 16px; }
+      .menu-toggle { display: block; }
+    }
+
+    /* CONTENEDOR Y TARJETA LOGIN */
+    .login-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .login-card {
+      background: white; border-radius: 20px; padding: 48px;
+      width: 100%; max-width: 460px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+    }
+    .logo-wrap { margin-bottom: 32px; text-align: center; }
+    .logo-wrap img { height: 48px; margin-bottom: 12px; border-radius: 6px; }
+    .logo-wrap h1 { font-family: 'Space Grotesk', sans-serif; font-size: var(--t-h1); font-weight: 800; color: var(--blue-dark); letter-spacing: -0.02em; }
+    .logo-wrap p  { font-size: var(--t-small); color: var(--gray-500); margin-top: 4px; }
+
+    .tabs { display: flex; gap: 8px; background: var(--gray-100); border-radius: 12px; padding: 6px; margin-bottom: 28px; }
+    .tabbtn { flex: 1; border: none; background: transparent; padding: 12px; border-radius: 8px; font-family: inherit; font-weight: 700; font-size: var(--t-small); color: var(--gray-500); cursor: pointer; transition: var(--transition); }
+    .tabbtn.on { background: white; color: var(--blue); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+    .panel { display: none; animation: fadeIn 0.3s ease; }
+    .panel.on { display: block; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:none; } }
+
+    .google-btn-wrap { display: flex; justify-content: center; margin-bottom: 20px; }
+
+    .msg-error { background: #fef2f2; border: 1px solid #fecaca; color: var(--red); border-radius: 10px; padding: 12px 16px; font-size: var(--t-small); margin-top: 16px; display: none; }
+    .msg-ok { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; border-radius: 10px; padding: 12px 16px; font-size: var(--t-small); margin-top: 16px; display: none; line-height: 1.5; }
+    .msg-loading { color: var(--gray-500); font-size: var(--t-small); margin-top: 16px; display: none; text-align: center; }
+
+    .f { margin-bottom: 16px; }
+    .f label { display: block; font-size: var(--t-small); font-weight: 700; color: var(--blue-dark); margin-bottom: 6px; }
+    .f label .req { color: var(--red); }
+    .f label .opt { color: var(--gray-500); font-weight: 400; text-transform: lowercase; }
+    .f input, .f textarea { width: 100%; border: 2px solid var(--gray-200); border-radius: 10px; padding: 12px 14px; font-family: inherit; font-size: var(--t-small); transition: var(--transition); outline: none; }
+    .f input:focus, .f textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } .login-card { padding: 36px 24px; } }
+
+    .btn-registrar { width: 100%; background: var(--blue); color: white; border: none; padding: 14px; border-radius: 50px; font-family: inherit; font-weight: 700; font-size: var(--t-small); cursor: pointer; transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(37,99,235,0.25); }
+    .btn-registrar:hover { background: var(--blue-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
+    .btn-registrar:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .opcionales-toggle { font-size: var(--t-small); color: var(--blue); cursor: pointer; margin-bottom: 18px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600; padding: 8px 0; }
+    .opcionales { display: none; }
+    .opcionales.on { display: block; animation: fadeIn 0.3s ease; }
+
+    .footer-link { margin-top: 32px; font-size: var(--t-small); color: var(--gray-500); text-align: center; }
+    .footer-link a { color: var(--blue); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .footer-link a:hover { text-decoration: underline; }

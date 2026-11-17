@@ -25,59 +25,7 @@
      "worksFor":{"@type":"ProfessionalService","name":"Soporte Cyclops","url":"https://www.soportecyclops.com.ar/","telephone":"+5491166804450","areaServed":["CABA","GBA"]},
      "knowsAbout":["Redes","Active Directory","CCTV","Soporte técnico IT","Ciberseguridad","Domótica"]}}
   </script>
-  <style>
-    .ab-hero{padding:64px 0 56px}
-    .ab-hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-    .ab-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:var(--radius-pill);font-weight:700;font-size:var(--t-small);text-decoration:none;transition:var(--transition)}
-    .ab-btn-white{background:#fff;color:var(--blue-dark)}
-    .ab-btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.18)}
-    .ab-btn-ghost{border:2px solid rgba(255,255,255,.4);color:#fff}
-    .ab-btn-ghost:hover{background:rgba(255,255,255,.1)}
-    .ab-section{padding:64px 0}
-    .ab-alt{background:var(--gray-50)}
-    .ab-section p{color:var(--gray-600);line-height:1.75}
-    .ab-head{text-align:center;max-width:620px;margin:0 auto 36px}
-    .ab-intro{display:grid;grid-template-columns:minmax(260px,400px) 1fr;gap:56px;align-items:center}
-    .ab-intro p{font-size:var(--t-body);margin-bottom:14px}
-    .ab-photo{margin:0;position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md);aspect-ratio:4/5}
-    .ab-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 20%;display:block}
-    .ab-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 20px 16px;background:linear-gradient(transparent,rgba(15,23,42,.85));color:#fff;display:flex;flex-direction:column}
-    .ab-photo figcaption strong{font-family:var(--font-head);font-size:var(--t-lead)}
-    .ab-photo figcaption span{font-size:var(--t-small);opacity:.8}
-    .ab-stats{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px;padding:0}
-    .ab-stats li{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:14px 12px;text-align:center}
-    .ab-stats strong{display:block;font-family:var(--font-head);font-size:var(--t-h3);color:var(--blue);line-height:1.2}
-    .ab-stats strong i{font-size:.8em;color:var(--seg-pyme)}
-    .ab-stats li:last-child strong{font-size:var(--t-body);padding:4px 0}
-    .ab-stats span{font-size:var(--t-label);color:var(--gray-600)}
-    .ab-cv{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center;background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:36px}
-    .ab-cv .timeline li:last-child{margin-bottom:0}
-    .ab-logos{display:flex;flex-wrap:wrap;gap:24px 32px;align-items:center;justify-content:center}
-    .ab-logos img{max-width:140px;height:56px;object-fit:contain;filter:grayscale(1);opacity:.75;transition:var(--transition)}
-    .ab-logos img:hover{filter:none;opacity:1}
-    .ab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .ab-card{background:#fff;border:1px solid var(--gray-200);border-radius:var(--radius);padding:26px;transition:var(--transition);margin:0}
-    .ab-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-    .ab-card>i{width:48px;height:48px;border-radius:14px;background:var(--grad-icon);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:14px}
-    .ab-card h3{font-family:var(--font-head);font-size:var(--t-h3);color:var(--blue-dark);margin-bottom:6px}
-    .ab-card p{font-size:var(--t-small);margin:0}
-    .ab-seg{grid-template-columns:repeat(4,1fr)}
-    .ab-seg .ab-card{text-decoration:none;display:flex;flex-direction:column;border-top:3px solid var(--c)}
-    .ab-seg .ab-card>i{color:var(--c);background:color-mix(in srgb,var(--c) 12%,transparent)}
-    .ab-seg .ab-card span{margin-top:auto;padding-top:14px;font-size:var(--t-small);font-weight:700;color:var(--blue)}
-    .seg-hogar{--c:var(--seg-hogar)}.seg-pyme{--c:var(--seg-pyme)}.seg-estudio{--c:var(--seg-estudio)}.seg-obra{--c:var(--slate-700)}
-    .ab-stars{color:var(--seg-pyme);letter-spacing:2px;margin-bottom:10px}
-    .ab-reviews p{font-style:italic}
-    .ab-reviews cite{display:block;margin-top:12px;font-style:normal;font-weight:700;color:var(--blue-dark);font-size:var(--t-small)}
-    .ab-more{text-align:center;margin-top:24px}
-    .ab-more a{font-weight:700;color:var(--blue);text-decoration:none}
-    .ab-cta-wrap{padding-top:0}
-    .ab-cta{background:var(--grad-main);border-radius:var(--radius-lg);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;color:#fff}
-    .ab-cta h2{font-family:var(--font-head);font-size:var(--t-h2);margin-bottom:6px}
-    .ab-cta p{color:rgba(255,255,255,.85);margin:0}
-    @media(max-width:900px){.ab-intro,.ab-cv{grid-template-columns:1fr}.ab-photo{max-width:420px;margin:0 auto}.ab-grid,.ab-seg{grid-template-columns:repeat(2,1fr)}.ab-stats{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.ab-grid,.ab-seg{grid-template-columns:1fr}.ab-cta{flex-direction:column;text-align:center;padding:28px 22px}.ab-cv{padding:24px}}
-  </style>
+  <link rel="stylesheet" href="/css/nosotros.css">
   <link rel="stylesheet" href="/css/nav.css">
 </head>
 <body>

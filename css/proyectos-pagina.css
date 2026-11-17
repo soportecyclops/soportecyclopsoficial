@@ -1,0 +1,50 @@
+/* ==========================================================
+   Soporte Cyclops — hoja de proyectos-pagina
+   Extraida del <style> embebido el 17/11/2026, sin cambiar
+   una sola regla. Cargar despues de css/tokens.css.
+   Ver DESIGN.md: no reintroducir <style> en los HTML.
+   ========================================================== */
+*{margin:0;padding:0;box-sizing:border-box}
+    
+    body{font-family:'Open Sans',sans-serif;color:var(--slate-800);background:#fff;line-height:1.7}
+    a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    .container{max-width:1140px;margin:0 auto;padding:0 24px}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200);transition:box-shadow 0.3s}
+    .navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo img{border-radius:6px}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:var(--t-lead);font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:var(--t-small);font-weight:600;color:var(--gray-600);transition:var(--transition);white-space:nowrap}
+    .nav-link:hover,.nav-link.active{color:var(--blue);background:rgba(37,99,235,0.06);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:var(--t-small);font-weight:700;transition:var(--transition)}
+    .nav-cta:hover{background:var(--blue-hover);text-decoration:none}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;font-size:var(--t-h3);color:var(--blue-dark);padding:6px}
+    @media(max-width:900px){
+      .nav-menu{display:none;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:white;padding:16px;box-shadow:var(--shadow-md);gap:2px;border-top:1px solid var(--gray-200)}
+      .nav-menu.open{display:flex}
+      .nav-menu li{width:100%}
+      .nav-link{display:block}
+      .menu-toggle{display:block}
+    }
+    .page-hero{background:linear-gradient(135deg,var(--blue-dark) 0%,var(--blue) 100%);color:white;padding:56px 0 44px}
+    .breadcrumb{font-size:var(--t-label);opacity:0.6;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+    .breadcrumb a{color:rgba(255,255,255,0.7);text-decoration:none}.breadcrumb a:hover{color:white}
+    .page-hero h1{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h1);font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:12px}
+    .page-hero p{font-size:var(--t-body);opacity:0.85;max-width:600px;line-height:1.7}
+
+    .proyectos{padding:70px 0}
+    .proyectos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+    .proyecto-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:32px 28px;transition:var(--transition);position:relative;overflow:hidden}
+    .proyecto-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+    .proyecto-card:hover{border-color:rgba(37,99,235,0.2);box-shadow:var(--shadow-md);transform:translateY(-6px);background:var(--white)}
+    .proyecto-card:hover::before{transform:scaleX(1)}
+    .proyecto-card h3{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h3);font-weight:700;color:var(--blue-dark);margin-bottom:6px}
+    .proyecto-estado{font-size:var(--t-label);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;display:inline-block;padding:3px 10px;border-radius:20px}
+    .proyecto-estado--usable{color:#15803d;background:rgba(21,128,61,0.1)}
+    .proyecto-estado--progreso{color:#c2410c;background:rgba(194,65,12,0.1)}
+    .proyecto-card p{font-size:var(--t-small);color:var(--gray-600);line-height:1.65;margin-bottom:10px}
+    .proyecto-nota{font-size:var(--t-small);color:var(--gray-400)}
+    .proyecto-card a{font-weight:700;font-size:var(--t-small)}

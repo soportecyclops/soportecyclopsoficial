@@ -1,0 +1,24 @@
+/* ==========================================================
+   Soporte Cyclops — hoja de consorcio
+   Extraida del <style> embebido el 17/11/2026, sin cambiar
+   una sola regla. Cargar despues de css/tokens.css.
+   Ver DESIGN.md: no reintroducir <style> en los HTML.
+   ========================================================== */
+/* Estilos específicos para la landing de consorcios */
+    .page-hero { background: linear-gradient(135deg, #0f2444 0%, #1a4a8a 100%); color: white; padding: 64px 0 56px; }
+    .page-hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: var(--t-h1); font-weight: 800; line-height: 1.15; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .page-hero p { font-size: var(--t-body); opacity: 0.9; max-width: 700px; line-height: 1.6; }
+    .badge-beta { display: inline-block; background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3); padding: 4px 10px; border-radius: 8px; font-size: var(--t-label); font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16px; }
+    
+    .conso-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; margin-top: 48px; }
+    .conso-card { background: white; border: 1px solid var(--gray-200); border-radius: 16px; padding: 32px; transition: all 0.25s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+    .conso-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(37, 99, 235, 0.08); border-color: rgba(37, 99, 235, 0.3); }
+    .conso-icon { width: 56px; height: 56px; background: var(--gray-50); color: var(--blue); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; border: 1px solid var(--gray-200); }
+    .conso-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: var(--t-h3); color: var(--blue-dark); margin-bottom: 12px; font-weight: 700; }
+    .conso-card p { font-size: var(--t-small); color: var(--gray-600); line-height: 1.65; margin: 0; }
+    
+    .conso-login-box { background: var(--gray-50); border: 2px dashed var(--gray-200); border-radius: 16px; padding: 48px 24px; text-align: center; margin: 64px auto; max-width: 700px; }
+    .conso-login-box h2 { font-family: 'Space Grotesk', sans-serif; font-size: var(--t-h2); color: var(--blue-dark); margin-bottom: 12px; }
+    .conso-login-box p { font-size: var(--t-small); color: var(--gray-600); margin-bottom: 24px; }
+    .btn-login { display: inline-flex; align-items: center; gap: 10px; background: var(--blue); color: white; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: var(--t-body); text-decoration: none; transition: background 0.2s; }
+    .btn-login:hover { background: var(--blue-hover); color: white; text-decoration: none; }

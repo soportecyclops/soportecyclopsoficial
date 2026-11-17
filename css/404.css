@@ -1,0 +1,24 @@
+/* ==========================================================
+   Soporte Cyclops — hoja de 404
+   Extraida del <style> embebido el 17/11/2026, sin cambiar
+   una sola regla. Cargar despues de css/tokens.css.
+   Ver DESIGN.md: no reintroducir <style> en los HTML.
+   ========================================================== */
+body{font-family:'Open Sans',sans-serif;color:var(--slate-800);background:var(--gray-50);line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+    .navbar{position:sticky;top:0;z-index:1000;background:white;border-bottom:1px solid var(--gray-200)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:64px;max-width:1140px;margin:0 auto}
+    .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-text{font-family:'Space Grotesk',sans-serif;font-size:var(--t-lead);font-weight:700;color:var(--blue-dark)}
+    .logo-text strong{color:var(--blue)}
+    .nav-menu{display:flex;list-style:none;gap:4px;align-items:center}
+    .nav-link{padding:8px 14px;border-radius:8px;font-size:var(--t-small);font-weight:600;color:var(--gray-600);text-decoration:none}
+    .nav-cta{background:var(--blue);color:white!important;padding:9px 18px;border-radius:50px;font-size:var(--t-small);font-weight:700;text-decoration:none}
+    .err-hero{flex:1;display:flex;align-items:center;justify-content:center;padding:60px 24px;text-align:center}
+    .err-box{max-width:580px;background:white;border:1px solid var(--gray-200);border-radius:16px;padding:48px 32px;box-shadow:var(--shadow-md)}
+    .err-code{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h1);font-weight:800;color:var(--blue);line-height:1;margin-bottom:8px}
+    .err-box h1{font-family:'Space Grotesk',sans-serif;font-size:var(--t-h1);font-weight:800;color:var(--blue-dark);margin-bottom:12px}
+    .err-box p{font-size:var(--t-small);color:var(--gray-600);margin-bottom:28px}
+    .err-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn-home{background:var(--blue-dark);color:white;padding:12px 24px;border-radius:50px;font-weight:700;font-size:var(--t-small);text-decoration:none}
+    .btn-wsp{background:var(--whatsapp);color:white;padding:12px 24px;border-radius:50px;font-weight:700;font-size:var(--t-small);text-decoration:none}
+    footer{background:var(--blue-dark);color:rgba(255,255,255,0.6);padding:24px 0;text-align:center;font-size:var(--t-label);margin-top:auto}
