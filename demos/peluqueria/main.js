@@ -1,62 +1,35 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Menu (Accesible)
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+/* Atelier Recoleta — sin JS la página se ve y se usa entera. */
+(function () {
+  'use strict';
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var boton = document.getElementById('abrir');
+  var sendas = document.getElementById('sendas');
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-        });
-
-        // Cerrar menú al hacer clic (Mobile UX)
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-
-    // 2. Header Shrink on Scroll (Elegancia Editorial)
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }, { passive: true });
-
-    // 3. Intersection Observer (Human Touch - Animaciones fluidas)
-    const revealElements = document.querySelectorAll('.reveal');
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const revealObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                obs.unobserve(entry.target); // Anima solo la primera vez
-            }
-        });
-    }, observerOptions);
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // 4. Accordion Nativo - Cierre Exclusivo
-    // Sustituye el viejo bloque[cite: 5] por lógica HTML5 details optimizada
-    const details = document.querySelectorAll('details[name="faq-group"]');
-    details.forEach(targetDetail => {
-        targetDetail.addEventListener('click', () => {
-            details.forEach(detail => {
-                if (detail !== targetDetail) {
-                    detail.removeAttribute('open');
-                }
-            });
-        });
+  if (boton && sendas) {
+    boton.addEventListener('click', function () {
+      var abierta = sendas.classList.toggle('abierta');
+      boton.setAttribute('aria-expanded', String(abierta));
+      boton.setAttribute('aria-label', abierta ? 'Cerrar menú' : 'Abrir menú');
     });
-});
+    sendas.addEventListener('click', function (e) { if (e.target.tagName === 'A') cerrar(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && sendas.classList.contains('abierta')) { cerrar(); boton.focus(); }
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) cerrar(); });
+  }
+  function cerrar() {
+    if (!sendas) return;
+    sendas.classList.remove('abierta');
+    if (boton) { boton.setAttribute('aria-expanded','false'); boton.setAttribute('aria-label','Abrir menú'); }
+  }
+
+  var piezas = document.querySelectorAll('.sale');
+  if (quieto || !('IntersectionObserver' in window)) {
+    for (var i=0;i<piezas.length;i++) piezas[i].classList.add('visible');
+    return;
+  }
+  var obs = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  for (var j=0;j<piezas.length;j++) obs.observe(piezas[j]);
+})();

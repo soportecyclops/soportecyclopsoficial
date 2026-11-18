@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="CP">
-  <rect width="64" height="64" rx="6" fill="#0f172a"/>
-  <text x="32" y="32" fill="#059669" font-family="system-ui,-apple-system,Segoe UI,sans-serif"
-        font-size="30" font-weight="700" text-anchor="middle" dominant-baseline="central"
-        letter-spacing="-1">CP</text>
+  <rect width="64" height="64" rx="10" fill="#1D3F8F"/>
+  <circle cx="32" cy="38" r="11" fill="#FAF6EF"/>
+  <circle cx="19" cy="24" r="5" fill="#FAF6EF"/>
+  <circle cx="32" cy="19" r="5" fill="#FAF6EF"/>
+  <circle cx="45" cy="24" r="5" fill="#FAF6EF"/>
 </svg>

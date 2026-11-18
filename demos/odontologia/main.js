@@ -1,105 +1,35 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Menu 
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+/* Instituto Rossi — sin JS la página se ve y se usa entera. */
+(function () {
+  'use strict';
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var boton = document.getElementById('desplegar');
+  var vias = document.getElementById('vias');
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-        });
-
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-
-    // 2. Header Compacto
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }, { passive: true });
-
-    // 3. Observer para animaciones fluidas
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                obs.unobserve(entry.target); 
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // 4. Acordeón FAQ Exclusivo nativo
-    const details = document.querySelectorAll('details[name="faq"]');
-    details.forEach(targetDetail => {
-        targetDetail.addEventListener('click', () => {
-            details.forEach(detail => {
-                if (detail !== targetDetail) {
-                    detail.removeAttribute('open');
-                }
-            });
-        });
+  if (boton && vias) {
+    boton.addEventListener('click', function () {
+      var abierta = vias.classList.toggle('abierta');
+      boton.setAttribute('aria-expanded', String(abierta));
+      boton.setAttribute('aria-label', abierta ? 'Cerrar menú' : 'Abrir menú');
     });
+    vias.addEventListener('click', function (e) { if (e.target.tagName === 'A') cerrar(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && vias.classList.contains('abierta')) { cerrar(); boton.focus(); }
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) cerrar(); });
+  }
+  function cerrar() {
+    if (!vias) return;
+    vias.classList.remove('abierta');
+    if (boton) { boton.setAttribute('aria-expanded','false'); boton.setAttribute('aria-label','Abrir menú'); }
+  }
 
-    // 5. Lógica del Carrusel Automático Accesible
-    const track = document.getElementById('carousel-track');
-    const slides = track ? Array.from(track.children) : [];
-    const indicators = document.querySelectorAll('.carousel-indicator');
-    const carouselContainer = document.querySelector('.carousel-container');
-    
-    let currentIndex = 0;
-    let autoPlayInterval;
-    const intervalTime = 4000;
-
-    const updateCarousel = (index) => {
-        track.style.transform = `translateX(-${index * 100}%)`;
-        indicators.forEach(ind => ind.classList.remove('active'));
-        if(indicators[index]) indicators[index].classList.add('active');
-    };
-
-    const nextSlide = () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel(currentIndex);
-    };
-
-    const startAutoPlay = () => {
-        autoPlayInterval = setInterval(nextSlide, intervalTime);
-    };
-
-    const stopAutoPlay = () => {
-        clearInterval(autoPlayInterval);
-    };
-
-    if (indicators.length > 0 && slides.length > 0) {
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel(currentIndex);
-                stopAutoPlay();
-                startAutoPlay();
-            });
-        });
-
-        if (carouselContainer) {
-            // Accesibilidad: Pausa la animación si el usuario está leyendo
-            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-            carouselContainer.addEventListener('mouseleave', startAutoPlay);
-            carouselContainer.addEventListener('focusin', stopAutoPlay);
-            carouselContainer.addEventListener('focusout', startAutoPlay);
-            
-            startAutoPlay();
-        }
-    }
-});
+  var piezas = document.querySelectorAll('.surge');
+  if (quieto || !('IntersectionObserver' in window)) {
+    for (var i=0;i<piezas.length;i++) piezas[i].classList.add('visible');
+    return;
+  }
+  var obs = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  for (var j=0;j<piezas.length;j++) obs.observe(piezas[j]);
+})();

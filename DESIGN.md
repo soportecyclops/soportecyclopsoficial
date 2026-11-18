@@ -440,5 +440,38 @@ comm -12 <(grep -oE '^\.[a-z][a-z0-9_-]*' demos/A/style.css | sort -u) \
 | WhatsApp | Sin burbuja flotante: CTA en la cabecera. La barra de demostración ya ocupa el borde inferior y dos barras fijas en un teléfono es una de más |
 | Clases compartidas con odontología | 41 antes, **0** ahora |
 
-Pendiente de la misma tanda: barbería, peluquería, odontología y veterinaria
-siguen compartiendo el molde entre ellas.
+### Las diez direcciones (18/11/2026)
+
+Cada demo tiene un **organizador visual** propio: no alcanza con cambiar
+paleta y tipografía, tiene que cambiar qué estructura la página.
+
+| Demo | Organizador | Paleta | Tipografía |
+|---|---|---|---|
+| Maquillaje · Sofía Rinaldi | Editorial de revista: rejilla asimétrica, capitular, cita al margen | papel / tinta / vino | Bodoni Moda + Jost |
+| Barbería · Corte Urbano | Doble panel: foto fija a media pantalla, contenido scrolleando al lado. Pizarra de precios con puntos guía | noche / crudo / rojo señal | Josefin Sans + Roboto Mono |
+| Peluquería · Atelier Recoleta | Muestrario de color: la marca se queda en blanco y negro para que el único color sea el del pelo | blanco y negro + 6 swatches | Syne + Hanken Grotesk |
+| Odontología · Inst. Rossi | Ficha clínica: tabla real con sesiones, duración y anestesia; protocolo numerado | nieve / grafito / turquesa | Red Hat Display + Text |
+| Veterinaria · Centro Pampa | Panel operativo: banda de estado "abierto ahora", cifras, grilla de horarios | ultramar / crema / ámbar | Manrope sola |
+| Jurídico · Marchetti | Secciones apiladas, sobriedad institucional | verde inglés / dorado | Libre Baskerville + Source Sans 3 |
+| Gimnasio · Fragua | Tipografía como gesto, bloques duros | negro / lima | Archivo Black + Barlow |
+| Taller · Peralta | Hoja de especificaciones | petróleo / naranja | Roboto Condensed + IBM Plex Sans |
+| Parrilla · Don Ciro | Carta impresa | marrón / brasa | Zilla Slab + Karla |
+| Inmobiliaria · Riera | Fichas de propiedad | carbón / cobre | Fraunces + Work Sans |
+
+### Matriz de solapamiento — medida, no estimada
+
+Clases CSS compartidas entre cada par, 18/11:
+
+- Las 5 rehechas entre sí y contra el resto: **0 a 3**.
+- Las 5 del 17/11 entre sí: **21 a 25**.
+
+**Las 5 del 17/11 no cumplen la regla de arriba.** Comparten un chasis de 21
+clases: `.wrap .top .nav .brand .burger .hero .btn .btn--line .form .campo
+.pie .skip` y el resto. Es un problema más leve que el de las originales
+—aquello era la misma secuencia de secciones y el mismo layout; esto es
+infraestructura que el visitante no ve nombrada— pero produce el mismo ritmo
+de cabecera, héroe y pie en las cinco, y el mismo formulario.
+
+Queda pendiente decidir si se rehacen. No es urgente: visualmente se
+distinguen bien entre ellas. Pero la regla es la regla y hoy cinco de diez
+no la cumplen.

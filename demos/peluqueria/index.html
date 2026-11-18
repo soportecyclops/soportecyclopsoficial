@@ -1,271 +1,213 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
-  <script>document.documentElement.classList.add('js');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier Recoleta — ejemplo de página web para peluquerías | Soporte Cyclops</title>
-    <meta name="description" content="Ejemplo real de página web para peluquerías, hecha por Soporte Cyclops. Atelier Recoleta es un negocio ficticio: la página muestra cómo quedaría la de tu negocio.">
-    <link rel="canonical" href="https://www.soportecyclops.com.ar/demos/peluqueria/">
-    
-    <!-- OpenGraph SEO -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Atelier Recoleta Hair Studio">
-    <meta property="og:description" content="Colorimetría de autor y recuperación capilar en el corazón de Recoleta.">
-    <meta property="og:url" content="https://www.atelierrecoleta.com.ar/">
-    <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="https://www.soportecyclops.com.ar/demos/peluqueria/og.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Portada de la web de Atelier Recoleta">
+<script>document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atelier Recoleta — ejemplo de página web para peluquerías | Soporte Cyclops</title>
+<meta name="description" content="Ejemplo real de página web para peluquerías y estudios de colorimetría, hecha por Soporte Cyclops. Atelier Recoleta es un negocio ficticio: la página muestra cómo quedaría la de tu negocio.">
+<link rel="canonical" href="https://www.soportecyclops.com.ar/demos/peluqueria/">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#1a1a1a">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="/demos/demobar.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Atelier Recoleta | Hair Studio &amp; Colorimetría">
+<meta property="og:description" content="Rubios, balayage de autor y corrección de color en Recoleta.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.soportecyclops.com.ar/demos/peluqueria/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Portada de la web de Atelier Recoleta">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HairSalon",
-      "name": "Atelier Recoleta Hair Studio",
-      "image": "https://www.soportecyclops.com.ar/demos/peluqueria/og.jpg",
-      "@id": "https://www.atelierrecoleta.com.ar/#salon",
-      "url": "https://www.atelierrecoleta.com.ar",
-      "telephone": "+5491144556677",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Callao 1500",
-        "addressLocality": "Recoleta",
-        "addressRegion": "CABA",
-        "postalCode": "1024",
-        "addressCountry": "AR"
-      },
-      "priceRange": "$$$$",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "142"
-      }
-    }
-    </script>
+<link rel="preload" as="font" type="font/woff2" href="fonts/syne-800.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/hanken-400.woff2" crossorigin>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/demos/demobar.css">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"HairSalon",
+  "name":"Atelier Recoleta Hair Studio",
+  "image":"https://www.soportecyclops.com.ar/demos/peluqueria/og.jpg",
+  "url":"https://www.atelierrecoleta.com.ar","telephone":"+5491144556677",
+  "address":{"@type":"PostalAddress","streetAddress":"Av. Callao 1500","addressLocality":"Recoleta","addressRegion":"CABA","postalCode":"1024","addressCountry":"AR"},
+  "priceRange":"$$$"
+}
+</script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
-    <!-- Top Bar de Exclusividad -->
-    <div class="top-bar">
-        <div class="container top-bar-inner">
-            <span>Atención exclusiva con turno previo. Agenda abierta para el próximo mes.</span>
-            <a href="https://wa.me/5491144556677" class="top-bar-link">WhatsApp: 11 4455-6677</a>
-        </div>
+<a href="#principal" class="atajo">Saltar al contenido principal</a>
+
+<header class="cornisa">
+  <div class="lienzo cornisa__fila">
+    <a href="/" class="firma" aria-label="Inicio — Atelier Recoleta">Atelier Recoleta<span>Hair Studio &amp; Colorimetría</span></a>
+    <button class="abrir" id="abrir" aria-label="Abrir menú" aria-expanded="false" aria-controls="sendas">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <nav class="sendas" id="sendas" aria-label="Secciones">
+      <a href="#muestrario">Muestrario</a>
+      <a href="#tecnicas">Qué hacemos</a>
+      <a href="#filosofia">La experiencia</a>
+      <a href="#donde">Dónde estamos</a>
+      <a href="https://wa.me/5491144556677?text=Hola%2C%20quiero%20reservar%20un%20diagn%C3%B3stico" class="cita-ya">Agendar cita</a>
+    </nav>
+  </div>
+</header>
+
+<main id="principal">
+
+  <section class="apertura">
+    <div class="lienzo">
+      <p class="marca-seccion">Hair Studio &amp; Colorimetría · Recoleta</p>
+      <h1>Tu pelo es tu firma. Elevamos tu color.</h1>
+      <p class="apertura__bajo">Huimos del concepto de peluquería ruidosa. Creamos rubios perfectos, balayages de autor y diseños de color partiendo de un diagnóstico exhaustivo, preservando la salud de tu fibra capilar por sobre todo.</p>
+      <a href="https://wa.me/5491144556677?text=Hola%2C%20quiero%20reservar%20un%20diagn%C3%B3stico" class="accion">Reservar diagnóstico</a>
+      <p class="aviso">Atención con turno previo. Agenda abierta para el próximo mes.</p>
     </div>
+  </section>
 
-    <header class="site-header" id="site-header">
-        <div class="container header-inner">
-            <a href="/" class="logo" aria-label="Inicio Atelier Recoleta">
-                <strong>Atelier</strong>
-                <span>Recoleta</span>
-            </a>
-            <nav class="main-nav">
-                <button class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="primary-navigation">
-                    <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-                </button>
-                <ul id="primary-navigation" class="nav-links">
-                    <li><a href="#expertise">Nuestra Expertise</a></li>
-                    <li><a href="#experiencia">La Experiencia</a></li>
-                    <li><a href="#faq">Consultas</a></li>
-                    <li><a href="#ubicacion">Ubicación</a></li>
-                    <li><a href="https://wa.me/5491144556677" class="btn btn-nav">Agendar Cita</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main id="main-content">
-        <!-- Hero Editorial Asimétrico -->
-        <section class="hero">
-            <div class="container hero-inner">
-                <div class="hero-content reveal">
-                    <span class="eyebrow">Hair Studio & Colorimetría</span>
-                    <h1>Tu pelo es tu firma.<br><em>Elevamos tu color.</em></h1>
-                    <p>Huimos del concepto de peluquería ruidosa. Creamos rubios perfectos, balayages de autor y diseños de color partiendo de un diagnóstico exhaustivo, preservando la salud de tu fibra capilar por sobre todo.</p>
-                    <div class="hero-actions">
-                        <a href="https://wa.me/5491144556677?text=Hola,%20quisiera%20agendar%20un%20diagnóstico%20de%20color." class="btn btn-primary">Reservar Diagnóstico</a>
-                    </div>
-                </div>
-                <div class="hero-media reveal delay-1">
-                    <div class="media-frame">
-                        <img src="/demos/peluqueria/img/01-estilista-disenando-balayage-en-estudio.jpg" alt="Estilista diseñando balayage en estudio boutique" fetchpriority="high" width="800" height="534">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Servicios (Expertise) -->
-        <section id="expertise" class="services">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2>Arte & Ciencia Capilar</h2>
-                    <p>Formulaciones precisas con marcas de lujo internacional.</p>
-                </div>
-                <div class="services-grid">
-                    <article class="service-card reveal delay-1">
-                        <div class="card-icon">
-                            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        </div>
-                        <h3>Colorimetría Avanzada</h3>
-                        <p>Diseño de Balayage, Babylights y correcciones complejas. Logramos el tono exacto que complementa tu piel, garantizando un desgaste orgánico con los lavados.</p>
-                    </article>
-                    <article class="service-card highlight reveal delay-2">
-                        <div class="card-icon">
-                            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
-                        </div>
-                        <h3>Recuperación Capilar</h3>
-                        <p>Protocolos de biología molecular K18, Olaplex y rituales Kérastase. Restauramos los enlaces peptídicos de la fibra antes, durante y después de los procesos químicos.</p>
-                    </article>
-                    <article class="service-card reveal delay-3">
-                        <div class="card-icon">
-                            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
-                        </div>
-                        <h3>Arquitectura de Corte</h3>
-                        <p>Styling y cortes de autor diseñados según tu visagismo y la textura natural de tu cabello, pensados estructuralmente para el bajo mantenimiento en casa.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- La Experiencia -->
-        <section id="experiencia" class="trust-section bg-marfil">
-            <div class="container trust-inner">
-                <div class="trust-media reveal">
-                    <img src="/demos/peluqueria/img/02-interiorismo-calido-del-estudio-atelier.jpg" alt="Interiorismo cálido del estudio Atelier Recoleta" loading="lazy" width="800" height="459">
-                </div>
-                <div class="trust-content reveal delay-1">
-                    <span class="eyebrow">Filosofía Atelier</span>
-                    <h2>El lujo del tiempo y la atención uno a uno.</h2>
-                    <p>Tu cita en Atelier es un ritual. Trabajamos a puertas cerradas con una agenda estricta para asegurar que el estilista esté enfocado únicamente en tu diseño. Disfrutá de un café de especialidad y un ambiente verdaderamente silencioso.</p>
-                    <ul class="editorial-list">
-                        <li>Prueba de mecha y test de elasticidad obligatorios.</li>
-                        <li>Stock exclusivo de líneas L'Oréal Professionnel y Redken.</li>
-                        <li>Asesoramiento clínico para tu rutina de <em>Home Care</em>.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ubicación y Contacto -->
-        <section id="ubicacion" class="location-section">
-            <div class="container location-inner">
-                <div class="location-info reveal">
-                    <span class="eyebrow">Ubicación & Contacto</span>
-                    <h2>Te esperamos en el corazón de Recoleta</h2>
-                    <address class="contact-address">
-                        <strong>Atelier Recoleta Hair Studio</strong><br>
-                        Av. Callao 1500 (y Las Heras)<br>
-                        Ciudad Autónoma de Buenos Aires
-                    </address>
-                    
-                    <div class="logistics-grid">
-                        <div class="logistic-item">
-                            <h4>Cómo llegar</h4>
-                            <p><strong>Subte:</strong> Línea D (Estación Callao) o Línea H (Estación Las Heras).</p>
-                            <p><strong>Colectivos:</strong> 17, 124, 10, 59, 101, 37.</p>
-                        </div>
-                        <div class="logistic-item">
-                            <h4>Estacionamiento</h4>
-                            <p>Contamos con convenio exclusivo en el Parking de Av. Callao 1550. <strong>Una hora sin cargo</strong> presentando tu ticket de servicio.</p>
-                        </div>
-                        <div class="logistic-item contact-methods">
-                            <h4>Canales de reserva</h4>
-                            <p>WhatsApp: <a href="https://wa.me/5491144556677">11 4455-6677</a></p>
-                            <p>Email: <a href="mailto:turnos@atelierrecoleta.com.ar">turnos@atelierrecoleta.com.ar</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="location-map reveal delay-1">
-                    <!-- Mapa embebido de Google Maps centrado en Recoleta -->
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.453472097483!2d-58.39343398423696!3d-34.59268308046244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccab9d71c1b11%3A0xc3e7f6071ea9171e!2sAv.%20Callao%201500%2C%20C1024%20AAD%2C%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Mapa de ubicación de Atelier Recoleta en Google Maps">
-                    </iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- Consultas / FAQ -->
-        <section id="faq" class="faq bg-marfil">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2>Consultas Habituales</h2>
-                </div>
-                <div class="accordion reveal delay-1">
-                    <details class="accordion-item" name="faq-group">
-                        <summary>¿Por qué exigen un diagnóstico antes de teñir?</summary>
-                        <div class="accordion-content">
-                            <p>Priorizamos la integridad estructural de tu pelo. En la consulta inicial (20 mins), evaluamos la porosidad y el historial químico de la fibra. Esto nos permite asegurar si el nivel de aclaración que deseás es factible sin riesgo de corte químico.</p>
-                        </div>
-                    </details>
-                    <details class="accordion-item" name="faq-group">
-                        <summary>¿Cuáles son las formas de pago?</summary>
-                        <div class="accordion-content">
-                            <p>Aceptamos efectivo, transferencias bancarias y tarjetas de crédito/débito. Para reservar turnos de alta demanda (como Balayage o Corrección de Color), solicitamos una seña del 30% para blindar la exclusividad de tu espacio en la agenda.</p>
-                        </div>
-                    </details>
-                    <details class="accordion-item" name="faq-group">
-                        <summary>¿Trabajan con cabellos previamente dañados?</summary>
-                        <div class="accordion-content">
-                            <p>Sí, somos especialistas en corrección. Sin embargo, si el test de mecha indica que el cabello no soportará decoloración, diseñaremos un plan de recuperación molecular previo (de 1 a 3 meses) antes de realizar cualquier trabajo de color.</p>
-                        </div>
-                    </details>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <strong>Atelier</strong>
-                <span>Recoleta</span>
-                <p class="brand-desc">Arte, ciencia capilar y exclusividad en Buenos Aires.</p>
-            </div>
-            <div class="footer-nav">
-                <h4>Contacto</h4>
-                <p>Av. Callao 1500, Recoleta, CABA.</p>
-                <p><a href="https://wa.me/5491144556677">WhatsApp: 11 4455-6677</a></p>
-                <p>Mar a Sáb — 10:00 a 20:00 hs</p>
-            </div>
-            <div class="footer-legal">
-                <h4>Legal</h4>
-                <a href="http://www.consumidor.gob.ar/" target="_blank" rel="noopener">Defensa del Consumidor</a>
-                <a href="http://servicios.infoleg.gob.ar/infolegInternet/anexos/60000-64999/64790/texact.htm" target="_blank" rel="noopener">Protección de Datos (Ley 25.326)</a>
-                <p class="copyright">© 2026 Atelier Recoleta Hair Studio.</p>
-            </div>
-        </div>
-      <p class="photo-credit">Fotografías de demostración: Unsplash (Unsplash License).</p>
-  </footer>
-
-    <!-- WhatsApp Inteligente -->
-    <div class="wa-wrapper">
-        <span class="wa-tooltip">Reservá tu lugar</span>
-        <a href="https://wa.me/5491144556677?text=Hola,%20deseo%20agendar%20un%20diagnóstico." class="wa-float" aria-label="Escribinos por WhatsApp">
-            <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor"><path d="M16 2a13 13 0 0 0-11 20l-2 5 5-2a13 13 0 1 0 8-23zm0 24a11 11 0 0 1-5-1l-3 1 1-3a11 11 0 1 1 7 3zm6-8c0 .5-.3 1-.7 1h-.2c-.3 0-1 0-3-1-2-1-3-3-3-3s-1-1-1-2 .4-2 .8-2h.4c.2 0 .4 0 .5.1l1 2.3c0 .2 0 .3-.1.4l-.4.5c-.1.1-.2.2 0 .4 1 1.6 2.1 2.6 3.6 3.4.2.1.4.1.5 0l.6-.7c.1-.2.3-.2.4-.2l2.3 1c.2.1.2.3.2.4z"/></svg>
-        </a>
+  <!-- ===== EL MUESTRARIO ===== -->
+  <section id="muestrario">
+    <ul class="muestrario">
+      <li class="tono tono--platino"><b>Platino</b><span>Nivel 10</span></li>
+      <li class="tono tono--rubio"><b>Rubio miel</b><span>Nivel 8</span></li>
+      <li class="tono tono--cobrizo"><b>Cobrizo</b><span>Nivel 6.4</span></li>
+      <li class="tono tono--ceniza"><b>Ceniza</b><span>Nivel 7.1</span></li>
+      <li class="tono tono--chocolate"><b>Chocolate</b><span>Nivel 4</span></li>
+      <li class="tono tono--negro"><b>Negro azulado</b><span>Nivel 1.1</span></li>
+    </ul>
+    <div class="lienzo">
+      <p class="muestrario__pie">Los seis tonos base sobre los que trabajamos. El tuyo sale de combinarlos: en el diagnóstico definimos el nivel de partida, hasta dónde se puede aclarar sin riesgo y en cuántas sesiones.</p>
     </div>
+  </section>
 
-    <script src="main.js"></script>
+  <!-- ===== TÉCNICAS ===== -->
+  <section class="bloque bloque--hueso" id="tecnicas">
+    <div class="lienzo">
+      <p class="marca-seccion">Arte y ciencia capilar</p>
+      <h2>Tres formas de trabajar tu pelo</h2>
+      <ul class="tecnicas">
+        <li class="tecnica tecnica--color sale">
+          <h3>Colorimetría avanzada</h3>
+          <p>Diseño de balayage, babylights y correcciones complejas. Buscamos el tono exacto que complementa tu piel y que se desgasta de forma pareja con los lavados.</p>
+        </li>
+        <li class="tecnica tecnica--salud sale">
+          <h3>Recuperación capilar</h3>
+          <p>Protocolos K18, Olaplex y rituales Kérastase. Restauramos los enlaces de la fibra antes, durante y después de cada proceso químico.</p>
+        </li>
+        <li class="tecnica tecnica--corte sale">
+          <h3>Arquitectura de corte</h3>
+          <p>Cortes de autor según tu visagismo y la textura natural del pelo, pensados para que se mantengan solos en casa.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-<!-- ===== Barra de demostración — Soporte Cyclops ===== -->
+  <!-- ===== FILOSOFÍA ===== -->
+  <section class="bloque" id="filosofia">
+    <div class="lienzo par">
+      <div>
+        <p class="marca-seccion">Filosofía Atelier</p>
+        <h2>El lujo del tiempo y la atención uno a uno</h2>
+        <p>Tu cita es un ritual. Trabajamos a puertas cerradas con una agenda estricta para que el estilista esté enfocado únicamente en tu diseño. Café de especialidad y un ambiente de verdad silencioso.</p>
+        <ul class="reglas">
+          <li>Prueba de mecha y test de elasticidad obligatorios antes de cualquier aclaración.</li>
+          <li>Stock exclusivo de líneas L'Oréal Professionnel y Redken.</li>
+          <li>Asesoramiento de rutina en casa, con los productos que ya tenés.</li>
+        </ul>
+      </div>
+      <figure class="par__foto sale">
+        <img src="img/02-interiorismo-calido-del-estudio-atelier.jpg" width="800" height="459" alt="Interior cálido del estudio, con sillones y espejos" loading="lazy" decoding="async">
+        <figcaption>Cuatro estaciones y nunca más de cuatro personas a la vez. Por eso la agenda es estricta.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== DÓNDE ===== -->
+  <section class="bloque bloque--hueso" id="donde">
+    <div class="lienzo">
+      <p class="marca-seccion">Ubicación y contacto</p>
+      <h2>En el corazón de Recoleta</h2>
+      <figure class="par__foto sale" style="max-width:38rem">
+        <img src="img/01-estilista-disenando-balayage-en-estudio.jpg" width="800" height="534" alt="Estilista aplicando mechas de balayage a una clienta en el estudio" loading="lazy" decoding="async">
+        <figcaption>Un balayage completo lleva entre tres y cinco horas. Lo sabés antes de agendarlo.</figcaption>
+      </figure>
+      <div class="plano">
+        <div>
+          <h3>Dirección</h3>
+          <p>Av. Callao 1500 (y Las Heras)</p>
+          <p>Recoleta, CABA</p>
+        </div>
+        <div>
+          <h3>Cómo llegar</h3>
+          <p>Subte D (Callao) o H (Las Heras)</p>
+          <p>Colectivos 17, 124, 10, 59, 101, 37</p>
+        </div>
+        <div>
+          <h3>Estacionamiento</h3>
+          <p>Convenio en Av. Callao 1550</p>
+          <p>Una hora sin cargo con tu ticket</p>
+        </div>
+        <div>
+          <h3>Reservas</h3>
+          <p><a href="https://wa.me/5491144556677">WhatsApp 11 4455-6677</a></p>
+          <p><a href="mailto:turnos@atelierrecoleta.com.ar">turnos@atelierrecoleta.com.ar</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONSULTAS ===== -->
+  <section class="bloque">
+    <div class="lienzo">
+      <p class="marca-seccion">Consultas habituales</p>
+      <h2>Lo que conviene saber antes</h2>
+      <details class="consulta-item">
+        <summary>¿Por qué exigen un diagnóstico antes de teñir?</summary>
+        <p>Porque priorizamos la integridad del pelo. En la consulta inicial, de 20 minutos, evaluamos la porosidad y el historial químico de la fibra. Eso nos dice si el nivel de aclaración que querés es posible sin riesgo de corte químico.</p>
+      </details>
+      <details class="consulta-item">
+        <summary>¿Cuáles son las formas de pago?</summary>
+        <p>Efectivo, transferencia y tarjetas de crédito o débito. Para turnos de alta demanda, como balayage o corrección de color, pedimos una seña del 30% para blindar tu lugar en la agenda.</p>
+      </details>
+      <details class="consulta-item">
+        <summary>¿Trabajan con cabellos previamente dañados?</summary>
+        <p>Sí, somos especialistas en corrección. Si el test de mecha indica que el pelo no va a soportar una decoloración, armamos primero un plan de recuperación de uno a tres meses y recién después hacemos el color.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="zocalo">
+  <div class="lienzo">
+    <div class="zocalo__fila">
+      <div>
+        <span class="firma">Atelier Recoleta<span>Hair Studio &amp; Colorimetría</span></span>
+        <p style="margin-top:.9rem">Arte, ciencia capilar y exclusividad en Buenos Aires.</p>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p>Av. Callao 1500, Recoleta</p>
+        <p><a href="https://wa.me/5491144556677">WhatsApp 11 4455-6677</a></p>
+        <p>Martes a sábado, 10 a 20</p>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <p><a href="https://autogestion.produccion.gob.ar/consumidores" rel="noopener">Defensa del Consumidor</a></p>
+        <p><a href="https://www.argentina.gob.ar/aaip/datospersonales" rel="noopener">Protección de datos</a></p>
+      </div>
+    </div>
+    <div class="zocalo__legal">
+      <p>© 2026 Atelier Recoleta Hair Studio.</p>
+      <p>Fotografías de demostración: Unsplash (Unsplash License).</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+
 <div class="sc-demobar" role="complementary" aria-label="Aviso de demostración">
   <p class="sc-demobar__txt">
     <strong>Ejemplo de demostración.</strong>

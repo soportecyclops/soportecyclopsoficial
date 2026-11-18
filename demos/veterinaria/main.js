@@ -1,104 +1,66 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Menu 
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+/* Centro Veterinario Pampa — sin JS la página se ve y se usa entera.
+   La banda de estado muestra el horario fijo si esto no corre. */
+(function () {
+  'use strict';
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-        });
-
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-
-    // 2. Header Compacto
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }, { passive: true });
-
-    // 3. Observer para animaciones fluidas
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                obs.unobserve(entry.target); 
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // 4. Acordeón FAQ Exclusivo
-    const details = document.querySelectorAll('details[name="faq"]');
-    details.forEach(targetDetail => {
-        targetDetail.addEventListener('click', () => {
-            details.forEach(detail => {
-                if (detail !== targetDetail) {
-                    detail.removeAttribute('open');
-                }
-            });
-        });
+  /* --- Menú --- */
+  var boton = document.getElementById('menu');
+  var enlaces = document.getElementById('enlaces');
+  if (boton && enlaces) {
+    boton.addEventListener('click', function () {
+      var abierta = enlaces.classList.toggle('abierta');
+      boton.setAttribute('aria-expanded', String(abierta));
+      boton.setAttribute('aria-label', abierta ? 'Cerrar menú' : 'Abrir menú');
     });
+    enlaces.addEventListener('click', function (e) { if (e.target.tagName === 'A') cerrar(); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && enlaces.classList.contains('abierta')) { cerrar(); boton.focus(); }
+    });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) cerrar(); });
+  }
+  function cerrar() {
+    if (!enlaces) return;
+    enlaces.classList.remove('abierta');
+    if (boton) { boton.setAttribute('aria-expanded','false'); boton.setAttribute('aria-label','Abrir menú'); }
+  }
 
-    // 5. Lógica del Carrusel Automático
-    const track = document.getElementById('carousel-track');
-    const slides = Array.from(track.children);
-    const indicators = document.querySelectorAll('.carousel-indicator');
-    const carouselContainer = document.querySelector('.carousel-container');
-    
-    let currentIndex = 0;
-    let autoPlayInterval;
-    const intervalTime = 4000;
-
-    const updateCarousel = (index) => {
-        track.style.transform = `translateX(-${index * 100}%)`;
-        indicators.forEach(ind => ind.classList.remove('active'));
-        indicators[index].classList.add('active');
-    };
-
-    const nextSlide = () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel(currentIndex);
-    };
-
-    const startAutoPlay = () => {
-        autoPlayInterval = setInterval(nextSlide, intervalTime);
-    };
-
-    const stopAutoPlay = () => {
-        clearInterval(autoPlayInterval);
-    };
-
-    if (indicators.length > 0 && slides.length > 0) {
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel(currentIndex);
-                stopAutoPlay();
-                startAutoPlay();
-            });
-        });
-
-        if (carouselContainer) {
-            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-            carouselContainer.addEventListener('mouseleave', startAutoPlay);
-            carouselContainer.addEventListener('focusin', stopAutoPlay);
-            carouselContainer.addEventListener('focusout', startAutoPlay);
-            
-            startAutoPlay();
-        }
+  /* --- ¿Abierto ahora? Lunes a sábado de 9 a 20, hora de Buenos Aires.
+         Se calcula sobre la hora de Buenos Aires y no sobre la del
+         visitante: alguien mirando desde Madrid tiene que ver si la
+         clínica está abierta, no si lo está a su hora. --- */
+  var texto = document.getElementById('estado-texto');
+  var punto = document.getElementById('punto');
+  if (texto && punto) {
+    try {
+      var f = new Intl.DateTimeFormat('es-AR', {
+        timeZone: 'America/Argentina/Buenos_Aires',
+        weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false
+      }).formatToParts(new Date());
+      var h = 0, dia = '';
+      f.forEach(function (p) {
+        if (p.type === 'hour') h = parseInt(p.value, 10);
+        if (p.type === 'weekday') dia = p.value.toLowerCase();
+      });
+      var domingo = dia.indexOf('dom') === 0;
+      var abierto = !domingo && h >= 9 && h < 20;
+      texto.textContent = abierto
+        ? 'Abierto ahora · cerramos a las 20'
+        : 'Cerrado ahora · lunes a sábado, 9 a 20';
+      punto.classList.toggle('punto--cerrado', !abierto);
+    } catch (e) {
+      /* Si Intl falla, queda el horario fijo que ya está en el HTML. */
     }
-});
+  }
+
+  /* --- Aparición --- */
+  var piezas = document.querySelectorAll('.aflora');
+  if (quieto || !('IntersectionObserver' in window)) {
+    for (var i=0;i<piezas.length;i++) piezas[i].classList.add('visible');
+    return;
+  }
+  var obs = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  for (var j=0;j<piezas.length;j++) obs.observe(piezas[j]);
+})();

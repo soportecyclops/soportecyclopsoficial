@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AR">
-  <rect width="64" height="64" rx="6" fill="#1a1a1a"/>
-  <text x="32" y="32" fill="#cba365" font-family="system-ui,-apple-system,Segoe UI,sans-serif"
-        font-size="30" font-weight="700" text-anchor="middle" dominant-baseline="central"
-        letter-spacing="-1">AR</text>
+  <rect width="64" height="64" fill="#FFFFFF"/>
+  <rect x="0" y="0" width="10.6" height="64" fill="#DED3C4"/>
+  <rect x="10.6" y="0" width="10.6" height="64" fill="#C79A5B"/>
+  <rect x="21.2" y="0" width="10.6" height="64" fill="#A6552C"/>
+  <rect x="31.8" y="0" width="10.6" height="64" fill="#8C8378"/>
+  <rect x="42.4" y="0" width="10.6" height="64" fill="#4A3022"/>
+  <rect x="53" y="0" width="11" height="64" fill="#1C1A18"/>
 </svg>

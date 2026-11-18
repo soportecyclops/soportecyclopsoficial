@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="IR">
-  <rect width="64" height="64" rx="6" fill="#0f172a"/>
-  <text x="32" y="32" fill="#0284c7" font-family="system-ui,-apple-system,Segoe UI,sans-serif"
-        font-size="30" font-weight="700" text-anchor="middle" dominant-baseline="central"
-        letter-spacing="-1">IR</text>
+  <rect width="64" height="64" rx="8" fill="#FFFFFF" stroke="#DAE2E2" stroke-width="2"/>
+  <rect x="8" y="8" width="48" height="6" rx="3" fill="#0E7C7B"/>
+  <text x="32" y="38" fill="#1B2430" font-family="system-ui,-apple-system,Segoe UI,sans-serif"
+        font-size="26" font-weight="700" text-anchor="middle" dominant-baseline="central">IR</text>
 </svg>

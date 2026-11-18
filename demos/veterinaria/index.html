@@ -1,304 +1,236 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
-  <script>document.documentElement.classList.add('js');</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro Veterinario Pampa — ejemplo de página web para veterinarias | Soporte Cyclops</title>
-    <meta name="description" content="Ejemplo real de página web para veterinarias, hecha por Soporte Cyclops. Centro Veterinario Pampa es un negocio ficticio: la página muestra cómo quedaría la de tu negocio.">
-    <link rel="canonical" href="https://www.soportecyclops.com.ar/demos/veterinaria/">
-    
-    <meta property="og:title" content="Centro Veterinario Pampa | Alta Complejidad">
-    <meta property="og:description" content="Salud animal, quirófanos de última generación y laboratorio propio en CABA.">
-    <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="https://www.soportecyclops.com.ar/demos/veterinaria/og.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Portada de la web de Centro Veterinario Pampa">
+<script>document.documentElement.classList.add('js');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centro Veterinario Pampa — ejemplo de página web para veterinarias | Soporte Cyclops</title>
+<meta name="description" content="Ejemplo real de página web para clínicas veterinarias, hecha por Soporte Cyclops. El Centro Pampa es un negocio ficticio: la página muestra cómo quedaría la de tu clínica.">
+<link rel="canonical" href="https://www.soportecyclops.com.ar/demos/veterinaria/">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#0f172a">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="/demos/demobar.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Centro Veterinario Pampa | Palermo">
+<meta property="og:description" content="Quirófano, laboratorio e imágenes en el mismo lugar. Diagnóstico en la misma visita.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://www.soportecyclops.com.ar/demos/veterinaria/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Portada de la web del Centro Veterinario Pampa">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "VeterinaryCare",
-      "name": "Centro Veterinario Pampa",
-      "image": "https://www.soportecyclops.com.ar/demos/veterinaria/og.jpg",
-      "url": "https://www.veterinariapampa.com.ar",
-      "telephone": "+5491112345678",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Santa Fe 3200",
-        "addressLocality": "Palermo",
-        "addressRegion": "CABA",
-        "postalCode": "1425",
-        "addressCountry": "AR"
-      },
-      "priceRange": "$$$"
-    }
-    </script>
+<link rel="preload" as="font" type="font/woff2" href="fonts/manrope-800.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/manrope-400.woff2" crossorigin>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1D3F8F">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/demos/demobar.css">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"VeterinaryCare",
+  "name":"Centro Veterinario Pampa",
+  "image":"https://www.soportecyclops.com.ar/demos/veterinaria/og.jpg",
+  "url":"https://www.centropampa.com.ar","telephone":"+5491112345678",
+  "address":{"@type":"PostalAddress","streetAddress":"Av. Santa Fe 3200","addressLocality":"Palermo","addressRegion":"CABA","postalCode":"1425","addressCountry":"AR"},
+  "openingHours":"Mo-Sa 09:00-20:00","priceRange":"$$"
+}
+</script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container top-bar-inner">
-            <span class="pulse-icon"></span>
-            <span>Urgencias e Internación 24hs: Derivación directa a red de alta complejidad.</span>
-            <a href="tel:+5491112345678">11 1234-5678</a>
-        </div>
-    </div>
+<a href="#panel" class="saltear">Saltar al contenido principal</a>
 
-    <header class="site-header" id="site-header">
-        <div class="container header-inner">
-            <a href="/" class="logo">
-                <strong>Centro Veterinario Pampa</strong>
-                <span>Medicina y Cirugía Especializada</span>
-            </a>
-            <nav class="main-nav">
-                <button class="mobile-menu-toggle" aria-label="Abrir menú" aria-expanded="false">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-                <ul class="nav-links">
-                    <li><a href="#servicios">Especialidades</a></li>
-                    <li><a href="#instalaciones">Infraestructura</a></li>
-                    <li><a href="#ubicacion">Ubicación</a></li>
-                    <li><a href="#faq">Preguntas</a></li>
-                    <li><a href="https://wa.me/5491112345678" class="btn btn-outline">Sacar Turno</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<!-- ===== BANDA DE ESTADO ===== -->
+<div class="estado">
+  <div class="ancho estado__fila">
+    <p class="estado__ahora" id="estado-ahora">
+      <span class="punto" id="punto" aria-hidden="true"></span>
+      <span id="estado-texto">Lunes a sábado, 9 a 20</span>
+    </p>
+    <p class="estado__urgencia">Urgencias fuera de horario: derivación directa a red 24 h · <a href="tel:+5491112345678">11 1234-5678</a></p>
+  </div>
+</div>
 
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-inner">
-                <div class="hero-content reveal">
-                    <span class="tag">Clínica Veterinaria en Palermo, CABA</span>
-                    <h1>Medicina basada en evidencia. Infraestructura de alta complejidad.</h1>
-                    <p>No dejamos nada librado al azar. Centralizamos <strong>quirófano equipado, laboratorio in situ e imágenes médicas</strong> para brindar diagnósticos precisos y resoluciones quirúrgicas seguras.</p>
-                    <div class="hero-actions">
-                        <a href="https://wa.me/5491112345678?text=Hola,%20necesito%20agendar%20una%20consulta%20especializada." class="btn btn-primary">Agendar Consulta</a>
-                        <div class="trust-indicators">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                            <span>Cirujanos y anestesistas matriculados</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-image reveal delay-1">
-                    <figure class="image-wrapper">
-                        <img src="/demos/veterinaria/img/01-infraestructura-clinica-veterinaria-de-alta.jpg" alt="Infraestructura clínica veterinaria de alta tecnología" fetchpriority="high" width="1169" height="781">
-                    </figure>
-                </div>
-            </div>
-        </section>
-
-        <!-- Servicios -->
-        <section id="servicios" class="services section-padding">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2>Nuestras Especialidades</h2>
-                    <p>Capacidad instalada para resolver desde chequeos de rutina hasta intervenciones traumatológicas complejas.</p>
-                </div>
-                <div class="bento-grid">
-                    <div class="bento-card large reveal">
-                        <div class="card-content">
-                            <h3>Cirugía y Anestesiología</h3>
-                            <p>Intervenciones de tejidos blandos y traumatología. Contamos con anestesia inhalatoria, monitoreo multiparamétrico y respirador artificial para máxima seguridad quirúrgica.</p>
-                            <ul class="clean-list">
-                                <li>Esterilizaciones seguras y cirugías oncológicas</li>
-                                <li>Odontología con ultrasonido</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="bento-card highlight reveal delay-1">
-                        <div class="card-content">
-                            <h3>Laboratorio In Situ</h3>
-                            <p>Equipos de hemograma y bioquímica sanguínea propios. Resultados críticos en 15 minutos sin tercerizar muestras.</p>
-                        </div>
-                    </div>
-                    <div class="bento-card reveal delay-2">
-                        <div class="card-content">
-                            <h3>Espacio Cat-Friendly</h3>
-                            <p>Consultorio felino aislado acústicamente con protocolos *fear-free* para evitar el estrés hospitalario.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Compromiso Clínico -->
-        <section class="trust-split section-padding bg-light">
-            <div class="container split-inner">
-                <div class="split-image reveal">
-                    <figure class="image-wrapper portrait">
-                        <img src="/demos/veterinaria/img/02-profesional-veterinario-brindando-atencion-compasiva.jpg" alt="Profesional veterinario brindando atención compasiva y experta" loading="lazy" width="687" height="1031">
-                    </figure>
-                </div>
-                <div class="split-content reveal delay-1">
-                    <h2>Diagnósticos en tiempo real</h2>
-                    <p>El tiempo es un factor vital en medicina veterinaria. Al disponer de nuestro propio laboratorio e imágenes diagnósticas, eliminamos la incertidumbre de la derivación.</p>
-                    <p>Tu mascota es evaluada por nuestro equipo médico, se realizan los estudios pertinentes, y en la misma visita te retirás con un plan terapéutico claro y fundamentado.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Galería Carrusel -->
-        <section id="instalaciones" class="gallery-section section-padding">
-            <div class="container">
-                <div class="section-title reveal">
-                    <h2>Conocé nuestra infraestructura</h2>
-                    <p>Un entorno clínico estéril, seguro y tecnológico, diseñado para sostener la vida y recuperar la salud de tu animal.</p>
-                </div>
-                
-                <div class="carousel-container reveal delay-1" aria-roledescription="carousel" aria-label="Instalaciones de la clínica">
-                    <div class="carousel-track" id="carousel-track">
-                        <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="1 de 3">
-                            <figure class="image-wrapper">
-                                <img src="/demos/veterinaria/img/03-quirofano-de-alta-complejidad.jpg" alt="Quirófano de alta complejidad" loading="lazy" width="1171" height="781">
-                                <figcaption>Quirófanos e Internación</figcaption>
-                            </figure>
-                        </div>
-                        <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 de 3">
-                            <figure class="image-wrapper">
-                                <img src="/demos/veterinaria/img/04-equipamiento-avanzado.jpg" alt="Equipamiento avanzado" loading="lazy" width="688" height="1031">
-                                <figcaption>Diagnóstico por Imágenes</figcaption>
-                            </figure>
-                        </div>
-                        <div class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 de 3">
-                            <figure class="image-wrapper">
-                                <img src="/demos/veterinaria/img/05-area-de-laboratorio-clinico.jpg" alt="Área de laboratorio clínico" loading="lazy" width="1170" height="780">
-                                <figcaption>Laboratorio de Análisis Clínicos</figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    
-                    <div class="carousel-nav" aria-label="Navegación del carrusel">
-                        <button class="carousel-indicator active" aria-label="Ir a diapositiva 1" data-slide="0"></button>
-                        <button class="carousel-indicator" aria-label="Ir a diapositiva 2" data-slide="1"></button>
-                        <button class="carousel-indicator" aria-label="Ir a diapositiva 3" data-slide="2"></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- UBICACIÓN Y LOGÍSTICA -->
-        <section id="ubicacion" class="location-section section-padding bg-light">
-            <div class="container location-inner">
-                <div class="location-info reveal">
-                    <h2>Ubicación & Contacto</h2>
-                    <p class="location-desc">Estamos ubicados en una zona de fácil acceso para garantizar respuestas rápidas ante cualquier necesidad de tu mascota.</p>
-                    
-                    <address class="contact-address">
-                        <strong>Av. Santa Fe 3200, Palermo</strong><br>
-                        Ciudad Autónoma de Buenos Aires (C1425)
-                    </address>
-                    
-                    <div class="logistics-grid">
-                        <div class="logistic-item">
-                            <h4>Cómo llegar</h4>
-                            <p><strong>Subte:</strong> Línea D (Estación Bulnes o Agüero).</p>
-                            <p><strong>Colectivos:</strong> 12, 15, 29, 39, 64, 68, 152.</p>
-                        </div>
-                        <div class="logistic-item">
-                            <h4>Estacionamiento</h4>
-                            <p>Contamos con dársena de detención rápida para pacientes de urgencia y convenio con estacionamiento a 50 metros.</p>
-                        </div>
-                        <div class="logistic-item contact-methods">
-                            <h4>Comunicaciones</h4>
-                            <p>Turnos: <a href="https://wa.me/5491112345678">WhatsApp 11 1234-5678</a></p>
-                            <p>Fijo: <a href="tel:+541144445555">(011) 4444-5555</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="location-map reveal delay-1">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.8152509176375!2d-58.41445778423719!3d-34.58354728046467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb57f9202161b%3A0xc3194a282f9d6cc!2sAv.%20Sta.%20Fe%203200%2C%20C1425BGW%20Cdad.%20Aut%C3%B3noma%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1700000000000!5m2!1ses-419!2sar" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Mapa de ubicación del Centro Veterinario Pampa en Google Maps">
-                    </iframe>
-                </div>
-            </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="faq section-padding">
-            <div class="container faq-inner">
-                <div class="faq-content reveal">
-                    <div class="section-title">
-                        <h2>Preguntas Frecuentes</h2>
-                    </div>
-                    <div class="accordion">
-                        <details class="accordion-item" name="faq">
-                            <summary>¿Trabajan con prepagas veterinarias?</summary>
-                            <div class="accordion-content">
-                                <p>Sí, somos prestadores directos de Osde Mascotas, Puppis Care y VetPlan. Para clientes particulares, aceptamos efectivo, transferencias y tarjetas de crédito con cuotas fijas para cirugías programadas.</p>
-                            </div>
-                        </details>
-                        <details class="accordion-item" name="faq">
-                            <summary>¿Cómo es el protocolo para cirugías?</summary>
-                            <div class="accordion-content">
-                                <p>Toda intervención requiere un riesgo quirúrgico previo (análisis de sangre y electrocardiograma). El día de la cirugía, el paciente es monitoreado constantemente por un anestesista exclusivo, separando las tareas del cirujano principal.</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-                <div class="faq-image reveal delay-1">
-                    <figure class="image-wrapper portrait">
-                        <img src="/demos/veterinaria/img/06-atencion-clinica-dedicada.jpg" alt="Atención clínica dedicada" loading="lazy" width="687" height="1031">
-                    </figure>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <strong class="footer-logo">Centro Veterinario Pampa</strong>
-                <p>Infraestructura clínica superior y trato humano.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Sede Central</h4>
-                <p>Av. Santa Fe 3200, Palermo, CABA.</p>
-                <p>WhatsApp: <a href="https://wa.me/5491112345678">11 1234-5678</a></p>
-                <p>Lunes a Sábados: 09:00 a 20:00 hs.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <a href="http://www.consumidor.gob.ar/" target="_blank" rel="noopener">Defensa del Consumidor (Ley 24.240)</a><br>
-                <a href="http://servicios.infoleg.gob.ar/infolegInternet/anexos/60000-64999/64790/texact.htm" target="_blank" rel="noopener">Protección de Datos (Ley 25.326)</a>
-                <p class="copyright">© 2026 Centro Veterinario Pampa. Todos los derechos reservados.</p>
-            </div>
-        </div>
-      <p class="photo-credit">Fotografías de demostración: Unsplash (Unsplash License), 3 de ellas bajo Unsplash+ License.</p>
-  </footer>
-
-    <!-- WhatsApp Flotante -->
-    <a href="https://wa.me/5491112345678" class="wa-float" aria-label="Escribinos por WhatsApp">
-        <svg viewBox="0 0 32 32" width="32" height="32" fill="currentColor"><path d="M16 2a13 13 0 0 0-11 20l-2 5 5-2a13 13 0 1 0 8-23zm0 24a11 11 0 0 1-5-1l-3 1 1-3a11 11 0 1 1 7 3zm6-8c0 .5-.3 1-.7 1h-.2c-.3 0-1 0-3-1-2-1-3-3-3-3s-1-1-1-2 .4-2 .8-2h.4c.2 0 .4 0 .5.1l1 2.3c0 .2 0 .3-.1.4l-.4.5c-.1.1-.2.2 0 .4 1 1.6 2.1 2.6 3.6 3.4.2.1.4.1.5 0l.6-.7c.1-.2.3-.2.4-.2l2.3 1c.2.1.2.3.2.4z"/></svg>
+<header class="techo">
+  <div class="ancho techo__fila">
+    <a href="/" class="nombre" aria-label="Inicio — Centro Veterinario Pampa">
+      <b>Centro Veterinario Pampa</b><span>Medicina y cirugía especializada</span>
     </a>
+    <button class="menu" id="menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="enlaces">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <nav class="enlaces" id="enlaces" aria-label="Secciones">
+      <a href="#capacidades">Especialidades</a>
+      <a href="#horarios">Horarios y urgencias</a>
+      <a href="#infraestructura">Infraestructura</a>
+      <a href="#donde">Ubicación</a>
+      <a href="https://wa.me/5491112345678?text=Hola%2C%20quiero%20sacar%20un%20turno" class="pedir">Sacar turno</a>
+    </nav>
+  </div>
+</header>
 
-    <script src="main.js"></script>
+<main id="panel">
 
-<!-- ===== Barra de demostración — Soporte Cyclops ===== -->
+  <section class="tablero">
+    <div class="ancho">
+      <div class="tablero__grilla">
+        <div>
+          <p class="credencial">Clínica veterinaria en Palermo</p>
+          <h1>Medicina basada en evidencia. Infraestructura de alta complejidad.</h1>
+          <p class="tablero__texto">No dejamos nada librado al azar. Centralizamos <b>quirófano equipado, laboratorio in situ e imágenes médicas</b> para dar diagnósticos precisos y resolver cirugías con seguridad.</p>
+          <a href="https://wa.me/5491112345678?text=Hola%2C%20quiero%20agendar%20una%20consulta" class="accionar">Agendar consulta</a>
+          <p class="matriculados">Cirujanos y anestesistas matriculados</p>
+        </div>
+        <figure class="tablero__foto">
+          <img src="img/02-profesional-veterinario-brindando-atencion-compasiva.jpg" width="687" height="1031" alt="Veterinaria atendiendo a un perro con trato cuidadoso" fetchpriority="high" decoding="async">
+        </figure>
+      </div>
+
+      <ul class="cifras">
+        <li class="aflora"><b>15 min</b><span>Resultados de hemograma y bioquímica, sin tercerizar la muestra</span></li>
+        <li class="aflora"><b>1 visita</b><span>Consulta, estudios y plan terapéutico en el mismo día</span></li>
+        <li class="aflora"><b>24 h</b><span>Derivación a red de alta complejidad fuera de nuestro horario</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CAPACIDADES ===== -->
+  <section class="zona zona--clara" id="capacidades">
+    <div class="ancho">
+      <p class="epigrafe-zona">Nuestras especialidades</p>
+      <h2>Qué podemos resolver acá adentro</h2>
+      <p class="zona__intro">Capacidad instalada para ir desde un chequeo de rutina hasta una intervención traumatológica compleja, sin mover al paciente de edificio.</p>
+      <ul class="capacidades">
+        <li class="capacidad aflora">
+          <h3>Cirugía y anestesiología</h3>
+          <p>Tejidos blandos y traumatología, con anestesia inhalatoria, monitoreo multiparamétrico y respirador artificial.</p>
+          <dl>
+            <dt>Riesgo quirúrgico previo</dt><dd>obligatorio</dd>
+            <dt>Anestesista</dt><dd>exclusivo</dd>
+          </dl>
+        </li>
+        <li class="capacidad aflora">
+          <h3>Laboratorio in situ</h3>
+          <p>Hemograma y bioquímica sanguínea con equipos propios. Los valores críticos no esperan a un correo del laboratorio externo.</p>
+          <dl>
+            <dt>Resultados</dt><dd>15 min</dd>
+            <dt>Derivación de muestras</dt><dd>no</dd>
+          </dl>
+        </li>
+        <li class="capacidad aflora">
+          <h3>Espacio cat-friendly</h3>
+          <p>Consultorio felino aislado acústicamente, con protocolos <i>fear-free</i> para bajar el estrés hospitalario.</p>
+          <dl>
+            <dt>Sala de espera</dt><dd>separada</dd>
+            <dt>Protocolo</dt><dd>fear-free</dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== HORARIOS Y URGENCIAS ===== -->
+  <section class="zona zona--blanca" id="horarios">
+    <div class="ancho">
+      <p class="epigrafe-zona">Horarios y urgencias</p>
+      <h2>Cuándo estamos y qué hacer si no</h2>
+      <p class="zona__intro">El tiempo es un factor vital. Preferimos que sepas de antemano adónde ir a cualquier hora, antes que descubrirlo con el animal en brazos.</p>
+      <table class="horarios">
+        <tbody>
+          <tr><th scope="row">Lunes a viernes</th><td>9:00 a 20:00</td></tr>
+          <tr><th scope="row">Sábado</th><td>9:00 a 20:00</td></tr>
+          <tr><th scope="row">Domingo y feriados</th><td>cerrado</td></tr>
+        </tbody>
+      </table>
+      <div class="urgente">
+        <b>Fuera de horario</b>
+        <p>Llamá al 11 1234-5678 y te derivamos de inmediato a la red de alta complejidad con la que trabajamos. Tu historia clínica viaja con vos: la enviamos al centro de guardia antes de que llegues.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFRAESTRUCTURA ===== -->
+  <section class="zona zona--clara" id="infraestructura">
+    <div class="ancho">
+      <p class="epigrafe-zona">Infraestructura</p>
+      <h2>Dónde se hace cada cosa</h2>
+      <p class="zona__intro">Un entorno clínico estéril, seguro y tecnológico, pensado para sostener la vida y recuperar la salud del animal.</p>
+      <ul class="recinto">
+        <li><figure class="aflora"><img src="img/03-quirofano-de-alta-complejidad.jpg" width="1171" height="781" alt="Quirófano veterinario de alta complejidad con equipamiento de monitoreo" loading="lazy" decoding="async"><figcaption>Quirófanos e internación</figcaption></figure></li>
+        <li><figure class="aflora"><img src="img/04-equipamiento-avanzado.jpg" width="688" height="1031" alt="Equipamiento avanzado de diagnóstico por imágenes" loading="lazy" decoding="async"><figcaption>Diagnóstico por imágenes</figcaption></figure></li>
+        <li><figure class="aflora"><img src="img/05-area-de-laboratorio-clinico.jpg" width="1170" height="780" alt="Área de laboratorio clínico con analizadores" loading="lazy" decoding="async"><figcaption>Laboratorio de análisis clínicos</figcaption></figure></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== DÓNDE ===== -->
+  <section class="zona zona--blanca" id="donde">
+    <div class="ancho">
+      <p class="epigrafe-zona">Ubicación y contacto</p>
+      <h2>Av. Santa Fe 3200, Palermo</h2>
+      <p class="zona__intro">Zona de acceso rápido, con dársena de detención para pacientes de urgencia.</p>
+      <div class="direccion">
+        <div><h3>Dirección</h3><p>Av. Santa Fe 3200</p><p>Palermo, CABA (C1425)</p></div>
+        <div><h3>Cómo llegar</h3><p>Subte D, Bulnes o Agüero</p><p>Colectivos 12, 15, 29, 39, 64, 68, 152</p></div>
+        <div><h3>Estacionamiento</h3><p>Dársena de urgencias en la puerta</p><p>Convenio a 50 metros</p></div>
+        <div><h3>Comunicaciones</h3><p><a href="https://wa.me/5491112345678">WhatsApp 11 1234-5678</a></p><p><a href="tel:+541144445555">(011) 4444-5555</a></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PREGUNTAS ===== -->
+  <section class="zona zona--clara">
+    <div class="ancho">
+      <p class="epigrafe-zona">Preguntas frecuentes</p>
+      <h2>Lo que más nos consultan</h2>
+      <details class="item-faq">
+        <summary>¿Trabajan con prepagas veterinarias?</summary>
+        <p>Somos prestadores directos de Osde Mascotas, Puppis Care y VetPlan. Para clientes particulares aceptamos efectivo, transferencia y tarjetas de crédito con cuotas fijas en cirugías programadas.</p>
+      </details>
+      <details class="item-faq">
+        <summary>¿Cómo es el protocolo para cirugías?</summary>
+        <p>Toda intervención lleva un riesgo quirúrgico previo: análisis de sangre y electrocardiograma. El día de la cirugía el paciente queda monitoreado por un anestesista exclusivo, separado del cirujano principal.</p>
+      </details>
+      <details class="item-faq">
+        <summary>¿Qué pasa si mi animal se descompensa de madrugada?</summary>
+        <p>Llamanos igual. El teléfono deriva a la red de guardia con la que trabajamos y te indicamos el centro más cercano. Enviamos la historia clínica para que no tengan que empezar de cero.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="suelo">
+  <div class="ancho">
+    <div class="suelo__fila">
+      <div>
+        <span class="nombre"><b>Centro Veterinario Pampa</b><span>Medicina y cirugía especializada</span></span>
+        <p style="margin-top:.9rem">Infraestructura clínica superior y trato humano.</p>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <p>Av. Santa Fe 3200, Palermo</p>
+        <p><a href="https://wa.me/5491112345678">WhatsApp 11 1234-5678</a></p>
+        <p>Lunes a sábado, 9 a 20</p>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <p><a href="https://autogestion.produccion.gob.ar/consumidores" rel="noopener">Defensa del Consumidor</a></p>
+        <p><a href="https://www.argentina.gob.ar/aaip/datospersonales" rel="noopener">Protección de datos</a></p>
+      </div>
+    </div>
+    <div class="suelo__legal">
+      <p>© 2026 Centro Veterinario Pampa. Todos los derechos reservados.</p>
+      <p>Fotografías de demostración: Unsplash (Unsplash License), 3 de ellas bajo Unsplash+ License.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+
 <div class="sc-demobar" role="complementary" aria-label="Aviso de demostración">
   <p class="sc-demobar__txt">
     <strong>Ejemplo de demostración.</strong>
-    <span>Centro Veterinario Pampa es un negocio ficticio. Esta página la hicimos para mostrar cómo quedaría la tuya.</span>
+    <span>El Centro Veterinario Pampa es un negocio ficticio. Esta página la hicimos para mostrar cómo quedaría la tuya.</span>
   </p>
   <div class="sc-demobar__acts">
     <a class="sc-demobar__cta" href="https://wa.me/5491166804450?text=Hola%2C%20vi%20el%20ejemplo%20de%20veterinaria%20y%20quiero%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Quiero una así</a>
