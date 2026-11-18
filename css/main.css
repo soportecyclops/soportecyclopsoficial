@@ -1992,32 +1992,16 @@ a.pain-chip:hover::after{opacity:.7;margin-left:13px}
     color: inherit;
 }
 .demos-strip__mock {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: var(--s-2);
-    padding: var(--s-4);
+    display: block;
+    overflow: hidden;
     aspect-ratio: 16 / 10;
-    background: var(--d-bg);
+    background: var(--gray-100);
     border-radius: var(--radius);
     border: 1px solid var(--border);
     transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
-.demos-strip__mock b {
-    display: block;
-    width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, .16);
-}
-.demos-strip__mock b.is-short { width: 58%; margin-bottom: var(--s-2); }
-.demos-strip__mock i {
-    display: block;
-    width: 52%;
-    height: 14px;
-    border-radius: var(--d-rad);
-    background: var(--d-ac);
-}
+.demos-strip__mock img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
 .demos-strip__item:hover .demos-strip__mock {
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);

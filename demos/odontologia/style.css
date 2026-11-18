@@ -147,8 +147,12 @@ details[open] summary::after { transform: rotate(45deg); }
 .wa-float:hover { transform: scale(1.1); }
 
 /* Animaciones Reveal */
-.reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-.reveal.active { opacity: 1; transform: translateY(0); }
+/* Scroll-reveal: el contenido esta VISIBLE por defecto y el efecto
+   solo corre si el JS agrego la clase .js en <html>. Antes, sin JS,
+   la pagina entera quedaba en blanco. */
+.reveal { opacity: 1; transform: none; }
+html.js .reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+html.js .reveal.active { opacity: 1; transform: translateY(0); }
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
 

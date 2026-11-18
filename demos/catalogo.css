@@ -65,56 +65,26 @@
 .demo-card__link:active { transform: translateY(0) scale(.995); }
 .demo-card__link:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
-/* ---------- miniatura dibujada con la paleta real ---------- */
+/* ---------- miniatura: captura real de cada demo ----------
+   Antes era una maqueta dibujada con la paleta de cada una. Ahora es
+   la portada de verdad: el argumento de venta es que ninguna se parece
+   a la otra, y una captura lo demuestra mejor que una aproximacion. */
 .demo-card__preview {
   display: block;
-  background: var(--d-bg);
-  padding: 0 0 var(--s-6);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--gray-100);
   border-bottom: 1px solid var(--border);
 }
-.demo-card__chrome {
-  display: flex;
-  gap: 6px;
-  padding: var(--s-3) var(--s-4);
-  background: rgba(255, 255, 255, .07);
-}
-.demo-card__chrome i {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .28);
-}
-.demo-card__mock {
+.demo-card__preview img {
   display: block;
-  padding: var(--s-6) var(--s-5) 0;
-}
-.demo-card__mock-name {
-  display: block;
-  font-family: var(--d-head);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--d-fg);
-  margin-bottom: var(--s-4);
-}
-.demo-card__mock-line {
-  display: block;
-  height: 6px;
   width: 100%;
-  border-radius: 3px;
-  background: color-mix(in srgb, var(--d-fg) 22%, transparent);
-  margin-bottom: var(--s-2);
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform var(--dur-slow) var(--ease);
 }
-.demo-card__mock-line--short { width: 62%; margin-bottom: var(--s-5); }
-.demo-card__mock-btn {
-  display: inline-block;
-  padding: var(--s-2) var(--s-5);
-  background: var(--d-ac);
-  color: var(--d-bg);
-  border-radius: var(--d-rad);
-  font-size: var(--t-label);
-  font-weight: 700;
-  letter-spacing: .02em;
-}
+.demo-card__link:hover .demo-card__preview img { transform: scale(1.03); }
 
 /* ---------- cuerpo ---------- */
 .demo-card__body {
