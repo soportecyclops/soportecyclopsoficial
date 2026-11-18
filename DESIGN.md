@@ -351,6 +351,37 @@ No instaladas a propósito, 4 de las 20 del repo: `write-swift` (Swift),
 `animate-expo` (React Native), `ask-sonner` y `pick-ui-library` (librerías de
 React). Este sitio es HTML, CSS y JS sin framework.
 
+### Skills agregadas el 18/11 (segunda tanda)
+
+| Skill | Para qué sirve acá |
+|---|---|
+| `ui-ux-pro-max` | Catálogo consultable: 67 estilos de UI, 96 paletas, heurísticas de UX, íconos. Scripts Python de sólo lectura (`scripts/search.py`), stdlib, sin dependencias. |
+| `design-system` | Arquitectura de tokens en tres capas (primitivo → semántico → componente). Útil si algún día `tokens.css` crece. |
+| `brand` | Voz de marca, mensajes, consistencia. Aplica a los textos, no al CSS. |
+| `banner-design` | Piezas para redes y avisos. Fuera del sitio, pero del mismo sistema. |
+
+No instaladas de ese repo: `ui-styling` (5,9 MB de shadcn/ui, Radix y
+Tailwind: nada de eso corre acá) y `design` (se solapa con las otras cuatro y
+su parte de logos depende de APIs de generación pagas).
+
+**Dato a tener presente:** `ui-ux-pro-max` trae 22 archivos de stack y
+ninguno es HTML + CSS a mano. El más cercano es `html-tailwind.csv`. Cuando
+proponga clases de utilidad, hay que traducirlas a las clases y tokens de
+este proyecto, no adoptar Tailwind.
+
+### Motion (ex Framer Motion) — vendorizado, sin usar
+
+`js/vendor/motion-mini.js`, 24 KB (10 KB gzip), global `window.Motion`, con
+`animate`, `animateSequence`, `inView`, `scroll` y `stagger`. Generado con
+esbuild desde `node_modules/motion` v14.14.0; se regenera, no se edita.
+
+**No está enlazado en ninguna página, a propósito.** El sitio necesita una
+transición de 180 ms y un reveal que ya hace un `IntersectionObserver` de 15
+líneas y cero bytes de dependencia. Sumar 10 KB gzip para lo que §10 prohíbe
+usar es pérdida neta en una web de servicios que se juzga por lo rápido que
+abre. Está disponible para las demos, donde un cliente puede pedir más
+movimiento y el presupuesto de peso es otro.
+
 ### MCP (`.mcp.json`)
 
 - **playwright** — `@playwright/mcp`. Verificación visual real: render,
@@ -358,6 +389,10 @@ React). Este sitio es HTML, CSS y JS sin framework.
   `npx playwright install chromium`.
 - **figma** — servidor remoto `https://mcp.figma.com/mcp`. Requiere
   autorizar con `/mcp` dentro de Claude Code.
+- **21st** — `https://21st.dev/api/mcp`. La clave se lee de la variable de
+  entorno `TWENTYFIRST_API_KEY`, nunca va al repo. Genera componentes React
+  con shadcn/ui y Tailwind: acá sirve como referencia visual, el código no se
+  pega tal cual.
 
 Ninguno de los dos se publica: `.claude/`, `.mcp.json`, `package.json` y
 `node_modules/` están en `.vercelignore` desde el 18/11, junto con
