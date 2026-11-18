@@ -1,0 +1,56 @@
+/* ==========================================================
+   Transición entre el catálogo y las demos
+   ----------------------------------------------------------
+   La miniatura del catálogo crece hasta convertirse en la
+   página. Es honesto: la miniatura ES una captura de esa
+   página, así que el movimiento dice la verdad sobre lo que
+   acaba de pasar.
+
+   Mejora progresiva pura: el navegador que no lo soporta
+   navega como siempre, sin nada roto. Firefox todavía no
+   tiene transiciones entre documentos.
+   ========================================================== */
+
+@view-transition { navigation: auto; }
+
+/* --- La página de destino es lo que la miniatura se vuelve --- */
+/* Renombrar la raíz hace que el morph sea miniatura -> página
+   entera, en vez de miniatura -> una foto suelta de adentro.
+   Evita además el estirado feo al pasar de 16:10 a vertical. */
+.es-demo:root { view-transition-name: tapa; }
+
+/* --- La miniatura que se hizo clic --- */
+/* El nombre lo pone el script sobre la tarjeta correcta: tiene
+   que ser único en el documento y el catálogo tiene diez. */
+.tapa-activa { view-transition-name: tapa; }
+
+/* --- Tiempos --- */
+::view-transition-group(tapa){
+  animation-duration:420ms;
+  animation-timing-function:cubic-bezier(.22,.68,.24,1);
+}
+/* La miniatura se desvanece rápido mientras crece: lo que
+   importa es el movimiento, no ver dos capas superpuestas. */
+::view-transition-old(tapa){
+  animation:tapa-sale 180ms cubic-bezier(.4,0,1,1) both;
+}
+::view-transition-new(tapa){
+  animation:tapa-entra 340ms cubic-bezier(0,0,.3,1) 80ms both;
+}
+@keyframes tapa-sale{to{opacity:0}}
+@keyframes tapa-entra{from{opacity:0}to{opacity:1}}
+
+/* El resto del catálogo se va sin llamar la atención */
+::view-transition-old(root){animation:se-va 200ms ease-out both}
+::view-transition-new(root){animation:llega 260ms ease-in both}
+@keyframes se-va{to{opacity:0}}
+@keyframes llega{from{opacity:0}to{opacity:1}}
+
+/* --- Quien pidió menos movimiento no recibe ninguno --- */
+@media (prefers-reduced-motion: reduce){
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*){
+    animation:none !important;
+  }
+}

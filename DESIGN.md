@@ -475,3 +475,69 @@ de cabecera, héroe y pie en las cinco, y el mismo formulario.
 Queda pendiente decidir si se rehacen. No es urgente: visualmente se
 distinguen bien entre ellas. Pero la regla es la regla y hoy cinco de diez
 no la cumplen.
+
+---
+
+## 15. Movimiento permitido — excepciones a §10 (18/11/2026)
+
+§10 prohíbe el movimiento **decorativo**: el fade-up escalonado, los orbes,
+los gradientes que se mueven. Eso no cambia. Lo que se permite, caso por
+caso y anotado acá, es el movimiento que **carga información**: continuidad,
+causalidad, jerarquía o estado.
+
+La prueba para aceptar uno nuevo: si al sacarlo el usuario pierde una pista
+sobre qué pasó o dónde está, el movimiento estaba haciendo un trabajo. Si al
+sacarlo la página sólo queda más sobria, era decoración y se saca.
+
+### 15.1 — Catálogo → demo: la miniatura crece hasta ser la página
+
+**Implementado.** `demos/transicion.css` + `demos/transicion.js`, cargados
+por el catálogo y por las diez demos.
+
+Qué comunica: que la miniatura y la demo son la misma cosa a dos tamaños, y
+que el catálogo y los ejemplos son un solo producto. Sin esto hay un
+parpadeo en blanco y la relación entre lo que tocaste y lo que apareció se
+pierde.
+
+Cómo funciona:
+
+- `@view-transition { navigation: auto; }` en las once páginas.
+- La raíz de cada demo se llama `tapa` (`.es-demo:root`), así el morph es
+  miniatura → página entera y no miniatura → una foto suelta de adentro.
+  Eso además evita el estirado al pasar de 16:10 a vertical.
+- `transicion.js` le pone la clase `.tapa-activa` a la miniatura correcta en
+  `pageswap` (ida) y en `pagereveal` (vuelta), porque el nombre tiene que ser
+  único en el documento y el catálogo tiene diez.
+- 420 ms para el grupo. La capa vieja se va en 180 ms: lo que importa es el
+  movimiento, no ver dos capas superpuestas.
+
+Soporte: Chrome 126+, Edge 126+, Safari 18.2+. Firefox todavía no tiene
+transiciones entre documentos. Quien no lo soporta navega como siempre y no
+ve nada roto: es mejora progresiva, no una dependencia.
+
+Con `prefers-reduced-motion: reduce` no corre ninguna animación —
+verificado en navegador: a los 150 ms la página de destino ya está entera y
+en su lugar, sin caja creciendo.
+
+### 15.2 — Propuestas sin implementar
+
+Quedan evaluadas y no construidas. Cada una necesita su propia entrada acá
+antes de entrar al código:
+
+| Demo | Movimiento | Qué comunica |
+|---|---|---|
+| Barbería | La foto fija escala de 1.00 a 1.06 a lo largo del scroll | Que la foto y el texto son una escena, no dos columnas |
+| Peluquería | El tono del muestrario crece al pasar el mouse o al tocarlo, los otros se comprimen | Estás eligiendo un color y lo ves más grande para decidir |
+| Odontología | La línea del protocolo se traza hacia abajo y cada número se rellena al alcanzarlo | Secuencia y avance, que es el contenido de esa sección |
+| Veterinaria | El punto de "abierto ahora" late cada 2 s, sólo si está abierto | Que el dato es en vivo y no un cartel impreso |
+
+Las tres primeras son CSS puro con `animation-timeline`, que es Baseline
+desde Firefox 159: Chrome 115, Edge 115, Firefox 159, Safari 26. Ninguna
+necesita los 10 KB de Motion que están vendorizados en `js/vendor/`.
+
+### 15.3 — Deuda detectada el 18/11, sin tocar
+
+**365 archivos HTML cargan Font Awesome desde `cdnjs.cloudflare.com`.** Es un
+punto único de falla externo, una fuga de datos de cada visitante hacia un
+tercero, y contradice el trabajo de vendorizar las fuentes de las demos. Hay
+que bajarlo al repo y cambiar los 365 enlaces. No se hizo todavía.
