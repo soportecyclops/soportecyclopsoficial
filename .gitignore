@@ -26,3 +26,5 @@ desktop.ini
 
 # Salida generada por 11ty en la prueba de blog-test
 blog-test/_site/
+test-results/
+playwright-report/

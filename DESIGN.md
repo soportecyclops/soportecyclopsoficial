@@ -319,3 +319,47 @@ verificable, y una sola acción por pantalla.
 4. Reutilizar las clases que existen antes de inventar marcado nuevo.
 5. Al terminar una página: `/impeccable polish`, después `/impeccable audit`.
 6. Cualquier excepción a §10 se discute antes, no se implementa y se avisa.
+
+---
+
+## 13. Skills instaladas y cuál manda (18/11/2026)
+
+En `.claude/skills/`:
+
+| Skill | Para qué sirve acá |
+|---|---|
+| `design-taste-frontend` | Clasificación del sitio: *service / site-kind other*. Prohíbe shaders, escenas y WebGL. Es el que define el techo. |
+| `impeccable` | Vocabulario de diseño y los comandos `/impeccable polish` y `/impeccable audit`. |
+| `emil-design-eng` | Criterio de prolijidad: estados, detalle, por qué una decisión se siente bien. |
+| `break-ui` | Romper una pantalla con datos peores que los reales: nombres largos, cero ítems, emoji, texto no latino. |
+| `mobile-native` | CSS y metas que hacen que una web no se sienta "una web en un navegador" en el teléfono. |
+| `learn-taste` | Convierte las correcciones de una sesión en reglas dentro de este archivo. |
+| `animation-vocabulary` | Buscar el nombre exacto de un efecto antes de pedirlo o escribirlo. |
+| `animation-performance` | Que una animación no se coma el presupuesto de frame. |
+| `review-animations`, `remove-animations`, `find-animation-opportunities`, `improve-animations` | Auditar movimiento. `remove-animations` es el más útil acá. |
+| `animate`, `choreograph`, `gestures`, `apple-design`, `prototype` | Disponibles, de uso excepcional: ver el conflicto abajo. |
+
+**Conflicto a resolver siempre a favor de §10.** Las skills de animación de
+Emil Kowalski asumen una app con interacción rica. Este sitio es una web de
+servicios: §7 fija una sola duración (`--dur: 180ms`), un solo easing
+(`--ease`), y §10 prohíbe el fade-up escalonado, los orbes y los gradientes
+decorativos. Si una skill de animación propone movimiento que §10 prohíbe,
+gana §10 y se avisa. `remove-animations` empuja en la misma dirección que
+este archivo; `animate` y `choreograph`, en la contraria.
+
+No instaladas a propósito, 4 de las 20 del repo: `write-swift` (Swift),
+`animate-expo` (React Native), `ask-sonner` y `pick-ui-library` (librerías de
+React). Este sitio es HTML, CSS y JS sin framework.
+
+### MCP (`.mcp.json`)
+
+- **playwright** — `@playwright/mcp`. Verificación visual real: render,
+  consola, desborde, estados. En Windows requiere una vez:
+  `npx playwright install chromium`.
+- **figma** — servidor remoto `https://mcp.figma.com/mcp`. Requiere
+  autorizar con `/mcp` dentro de Claude Code.
+
+Ninguno de los dos se publica: `.claude/`, `.mcp.json`, `package.json` y
+`node_modules/` están en `.vercelignore` desde el 18/11, junto con
+`installCommand` y `buildCommand` neutralizados en `vercel.json` para que
+Vercel no intente buildear un sitio que no tiene build.

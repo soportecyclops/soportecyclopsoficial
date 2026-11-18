@@ -1,6 +1,12 @@
 {
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/((?!.*\\.).*)", "destination": "/index.html" }
-  ]
+    {
+      "source": "/((?!.*\\.).*)",
+      "destination": "/index.html"
+    }
+  ],
+  "installCommand": "echo \"sitio estatico: sin instalacion\"",
+  "buildCommand": "echo \"sitio estatico: sin build\"",
+  "framework": null
 }

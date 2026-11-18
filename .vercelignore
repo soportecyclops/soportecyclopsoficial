@@ -5,3 +5,13 @@ blog-test/
 *.zip
 *.rar
 *.md
+
+# Herramientas de desarrollo: no son parte del sitio publicado
+.claude/
+.mcp.json
+node_modules/
+package.json
+package-lock.json
+tests/
+test-results/
+playwright-report/
