@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SR">
-  <rect width="64" height="64" rx="6" fill="#2d2725"/>
-  <text x="32" y="32" fill="#c2a396" font-family="system-ui,-apple-system,Segoe UI,sans-serif"
-        font-size="30" font-weight="700" text-anchor="middle" dominant-baseline="central"
-        letter-spacing="-1">SR</text>
+  <rect width="64" height="64" fill="#F7F4EF"/>
+  <rect x="3" y="3" width="58" height="58" fill="none" stroke="#7A2E46" stroke-width="1.5"/>
+  <text x="32" y="33" fill="#15120F" font-family="Didot,'Bodoni MT','Times New Roman',serif"
+        font-size="30" text-anchor="middle" dominant-baseline="central">SR</text>
 </svg>

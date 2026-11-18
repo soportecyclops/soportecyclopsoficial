@@ -1,103 +1,67 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Mobile Menu 
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
+/* Sofía Rinaldi — comportamiento mínimo.
+   Regla: sin JS la página se ve y se usa entera. Esto sólo agrega
+   comodidades encima. */
+(function () {
+  'use strict';
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-            menuToggle.setAttribute('aria-expanded', !isExpanded);
-            navLinks.classList.toggle('active');
-        });
+  var quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.setAttribute('aria-expanded', 'false');
-                navLinks.classList.remove('active');
-            });
-        });
-    }
+  /* --- Menú del teléfono --- */
+  var boton = document.getElementById('menu-boton');
+  var indice = document.getElementById('indice');
 
-    // 2. Header Shrink
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }, { passive: true });
-
-    // 3. Observer para Fade-In (Reveal)
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                obs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // 4. Accordion Nativo (Cierre exclusivo)
-    const details = document.querySelectorAll('details[name="faq-group"]');
-    details.forEach(targetDetail => {
-        targetDetail.addEventListener('click', () => {
-            details.forEach(detail => {
-                if (detail !== targetDetail) {
-                    detail.removeAttribute('open');
-                }
-            });
-        });
+  if (boton && indice) {
+    boton.addEventListener('click', function () {
+      var abierto = indice.classList.toggle('abierto');
+      boton.setAttribute('aria-expanded', String(abierto));
+      boton.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
     });
 
-    // 5. Carrusel Portfolio
-    const track = document.getElementById('carousel-track');
-    const slides = track ? Array.from(track.children) : [];
-    const indicators = document.querySelectorAll('.carousel-indicator');
-    const carouselContainer = document.querySelector('.carousel-container');
-    
-    let currentIndex = 0;
-    let autoPlayInterval;
-    const intervalTime = 4500;
+    /* Al elegir una sección, se cierra */
+    indice.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') cerrar();
+    });
 
-    const updateCarousel = (index) => {
-        track.style.transform = `translateX(-${index * 100}%)`;
-        indicators.forEach(ind => ind.classList.remove('active'));
-        if(indicators[index]) indicators[index].classList.add('active');
-    };
+    /* Escape cierra y devuelve el foco al botón */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && indice.classList.contains('abierto')) {
+        cerrar();
+        boton.focus();
+      }
+    });
 
-    const nextSlide = () => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        updateCarousel(currentIndex);
-    };
+    /* Si la ventana crece hasta el ancho de escritorio, el menú deja de
+       tener sentido abierto */
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) cerrar();
+    });
+  }
 
-    const startAutoPlay = () => {
-        autoPlayInterval = setInterval(nextSlide, intervalTime);
-    };
-
-    const stopAutoPlay = () => {
-        clearInterval(autoPlayInterval);
-    };
-
-    if (indicators.length > 0 && slides.length > 0) {
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentIndex = index;
-                updateCarousel(currentIndex);
-                stopAutoPlay();
-                startAutoPlay();
-            });
-        });
-
-        if (carouselContainer) {
-            carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-            carouselContainer.addEventListener('mouseleave', startAutoPlay);
-            carouselContainer.addEventListener('focusin', stopAutoPlay);
-            carouselContainer.addEventListener('focusout', startAutoPlay);
-            startAutoPlay();
-        }
+  function cerrar() {
+    if (!indice) return;
+    indice.classList.remove('abierto');
+    if (boton) {
+      boton.setAttribute('aria-expanded', 'false');
+      boton.setAttribute('aria-label', 'Abrir menú');
     }
-});
+  }
+
+  /* --- Aparición al scroll --- */
+  var piezas = document.querySelectorAll('.asoma');
+
+  if (quieto || !('IntersectionObserver' in window)) {
+    for (var i = 0; i < piezas.length; i++) piezas[i].classList.add('visible');
+    return;
+  }
+
+  var observador = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (entrada) {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add('visible');
+        observador.unobserve(entrada.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  for (var j = 0; j < piezas.length; j++) observador.observe(piezas[j]);
+})();

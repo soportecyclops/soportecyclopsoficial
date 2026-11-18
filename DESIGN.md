@@ -398,3 +398,44 @@ Ninguno de los dos se publica: `.claude/`, `.mcp.json`, `package.json` y
 `node_modules/` están en `.vercelignore` desde el 18/11, junto con
 `installCommand` y `buildCommand` neutralizados en `vercel.json` para que
 Vercel no intente buildear un sitio que no tiene build.
+
+---
+
+## 14. Las demos no comparten andamiaje (18/11/2026)
+
+Medición del 18/11: las 5 demos originales compartían **41 de 57 nombres de
+clase CSS** entre sí (maquillaje vs odontología), la misma secuencia de
+secciones — `hero · services · trust-split · gallery-section ·
+location-section · faq` — y hasta los mismos nombres de token recoloreados
+(`--c-charcoal` / `--c-champagne` en peluquería y maquillaje; `--c-navy` en
+odontología y veterinaria). Las 5 nuevas comparten 2 clases con ellas.
+
+Eso es lo que hacía que el catálogo se leyera como una plantilla. Un catálogo
+de ejemplos cuyo argumento es "cada negocio queda distinto" se desarma solo si
+los ejemplos tienen el mismo esqueleto.
+
+**Regla:** una demo nueva o rehecha no reutiliza de otra ni los nombres de
+sección, ni los nombres de clase, ni los nombres de token, ni el patrón de
+héroe. Paleta y tipografía distintas no alcanzan: el molde se nota igual.
+Límite a verificar antes de publicar: **menos de 5 clases compartidas** con
+cualquier otra demo.
+
+```bash
+# Comparar dos demos
+comm -12 <(grep -oE '^\.[a-z][a-z0-9_-]*' demos/A/style.css | sort -u) \
+         <(grep -oE '^\.[a-z][a-z0-9_-]*' demos/B/style.css | sort -u) | wc -l
+```
+
+### Maquillaje — Sofía Rinaldi, dirección editorial
+
+| | |
+|---|---|
+| Estilo | Editorial de revista: rejilla asimétrica de 12 columnas, capitular, cita al margen, epígrafe bajo cada foto, filetes como separadores |
+| Paleta | Tinta `#15120F` sobre papel `#F7F4EF`, acento vino `#7A2E46`. Once pares medidos, todos por encima de 4.5:1 |
+| Tipografía | Bodoni Moda (display, alto contraste) + Jost (texto). Vendorizadas en `fonts/`, 76 KB; antes cargaba Google Fonts por CDN |
+| Héroe | Titular a todo el ancho, sin foto al lado. La foto de apertura va debajo, a 9 columnas, con epígrafe |
+| WhatsApp | Sin burbuja flotante: CTA en la cabecera. La barra de demostración ya ocupa el borde inferior y dos barras fijas en un teléfono es una de más |
+| Clases compartidas con odontología | 41 antes, **0** ahora |
+
+Pendiente de la misma tanda: barbería, peluquería, odontología y veterinaria
+siguen compartiendo el molde entre ellas.
