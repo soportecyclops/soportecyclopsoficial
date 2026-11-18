@@ -324,7 +324,10 @@ verificable, y una sola acción por pantalla.
 
 ## 13. Skills instaladas y cuál manda (18/11/2026)
 
-En `.claude/skills/`:
+**Dónde viven:** `%USERPROFILE%\.claude\skills\` — a nivel usuario, no dentro
+de este repo. Se movieron el 18/11: eran 44 MB que cada clone del sitio se
+bajaba sin necesidad, y las mismas skills sirven en todos los proyectos.
+`.claude/skills/` y `.claude/agents/` están en `.gitignore`.
 
 | Skill | Para qué sirve acá |
 |---|---|

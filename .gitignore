@@ -28,3 +28,7 @@ desktop.ini
 blog-test/_site/
 test-results/
 playwright-report/
+
+# Las skills y los agentes viven en %USERPROFILE%\.claude\ desde el 18/11
+.claude/skills/
+.claude/agents/
