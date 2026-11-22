@@ -814,7 +814,7 @@ function initChatbot() {
                         esIP ? "🌐 **Sistema IP** — Verificamos configuración PoE, direcciones IP estáticas, ancho de banda y acceso ONVIF." : "🔌 Revisamos conectores BNC, fuente de alimentación y calidad del cable coaxial.",
                         empresarial ? "🏢 **Sistema empresarial** — Cámaras IP HD/4K, NVR con RAID, almacenamiento local + backup en nube." : "🎥 Cámaras HD con visión nocturna real (no emulada), detección de movimiento con alertas al celular.",
                         "📱 Configuramos acceso remoto desde el celular — sin cargos mensuales en sistemas locales.",
-                        "⚙️ Garantía de instalación: 90 días en cableado y equipos instalados."
+                        "⚙️ Garantía de instalación: 30 días en cableado y equipos instalados."
                     ],
                     servicio:"Instalación y Mantenimiento CCTV"
                 };
@@ -1299,7 +1299,7 @@ function initChatbot() {
             return;
         }
         if (m.includes('precio') || m.includes('costo') || m.includes('cuanto') || m.includes('cuánto') || m.includes('cobran') || m.includes('presupuesto') || m.includes('vale')) {
-            addMessage("💰 **Política de precios:**\n\n✅ Consulta remota inicial **sin cargo**\n✅ Presupuesto detallado antes de empezar — sin sorpresas\n✅ Diagnóstico honesto: si el equipo no tiene solución viable, te lo decimos antes de cobrar\n\n**Garantías incluidas:**\n💻 Software / formateo: 15 días\n🔧 Mantenimiento físico: 30 días\n📡 Redes e instalaciones: 90 días\n\nEl precio depende del servicio, la complejidad y la zona. Lo acordamos siempre antes de tocar nada.", 'bot', [{text:"📅 Solicitar presupuesto", action:"agendar_consulta"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("💰 **Política de precios:**\n\n✅ Consulta remota inicial **sin cargo**\n✅ Presupuesto detallado antes de empezar — sin sorpresas\n✅ Diagnóstico honesto: si el equipo no tiene solución viable, te lo decimos antes de cobrar\n\n**Tarifas:**\n💻 Remoto o en taller: $20.000 por hora\n🏠 A domicilio: $30.000 por hora\n📦 Más de 4 horas: precio especial por volumen\n\n**Garantía:** 30 días en todos los trabajos. El presupuesto lo acordamos siempre antes de tocar nada.", 'bot', [{text:"📅 Solicitar presupuesto", action:"agendar_consulta"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('zona') || m.includes('cobertura') || m.includes('donde llegan') || m.includes('dónde llegan') || m.includes('llegan a') || m.includes('atienden en')) {
@@ -1307,7 +1307,7 @@ function initChatbot() {
             return;
         }
         if (m.includes('garantia') || m.includes('garantía')) {
-            addMessage("🛡️ **Política de garantías:**\n\n💻 Software y formateos: **15 días**\n🔧 Mantenimiento físico: **30 días**\n📡 Redes e instalaciones: **90 días**\n📷 CCTV y alarmas: **90 días**\n\nSiempre te informamos la garantía aplicable antes de empezar. Si el problema reaparece dentro del período, revisamos sin cargo adicional.", 'bot');
+            addMessage("🛡️ **Política de garantías:**\n\n✅ **30 días** en todos los trabajos: software, reparaciones, redes, CCTV y alarmas.\n\nSiempre te informamos la garantía aplicable antes de empezar. Si el problema reaparece dentro del período, revisamos sin cargo adicional.", 'bot');
             return;
         }
         if (m.includes('factura') || m.includes('cuit') || m.includes('fiscal') || m.includes('monotributo') || m.includes('responsable inscripto')) {
@@ -1681,7 +1681,7 @@ function initChatbot() {
                 addMessage("⏰ **Horarios:**\n\n📅 Lunes a Viernes: 9:00 a 18:00 hs\n📅 Sábados: 9:00 a 13:00 hs\n📅 Domingos: Cerrado\n\n⚡ Urgencias fuera de horario: WhatsApp.", 'bot', [{text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
                 break;
             case 'info_precios':
-                addMessage("💰 **Precios y garantías:**\n\n✅ Consulta remota inicial **sin cargo**\n✅ Presupuesto antes de empezar, siempre\n✅ Garantía: 15 días software / 30 días hardware / 90 días instalaciones\n\nSin sorpresas — todo acordado antes de tocar nada.", 'bot', [{text:"💬 Solicitar presupuesto", action:"whatsapp_urgente"}]);
+                addMessage("💰 **Precios y garantías:**\n\n✅ Consulta remota inicial **sin cargo**\n✅ Presupuesto antes de empezar, siempre\n✅ Garantía: 30 días en todos los trabajos\n\nSin sorpresas — todo acordado antes de tocar nada.", 'bot', [{text:"💬 Solicitar presupuesto", action:"whatsapp_urgente"}]);
                 break;
             case 'info_zona':
                 addMessage("📍 **Zona de cobertura:**\n\n✅ Ciudad Autónoma de Buenos Aires (CABA)\n✅ Gran Buenos Aires — Zona Norte, Sur y Oeste\n💻 Soporte remoto para todo el país.\n\n🚗 Zonas alejadas: consultamos disponibilidad.", 'bot', [{text:"📞 Verificar mi zona", action:"llamar_ahora"}]);
