@@ -38,6 +38,15 @@ salen de los tokens de `css/tokens.css`.
 - `data/*.json`: contenido de blog, noticias y servicios
 - `admin*.html`, `cliente*.html`, `login.html`: privadas, `noindex`
 
+## Chat y WhatsApp
+
+- `js/chat.js`: widget de Cyclops Chat (Chatwoot en `chat.soportecyclops.com.ar`, entrada "Web Soporte Cyclops", `websiteToken` en el archivo). Atiende **Iris**, la asistente de IA. Es el chat por defecto.
+- `chatbot.js`: asistente de diagnóstico guiado (sin IA, PDF y número de diagnóstico). Carga `js/chat.js` y se oculta cuando Iris está lista (`html.iris-activa .chatbot-container` en `css/main.css`); si Chatwoot no carga, queda como respaldo. Sus botones "Hablar con el asistente virtual" llaman a `abrirAsistente()`, que abre Iris o, a los 5 s, WhatsApp.
+- `soporte.html`: página del chat de Iris (burbuja visible y apertura automática en escritorio).
+- WhatsApp: todos los `wa.me` van al número de Iris, **5491151758025**. Los `tel:` y el teléfono visible para llamadas siguen en 11 6680-4450.
+- Precios que muestra la web, `chatbot.js` e Iris deben coincidir. Fuente de Iris: `/opt/cyclops-chat/config/conocimiento/default/05-catalogo.md` en el servidor 192.168.0.200.
+- `Code.gs` (Apps Script) se actualiza aparte, en el editor de Google.
+
 ## Agentes
 
 Skills instaladas en `.claude/skills/`: `design-taste-frontend` (taste-skill 2.5.1,
