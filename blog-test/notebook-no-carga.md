@@ -69,6 +69,6 @@ permalink: "notebook-no-carga.html"
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22La%20notebook%20no%20carga%3A%20diagn%C3%B3stico%20por%20s%C3%ADntoma%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491151758025?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22La%20notebook%20no%20carga%3A%20diagn%C3%B3stico%20por%20s%C3%ADntoma%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>

@@ -67,6 +67,6 @@ permalink: "migrar-a-pc-nueva.html"
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22C%C3%B3mo%20pasar%20todo%20a%20una%20PC%20nueva%20sin%20perder%20nada%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491151758025?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22C%C3%B3mo%20pasar%20todo%20a%20una%20PC%20nueva%20sin%20perder%20nada%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>

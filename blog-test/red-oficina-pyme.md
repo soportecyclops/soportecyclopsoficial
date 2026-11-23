@@ -69,6 +69,6 @@ permalink: "red-oficina-pyme.html"
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22C%C3%B3mo%20armar%20la%20red%20de%20una%20oficina%20chica%20sin%20que%20sea%20un%20parche%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491151758025?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22C%C3%B3mo%20armar%20la%20red%20de%20una%20oficina%20chica%20sin%20que%20sea%20un%20parche%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>

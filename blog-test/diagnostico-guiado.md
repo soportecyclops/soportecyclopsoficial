@@ -67,6 +67,6 @@ permalink: "diagnostico-guiado.html"
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22C%C3%B3mo%20funciona%20nuestro%20diagn%C3%B3stico%20guiado%20(y%20por%20qu%C3%A9%20no%20hace%20falta%20traer%20el%20equipo)%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491151758025?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22C%C3%B3mo%20funciona%20nuestro%20diagn%C3%B3stico%20guiado%20(y%20por%20qu%C3%A9%20no%20hace%20falta%20traer%20el%20equipo)%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>

@@ -66,7 +66,7 @@ Desde octubre de 2025, Microsoft dejÃ³ de publicar actualizaciones de segurida
 <div class="cta-box">
   <h3>Â¿NecesitÃ¡s ayuda con esto?</h3>
   <p>Soporte tÃ©cnico a domicilio en CABA y GBA. DiagnÃ³stico claro, precio cerrado antes de empezar.</p>
-  <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20de%20Windows%2010%20y%20necesito%20ayuda" target="_blank">
+  <a class="cta-btn" href="https://wa.me/5491151758025?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20de%20Windows%2010%20y%20necesito%20ayuda" target="_blank">
     <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
   </a>
 </div>

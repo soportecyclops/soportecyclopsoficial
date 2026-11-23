@@ -66,6 +66,6 @@ permalink: "punto-de-venta-comercio.html"
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22Punto%20de%20venta%20para%20comercios%3A%20qu%C3%A9%20necesit%C3%A1s%20de%20verdad%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491151758025?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22Punto%20de%20venta%20para%20comercios%3A%20qu%C3%A9%20necesit%C3%A1s%20de%20verdad%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>

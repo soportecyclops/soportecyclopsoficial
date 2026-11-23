@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/5491166804450?text=${encodedMessage}`, '_blank');
+            window.open(`https://wa.me/5491151758025?text=${encodedMessage}`, '_blank');
             
             // Medición GA4 si está configurado
             if (typeof gtag === 'function') {

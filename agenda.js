@@ -320,7 +320,7 @@ class AppointmentScheduler {
         message += `Por favor, confirmen mi reserva. ¡Gracias!`;
         
         const encodedMessage = encodeURIComponent(message);
-        window.open(`https://wa.me/5491166804450?text=${encodedMessage}`, '_blank');
+        window.open(`https://wa.me/5491151758025?text=${encodedMessage}`, '_blank');
     }
 
     showConfirmation(appointmentData) {

@@ -67,6 +67,6 @@ permalink: "sonido-no-funciona.html"
     <div class="cta-box">
       <h3>¿Necesitás ayuda con esto?</h3>
       <p>Soporte técnico a domicilio en CABA y GBA. Diagnóstico claro, precio cerrado antes de empezar.</p>
-      <a class="cta-btn" href="https://wa.me/5491166804450?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22No%20hay%20sonido%20en%20la%20PC%3A%20la%20causa%20m%C3%A1s%20com%C3%BAn%20y%20c%C3%B3mo%20resolverla%22%20y%20necesito%20ayuda" target="_blank">
+      <a class="cta-btn" href="https://wa.me/5491151758025?text=Hola!%20Le%C3%AD%20el%20art%C3%ADculo%20%22No%20hay%20sonido%20en%20la%20PC%3A%20la%20causa%20m%C3%A1s%20com%C3%BAn%20y%20c%C3%B3mo%20resolverla%22%20y%20necesito%20ayuda" target="_blank">
         <i class="fab fa-whatsapp"></i> Consultar por WhatsApp</a>
     </div>

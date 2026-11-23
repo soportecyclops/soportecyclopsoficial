@@ -733,7 +733,7 @@ function enviarEmailCliente(p, pdfBlob) {
         "<div><span style='font-size:11px;color:#94a3b8;'>Nivel: </span><strong>" + sevLabel + "</strong></div>" +
       "</div>" +
       "<p style='color:#475569;line-height:1.6;margin:0 0 20px;'>Un técnico va a revisar tu diagnóstico y te va a contactar a la brevedad para darte un presupuesto.</p>" +
-      "<a href='https://wa.me/5491166804450' style='display:inline-block;background:#25D366;color:#ffffff;padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;text-decoration:none;'>Contactar por WhatsApp</a>" +
+      "<a href='https://wa.me/5491151758025' style='display:inline-block;background:#25D366;color:#ffffff;padding:12px 24px;border-radius:50px;font-weight:700;font-size:14px;text-decoration:none;'>Contactar por WhatsApp</a>" +
     "</div>" +
     "<div style='text-align:center;padding:16px;font-size:11px;color:#94a3b8;'>Soporte Cyclops  ·  CABA y Gran Buenos Aires</div>" +
     "</div>";
@@ -743,7 +743,7 @@ function enviarEmailCliente(p, pdfBlob) {
     "Completaste tu diagnóstico en soportecyclops.com.ar.\n" +
     "N° " + (p.diagNum || "—") + " — " + (p.servicio || "—") + " — " + sevLabel + "\n\n" +
     "Un técnico te va a contactar a la brevedad.\n" +
-    "WhatsApp: https://wa.me/5491166804450\n\n" +
+    "WhatsApp: https://wa.me/5491151758025\n\n" +
     "Soporte Cyclops · soportecyclops.com.ar";
 
   GmailApp.sendEmail(p.email, subject, textBody, {

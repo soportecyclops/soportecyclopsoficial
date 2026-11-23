@@ -24,7 +24,7 @@
 // ===========================
 
 const CYCLOPS_CONFIG = {
-    whatsapp:      "5491166804450",
+    whatsapp:      "5491151758025",
     telefono:      "+54 9 11 6680-4450",
     email:         "contacto@soportecyclops.com.ar",
     sitio:         "www.soportecyclops.com.ar",
@@ -69,6 +69,12 @@ function formatARS(n) {
 }
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
+if (!window.abrirAsistente) {
+    var chatAura = document.createElement('script');
+    chatAura.src = '/js/chat.js';
+    document.head.appendChild(chatAura);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     initChatbot();
 });
@@ -1229,7 +1235,7 @@ function initChatbot() {
             message: "🚨 **¿Tu problema es urgente?**\n\nTe conectamos de inmediato:",
             options: [
                 { text:"📞 Llamar ahora",       action:"llamar_ahora" },
-                { text:"💬 WhatsApp urgente",   action:"whatsapp_urgente" }
+                { text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente" }
             ]
         }
     };
@@ -1295,11 +1301,11 @@ function initChatbot() {
 
         // ── Información general ────────────────────────────────────
         if (m.includes('horario') || m.includes('atienden') || m.includes('sabado') || m.includes('sábado') || m.includes('domingo') || m.includes('cuando abren')) {
-            addMessage("⏰ **Horarios de atención:**\n\n📅 Lunes a Viernes: 9:00 a 18:00 hs\n📅 Sábados: 9:00 a 13:00 hs\n📅 Domingos: Cerrado\n\n⚡ Para urgencias fuera de horario, escribinos por WhatsApp — evaluamos según disponibilidad y prioridad del caso.", 'bot', [{text:"💬 WhatsApp urgente", action:"whatsapp_urgente"}]);
+            addMessage("⏰ **Horarios de atención:**\n\n📅 Lunes a Viernes: 9:00 a 18:00 hs\n📅 Sábados: 9:00 a 13:00 hs\n📅 Domingos: Cerrado\n\n⚡ Para urgencias fuera de horario, escribinos por WhatsApp — evaluamos según disponibilidad y prioridad del caso.", 'bot', [{text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('precio') || m.includes('costo') || m.includes('cuanto') || m.includes('cuánto') || m.includes('cobran') || m.includes('presupuesto') || m.includes('vale')) {
-            addMessage("💰 **Política de precios:**\n\n✅ Consulta remota inicial **sin cargo**\n✅ Presupuesto detallado antes de empezar — sin sorpresas\n✅ Diagnóstico honesto: si el equipo no tiene solución viable, te lo decimos antes de cobrar\n\n**Tarifas:**\n💻 Remoto o en taller: $20.000 por hora\n🏠 A domicilio: $30.000 por hora\n📦 Más de 4 horas: precio especial por volumen\n\n**Garantía:** 30 días en todos los trabajos. El presupuesto lo acordamos siempre antes de tocar nada.", 'bot', [{text:"📅 Solicitar presupuesto", action:"agendar_consulta"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("💰 **Política de precios:**\n\n✅ Diagnóstico en taller $10.000, se descuenta si aceptás el trabajo\n✅ Presupuesto detallado antes de empezar — sin sorpresas\n✅ Diagnóstico honesto: si el equipo no tiene solución viable, te lo decimos antes de cobrar\n\n**Tarifas:**\n💻 Remoto o en taller: $20.000 por hora\n🏠 A domicilio: $30.000 por hora\n📦 Más de 4 horas: precio especial por volumen\n\n**Garantía:** 30 días en todos los trabajos. El presupuesto lo acordamos siempre antes de tocar nada.", 'bot', [{text:"📅 Solicitar presupuesto", action:"agendar_consulta"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('zona') || m.includes('cobertura') || m.includes('donde llegan') || m.includes('dónde llegan') || m.includes('llegan a') || m.includes('atienden en')) {
@@ -1311,7 +1317,7 @@ function initChatbot() {
             return;
         }
         if (m.includes('factura') || m.includes('cuit') || m.includes('fiscal') || m.includes('monotributo') || m.includes('responsable inscripto')) {
-            addMessage("🧾 **Facturación:**\n\nSí, emitimos comprobante fiscal. Consultanos el tipo de facturación disponible según tu situación impositiva.", 'bot', [{text:"💬 Consultar por WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("🧾 **Facturación:**\n\nSí, emitimos comprobante fiscal. Consultanos el tipo de facturación disponible según tu situación impositiva.", 'bot', [{text:"💬 Consultar al asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('abono') || m.includes('mensual') || m.includes('mantenimiento preventivo') || m.includes('soporte mensual') || m.includes('contrato')) {
@@ -1325,27 +1331,27 @@ function initChatbot() {
 
         // ── Categorías de servicio ─────────────────────────────────
         if (m.includes('ups') || m.includes('corte de luz') || m.includes('pico de tension') || m.includes('pico de tensión') || m.includes('bateria del ups') || m.includes('batería del ups') || m.includes('no aguanta la carga')) {
-            addMessage("🔋 **UPS y Protección de Energía**\n\nInstalamos, asesoramos y hacemos mantenimiento de UPS para hogares, oficinas y servidores.\n\n💡 Un UPS no solo protege ante cortes — el tipo correcto también regula bajones y picos de tensión sin gastar la batería.\n\n¿Hacemos un diagnóstico para recomendarte el equipo correcto?", 'bot', [{text:"🔋 Sí, diagnóstico UPS", next:"iniciar_diag_ups"}, {text:"💡 Guía sobre UPS", action:"link_blog_ups"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("🔋 **UPS y Protección de Energía**\n\nInstalamos, asesoramos y hacemos mantenimiento de UPS para hogares, oficinas y servidores.\n\n💡 Un UPS no solo protege ante cortes — el tipo correcto también regula bajones y picos de tensión sin gastar la batería.\n\n¿Hacemos un diagnóstico para recomendarte el equipo correcto?", 'bot', [{text:"🔋 Sí, diagnóstico UPS", next:"iniciar_diag_ups"}, {text:"💡 Guía sobre UPS", action:"link_blog_ups"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('virus') || m.includes('ransomware') || m.includes('hackeo') || m.includes('hackearon') || m.includes('malware') || m.includes('antivirus') || m.includes('firewall') || m.includes('ciberseguridad') || m.includes('phishing') || m.includes('contraseña') || m.includes('me robaron datos')) {
-            addMessage("🛡️ **Ciberseguridad**\n\nOfrecemos protección práctica para pymes y hogares: antivirus corporativo, red segura, backup y respuesta ante incidentes.\n\n⚠️ Si tenés un ransomware activo o creés que te hackearon, la acción tiene que ser inmediata.\n\n¿Hacemos un diagnóstico de tu situación?", 'bot', [{text:"🛡️ Diagnóstico de seguridad", next:"iniciar_diag_ciber"}, {text:"🚨 Es urgente — WhatsApp ahora", action:"whatsapp_urgente"}]);
+            addMessage("🛡️ **Ciberseguridad**\n\nOfrecemos protección práctica para pymes y hogares: antivirus corporativo, red segura, backup y respuesta ante incidentes.\n\n⚠️ Si tenés un ransomware activo o creés que te hackearon, la acción tiene que ser inmediata.\n\n¿Hacemos un diagnóstico de tu situación?", 'bot', [{text:"🛡️ Diagnóstico de seguridad", next:"iniciar_diag_ciber"}, {text:"🚨 Es urgente — hablar con el asistente", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('impresora') || m.includes('imprime mal') || m.includes('no imprime') || m.includes('scanner') || m.includes('escáner') || m.includes('multifuncion') || m.includes('multifunción') || m.includes('toner') || m.includes('tóner') || m.includes('cartucho')) {
-            addMessage("🖨️ **Impresoras y Periféricos**\n\nReparamos y configuramos impresoras de tinta y láser, multifunciones, escáneres y otros periféricos.\n\n🔬 Los problemas más frecuentes son cabezales obstruidos, drivers en conflicto y colas de impresión trabadas — la mayoría se resuelven sin cambiar el equipo.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🖨️ Diagnóstico de impresora", next:"iniciar_diag_impresoras"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("🖨️ **Impresoras y Periféricos**\n\nReparamos y configuramos impresoras de tinta y láser, multifunciones, escáneres y otros periféricos.\n\n🔬 Los problemas más frecuentes son cabezales obstruidos, drivers en conflicto y colas de impresión trabadas — la mayoría se resuelven sin cambiar el equipo.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🖨️ Diagnóstico de impresora", next:"iniciar_diag_impresoras"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('servidor') || m.includes('nas') || m.includes('raid') || m.includes('vmware') || m.includes('hyper-v') || m.includes('virtualización') || m.includes('sql server') || m.includes('base de datos') || m.includes('active directory')) {
-            addMessage("🗄️ **Servidores y NAS**\n\nAtendemos servidores físicos, virtuales y NAS — con prioridad según el impacto en los usuarios.\n\n⚠️ Un RAID degradado o un servidor con discos al límite requiere atención urgente para evitar pérdida de datos.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🗄️ Diagnóstico de servidor", next:"iniciar_diag_servidores"}, {text:"💬 WhatsApp urgente", action:"whatsapp_urgente"}]);
+            addMessage("🗄️ **Servidores y NAS**\n\nAtendemos servidores físicos, virtuales y NAS — con prioridad según el impacto en los usuarios.\n\n⚠️ Un RAID degradado o un servidor con discos al límite requiere atención urgente para evitar pérdida de datos.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🗄️ Diagnóstico de servidor", next:"iniciar_diag_servidores"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('voip') || m.includes('telefono ip') || m.includes('teléfono ip') || m.includes('pbx') || m.includes('asterisk') || m.includes('3cx') || m.includes('llamadas ip') || m.includes('no hay audio') || m.includes('se corta la llamada') || m.includes('interno') || m.includes('central telefonica')) {
-            addMessage("📞 **Telefonía IP y VoIP**\n\nConfiguramos y reparamos sistemas VoIP, teléfonos IP, PBX (Asterisk, FreePBX, 3CX) y troncales SIP.\n\n🔬 El 80% de los problemas de audio en VoIP se resuelven configurando QoS correctamente en el router.\n\n¿Hacemos un diagnóstico de tu sistema?", 'bot', [{text:"📞 Diagnóstico VoIP", next:"iniciar_diag_voip"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("📞 **Telefonía IP y VoIP**\n\nConfiguramos y reparamos sistemas VoIP, teléfonos IP, PBX (Asterisk, FreePBX, 3CX) y troncales SIP.\n\n🔬 El 80% de los problemas de audio en VoIP se resuelven configurando QoS correctamente en el router.\n\n¿Hacemos un diagnóstico de tu sistema?", 'bot', [{text:"📞 Diagnóstico VoIP", next:"iniciar_diag_voip"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('software') || m.includes('sistema') || m.includes('tango') || m.includes('bejerman') || m.includes('sap') || m.includes('pos') || m.includes('punto de venta') || m.includes('no abre el programa') || m.includes('no abre el sistema') || m.includes('erp') || m.includes('crm')) {
-            addMessage("💼 **Software y Sistemas Empresariales**\n\nResolvemos problemas con sistemas de gestión, ERP, POS, bases de datos y software a medida.\n\n💻 La mayoría de estos casos se resuelven 100% de forma remota — sin necesidad de visita.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"💼 Diagnóstico de software", next:"iniciar_diag_software"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("💼 **Software y Sistemas Empresariales**\n\nResolvemos problemas con sistemas de gestión, ERP, POS, bases de datos y software a medida.\n\n💻 La mayoría de estos casos se resuelven 100% de forma remota — sin necesidad de visita.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"💼 Diagnóstico de software", next:"iniciar_diag_software"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('blog') || m.includes('artículo') || m.includes('articulo') || m.includes('guía') || m.includes('guia') || m.includes('aprender') || m.includes('manual')) {
@@ -1353,19 +1359,19 @@ function initChatbot() {
             return;
         }
         if (m.includes('cámara') || m.includes('camara') || m.includes('cctv') || m.includes('vigilancia') || m.includes('dvr') || m.includes('nvr') || m.includes('no graba') || m.includes('imagen nocturna')) {
-            addMessage("📷 **Cámaras de Seguridad / CCTV**\n\nInstalamos y reparamos sistemas IP y analógicos con acceso remoto desde el celular.\n\n💡 ¿Sabías que las cámaras WiFi son cómodas pero las IP por cable son más confiables y de mejor calidad para vigilancia real?\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"📷 Diagnóstico CCTV", next:"iniciar_diag_camaras"}, {text:"💡 Guía de cámaras", action:"link_blog_camaras"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("📷 **Cámaras de Seguridad / CCTV**\n\nInstalamos y reparamos sistemas IP y analógicos con acceso remoto desde el celular.\n\n💡 ¿Sabías que las cámaras WiFi son cómodas pero las IP por cable son más confiables y de mejor calidad para vigilancia real?\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"📷 Diagnóstico CCTV", next:"iniciar_diag_camaras"}, {text:"💡 Guía de cámaras", action:"link_blog_camaras"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('wifi') || m.includes('wi-fi') || m.includes('internet lento') || m.includes('señal débil') || m.includes('red') || m.includes('router') || m.includes('modem') || m.includes('sin internet') || m.includes('no conecta')) {
-            addMessage("📶 **Problemas de Red / Conectividad**\n\n🔬 Las causas más frecuentes de WiFi lento: canal 2.4GHz saturado por vecinos, router sin reinicio hace meses, o posicionamiento incorrecto del router.\n\n¿Hacemos un diagnóstico detallado o preferís arrancar por el artículo?", 'bot', [{text:"🔍 Diagnóstico de red", next:"iniciar_diag_redes"}, {text:"📖 Artículo sobre WiFi", action:"link_blog_wifi"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("📶 **Problemas de Red / Conectividad**\n\n🔬 Las causas más frecuentes de WiFi lento: canal 2.4GHz saturado por vecinos, router sin reinicio hace meses, o posicionamiento incorrecto del router.\n\n¿Hacemos un diagnóstico detallado o preferís arrancar por el artículo?", 'bot', [{text:"🔍 Diagnóstico de red", next:"iniciar_diag_redes"}, {text:"📖 Artículo sobre WiFi", action:"link_blog_wifi"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('alarma') || m.includes('cerco electrico') || m.includes('cerco eléctrico') || m.includes('control de acceso') || m.includes('sensor de movimiento') || m.includes('falsa alarma') || m.includes('monitoreo')) {
-            addMessage("🚨 **Alarmas y Control de Acceso**\n\nInstalamos y reparamos sistemas de alarma, cercos eléctricos y control de acceso.\n\n💡 Una alarma con falsas alarmas frecuentes termina siendo ignorada — revisamos los sensores antes de que pase algo real.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🚨 Diagnóstico de alarma", next:"iniciar_diag_alarmas"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("🚨 **Alarmas y Control de Acceso**\n\nInstalamos y reparamos sistemas de alarma, cercos eléctricos y control de acceso.\n\n💡 Una alarma con falsas alarmas frecuentes termina siendo ignorada — revisamos los sensores antes de que pase algo real.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🚨 Diagnóstico de alarma", next:"iniciar_diag_alarmas"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('domotica') || m.includes('domótica') || m.includes('automatización') || m.includes('automatizacion') || m.includes('alexa') || m.includes('google home') || m.includes('smart home') || m.includes('luces inteligentes') || m.includes('enchufes inteligentes')) {
-            addMessage("🏠 **Domótica y Automatización**\n\nAutomatizamos hogares y oficinas: iluminación, climatización, persianas, enchufes y seguridad.\n\n⚡ En la mayoría de los casos instalamos sin romper paredes — tecnología inalámbrica que se integra a tu infraestructura actual.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🏠 Diagnóstico de domótica", next:"iniciar_diag_domotica"}, {text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+            addMessage("🏠 **Domótica y Automatización**\n\nAutomatizamos hogares y oficinas: iluminación, climatización, persianas, enchufes y seguridad.\n\n⚡ En la mayoría de los casos instalamos sin romper paredes — tecnología inalámbrica que se integra a tu infraestructura actual.\n\n¿Hacemos un diagnóstico?", 'bot', [{text:"🏠 Diagnóstico de domótica", next:"iniciar_diag_domotica"}, {text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
             return;
         }
         if (m.includes('página web') || m.includes('pagina web') || m.includes('sitio web') || m.includes('presencia web') || m.includes('paquete web') || m.includes('mi negocio en internet') || m.includes('seo') || m.includes('google ads') || m.includes('instagram ads')) {
@@ -1379,7 +1385,7 @@ function initChatbot() {
         if (m.includes('pc') || m.includes('notebook') || m.includes('laptop') || m.includes('computadora') || m.includes('computador') || m.includes('no enciende') || m.includes('lento') || m.includes('pantalla negra') || m.includes('se colgó') || m.includes('se reinicia') || m.includes('tarda') || m.includes('virus')) {
             addMessage("💻 **Soporte Informático**\n\n🔬 Antes de ir a un diagnóstico completo: ¿el problema es que no enciende, está lento, o es un problema de software/sistema?\n\nTe puedo hacer unas preguntas para darte una evaluación técnica precisa.", 'bot', [
                 {text:"🔍 Diagnóstico completo de PC", next:"iniciar_diag_pc"},
-                {text:"💬 Describir el problema por WhatsApp", action:"whatsapp_urgente"}
+                {text:"💬 Contarle el problema al asistente", action:"whatsapp_urgente"}
             ]);
             return;
         }
@@ -1654,19 +1660,20 @@ function initChatbot() {
                 addMessage("📞 **Conectándote por teléfono...**\n\nSi no funciona, marcá directo al: " + CYCLOPS_CONFIG.telefono, 'bot');
                 break;
             case 'whatsapp_urgente':
-                window.open("https://wa.me/" + CYCLOPS_CONFIG.whatsapp + "?text=" + encodeURIComponent('¡Hola! Necesito ayuda técnica. ¿Me pueden asistir?'), '_blank');
-                addMessage("💬 **¡Listo! Te redirijo a WhatsApp...**", 'bot');
+                abrirAsistente();
+                addMessage("💬 **Abriendo el asistente virtual...**\n\nContale tu consulta y te responde al instante.", 'bot');
                 break;
             case 'whatsapp_abono':
-                window.open("https://wa.me/" + CYCLOPS_CONFIG.whatsapp + "?text=" + encodeURIComponent('Hola, me interesa un plan de abono de soporte mensual. ¿Me pueden dar más información?'), '_blank');
-                addMessage("💬 Abriendo WhatsApp para consultar planes de abono...", 'bot');
+                abrirAsistente();
+                addMessage("💬 Abriendo el asistente virtual para consultar planes de abono...", 'bot');
                 break;
             case 'whatsapp_web':
-                window.open("https://wa.me/" + CYCLOPS_CONFIG.whatsapp + "?text=" + encodeURIComponent('Hola, me interesa el servicio de presencia web para mi negocio. ¿Me pueden contar los paquetes disponibles?'), '_blank');
-                addMessage("💬 Abriendo WhatsApp para consultar paquetes web...", 'bot');
+                abrirAsistente();
+                addMessage("💬 Abriendo el asistente virtual para consultar paquetes web...", 'bot');
                 break;
             case 'agendar_consulta':
-                addMessage("📅 **Para agendar una consulta:**\n\nContactanos al " + CYCLOPS_CONFIG.telefono + " o por WhatsApp.\n\n✅ La consulta remota inicial es **sin cargo**.\n✅ Si requiere visita, acordamos el presupuesto antes de la misma.", 'bot', [{text:"💬 Agendar por WhatsApp", action:"whatsapp_urgente"}]);
+                abrirAsistente();
+                addMessage("📅 **Abriendo el asistente virtual para coordinar la consulta...**\n\nTambién podés llamarnos al " + CYCLOPS_CONFIG.telefono + ".", 'bot');
                 break;
             case 'consulta_general':
                 addMessage("💬 **¿En qué puedo ayudarte?**\n\nElegí una opción o escribime tu consulta:", 'bot', [
@@ -1678,7 +1685,7 @@ function initChatbot() {
                 ]);
                 break;
             case 'info_horarios':
-                addMessage("⏰ **Horarios:**\n\n📅 Lunes a Viernes: 9:00 a 18:00 hs\n📅 Sábados: 9:00 a 13:00 hs\n📅 Domingos: Cerrado\n\n⚡ Urgencias fuera de horario: WhatsApp.", 'bot', [{text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+                addMessage("⏰ **Horarios:**\n\n📅 Lunes a Viernes: 9:00 a 18:00 hs\n📅 Sábados: 9:00 a 13:00 hs\n📅 Domingos: Cerrado\n\n⚡ Urgencias fuera de horario: WhatsApp.", 'bot', [{text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
                 break;
             case 'info_precios':
                 addMessage("💰 **Precios y garantías:**\n\n✅ Consulta remota inicial **sin cargo**\n✅ Presupuesto antes de empezar, siempre\n✅ Garantía: 30 días en todos los trabajos\n\nSin sorpresas — todo acordado antes de tocar nada.", 'bot', [{text:"💬 Solicitar presupuesto", action:"whatsapp_urgente"}]);
@@ -1706,7 +1713,7 @@ function initChatbot() {
                 addMessage("📷 Abriendo la guía de cámaras...", 'bot');
                 break;
             default:
-                addMessage("💡 Contactanos directo: " + CYCLOPS_CONFIG.telefono, 'bot', [{text:"💬 WhatsApp", action:"whatsapp_urgente"}]);
+                addMessage("💡 Contactanos directo: " + CYCLOPS_CONFIG.telefono, 'bot', [{text:"💬 Hablar con el asistente virtual", action:"whatsapp_urgente"}]);
         }
     }
 
