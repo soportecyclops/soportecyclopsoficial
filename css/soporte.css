@@ -125,5 +125,5 @@
         .footer-bottom { padding-top:22px; text-align:center; font-size:var(--t-label); opacity:0.5; }
         @media(max-width:768px){ .footer-content{grid-template-columns:1fr 1fr} }
         @media(max-width:480px){ .footer-content{grid-template-columns:1fr} }
-        .whatsapp-float { position:fixed; bottom:28px; right:28px; width:52px; height:52px; background:var(--whatsapp); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:var(--t-h3); text-decoration:none; z-index:999; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:var(--transition); }
+        .whatsapp-float { position:fixed; bottom:90px; right:28px; width:52px; height:52px; background:var(--whatsapp); border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:var(--t-h3); text-decoration:none; z-index:999; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:var(--transition); }
         .whatsapp-float:hover { transform:scale(1.1) translateY(-3px); }

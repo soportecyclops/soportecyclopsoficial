@@ -1055,6 +1055,9 @@ footer {
     right: 28px;
     z-index: 1000;
 }
+.iris-activa .chatbot-container {
+    display: none;
+}
 .chatbot-toggle {
     width: 56px; height: 56px;
     background: var(--blue);

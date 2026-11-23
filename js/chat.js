@@ -1,4 +1,5 @@
-// Chat de Iris (Cyclops Chat / Chatwoot). Se abre desde el asistente guiado y desde soporte.html.
+// Chat de Iris (Cyclops Chat / Chatwoot): chat por defecto del sitio.
+// Si Chatwoot no carga, queda visible el asistente guiado (chatbot.js) como respaldo.
 (function () {
     var BASE = 'https://chat.soportecyclops.com.ar';
     var TOKEN = 'sjEcwPfBet3x5yP8pwPqnJAu';
@@ -9,12 +10,13 @@
     window.chatwootSettings = {
         locale: 'es',
         position: 'right',
-        hideMessageBubble: !window.CYCLOPS_CHAT_BURBUJA,
+        hideMessageBubble: false,
         launcherTitle: 'Asistente virtual'
     };
 
     window.addEventListener('chatwoot:ready', function () {
         listo = true;
+        document.documentElement.classList.add('iris-activa');
         if (pendiente) { pendiente = false; window.$chatwoot.toggle('open'); }
     });
 
