@@ -1,4 +1,4 @@
-// Chat de Aura (Cyclops Chat / Chatwoot). Se abre desde el asistente guiado y desde soporte.html.
+// Chat de Iris (Cyclops Chat / Chatwoot). Se abre desde el asistente guiado y desde soporte.html.
 (function () {
     var BASE = 'https://chat.soportecyclops.com.ar';
     var TOKEN = 'sjEcwPfBet3x5yP8pwPqnJAu';

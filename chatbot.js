@@ -70,9 +70,9 @@ function formatARS(n) {
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
 if (!window.abrirAsistente) {
-    var chatAura = document.createElement('script');
-    chatAura.src = '/js/chat.js';
-    document.head.appendChild(chatAura);
+    var chatIris = document.createElement('script');
+    chatIris.src = '/js/chat.js';
+    document.head.appendChild(chatIris);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
