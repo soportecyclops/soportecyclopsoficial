@@ -1841,7 +1841,6 @@ footer {
 .blog-card-img.mantenimiento { background: linear-gradient(135deg, #1a1a3a 0%, #2d2d7a 100%); }
 .blog-card-img.ups       { background: linear-gradient(135deg, #2a1a0a 0%, #7a4a1a 100%); }
 .blog-card-img.cctv      { background: linear-gradient(135deg, #1a0a2a 0%, #4a1a6a 100%); }
-.blog-card-img::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 18px 18px; }
 .blog-card-emoji { position: relative; z-index: 1; line-height: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
 .blog-card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
 .blog-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; flex-wrap: wrap; }
