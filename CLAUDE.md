@@ -11,6 +11,11 @@ Leer ambos antes de tocar markup o CSS. `DESIGN.md` manda sobre cualquier
 preferencia propia: color, tamaño tipográfico, espaciado, radio y sombra
 salen de los tokens de `css/tokens.css`.
 
+## Seguimiento
+
+`PENDIENTES.md` (raíz): lo hecho por sesión con su commit y lo que quedó
+pendiente. Leerlo al empezar; actualizarlo al terminar.
+
 ## Reglas duras
 
 1. **Nada de `<style>` en HTML.** El CSS va en `css/`. Hay 364 bloques

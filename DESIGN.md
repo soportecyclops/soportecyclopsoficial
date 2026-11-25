@@ -30,9 +30,14 @@ sale de acá. Si un valor no está acá, no se usa: se agrega acá primero.
 | `--blue` | `#174ea6` | 7.85:1 | acción primaria, enlaces, foco |
 | `--blue-hover` | `#123e85` | 10.23:1 | hover de acción |
 | `--blue-dark` | `#1a3a5c` | 11.64:1 | titulares sobre claro, logo |
-| `--blue-light` | `#3d77d1` | 3.9:1 | sólo texto grande o gráficos |
-| `--navy` | `#12356f` | 11.4:1 | fondos oscuros profundos |
-| `--blue-ui` | `#7ba7e8` | 2.1:1 | **sólo sobre oscuro** |
+| `--blue-light` | `#3d77d1` | 4.41:1 | sólo texto grande o gráficos |
+| `--navy` | `#12356f` | 11.90:1 | fondos oscuros profundos |
+| `--blue-ui` | `#7ba7e8` | 2.46:1 | **sólo sobre oscuro** |
+
+> Contrastes recalculados el 25/11/2026 con la fórmula WCAG de luminancia
+> relativa. Antes figuraban 9.1, 3.9, 11.4 y 2.1 para `--blue-dark`,
+> `--blue-light`, `--navy` y `--blue-ui`. Ningún uso cambia de categoría:
+> `--blue-light` sigue debajo de 4.5 y `--blue-ui` debajo de 3.
 
 > Decidido el 15/11/2026: se abandonó `#2563eb`. Era exactamente Tailwind
 > `blue-600`, el azul por defecto de toda página generada, y además el peor
@@ -75,7 +80,9 @@ icono de la tarjeta. Nunca el fondo de una sección entera.
 ### Degradés — presupuesto duro
 **Máximo 1 degradé por página**, reservado al hero de segmento (`--grad-*`).
 Prohibido: degradé en botones, tarjetas, iconos, texto (`background-clip:text`),
-badges y bordes. Estado actual: 1.788 degradés en el sitio → objetivo ≤ 20 totales.
+badges y bordes. Estado al 25/11: 55 degradés (39 de ellos `135deg`) en
+CSS, HTML y JS fuera de `demos/` → objetivo ≤ 20 totales. (El 1.788
+anterior contaba los 337 bloques `<style>` del blog antes de extraerlos.)
 
 ---
 
@@ -95,8 +102,9 @@ badges y bordes. Estado actual: 1.788 degradés en el sitio → objetivo ≤ 20 
 `--t-label .8125rem` · `--t-small .875rem` · `--t-body 1rem` · `--t-lead 1.125rem`
 · `--t-h3 1.375rem` · `--t-h2 clamp(...)` · `--t-h1 clamp(...)`
 
-> Estado actual: **89 valores distintos de `font-size`** en 16.014
-> declaraciones. Es la causa número uno de que el sitio se lea inconsistente.
+> Estado al 25/11: **34 valores distintos de `font-size`** en 1.108
+> declaraciones (antes 89 en 16.014). Sigue siendo la causa número uno de
+> que el sitio se lea inconsistente.
 > Ningún `font-size` literal en código nuevo: sólo `var(--t-*)`.
 
 Mínimo de cuerpo: 16px. Nunca bajar de 14px ni en nota al pie.
@@ -116,8 +124,8 @@ Escala de 8 (múltiplos exactos, sin valores intermedios). Ya en `css/tokens.css
 - Tarjeta: `padding: var(--s-5)` · gap entre tarjetas: `var(--s-4)`
 - Contenedor: `max-width: var(--container) 1140px`, `padding-inline: var(--s-5)`
 
-> Prohibidos: 7px, 9px, 10px, 14px, 18px, 22px. Estado actual: 45 valores
-> distintos. Objetivo: los 10 de la escala.
+> Prohibidos: 7px, 9px, 10px, 14px, 18px, 22px. Estado al 25/11: 46 valores
+> en px distintos en `padding`, `margin` y `gap`. Objetivo: los 10 de la escala.
 
 ---
 
@@ -141,7 +149,8 @@ Nada más. Prohibido `20px`, `10px`, `6px` sueltos (hoy en uso).
 | `--shadow-lg` | `0 20px 60px rgba(15,23,42,.18)` | modal, dropdown |
 
 Regla: **borde `1px solid var(--border)` O sombra, no los dos** en la misma
-tarjeta. Estado actual: 30 valores distintos de `box-shadow`.
+tarjeta. Estado al 25/11: 60 valores distintos de `box-shadow` contando
+también los `style=""` y el JS (el 30 anterior era sólo `css/`).
 Sombra en reposo sólo en elementos flotantes (nav, modal, dropdown); las
 tarjetas en reposo llevan borde y ganan sombra al hover.
 
@@ -150,8 +159,12 @@ tarjetas en reposo llevan borde y ganan sombra al hover.
 ## 6. Iconografía
 
 **Un solo sistema: Font Awesome 6** (ya cargado). 
-**Prohibido emoji como icono.** Estado actual: 2.163 emoji en el markup,
-mezclados con Font Awesome en la misma fila (`📶` junto a `fa-house-signal`).
+**Prohibido emoji como icono.** Estado al 25/11: 352 emoji en 4 HTML
+(335 en el asistente embebido de `cliente.html` y 15 en `admin.html`,
+exceptuados o privados; 1 en `presencia-web-para-pymes.html` y 1 en
+`servicios-pymes.html`), más 1.007 en `chatbot.js` (exceptuados, ver
+abajo). Sin contar `©`, `®` ni `™`. Antes eran 2.163, mezclados
+con Font Awesome en la misma fila (`📶` junto a `fa-house-signal`).
 El emoji se renderiza distinto en cada sistema operativo y es el tell más
 fuerte de página generada.
 
@@ -185,7 +198,9 @@ llega. Si alguna vez se rehace el chatbot, revisar esta excepción.
 - Botón: hover sube 1px, `:active` baja a `translateY(0)` con escala 0.98
 - Foto dentro de marco: `scale(1.02)` en hover, `overflow:hidden` en el marco
 - Transición sólo en `transform`, `opacity`, `background-color`, `border-color`,
-  `box-shadow`, `color`. **Nunca `transition: all`** (hoy `--transition: all .25s`)
+  `box-shadow`, `color`. **Nunca `transition: all`**. El token `--transition`
+  ya no usa `all` (15/11); al 25/11 quedan 23 `transition: all` literales en
+  15 hojas y en `index.html`, y `cliente.css` redefine `--transition` con `all`.
 
 ### Scroll-reveal — recortado
 Hoy toda sección entra con `opacity:0 → translateY(36px)` y stagger
@@ -203,14 +218,16 @@ lo merece. El resto del contenido está visible al cargar.
   }
 }
 ```
-Estado actual: **0 ocurrencias** de `prefers-reduced-motion` en todo el sitio.
+Estado al 25/11: aplicado globalmente en `css/tokens.css`, que cargan
+todas las páginas (antes: 0 ocurrencias).
 
 ---
 
 ## 8. Estados — obligatorios, no opcionales
 
-Cada control los lleva todos. Estado actual: 61 `:hover`, 2 `:active`,
-**0 `:focus-visible`**, **0 `:disabled`**.
+Cada control los lleva todos. Estado al 25/11: 226 `:hover`, 12 `:active`,
+9 `:focus-visible` (el global de `tokens.css` cubre al resto) y 16
+`:disabled`. Antes: 61, 2, 0 y 0.
 
 ### Botón
 ```css
@@ -273,22 +290,25 @@ Nunca `outline: none` sin reemplazo visible.
 Estos son los patrones que hacen que una página se lea como generada.
 Verificados contra el estado real del sitio:
 
-| # | Patrón | Estado hoy |
+| # | Patrón | Estado al 25/11/2026 |
 |---|---|---|
-| 1 | Pill/badge sobre un H1 centrado | `.hero-badge` en index |
-| 2 | Orbes/blobs difuminados detrás del hero | `.hero-orb-1/2/3` |
-| 3 | `linear-gradient(135deg, …)` como recurso general | 759 usos (pendiente) |
-| 4 | Emoji como icono de tarjeta o chip | 2.163 |
-| 5 | Fade-up con stagger en todas las secciones | `.reveal-delay-*` |
-| 6 | Grilla de 3 o 4 tarjetas idénticas con icono arriba | `.niche-grid` (4) |
-| 7 | Mismo radio + misma sombra blanda en todo | 20 radios / 30 sombras |
-| 8 | Indicador "scroll" con mouse animado | `.hero-scroll` |
-| 9 | Degradé en texto (`background-clip: text`) | revisar |
-| 10 | `transition: all` | ~~token `--transition`~~ corregido 15/11 |
-| 11 | Título centrado en toda sección | 1.471 `text-align:center` |
+| 1 | Pill/badge sobre un H1 centrado | `.hero-badge` eliminado (0) |
+| 2 | Orbes/blobs difuminados detrás del hero | sin markup; queda una regla `display:none` para `.hero-orb` en `tokens.css` |
+| 3 | `linear-gradient(135deg, …)` como recurso general | 39 usos (antes 759) |
+| 4 | Emoji como icono de tarjeta o chip | 352 emoji en 4 HTML, 335 de ellos en el asistente de `cliente.html` (antes 2.163) |
+| 5 | Fade-up con stagger en todas las secciones | 17 `.reveal-delay-*` (12 en `index.html`, 5 en `css/main.css`) |
+| 6 | Grilla de 3 o 4 tarjetas idénticas con icono arriba | `.niche-grid` (4), en `index.html` |
+| 7 | Mismo radio + misma sombra blanda en todo | 31 radios / 60 sombras distintas (CSS + `style=""` + JS) |
+| 8 | Indicador "scroll" con mouse animado | `.hero-scroll` eliminado (0) |
+| 9 | Degradé en texto (`background-clip: text`) | 0 |
+| 10 | `transition: all` | token corregido 15/11; quedan 23 literales en 15 hojas y `index.html` |
+| 11 | Título centrado en toda sección | 120 `text-align:center` (antes 1.471) |
 | 12 | Números sin fuente verificable | revisar "+11 años" (sí verificable) |
 | 13 | Una sola pantalla con dos CTA (primario degradé + fantasma) | revisar |
-| 14 | `overflow-x: hidden` en body | sí |
+| 14 | `overflow-x: hidden` en body | 0 |
+
+Medición: `grep` sobre `*.css`, `*.html` y `*.js` versionados, fuera de
+`demos/`, `js/vendor/` y `.claude/`.
 
 Lo que va en su lugar: fotografía real del trabajo (rack cableado, cámara
 instalada, PC abierta), logos reales de los productos que instala, un dato
@@ -317,9 +337,9 @@ verificable, y una sola acción por pantalla.
 2. Nunca escribir un color, tamaño, espacio o radio literal: usar `var(--*)`.
    Si falta el token, agregarlo acá y a `css/tokens.css` primero.
 3. Nunca agregar un bloque `<style>` a un HTML. El CSS va en `css/`.
-   (Los 337 idénticos se extrajeron a `css/blog.css` el 15/11. Quedan 26
-   bloques únicos por revisar. `admin-blog.html` genera artículos con
-   `<style>` embebido: hay que hacer que emita un `<link>` a `/css/blog.css`.)
+   (Los bloques idénticos se extrajeron a `css/blog.css` el 15/11 y los 26
+   únicos que quedaban, a sus hojas. Al 25/11 el único `<style>` es el de la
+   vista previa que arma `admin-blog.html` con `${PREVIEW_CSS}`.)
 4. Reutilizar las clases que existen antes de inventar marcado nuevo.
 5. Al terminar una página: `/impeccable polish`, después `/impeccable audit`.
 6. Cualquier excepción a §10 se discute antes, no se implementa y se avisa.
