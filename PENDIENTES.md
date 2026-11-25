@@ -10,6 +10,52 @@ Rama de trabajo: `mejoras-diseno` (sin mergear a `main`).
 
 ## Pendiente
 
+### Buscador y «Más leídos» del blog (25/11, rama `blog-buscador`)
+- [ ] **Apps Script del portal** (el de `AKfycbwYHX…`, el mismo de `preguntas_publicas`):
+  pegar este código y, al principio de `doGet`, la línea
+  `var _v = vistasGet_(e); if (_v) return _v;`. Después: Implementar → Administrar
+  implementaciones → editar → Nueva versión (misma URL). Hasta entonces el
+  índice muestra la lista fija «Para empezar».
+  ```js
+  function vistasGet_(e) {
+    var a = e && e.parameter && e.parameter.action;
+    if (a !== 'blog_vista' && a !== 'blog_mas_leidos') return null;
+    var props = PropertiesService.getScriptProperties();
+    if (a === 'blog_vista') {
+      var slug = String(e.parameter.slug || '').toLowerCase();
+      if (!/^[a-z0-9-]{3,90}$/.test(slug)) return jsonResponse({ ok: false });
+      var lock = LockService.getScriptLock();
+      lock.tryLock(3000);
+      var v = JSON.parse(props.getProperty('blog_vistas') || '{}');
+      v[slug] = (v[slug] || 0) + 1;
+      props.setProperty('blog_vistas', JSON.stringify(v));
+      lock.releaseLock();
+      return jsonResponse({ ok: true });
+    }
+    var cache = CacheService.getScriptCache(), c = cache.get('blog_top');
+    if (c) return jsonResponse(JSON.parse(c));
+    var w = JSON.parse(props.getProperty('blog_vistas') || '{}');
+    var top = Object.keys(w).map(function (k) { return { slug: k, vistas: w[k] }; })
+      .sort(function (x, y) { return y.vistas - x.vistas; }).slice(0, 10);
+    var r = { ok: true, top: top };
+    cache.put('blog_top', JSON.stringify(r), 1800);
+    return jsonResponse(r);
+  }
+  ```
+- [ ] **Plantilla del CMS**: si al publicar un artículo el Apps Script del blog
+  regenera `blog/index.html`, va a pisar el buscador. Llevar a la plantilla:
+  el `<form id="blogBuscar">`, el bloque de filtros/estado/vacío, la tarjeta
+  `#masLeidos`, los `<h3>` de las tarjetas y `<script src="/js/blog-buscador.js" defer>`.
+- [ ] Artículos (cambio masivo, mostrar plan): «Seguí leyendo» es igual en
+  los 83 (mismos 3 de Seguridad) → relacionados por categoría; «6 min de
+  lectura de lectura» duplicado; fecha del artículo (2025) distinta de la
+  del JSON (2026); buscador chico en la barra lateral; «¿Te sirvió?».
+- [ ] Duplicados: `windows-10-sin-soporte` y
+  `tu-pc-con-windows-10-ya-no-recibe-actualizaciones-que-hacer-ahora` (mismo
+  tema, los dos en el sitemap); `articulo-prueba.html` publicado.
+- [ ] Orden de hojas de `blog/index.html`: `main.css` y `blog-index.css` antes
+  de `nav.css` (regla 3).
+
 ### Acordado para la próxima sesión (puntos 3, 4 y 5 de la auditoría del 25/11)
 - [ ] **3. Colores fijos en JS → clases en `css/`.** `main.js` arma el aviso
   de cookies con `style.cssText` y el botón «Aceptar» en `#2563eb` (azul
@@ -62,6 +108,11 @@ Rama de trabajo: `mejoras-diseno` (sin mergear a `main`).
 ---
 
 ## Hecho
+
+### 25/11/2026 — buscador del blog (rama `blog-buscador`)
+| Commit | Qué |
+|---|---|
+| (este) | `blog/index.html`: buscador por problema (texto completo de `data/blog-articles.json`, sinónimos, sin tildes, `?q=` y `?cat=` en la URL, tecla `/`), filtros por tema, estado con `aria-live`, vacío con Iris y WhatsApp con la búsqueda escrita, «Más leídos» con lista fija de respaldo; tarjetas `h4`→`h3` bajo un `h2`. `js/nav.js`: cuenta una vista por sesión en cada artículo |
 
 ### 25/11/2026
 | Commit | Qué |

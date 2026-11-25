@@ -26,4 +26,17 @@
     }catch(e){}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+
+  // Vista de artículo del blog → contador de "Más leídos" (una por sesión y artículo).
+  // Backend: acción blog_vista del Apps Script del portal (código en PENDIENTES.md, 25/11).
+  try{
+    var m=location.pathname.match(/^\/blog\/([a-z0-9-]+)(?:\.html|\/(?:index\.html)?)?$/);
+    if(m&&m[1]!=='index'&&m[1]!=='articulo-prueba'&&!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent)){
+      var k='vista_'+m[1];
+      if(!sessionStorage.getItem(k)){
+        sessionStorage.setItem(k,'1');
+        fetch('https://script.google.com/macros/s/AKfycbwYHXr-AyhpaTLRydiQpE7S0boDZbK5_GEjjoI7GIlXaBpQdO7vO1tAhiriYvhms36P/exec?action=blog_vista&slug='+m[1],{mode:'no-cors',keepalive:true}).catch(function(){});
+      }
+    }
+  }catch(e){}
 })();
