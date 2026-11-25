@@ -4,7 +4,12 @@ Leer esto al empezar una sesión. Actualizarlo al terminarla: lo hecho pasa a
 "Hecho" con su commit, lo que surge va a "Pendiente". No se publica (`*.md`
 está en `.vercelignore`).
 
-Rama de trabajo: `mejoras-diseno` (sin mergear a `main`).
+Ramas abiertas (sin mergear a `main`, esperan OK):
+- `blog-buscador`: buscador del blog. Su propio PENDIENTES.md suma una
+  sección (código de Apps Script de «Más leídos»): al mergear las dos ramas
+  este archivo va a tener conflicto; conservar ambas partes.
+- `seo-limpieza`: soft 404, demos fuera del índice, duplicado, sitemap.
+`mejoras-diseno` ya está mergeada en `main` (abf51ed).
 
 ---
 
@@ -77,7 +82,31 @@ Rama de trabajo: `mejoras-diseno` (sin mergear a `main`).
   de DESIGN.md** (skills, MCP, Motion, demos) a CLAUDE.md o `docs/`.
   Es mover archivos y contenido: mostrar el plan antes.
 
+### Ramas por verificar y mergear
+- [x] **Vista previa de `seo-limpieza` verificada** con `vercel curl` (25/11):
+  `/`, `/blog/`, `/blog`, `/herramientas/`, `/demos/`, una demo y artículos
+  (`.html` y carpeta) → 200; `/no-existe`, `/blog/no-existe`, `/servicios`,
+  `/x/y/z` → 404 con 404.html y sus 5 recursos en 200; las 6 redirecciones
+  → 301 al destino correcto; sitemap publicado con 98 URLs, 0 lastmod, sin
+  demos ni duplicado; demo con `noindex` y sin JSON-LD.
+  Ojo: `/servicios` sin `.html` antes mostraba la portada y ahora da 404
+  (ningún enlace interno la usa).
+- [ ] Mergear `blog-buscador` y `seo-limpieza` a `main` (con OK).
+- [ ] **Relevancia del buscador**: «la compu anda lenta» trae 21, con
+  resultados flojos («Monitor y puesto de trabajo»); «wifi» incluye
+  «Señales de que tu disco duro está por fallar».
+- [ ] Buscador, deuda menor del auditor: chips «Frecuentes» con radio pill;
+  `<h4>` nuevo en la barra lateral del blog (mismo patrón heredado).
+- [ ] Los HTML del duplicado de Windows 10 siguen en el repo (la 301 los
+  tapa), y su fuente `blog-test/tu-pc-con-windows-10-…-ahora.md` también:
+  si se regenera el blog desde `blog-test/` vuelve a aparecer. Borrar los tres.
+- [ ] `404.html` carga `main.css` y `404.css` antes que `nav.css` (regla 3).
+
 ### Encontrado y sin agendar
+- [ ] **Orden de hojas en `blog/index.html`**: `main.css` y `blog-index.css`
+  antes que `nav.css` (regla 3). Hero del blog con degradé 135deg y literales.
+- [ ] `demos/index.html`: error de consola "Elementos del chatbot no
+  encontrados" (ya estaba).
 - [ ] **Iconos oscuros en las tarjetas de `herramientas/index.html`**: mismo
   problema que tenían las del blog (heredan color oscuro sobre fondo oscuro).
   Ver `docs/capturas/blue-autoref/herramientas-despues-1280.png`.
@@ -129,7 +158,21 @@ Rama de trabajo: `mejoras-diseno` (sin mergear a `main`).
 | 12f3b10 | Fuera `--blue: var(--blue)` en 5 hojas: `--blue` estaba vacía en herramientas/ y cliente.html (botón «Contacto» invisible, enlaces negros) |
 | 0e2aed3 | Google Fonts: Space Grotesk 600 agregado en 195 HTML y la plantilla `.njk` |
 | b547901 | DESIGN.md: estados al 25/11 y contrastes de `--blue-light`, `--navy`, `--blue-ui`; este archivo |
-| (último) | `.gitattributes` con `* text=auto eol=lf` y `git add --renormalize .`: 89 archivos que el repo guardaba con CRLF o mezclado (`blog-test/`, `data/*.json`, `forms/google-sheets.js`) pasan a LF. Sin cambios de contenido. |
+| d0c4e7b | `.gitattributes` con `* text=auto eol=lf` y `git add --renormalize .`: 89 archivos que el repo guardaba con CRLF o mezclado (`blog-test/`, `data/*.json`, `forms/google-sheets.js`) pasan a LF. Sin cambios de contenido. |
+
+| abf51ed | Merge de `mejoras-diseno` a `main` (en producción) |
+
+### 25/11/2026 (tarde) — ramas sin mergear
+| Rama | Commit | Qué |
+|---|---|---|
+| blog-buscador | b422133 | Buscador por problema, filtros por tema y «Más leídos» (parche) |
+| blog-buscador | 2303ec3 | Correcciones del auditor: foco cian en el hero, campo sin sombra y radio chico, transiciones con `--dur`/`--ease` |
+| blog-buscador | 2c77fe7 | `nav.js`: fuera la excepción de `articulo-prueba` |
+| seo-limpieza | 9985a00 | `vercel.json` sin la reescritura comodín: rutas inexistentes → 404 con `404.html` (antes portada con 200). `404.html` con rutas absolutas |
+| seo-limpieza | 25dbc72 | Demos: `noindex, follow` en las 11, fuera el JSON-LD ficticio de 5, fuera del sitemap |
+| seo-limpieza | ad3da26 | Duplicado de Windows 10: 301 ×3 a `windows-10-sin-soporte.html`, fuera del sitemap y del JSON |
+| seo-limpieza | 9a6fdb0 | `articulo-prueba` borrado (HTML ×2 y `.md`), 301 ×3 a `/blog/` |
+| seo-limpieza | 6693080 | `sitemap.xml` sin `<lastmod>` (98 URLs) |
 
 Nota: la copia de trabajo puede seguir teniendo archivos en CRLF hasta que
 se vuelvan a escribir o se haga checkout; Git ya no los marca como
