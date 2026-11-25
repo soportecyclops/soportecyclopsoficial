@@ -4,12 +4,8 @@ Leer esto al empezar una sesión. Actualizarlo al terminarla: lo hecho pasa a
 "Hecho" con su commit, lo que surge va a "Pendiente". No se publica (`*.md`
 está en `.vercelignore`).
 
-Ramas abiertas (sin mergear a `main`, esperan OK):
-- `blog-buscador`: buscador del blog. Su propio PENDIENTES.md suma una
-  sección (código de Apps Script de «Más leídos»): al mergear las dos ramas
-  este archivo va a tener conflicto; conservar ambas partes.
-- `seo-limpieza`: soft 404, demos fuera del índice, duplicado, sitemap.
-`mejoras-diseno` ya está mergeada en `main` (abf51ed).
+Sin ramas abiertas. `mejoras-diseno` (abf51ed), `blog-buscador` (dcd993e) y
+`seo-limpieza` (3e4f9c3) están mergeadas en `main` y en producción.
 
 ---
 
@@ -82,7 +78,7 @@ Ramas abiertas (sin mergear a `main`, esperan OK):
   de DESIGN.md** (skills, MCP, Motion, demos) a CLAUDE.md o `docs/`.
   Es mover archivos y contenido: mostrar el plan antes.
 
-### Ramas por verificar y mergear
+### Buscador y SEO (después del merge)
 - [x] **Vista previa de `seo-limpieza` verificada** con `vercel curl` (25/11):
   `/`, `/blog/`, `/blog`, `/herramientas/`, `/demos/`, una demo y artículos
   (`.html` y carpeta) → 200; `/no-existe`, `/blog/no-existe`, `/servicios`,
@@ -91,16 +87,18 @@ Ramas abiertas (sin mergear a `main`, esperan OK):
   demos ni duplicado; demo con `noindex` y sin JSON-LD.
   Ojo: `/servicios` sin `.html` antes mostraba la portada y ahora da 404
   (ningún enlace interno la usa).
-- [ ] Mergear `blog-buscador` y `seo-limpieza` a `main` (con OK).
+- [x] Mergeadas a `main`: `blog-buscador` (dcd993e) y después `seo-limpieza`
+  (3e4f9c3). Verificado en producción (ver "Hecho").
 - [ ] **Relevancia del buscador**: «la compu anda lenta» trae 21, con
   resultados flojos («Monitor y puesto de trabajo»); «wifi» incluye
   «Señales de que tu disco duro está por fallar».
 - [ ] Buscador, deuda menor del auditor: chips «Frecuentes» con radio pill;
   `<h4>` nuevo en la barra lateral del blog (mismo patrón heredado).
-- [ ] Los HTML del duplicado de Windows 10 siguen en el repo (la 301 los
-  tapa), y su fuente `blog-test/tu-pc-con-windows-10-…-ahora.md` también:
-  si se regenera el blog desde `blog-test/` vuelve a aparecer. Borrar los tres.
-- [ ] `404.html` carga `main.css` y `404.css` antes que `nav.css` (regla 3).
+- [x] HTML del duplicado de Windows 10 y su fuente en `blog-test/` borrados
+  (1fee14e); las 301 quedan.
+- [x] `404.html`: orden de hojas tokens → FA → nav → main → 404 (1fee14e).
+- [ ] `404.html` sin `<meta name="description">` (lo marca `/chequeo-pagina`;
+  irrelevante para una 404, pero falla el chequeo).
 
 ### Encontrado y sin agendar
 - [ ] **Orden de hojas en `blog/index.html`**: `main.css` y `blog-index.css`
@@ -141,7 +139,7 @@ Ramas abiertas (sin mergear a `main`, esperan OK):
 ### 25/11/2026 — buscador del blog (rama `blog-buscador`)
 | Commit | Qué |
 |---|---|
-| (este) | `blog/index.html`: buscador por problema (texto completo de `data/blog-articles.json`, sinónimos, sin tildes, `?q=` y `?cat=` en la URL, tecla `/`), filtros por tema, estado con `aria-live`, vacío con Iris y WhatsApp con la búsqueda escrita, «Más leídos» con lista fija de respaldo; tarjetas `h4`→`h3` bajo un `h2`. `js/nav.js`: cuenta una vista por sesión en cada artículo |
+| b422133 | `blog/index.html`: buscador por problema (texto completo de `data/blog-articles.json`, sinónimos, sin tildes, `?q=` y `?cat=` en la URL, tecla `/`), filtros por tema, estado con `aria-live`, vacío con Iris y WhatsApp con la búsqueda escrita, «Más leídos» con lista fija de respaldo; tarjetas `h4`→`h3` bajo un `h2`. `js/nav.js`: cuenta una vista por sesión en cada artículo |
 
 ### 25/11/2026
 | Commit | Qué |
@@ -162,7 +160,7 @@ Ramas abiertas (sin mergear a `main`, esperan OK):
 
 | abf51ed | Merge de `mejoras-diseno` a `main` (en producción) |
 
-### 25/11/2026 (tarde) — ramas sin mergear
+### 25/11/2026 (tarde) — `blog-buscador` y `seo-limpieza`, mergeadas a `main`
 | Rama | Commit | Qué |
 |---|---|---|
 | blog-buscador | b422133 | Buscador por problema, filtros por tema y «Más leídos» (parche) |
@@ -173,6 +171,9 @@ Ramas abiertas (sin mergear a `main`, esperan OK):
 | seo-limpieza | ad3da26 | Duplicado de Windows 10: 301 ×3 a `windows-10-sin-soporte.html`, fuera del sitemap y del JSON |
 | seo-limpieza | 9a6fdb0 | `articulo-prueba` borrado (HTML ×2 y `.md`), 301 ×3 a `/blog/` |
 | seo-limpieza | 6693080 | `sitemap.xml` sin `<lastmod>` (98 URLs) |
+| seo-limpieza | 1fee14e | Borrados los HTML del duplicado y su `.md`; orden de hojas en `404.html` (0 píxeles de diferencia) |
+| main | dcd993e | Merge `blog-buscador` |
+| main | 3e4f9c3 | Merge `seo-limpieza` |
 
 Nota: la copia de trabajo puede seguir teniendo archivos en CRLF hasta que
 se vuelvan a escribir o se haga checkout; Git ya no los marca como
