@@ -14,3 +14,4 @@ Tomadas con Playwright (Chromium) el 25/11/2026 sobre el repo local. Con Chatwoo
 | `iconos-{antes,despues}-{390,1280}.png` | Iconos de las tarjetas de artículos: `--text` heredado vs `--white` | 08b90b3 |
 | `herr-index-1280.png` | herramientas/index.html con `--blue` anulada por `--blue: var(--blue)` en herramientas/base.css: enlaces negros, iconos casi invisibles, botón «Contacto» invisible | corregido en el commit siguiente |
 | `blue-autoref/<página>-{antes,despues}-{390,1280}.png` | Las 4 páginas de herramientas/ y cliente.html antes y después de sacar `--blue: var(--blue)` | ver git log |
+| `peso-600/<página>-despues-{390,1280}.png` | Las mismas 5 páginas con la cara 600 de Space Grotesk pedida. El "antes" es `blue-autoref/*-despues-*`: 0 píxeles de diferencia (1 en chequeo-seguridad a 1280, antialiasing) | ver git log |
