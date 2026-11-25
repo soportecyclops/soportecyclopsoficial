@@ -12,4 +12,5 @@ Tomadas con Playwright (Chromium) el 25/11/2026 sobre el repo local. Con Chatwoo
 | `blog-trama-{390,1280}.png` | Tarjetas de artículos con la trama de puntos que apareció al arreglar `content: ''` | b025509 → borrada en 02d3406 |
 | `tarjeta-{con,sin}.png` | Una tarjeta con y sin la trama, a 1280 | 02d3406 |
 | `iconos-{antes,despues}-{390,1280}.png` | Iconos de las tarjetas de artículos: `--text` heredado vs `--white` | 08b90b3 |
-| `herr-index-1280.png` | herramientas/index.html con `--blue` anulada por `--blue: var(--blue)` en herramientas/base.css: enlaces negros, iconos casi invisibles | sin corregir |
+| `herr-index-1280.png` | herramientas/index.html con `--blue` anulada por `--blue: var(--blue)` en herramientas/base.css: enlaces negros, iconos casi invisibles, botón «Contacto» invisible | corregido en el commit siguiente |
+| `blue-autoref/<página>-{antes,despues}-{390,1280}.png` | Las 4 páginas de herramientas/ y cliente.html antes y después de sacar `--blue: var(--blue)` | ver git log |

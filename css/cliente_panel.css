@@ -5,7 +5,7 @@
    Ver DESIGN.md: no reintroducir <style> en los HTML.
    ========================================================== */
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--blue:var(--blue);--dark:#1a3a5c;--sb:#0d1117;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g500:#64748b;--g900:#0f172a;--green:#16a34a;--amber:#d97706;--red:#dc2626}
+:root{--dark:#1a3a5c;--sb:#0d1117;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g500:#64748b;--g900:#0f172a;--green:#16a34a;--amber:#d97706;--red:#dc2626}
 body{font-family:'Open Sans',sans-serif;background:var(--g50);color:var(--g900);min-height:100vh}
 a{text-decoration:none}
 
