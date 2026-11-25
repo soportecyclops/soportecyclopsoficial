@@ -4,8 +4,9 @@ Leer esto al empezar una sesión. Actualizarlo al terminarla: lo hecho pasa a
 "Hecho" con su commit, lo que surge va a "Pendiente". No se publica (`*.md`
 está en `.vercelignore`).
 
-Sin ramas abiertas. `mejoras-diseno` (abf51ed), `blog-buscador` (dcd993e) y
-`seo-limpieza` (3e4f9c3) están mergeadas en `main` y en producción.
+Sin ramas abiertas: sólo `main`. `mejoras-diseno` (abf51ed), `blog-buscador`
+(dcd993e) y `seo-limpieza` (3e4f9c3) se mergearon y se borraron, en local y
+en GitHub.
 
 ---
 
@@ -85,20 +86,26 @@ Sin ramas abiertas. `mejoras-diseno` (abf51ed), `blog-buscador` (dcd993e) y
   `/x/y/z` → 404 con 404.html y sus 5 recursos en 200; las 6 redirecciones
   → 301 al destino correcto; sitemap publicado con 98 URLs, 0 lastmod, sin
   demos ni duplicado; demo con `noindex` y sin JSON-LD.
-  Ojo: `/servicios` sin `.html` antes mostraba la portada y ahora da 404
-  (ningún enlace interno la usa).
+  `/servicios` y las otras 12 públicas de la raíz sin `.html` ahora dan 301
+  a su `.html` (8cd75c8).
 - [x] Mergeadas a `main`: `blog-buscador` (dcd993e) y después `seo-limpieza`
   (3e4f9c3). Verificado en producción (ver "Hecho").
-- [ ] **Relevancia del buscador**: «la compu anda lenta» trae 21, con
-  resultados flojos («Monitor y puesto de trabajo»); «wifi» incluye
-  «Señales de que tu disco duro está por fallar».
+- [x] **Relevancia del buscador** (665e7c2): título primero, sinónimos a
+  mitad de peso, corte al 50 %. «wifi» ya no trae el del disco duro.
+- [ ] Relevancia, lo que queda: «me hackearon el mail» pone primero «Estafas
+  por WhatsApp y mail» y segundo «Me hackearon el correo» (empatan en
+  título: palabra literal + sinónimo cada uno). «no me anda la impresora»
+  pone «Cómo elegir impresora» antes que «La impresora no imprime»: el
+  buscador no entiende que «no me anda» pide un problema. Posible mejora:
+  premiar frases o palabras de falla («no anda», «no imprime», «se corta»).
+  «la compu anda lenta» todavía incluye «Monitor y puesto de trabajo» (6.º).
 - [ ] Buscador, deuda menor del auditor: chips «Frecuentes» con radio pill;
   `<h4>` nuevo en la barra lateral del blog (mismo patrón heredado).
 - [x] HTML del duplicado de Windows 10 y su fuente en `blog-test/` borrados
   (1fee14e); las 301 quedan.
 - [x] `404.html`: orden de hojas tokens → FA → nav → main → 404 (1fee14e).
-- [ ] `404.html` sin `<meta name="description">` (lo marca `/chequeo-pagina`;
-  irrelevante para una 404, pero falla el chequeo).
+- [x] `404.html` con `<meta name="description">` (2e1ed70); el `noindex,
+  follow` ya estaba.
 
 ### Encontrado y sin agendar
 - [ ] **Orden de hojas en `blog/index.html`**: `main.css` y `blog-index.css`
@@ -174,6 +181,10 @@ Sin ramas abiertas. `mejoras-diseno` (abf51ed), `blog-buscador` (dcd993e) y
 | seo-limpieza | 1fee14e | Borrados los HTML del duplicado y su `.md`; orden de hojas en `404.html` (0 píxeles de diferencia) |
 | main | dcd993e | Merge `blog-buscador` |
 | main | 3e4f9c3 | Merge `seo-limpieza` |
+| main | 8cd75c8 | `vercel.json`: 301 de las 13 públicas de la raíz sin `.html` (con y sin barra) a su `.html`. Verificado en producción: 26 × 301 → 200 |
+| main | 2e1ed70 | `404.html`: meta description |
+| main | 665e7c2 | Buscador: título primero, sinónimos a mitad de peso, corte al 50 %. En producción: «compu anda lenta» 21 → 6, «wifi» 6 → 4 |
+| — | — | Ramas `blog-buscador`, `seo-limpieza` y `mejoras-diseno` borradas (local y GitHub) |
 
 Nota: la copia de trabajo puede seguir teniendo archivos en CRLF hasta que
 se vuelvan a escribir o se haga checkout; Git ya no los marca como
