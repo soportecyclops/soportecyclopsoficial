@@ -56,10 +56,6 @@ Rama de trabajo: `mejoras-diseno` (sin mergear a `main`).
   (pierden siempre por especificidad): peso muerto.
 - [ ] **CLAUDE.md desactualizado**: dice 337 artículos (hay 85) y 364 bloques
   `<style>` (queda 1, la vista previa de `admin-blog.html`).
-- [ ] La copia de trabajo tiene ~210 archivos con CRLF y el repo está en LF.
-  Cualquier reescritura de un archivo entero los marca como cambiados de
-  punta a punta: normalizar a LF antes de commitear (o agregar
-  `.gitattributes` con `* text=auto eol=lf`).
 - [ ] 757 atributos `style=""` en 194 HTML (admin.html 118, presencia-web 63,
   index 51).
 
@@ -81,7 +77,12 @@ Rama de trabajo: `mejoras-diseno` (sin mergear a `main`).
 | 8609061 | Contraste de `--blue-dark` (11.64:1); capturas en `docs/capturas/` (fuera del deploy) |
 | 12f3b10 | Fuera `--blue: var(--blue)` en 5 hojas: `--blue` estaba vacía en herramientas/ y cliente.html (botón «Contacto» invisible, enlaces negros) |
 | 0e2aed3 | Google Fonts: Space Grotesk 600 agregado en 195 HTML y la plantilla `.njk` |
-| (último) | DESIGN.md: estados al 25/11 y contrastes de `--blue-light`, `--navy`, `--blue-ui`; este archivo |
+| b547901 | DESIGN.md: estados al 25/11 y contrastes de `--blue-light`, `--navy`, `--blue-ui`; este archivo |
+| (último) | `.gitattributes` con `* text=auto eol=lf` y `git add --renormalize .`: 89 archivos que el repo guardaba con CRLF o mezclado (`blog-test/`, `data/*.json`, `forms/google-sheets.js`) pasan a LF. Sin cambios de contenido. |
+
+Nota: la copia de trabajo puede seguir teniendo archivos en CRLF hasta que
+se vuelvan a escribir o se haga checkout; Git ya no los marca como
+cambiados y siempre los guarda en LF.
 
 Herramientas de verificación usadas (scratchpad, no versionadas): capturas
 y diferencia de píxeles con la librería Playwright del repo; el MCP de
