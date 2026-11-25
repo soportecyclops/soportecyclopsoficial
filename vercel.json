@@ -18,6 +18,21 @@
       "source": "/blog/tu-pc-con-windows-10-ya-no-recibe-actualizaciones-que-hacer-ahora/",
       "destination": "/blog/windows-10-sin-soporte.html",
       "statusCode": 301
+    },
+    {
+      "source": "/blog/articulo-prueba.html",
+      "destination": "/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/articulo-prueba",
+      "destination": "/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/blog/articulo-prueba/",
+      "destination": "/blog/",
+      "statusCode": 301
     }
   ]
 }
