@@ -64,6 +64,12 @@ salen de los tokens de `css/tokens.css`.
   desborde a 390/1280, metadatos, `<style>`, emoji como icono, consola,
   recursos rotos, área táctil. Correrlo antes de `/impeccable audit`.
   `--raiz` revisa todas las públicas de nivel raíz.
+- **Agente `auditor-tokens`** — `.claude/agents/auditor-tokens.md`. Sólo
+  lectura. Contrasta `git diff HEAD` (o `main...HEAD`, o los archivos que se
+  le pasen) contra §2–§8 y §10: tokens inexistentes, color en la superficie
+  equivocada, radios, borde+sombra, degradés, movimiento, estados. Devuelve
+  tabla con archivo:línea y el token exacto que va. Cubre lo que el guardián
+  no ve: semántica, y lo que entra por shell o por merge.
 
 ## Agentes
 
