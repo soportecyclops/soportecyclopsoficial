@@ -31,7 +31,7 @@
   // Backend: acción blog_vista del Apps Script del portal (código en PENDIENTES.md, 25/11).
   try{
     var m=location.pathname.match(/^\/blog\/([a-z0-9-]+)(?:\.html|\/(?:index\.html)?)?$/);
-    if(m&&m[1]!=='index'&&m[1]!=='articulo-prueba'&&!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent)){
+    if(m&&m[1]!=='index'&&!/bot|crawl|spider|lighthouse/i.test(navigator.userAgent)){
       var k='vista_'+m[1];
       if(!sessionStorage.getItem(k)){
         sessionStorage.setItem(k,'1');
