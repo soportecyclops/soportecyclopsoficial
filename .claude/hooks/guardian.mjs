@@ -30,7 +30,8 @@ const ASK_FILES = [
 const isTokenFile = (rel) => rel === 'css/tokens.css';
 const isGovernedCss = (rel) =>
   /\.css$/.test(rel) && !isTokenFile(rel) && /^(css|herramientas)\//.test(rel);
-const isSiteHtml = (rel) => /\.html?$/.test(rel) && !/^demos\//.test(rel);
+// .claude/ es tooling (fixtures de prueba incluidos), no sitio publicado.
+const isSiteHtml = (rel) => /\.html?$/.test(rel) && !/^(demos|\.claude)\//.test(rel);
 
 // ------------------------------------------------------------------ reglas
 // Cada regla devuelve la cantidad de ocurrencias en un texto.

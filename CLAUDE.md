@@ -58,6 +58,12 @@ salen de los tokens de `css/tokens.css`.
   `*.gs`. `demos/` queda afuera (§14). Compara antes/después: editar deuda
   heredada sin empeorarla se permite. Pruebas: `node --test .claude/hooks/guardian.test.mjs`.
   No cubre ediciones hechas con comandos de shell (`sed`, etc.).
+  `.claude/` y `demos/` quedan fuera de su alcance.
+- **`/chequeo-pagina <ruta>`** — `.claude/skills/chequeo-pagina/`. La parte
+  medible de §11 en un navegador real: un `<h1>`, jerarquía, `img`,
+  desborde a 390/1280, metadatos, `<style>`, emoji como icono, consola,
+  recursos rotos, área táctil. Correrlo antes de `/impeccable audit`.
+  `--raiz` revisa todas las públicas de nivel raíz.
 
 ## Agentes
 

@@ -68,6 +68,9 @@ test('arreglar deuda (restar) se permite', () => {
 test('tokens.css puede tener literales', () => {
   assert.equal(decision(edit('css/tokens.css', '', '--nuevo: #123456;')), 'allow');
 });
+test('.claude/ (fixtures de prueba) queda fuera', () => {
+  assert.equal(decision(write('.claude/skills/chequeo-pagina/fixtures/x.html', '<style>.a{width:1600px}</style>')), 'allow');
+});
 test('demos/ queda fuera', () => {
   assert.equal(decision(edit('demos/barberia/style.css', '', '.a{color:#ff0000;padding:13px}')), 'allow');
 });

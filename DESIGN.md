@@ -329,6 +329,11 @@ de este repo. Se movieron el 18/11: eran 44 MB que cada clone del sitio se
 bajaba sin necesidad, y las mismas skills sirven en todos los proyectos.
 `.claude/skills/` y `.claude/agents/` están en `.gitignore`.
 
+**Excepción (25/11):** lo que sólo tiene sentido para este sitio sí se
+versiona en el repo: la skill `chequeo-pagina`, el agente `auditor-tokens` y
+el hook guardián (`.claude/hooks/guardian.mjs`). Ver "Automatización" en
+CLAUDE.md. `.claude/` sigue en `.vercelignore`: nada de eso se publica.
+
 | Skill | Para qué sirve acá |
 |---|---|
 | `design-taste-frontend` | Clasificación del sitio: *service / site-kind other*. Prohíbe shaders, escenas y WebGL. Es el que define el techo. |

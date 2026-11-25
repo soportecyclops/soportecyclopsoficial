@@ -1,0 +1,20 @@
+<!doctype html>
+<!-- Fixture de prueba de check.mjs: tiene que fallar en TODO lo que el
+     script controla. No es una página del sitio (.claude/ está en .vercelignore). -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>.ancha{width:1600px}</style>
+</head>
+<body>
+<h1>Uno</h1>
+<h1>Dos</h1>
+<h4>Salto</h4>
+<img src="no-existe.png">
+<div class="ancha">desborda</div>
+<span class="card-icon">📶</span>
+<span>🔥</span>
+<script>console.error('error a propósito');</script>
+</body>
+</html>
