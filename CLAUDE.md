@@ -47,6 +47,18 @@ salen de los tokens de `css/tokens.css`.
 - Precios que muestra la web, `chatbot.js` e Iris deben coincidir. Fuente de Iris: `/opt/cyclops-chat/config/conocimiento/default/05-catalogo.md` en el servidor 192.168.0.200.
 - `Code.gs` (Apps Script) se actualiza aparte, en el editor de Google.
 
+## Automatización (`.claude/`, versionada)
+
+- **Guardián de reglas duras** — `.claude/hooks/guardian.mjs`, hook PreToolUse
+  registrado en `.claude/settings.json`. Rechaza toda edición que **sume**
+  `<style>`, literales de color/px/rem/`font-size` (en `css/` y
+  `herramientas/`, salvo `tokens.css`, y en `style=""`), `transition: all`,
+  `background-clip: text`, `linear-gradient(135deg` u `overflow-x: hidden` en
+  body. Bloquea `js/vendor/**` y `package-lock.json`; pide confirmación en
+  `*.gs`. `demos/` queda afuera (§14). Compara antes/después: editar deuda
+  heredada sin empeorarla se permite. Pruebas: `node --test .claude/hooks/guardian.test.mjs`.
+  No cubre ediciones hechas con comandos de shell (`sed`, etc.).
+
 ## Agentes
 
 Skills instaladas en `.claude/skills/`: `design-taste-frontend` (taste-skill 2.5.1,
