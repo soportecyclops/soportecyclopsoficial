@@ -16,7 +16,7 @@
 #navbar .nav-link:hover,#navbar .nav-link.active{color:var(--blue);background:rgba(37,99,235,.06)}
 #navbar .nav-cta{background:var(--blue);color:#fff;padding:9px 18px;border-radius:var(--radius-pill);font-size:var(--t-small);font-weight:700;margin-left:6px}
 #navbar .nav-cta:hover{background:var(--blue-hover);color:#fff}
-#navbar .menu-toggle{display:none;background:none;border:0;cursor:pointer;font-size:var(--t-h3);color:var(--blue-dark);padding:6px}
+#navbar .menu-toggle{display:none;background:none;border:0;cursor:pointer;font-size:var(--t-h3);color:var(--blue-dark);padding:6px;min-width:var(--tap);min-height:var(--tap)}
 #navbar .nav-dropdown{position:relative}
 #navbar .nav-dropdown .fa-chevron-down{font-size:.7em}
 #navbar .dropdown-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;min-width:240px;box-shadow:0 10px 30px rgba(15,23,42,.1);border-radius:var(--radius);padding:8px 0;z-index:1100;border:1px solid var(--gray-200)}

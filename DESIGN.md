@@ -256,7 +256,11 @@ Nunca `outline: none` sin reemplazo visible.
 - Breakpoints: `900px` (nav) · `768px` (layout) · `480px` (apilado)
 - **Cero scroll horizontal.** `body { overflow-x: hidden }` está prohibido:
   oculta el desborde en vez de arreglarlo. Quitarlo y corregir el culpable.
-- Área táctil mínima **44×44px** en todo lo clickeable
+- Área táctil mínima **44×44px** en todo lo clickeable: token `--tap` (44px).
+  No es un paso de la escala de §4, es un piso: se usa en `min-width` /
+  `min-height`, nunca como padding ni margen. En un checkbox o radio el área
+  la da su `<label>`: la caja queda en `--s-5` (24px) y la fila del label
+  mide `--tap` de alto.
 - El menú móvil ya existe (`#navMenu.open`) — mantener, y cerrar con `Esc`
 - El layout aguanta texto al 200% sin romper: usar `rem`, nunca altura fija
   en contenedores de texto

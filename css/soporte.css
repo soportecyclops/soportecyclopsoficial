@@ -45,7 +45,7 @@
         .page-hero h1 { font-family:'Space Grotesk',sans-serif; font-size:var(--t-h1); font-weight:800; letter-spacing:-0.02em; margin-bottom:8px; }
         .page-hero p { font-size:var(--t-small); opacity:0.8; max-width:520px; line-height:1.65; }
         .breadcrumb { font-size:var(--t-label); opacity:0.55; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
-        .breadcrumb a { color:rgba(255,255,255,0.7); text-decoration:none; }
+        .breadcrumb a { color:rgba(255,255,255,0.7); text-decoration:none; display:inline-flex; align-items:center; justify-content:center; min-width:var(--tap); min-height:var(--tap); margin-block:calc((1lh - var(--tap)) / 2); }
         .breadcrumb a:hover { color:white; }
 
         /* CHAT LAYOUT */
@@ -96,7 +96,7 @@
         .sidebar-item { display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px solid var(--gray-100); font-size:var(--t-small); color:var(--gray-600); }
         .sidebar-item:last-child { border-bottom:none; padding-bottom:0; }
         .sidebar-item i { color:var(--blue); font-size:0.8rem; margin-top:2px; flex-shrink:0; }
-        .wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; background:var(--whatsapp); color:white; border-radius:50px; font-weight:700; font-size:var(--t-small); text-decoration:none; transition:var(--transition); box-shadow:0 4px 14px rgba(37,211,102,0.3); margin-top:4px; }
+        .wa-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; min-height:var(--tap); background:var(--whatsapp); color:white; border-radius:50px; font-weight:700; font-size:var(--t-small); text-decoration:none; transition:var(--transition); box-shadow:0 4px 14px rgba(37,211,102,0.3); margin-top:4px; }
         .wa-btn:hover { transform:translateY(-2px); box-shadow:0 8px 22px rgba(37,211,102,0.4); text-decoration:none; }
         .call-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:11px; background:white; color:var(--blue-dark); border:2px solid var(--gray-200); border-radius:50px; font-weight:700; font-size:var(--t-small); text-decoration:none; transition:var(--transition); margin-top:8px; }
         .call-btn:hover { border-color:var(--blue); color:var(--blue); text-decoration:none; }

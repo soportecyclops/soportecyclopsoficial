@@ -91,6 +91,8 @@
   /* Espaciado — escala de 8 (DESIGN.md §4) */
   --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
   --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+  /* Área táctil mínima (DESIGN.md §9). No es un paso de la escala: es un piso. */
+  --tap: 44px;
 
   /* Tipografía */
   --font-head: 'Space Grotesk', sans-serif;
@@ -155,7 +157,7 @@ a.btn:active,
 /* Área táctil mínima (DESIGN.md §9) */
 @media (pointer: coarse) {
   a.btn, button, .btn, .nav-link, .nav-cta, .cta-btn, .qa-btn, .share-btn {
-    min-height: 44px;
+    min-height: var(--tap);
   }
 }
 

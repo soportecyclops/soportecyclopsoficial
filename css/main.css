@@ -906,9 +906,16 @@ html.js .reveal.visible {
     cursor: pointer;
 }
 .checkbox-group input[type="checkbox"] {
-    width: 18px; height: 18px;
+    width: var(--s-5); height: var(--s-5);
     cursor: pointer;
     accent-color: var(--blue);
+}
+/* El área táctil la da el label (DESIGN.md §9) */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    min-height: var(--tap);
+    margin-bottom: 0;
 }
 
 /* Ripple button */
@@ -1004,7 +1011,7 @@ footer {
     margin-top: 8px;
 }
 .social-links a {
-    width: 36px; height: 36px;
+    width: var(--tap); height: var(--tap);
     background: rgba(255,255,255,0.08);
     border-radius: 8px;
     display: flex;
