@@ -1,0 +1,15 @@
+<!doctype html>
+<!-- Fixture: desborde TAPADO con overflow-x:hidden en body (DESIGN.md §9).
+     scrollWidth no lo ve; check.mjs tiene que señalar el overflow y al culpable. -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fixture oculta</title>
+<style>body{overflow-x:hidden;margin:0}.ancha{width:900px}</style>
+</head>
+<body>
+<h1>Uno</h1>
+<div class="ancha">desborda pero no se ve</div>
+</body>
+</html>

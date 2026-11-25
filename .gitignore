@@ -30,5 +30,8 @@ test-results/
 playwright-report/
 
 # Las skills y los agentes viven en %USERPROFILE%\.claude\ desde el 18/11
-.claude/skills/
-.claude/agents/
+.claude/skills/*
+.claude/agents/*
+# Excepción: los que sólo sirven para este sitio se versionan acá.
+!.claude/skills/chequeo-pagina/
+!.claude/agents/auditor-tokens.md

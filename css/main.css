@@ -844,7 +844,7 @@ html.js .reveal.visible {
     margin-top: 3px;
     flex-shrink: 0;
 }
-.contact-item h4 {
+.contact-item h3 {
     font-weight: 700;
     font-size: var(--t-h3);
     color: var(--blue-dark);
@@ -906,9 +906,16 @@ html.js .reveal.visible {
     cursor: pointer;
 }
 .checkbox-group input[type="checkbox"] {
-    width: 18px; height: 18px;
+    width: var(--s-5); height: var(--s-5);
     cursor: pointer;
     accent-color: var(--blue);
+}
+/* El área táctil la da el label (DESIGN.md §9) */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    min-height: var(--tap);
+    margin-bottom: 0;
 }
 
 /* Ripple button */
@@ -1004,7 +1011,7 @@ footer {
     margin-top: 8px;
 }
 .social-links a {
-    width: 36px; height: 36px;
+    width: var(--tap); height: var(--tap);
     background: rgba(255,255,255,0.08);
     border-radius: 8px;
     display: flex;
@@ -1673,7 +1680,7 @@ footer {
     font-size: 1.8rem;
     margin-bottom: 12px;
 }
-.garantia-card h4 {
+.garantia-card h3 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: var(--t-h3);
     font-weight: 700;
@@ -1827,14 +1834,13 @@ footer {
 .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; }
 .blog-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; }
 .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(37,99,235,0.2); }
-.blog-card-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: var(--t-h1); flex-shrink: 0; position: relative; overflow: hidden; }
+.blog-card-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: var(--t-h1); color: var(--white); flex-shrink: 0; position: relative; overflow: hidden; }
 .blog-card-img.redes     { background: var(--blue-dark); }
 .blog-card-img.hardware  { background: linear-gradient(135deg, #1a2a1a 0%, #2d5a2d 100%); }
 .blog-card-img.seguridad { background: linear-gradient(135deg, #3a0f0f 0%, #7a1c1c 100%); }
 .blog-card-img.mantenimiento { background: linear-gradient(135deg, #1a1a3a 0%, #2d2d7a 100%); }
 .blog-card-img.ups       { background: linear-gradient(135deg, #2a1a0a 0%, #7a4a1a 100%); }
 .blog-card-img.cctv      { background: linear-gradient(135deg, #1a0a2a 0%, #4a1a6a 100%); }
-.blog-card-img::after { content: \'\'; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 18px 18px; }
 .blog-card-emoji { position: relative; z-index: 1; line-height: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
 .blog-card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
 .blog-card-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 11px; flex-wrap: wrap; }
@@ -1846,7 +1852,7 @@ footer {
 .blog-tag.ups       { color: #92400e; background: #fef3c7; }
 .blog-tag.cctv      { color: #6b21a8; background: #f3e8ff; }
 .blog-read-time { font-size: var(--t-label); color: var(--gray-400); display: flex; align-items: center; gap: 4px; }
-.blog-card-body h4 { font-family: \'Space Grotesk\', sans-serif; font-size: var(--t-h3); font-weight: 700; color: var(--blue-dark); margin-bottom: 9px; line-height: 1.35; }
+.blog-card-body h3 { font-family: 'Space Grotesk', sans-serif; font-size: var(--t-h3); font-weight: 700; color: var(--blue-dark); margin-bottom: 9px; line-height: 1.35; }
 .blog-card-body p { font-size: var(--t-small); color: var(--gray-600); line-height: 1.65; flex: 1; }
 .blog-read-more { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); font-weight: 700; color: var(--blue); margin-top: 16px; transition: gap 0.2s; }
 .blog-card:hover .blog-read-more { gap: 10px; }

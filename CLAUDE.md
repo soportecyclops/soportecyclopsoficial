@@ -11,6 +11,11 @@ Leer ambos antes de tocar markup o CSS. `DESIGN.md` manda sobre cualquier
 preferencia propia: color, tamaño tipográfico, espaciado, radio y sombra
 salen de los tokens de `css/tokens.css`.
 
+## Seguimiento
+
+`PENDIENTES.md` (raíz): lo hecho por sesión con su commit y lo que quedó
+pendiente. Leerlo al empezar; actualizarlo al terminar.
+
 ## Reglas duras
 
 1. **Nada de `<style>` en HTML.** El CSS va en `css/`. Hay 364 bloques
@@ -46,6 +51,30 @@ salen de los tokens de `css/tokens.css`.
 - WhatsApp: todos los `wa.me` van al número de Iris, **5491151758025**. Los `tel:` y el teléfono visible para llamadas siguen en 11 6680-4450.
 - Precios que muestra la web, `chatbot.js` e Iris deben coincidir. Fuente de Iris: `/opt/cyclops-chat/config/conocimiento/default/05-catalogo.md` en el servidor 192.168.0.200.
 - `Code.gs` (Apps Script) se actualiza aparte, en el editor de Google.
+
+## Automatización (`.claude/`, versionada)
+
+- **Guardián de reglas duras** — `.claude/hooks/guardian.mjs`, hook PreToolUse
+  registrado en `.claude/settings.json`. Rechaza toda edición que **sume**
+  `<style>`, literales de color/px/rem/`font-size` (en `css/` y
+  `herramientas/`, salvo `tokens.css`, y en `style=""`), `transition: all`,
+  `background-clip: text`, `linear-gradient(135deg` u `overflow-x: hidden` en
+  body. Bloquea `js/vendor/**` y `package-lock.json`; pide confirmación en
+  `*.gs`. `demos/` queda afuera (§14). Compara antes/después: editar deuda
+  heredada sin empeorarla se permite. Pruebas: `node --test .claude/hooks/guardian.test.mjs`.
+  No cubre ediciones hechas con comandos de shell (`sed`, etc.).
+  `.claude/` y `demos/` quedan fuera de su alcance.
+- **`/chequeo-pagina <ruta>`** — `.claude/skills/chequeo-pagina/`. La parte
+  medible de §11 en un navegador real: un `<h1>`, jerarquía, `img`,
+  desborde a 390/1280, metadatos, `<style>`, emoji como icono, consola,
+  recursos rotos, área táctil. Correrlo antes de `/impeccable audit`.
+  `--raiz` revisa todas las públicas de nivel raíz.
+- **Agente `auditor-tokens`** — `.claude/agents/auditor-tokens.md`. Sólo
+  lectura. Contrasta `git diff HEAD` (o `main...HEAD`, o los archivos que se
+  le pasen) contra §2–§8 y §10: tokens inexistentes, color en la superficie
+  equivocada, radios, borde+sombra, degradés, movimiento, estados. Devuelve
+  tabla con archivo:línea y el token exacto que va. Cubre lo que el guardián
+  no ve: semántica, y lo que entra por shell o por merge.
 
 ## Agentes
 
