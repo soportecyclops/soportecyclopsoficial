@@ -1834,7 +1834,7 @@ footer {
 .blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; }
 .blog-card { background: white; border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden; transition: var(--transition); text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; }
 .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(37,99,235,0.2); }
-.blog-card-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: var(--t-h1); flex-shrink: 0; position: relative; overflow: hidden; }
+.blog-card-img { height: 140px; display: flex; align-items: center; justify-content: center; font-size: var(--t-h1); color: var(--white); flex-shrink: 0; position: relative; overflow: hidden; }
 .blog-card-img.redes     { background: var(--blue-dark); }
 .blog-card-img.hardware  { background: linear-gradient(135deg, #1a2a1a 0%, #2d5a2d 100%); }
 .blog-card-img.seguridad { background: linear-gradient(135deg, #3a0f0f 0%, #7a1c1c 100%); }
