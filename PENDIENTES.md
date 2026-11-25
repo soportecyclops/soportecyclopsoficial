@@ -37,12 +37,14 @@ Ramas abiertas (sin mergear a `main`, esperan OK):
   Es mover archivos y contenido: mostrar el plan antes.
 
 ### Ramas por verificar y mergear
-- [ ] **Vista previa de `seo-limpieza` sin probar**: Vercel la protege con
-  login, la extensión de Chrome no estaba conectada y la CLI de Vercel no
-  tiene sesión. Falta comprobar: `/`, `/blog/`, `/herramientas/`, `/demos/`
-  y un artículo → 200; `/no-existe` y `/blog/no-existe` → 404 con 404.html;
-  las 6 redirecciones → 301. Vía rápida: `! npx vercel login` y después
-  `vercel curl`.
+- [x] **Vista previa de `seo-limpieza` verificada** con `vercel curl` (25/11):
+  `/`, `/blog/`, `/blog`, `/herramientas/`, `/demos/`, una demo y artículos
+  (`.html` y carpeta) → 200; `/no-existe`, `/blog/no-existe`, `/servicios`,
+  `/x/y/z` → 404 con 404.html y sus 5 recursos en 200; las 6 redirecciones
+  → 301 al destino correcto; sitemap publicado con 98 URLs, 0 lastmod, sin
+  demos ni duplicado; demo con `noindex` y sin JSON-LD.
+  Ojo: `/servicios` sin `.html` antes mostraba la portada y ahora da 404
+  (ningún enlace interno la usa).
 - [ ] Mergear `blog-buscador` y `seo-limpieza` a `main` (con OK).
 - [ ] **Relevancia del buscador**: «la compu anda lenta» trae 21, con
   resultados flojos («Monitor y puesto de trabajo»); «wifi» incluye
