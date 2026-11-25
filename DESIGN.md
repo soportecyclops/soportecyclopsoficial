@@ -29,7 +29,7 @@ sale de acá. Si un valor no está acá, no se usa: se agrega acá primero.
 |---|---|---|---|
 | `--blue` | `#174ea6` | 7.85:1 | acción primaria, enlaces, foco |
 | `--blue-hover` | `#123e85` | 10.23:1 | hover de acción |
-| `--blue-dark` | `#1a3a5c` | 9.1:1 | titulares sobre claro, logo |
+| `--blue-dark` | `#1a3a5c` | 11.64:1 | titulares sobre claro, logo |
 | `--blue-light` | `#3d77d1` | 3.9:1 | sólo texto grande o gráficos |
 | `--navy` | `#12356f` | 11.4:1 | fondos oscuros profundos |
 | `--blue-ui` | `#7ba7e8` | 2.1:1 | **sólo sobre oscuro** |
