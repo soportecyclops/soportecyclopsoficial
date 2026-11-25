@@ -844,7 +844,7 @@ html.js .reveal.visible {
     margin-top: 3px;
     flex-shrink: 0;
 }
-.contact-item h4 {
+.contact-item h3 {
     font-weight: 700;
     font-size: var(--t-h3);
     color: var(--blue-dark);
@@ -1673,7 +1673,7 @@ footer {
     font-size: 1.8rem;
     margin-bottom: 12px;
 }
-.garantia-card h4 {
+.garantia-card h3 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: var(--t-h3);
     font-weight: 700;
@@ -1846,7 +1846,7 @@ footer {
 .blog-tag.ups       { color: #92400e; background: #fef3c7; }
 .blog-tag.cctv      { color: #6b21a8; background: #f3e8ff; }
 .blog-read-time { font-size: var(--t-label); color: var(--gray-400); display: flex; align-items: center; gap: 4px; }
-.blog-card-body h4 { font-family: \'Space Grotesk\', sans-serif; font-size: var(--t-h3); font-weight: 700; color: var(--blue-dark); margin-bottom: 9px; line-height: 1.35; }
+.blog-card-body h3 { font-family: \'Space Grotesk\', sans-serif; font-size: var(--t-h3); font-weight: 700; color: var(--blue-dark); margin-bottom: 9px; line-height: 1.35; }
 .blog-card-body p { font-size: var(--t-small); color: var(--gray-600); line-height: 1.65; flex: 1; }
 .blog-read-more { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); font-weight: 700; color: var(--blue); margin-top: 16px; transition: gap 0.2s; }
 .blog-card:hover .blog-read-more { gap: 10px; }
