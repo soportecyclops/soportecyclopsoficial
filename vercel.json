@@ -33,6 +33,16 @@
       "source": "/blog/articulo-prueba/",
       "destination": "/blog/",
       "statusCode": 301
+    },
+    {
+      "source": "/:pagina(consorcio|faq|nosotros|opiniones|politica-de-privacidad|presencia-web-para-pymes|proyectos|servicios-hogares|servicios-obras|servicios-profesionales|servicios-pymes|servicios|soporte)",
+      "destination": "/:pagina.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/:pagina(consorcio|faq|nosotros|opiniones|politica-de-privacidad|presencia-web-para-pymes|proyectos|servicios-hogares|servicios-obras|servicios-profesionales|servicios-pymes|servicios|soporte)/",
+      "destination": "/:pagina.html",
+      "statusCode": 301
     }
   ]
 }
