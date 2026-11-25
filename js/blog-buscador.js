@@ -103,18 +103,28 @@
     return n;
   }
 
+  /* Por cada palabra buscada (grupo): g[0] es la palabra tal cual, el resto
+     sus sinónimos, que pesan la mitad (así «señales» no compite con «wifi»).
+     Devuelve p (puntaje total), tit (cuánto de la búsqueda está en el título:
+     1 por palabra literal, 0,5 por sinónimo) y lit (todas las palabras están
+     literales en el título). */
   function puntaje(c, gs, todas) {
-    var total = 0, hechas = 0;
+    var total = 0, hechas = 0, tit = 0, lit = true;
     gs.forEach(function (g) {
-      var p = 0;
-      g.forEach(function (r) {
-        p = Math.max(p, cuenta(c.t, r) * 10 + cuenta(c.r, r) * 4 + cuenta(c.c, r));
+      var p = 0, t = 0;
+      g.forEach(function (r, i) {
+        var w = i === 0 ? 1 : 0.5;
+        var enTit = cuenta(c.t, r);
+        p = Math.max(p, w * (enTit * 10 + cuenta(c.r, r) * 4 + cuenta(c.c, r)));
+        if (enTit) t = Math.max(t, w);
       });
       if (p > 0) hechas++;
+      if (t < 1) lit = false;
       total += p;
+      tit += t;
     });
-    if (todas && hechas < gs.length) return 0;
-    return total;
+    if (todas && hechas < gs.length) return { p: 0, tit: 0, lit: false };
+    return { p: total, tit: tit, lit: lit };
   }
 
   /* ---------- pintar ---------- */
@@ -140,16 +150,22 @@
     var lista, parecidos = false;
 
     if (gs.length) {
-      lista = cards.map(function (c) { return { c: c, p: puntaje(c, gs, true) }; })
-        .filter(function (x) { return x.p > 0; });
+      var puntuar = function (todas) {
+        return cards.map(function (c) { var s = puntaje(c, gs, todas); s.c = c; return s; })
+          .filter(function (x) { return x.p > 0; });
+      };
+      lista = puntuar(true);
       if (!lista.length && gs.length > 1) {
         parecidos = true;
-        lista = cards.map(function (c) { return { c: c, p: puntaje(c, gs, false) }; })
-          .filter(function (x) { return x.p > 0; });
+        lista = puntuar(false);
       }
-      lista.sort(function (a, b) { return b.p - a.p || a.c.orden - b.c.orden; });
-      var corte = lista.length ? Math.max(3, lista[0].p * 0.35) : 0;
-      lista = lista.filter(function (x) { return x.p >= corte; }).map(function (x) { return x.c; });
+      // Coincidir en el título manda: después el puntaje, después el orden fijo.
+      lista.sort(function (a, b) { return b.tit - a.tit || b.p - a.p || a.c.orden - b.c.orden; });
+      // Corte: la mitad del mejor puntaje. Lo que tiene todas las palabras
+      // literales en el título queda siempre.
+      var mejor = lista.reduce(function (m, x) { return Math.max(m, x.p); }, 0);
+      var corte = Math.max(3, mejor * 0.5);
+      lista = lista.filter(function (x) { return x.lit || x.p >= corte; }).map(function (x) { return x.c; });
     } else {
       lista = cards.slice();
     }
