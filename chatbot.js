@@ -1992,8 +1992,12 @@ function generarPDFDiagnostico(data) {
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(150, 160, 180);
             doc.text(
-                'Soporte Cyclops · +54 9 11 6680-4450 · contacto@soportecyclops.com.ar · soportecyclops.com.ar',
-                pageW / 2, pageH - 12, { align: 'center' }
+                'Soporte Cyclops · WhatsApp +54 9 11 5175-8025 · Tel. +54 9 11 6680-4450',
+                pageW / 2, pageH - 14, { align: 'center' }
+            );
+            doc.text(
+                'contacto@soportecyclops.com.ar · soportecyclops.com.ar',
+                pageW / 2, pageH - 10, { align: 'center' }
             );
             doc.text(
                 'CABA y Gran Buenos Aires · Este informe es orientativo y no reemplaza el diagnóstico técnico presencial.',
