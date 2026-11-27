@@ -29,7 +29,7 @@ const CYCLOPS_CONFIG = {
     email:         "contacto@soportecyclops.com.ar",
     sitio:         "www.soportecyclops.com.ar",
     logoUrl:       "https://www.soportecyclops.com.ar/public/images/logo-icon.png",
-    appsScriptUrl: "https://script.google.com/macros/s/AKfycbya19vtvoelLNYInDTeLepNDKBmJDrAOlJ3tPScPRXPT-_rRrwCAu1-gyviO_5cSgAp/exec"
+    appsScriptUrl: "https://script.google.com/macros/s/AKfycbzlFLdnTYf5KX7aEoAhVILBS9HO7KvWuuk5UugCcr2bywbC0IwylHr3LWLcEEiiOJ_8/exec"
 };
 
 // ── PRECIOS DOMÓTICA EN USD ──────────────────────────────────────────────────
@@ -1992,8 +1992,12 @@ function generarPDFDiagnostico(data) {
             doc.setFont('helvetica', 'normal');
             doc.setTextColor(150, 160, 180);
             doc.text(
-                'Soporte Cyclops · +54 9 11 6680-4450 · contacto@soportecyclops.com.ar · soportecyclops.com.ar',
-                pageW / 2, pageH - 12, { align: 'center' }
+                'Soporte Cyclops · WhatsApp +54 9 11 5175-8025 · Tel. +54 9 11 6680-4450',
+                pageW / 2, pageH - 14, { align: 'center' }
+            );
+            doc.text(
+                'contacto@soportecyclops.com.ar · soportecyclops.com.ar',
+                pageW / 2, pageH - 10, { align: 'center' }
             );
             doc.text(
                 'CABA y Gran Buenos Aires · Este informe es orientativo y no reemplaza el diagnóstico técnico presencial.',

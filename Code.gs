@@ -141,12 +141,26 @@ function doPost(e) {
     }
 
     if (payload.action_type === "update_estado") {
-      if (!esAdmin(payload.admin_email)) return jsonResponse({ ok: false, error: "No autorizado" });
-      actualizarEstadoDiag(payload.diagNum, payload.estado, payload.admin_email);
+      var _rechazo = exigirAdmin_({ credential: payload.credential || e.parameter.credential });
+      if (_rechazo) return _rechazo;
+      actualizarEstadoDiag(payload.diagNum, payload.estado, ADMIN_VERIFICADO_);
       return jsonResponse({ ok: true });
     }
 
     var actionAdmin = e.parameter.action || "";
+
+    // SEC: todas las escrituras de administración exigen credential de admin
+    // (registro_cliente es el alta pública desde el portal y queda afuera).
+    var ACCIONES_ADMIN_POST = {
+      admin_editar_diag: 1, admin_nuevo_diag: 1, admin_nueva_cita: 1,
+      admin_editar_cita: 1, admin_nuevo_llamado: 1, nuevo_usuario: 1,
+      editar_usuario: 1, eliminar_usuario: 1, guardar_documento: 1,
+      actualizar_documento: 1, eliminar_documento: 1
+    };
+    if (ACCIONES_ADMIN_POST.hasOwnProperty(actionAdmin)) {
+      var _rechazoP = exigirAdmin_(e.parameter);
+      if (_rechazoP) return _rechazoP;
+    }
 
     if (actionAdmin === "admin_editar_diag")   return admin_editar_diag(e.parameter);
     if (actionAdmin === "admin_nuevo_diag")    return admin_nuevo_diag_manual(e.parameter);
@@ -201,6 +215,17 @@ function doGet(e) {
 
   var action = e && e.parameter && e.parameter.action;
 
+  // SEC: lecturas de administración exigen credential de admin
+  var ACCIONES_ADMIN_GET = {
+    get_all_diags: 1, admin_todos_diags: 1, admin_todas_citas: 1, admin_llamados: 1,
+    get_clientes_autorizados: 1, get_admins: 1, siguiente_numero_doc: 1,
+    listar_documentos: 1, listar_clientes_completo: 1
+  };
+  if (action && ACCIONES_ADMIN_GET.hasOwnProperty(action)) {
+    var _rechazoG = exigirAdmin_(e.parameter);
+    if (_rechazoG) return _rechazoG;
+  }
+
   if (action === "diags_por_email") {
     var email = e.parameter.email || "";
     if (AUTO_REGISTRO && email) {
@@ -214,16 +239,13 @@ function doGet(e) {
     var diagNum = (e.parameter.diagNum || "").trim().toUpperCase();
     var diag    = buscarDiagPorNumero(diagNum);
     if (diag) {
-      var adminEmail = e.parameter.admin_email || "";
-      if (!esAdmin(adminEmail)) { delete diag.email; if (diag.nombre) diag.nombre = diag.nombre.split(" ")[0]; }
+      if (!verificarCredencial_(e.parameter.credential).ok) { delete diag.email; if (diag.nombre) diag.nombre = diag.nombre.split(" ")[0]; }
       return jsonResponse({ ok: true, diagnostico: diag });
     }
     return jsonResponse({ ok: false, error: "No encontrado" });
   }
 
   if (action === "get_all_diags") {
-    var adminEmailG = e.parameter.admin_email || "";
-    if (!esAdmin(adminEmailG)) return jsonResponse({ ok: false, error: "No autorizado" });
     return jsonResponse({ ok: true, diagnosticos: obtenerTodosLosDiags() });
   }
 
@@ -311,6 +333,52 @@ function accion_eliminar_usuario(p) {
   if (filaSheet > hoja.getLastRow()) return jsonResponse({ ok: false, error: "Fila no existe" });
   hoja.deleteRow(filaSheet);
   return jsonResponse({ ok: true });
+}
+
+// ── Verificación de credencial de Google (SEC) ───────────────
+// Toda acción de administración exige un ID token de Google válido:
+// firma y vencimiento los valida Google (tokeninfo); acá se comprueba
+// audiencia (nuestro client ID), emisor, email verificado y que el email
+// esté en ADMIN_EMAILS. Sin credential, o con uno inválido, se rechaza.
+var GOOGLE_CLIENT_ID = "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com";
+var ADMIN_VERIFICADO_ = "";
+
+function verificarCredencial_(cred) {
+  cred = String(cred || "");
+  if (!cred) return { ok: false, error: "sin_credencial" };
+  var cache = CacheService.getScriptCache();
+  var key = "adm_" + Utilities.base64EncodeWebSafe(
+    Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, cred));
+  var hit = cache.get(key);
+  if (hit) return { ok: true, email: hit };
+  var resp;
+  try {
+    resp = UrlFetchApp.fetch(
+      "https://oauth2.googleapis.com/tokeninfo?id_token=" + encodeURIComponent(cred),
+      { muteHttpExceptions: true });
+  } catch (err) { return { ok: false, error: "error_verificacion" }; }
+  var code = resp.getResponseCode();
+  if (code === 400) return { ok: false, error: "sesion_vencida" };
+  if (code !== 200) return { ok: false, error: "error_verificacion" };
+  var t;
+  try { t = JSON.parse(resp.getContentText()); } catch (err2) { return { ok: false, error: "error_verificacion" }; }
+  var ahora = Math.floor(Date.now() / 1000);
+  var exp = parseInt(t.exp, 10);
+  if (!exp || exp <= ahora) return { ok: false, error: "sesion_vencida" };
+  if (t.aud !== GOOGLE_CLIENT_ID) return { ok: false, error: "no_autorizado" };
+  if (t.iss !== "accounts.google.com" && t.iss !== "https://accounts.google.com") return { ok: false, error: "no_autorizado" };
+  if (String(t.email_verified) !== "true") return { ok: false, error: "no_autorizado" };
+  var email = String(t.email || "").toLowerCase().trim();
+  if (!esAdmin(email)) return { ok: false, error: "no_autorizado" };
+  cache.put(key, email, Math.max(1, Math.min(300, exp - ahora)));
+  return { ok: true, email: email };
+}
+
+// Devuelve null si el pedido es de un admin; si no, la respuesta de rechazo.
+function exigirAdmin_(p) {
+  var r = verificarCredencial_(p && p.credential);
+  if (r.ok) { ADMIN_VERIFICADO_ = r.email; return null; }
+  return jsonResponse({ ok: false, error: r.error });
 }
 
 function esAdmin(email) {
@@ -617,7 +685,7 @@ function generarPDFBlob(p) {
 
   body.appendParagraph("Soporte Cyclops")
       .setFontSize(20).setBold(true).setForegroundColor("#1a3a5c");
-  body.appendParagraph("soporte.cyclops.com.ar  ·  +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar")
+  body.appendParagraph("soportecyclops.com.ar  ·  WhatsApp +54 9 11 5175-8025  ·  Tel. +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar")
       .setFontSize(10).setForegroundColor("#64748b");
   body.appendParagraph("").setSpacingAfter(4);
   body.appendHorizontalRule();
@@ -682,7 +750,7 @@ function generarPDFBlob(p) {
   body.appendHorizontalRule();
   body.appendParagraph("").setSpacingAfter(2);
   body.appendParagraph(
-    "Soporte Cyclops  ·  +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar\n" +
+    "Soporte Cyclops  ·  WhatsApp +54 9 11 5175-8025  ·  Tel. +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar\n" +
     "CABA y Gran Buenos Aires  ·  Este informe es orientativo y no reemplaza el diagnóstico técnico presencial."
   ).setFontSize(8).setForegroundColor("#94a3b8").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
 
@@ -721,7 +789,7 @@ function enviarEmailCliente(p, pdfBlob) {
     "<div style='font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1e293b;'>" +
     "<div style='background:#1a3a5c;padding:24px 28px;border-radius:8px 8px 0 0;'>" +
       "<div style='font-size:20px;font-weight:700;color:#ffffff;'>Soporte Cyclops</div>" +
-      "<div style='font-size:11px;color:#93c5fd;margin-top:4px;'>soportecyclops.com.ar  ·  +54 9 11 6680-4450</div>" +
+      "<div style='font-size:11px;color:#93c5fd;margin-top:4px;'>soportecyclops.com.ar  ·  WhatsApp +54 9 11 5175-8025  ·  Tel. +54 9 11 6680-4450</div>" +
     "</div>" +
     "<div style='background:#f8fafc;padding:28px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0;border-top:none;'>" +
       "<p style='font-size:15px;margin:0 0 16px;'>Hola <strong>" + (p.nombre || "cliente") + "</strong>,</p>" +

@@ -389,7 +389,7 @@
           </a>
           <a class="quick-card" href="https://wa.me/5491151758025" target="_blank">
             <div class="quick-card-icon" style="background:#f0fdf4;color:#16a34a"><i class="fab fa-whatsapp"></i></div>
-            <span>WhatsApp</span><small>5491166804450</small>
+            <span>WhatsApp</span><small>+54 9 11 5175-8025</small>
           </a>
           <a class="quick-card" href="https://mail.google.com" target="_blank">
             <div class="quick-card-icon" style="background:#fefce8;color:#ca8a04"><i class="fas fa-envelope"></i></div>
@@ -744,7 +744,7 @@
 const CONFIG = {
   GOOGLE_CLIENT_ID : "554493281183-kq61svbdeh0t0gmrbdrokqn7t87jvsa7.apps.googleusercontent.com",
   ADMIN_EMAILS     : ["juanpabloalza@gmail.com", "soportecyclops@gmail.com"],
-  APPS_SCRIPT_URL  : "https://script.google.com/macros/s/AKfycbya19vtvoelLNYInDTeLepNDKBmJDrAOlJ3tPScPRXPT-_rRrwCAu1-gyviO_5cSgAp/exec",
+  APPS_SCRIPT_URL  : "https://script.google.com/macros/s/AKfycbzlFLdnTYf5KX7aEoAhVILBS9HO7KvWuuk5UugCcr2bywbC0IwylHr3LWLcEEiiOJ_8/exec",
   // URL del calendario embebido (Calendar ID de tu cuenta principal):
   CALENDAR_EMBED_URL : "https://calendar.google.com/calendar/embed?src=juanpabloalza%40gmail.com&ctz=America%2FArgentina%2FBuenos_Aires&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=WEEK&hl=es"
 };
@@ -893,17 +893,34 @@ function refreshCurrentSection() {
 // ══════════════════════════════════════════════════════════
 // API CALLS
 // ══════════════════════════════════════════════════════════
+// El servidor verifica el ID token de Google en cada acción de administración.
+function getCredential() {
+  try { return (JSON.parse(sessionStorage.getItem('cyclops_user')) || {}).credential || ''; }
+  catch (e) { return ''; }
+}
+
+// Si el servidor rechaza la sesión (vencida o sin permiso), volver al login.
+function revisarSesion(d) {
+  if (d && ['sin_credencial', 'sesion_vencida', 'no_autorizado'].includes(d.error)) {
+    showToast('Tu sesión venció. Volvé a iniciar sesión.', 'error');
+    sessionStorage.removeItem('cyclops_user');
+    setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+  }
+  return d;
+}
+
 async function apiGet(action, params = {}) {
-  const qs = new URLSearchParams({ action, ...params }).toString();
+  const qs = new URLSearchParams({ action, ...params, credential: getCredential() }).toString();
   const r = await fetch(CONFIG.APPS_SCRIPT_URL + '?' + qs);
-  return r.json();
+  return revisarSesion(await r.json());
 }
 
 async function apiPost(data) {
   const fd = new FormData();
   Object.entries(data).forEach(([k,v]) => fd.append(k, v ?? ''));
+  fd.append('credential', getCredential());
   const r = await fetch(CONFIG.APPS_SCRIPT_URL, { method: 'POST', body: fd });
-  return r.json();
+  return revisarSesion(await r.json());
 }
 
 // ══════════════════════════════════════════════════════════

@@ -12,6 +12,16 @@ en GitHub.
 
 ## Pendiente
 
+### Seguridad de Code.gs / admin.html (27/11, rama `iris-primero`)
+- [x] Código: `Code.gs` verifica el ID token de Google (tokeninfo: aud, iss, exp, email verificado, email en ADMIN_EMAILS) en todas las acciones admin de lectura y escritura; `admin.html` manda `credential` en `apiGet`/`apiPost` y vuelve al login si la sesión vence.
+- [x] (URL nueva aplicada 27/11) **Pegar `Code.gs` en Apps Script y crear una implementación nueva** (la URL vieja pudo leerse sin login); cambiar `CONFIG.APPS_SCRIPT_URL` en `admin.html`, `appsScriptUrl` en `chatbot.js` y `APPS_SCRIPT_URL` en `cliente.html`. Tiene que existir `portalGet_`/`portalPost_` en otro archivo del proyecto.
+- [x] `cliente.html:287`: typo `hhttps://` corregido con la URL nueva. `diags_por_email` y `verificar_acceso` siguen públicos. Sin tocar: `admin.html` h1, meta description, img width/height.
+
+### Contacto: Iris primero (27/11, rama `iris-primero`)
+- [x] WhatsApp de Iris (+54 9 11 5175-8025) antes que el teléfono (+54 9 11 6680-4450) en 15 pies/bloques, 3 herramientas, `soporte.html` e `index.html`; `contactPoint` en el JSON-LD de `index.html`; `admin.html:392` corregido.
+- [ ] Sin tocar, a decidir: `chatbot.js:28/1995`, `cliente.html:705`, `Code.gs:620/685/724` y `admin.html:539/1582` siguen con +54 9 11 6680-4450 (config/PDF/mails).
+- [ ] Revisión de `admin.html` (carga, consola, enlaces, seguridad, /chequeo-pagina): pendiente de informe.
+
 ### Buscador y «Más leídos» del blog (25/11, rama `blog-buscador`)
 - [ ] **Apps Script del portal** (el de `AKfycbwYHX…`, el mismo de `preguntas_publicas`):
   pegar este código y, al principio de `doGet`, la línea
