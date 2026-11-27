@@ -893,17 +893,34 @@ function refreshCurrentSection() {
 // ══════════════════════════════════════════════════════════
 // API CALLS
 // ══════════════════════════════════════════════════════════
+// El servidor verifica el ID token de Google en cada acción de administración.
+function getCredential() {
+  try { return (JSON.parse(sessionStorage.getItem('cyclops_user')) || {}).credential || ''; }
+  catch (e) { return ''; }
+}
+
+// Si el servidor rechaza la sesión (vencida o sin permiso), volver al login.
+function revisarSesion(d) {
+  if (d && ['sin_credencial', 'sesion_vencida', 'no_autorizado'].includes(d.error)) {
+    showToast('Tu sesión venció. Volvé a iniciar sesión.', 'error');
+    sessionStorage.removeItem('cyclops_user');
+    setTimeout(() => { window.location.href = 'login.html'; }, 1500);
+  }
+  return d;
+}
+
 async function apiGet(action, params = {}) {
-  const qs = new URLSearchParams({ action, ...params }).toString();
+  const qs = new URLSearchParams({ action, ...params, credential: getCredential() }).toString();
   const r = await fetch(CONFIG.APPS_SCRIPT_URL + '?' + qs);
-  return r.json();
+  return revisarSesion(await r.json());
 }
 
 async function apiPost(data) {
   const fd = new FormData();
   Object.entries(data).forEach(([k,v]) => fd.append(k, v ?? ''));
+  fd.append('credential', getCredential());
   const r = await fetch(CONFIG.APPS_SCRIPT_URL, { method: 'POST', body: fd });
-  return r.json();
+  return revisarSesion(await r.json());
 }
 
 // ══════════════════════════════════════════════════════════
