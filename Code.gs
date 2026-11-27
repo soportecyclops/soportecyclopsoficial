@@ -617,7 +617,7 @@ function generarPDFBlob(p) {
 
   body.appendParagraph("Soporte Cyclops")
       .setFontSize(20).setBold(true).setForegroundColor("#1a3a5c");
-  body.appendParagraph("soporte.cyclops.com.ar  ·  +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar")
+  body.appendParagraph("soportecyclops.com.ar  ·  WhatsApp +54 9 11 5175-8025  ·  Tel. +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar")
       .setFontSize(10).setForegroundColor("#64748b");
   body.appendParagraph("").setSpacingAfter(4);
   body.appendHorizontalRule();
@@ -682,7 +682,7 @@ function generarPDFBlob(p) {
   body.appendHorizontalRule();
   body.appendParagraph("").setSpacingAfter(2);
   body.appendParagraph(
-    "Soporte Cyclops  ·  +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar\n" +
+    "Soporte Cyclops  ·  WhatsApp +54 9 11 5175-8025  ·  Tel. +54 9 11 6680-4450  ·  contacto@soportecyclops.com.ar\n" +
     "CABA y Gran Buenos Aires  ·  Este informe es orientativo y no reemplaza el diagnóstico técnico presencial."
   ).setFontSize(8).setForegroundColor("#94a3b8").setAlignment(DocumentApp.HorizontalAlignment.CENTER);
 
@@ -721,7 +721,7 @@ function enviarEmailCliente(p, pdfBlob) {
     "<div style='font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#1e293b;'>" +
     "<div style='background:#1a3a5c;padding:24px 28px;border-radius:8px 8px 0 0;'>" +
       "<div style='font-size:20px;font-weight:700;color:#ffffff;'>Soporte Cyclops</div>" +
-      "<div style='font-size:11px;color:#93c5fd;margin-top:4px;'>soportecyclops.com.ar  ·  +54 9 11 6680-4450</div>" +
+      "<div style='font-size:11px;color:#93c5fd;margin-top:4px;'>soportecyclops.com.ar  ·  WhatsApp +54 9 11 5175-8025  ·  Tel. +54 9 11 6680-4450</div>" +
     "</div>" +
     "<div style='background:#f8fafc;padding:28px;border-radius:0 0 8px 8px;border:1px solid #e2e8f0;border-top:none;'>" +
       "<p style='font-size:15px;margin:0 0 16px;'>Hola <strong>" + (p.nombre || "cliente") + "</strong>,</p>" +
